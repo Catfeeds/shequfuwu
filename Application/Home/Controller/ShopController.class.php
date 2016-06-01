@@ -127,7 +127,7 @@ class ShopController extends BaseController
 
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Shop/product/page/" . $p);
+        cookie("prevUrl", U("Home/Shop/product/page/") . $p);
 
         $productList = D("Product")->getProductList($condition, true, "id desc", $p, $num);
         $this->assign('productList', $productList);// 赋值数据集
@@ -147,7 +147,7 @@ class ShopController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Shop/shop/page/" . $p);
+        cookie("prevUrl", U("Home/Shop/shop/page/") . $p);
 
         $condition = array("user_id" => session("homeId"));
         $shopList = D("Shop")->getShopList($condition, true, "id desc", $p, $num);
@@ -172,7 +172,7 @@ class ShopController extends BaseController
             }
             D("Menu")->addMenu($data);
 
-            $this->success("保存成功", "Home/Shop/menu");
+            $this->success("保存成功", U("Home/Shop/menu"));
         } else {
             $menuList = D("Menu")->getMenuList(array("pid" => 0, "shop_id" => session("homeShopId") ? session("homeShopId") : 0));
             $this->assign("menuList", $menuList);
@@ -195,7 +195,7 @@ class ShopController extends BaseController
     {
         D("Menu")->delMenu(I("get.id"));
 
-        $this->success("删除成功", "Home/Shop/menu");
+        $this->success("删除成功", U("Home/Shop/menu"));
     }
 
     public function addProduct()
@@ -273,7 +273,7 @@ class ShopController extends BaseController
 
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Shop/ads/page/" . $p);
+        cookie("prevUrl", U("Home/Shop/ads/page/") . $p);
 
         $adsList = D("Ads")->getAdsList($condition, true, "id desc", $p, $num);
         $this->assign('ads', $adsList);// 赋值数据集
@@ -327,7 +327,7 @@ class ShopController extends BaseController
 
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Shop/comment/page/" . $p);
+        cookie("prevUrl", U("Home/Shop/comment/page/") . $p);
 
         $comment = D("Comment")->getCommentList($condition, true, "id desc", $p, $num);
         $this->assign("comment", $comment);
@@ -404,7 +404,7 @@ class ShopController extends BaseController
 
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Shop/feedback/page/" . $p);
+        cookie("prevUrl", U("Home/Shop/feedback/page/") . $p);
 
         $feedbackList = D("Feedback")->getFeedbackList($condition, false, "id desc", $p, $num);
         $this->assign('feedback', $feedbackList);// 赋值数据集
@@ -462,7 +462,7 @@ class ShopController extends BaseController
             }
             D("ProductLabel")->add($data);
 
-            $this->success("保存成功", "Home/Shop/label");
+            $this->success("保存成功", U("Home/Shop/label"));
         } else {
             $this->display();
         }
@@ -473,12 +473,12 @@ class ShopController extends BaseController
     {
         D("ProductLabel")->del(array("id" => array("in", I("get.id"))));
 
-        $this->success("删除成功", "Home/Shop/label");
+        $this->success("删除成功", U("Home/Shop/label"));
     }
 
     public function sku()
     {
-        cookie("prevUrl", "Home/Shop/sku/id/" . I("get.id"));
+        cookie("prevUrl", U("Home/Shop/sku/id/") . I("get.id"));
 
         $condition = array(
             "shop_id" => session("homeShopId"),

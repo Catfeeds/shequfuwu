@@ -21,7 +21,7 @@ class ConfigController extends InitController
     {
         $data = I("post.");
         M("AddonCardConfig")->where(array("id" => 1))->save($data);
-        $this->success("保存成功", "Admin/Config/index/addon/Card");
+        $this->success("保存成功", U("Admin/Config/index/addon/Card"));
     }
 
 }

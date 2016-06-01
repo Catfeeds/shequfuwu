@@ -8,7 +8,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/User/user/page/" . $p);
+        cookie("prevUrl", U("Home/User/user/page/") . $p);
 
         $condition = array();
         $userList = array();
@@ -75,14 +75,14 @@ class UserController extends BaseController
         }
 
         D("Shop")->saveShop(array("id" => session("homeShopId"), "employee" => implode(",", $employee)));
-        $this->success("删除成功", "Home/User/employee");
+        $this->success("删除成功", U("Home/User/employee"));
     }
 
     public function member()
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/User/member/page/" . $p);
+        cookie("prevUrl", U("Home/User/member/page/") . $p);
 
         $userList = D("UserMember")->getList(array(), true, "id desc", $p, $num);
         $this->assign("userList", $userList);// 赋值数据集
@@ -225,7 +225,7 @@ class UserController extends BaseController
                 D("AuthGroupAccess")->add($userId, $groupId);
             }
 
-            $this->success("添加成功", "Home/User/admin");
+            $this->success("添加成功", U("Home/User/admin"));
         } else {
             $authGroupList = D("AuthGroup")->getList(array(), false, "id asc");
             $this->assign("authGroupList", $authGroupList);

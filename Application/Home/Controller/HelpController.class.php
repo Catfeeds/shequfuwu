@@ -7,7 +7,7 @@ class HelpController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Artical/artical/page/" . $p);
+        cookie("prevUrl", U("Home/Artical/artical/page/") . $p);
 
         $articalList = D("Artical")->getArticalList(array("type" => 2), true, "rank desc,id desc", $p, $num);
         $this->assign('articalList', $articalList);// 赋值数据集
@@ -26,7 +26,7 @@ class HelpController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Artical/artical/page/" . $p);
+        cookie("prevUrl", U("Home/Artical/artical/page/") . $p);
 
         $articalList = D("Artical")->getArticalList(array("type" => 3), true, "rank desc,id desc", $p, $num);
         $this->assign('articalList', $articalList);// 赋值数据集

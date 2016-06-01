@@ -40,6 +40,6 @@ class AdminController extends InitController
     public function addConfig()
     {
         M("AddonSignConfig")->where(array("id" => "1"))->save($_POST);
-        $this->success('修改成功', 'Admin/Admin/index/addon/Sign');
+        $this->success('修改成功', U('Admin/Admin/index/addon/Sign'));
     }
 }

@@ -39,7 +39,7 @@ class AdminController extends InitController
             $data['last_time'] = I('post.last_time', '', 'strtotime');
             $coupon_id = D('Addons://Coupon/AddonCouponMenu')->addCouponMenu($data);
 
-            isset($coupon_id) ? $this->success('添加成功', 'Admin/Admin/index/addon/Coupon') : $this->error('添加失败', u_addons("Coupon://Admin/Admin/index"));
+            isset($coupon_id) ? $this->success('添加成功', U('Admin/Admin/index/addon/Coupon')) : $this->error('添加失败', u_addons("Coupon://Admin/Admin/index"));
         } else {
             $this->display(); // 输出模板
         }
@@ -71,9 +71,9 @@ class AdminController extends InitController
         $c = M('AddonCouponMenu')->where($data)->delete();
         $m = M('AddonCoupon')->where($cdata)->delete();
         if ($c != false && $m != false) {
-            $this->success('删除成功', 'Admin/Admin/index/addon/Coupon');
+            $this->success('删除成功', U('Admin/Admin/index/addon/Coupon'));
         } else {
-            $this->error('操作失败', 'Admin/Admin/index/addon/Coupon');
+            $this->error('操作失败', U('Admin/Admin/index/addon/Coupon'));
         }
     }
 
@@ -82,9 +82,9 @@ class AdminController extends InitController
         $cdata['id'] = I('get.id');
         $m = M('AddonCoupon')->where($cdata)->delete();
         if ($m != false) {
-            $this->success('删除成功', 'Admin/Admin/index/addon/Coupon');
+            $this->success('删除成功', U('Admin/Admin/index/addon/Coupon'));
         } else {
-            $this->error('操作失败', 'Admin/Admin/index/addon/Coupon');
+            $this->error('操作失败', U('Admin/Admin/index/addon/Coupon'));
         }
     }
 }

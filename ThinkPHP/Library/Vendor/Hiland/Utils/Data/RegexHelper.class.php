@@ -18,4 +18,6 @@ class RegexHelper
     const EMAIL='/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i';
 
     const URL= '#(http|https|ftp|ftps)://([w-]+.)+[w-]+(/[w-./?%&=]*)?#i';
+
+    const IP='/^((25[0-5]|2[0-4]\d|[01]?\d\d?)($|(?!\.$)\.)){4}$/';
 }

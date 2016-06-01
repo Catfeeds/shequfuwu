@@ -11,7 +11,7 @@ class WeixinController extends BaseController
             $data["appsecret"] = trim($data["appsecret"]);
             D("WxConfig")->add($data);
 
-            $this->success("保存成功", "Home/Weixin/wxSet");
+            $this->success("保存成功", U("Home/Weixin/wxSet"));
         } else {
             $condition = array("shop_id" => session("homeShopId"));
             $config = D("WxConfig")->getWxSet($condition);
@@ -66,7 +66,7 @@ class WeixinController extends BaseController
             $data["shop_id"] = session("homeShopId");
             D("WxMenu")->addWxMenu($data);
 
-            $this->success("保存成功", "Home/Weixin/wxMenuSet");
+            $this->success("保存成功", U("Home/Weixin/wxMenuSet"));
         } else {
             $parentWxMenuList = D("WxMenu")->getWxMenuList(array("pid" => 0, "shop_id" => session("homeShopId")));
             $this->assign("parentWxMenuList", $parentWxMenuList);
@@ -82,7 +82,7 @@ class WeixinController extends BaseController
             $data["shop_id"] = session("homeShopId");
             D("WxReply")->addWxReply($data);
 
-            $this->success("保存成功", "Home/Weixin/wxReplySet");
+            $this->success("保存成功", U("Home/Weixin/wxReplySet"));
         } else {
             $this->display();
         }
@@ -103,7 +103,7 @@ class WeixinController extends BaseController
     {
         D("WxMenu")->delWxMenu(I("get.id"));
 
-        $this->success("删除成功", "Home/Weixin/wxMenuSet");
+        $this->success("删除成功", U("Home/Weixin/wxMenuSet"));
     }
 
     public function modifyWxReply()
@@ -118,6 +118,6 @@ class WeixinController extends BaseController
     {
         D("WxReply")->delWxReply(I("get.id"));
 
-        $this->success("删除成功", "Home/Weixin/wxReplySet");
+        $this->success("删除成功", U("Home/Weixin/wxReplySet"));
     }
 }

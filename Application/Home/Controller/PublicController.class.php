@@ -198,11 +198,11 @@ class PublicController extends Controller
             $data = I("post.");
             unset($data["password2"]);
 
-            if ($data["smsVerify"] != session("emailCode")) {
-                $this->error("邮箱验证码无效");
-            }
-            //核对验证码
-            unset($data["smsVerify"]);
+//            if ($data["smsVerify"] != session("emailCode")) {
+//                $this->error("邮箱验证码无效");
+//            }
+//            //核对验证码
+//            unset($data["smsVerify"]);
 
             $data["type"] = 2;
             $data["password"] = md5($data["password"]);

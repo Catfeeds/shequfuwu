@@ -103,7 +103,7 @@ class BuyController extends BaseController
 
             D("FreeApply")->add($data);
 
-            $this->success("已提交审核", "Home/Buy/pay");
+            $this->success("已提交审核", U("Home/Buy/pay"));
         } else {
             $this->display();
         }

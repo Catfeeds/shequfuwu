@@ -7,7 +7,7 @@ class ConfigController extends BaseController
     {
         if (IS_POST) {
             D("Config")->addConfig(I("post."));
-            $this->success("保存成功", "Admin/Config/configSet");
+            $this->success("保存成功", U("Admin/Config/configSet"));
         } else {
             $config = D("Config")->getConfig();
             $this->assign("config", $config);
@@ -27,7 +27,7 @@ class ConfigController extends BaseController
         if (IS_POST) {
             D("LocProvince")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Config/addressSet");
+            $this->success("保存成功", U("Admin/Config/addressSet"));
         } else {
             $this->display();
         }
@@ -44,7 +44,7 @@ class ConfigController extends BaseController
     {
         D("LocProvince")->del(array("id" => array("in", I("get.id"))));
 
-        $this->success("删除成功", "Admin/Config/addressSet");
+        $this->success("删除成功", U("Admin/Config/addressSet"));
     }
 
     public function addCity()
@@ -52,7 +52,7 @@ class ConfigController extends BaseController
         if (IS_POST) {
             D("LocCity")->add(I("post."));
 
-            $this->success("添加成功", "Admin/Config/city");
+            $this->success("添加成功", U("Admin/Config/city"));
         } else {
             $provincelist = D("LocProvince")->getList();
             $this->assign("provincelist", $provincelist);
@@ -71,7 +71,7 @@ class ConfigController extends BaseController
     {
         D("LocCity")->del(array("id" => array("in", I("get.id"))));
 
-        $this->success("删除成功", "Admin/Config/city");
+        $this->success("删除成功", U("Admin/Config/city"));
     }
 
     public function modCity()
@@ -90,7 +90,7 @@ class ConfigController extends BaseController
     {
         if (I("get.theme")) {
             D("Config")->add(array("theme" => I("get.theme"),"id"=>1));
-            $this->success("设置成功", "Admin/Config/tplSet");
+            $this->success("设置成功", U("Admin/Config/tplSet"));
         } else {
             $config = D("Config")->get();
             $themedir = getDir("./Theme");
@@ -106,7 +106,7 @@ class ConfigController extends BaseController
         if (IS_POST) {
             D("Alipay")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Config/alipaySet");
+            $this->success("保存成功", U("Admin/Config/alipaySet"));
         } else {
             $alipay = D("Alipay")->get();
             $this->assign("alipay", $alipay);
@@ -119,7 +119,7 @@ class ConfigController extends BaseController
         if (IS_POST) {
             D("WxPrint")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Config/wxPrintSet");
+            $this->success("保存成功", U("Admin/Config/wxPrintSet"));
         } else {
             $wxPrint = D("WxPrint")->get();
             $this->assign("wxPrint", $wxPrint);
@@ -132,7 +132,7 @@ class ConfigController extends BaseController
         if (IS_POST) {
             D("Sms")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Config/smsSet");
+            $this->success("保存成功", U("Admin/Config/smsSet"));
         } else {
             $sms = D("Sms")->get();
             $this->assign("sms", $sms);
@@ -146,7 +146,7 @@ class ConfigController extends BaseController
         if (IS_POST) {
             D("WxTplmsg")->addWxTplMsg(I("post."));
 
-            $this->success("保存成功", "Admin/Config/wxTplMsgSet");
+            $this->success("保存成功", U("Admin/Config/wxTplMsgSet"));
         } else {
             $list = D("WxTplmsg")->getList();
             foreach ($list as $key => $value) {

@@ -7,7 +7,7 @@ class OrderController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Home/Order/order/page/" . $p);
+        cookie("prevUrl", U("Home/Order/order/page/") . $p);
 
         $condition = array(
             "shop_id" => session("homeShopId")

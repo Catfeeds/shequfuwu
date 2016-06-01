@@ -88,9 +88,9 @@ class TradeController extends BaseController
             }
 
             D("Tx")->saveTx($data);
-            $this->success("操作成功", "Admin/Trade/tx");
+            $this->success("操作成功", U("Admin/Trade/tx"));
         } else {
-            $this->error("操作失败", "Admin/Trade/tx");
+            $this->error("操作失败", U("Admin/Trade/tx"));
         }
 
     }

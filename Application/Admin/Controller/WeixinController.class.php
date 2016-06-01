@@ -8,7 +8,7 @@ class WeixinController extends BaseController
         if (IS_POST) {
             D("WxConfig")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Weixin/wxSet");
+            $this->success("保存成功", U("Admin/Weixin/wxSet"));
         } else {
             $config = D("WxConfig")->get();
             $this->assign("config", $config);
@@ -37,7 +37,7 @@ class WeixinController extends BaseController
         if (IS_POST) {
             D("WxMenu")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Weixin/wxMenuSet");
+            $this->success("保存成功", U("Admin/Weixin/wxMenuSet"));
         } else {
             $parentWxMenuList = D("WxMenu")->getList(array("pid" => 0));
             $this->assign("parentWxMenuList", $parentWxMenuList);
@@ -51,7 +51,7 @@ class WeixinController extends BaseController
         if (IS_POST) {
             D("WxReply")->add(I("post."));
 
-            $this->success("保存成功", "Admin/Weixin/wxReplySet");
+            $this->success("保存成功", U("Admin/Weixin/wxReplySet"));
         } else {
             $this->display();
         }
@@ -72,7 +72,7 @@ class WeixinController extends BaseController
     {
         D("WxMenu")->del(array("id" => array("in", I("get.id"))));
 
-        $this->success("删除成功", "Admin/Weixin/wxMenuSet");
+        $this->success("删除成功", U("Admin/Weixin/wxMenuSet"));
     }
 
     public function modWxReply()
@@ -87,6 +87,6 @@ class WeixinController extends BaseController
     {
         D("WxReply")->del(array("id" => array("in", I("get.id"))));
 
-        $this->success("删除成功", "Admin/Weixin/wxReplySet");
+        $this->success("删除成功", U("Admin/Weixin/wxReplySet"));
     }
 }

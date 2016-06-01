@@ -85,9 +85,9 @@ class TradeController extends BaseController
 
             D("Tx")->addTx($data);
             D("Shop")->where(array("id" => $data["shop_id"]))->setDec("money", $data["money"]);
-            $this->success("申请成功", "Home/Trade/tx");
+            $this->success("申请成功", U("Home/Trade/tx"));
         } else {
-            $this->error("申请失败", "Home/Trade/tx");
+            $this->error("申请失败", U("Home/Trade/tx"));
         }
 
     }
@@ -107,9 +107,9 @@ class TradeController extends BaseController
             }
 
             D("Tx")->saveTx($data);
-            $this->success("操作成功", "Home/Trade/tx");
+            $this->success("操作成功", U("Home/Trade/tx"));
         } else {
-            $this->error("操作失败", "Home/Trade/tx");
+            $this->error("操作失败", U("Home/Trade/tx"));
         }
 
     }

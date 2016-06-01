@@ -7,7 +7,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Admin/User/user/page/" . $p);
+        cookie("prevUrl", U("Admin/User/user/page/") . $p);
 
         $condition = array(
             "type" => 0
@@ -40,7 +40,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", "Admin/User/user/page/" . $p);
+        cookie("prevUrl", U("Admin/User/user/page/") . $p);
 
         $condition = array(
             "type" => 2
@@ -143,7 +143,7 @@ class UserController extends BaseController
             }
 
             D("AuthGroup")->add(I("post."));
-            $this->success("添加成功", "Admin/User/authGroup");
+            $this->success("添加成功", U("Admin/User/authGroup"));
         } else {
             $authRuleList = D("AuthRule")->getList();
             $this->assign("authRuleList", $authRuleList);
@@ -204,7 +204,7 @@ class UserController extends BaseController
                 D("AuthGroupAccess")->add($userId, $groupId);
             }
 
-            $this->success("添加成功", "Admin/User/admin");
+            $this->success("添加成功", U("Admin/User/admin"));
         } else {
             $authGroupList = D("AuthGroup")->getList(array(), false, "id asc");
             $this->assign("authGroupList", $authGroupList);
@@ -227,6 +227,6 @@ class UserController extends BaseController
     {
         D("Admin")->del(array("id" => array("in", I("get.id"))));
 
-        $this->success("删除成功", "Admin/User/admin");
+        $this->success("删除成功", U("Admin/User/admin"));
     }
 }

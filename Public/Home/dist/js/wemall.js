@@ -57,9 +57,12 @@
 })(jQuery);
 
 function imageUploader(obj, more) {
+    // var selectorPath= "index.php/Home/File/imageUploader" ;
+    // alert(URL + selectorPath);
+
     $.ajax({
         type: "post",
-        url: URL + "Home/File/imageUploader",
+        url: URL + "index.php/Home/File/imageUploader",
         data: {},
         success: function (data) {
             bootbox.dialog({
@@ -108,6 +111,15 @@ function imageUploader(obj, more) {
             });
         },
         error: function (xhr) {
+            //toastr.error(xhr);
+            //alert(xhr.toString());
+            // var property='';
+            // for(var i in xhr){
+            //     property+="属性："+i+":"+ xhr[i] +"<br/>";
+            //     //document.getElementById("myp").innerHTML=Property;
+            // }
+            // alert(property);
+
             toastr.error("通讯失败！请重试！");
         }
     });

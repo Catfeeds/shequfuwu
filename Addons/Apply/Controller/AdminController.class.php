@@ -45,7 +45,7 @@ class AdminController extends InitController
 
         $_POST["event"] = $event;
         M("AddonApplyConfig")->where(array("id" => "1"))->save($_POST);
-        $this->success('修改成功', 'Admin/Admin/index/addon/Apply');
+        $this->success('修改成功', U('Admin/Admin/index/addon/Apply'));
 
     }
 }

@@ -21,7 +21,8 @@ class ConfigController extends BaseController
             $data["shop_id"] = session("homeShopId");
             D("LocProvince")->addProvince($data);
 
-            $this->success("保存成功", "Home/Config/address");
+            //dump(U("Home/Config/address"));
+            $this->success("保存成功", U("Home/Config/address"));
         } else {
             $this->display();
         }
@@ -38,7 +39,7 @@ class ConfigController extends BaseController
     {
         D("LocProvince")->delProvince(I("get.id"));
 
-        $this->success("删除成功", "Home/Config/address");
+        $this->success("删除成功", U("Home/Config/address"));
     }
 
     public function addCity()
@@ -48,7 +49,7 @@ class ConfigController extends BaseController
             $data["shop_id"] = session("homeShopId");
             D("LocCity")->addCity($data);
 
-            $this->success("添加成功", "Home/Config/city");
+            $this->success("添加成功", U("Home/Config/city"));
         } else {
             $condition = array(
                 "shop_id" => session("homeShopId")
@@ -75,12 +76,12 @@ class ConfigController extends BaseController
     {
         D("LocCity")->delCity(I("get.id"));
 
-        $this->success("删除成功", "Home/Config/city");
+        $this->success("删除成功", U("Home/Config/city"));
     }
 
     public function modifyCity()
     {
-        $city = D("LocCity")->getCity(array("id" => I("get.id")));
+        $city = D("LocCity")->get(array("id" => I("get.id")));
         $this->assign("city", $city);
 
         $provincelist = D("LocProvince")->getProvinceList();
@@ -99,7 +100,7 @@ class ConfigController extends BaseController
 //            return;
             D("WxPrint")->addWxPrint($data);
 
-            $this->success("保存成功", "Home/Config/wxPrintSet");
+            $this->success("保存成功", U("Home/Config/wxPrintSet"));
         } else {
             $wxPrint = D("WxPrint")->getWxPrint(array("shop_id" => session("homeShopId")));
             $this->assign("wxPrint", $wxPrint);
@@ -113,7 +114,7 @@ class ConfigController extends BaseController
             $data = I("post.");
             D("WxTplmsg")->addWxTplMsg($data, session("homeShopId"));
 
-            $this->success("保存成功", "Home/Config/wxTplMsgSet");
+            $this->success("保存成功", U("Home/Config/wxTplMsgSet"));
         } else {
             $list = D("WxTplmsg")->getWxTplmsgList(array("shop_id" => session("homeShopId")));
             foreach ($list as $key => $value) {

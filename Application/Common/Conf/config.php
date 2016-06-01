@@ -3,7 +3,12 @@
 if (function_exists('saeAutoLoader')) {
     $db = include "Data/Conf/db_sae.php";
 } else {
-    $db = include "Data/Conf/db.php";
+    $serverName= \Vendor\Hiland\Utils\Web\WebHelper::getHostName();
+    if(\Vendor\Hiland\Utils\Web\EnvironmentHelper::isLocalServer($serverName)){
+        $db= include "Data/Conf/db_local.php";
+    }else{
+        $db = include "Data/Conf/db.php";
+    }
 }
 
 

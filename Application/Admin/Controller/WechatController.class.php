@@ -149,9 +149,9 @@ class WechatController extends Controller
         $qrcode = self::$weObj->getQRUrl($ticket["ticket"]);
         if ($qrcode) {
             D("Config")->add(array("qrcode" => $qrcode));
-            $this->success("生成二维码成功", "Admin/Config/shopSet");
+            $this->success("生成二维码成功", U("Admin/Config/shopSet"));
         } else {
-            $this->error("生成二维码失败", "Admin/Config/shopSet");
+            $this->error("生成二维码失败", U("Admin/Config/shopSet"));
         }
     }
 
@@ -209,9 +209,9 @@ class WechatController extends Controller
         $json = json_decode($json, true);
 
         if ($json["errcode"] == 0) {
-            $this->success("重新创建菜单成功!", "Admin/Weixin/wxMenuSet");
+            $this->success("重新创建菜单成功!", U("Admin/Weixin/wxMenuSet"));
         } else {
-            $this->error("重新创建菜单失败!", "Admin/Weixin/wxMenuSet");
+            $this->error("重新创建菜单失败!", U("Admin/Weixin/wxMenuSet"));
         }
 
     }

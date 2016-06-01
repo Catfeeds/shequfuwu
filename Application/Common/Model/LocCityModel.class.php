@@ -106,7 +106,5 @@ class LocCityModel extends RelationModel
     public function delCity($ids)
     {
         $this->where(array("id" => array("in", $ids)))->delete();
-    }    
-    
-    
+    }
 }

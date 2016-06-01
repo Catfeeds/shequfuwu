@@ -39,6 +39,6 @@ class AdminController extends InitController
     public function addConfig()
     {
         M("AddonWheelConfig")->where(array("id" => "1"))->save($_POST);
-        $this->success('设置成功', 'Admin/Admin/index/addon/Wheel');
+        $this->success('设置成功', U('Admin/Admin/index/addon/Wheel'));
     }
 }

@@ -9,7 +9,7 @@ class CardController extends BaseController
             $data = I("post.");
             $data["shop_id"] = session("homeShopId");
             D("CardConfig")->add($data);
-            $this->success("设置成功", "Home/Card/config");
+            $this->success("设置成功", U("Home/Card/config"));
         } else {
             $config = D("CardConfig")->get(array("shop_id" => session("homeShopId")));
             $this->assign("config", $config);

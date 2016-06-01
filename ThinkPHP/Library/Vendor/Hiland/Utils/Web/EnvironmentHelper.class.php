@@ -1,6 +1,7 @@
 <?php
 namespace Vendor\Hiland\Utils\Web;
 
+use Vendor\Hiland\Utils\Data\RegexHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 
 class EnvironmentHelper
@@ -56,6 +57,40 @@ class EnvironmentHelper
             return 'sae';
         }else{
             return 'file';
+        }
+    }
+
+    /**
+     * 判断是否为内网ip地址，ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
+     * @param $ip string ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
+     * @return bool
+     */
+    public static function isPrivateIP($ip) {
+        return !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+    }
+
+    /**
+     * 判断是否为本地服务器
+     * @param $domainNameOrIP string 域名或ip地址
+     * @return bool
+     */
+    public static function isLocalServer($domainNameOrIP){
+        $isIP= preg_match(RegexHelper::IP,$domainNameOrIP);
+        $isLocal= false;
+        if($isIP){
+            if(self::isPrivateIP($domainNameOrIP)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            $domainNameOrIP= strtolower($domainNameOrIP);
+            switch ($domainNameOrIP){
+                case 'localhost':
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

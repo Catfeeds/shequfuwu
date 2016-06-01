@@ -178,6 +178,7 @@ abstract class Controller {
      * @return void
      */
     protected function success($message='',$jumpUrl='',$ajax=false) {
+        //dump($jumpUrl);
         $this->dispatchJump($message,1,$jumpUrl,$ajax);
     }
 

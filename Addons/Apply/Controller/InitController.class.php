@@ -20,7 +20,7 @@ class InitController extends Addon
         if (file_exists($install_sql)) {
             execute_sql_file($install_sql);
         }
-        $this->success('安装成功', 'index.php/Admin/Addon/addon');
+        $this->success('安装成功', U('index.php/Admin/Addon/addon'));
         return true;
     }
 
@@ -30,7 +30,7 @@ class InitController extends Addon
         if (file_exists($uninstall_sql)) {
             execute_sql_file($uninstall_sql);
         }
-        $this->success('卸载成功', 'index.php/Admin/Addon/addon');
+        $this->success('卸载成功', U('index.php/Admin/Addon/addon'));
         return true;
 
     }
