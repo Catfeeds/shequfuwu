@@ -1,59 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82939e57-6813-4a35-8683-b20a23fc8332" name="Default" comment="去掉静态路径的模式">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/xiedalie.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/Foo_pathop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Data/Conf/db_local.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="82939e57-6813-4a35-8683-b20a23fc8332" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Apply/Controller/AdminController.class.php" afterPath="$PROJECT_DIR$/Addons/Apply/Controller/AdminController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Apply/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/Apply/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Card/Controller/ConfigController.class.php" afterPath="$PROJECT_DIR$/Addons/Card/Controller/ConfigController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Card/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/Card/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Coupon/Controller/AdminController.class.php" afterPath="$PROJECT_DIR$/Addons/Coupon/Controller/AdminController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Coupon/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/Coupon/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Sign/Controller/AdminController.class.php" afterPath="$PROJECT_DIR$/Addons/Sign/Controller/AdminController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Sign/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/Sign/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/SystemInfo/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/SystemInfo/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Vote/Controller/AdminController.class.php" afterPath="$PROJECT_DIR$/Addons/Vote/Controller/AdminController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Vote/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/Vote/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Wheel/Controller/AdminController.class.php" afterPath="$PROJECT_DIR$/Addons/Wheel/Controller/AdminController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Wheel/Controller/InitController.class.php" afterPath="$PROJECT_DIR$/Addons/Wheel/Controller/InitController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/ArticalController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/ArticalController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/ConfigController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/ConfigController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/OrderController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/OrderController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/TradeController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/TradeController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/UserController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/UserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/WeixinController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/WeixinController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Public_login.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Public_login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/LocCityModel.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/LocCityModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/AddShopController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/AddShopController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/ArticalController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/ArticalController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/BuyController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/BuyController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/CardController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/CardController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/ConfigController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/ConfigController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/CouponController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/CouponController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/HelpController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/HelpController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/OrderController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/OrderController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/PublicController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/PublicController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/ShopController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/ShopController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/UserController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/WeixinController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/WeixinController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Public_register.html" afterPath="$PROJECT_DIR$/Application/Home/View/Public_register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/Home/dist/js/wemall.js" afterPath="$PROJECT_DIR$/Public/Home/dist/js/wemall.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/RegexHelper.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/RegexHelper.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/EnvironmentHelper.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/EnvironmentHelper.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Mode/Lite/Controller.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Mode/Lite/Controller.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Tpl/dispatch_jump.tpl" afterPath="$PROJECT_DIR$/ThinkPHP/Tpl/dispatch_jump.tpl" />
     </list>
     <ignored path="shenghuoguan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -321,7 +270,7 @@
       <workItem from="1464388864523" duration="94000" />
       <workItem from="1464390850079" duration="1370000" />
       <workItem from="1464573279637" duration="12711000" />
-      <workItem from="1464737274639" duration="13362000" />
+      <workItem from="1464737274639" duration="13393000" />
     </task>
     <task id="LOCAL-00001" summary="测试sae环境">
       <created>1464228412611</created>
@@ -393,11 +342,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464230776531</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="去掉静态路径的模式">
+      <created>1464773664336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1464773664336</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31957000" />
+    <option name="totallyTimeSpent" value="31988000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -413,7 +369,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28863636" sideWeight="0.49403748" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
