@@ -97,7 +97,7 @@ function imageUploader(obj, more) {
                             var delUrl = URL + "Home/File/delImage/id/" + selectedImage.id;
                             $.get(delUrl, function (data) {
                                 var p = $('#dialog-imageUploader .pagination .current').text();
-                                var pagUrl = URL + "Home/File/imageUploader/p/" + p;
+                                var pagUrl = URL + "index.php/Home/File/imageUploader/p/" + p;
                                 $.pjax({
                                     url: pagUrl,
                                     container: '.bootbox .bootbox-body',
@@ -164,7 +164,7 @@ function cancelSelectImage(obj, id) {
 
 function ajaxForm() {
     $('#myForm').ajaxSubmit(function (data) {
-        var pagUrl = URL + "Home/File/imageUploader/p/1";
+        var pagUrl = URL + "index.php/Home/File/imageUploader/p/1";
         $.pjax({
             url: pagUrl,
             container: '.bootbox .bootbox-body',

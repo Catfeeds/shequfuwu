@@ -36,6 +36,7 @@ class FileController extends BaseController
 
     public function uploadImage()
     {
+        //dump('ssssssss');
         D("File")->uploadImage();
     }
 }
