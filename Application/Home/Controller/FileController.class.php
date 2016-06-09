@@ -16,7 +16,9 @@ class FileController extends BaseController
             "shop_id" => session("homeShopId")?session("homeShopId"):0
         );
 
-        $num = 12;
+        //dump($condition);
+
+        $num = 8;
         $p = I("get.page") ? I("get.page") : 1;
         $file = D("File")->getFileList($condition, false, "id desc", $p, $num);
         $this->assign('file', $file);

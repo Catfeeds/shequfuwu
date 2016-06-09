@@ -143,7 +143,12 @@ function tabPage(obj) {
         container: '.bootbox .bootbox-body',
         push: false,
     });
-    event.preventDefault();
+
+    // if (event.preventDefault) {
+    //     event.preventDefault(); //支持DOM标准的浏览器
+    // } else {
+    //     event.returnValue = false; //IE
+    // }
 }
 
 var selectedImage = {

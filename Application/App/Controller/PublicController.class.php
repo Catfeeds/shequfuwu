@@ -2,10 +2,12 @@
 namespace App\Controller;
 
 use Think\Controller;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class PublicController extends Controller
 {
     public $appUrl = "";
+
     public function _initialize()
     {
         $this->appUrl = "http://" . I("server.HTTP_HOST");
@@ -54,23 +56,45 @@ class PublicController extends Controller
 
     public function oauthLogin()
     {
-        $this->oauthDebug();
+        //$this->oauthDebug();
 
-        if (!session("userId")) {
-            $config = D("Config")->get();
+        //dump('sssssssssssssssssf');
+        //if (!session("userId"))
+        {
+            //dump('ooooooooo');
+            $mate = new ModelMate('config');
+            $config = $mate->get(1);
+            //dump($config);
+
             if ($config["oauth"]) {
                 $weObj = D("WxConfig")->getWeObj();
+
                 $token = $weObj->getOauthAccessToken();
+//                if($token){
+//                    dump('token ok');
+//                }else{
+//                    dump('token error');
+//                }
+
+
+                //dump(__SELF__);
+
                 if (!$token) {
-                    $url = $weObj->getOauthRedirect($this->appUrl . __SELF__);
-                    header("location: $url");
+                    $currentPage = $this->appUrl . __SELF__;
+                    $url = $weObj->getOauthRedirect($currentPage);
+
+                    //dump($url);
+                    header("location:$url");
                     die();
                 } else {
+//                    //dump('33333333333333');
                     $userInfo = $weObj->getOauthUserinfo($token["access_token"], $token["openid"]);
                     $this->oauthRegister($userInfo);
                 }
             }
         }
+
+        //dump('ppppppppppp');
 
         $user = D("User")->get(array("id" => session("userId")), true);
         if ($user["status"] == 0) {
@@ -95,7 +119,7 @@ class PublicController extends Controller
             "status" => 1,
         );
 
-        $userId = $user["id"]?$user["id"]:0;
+        $userId = $user["id"] ? $user["id"] : 0;
         if ($user) {
             $data["id"] = $user["id"];
             D("User")->save($data);

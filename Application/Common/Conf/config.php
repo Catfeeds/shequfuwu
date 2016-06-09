@@ -3,13 +3,15 @@
 if (function_exists('saeAutoLoader')) {
     $db = include "Data/Conf/db_sae.php";
 } else {
-    $serverName= \Vendor\Hiland\Utils\Web\WebHelper::getHostName();
-    if(\Vendor\Hiland\Utils\Web\EnvironmentHelper::isLocalServer($serverName)){
-        $db= include "Data/Conf/db_local.php";
-    }else{
+    $serverName = \Vendor\Hiland\Utils\Web\WebHelper::getHostName();
+    if (\Vendor\Hiland\Utils\Web\EnvironmentHelper::isLocalServer($serverName)) {
+        $db = include "Data/Conf/db_local.php";
+    } else {
         $db = include "Data/Conf/db.php";
     }
 }
+
+$hilandConfig = include dirname(__FILE__) . '/hiland_config.php';
 
 
 $config = array(
@@ -34,4 +36,4 @@ $config = array(
     )
 );
 
-return array_merge($config, $db);
+return array_merge($config, $db, $hilandConfig);

@@ -6,27 +6,12 @@ class IndexController extends BaseController
 {
     public function index()
     {
-        // $user = R("App/Public/oauthLogin");
-        // $user = json_encode($user);
-        // $this ->assign("user",$user);
+        $oauth2Url= "App/Public/oauthLogin";
+        $user = R($oauth2Url);
 
-        // $config = D("Config")->get();
-        // $config["delivery_time"] = explode(",", $config["delivery_time"]);
-        // $this->assign("config", json_encode($config));
-
-        // $menu = D("Menu")->getList(array(), true, "rank desc,id desc");
-        // $menu = list_to_tree($menu, 'id', 'pid', 'sub');
-        // $this->assign("menu", json_encode($menu));
-
-        // $product = D("Product")->getList(array("status" => array("neq", -1)), true, "rank desc", 0, 0, 0);
-        // $this->assign("product", json_encode($product));
-
-        // $ads = D("Ads")->getList(array(), true);
-        // $this->assign("ads", json_encode($ads));
-        $user = R("App/Public/oauthLogin");
         $user = json_encode($user);
         $this ->assign("user",$user);
-        $shopId = I("get.shopid");
+        $shopId = I("get.shopId");
         session("shop_id",$shopId);
 
         $configs = D("Config")->get();
@@ -47,12 +32,22 @@ class IndexController extends BaseController
 
         $ads = D("Ads")->getList(array("shop_id"=>$shopId), true);
         $this->assign("ads", json_encode($ads));
-        
+
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig",json_encode($wxConfig));
 
         $this->display();
     }
+
+
+    public function aop(){
+        $oauth2Url= "App/Public/oauthLogin";
+
+        $user = R($oauth2Url);
+
+        dump('aopppppppppppppppp');
+    }
+
     //pidong 通过shopid获取当前店铺信息
     public function getThisShop(){
         $this->display();

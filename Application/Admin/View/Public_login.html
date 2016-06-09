@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WeMall微商城</title>
+    <title>{:C('PROJECT_NAME')}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -69,8 +69,7 @@
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-<div class="common_footer">Powered by WeMall | Copyright © <a href="http://www.inuoer.com/"
-                                                              target="_blank">inuoer.com</a>
+<div class="common_footer">Powered by {:C('PROJECT_NAME_SHORT')} | Copyright © {:C('PROJECT_NAME')}
     All rights reserved.
 </div>
 
@@ -81,14 +80,15 @@
 <!-- iCheck -->
 <script src="__PUBLIC__/Admin/plugins/iCheck/icheck.min.js"></script>
 <script>
-    $(function () {
+    $(document).ready(function () {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
         $('#changeVerity').click(function () {
-            $(this).attr('src', '{:U(\'Admin/Public/getVerify\')}');
+            var url = '{:U("Admin/Public/getVerify","r=".mt_rand())}'+Math.random();
+            $(this).attr('src', url);
         });
     });
 </script>

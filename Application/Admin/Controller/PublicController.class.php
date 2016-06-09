@@ -16,7 +16,12 @@ class PublicController extends Controller
             $where ["username"] = I("post.username");
             $where ["password"] = md5(I("post.password"));
 
+
+
             $user = D("Admin")->get($where, true);
+
+            //$this->error($user);
+
             if ($user) {
                 session("adminName", $user["username"]);
                 session("adminId", $user["id"]);

@@ -16,7 +16,6 @@
                     <img class="img-thumbnail" style="width: 120px; height: 120px;"
                          onclick="selectImage(this,'{$file.id}')"
                          src="__PUBLIC__/Uploads/{$file.savepath}{$file.savename}">
-
                     <div class="cover" onclick="cancelSelectImage(this,'{$file.id}')"></div>
                 </div>
             </volist>
@@ -28,5 +27,10 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#dialog-imageUploader .pagination a[href]').attr('onclick', 'tabPage(this)');
+    //$('#dialog-imageUploader .pagination a[href]').attr('onclick', 'tabPage(this)');
+    //$('#dialog-imageUploader .pagination a[href]').attr('onclick', function(event){event.preventDefault;});
+    $("#dialog-imageUploader .pagination a[href]").click(function(event){
+        tabPage(this);
+        event.preventDefault();
+    });
 </script>

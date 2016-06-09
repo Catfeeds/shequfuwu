@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>wemall多用户微商城</title>
+    <title>{:C('PROJECT_NAME')}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -72,9 +72,7 @@
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-<div class="common_footer">Powered by inuoer | Copyright © <a href="http://www.inuoer.com/"
-                                                              target="_blank">www.inuoer.com</a>
-    All rights reserved.
+<div class="common_footer">Powered by {:C('PROJECT_NAME_SHORT')} | Copyright © {:C('PROJECT_NAME')} All rights reserved.
 </div>
 
 <!-- jQuery 2.1.4 -->
@@ -91,9 +89,9 @@
             increaseArea: '20%' // optional
         });
         $('#changeVerity').click(function () {
-            $(this).attr('src', '{:U(\'Home/Public/getVerify\')}');
+            var url = '{:U("Home/Public/getVerify","r=".mt_rand())}'+Math.random();
+            $(this).attr('src', url);
         });
-        $('#changeVerity').click();
     });
 </script>
 </body>

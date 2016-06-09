@@ -127,6 +127,7 @@ function removeImage(obj, more) {
 
 function tabPage(obj) {
     var pagUrl = $(obj).attr('href');
+    //alert('ssss:'+pagUrl);
     $.pjax({
         url: pagUrl,
         container: '.bootbox .bootbox-body',

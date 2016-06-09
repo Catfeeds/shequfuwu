@@ -75,6 +75,15 @@ class FileModel extends Model
         $this->where($condition)->delete();
     }
 
+
+    //TODO:找到物理文件删除
+    public function delImage($condition = array()){
+        //1.找到物理文件删除
+
+        //2.删除数据库记录
+        $this->where($condition)->delete();
+    }
+
     public function uploadImage()
     {
         $files = $this->upload();
@@ -86,6 +95,11 @@ class FileModel extends Model
             $arr['type'] = $v['type'];
             $arr['savename'] = $v['savename'];
             $arr['savepath'] = $v['savepath'];
+
+            //----------------------------------------------
+            $arr['shop_id'] = session("homeShopId")?session("homeShopId"):0;
+            //==============================================
+
             array_push($arrs, $arr);
         }
 
