@@ -1,5 +1,5 @@
 <?php
-namespace Tencent\Model;
+namespace Common\Model;
 
 use Think\Model;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
@@ -29,7 +29,7 @@ class BizHelper
         return $url;
     }
 
-    
+
     /**
      * 获取生成带参数微信公众平台二维码的ticket
      *

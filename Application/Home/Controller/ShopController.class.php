@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 
-use Tencent\Model\BizHelper;
+use Common\Model\BizHelper;
 
 class ShopController extends BaseController
 {
