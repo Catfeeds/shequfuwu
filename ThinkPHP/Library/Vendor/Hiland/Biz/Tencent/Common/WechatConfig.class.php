@@ -22,19 +22,19 @@ class WechatConfig
      *
      * @var string
      */
-    const APPID = 'wx13856a19b29cc66b';
+    const APPID = 'wxd1ffeeb54f02ba24';
 
-    const MCHID = '1239423402';
+    const MCHID = '1310236601';
 
-    const MCHKEY = 'jxDVOSfIi7l0oMCitb4sHoaXNQtdh1uE';
+    const MCHKEY = 'mLqPaqRwf7DqyJfhAhElq8FORPoYahPz';
 
-    const APPSECRET = 'd85f4fb686e6e225c677a090029af211';
+    const APPSECRET = 'b0a14b3d7f45fdac195de4ffd6ec0797';
 
     // 微信二次开发入口token
-    const GATETOKEN = 'bigseagull20140112';
+    const GATETOKEN = 'bigseaguall20160608';
 
     // 微信公众平台商户的名称
-    const MCHNAME = '互动生活馆';
+    const MCHNAME = '商盟生活馆';
 
     const NOTIFYURL = 'http://hilandwechat.sinaapp.com/index.php/tencent/pay/notify';
 

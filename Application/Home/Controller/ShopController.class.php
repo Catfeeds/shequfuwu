@@ -1,6 +1,8 @@
 <?php
 namespace Home\Controller;
 
+use Tencent\Model\BizHelper;
+
 class ShopController extends BaseController
 {
     public function addShop()
@@ -517,6 +519,31 @@ class ShopController extends BaseController
         D("ProductSku")->del(array("id" => I("get.id")));
 
         $this->success("删除成功", cookie("prevUrl"));
+    }
+
+    public function qrCode(){
+        if (session("homeShopId")) {
+            $id = session("homeShopId");
+
+            $qrUrl= BizHelper::getQRCodeUrl($id,'LONG');
+            $this->assign('qrUrl', $qrUrl);
+            $this->display();
+
+//            $shop = D("Shop")->getShop(array("id" => $id), true);
+//
+//            $username = array();
+//            $employee = explode(',', $shop["employee"]);
+//            foreach ($employee as $key => $value) {
+//                $user = D("User")->get(array("id" => $value));
+//                array_push($username, $user["username"]);
+//            }
+//            $shop["employeeName"] = implode(",", $username);
+//            $this->assign("shop", $shop);
+//
+//            $this->display("Shop:addShop");
+        } else {
+            $this->error("请先选择店铺", "Home/Shop/shop");
+        }
     }
 
 }
