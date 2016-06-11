@@ -75,22 +75,21 @@ class WechatController extends Controller
                 $userID= $this->checkUser($openId);
 
                 $eventkey = self::$weObj->getRequest('eventkey');
-                $messageContent= 'eventKey='. $eventkey;
+     
+                $merchantScanedID = 0;
+                $merchantScanedName = '';
+                if (!empty($eventkey)) {
+                    $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
+                    $merchantMate= new ModelMate('shop');
+                    $merchantData= $merchantMate->get($merchantScanedID);
+                    $merchantScanedName= $merchantData['name'];
+                }
 
-//                $merchantScanedID = 0;
-//                $merchantScanedName = '';
-//                if (!empty($eventkey)) {
-//                    $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-//                    $merchantMate= new ModelMate('shop');
-//                    $merchantData= $merchantMate->get($merchantScanedID);
-//                    $merchantScanedName= $merchantData['name'];
-//                }
-//
-//                $projectName= C('PROJECT_NAME');
-//                $messageContent="恭喜加入$projectName,您是第【$userID】位会员";
-//                if(!empty($merchantScanedName)){
-//                    $messageContent.=",您扫码的店铺为【$merchantScanedName】，您的购物活动默认有【$merchantScanedName】为你提供服务";
-//                }
+                $projectName= C('PROJECT_NAME');
+                $messageContent="恭喜加入$projectName,您是第【$userID】位会员";
+                if(!empty($merchantScanedName)){
+                    $messageContent.=",您扫码的店铺为【$merchantScanedName】，您的购物活动默认有【$merchantScanedName】为你提供服务";
+                }
                 $messageContent.="。在家即可享受货品配送服务！";
                 self::$weObj->text($messageContent)->reply();
                 //$this->checkKeyWords('subscribe');
