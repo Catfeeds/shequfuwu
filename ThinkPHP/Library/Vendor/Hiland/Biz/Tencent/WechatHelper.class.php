@@ -70,7 +70,7 @@ class WechatHelper
      *            缓存时间
      * @return mixed
      */
-    public static function getAccessToken($appID = '', $appSecret = '', $useCache = false, $cacheSeconds = 3600)
+    public static function getAccessToken($appID = '', $appSecret = '', $useCache = true, $cacheSeconds = 3600)
     {
         if (empty($appID)) {
             $appID = WechatConfig::APPID;
