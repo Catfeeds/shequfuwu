@@ -43,28 +43,28 @@ class BizHelper
         $accessToken = WechatHelper::getAccessToken();
 
         dump($accessToken);
-        if (empty($qrEffectSeconds)) {
-            $qrEffectSeconds = C('WEIXIN_QR_TEMP_EFFECT_SECONDS');
-        }
-
-        $qrEffectType = strtoupper($qrEffectType);
-        switch ($qrEffectType) {
-            case 'QR_SCENE':
-            case 'QR_LIMIT_SCENE':
-                break;
-            case 'TEMP':
-                $qrEffectType = 'QR_SCENE';
-                break;
-            case 'LONG':
-                $qrEffectType = 'QR_LIMIT_SCENE';
-                break;
-            default:
-                $qrEffectType = C('WEIXIN_QR_EFFECTTYPES.' . C('WEIXIN_QR_EFFECTTYPE'));
-                break;
-        }
-
-        $ticket = WechatHelper::getQRTicket($key, $accessToken, $qrEffectType, $qrEffectSeconds);
-        return $ticket;
+//        if (empty($qrEffectSeconds)) {
+//            $qrEffectSeconds = C('WEIXIN_QR_TEMP_EFFECT_SECONDS');
+//        }
+//
+//        $qrEffectType = strtoupper($qrEffectType);
+//        switch ($qrEffectType) {
+//            case 'QR_SCENE':
+//            case 'QR_LIMIT_SCENE':
+//                break;
+//            case 'TEMP':
+//                $qrEffectType = 'QR_SCENE';
+//                break;
+//            case 'LONG':
+//                $qrEffectType = 'QR_LIMIT_SCENE';
+//                break;
+//            default:
+//                $qrEffectType = C('WEIXIN_QR_EFFECTTYPES.' . C('WEIXIN_QR_EFFECTTYPE'));
+//                break;
+//        }
+//
+//        $ticket = WechatHelper::getQRTicket($key, $accessToken, $qrEffectType, $qrEffectSeconds);
+//        return $ticket;
     }
 
     /**
