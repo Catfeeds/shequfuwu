@@ -525,7 +525,7 @@ class ShopController extends BaseController
         if (session("homeShopId")) {
             $id = session("homeShopId");
 
-            dump($id);
+            //dump($id);
             $qrUrl= BizHelper::getQRCodeUrl($id,'LONG');
             $this->assign('qrUrl', $qrUrl);
             $this->display();

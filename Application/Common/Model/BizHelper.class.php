@@ -42,6 +42,7 @@ class BizHelper
     {
         $accessToken = WechatHelper::getAccessToken();
 
+        dump($accessToken);
         if (empty($qrEffectSeconds)) {
             $qrEffectSeconds = C('WEIXIN_QR_TEMP_EFFECT_SECONDS');
         }
