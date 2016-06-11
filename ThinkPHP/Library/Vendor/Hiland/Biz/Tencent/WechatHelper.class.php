@@ -89,7 +89,7 @@ class WechatHelper
             }
         }
 
-        dump($appID.'--'.$appSecret);
+        //dump($appID.'--'.$appSecret);
 
         // 1. 初始化
         $ch = curl_init();
