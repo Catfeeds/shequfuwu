@@ -129,6 +129,7 @@ class WechatController extends Controller
                 "city" => $userInfo["city"],
                 "province" => $userInfo["province"],
                 "avater" => $userInfo["headimgurl"],
+                "status"=>1,
             );
             D("User")->add($user);
         }
