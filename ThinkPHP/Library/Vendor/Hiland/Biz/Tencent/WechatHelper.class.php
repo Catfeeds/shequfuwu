@@ -105,18 +105,18 @@ class WechatHelper
 //        // 3. 执行并获取HTML文档内容
 //        $output = curl_exec($ch);
 //        $result = $output;
-        // 检查错误、你可以加一段检查错误的语句（虽然这并不是必需的）
-        if ($output === FALSE) {
-            // 不解析返回的json信息
-        } else {
-            // $result = $output;
-            $result = json_decode($output, true);
-            $result = $result["access_token"];
-
-            if ($useCache == true) {
-                S($cachekey, $result, $cacheSeconds);
-            }
-        }
+//        // 检查错误、你可以加一段检查错误的语句（虽然这并不是必需的）
+//        if ($output === FALSE) {
+//            // 不解析返回的json信息
+//        } else {
+//            // $result = $output;
+//            $result = json_decode($output, true);
+//            $result = $result["access_token"];
+//
+//            if ($useCache == true) {
+//                S($cachekey, $result, $cacheSeconds);
+//            }
+//        }
 //
 //        // 4. 释放curl句柄
 //        curl_close($ch);
