@@ -92,7 +92,7 @@ class WechatHelper
         //dump($appID.'--'.$appSecret);
 
         // 1. 初始化
-        $ch = curl_init();
+        //$ch = curl_init();
 
         // 2. 设置选项，包括URL
         //$url = sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", $appID, $appSecret);
