@@ -99,7 +99,7 @@ class WechatHelper
 
         $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appID&secret=$appSecret";
 
-        $output= NetHelper::Get($url);
+        $output= NetHelper::request($url);
         dump($output);
 //        curl_setopt($ch, CURLOPT_URL, $url);
 //        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
