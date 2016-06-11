@@ -86,7 +86,7 @@ class WechatController extends Controller
                 }
 
                 $projectName= C('PROJECT_NAME');
-                $messageContent="恭喜加入$projectName,您是第$userID 位会员" .$merchantScanedID;
+                $messageContent="恭喜加入$projectName,您是第$userID 位会员" .$eventkey;
                 if(!empty($merchantScanedName)){
                     $messageContent.=",您扫码的店铺为$merchantScanedName，您的购物活动默认有$merchantScanedName 为你提供服务";
                 }
