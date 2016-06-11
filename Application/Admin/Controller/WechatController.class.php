@@ -75,7 +75,7 @@ class WechatController extends Controller
                 $userID= $this->checkUser($openId);
 
                 //$eventkey = self::$weObj->getRequest('eventkey');
-                $eventkey = self::$weObj->getRequest();
+                $eventkey = json_encode(self::$revData); //self::$weObj->getRequest();
 
                 $merchantScanedID = 0;
                 $merchantScanedName = '';
