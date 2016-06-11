@@ -8,10 +8,31 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="main-title">
-            <h2>商户二维码信息</h2>
+
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">商户二维码信息</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <img src="{$qrUrl}"/><br/>
+                    <div>本二维码可用于复制打印张贴等推广工作<br/>（本二维码与微信中的二维码具有同等效用）</div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger "
+                                    onclick="batchUrl('{:U(\'Home/Config/delProvince\')}')">全部删除
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. box -->
         </div>
-        <img src="{$qrUrl}"/><br/>
-        <div>本二维码可用于复制打印张贴等推广工作<br/>（本二维码与微信中的二维码具有同等效用）</div>
+        <!-- /.col -->
     </div>
 </section>
