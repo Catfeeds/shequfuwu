@@ -2,6 +2,8 @@
 namespace Admin\Controller;
 
 use Think\Controller;
+use Vendor\Hiland\Utils\Data\StringHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class WechatController extends Controller
 {
@@ -70,8 +72,27 @@ class WechatController extends Controller
         $openId = self::$revData['FromUserName'];
         switch ($event) {
             case 'subscribe':
-                $this->checkUser($openId);
-                $this->checkKeyWords('subscribe');
+                $userID= $this->checkUser($openId);
+
+                $eventkey = $this->getRequest('eventkey');
+
+                $merchantScanedID = 0;
+                $merchantScanedName = '';
+                if (!empty($eventkey)) {
+                    $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
+                    $merchantMate= new ModelMate('shop');
+                    $merchantData= $merchantMate->get($merchantScanedID);
+                    $merchantScanedName= $merchantData['name'];
+                }
+
+                $projectName= C('PROJECT_NAME');
+                $messageContent="恭喜加入$projectName,您是第【$userID】位会员";
+                if(!empty($merchantScanedName)){
+                    $messageContent.=",您扫码的店铺为【$merchantScanedName】，您的购物活动默认有【$merchantScanedName】为你提供服务";
+                }
+                $messageContent.="。在家即可享受货品配送服务！";
+                self::$weObj->text($messageContent)->reply();
+                //$this->checkKeyWords('subscribe');
                 break;
             case 'unsubscribe':
                 $this->updateUser($openId);
@@ -115,9 +136,11 @@ class WechatController extends Controller
 
     public function checkUser($openId)
     {
+        $userID= 0;
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
             D("User")->save(array("id" => $user["id"], "subscribe" => 1));
+            $userID= $user["id"];
         } else {
             $userInfo = self::$weObj->getUserInfo($openId);
             $user = array(
@@ -129,10 +152,12 @@ class WechatController extends Controller
                 "city" => $userInfo["city"],
                 "province" => $userInfo["province"],
                 "avater" => $userInfo["headimgurl"],
-                "status"=>1,
+                "status"=>C('USER_DEFAULT_STATUS'),
             );
-            D("User")->add($user);
+            $userID= D("User")->add($user);
         }
+
+        return $userID;
     }
 
     public function updateUser($openId)
