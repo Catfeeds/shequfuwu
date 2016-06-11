@@ -74,8 +74,9 @@ class WechatController extends Controller
             case 'subscribe':
                 $userID= $this->checkUser($openId);
 
-//                $eventkey = $this->getRequest('eventkey');
-//
+                $eventkey = $this->getRequest('eventkey');
+                $messageContent= $eventkey;
+
 //                $merchantScanedID = 0;
 //                $merchantScanedName = '';
 //                if (!empty($eventkey)) {
