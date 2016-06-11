@@ -75,7 +75,7 @@ class WechatController extends Controller
                 $userID= $this->checkUser($openId);
 
                 $eventkey = self::$weObj->getRequest('eventkey');
-     
+
                 $merchantScanedID = 0;
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
@@ -86,9 +86,9 @@ class WechatController extends Controller
                 }
 
                 $projectName= C('PROJECT_NAME');
-                $messageContent="恭喜加入$projectName,您是第【$userID】位会员";
+                $messageContent="恭喜加入$projectName,您是第$userID 位会员";
                 if(!empty($merchantScanedName)){
-                    $messageContent.=",您扫码的店铺为【$merchantScanedName】，您的购物活动默认有【$merchantScanedName】为你提供服务";
+                    $messageContent.=",您扫码的店铺为$merchantScanedName，您的购物活动默认有$merchantScanedName 为你提供服务";
                 }
                 $messageContent.="。在家即可享受货品配送服务！";
                 self::$weObj->text($messageContent)->reply();
