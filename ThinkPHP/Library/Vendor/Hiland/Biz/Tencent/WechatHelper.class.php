@@ -97,7 +97,7 @@ class WechatHelper
         // 2. 设置选项，包括URL
         $url = sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", $appID, $appSecret);
 
-        $output= NetHelper::Get($url);
+        $output= NetHelper::request($url);
 //        curl_setopt($ch, CURLOPT_URL, $url);
 //        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 //        curl_setopt($ch, CURLOPT_HEADER, 0);
