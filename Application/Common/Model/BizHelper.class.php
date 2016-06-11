@@ -6,10 +6,6 @@ use Vendor\Hiland\Biz\Tencent\WechatHelper;
 
 class BizHelper
 {
-
-    private static $queue;
-
-
     /**
      * 获取带参数微信公众平台二维码的地址
      *
