@@ -145,8 +145,9 @@ class WechatController extends Controller
                 $shopMate= new ModelMate('shop');
                 $fileMate= new ModelMate('file');
 
+                $newsArray= array();
                 if($shopscaned){
-                    $newsArray= array();
+
                     foreach ($shopscaned as $shopScaned){
                         $shopId= $shopScaned['shopid'];
                         $shopWhere= array();
@@ -159,7 +160,7 @@ class WechatController extends Controller
                                 $file= $fileMate->get($fileId);
                                 $pictureUrl= self::$appUrl . '/Public/Uploads/' . $file["savepath"] . $file["savename"];
                             }else{
-                                $pictureUrl=
+                                $pictureUrl= self::$appUrl . '/Public/Uploads/defaultshopimage.png';
                             }
 
 
@@ -167,13 +168,16 @@ class WechatController extends Controller
                                 'Title' => $shop["name"],
                                 'Description' => $shop["notification"],
                                 'PicUrl' => $pictureUrl,
-                                'Url' => $replay["url"]
-                            )
+                                'Url' => self::$appUrl . "/index.php?s=/App/Index/index/shopId/$shopId",
+                            );
+
+                            $newsArray[]= $news;
                         }
                     }
                 }else{
 
                 }
+                self::$weObj->news($newsArray)->reply();
                 break;
             default:
                 $replay = D("WxReply")->get(array("key" => $key), true);
