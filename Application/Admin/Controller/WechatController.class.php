@@ -71,10 +71,14 @@ class WechatController extends Controller
     {
         $event = strtolower($event);
         $openId = self::$revData['FromUserName'];
+        $messageContent= '';
+
         switch ($event) {
             case 'subscribe':
                 $userID = $this->checkUser($openId);
 
+                $projectName = C('PROJECT_NAME');
+                $messageContent = "恭喜加入$projectName,您是第$userID 位会员,在家即可享受货品配送服务！";
 
                 $eventkey = self::$revData['EventKey'];
 
@@ -82,28 +86,9 @@ class WechatController extends Controller
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
                     $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    $merchantMate = new ModelMate('shop');
-                    $merchantData = $merchantMate->get($merchantScanedID);
-                    $merchantScanedName = $merchantData['name'];
-
-                    $buyerShopMate = new ModelMate('userbuyershop');
-
-                    $where['shopid'] = $merchantScanedID;
-                    $where['openid'] = $openId;
-                    $relation = $buyerShopMate->find($where);
-                    if (!$relation) {
-                        $data = array();
-                        $data['shopid'] = $merchantScanedID;
-                        $data['openid'] = $openId;
-                        //$data['time']= time();
-                        $data['isdefault']=0;
-
-                        $buyerShopMate->interact($data);
-                    }
+                    $merchantScanedName = $this->relateBuyerShop($openId, $merchantScanedID);
                 }
 
-                $projectName = C('PROJECT_NAME');
-                $messageContent = "恭喜加入$projectName,您是第$userID 位会员,在家即可享受货品配送服务！";
                 if (!empty($merchantScanedName)) {
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
@@ -116,7 +101,20 @@ class WechatController extends Controller
             case 'click':
                 $this->checkKeyWords(self::$revData['EventKey']);
                 break;
+            case 'scan':
+                $eventkey= self::$revData['EventKey'];
+                $merchantScanedID = 0;
+                $merchantScanedName = '';
+                if (!empty($eventkey)) {
+                    $merchantScanedID = $eventkey;//self::$revData['EventKey'];
+                    $merchantScanedName = $this->relateBuyerShop($openId, $merchantScanedID);
+                }
 
+                if (!empty($merchantScanedName)) {
+                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
+                }
+
+                break;
         }
     }
 
@@ -507,6 +505,36 @@ class WechatController extends Controller
 
         $data = json_decode($data, true);
         self::$weObj->sendTemplateMessage($data);
+    }
+
+    /**关联消费者和商铺
+     * @param $openId
+     * @param $merchantScanedID
+     * @return mixed
+     */
+    private function relateBuyerShop($openId, $merchantScanedID)
+    {
+        $merchantMate = new ModelMate('shop');
+        $merchantData = $merchantMate->get($merchantScanedID);
+        $merchantScanedName = $merchantData['name'];
+
+        $buyerShopMate = new ModelMate('userbuyershop');
+
+        $where= array();
+        $where['shopid'] = $merchantScanedID;
+        $where['openid'] = $openId;
+        $relation = $buyerShopMate->find($where);
+        if (!$relation) {
+            $data = array();
+            $data['shopid'] = $merchantScanedID;
+            $data['openid'] = $openId;
+            //$data['time']= time();
+            $data['isdefault'] = 0;
+
+            $buyerShopMate->interact($data);
+            return $merchantScanedName;
+        }
+        return $merchantScanedName;
     }
 
 
