@@ -95,7 +95,7 @@ class WechatController extends Controller
                         $data = array();
                         $data['shopid'] = $merchantScanedID;
                         $data['openid'] = $openId;
-                        $data['time']= time();
+                        //$data['time']= time();
                         $data['isdefault']=0;
 
                         $buyerShopMate->interact($data);
