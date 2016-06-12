@@ -9,6 +9,7 @@
 namespace Home\Controller;
 
 
+use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 
@@ -42,5 +43,11 @@ class FooController extends Controller
         $mate= new ModelMate('config');
         $data= $mate->get(1);
         dump($data);
+    }
+
+    public function buyershopop($shopid=3){
+        $openid='gasdgawegewgew';
+        $result= BizHelper::relateBuyerShop($openid,$shopid);
+        dump($result);
     }
 }

@@ -3,6 +3,7 @@ namespace Common\Model;
 
 use Think\Model;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class BizHelper
 {
@@ -103,6 +104,35 @@ class BizHelper
         return $data;
     }
 
+    /**关联消费者和商铺
+     * @param $openId
+     * @param $merchantScanedID
+     * @return mixed
+     */
+    public static function relateBuyerShop($openId, $merchantScanedID)
+    {
+        $merchantMate = new ModelMate('shop');
+        $merchantData = $merchantMate->get($merchantScanedID);
+        $merchantScanedName = $merchantData['name'];
+
+        $buyerShopMate = new ModelMate('userbuyershop');
+
+        $where= array();
+        $where['shopid'] = $merchantScanedID;
+        $where['openid'] = $openId;
+        $relation = $buyerShopMate->find($where);
+        if (!$relation) {
+            $data = array();
+            $data['shopid'] = $merchantScanedID;
+            $data['openid'] = $openId;
+            //$data['time']= time();
+            $data['isdefault'] = 0;
+
+            $buyerShopMate->interact($data);
+        }
+
+        return $merchantScanedName;
+    }
 
 }
 

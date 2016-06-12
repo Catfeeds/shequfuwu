@@ -1,9 +1,9 @@
 <?php
 namespace Admin\Controller;
 
+use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
-use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class WechatController extends Controller
 {
@@ -71,7 +71,7 @@ class WechatController extends Controller
     {
         $event = strtolower($event);
         $openId = self::$revData['FromUserName'];
-        $messageContent= '';
+        $messageContent = '';
 
         switch ($event) {
             case 'subscribe':
@@ -86,7 +86,7 @@ class WechatController extends Controller
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
                     $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    $merchantScanedName = $this->relateBuyerShop($openId, $merchantScanedID);
+                    $merchantScanedName = BizHelper:: relateBuyerShop($openId, $merchantScanedID);
                 }
 
                 if (!empty($merchantScanedName)) {
@@ -103,14 +103,14 @@ class WechatController extends Controller
                 break;
             case 'scan':
                 $projectName = C('PROJECT_NAME');
-                $messageContent="欢迎再次回到[$projectName]，我们将持续为你提供更优质的服务！";
+                $messageContent = "欢迎再次回到[$projectName]，我们将持续为你提供更优质的服务！";
 
-                $eventkey= self::$revData['EventKey'];
+                $eventkey = self::$revData['EventKey'];
                 $merchantScanedID = 0;
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
                     $merchantScanedID = $eventkey;//self::$revData['EventKey'];
-                    $merchantScanedName = $this->relateBuyerShop($openId, $merchantScanedID);
+                    $merchantScanedName = BizHelper:: relateBuyerShop($openId, $merchantScanedID);
                 }
 
                 if (!empty($merchantScanedName)) {
@@ -509,36 +509,6 @@ class WechatController extends Controller
 
         $data = json_decode($data, true);
         self::$weObj->sendTemplateMessage($data);
-    }
-
-    /**关联消费者和商铺
-     * @param $openId
-     * @param $merchantScanedID
-     * @return mixed
-     */
-    private function relateBuyerShop($openId, $merchantScanedID)
-    {
-        $merchantMate = new ModelMate('shop');
-        $merchantData = $merchantMate->get($merchantScanedID);
-        $merchantScanedName = $merchantData['name'];
-
-        $buyerShopMate = new ModelMate('userbuyershop');
-
-        $where= array();
-        $where['shopid'] = $merchantScanedID;
-        $where['openid'] = $openId;
-        $relation = $buyerShopMate->find($where);
-        if (!$relation) {
-            $data = array();
-            $data['shopid'] = $merchantScanedID;
-            $data['openid'] = $openId;
-            //$data['time']= time();
-            $data['isdefault'] = 0;
-
-            $buyerShopMate->interact($data);
-            return $merchantScanedName;
-        }
-        return $merchantScanedName;
     }
 
 
