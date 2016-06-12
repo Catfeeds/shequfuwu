@@ -44,6 +44,14 @@ class ModelMate
         return $this->model->where($condition)->find();
     }
 
+    public function find($condition= array()){
+        return $this->model->where($condition)->find();
+    }
+
+    public function select($condition= array()){
+        return $this->model->where($condition)->select();
+    }
+
     /**
      * 交互信息
      *

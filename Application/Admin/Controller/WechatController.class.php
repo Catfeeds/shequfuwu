@@ -69,36 +69,51 @@ class WechatController extends Controller
 
     public function checkEvents($event)
     {
+        $event = strtolower($event);
         $openId = self::$revData['FromUserName'];
         switch ($event) {
             case 'subscribe':
-                $userID= $this->checkUser($openId);
+                $userID = $this->checkUser($openId);
 
-                //$eventkey = self::$weObj->getRequest('eventkey');
+
                 $eventkey = self::$revData['EventKey'];
 
                 $merchantScanedID = 0;
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
                     $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    $merchantMate= new ModelMate('shop');
-                    $merchantData= $merchantMate->get($merchantScanedID);
-                    $merchantScanedName= $merchantData['name'];
+                    $merchantMate = new ModelMate('shop');
+                    $merchantData = $merchantMate->get($merchantScanedID);
+                    $merchantScanedName = $merchantData['name'];
+
+                    $buyerShopMate = new ModelMate('userbuyershop');
+
+                    $where['shopid'] = $merchantScanedID;
+                    $where['openid'] = $openId;
+                    $relation = $buyerShopMate->find($where);
+                    if (!$relation) {
+                        $data = array();
+                        $data['shopid'] = $merchantScanedID;
+                        $data['openid'] = $openId;
+                        $data['time']= time();
+                        $data['isdefault']=0;
+
+                        $buyerShopMate->interact($data);
+                    }
                 }
 
-                $projectName= C('PROJECT_NAME');
-                $messageContent="恭喜加入$projectName,您是第$userID 位会员";
-                if(!empty($merchantScanedName)){
-                    $messageContent.=",您扫码的店铺为[$merchantScanedName]，您的购物活动默认有本店铺为你提供服务";
+                $projectName = C('PROJECT_NAME');
+                $messageContent = "恭喜加入$projectName,您是第$userID 位会员。在家即可享受货品配送服务！";
+                if (!empty($merchantScanedName)) {
+                    $messageContent .= ",您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务";
                 }
-                $messageContent.="。在家即可享受货品配送服务！";
+
                 self::$weObj->text($messageContent)->reply();
-                //$this->checkKeyWords('subscribe');
                 break;
             case 'unsubscribe':
                 $this->updateUser($openId);
                 break;
-            case 'CLICK':
+            case 'click':
                 $this->checkKeyWords(self::$revData['EventKey']);
                 break;
 
@@ -137,11 +152,11 @@ class WechatController extends Controller
 
     public function checkUser($openId)
     {
-        $userID= 0;
+        $userID = 0;
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
             D("User")->save(array("id" => $user["id"], "subscribe" => 1));
-            $userID= $user["id"];
+            $userID = $user["id"];
         } else {
             $userInfo = self::$weObj->getUserInfo($openId);
             $user = array(
@@ -153,9 +168,9 @@ class WechatController extends Controller
                 "city" => $userInfo["city"],
                 "province" => $userInfo["province"],
                 "avater" => $userInfo["headimgurl"],
-                "status"=>C('USER_DEFAULT_STATUS'),
+                "status" => C('USER_DEFAULT_STATUS'),
             );
-            $userID= D("User")->add($user);
+            $userID = D("User")->add($user);
         }
 
         return $userID;
@@ -329,7 +344,7 @@ class WechatController extends Controller
         );
 
         self::$weObj->sendTemplateMessage($msg);
-        
+
         $this->sendTplMessageOrderAdmin($order_id);
     }
 
@@ -367,7 +382,7 @@ class WechatController extends Controller
         $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
         $employee = explode(',', $shop["employee"]);
         foreach ($employee as $key => $value) {
-            if(!$value){
+            if (!$value) {
                 continue;
             }
             $user = D("User")->get(array("id" => $value));
@@ -487,13 +502,12 @@ class WechatController extends Controller
                 }
             }
         }';
-        
+
         // print_r($data);
 
         $data = json_decode($data, true);
         self::$weObj->sendTemplateMessage($data);
-    }   
-    
-    
-    
+    }
+
+
 }
