@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use Think\Controller;
 
 /** 转换器controller
