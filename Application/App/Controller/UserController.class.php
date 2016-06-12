@@ -108,7 +108,11 @@ class UserController extends BaseController
 
 
     public function shopSelector(){
-        dump('shopSelector');
+        //dump('shopSelector');
+        $oauth2Url= "App/Public/oauthLogin";
+        $user = R($oauth2Url);
+
+        
     }
 
     /**

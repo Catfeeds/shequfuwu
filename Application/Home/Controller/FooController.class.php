@@ -12,6 +12,7 @@ namespace Home\Controller;
 use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\Web\EnvironmentHelper;
 
 class FooController extends Controller
 {
@@ -35,19 +36,28 @@ class FooController extends Controller
         exit(json_encode($data, 0));
     }
 
-    public function configop($configname='PROJECT_NAME'){
+    public function configop($configname = 'PROJECT_NAME')
+    {
         dump(C($configname));
     }
 
-    public function configdbop(){
-        $mate= new ModelMate('config');
-        $data= $mate->get(1);
+    public function configdbop()
+    {
+        $mate = new ModelMate('config');
+        $data = $mate->get(1);
         dump($data);
     }
 
-    public function buyershopop($shopid=3){
-        $openid='gasdgawegewgew';
-        $result= BizHelper::relateUserShopScaned($openid,$shopid);
+    public function buyershopop($shopid = 3)
+    {
+        $openid = 'gasdgawegewgew';
+        $result = BizHelper::relateUserShopScaned($openid, $shopid);
         dump($result);
+    }
+
+    public function serverhostop()
+    {
+        dump('HostName:' . EnvironmentHelper::getServerHostName());
+        dump('ServerName:' . EnvironmentHelper::getWebServerName());
     }
 }

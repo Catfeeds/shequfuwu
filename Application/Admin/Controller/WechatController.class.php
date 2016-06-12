@@ -4,6 +4,7 @@ namespace Admin\Controller;
 use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class WechatController extends Controller
 {
@@ -125,30 +126,74 @@ class WechatController extends Controller
     public function checkKeyWords($key)
     {
         $key = $key ? $key : self::$weObj->getRev()->getRevContent();
-        if ($key == 'qqkf') {
-            $replay = D("WxReply")->get(array("key" => $key), true);
-            $qq = $replay["remark"];
-            $str = "<a href='http://wpa.qq.com/msgrd?v=3&uin=" . $qq . "&site=qq&menu=yes&from=singlemessage'>" . htmlspecialchars_decode('点击联系QQ客服') . "</a>";
-            self::$weObj->text($str)->reply();
-        }
 
-        $replay = D("WxReply")->get(array("key" => $key), true);
-        if ($replay) {
-            if ($replay["type"] == "news") {
-                $newsArr = array(
-                    array(
-                        'Title' => $replay["title"],
-                        'Description' => $replay["description"],
-                        'PicUrl' => self::$appUrl . '/Public/Uploads/' . $replay["savepath"] . $replay["savename"],
-                        'Url' => $replay["url"]
-                    )
-                );
-                self::$weObj->news($newsArr)->reply();
-            } else {
-                self::$weObj->text($replay["title"])->reply();
-            }
-        } else {
-            self::$weObj->text("请核对关键词!")->reply();
+        switch ($key) {
+            case 'qqkf': //QQ客服
+                $replay = D("WxReply")->get(array("key" => $key), true);
+                $qq = $replay["remark"];
+                $str = "<a href='http://wpa.qq.com/msgrd?v=3&uin=" . $qq . "&site=qq&menu=yes&from=singlemessage'>" . htmlspecialchars_decode('点击联系QQ客服') . "</a>";
+                self::$weObj->text($str)->reply();
+                break;
+            case 'csgw':
+                //超市购物，弹出其当初扫描的超市
+                $openId = self::$revData['FromUserName'];
+                $usershopscanedMate = new ModelMate('usershopscaned');
+                $where = array();
+                $where['openid'] = $openId;
+                $shopscaned= $usershopscanedMate->select($where);
+
+                $shopMate= new ModelMate('shop');
+                $fileMate= new ModelMate('file');
+
+                if($shopscaned){
+                    $newsArray= array();
+                    foreach ($shopscaned as $shopScaned){
+                        $shopId= $shopScaned['shopid'];
+                        $shopWhere= array();
+                        $shopWhere['id']= $shopId;
+                        $shop= $shopMate->find($shopWhere);
+                        if($shop){
+                            $fileId= $shop['file_id'];
+                            $pictureUrl= '';
+                            if($fileId){
+                                $file= $fileMate->get($fileId);
+                                $pictureUrl= self::$appUrl . '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+                            }else{
+                                $pictureUrl=
+                            }
+
+
+                            $news= array(
+                                'Title' => $shop["name"],
+                                'Description' => $shop["notification"],
+                                'PicUrl' => $pictureUrl,
+                                'Url' => $replay["url"]
+                            )
+                        }
+                    }
+                }else{
+
+                }
+                break;
+            default:
+                $replay = D("WxReply")->get(array("key" => $key), true);
+                if ($replay) {
+                    if ($replay["type"] == "news") {
+                        $newsArr = array(
+                            array(
+                                'Title' => $replay["title"],
+                                'Description' => $replay["description"],
+                                'PicUrl' => self::$appUrl . '/Public/Uploads/' . $replay["savepath"] . $replay["savename"],
+                                'Url' => $replay["url"]
+                            )
+                        );
+                        self::$weObj->news($newsArr)->reply();
+                    } else {
+                        self::$weObj->text($replay["title"])->reply();
+                    }
+                } else {
+                    self::$weObj->text("请核对关键词!")->reply();
+                }
         }
     }
 

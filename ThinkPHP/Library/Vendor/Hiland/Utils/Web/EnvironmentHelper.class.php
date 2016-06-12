@@ -93,6 +93,15 @@ class EnvironmentHelper
             }
         }
     }
+
+    /**
+     * 获取服务器域名
+     * @return string
+     */
+    public static function getServerHostName(){
+        $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+        return $host;
+    }
 }
 
 ?>

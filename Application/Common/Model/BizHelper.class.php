@@ -133,6 +133,8 @@ class BizHelper
 
         return $merchantScanedName;
     }
+    
+    
 
 }
 
