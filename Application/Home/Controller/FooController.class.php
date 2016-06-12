@@ -59,5 +59,6 @@ class FooController extends Controller
     {
         dump('HostName:' . EnvironmentHelper::getServerHostName());
         dump('ServerName:' . EnvironmentHelper::getWebServerName());
+        dump('Root:'.__ROOT__);
     }
 }
