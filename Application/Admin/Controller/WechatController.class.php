@@ -86,7 +86,7 @@ class WechatController extends Controller
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
                     $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    $merchantScanedName = BizHelper:: relateBuyerShop($openId, $merchantScanedID);
+                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
                 }
 
                 if (!empty($merchantScanedName)) {
@@ -110,7 +110,7 @@ class WechatController extends Controller
                 $merchantScanedName = '';
                 if (!empty($eventkey)) {
                     $merchantScanedID = $eventkey;//self::$revData['EventKey'];
-                    $merchantScanedName = BizHelper:: relateBuyerShop($openId, $merchantScanedID);
+                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
                 }
 
                 if (!empty($merchantScanedName)) {

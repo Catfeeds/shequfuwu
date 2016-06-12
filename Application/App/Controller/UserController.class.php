@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use Vendor\Hiland\Utils\DataModel\ModelMate;
+
 class UserController extends BaseController
 {
     public function _initialize()
@@ -104,7 +106,32 @@ class UserController extends BaseController
         // $this->ajaxReturn($shop);
     // }
 
-    
+
+    public function shopSelector(){
+        dump('shopSelector');
+    }
+
+    /**
+     * 获取消费者通过扫码关注的店铺
+     */
+    public function getShopScanedList(){
+
+        $openId= '';
+        $shopScanedMate= new ModelMate('usershopscaned');
+
+        $where= array();
+        $where['openid']=$openId;
+        $shopScaneds= $shopScanedMate->select($where);
+
+        if(!$shopScaneds){
+
+        }
+    }
+
+
+    /**
+     * 获取附近的店铺
+     */
     public function getShopList(){
         $lng = I("post.lng");
         $lat = I("post.lat");

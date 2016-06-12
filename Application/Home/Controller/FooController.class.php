@@ -47,7 +47,7 @@ class FooController extends Controller
 
     public function buyershopop($shopid=3){
         $openid='gasdgawegewgew';
-        $result= BizHelper::relateBuyerShop($openid,$shopid);
+        $result= BizHelper::relateUserShopScaned($openid,$shopid);
         dump($result);
     }
 }

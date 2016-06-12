@@ -109,13 +109,13 @@ class BizHelper
      * @param $merchantScanedID
      * @return mixed
      */
-    public static function relateBuyerShop($openId, $merchantScanedID)
+    public static function relateUserShopScaned($openId, $merchantScanedID)
     {
         $merchantMate = new ModelMate('shop');
         $merchantData = $merchantMate->get($merchantScanedID);
         $merchantScanedName = $merchantData['name'];
 
-        $buyerShopMate = new ModelMate('userbuyershop');
+        $buyerShopMate = new ModelMate('usershopscaned');
 
         $where= array();
         $where['shopid'] = $merchantScanedID;
