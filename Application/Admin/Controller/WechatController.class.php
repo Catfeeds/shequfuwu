@@ -103,9 +103,9 @@ class WechatController extends Controller
                 }
 
                 $projectName = C('PROJECT_NAME');
-                $messageContent = "恭喜加入$projectName,您是第$userID 位会员。在家即可享受货品配送服务！";
+                $messageContent = "恭喜加入$projectName,您是第$userID 位会员,在家即可享受货品配送服务！";
                 if (!empty($merchantScanedName)) {
-                    $messageContent .= ",您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务";
+                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
                 self::$weObj->text($messageContent)->reply();
