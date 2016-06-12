@@ -11,6 +11,10 @@ namespace App\Controller;
 
 use Think\Controller;
 
+/** 转换器controller
+ * Class ConverterController
+ * @package App\Controller
+ */
 class ConverterController extends  Controller
 {
     public function shopSelector(){
