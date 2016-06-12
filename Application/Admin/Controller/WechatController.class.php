@@ -102,6 +102,7 @@ class WechatController extends Controller
                 $this->checkKeyWords(self::$revData['EventKey']);
                 break;
             case 'scan':
+
                 $eventkey= self::$revData['EventKey'];
                 $merchantScanedID = 0;
                 $merchantScanedName = '';
@@ -113,7 +114,8 @@ class WechatController extends Controller
                 if (!empty($merchantScanedName)) {
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
-
+                
+                self::$weObj->text($messageContent)->reply();
                 break;
         }
     }
