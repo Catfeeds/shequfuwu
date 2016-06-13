@@ -119,7 +119,8 @@ class WebHelper
 
     public static function getWebPhysicalRootPath()
     {
-        return $_SERVER['DOCUMENT_ROOT'];
+        return dirname('/');
+        //return $_SERVER['DOCUMENT_ROOT'];
     }
 }
 
