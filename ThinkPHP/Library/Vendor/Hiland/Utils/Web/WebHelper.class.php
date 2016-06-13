@@ -116,12 +116,12 @@ class WebHelper
         }
         return $result;
     }
-
-    public static function getWebPhysicalRootPath()
-    {
-        return dirname('/');
-        //return $_SERVER['DOCUMENT_ROOT'];
-    }
+//
+//    public static function getWebPhysicalRootPath()
+//    {
+//        return dirname('/');
+//        //return $_SERVER['DOCUMENT_ROOT'];
+//    }
 }
 
 ?>

@@ -140,48 +140,55 @@ class WechatController extends Controller
                 $usershopscanedMate = new ModelMate('usershopscaned');
                 $where = array();
                 $where['openid'] = $openId;
-                $shopscaned= $usershopscanedMate->select($where);
+                $shopscaned = $usershopscanedMate->select($where);
 
-                $shopMate= new ModelMate('shop');
-                $fileMate= new ModelMate('file');
+                $shopMate = new ModelMate('shop');
+                $fileMate = new ModelMate('file');
 
-                $newsArray= array();
-                $newsCover= array(
-                    'Title' => "欢迎使用".C('PROJECT_NAME'),
+                $newsArray = array();
+                $newsCover = array(
+                    'Title' => "欢迎使用" . C('PROJECT_NAME'),
                     'Description' => "请选择以下列表中你关注过的店铺进行采购吧！",
                     'PicUrl' => self::$appUrl . '/Public/Uploads/wechat_news_cover.jpg',
                     'Url' => '',
                 );
-                $newsArray[]= $newsCover;
+                $newsArray[] = $newsCover;
 
-                if($shopscaned){
+                if ($shopscaned) {
 
-                    foreach ($shopscaned as $shopScaned){
-                        $shopId= $shopScaned['shopid'];
-                        $shopWhere= array();
-                        $shopWhere['id']= $shopId;
-                        $shop= $shopMate->find($shopWhere);
-                        if($shop){
-                            $fileId= $shop['file_id'];
-                            $pictureUrl= '';
-                            if($fileId){
-                                $file= $fileMate->get($fileId);
-                                $pictureUrl= self::$appUrl . '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-                            }else{
-                                $pictureUrl= self::$appUrl . '/Public/Uploads/defaultshopimage.png';
+                    foreach ($shopscaned as $shopScaned) {
+                        $shopId = $shopScaned['shopid'];
+                        $shopWhere = array();
+                        $shopWhere['id'] = $shopId;
+                        $shop = $shopMate->find($shopWhere);
+                        if ($shop) {
+                            $fileId = $shop['file_id'];
+                            $pictureUrl = '';
+                            $defaultFilePath = '/Public/Uploads/defaultshopimage.png';
+                            if ($fileId) {
+                                $file = $fileMate->get($fileId);
+                                $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+
+                                if (is_file(PHYSICAL_ROOT_PATH . $filePath)) {
+                                    $pictureUrl = self::$appUrl . $filePath;
+                                } else {
+                                    $pictureUrl = self::$appUrl . $defaultFilePath;
+                                }
+                            } else {
+                                $pictureUrl = self::$appUrl . $defaultFilePath;
                             }
 
-                            $news= array(
+                            $news = array(
                                 'Title' => $shop["name"],
                                 'Description' => $shop["notification"],
                                 'PicUrl' => $pictureUrl,
                                 'Url' => self::$appUrl . "/index.php?s=/App/Index/index/shopId/$shopId",
                             );
 
-                            $newsArray[]= $news;
+                            $newsArray[] = $news;
                         }
                     }
-                }else{
+                } else {
 
                 }
                 self::$weObj->news($newsArray)->reply();

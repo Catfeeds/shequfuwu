@@ -75,6 +75,6 @@ class FooController extends Controller
         dump(realpath(dirname(__FILE__).'/../'));
         dump(str_replace('\\','/',realpath(dirname(__FILE__).'/../')));
         dump('hostName:' . EnvironmentHelper::getServerHostName());
-        dump(WebHelper::getWebPhysicalRootPath());
+        //dump(WebHelper::getWebPhysicalRootPath());
     }
 }

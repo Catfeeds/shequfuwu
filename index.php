@@ -19,6 +19,12 @@ define('APP_DEBUG', True);
 define('APP_VERSION', '5.1.0');
 define('APP_VERSION_TIME', '2016.1.1');
 
+
+/**
+ * 系统的物理根目录
+ */
+define('PHYSICAL_ROOT_PATH', dirname(__FILE__));
+
 // 定义应用目录
 define('APP_PATH', './Application/');
 define('DATA_PATH', './Data/');
