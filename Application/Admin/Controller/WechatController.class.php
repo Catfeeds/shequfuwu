@@ -272,44 +272,46 @@ class WechatController extends Controller
     public function createWxMenu()
     {
         $m = D("WxMenu");
-        $menu = $m->getList(array("pid" => 0), false, array('rank'=>'desc','id'=>'desc'), 0, 0, 3);
+        $menu = $m->getList(array("pid" => 0), false, array('rank' => 'desc', 'id' => 'desc'), 0, 0, 3);
 
         $newmenu["button"] = array();
         $menuCount = count($menu);
         for ($i = 0; $i < $menuCount; $i++) {
-            if ($menu[$i]["type"] == "view") {
-                $sub = $m->getList(array("pid" => $menu[$i]["id"]), false, "rank desc,id desc", 0, 0, 5);
-                if ($sub) {
-                    $sub_button = array();
-
-                    for ($j = 0; $j < count($sub); $j++) {
-                        if ($sub[$j]["type"] == "view") {
-                            array_push($sub_button, array('type' => 'view', 'name' => $sub[$j]["name"], 'url' => $sub[$j]["url"]));
-                        } else {
-                            array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
-                        }
-                    }
-                    array_push($newmenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
-                } else {
-                    array_push($newmenu["button"], array('type' => 'view', 'name' => $menu[$i]["name"], 'url' => $menu[$i]["url"]));
-                }
-            } else {
-                $sub = $m->getList(array("pid" => $menu[$i]["id"]), false, "rank desc,id desc", 0, 0, 5);
-                if ($sub) {
-                    $sub_button = array();
-
-                    for ($j = 0; $j < count($sub); $j++) {
-                        if ($sub[$j]["type"] == "view") {
-                            array_push($sub_button, array('type' => 'view', 'name' => $sub[$j]["name"], 'url' => $sub[$j]["url"]));
-                        } else {
-                            array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
-                        }
-                    }
-                    array_push($newmenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
-                } else {
-                    array_push($newmenu["button"], array('type' => 'click', 'name' => $menu[$i]["name"], 'key' => $menu[$i]["key"]));
-                }
-            }
+            $menuItem= $this->builderMenuItems($menu[$i],$m);
+            array_push($sub_button,$menuItem);
+//            if ($menu[$i]["type"] == "view") {
+//                $sub = $m->getList(array("pid" => $menu[$i]["id"]), false, array("rank" => "desc", "id" => "desc"), 0, 0, 5);
+//                if ($sub) {
+//                    $sub_button = array();
+//
+//                    for ($j = 0; $j < count($sub); $j++) {
+//                        if ($sub[$j]["type"] == "view") {
+//                            array_push($sub_button, array('type' => 'view', 'name' => $sub[$j]["name"], 'url' => $sub[$j]["url"]));
+//                        } else {
+//                            array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
+//                        }
+//                    }
+//                    array_push($newmenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
+//                } else {
+//                    array_push($newmenu["button"], array('type' => 'view', 'name' => $menu[$i]["name"], 'url' => $menu[$i]["url"]));
+//                }
+//            } else {
+//                $sub = $m->getList(array("pid" => $menu[$i]["id"]), false, "rank desc,id desc", 0, 0, 5);
+//                if ($sub) {
+//                    $sub_button = array();
+//
+//                    for ($j = 0; $j < count($sub); $j++) {
+//                        if ($sub[$j]["type"] == "view") {
+//                            array_push($sub_button, array('type' => 'view', 'name' => $sub[$j]["name"], 'url' => $sub[$j]["url"]));
+//                        } else {
+//                            array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
+//                        }
+//                    }
+//                    array_push($newmenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
+//                } else {
+//                    array_push($newmenu["button"], array('type' => 'click', 'name' => $menu[$i]["name"], 'key' => $menu[$i]["key"]));
+//                }
+//            }
         }
 
         $this->init();
@@ -322,6 +324,30 @@ class WechatController extends Controller
             $this->error("重新创建菜单失败!", U("Admin/Weixin/wxMenuSet"));
         }
 
+    }
+
+
+    private function builderMenuItems($menuItemData, $wxMenuModel)
+    {
+        $sub = $wxMenuModel->getList(array("pid" => $menuItemData["id"]), false, array("rank" => "desc", "id" => "desc"), 0, 0, 5);
+        if ($sub) {
+            $sub_button = array();
+
+            for ($j = 0; $j < count($sub); $j++) {
+                if ($sub[$j]["type"] == "view") {
+                    array_push($sub_button, array('type' => 'view', 'name' => $sub[$j]["name"], 'url' => $sub[$j]["url"]));
+                } else {
+                    array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
+                }
+            }
+            return array('name' => $menuItemData["name"], 'sub_button' => $sub_button);
+        } else {
+            if ($menuItemData["type"] == "view") {
+                return array('type' => 'view', 'name' => $menuItemData["name"], 'url' => $menuItemData["url"]);
+            } else {
+                return array('type' => 'click', 'name' => $menuItemData["name"], 'key' => $menuItemData["key"]);
+            }
+        }
     }
 
     public function addTplMessageId($id)
