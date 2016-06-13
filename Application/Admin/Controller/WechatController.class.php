@@ -146,6 +146,14 @@ class WechatController extends Controller
                 $fileMate= new ModelMate('file');
 
                 $newsArray= array();
+                $newsCover= array(
+                    'Title' => "欢迎使用".C('PROJECT_NAME'),
+                    'Description' => "请选择以下列表中你关注过的店铺进行采购吧！",
+                    'PicUrl' => self::$appUrl . '/Public/Uploads/wechat_news_cover.jpg',
+                    'Url' => '',
+                );
+                $newsArray[]= $newsCover;
+
                 if($shopscaned){
 
                     foreach ($shopscaned as $shopScaned){
@@ -162,7 +170,6 @@ class WechatController extends Controller
                             }else{
                                 $pictureUrl= self::$appUrl . '/Public/Uploads/defaultshopimage.png';
                             }
-
 
                             $news= array(
                                 'Title' => $shop["name"],
