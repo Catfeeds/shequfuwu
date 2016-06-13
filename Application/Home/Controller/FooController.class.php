@@ -80,7 +80,7 @@ class FooController extends Controller
 
     public function wxmenuop(){
         $m = D("WxMenu");
-        $menu = $m->getList(array("pid" => 0), false, "rank desc,id desc", 0, 0, 3);
+        $menu = $m->getList(array("pid" => 0), false, "rank desc", 0, 0, 3);
         dump($menu);
     }
 }
