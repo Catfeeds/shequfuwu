@@ -69,6 +69,8 @@ class FooController extends Controller
         dump('PHP_SELF:' . $_SERVER['PHP_SELF']);
         dump('SCRIPT_NAME' . $_SERVER['SCRIPT_NAME']);//它将返回包含当前脚本的路径。这在页面需要指向自己时非常有用
         dump('SCRIPT_FILENAME' . $_SERVER['SCRIPT_FILENAME']);//它将返回当前文件所在的绝对路径信息
+
+        dump('REQUEST_URI'.$_SERVER['REQUEST_URI']);
         dump('hostName:' . EnvironmentHelper::getServerHostName());
         dump(WebHelper::getWebPhysicalRootPath());
     }
