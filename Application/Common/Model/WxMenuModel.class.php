@@ -16,7 +16,7 @@ class WxMenuModel extends Model
         return $data;
     }
 
-    public function getList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
+    public function getList($condition = array(), $relation = false, $order = array("id desc"), $p = 0, $num = 0, $limit = 0)
     {
         $data = $this->where($condition);
         if ($relation) {
