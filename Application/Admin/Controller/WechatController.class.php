@@ -164,7 +164,7 @@ class WechatController extends Controller
                         if ($shop) {
                             $fileId = $shop['file_id'];
                             $pictureUrl = '';
-                            $defaultFilePath = '/Public/Uploads/defaultshopimage.png';
+                            $defaultFilePath = '/Public/Uploads/defaultshopimage.jpg';
                             if ($fileId) {
                                 $file = $fileMate->get($fileId);
                                 $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
