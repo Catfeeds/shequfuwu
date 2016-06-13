@@ -119,11 +119,7 @@ class WebHelper
 
     public static function getWebPhysicalRootPath()
     {
-        
-        
-        
-        $WWWROOT = str_ireplace(str_replace("/", "\\", $_SERVER['PHP_SELF']), '', __FILE__) . "\\";
-        return $WWWROOT;
+        return $_SERVER['DOCUMENT_ROOT'];
     }
 }
 
