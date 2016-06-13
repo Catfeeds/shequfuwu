@@ -13,6 +13,7 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 class FooController extends Controller
 {
@@ -59,6 +60,11 @@ class FooController extends Controller
     {
         dump('HostName:' . EnvironmentHelper::getServerHostName());
         dump('ServerName:' . EnvironmentHelper::getWebServerName());
-        dump('Root:'.__ROOT__);
+        dump('Root:' . __ROOT__);
+    }
+
+    public function webphysicalrootpathop()
+    {
+        dump(WebHelper::getWebPhysicalRootPath());
     }
 }

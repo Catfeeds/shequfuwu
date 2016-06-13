@@ -32,7 +32,8 @@ class WebHelper
      */
     public static function getHostName()
     {
-        return $_SERVER['HTTP_HOST'];
+        //return $_SERVER['HTTP_HOST'];
+        return EnvironmentHelper::getServerHostName();
     }
 
     /**
@@ -114,6 +115,12 @@ class WebHelper
             $result = substr($buffString, 0, strlen($buffString) - 1);
         }
         return $result;
+    }
+
+    public static function getWebPhysicalRootPath()
+    {
+        $WWWROOT = str_ireplace(str_replace("/", "\\", $_SERVER['PHP_SELF']), '', __FILE__) . "\\";
+        return $WWWROOT;
     }
 }
 

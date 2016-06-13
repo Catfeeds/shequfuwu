@@ -44,11 +44,33 @@ class ModelMate
         return $this->model->where($condition)->find();
     }
 
-    public function find($condition= array()){
+    /**
+     * 根据条件获取一条记录
+     * @param array $condition 过滤条件
+     * @return array 符合条件的结果，一维数组
+     * @example
+     * $where= array();
+     * $where['shopid'] = $merchantScanedID;
+     * $where['openid'] = $openId;
+     * $relation = $buyerShopMate->find($where);
+     */
+    public function find($condition = array())
+    {
         return $this->model->where($condition)->find();
     }
 
-    public function select($condition= array()){
+    /**
+     * 根据条件获取多条记录
+     * @param array $condition
+     * @return array 符合条件的结果，多维数组
+     * @example
+     * $where= array();
+     * $where['shopid'] = $merchantScanedID;
+     * $where['openid'] = $openId;
+     * $relation = $buyerShopMate->select($where);
+     */
+    public function select($condition = array())
+    {
         return $this->model->where($condition)->select();
     }
 
