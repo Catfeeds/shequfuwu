@@ -71,6 +71,8 @@ class FooController extends Controller
         dump('SCRIPT_FILENAME' . $_SERVER['SCRIPT_FILENAME']);//它将返回当前文件所在的绝对路径信息
 
         dump('REQUEST_URI'.$_SERVER['REQUEST_URI']);
+
+        dump(str_replace('\\','/',realpath(dirname(__FILE__).'/../')));
         dump('hostName:' . EnvironmentHelper::getServerHostName());
         dump(WebHelper::getWebPhysicalRootPath());
     }
