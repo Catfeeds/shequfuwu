@@ -83,4 +83,15 @@ class FooController extends Controller
         $menu = $m->getList(array("pid" => 0), false, array('rank'=>'desc','id'=>'desc'), 0, 0, 3);
         dump($menu);
     }
+
+    public function paraUsed($order=array('id'=>'desc')){
+        dump($order);
+    }
+
+    public function paraop(){
+        $this->paraUsed("rank desc,id");
+    }
+
+
+    
 }

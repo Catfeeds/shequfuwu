@@ -272,7 +272,7 @@ class WechatController extends Controller
     public function createWxMenu()
     {
         $m = D("WxMenu");
-        $menu = $m->getList(array("pid" => 0), false, "rank desc,id desc", 0, 0, 3);
+        $menu = $m->getList(array("pid" => 0), false, array('rank'=>'desc','id'=>'desc'), 0, 0, 3);
 
         $newmenu["button"] = array();
         $menuCount = count($menu);
