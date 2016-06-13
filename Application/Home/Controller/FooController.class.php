@@ -77,4 +77,10 @@ class FooController extends Controller
         dump('hostName:' . EnvironmentHelper::getServerHostName());
         //dump(WebHelper::getWebPhysicalRootPath());
     }
+
+    public function wxmenuop(){
+        $m = D("WxMenu");
+        $menu = $m->getList(array("pid" => 0), false, "rank desc,id desc", 0, 0, 3);
+        dump($menu);
+    }
 }

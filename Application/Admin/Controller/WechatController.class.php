@@ -275,7 +275,8 @@ class WechatController extends Controller
         $menu = $m->getList(array("pid" => 0), false, "rank desc,id desc", 0, 0, 3);
 
         $newmenu["button"] = array();
-        for ($i = 0; $i < count($menu); $i++) {
+        $menuCount = count($menu);
+        for ($i = 0; $i < $menuCount; $i++) {
             if ($menu[$i]["type"] == "view") {
                 $sub = $m->getList(array("pid" => $menu[$i]["id"]), false, "rank desc,id desc", 0, 0, 5);
                 if ($sub) {
