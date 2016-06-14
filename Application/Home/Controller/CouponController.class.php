@@ -14,7 +14,7 @@ class CouponController extends BaseController
         } else {
             $num = 25;
             $p = I("get.page") ? I("get.page") : 1;
-            cookie("prevUrl", U("Home/Coupon/config/page/") . $p);
+            cookie("prevUrl", U("Home/Coupon/config/page/$p"));
 
             $condition = array("shop_id" => session("homeShopId"));
             $coupon = D("CouponCategory")->getList($condition, true, "id desc", $p, $num);

@@ -7,7 +7,7 @@ class ArticalController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Artical/artical/page/") . $p);
+        cookie("prevUrl", U("Admin/Artical/artical/page/$p"));
 
         $articalList = D("Artical")->getList(array(), true, "id desc", $p, $num);
         $this->assign('articalList', $articalList);// 赋值数据集

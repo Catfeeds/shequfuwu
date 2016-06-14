@@ -7,7 +7,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/User/user/page/") . $p);
+        cookie("prevUrl", U("Admin/User/user/page/$p"));
 
         $condition = array(
             "type" => 0
@@ -40,7 +40,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/User/user/page/") . $p);
+        cookie("prevUrl", U("Admin/User/user/page/$p"));
 
         $condition = array(
             "type" => 2

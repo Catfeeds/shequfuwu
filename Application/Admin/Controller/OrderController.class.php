@@ -8,7 +8,7 @@ class OrderController extends BaseController
 //        每页显示的记录数
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Order/order/page/") . $p);
+        cookie("prevUrl", U("Admin/Order/order/page/$p"));
 
         $condition = array();
         $data = I("get.");

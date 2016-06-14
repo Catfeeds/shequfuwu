@@ -15,7 +15,7 @@ class ShopController extends BaseController
 //      每页显示的记录数
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Shop/product/page/") . $p);
+        cookie("prevUrl", U("Admin/Shop/product/page/$p"));
 
         $productList = D("Product")->getList(array(), array("menu", "file"), "id desc", $p, $num);
         $this->assign('productList', $productList);// 赋值数据集
@@ -123,7 +123,7 @@ class ShopController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Shop/ads/page/") . $p);
+        cookie("prevUrl", U("Admin/Shop/ads/page/$p"));
 
         $adsList = D("Ads")->getList(array(), true, "id desc", $p, $num);
         $this->assign('ads', $adsList);// 赋值数据集
@@ -167,7 +167,7 @@ class ShopController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Shop/comment/page/") . $p);
+        cookie("prevUrl", U("Admin/Shop/comment/page/$p"));
 
         $comment = D("Comment")->getList(array(), true, "id desc", $p, $num);
         $this->assign("comment", $comment);
@@ -230,7 +230,7 @@ class ShopController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Shop/feedback/page/") . $p);
+        cookie("prevUrl", U("Admin/Shop/feedback/page/$p"));
 
         $feedbackList = D("Feedback")->getList(array(), false, "id desc", $p, $num);
         $this->assign('feedback', $feedbackList);// 赋值数据集
@@ -291,9 +291,10 @@ class ShopController extends BaseController
 
     public function sku()
     {
-        cookie("prevUrl", U("Admin/Shop/sku/id/") . I("get.id"));
+        $productID= I("get.id");
+        cookie("prevUrl", U("Admin/Shop/sku/id/$productID"));
 
-        $sku = D("ProductSku")->getList(array("product_id" => I("get.id")));
+        $sku = D("ProductSku")->getList(array("product_id" => $productID));
         $this->assign("sku", $sku);
 
         $this->display();
@@ -335,7 +336,7 @@ class ShopController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Admin/Shop/shop/page/") . $p);
+        cookie("prevUrl", U("Admin/Shop/shop/page/$p"));
 
         $condition = array();
         if (I("post.id")) {

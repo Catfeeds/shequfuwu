@@ -11,7 +11,7 @@ class ArticalController extends BaseController
         
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Home/Artical/artical/page/") . $p);
+        cookie("prevUrl", U("Home/Artical/artical/page/$p"));
 
         $articalList = D("Artical")->getList($condition, true, "id desc", $p, $num);
         $this->assign('articalList', $articalList);// 赋值数据集

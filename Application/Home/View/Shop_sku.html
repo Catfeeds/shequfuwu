@@ -104,15 +104,15 @@
                 class="form-control" type="number" step="0.01"
                 name="new[{{i}}][price]" value="0">
         </td>
-        <td style="text-align: center;line-height: 34px" class="col-md-1"><input
-                class="form-control" type="number" name="new[{{i}}][store]"
-                value="0">
-        </td>
-        <td style="text-align: center;line-height: 34px" class="col-md-1"><input
-                class="form-control" type="number" step="0.01"
-                name="new[{{i}}][freight]"
-                value="0">
-        </td>
+        <!--<td style="text-align: center;line-height: 34px" class="col-md-1"><input-->
+                <!--class="form-control" type="number" name="new[{{i}}][store]"-->
+                <!--value="0">-->
+        <!--</td>-->
+        <!--<td style="text-align: center;line-height: 34px" class="col-md-1"><input-->
+                <!--class="form-control" type="number" step="0.01"-->
+                <!--name="new[{{i}}][freight]"-->
+                <!--value="0">-->
+        <!--</td>-->
         <td style="text-align: center;line-height: 34px" class="col-md-1">
             <a href="javascript:void(0)"
                onclick="removeAttr(this,'new')">删除</a></td>
@@ -124,7 +124,7 @@
     var i = 0;
     function addAttr() {
         var html = template("skuTpl", {i: i});
-        $('#skuData').append(html);
+        $('#skuData').prepend(html);
 
         i++;
     }

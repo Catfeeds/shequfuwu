@@ -8,7 +8,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Home/User/user/page/") . $p);
+        cookie("prevUrl", U("Home/User/user/page/$p"));
 
         $condition = array();
         $userList = array();
@@ -82,7 +82,7 @@ class UserController extends BaseController
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Home/User/member/page/") . $p);
+        cookie("prevUrl", U("Home/User/member/page/$p"));
 
         $userList = D("UserMember")->getList(array(), true, "id desc", $p, $num);
         $this->assign("userList", $userList);// 赋值数据集

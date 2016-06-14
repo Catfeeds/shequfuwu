@@ -9,7 +9,7 @@ class AddShopController extends Controller
     {
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Home/AddShop/shop/page/") . $p);
+        cookie("prevUrl", U("Home/AddShop/shop/page/$p"));
 
         $condition = array("user_id" => session("homeId"));
         $shopList = D("Shop")->getShopList($condition, true, "id desc", $p, $num);
