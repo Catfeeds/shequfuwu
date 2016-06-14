@@ -30,90 +30,79 @@
                         <form class="form-horizontal" action="{:U('Home/Shop/addSku')}" method="post">
                             <input class="form-control" name="product_id" placeholder="" value="{$Think.get.id}"
                                    type="hidden">
-                            <td class="box-body">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                    <th style="text-align: center;line-height: 34px">规格</th>
-                                    <th style="text-align: center;line-height: 34px">价格</th>
-                                    <th style="text-align: center;line-height: 34px">排序</th>
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <th style="text-align: center;line-height: 34px">操作</th>
+                                <th style="text-align: center;line-height: 34px">规格</th>
+                                <th style="text-align: center;line-height: 34px">价格</th>
+                                <th style="text-align: center;line-height: 34px">排序</th>
 
 
-                                    <!--<th style="text-align: center;line-height: 34px">库存</th>-->
-                                    <!--<th style="text-align: center;line-height: 34px">运费</th>-->
-                                    <th style="text-align: center;line-height: 34px">操作</th>
-                                    </thead>
-                                    <tbody id="skuData">
+                                <!--<th style="text-align: center;line-height: 34px">库存</th>-->
+                                <!--<th style="text-align: center;line-height: 34px">运费</th>-->
 
-                                    <volist name="sku" id="sku">
-                                        <tr>
-                                            <td style="text-align: center;line-height: 34px" class="col-md-1">
-                                                <input name="old[{$sku.id}][id]" value="{$sku.id}" type="hidden">
-                                                <input name="old[{$sku.id}][name]" value="{$sku.name}" type="text"
-                                                       style="text-align: center;height: 34px">
-                                            </td>
-                                            <td style="text-align: center;line-height: 34px" class="col-md-1"><input
-                                                    class="form-control" type="number" step="0.01"
-                                                    name="old[{$sku.id}][price]" value="{$sku.price}">
-                                            </td>
-                                            <td style="text-align: center;line-height: 34px" class="col-md-1"><input
-                                                    class="form-control" type="number" step="0.01"
-                                                    name="old[{$sku.id}][rank]" value="{$sku.rank}">
-                                            </td>
+                                </thead>
+                                <tbody id="skuData">
 
-                                            <td style="text-align: center;line-height: 34px" class="col-md-1">
+                                <volist name="sku" id="sku">
+                                    <tr>
+                                        <td style="text-align: center;line-height: 34px" class="col-md-1">
+                                            <a href="javascript:void(0)"
+                                               onclick="removeAttr(this,'old','{$sku.id}')">删除</a></td>
+                                        <td style="text-align: center;line-height: 34px" class="col-md-1">
+                                            <input name="old[{$sku.id}][id]" value="{$sku.id}" type="hidden">
+                                            <input name="old[{$sku.id}][name]" value="{$sku.name}" type="text"
+                                                   style="text-align: center;height: 34px">
+                                        </td>
+                                        <td style="text-align: center;line-height: 34px" class="col-md-1"><input
+                                                class="form-control" type="number" step="0.01"
+                                                name="old[{$sku.id}][price]" value="{$sku.price}">
+                                        </td>
+                                        <td style="text-align: center;line-height: 34px" class="col-md-1"><input
+                                                class="form-control" type="number" step="0.01"
+                                                name="old[{$sku.id}][rank]" value="{$sku.rank}">
+                                        </td>
 
-                                                <div class="col-sm-10">
-                                                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                                                        <div class="fileupload-new img-thumbnail">
-                                                            <empty name="product.file_id"><img
-                                                                    src="__PUBLIC__/Admin/dist/img/noimage.gif">
-                                                                <else/>
-                                                                <img src="__PUBLIC__/Uploads/{$product.savepath}{$product.savename}">
-                                                            </empty>
-                                                            <input class="form-control" name="file_id" id="file_id"
-                                                                   placeholder=""
-                                                                   value="{$product.file_id}"
-                                                                   type="hidden">
+                                        <td style="text-align: center;line-height: 34px" class="col-md-1">
 
-                                                            <div class="edit_pic_mask">
-                                                                <i class="fa fa-plus-circle"
-                                                                   onclick="imageUploader(this,false)"></i>
-                                                                <i class="fa fa-minus-circle"
-                                                                   onclick="removeImage(this,false)"></i>
-                                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-new img-thumbnail">
+                                                        <empty name="product.file_id"><img
+                                                                src="__PUBLIC__/Admin/dist/img/noimage.gif">
+                                                            <else/>
+                                                            <img src="__PUBLIC__/Uploads/{$product.savepath}{$product.savename}">
+                                                        </empty>
+                                                        <input class="form-control" name="file_id" id="file_id"
+                                                               placeholder=""
+                                                               value="{$product.file_id}"
+                                                               type="hidden">
+
+                                                        <div class="edit_pic_mask">
+                                                            <i class="fa fa-plus-circle"
+                                                               onclick="imageUploader(this,false)"></i>
+                                                            <i class="fa fa-minus-circle"
+                                                               onclick="removeImage(this,false)"></i>
                                                         </div>
                                                     </div>
-
                                                 </div>
-                                            </td>
+
+                                            </div>
+                                        </td>
 
 
-                                            <td style="text-align: center;line-height: 34px" class="col-md-1">
+                                        <td style="text-align: center;line-height: 34px" class="col-md-1">
 
-                                                <div class="col-sm-10">
-                                                    <div class="fileupload fileupload-new" data-provides="fileupload"
-                                                         id="albumsClone">
-                                                        <volist name="product.albums" id="albums">
-                                                            <div class="fileupload-new img-thumbnail">
-                                                                <img src="__PUBLIC__/Uploads/{$albums.savepath}{$albums.savename}">
-                                                                <input class="form-control" name="albums[]"
-                                                                       placeholder=""
-                                                                       value="{$albums.id}"
-                                                                       type="hidden">
-
-                                                                <div class="edit_pic_mask">
-                                                                    <i class="fa fa-plus-circle"
-                                                                       onclick="imageUploader(this,true)"></i>
-                                                                    <i class="fa fa-minus-circle"
-                                                                       onclick="removeImage(this,true)"></i>
-                                                                </div>
-                                                            </div>
-                                                        </volist>
-
+                                            <div class="col-sm-10">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload"
+                                                     id="albumsClone">
+                                                    <volist name="product.albums" id="albums">
                                                         <div class="fileupload-new img-thumbnail">
-                                                            <img src="__PUBLIC__/Admin/dist/img/noimage.gif">
-                                                            <input class="form-control" name="albums[]" placeholder=""
-                                                                   value=""
+                                                            <img src="__PUBLIC__/Uploads/{$albums.savepath}{$albums.savename}">
+                                                            <input class="form-control" name="albums[]"
+                                                                   placeholder=""
+                                                                   value="{$albums.id}"
                                                                    type="hidden">
 
                                                             <div class="edit_pic_mask">
@@ -123,52 +112,68 @@
                                                                    onclick="removeImage(this,true)"></i>
                                                             </div>
                                                         </div>
+                                                    </volist>
+
+                                                    <div class="fileupload-new img-thumbnail">
+                                                        <img src="__PUBLIC__/Admin/dist/img/noimage.gif">
+                                                        <input class="form-control" name="albums[]" placeholder=""
+                                                               value=""
+                                                               type="hidden">
+
+                                                        <div class="edit_pic_mask">
+                                                            <i class="fa fa-plus-circle"
+                                                               onclick="imageUploader(this,true)"></i>
+                                                            <i class="fa fa-minus-circle"
+                                                               onclick="removeImage(this,true)"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </td>
-                                            <!--<td style="text-align: center;line-height: 34px" class="col-md-1"><input-->
-                                            <!--        class="form-control" type="number" name="old[{$sku.id}][store]"-->
-                                            <!--        value="{$sku.store}">-->
-                                            <!--</td>-->
-                                            <!--<td style="text-align: center;line-height: 34px" class="col-md-1"><input-->
-                                            <!--        class="form-control" type="number" step="0.01"-->
-                                            <!--        name="old[{$sku.id}][freight]"-->
-                                            <!--        value="{$sku.freight}">-->
-                                            <!--</td>-->
-                                            <td style="text-align: center;line-height: 34px" class="col-md-1">
-                                                <a href="javascript:void(0)"
-                                                   onclick="removeAttr(this,'old','{$sku.id}')">删除</a></td>
-                                        </tr>
-                                    </volist>
+                                            </div>
+                                        </td>
+                                        <!--<td style="text-align: center;line-height: 34px" class="col-md-1"><input-->
+                                        <!--        class="form-control" type="number" name="old[{$sku.id}][store]"-->
+                                        <!--        value="{$sku.store}">-->
+                                        <!--</td>-->
+                                        <!--<td style="text-align: center;line-height: 34px" class="col-md-1"><input-->
+                                        <!--        class="form-control" type="number" step="0.01"-->
+                                        <!--        name="old[{$sku.id}][freight]"-->
+                                        <!--        value="{$sku.freight}">-->
+                                        <!--</td>-->
 
-                                    </tbody>
-                                </table>
+                                    </tr>
+                                </volist>
+
+                                </tbody>
+                            </table>
+
+
+                            <div class="box-footer">
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-block btn-danger">保存</button>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-block btn-default" onclick="history.go(-1)">取消
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="box-footer">
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-block btn-danger">保存</button>
-                        </div>
-
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-block btn-default" onclick="history.go(-1)">取消
-                            </button>
-                        </div>
-                    </div>
-                    </form>
+                    <!-- /.mail-box-messages -->
                 </div>
-                <!-- /.mail-box-messages -->
             </div>
+            <!-- /. box -->
         </div>
-        <!-- /. box -->
-    </div>
-    <!-- /.col -->
+        <!-- /.col -->
     </div>
     <!-- /.col -->
 </section>
 
 <script type="text/html" id="skuTpl">
     <tr>
+        <td style="text-align: center;line-height: 34px" class="col-md-1">
+            <a href="javascript:void(0)"
+               onclick="removeAttr(this,'new')">删除</a></td>
         <td style="text-align: center;line-height: 34px" class="col-md-1">
             <input name="new[{{i}}][id]" value="0" type="hidden">
             <input name="new[{{i}}][name]" value="" type="text"
@@ -192,9 +197,7 @@
         <!--name="new[{{i}}][freight]"-->
         <!--value="0">-->
         <!--</td>-->
-        <td style="text-align: center;line-height: 34px" class="col-md-1">
-            <a href="javascript:void(0)"
-               onclick="removeAttr(this,'new')">删除</a></td>
+
     </tr>
 </script>
 
