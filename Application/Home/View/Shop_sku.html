@@ -69,14 +69,14 @@
                                             <div class="col-sm-10">
                                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                                     <div class="fileupload-new img-thumbnail">
-                                                        <empty name="product.file_id"><img
+                                                        <empty name="emptyold[{$sku.id}].file_id"><img
                                                                 src="__PUBLIC__/Admin/dist/img/noimage.gif">
                                                             <else/>
-                                                            <img src="__PUBLIC__/Uploads/{$product.savepath}{$product.savename}">
+                                                            <img src="__PUBLIC__/Uploads/{$sku.savepath}{$sku.savename}">
                                                         </empty>
-                                                        <input class="form-control" name="file_id" id="file_id"
+                                                        <input class="form-control" name="old[{$sku.id}][file_id]"
                                                                placeholder=""
-                                                               value="{$product.file_id}"
+                                                               value="{$sku.file_id}"
                                                                type="hidden">
 
                                                         <div class="edit_pic_mask">
