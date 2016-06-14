@@ -480,7 +480,8 @@ class ShopController extends BaseController
 
     public function sku()
     {
-        cookie("prevUrl", U("Home/Shop/sku/id/") . I("get.id"));
+        $productID= I("get.id");
+        cookie("prevUrl", U("Home/Shop/sku/id/$productID"));
 
         $condition = array(
             "shop_id" => session("homeShopId"),
