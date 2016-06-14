@@ -511,7 +511,7 @@ class ShopController extends BaseController
             $skuModel->save($old[$key]);
         }
 
-        $this->success("操作成功", cookie("prevUrl"));
+        //$this->success("操作成功", cookie("prevUrl"));
     }
 
     public function delSku()
