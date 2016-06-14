@@ -488,7 +488,7 @@ class ShopController extends BaseController
             "product_id" => I("get.id")
         );
 
-        $sku = D("ProductSku")->getList($condition);
+        $sku = D("ProductSku")->getList($condition,false,"rank desc");
         $this->assign("sku", $sku);
 
         $this->display();
