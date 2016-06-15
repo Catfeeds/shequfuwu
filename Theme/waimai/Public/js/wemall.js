@@ -516,11 +516,11 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
     $('.attr-btn').css("color", "#000000");
     $(obj).css("background-color", "#FF4146");
     $(obj).css("color", "#ffffff");
-    $('.new-price').children().html('sku价格：'+ price);
+    $('.new-price').children().html(price);
 
     //清空幻灯片
     // alert('清空幻灯片');
-    // $('#itemsDetail .swiper-wrapper').html('');
+    $('#itemsDetail .swiper-wrapper').html('');
 
     sku.product_id = product_id;
     sku.sku_name = sku_name;
