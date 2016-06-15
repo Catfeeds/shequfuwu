@@ -518,16 +518,27 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
     $(obj).css("color", "#ffffff");
     $('.new-price').children().html(price);
 
-    //清空幻灯片
-    //alert('清空幻灯片');
-
-    //$('#itemsDetail .swiper-wrapper').html('');
-    $('#itemsDetail .detail-image').attr('src','http://k.sinaimg.cn/n/sports/transform/20160518/xPXs-fxsenvx1067666.jpg/w570427.jpg');
 
     sku.product_id = product_id;
     sku.sku_name = sku_name;
     sku.sku_id = sku_id;
     sku.price = price;
+
+    //更新sku的图片
+    $.ajax({
+        type: "get",
+        url: data.baseUrl + "/App/Shop/getSku",
+        data: {
+            id: sku_id
+        },
+        success: function (res) {
+            var json = eval(res);
+            if(json.savename){
+                $('#itemsDetail .detail-image').attr('src',data.uploadsUrl+ json.savepath +json.savename);
+            }
+
+        }
+    });
 }
 
 function addproductNum(obj, id, sku_id) {

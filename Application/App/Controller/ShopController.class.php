@@ -17,6 +17,13 @@ class ShopController extends BaseController
         $this->ajaxReturn($product);
     }
 
+    public function getSku(){
+        $sku = D("ProductSku")->get(array("id" => I("get.id")), true);
+        $albums = explode(",", $sku["albums"]);
+        $sku["albums"] = $albums ? D("File")->getList(array("id" => array("in", $albums))) : "";
+        $this->ajaxReturn($sku);
+    }
+
     public function getMenu()
     {
         $menu = D("Menu")->get(array("id" => I("get.id")));
