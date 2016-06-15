@@ -65,78 +65,19 @@
                                     <small>店铺管理员</small>
                                 </p>
                             </li>
-                            <style type="text/css">
-                                .infobox {
-                                    display: inline-block;
-                                    width: 100%;
-                                    color: #555;
-                                    background-color: #FFF;
-                                    box-shadow: none;
-                                    margin: -1px 0 0 -1px;
-                                    padding: 8px 3px 6px 9px;
-                                    border: 1px dotted;
-                                    border-color: #D8D8D8 !important;
-                                    vertical-align: middle;
-                                    text-align: left;
-                                    position: relative;
-                                }
 
-                                .infobox > .infobox-data {
-                                    display: inline-block;
-                                    border-width: 0;
-                                    font-size: 13px;
-                                    text-align: left;
-                                    line-height: 21px;
-                                    min-width: 130px;
-                                    padding-left: 8px;
-                                    position: relative;
-                                    top: 0;
-                                }
-
-                                .infobox > .infobox-data > .infobox-data-number {
-                                    display: block;
-                                    font-size: 22px;
-                                    margin: 2px 0 4px;
-                                    position: relative;
-                                    text-shadow: 1px 1px 0 rgba(0, 0, 0, .15);
-                                }
-
-                                .infobox .infobox-content {
-                                    color: #555;
-                                }
-
-                                .get-member {
-                                    position: absolute;
-                                    right: 10px;
-                                    top: 12px;
-                                    cursor: pointer;
-                                }
-
-                                .label-sm {
-                                    padding: .2em .4em .3em;
-                                    font-size: 11px;
-                                    line-height: 1;
-                                    height: 18px;
-                                }
-                            </style>
                             <div class="infobox infobox-pink">
                                 <div class="infobox-data">
                                     <span class="infobox-data-number" style="font-size: 18px;">
-                                        <notempty name="member">
-                                            {$member.level}
-                                            <else/>
-                                            免费版
-                                        </notempty>
+                                        提示信息
                                     </span>
                                     <div class="infobox-content">
                                         开始时间:{:date('Y-m-d H:i:s',$member['start_time'])}
                                     </div>
-                                    <div class="infobox-content">
-                                        结束时间:{:date('Y-m-d H:i:s',$member['end_time'])}
-                                    </div>
+
                                 </div>
-                                <a href="{:U('Admin/Buy/pay',array('type'=>1))}" class="get-member label label-sm label-danger">
-                                    升级会员
+                                <a href="" class="get-member label label-sm label-danger">
+
                                 </a>
                             </div>
                             <!-- Menu Footer-->

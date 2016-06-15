@@ -5035,3 +5035,58 @@ img, fieldset {
     width: 200px;
     height: 150px;
 }
+
+
+/* 以下是点击右上角用户名称，弹出框里面提示信息的样式*/
+.infobox {
+    display: inline-block;
+    width: 100%;
+    color: #555;
+    background-color: #FFF;
+    box-shadow: none;
+    margin: -1px 0 0 -1px;
+    padding: 8px 3px 6px 9px;
+    border: 1px dotted;
+    border-color: #D8D8D8 !important;
+    vertical-align: middle;
+    text-align: left;
+    position: relative;
+}
+
+.infobox > .infobox-data {
+    display: inline-block;
+    border-width: 0;
+    font-size: 13px;
+    text-align: left;
+    line-height: 21px;
+    min-width: 130px;
+    padding-left: 8px;
+    position: relative;
+    top: 0;
+}
+
+.infobox > .infobox-data > .infobox-data-number {
+    display: block;
+    font-size: 22px;
+    margin: 2px 0 4px;
+    position: relative;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .15);
+}
+
+.infobox .infobox-content {
+    color: #555;
+}
+
+.get-member {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+}
+
+.label-sm {
+    padding: .2em .4em .3em;
+    font-size: 11px;
+    line-height: 1;
+    height: 18px;
+}
