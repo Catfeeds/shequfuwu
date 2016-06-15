@@ -141,21 +141,22 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        function getNewOrderTip() {
-            $.ajax({
-                type:"Get",
-                url:"__APP__/Home/Index/getNoticingOrderCount",
-                success:function(msg){
-                    if(msg) {
-                        alert(msg);
-                        $("#infoTipSpan").html(msg);
-                    }
-                }
-
-            });
-        }
-
-        setinterval('getNewOrderTip',6000);
+//        function getNewOrderTip() {
+//            $.ajax({
+//                type:"Get",
+//                url:"__APP__/Home/Index/getNoticingOrderCount",
+//                success:function(msg){
+//                    if(msg) {
+//                        alert(msg);
+//                        $("#infoTipSpan").html(msg);
+//                    }
+//                }
+//
+//            });
+//        }
+//
+//        setinterval('getNewOrderTip',6000);
+        $("#infoTipSpan").html('kkkkkkkkkkk');
         alert('sssssssssssss');
     });
 </script>
