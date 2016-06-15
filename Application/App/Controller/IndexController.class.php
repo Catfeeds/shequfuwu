@@ -13,6 +13,7 @@ class IndexController extends BaseController
         $this ->assign("user",$user);
         $shopId = I("get.shopId");
         session("shop_id",$shopId);
+        $this->assign("shopId",$shopId);
 
         $configs = D("Config")->get();
         $config = D("Shop")->getShop(array('id'=>$shopId));
