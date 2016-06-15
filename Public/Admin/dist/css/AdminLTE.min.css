@@ -127,7 +127,6 @@ body.hold-transition .content-wrapper, body.hold-transition .right-side, body.ho
 }
 
 .content {
-    min-height: 720px;
     padding: 15px;
     margin-right: auto;
     margin-left: auto;
