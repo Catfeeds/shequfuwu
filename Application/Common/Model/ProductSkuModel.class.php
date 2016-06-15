@@ -3,8 +3,17 @@ namespace Common\Model;
 
 use Think\Model;
 
-class ProductSkuModel extends Model
+class ProductSkuModel extends RelationModel
 {
+    protected $_link = array(
+        'File' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'mapping_name' => 'file',
+            'foreign_key' => 'file_id',//关联id
+            'as_fields' => 'savename:savename,savepath:savepath',
+        ),
+     );
+
     public function get($condition = array(), $relation = false)
     {
         $data = $this->where($condition);
