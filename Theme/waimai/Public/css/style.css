@@ -2871,3 +2871,8 @@ img, fieldset {
     opacity: 1;
     background: #ffffff!important;
 }
+
+.contentCenter{
+    text-align:center;
+}
+
