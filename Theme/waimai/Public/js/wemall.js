@@ -533,10 +533,15 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
         },
         success: function (res) {
             var json = eval(res);
+            var imgSrc='';
             if(json.savename){
-                $('#itemsDetail .detail-image').attr('src',data.uploadsUrl+ json.savepath +json.savename);
+                imgSrc= data.uploadsUrl+ json.savepath +json.savename;
+                $('#itemsDetail .detail-image').attr('style',"height:200px");
+            }else{
+                $('#itemsDetail .detail-image').attr('style',"height:0px");
             }
 
+            $('#itemsDetail .detail-image').attr('src',imgSrc);
         }
     });
 }
