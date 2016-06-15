@@ -207,7 +207,7 @@ wx.config({
 
 //pidong 打开当前店铺
 function openTHisShop(id){
-    window.location.href=data.baseUrl + "/App/Index/index/shopid/"+id;
+    window.location.href=data.baseUrl + "/App/Index/index/shopId/"+id;
     set("shopId",id);
     cartData = [];
     totalNum = 0;
@@ -825,7 +825,7 @@ function submitOrder() {
     var deliveryTime = $('#deliveryTime').val();
     var shopId = get("shopId");
     alert('shopId'+get("shopId"));
-    alert('shopid'+get("shopid"));
+    // alert('shopid'+get("shopid"));
 
     var freights = data.config.freight;
     var contact = {
