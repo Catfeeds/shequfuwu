@@ -17,17 +17,19 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding" style="padding: 0px;">
-                    <div class="mailbox-controls">
-                        <div class="btn-group">
-                            <a href="javascript:void(0)" onclick="addAttr()" class="btn btn-danger ">
-                                新增属性
-                            </a>
+                    <form class="form-horizontal" action="{:U('Home/Shop/addSku')}" method="post">
+                        <div class="mailbox-controls">
+                            <div class="btn-group">
+                                <a href="javascript:void(0)" onclick="addAttr()" class="btn btn-danger ">
+                                    新增属性
+                                </a>
+                                <button type="submit" class="btn btn-block btn-danger">保存</button>
+                            </div>
+                            <!-- /.btn-group -->
                         </div>
-                        <!-- /.btn-group -->
-                    </div>
 
-                    <div class="table-responsive" style="overflow-x: visible;">
-                        <form class="form-horizontal" action="{:U('Home/Shop/addSku')}" method="post">
+                        <div class="table-responsive" style="overflow-x: visible;">
+
                             <input class="form-control" name="product_id" placeholder="" value="{$Think.get.id}"
                                    type="hidden">
 
@@ -104,8 +106,6 @@
 
                                 </tbody>
                             </table>
-
-
                             <div class="box-footer">
                                 <div class="col-sm-2">
                                     <button type="submit" class="btn btn-block btn-danger">保存</button>
@@ -116,9 +116,10 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <!-- /.mail-box-messages -->
+
+                        </div>
+                        <!-- /.mail-box-messages -->
+                    </form>
                 </div>
             </div>
             <!-- /. box -->
