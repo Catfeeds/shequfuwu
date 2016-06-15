@@ -3,7 +3,7 @@ namespace Common\Model;
 
 use Think\Model;
 
-class ProductSkuModel extends RelationModel
+class ProductSkuModel extends Model\RelationModel
 {
     protected $_link = array(
         'File' => array(
