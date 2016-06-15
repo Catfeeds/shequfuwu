@@ -186,7 +186,7 @@
                                 <th>店铺名称</th>
                                 <th>订单编号</th>
                                 <th>联系人</th>
-                                <th>地址</th>
+
                                 <th>价格</th>
                                 <th>优惠</th>
                                 <th>支付方式</th>
@@ -212,13 +212,11 @@
                                     <td>
                                         <div>联系人:<span class="badge">{$order.contact.name}</span></div>
                                         <div>手机号:<span class="badge">{$order.contact.phone}</span></div>
+                                        <div>省：{$order.contact.province}</div>
+                                        <div>市：{$order.contact.city}</div>
+                                        <div>地址：{$order.contact.address}</div>
+                                    </td>
 
-                                    </td>
-                                    <td style="max-width: 200px;overflow: hidden;">
-                                        <div>{$order.contact.province}</div>
-                                        <div>{$order.contact.city}</div>
-                                        <div>{$order.contact.address}</div>
-                                    </td>
                                     <td class="hidden-xs">
                                         <span style="background-color: #dd4b39;" class="badge">{$order.totalprice}元</span>
                                     </td>

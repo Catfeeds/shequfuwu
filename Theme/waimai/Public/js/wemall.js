@@ -212,7 +212,6 @@ function openTHisShop(id){
  }
 
 function initShop(id) {
-    //alert('sssssssss'+id);
     set("shopId",id);
     cartData = [];
     totalNum = 0;
@@ -829,7 +828,7 @@ function submitOrder() {
     var note = $('#note').val();
     var deliveryTime = $('#deliveryTime').val();
     var shopId = get("shopId");
-    alert('shopId'+get("shopId"));
+    //alert('shopId'+get("shopId"));
     // alert('shopid'+get("shopid"));
 
     var freights = data.config.freight;
