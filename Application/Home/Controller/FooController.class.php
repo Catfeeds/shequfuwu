@@ -96,7 +96,7 @@ public function skulistop(){
     $condition = array(
         "product_id" => 23,
     );
-    $result= D("ProductSku")->getList($condition,false,"rank desc");
+    $result= D("ProductSku")->getList($condition,true,"rank desc");
     dump($result);
 }
     
