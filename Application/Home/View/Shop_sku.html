@@ -66,29 +66,27 @@
 
                                         <td style="text-align: center;line-height: 34px" class="col-md-1">
 
-                                            <div >
-                                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                                    <div class="fileupload-new img-thumbnail">
-                                                        <empty name="sku.file_id"><img
-                                                                src="__PUBLIC__/Admin/dist/img/noimage.gif">
-                                                            <else/>
-                                                            <img src="__PUBLIC__/Uploads/{$sku.savepath}{$sku.savename}">
-                                                        </empty>
-                                                        <input class="form-control" name="old[{$sku.id}][file_id]"
-                                                               placeholder=""
-                                                               value="{$sku.file_id}"
-                                                               type="hidden">
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="fileupload-new img-thumbnail">
+                                                    <empty name="sku.file_id"><img
+                                                            src="__PUBLIC__/Admin/dist/img/noimage.gif">
+                                                        <else/>
+                                                        <img src="__PUBLIC__/Uploads/{$sku.savepath}{$sku.savename}">
+                                                    </empty>
+                                                    <input class="form-control" name="old[{$sku.id}][file_id]"
+                                                           placeholder=""
+                                                           value="{$sku.file_id}"
+                                                           type="hidden">
 
-                                                        <div class="edit_pic_mask">
-                                                            <i class="fa fa-plus-circle"
-                                                               onclick="imageUploader(this,false)"></i>
-                                                            <i class="fa fa-minus-circle"
-                                                               onclick="removeImage(this,false)"></i>
-                                                        </div>
+                                                    <div class="edit_pic_mask">
+                                                        <i class="fa fa-plus-circle"
+                                                           onclick="imageUploader(this,false)"></i>
+                                                        <i class="fa fa-minus-circle"
+                                                           onclick="removeImage(this,false)"></i>
                                                     </div>
                                                 </div>
-
                                             </div>
+
                                         </td>
 
 
