@@ -92,6 +92,12 @@ class FooController extends Controller
         $this->paraUsed("rank desc,id");
     }
 
-
+public function skulistop(){
+    $condition = array(
+        "product_id" => 23,
+    );
+    $result= D("ProductSku")->getList($condition,false,"rank desc");
+    dump($result);
+}
     
 }
