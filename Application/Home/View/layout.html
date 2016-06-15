@@ -62,7 +62,7 @@
 
                                 <p>
                                     {$Think.session.homeName}
-                                    <small>管理员</small>
+                                    <small>店铺管理员</small>
                                 </p>
                             </li>
                             <style type="text/css">
@@ -119,26 +119,26 @@
                                     height: 18px;
                                 }
                             </style>
-                            <!--<div class="infobox infobox-pink">-->
-                            <!--    <div class="infobox-data">-->
-                            <!--        <span class="infobox-data-number" style="font-size: 18px;">-->
-                            <!--            <notempty name="member">-->
-                            <!--                {$member.level}-->
-                            <!--                <else/>-->
-                            <!--                免费版-->
-                            <!--            </notempty>-->
-                            <!--        </span>-->
-                            <!--        <div class="infobox-content">-->
-                            <!--            开始时间:{:date('Y-m-d H:i:s',$member['start_time'])}-->
-                            <!--        </div>-->
-                            <!--        <div class="infobox-content">-->
-                            <!--            结束时间:{:date('Y-m-d H:i:s',$member['end_time'])}-->
-                            <!--        </div>-->
-                            <!--    </div>-->
-                            <!--    <a href="{:U('Admin/Buy/pay',array('type'=>1))}" class="get-member label label-sm label-danger">-->
-                            <!--        升级会员-->
-                            <!--    </a>-->
-                            <!--</div>-->
+                            <div class="infobox infobox-pink">
+                                <div class="infobox-data">
+                                    <span class="infobox-data-number" style="font-size: 18px;">
+                                        <notempty name="member">
+                                            {$member.level}
+                                            <else/>
+                                            免费版
+                                        </notempty>
+                                    </span>
+                                    <div class="infobox-content">
+                                        开始时间:{:date('Y-m-d H:i:s',$member['start_time'])}
+                                    </div>
+                                    <div class="infobox-content">
+                                        结束时间:{:date('Y-m-d H:i:s',$member['end_time'])}
+                                    </div>
+                                </div>
+                                <a href="{:U('Admin/Buy/pay',array('type'=>1))}" class="get-member label label-sm label-danger">
+                                    升级会员
+                                </a>
+                            </div>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <a href="{:U('Home/Public/logout')}" target="_self"
