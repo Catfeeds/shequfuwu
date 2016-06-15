@@ -824,6 +824,9 @@ function submitOrder() {
     var note = $('#note').val();
     var deliveryTime = $('#deliveryTime').val();
     var shopId = get("shopId");
+    alert('shopId'+get("shopId"));
+    alert('shopid'+get("shopid"));
+
     var freights = data.config.freight;
     var contact = {
         "id": id,
