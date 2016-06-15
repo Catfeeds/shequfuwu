@@ -519,8 +519,10 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
     $('.new-price').children().html(price);
 
     //清空幻灯片
-    alert('清空幻灯片');
+    //alert('清空幻灯片');
+
     $('#itemsDetail .swiper-wrapper').html('');
+    $('#itemsDetail .detail-image').attr('src','http://k.sinaimg.cn/n/sports/transform/20160518/xPXs-fxsenvx1067666.jpg/w570427.jpg');
 
     sku.product_id = product_id;
     sku.sku_name = sku_name;
