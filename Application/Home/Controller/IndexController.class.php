@@ -32,14 +32,15 @@ class IndexController extends BaseController
      * 获取提醒中的新订单的数量
      * @return mixed
      */
-    public function getNoticingOrderCount(){
+    public function getNoticingOrderCount()
+    {
         $condition = array(
             "shop_id" => session("homeShopId"),
             "notice_status" => 0
         );
 
         $orderCount = D("Order")->getOrderListCount();
-        return $orderCount;
+        $this->ajaxReturn($orderCount);
     }
 
     public function productChart()
@@ -53,10 +54,6 @@ class IndexController extends BaseController
 
         $this->display();
     }
-    
 
-    
-    
-    
-    
+
 }
