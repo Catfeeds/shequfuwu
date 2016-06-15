@@ -519,6 +519,7 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
     $('.new-price').children().html(price);
 
     //清空幻灯片
+    alert('清空幻灯片');
     $('#itemsDetail .swiper-wrapper').html('');
 
     sku.product_id = product_id;
