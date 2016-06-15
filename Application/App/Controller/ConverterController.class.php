@@ -16,8 +16,7 @@ use Think\Controller;
  */
 class ConverterController extends  Controller
 {
-    public function shopSelector(){
-        //dump('ssssssssssss');
+    public function redirecurl(){
         
     }
 }

@@ -208,14 +208,18 @@ wx.config({
 //pidong 打开当前店铺
 function openTHisShop(id){
     window.location.href=data.baseUrl + "/App/Index/index/shopId/"+id;
-    alert('sssssssss'+id);
+    //alert('sssssssss'+id);
+    initShop(id);
+ }
+
+function initShop(id) {
     set("shopId",id);
     cartData = [];
     totalNum = 0;
     totalPrice = 0;
     payment = -1;
     initProduct();
- }
+}
 
 function set(key, data) {
     return window.localStorage.setItem(key, window.JSON.stringify(data));
