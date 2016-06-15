@@ -213,6 +213,7 @@ function openTHisShop(id){
  }
 
 function initShop(id) {
+    alert('sssssssss'+id);
     set("shopId",id);
     cartData = [];
     totalNum = 0;
