@@ -196,17 +196,13 @@
     }
 
     function removeAttr(obj, type, id) {
-
-        var url= <php>U('Home/Shop/delSku/id/')</php>;
-        url+= id;
-        alert(url);
-//        if (type == 'new') {
-//            $(obj).parent().parent().remove();
-//        } else if (type == 'old' && id != undefined) {
-//            $.pjax({
-//                url: URL + U("Home/Shop/delSku/id/" + id),
-//                container: '#pjax-container'
-//            })
-//        }
+        if (type == 'new') {
+            $(obj).parent().parent().remove();
+        } else if (type == 'old' && id != undefined) {
+            $.pjax({
+                url: URL + U("Home/Shop/delSku/id/" + id),
+                container: '#pjax-container'
+            })
+        }
     }
 </script>
