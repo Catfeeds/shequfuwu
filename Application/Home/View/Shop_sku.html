@@ -196,9 +196,6 @@
     }
 
     function removeAttr(obj, type, id) {
-        $url= <?php echo U("Home/Shop/delSku/id/") ?>;
-        alert($url);
-
         if (type == 'new') {
             $(obj).parent().parent().remove();
         } else if (type == 'old' && id != undefined) {
