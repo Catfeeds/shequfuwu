@@ -144,9 +144,10 @@
                 type:"Get",
                 url:"__APP__/Home/Index/getNoticingOrderCount",
                 success:function(msg){
-                    if(msg) {
-                        var content= '<span class="get-member label label-sm label-danger">'+ msg+ '</span>';
-                        $('#spanOrderCount').html(content);
+                    var orderCount= parseInt(msg);
+                    if(orderCount>0) {
+                        var content= '<span class="get-member label label-sm label-danger">'+ orderCount+ '</span>';
+                        $('#spanOrderCount').html(orderCount);
                         $("#infoTipSpan").html(content);
                         $('#chatAudio')[0].play();
                     }
