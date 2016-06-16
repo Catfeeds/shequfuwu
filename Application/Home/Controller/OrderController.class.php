@@ -13,6 +13,12 @@ class OrderController extends BaseController
             "shop_id" => session("homeShopId")
         );
 
+        /**
+         * 更新订单的通知状态
+         */
+        D("Order")-> updateNoticeStatus($condition);
+
+
         $data = I("get.");
         if ($data["status"] != "") {
             array_push($condition, array(

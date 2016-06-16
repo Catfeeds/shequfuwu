@@ -69,16 +69,12 @@
                             <div class="infobox infobox-pink">
                                 <div class="infobox-data">
                                     <span class="infobox-data-number" style="font-size: 18px;">
-                                        提示信息
+                                        新订单提示信息
                                     </span>
                                     <div class="infobox-content">
-                                        开始时间:{:date('Y-m-d H:i:s',$member['start_time'])}
+                                        <a href="{:U('Home/Order/order')}"> 您有<span id="spanOrderCount">0</span>条新订单</a>
                                     </div>
-
                                 </div>
-                                <a href="" class="get-member label label-sm label-danger">
-
-                                </a>
                             </div>
                             <!-- Menu Footer-->
                             <li class="user-footer">
@@ -150,6 +146,7 @@
                 success:function(msg){
                     if(msg) {
                         var content= '<span class="get-member label label-sm label-danger">'+ msg+ '</span>>';
+                        $('#spanOrderCount').html(content);
                         $("#infoTipSpan").html(content);
                         $('#chatAudio')[0].play();
                     }

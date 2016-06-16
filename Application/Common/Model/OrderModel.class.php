@@ -223,7 +223,16 @@ class OrderModel extends RelationModel
     public function updateOrder($data)
     {
         $this->save($data);
-    }   
+    }
+
+    /**
+     * 更新订单的通知状态
+     * @param $condition
+     * @param int $noticeStatus
+     */
+    public function updateNoticeStatus($condition,$noticeStatus=1){
+        $this -> where($condition)->setField('notice_status',$noticeStatus);
+    }
     
     
 }
