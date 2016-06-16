@@ -26,8 +26,6 @@
                             <i class="fa fa-exchange"></i>
                             {$shopBar['name']?$shopBar['name']:'选择店铺'}
                         </a>
-
-
                         <ul class="dropdown-menu">
                             <a href="{:U('Home/AddShop/shop')}" target="_parent">
                                 <li class="header" style="padding:5px 18px;">
@@ -45,7 +43,6 @@
                             </volist>
                             <li class="footer"><a href="#"></a></li>
                         </ul>
-
                     </li>
 
                     <!-- User Account: style can be found in dropdown.less -->
@@ -59,13 +56,11 @@
                             <li class="user-header">
                                 <img src="__PUBLIC__/Admin/dist/img/avatar-wemall.png" class="img-circle"
                                      alt="User Image">
-
                                 <p>
                                     {$Think.session.homeName}
                                     <small>店铺管理员</small>
                                 </p>
                             </li>
-
                             <div class="infobox infobox-pink">
                                 <div class="infobox-data">
                                     <span class="infobox-data-number" style="font-size: 18px;">
@@ -155,7 +150,6 @@
                         $("#infoTipSpan").html('');
                     }
                 }
-
             });
         }
 
