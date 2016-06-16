@@ -196,15 +196,16 @@
 
     function removeAttr(obj, type, id) {
         var url = '{:U("Home/Shop/delSku/id/")}';
-        url+= '/'+id;
-        alert(url);
-        if (type == 'new') {
-            $(obj).parent().parent().remove();
-        } else if (type == 'old' && id != undefined) {
-            $.pjax({
-                url: url,
-                container: '#pjax-container'
-            })
+        url += '/' + id;
+        if (confirm("您确认要删除本条记录吗?")) {
+            if (type == 'new') {
+                $(obj).parent().parent().remove();
+            } else if (type == 'old' && id != undefined) {
+                $.pjax({
+                    url: url,
+                    container: '#pjax-container'
+                })
+            }
         }
     }
 </script>
