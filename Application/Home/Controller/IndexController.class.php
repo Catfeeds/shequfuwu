@@ -39,7 +39,7 @@ class IndexController extends BaseController
             "notice_status" => 0
         );
 
-        $orderCount = D("Order")->getOrderListCount();
+        $orderCount = D("Order")->getOrderListCount($condition);
         $this->ajaxReturn($orderCount);
     }
 
