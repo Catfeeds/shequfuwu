@@ -196,7 +196,7 @@
     }
 
     function removeAttr(obj, type, id) {
-        $url= <php> echo U("Home/Shop/delSku/id/" + id) </php>;
+        $url= <?php echo U("Home/Shop/delSku/id/") ?>;
         alert($url);
 
         if (type == 'new') {
