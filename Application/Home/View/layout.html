@@ -141,29 +141,24 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $('<audio id="chatAudio"><source src="newtip.mp3" type="audio/mpeg"></audio>').appendTo('body');//载入声音文件
+
         function getNewOrderTip() {
             $.ajax({
                 type:"Get",
                 url:"__APP__/Home/Index/getNoticingOrderCount",
                 success:function(msg){
                     if(msg) {
-                        //alert(msg);
-                        $("#infoTipSpan").html(msg);
+                        var content= '<span class="get-member label label-sm label-danger">'+ msg+ '</span>>';
+                        $("#infoTipSpan").html(content);
+                        $('#chatAudio')[0].play();
                     }
                 }
 
             });
         }
 
-        setInterval(getNewOrderTip,6000);
-
-//        function aa() {
-//            $("#infoTipSpan").html(new Date().getTime());
-//        }
-//        setInterval(aa,2000);
-//        //$("#infoTipSpan").html(new Date().getTime());
-//
-//        alert('sssssssssssss');
+        setInterval(getNewOrderTip,60000);
     });
 </script>
 </body>
