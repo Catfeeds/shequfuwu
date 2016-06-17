@@ -55,17 +55,17 @@
                                     <td>
                                         <if condition="$ads.adsname eq 1">
                                             <span class="label label-primary">幻灯片</span>
-                                        <elseif condition="$ads.adsname eq 2"/>
+                                            <elseif condition="$ads.adsname eq 2"/>
                                             <span class="label label-info">插件</span>
-                                        <else />
+                                            <else/>
                                             <span class="label label-warning">广告位</span>
                                         </if>
-                                    </td>                                     
-                                    
+                                    </td>
+
                                     <td>
                                         {$ads.name}
                                     </td>
-                                    
+
                                     <td>
                                         <if condition="$ads.savepath && $ads.savename">
                                             <img style="height: 48px;max-width: 72px"

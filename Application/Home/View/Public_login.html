@@ -30,7 +30,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body" style="margin-top:-65px">
         <div class="login-logo" style="margin: 30px 10px">
-            <img src="__PUBLIC__/Admin/dist/img/logo.png" >
+            <img src="__PUBLIC__/Admin/dist/img/logo.png">
         </div>
 
         <form action="{:U('Home/Public/login')}" method="post">
@@ -89,7 +89,7 @@
             increaseArea: '20%' // optional
         });
         $('#changeVerity').click(function () {
-            var url = '{:U("Home/Public/getVerify","r=".mt_rand())}'+Math.random();
+            var url = '{:U("Home/Public/getVerify","r=".mt_rand())}' + Math.random();
             $(this).attr('src', url);
         });
     });

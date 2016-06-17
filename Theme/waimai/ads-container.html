@@ -2,7 +2,7 @@
     <div class="header-title" style="display:inline-block;">{$name}</div>
     <span style="line-height:45px;position:absolute;">
         <a href="#/selectShop" id="selectShop">
-            <img class="dianpu-img"  src="{{imageUrl}}/dianpu.png">
+            <img class="dianpu-img" src="{{imageUrl}}/dianpu.png">
         </a>
     </span>
 </div>
@@ -10,7 +10,8 @@
     <div class="swiper-wrapper" style="height:180px;">
         {{each ads as value i}} {{if value.adsname == 1}}
         <div class="swiper-slide">
-            <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}" style="display: inline; width: 100%;">
+            <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                 style="display: inline; width: 100%;">
         </div>
         {{/if}} {{/each}}
     </div>
@@ -21,7 +22,8 @@
     <div class="mod-cnt mod-cnt-5">
         <a href="{{value.url}}">
             <div class="mod-icon">
-                <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}" style="display: inline;">
+                <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                     style="display: inline;">
             </div>
             <div class="mod-txt">{{value.name}}</div>
         </a>
@@ -34,7 +36,9 @@
     <ul class="list-unstyled" id="list-sale">
         {{each ads as value i}} {{if value.adsname == 3}}
         <li>
-            <a onclick="clickItemDetail('{{value.remark}}')"><img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}" style="display: inline; height: 137px;"></a>
+            <a onclick="clickItemDetail('{{value.remark}}')"><img class="lazy" src="{{imageUrl}}/blank.gif"
+                                                                  data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                                                                  style="display: inline; height: 137px;"></a>
         </li>
         {{/if}} {{/each}}
     </ul>
@@ -43,14 +47,15 @@
     <div class="mod-title">推荐</div>
     <ul>
         {{each product as value i}}
-            {{if value.label == "推荐"}}
+        {{if value.label == "推荐"}}
         <li class="item {{if value.recommend == 1}}large{{/if}}" label-cate="{{value.menu_id}}" label-id="{{value.id}}">
             <a href="#/product/{{value.id}}" title="">
                 <div class="item-image"><img src="{{imageUrl}}/blank.gif"
-                        data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
-                        style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
+                                             data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
+                                             style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
                     <div class="select-shadow">
-                        <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span></div>
+                        <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -60,29 +65,28 @@
                     <div class="item-price"><span class="hotspot">￥{{value.price}}</span></div>
                 </div>
                 {{if value.status == 1}}
-                    <div class="message-icon"style="right:0px;">
+                <div class="message-icon" style="right:0px;">
                     {{if value.sku.length}}
-                        <input class="numbers-add" type="button" onclick="clickItemDetail('{{value.id}}')">
+                    <input class="numbers-add" type="button" onclick="clickItemDetail('{{value.id}}')">
                     {{else}}
-                        <input class="numbers-minus" type="button" onclick="reducehotproductNum(this,'{{value.id}}' , false)" style="display: none;">
-                        <input class="numbers" type="text" value="0" style="display: none;">
-                        <input class="numbers-add" type="button" onclick="doCart(this ,'{{value.id}}','{{value.name}}','{{value.price}}','')">
+                    <input class="numbers-minus" type="button"
+                           onclick="reducehotproductNum(this,'{{value.id}}' , false)" style="display: none;">
+                    <input class="numbers" type="text" value="0" style="display: none;">
+                    <input class="numbers-add" type="button"
+                           onclick="doCart(this ,'{{value.id}}','{{value.name}}','{{value.price}}','')">
                     {{/if}}
-                    </div>
+                </div>
                 {{else if value.status == 0}}
                 <div class="item-amount"><span>已售罄</span></div>
                 {{/if}}
 
             </div>
         </li>
-             {{/if}}
-        {{/each}} 
+        {{/if}}
+        {{/each}}
     </ul>
 
     <div class="copyright"
-         style="text-align: center;margin: 20px 0px 70px 0px;color: #ccc;font-size: 12px;float: left;width: 100%">&nbsp;</div>
-
+         style="text-align: center;margin: 20px 0px 70px 0px;color: #ccc;font-size: 12px;float: left;width: 100%">
+        &nbsp;</div>
 </div>
-
-
-

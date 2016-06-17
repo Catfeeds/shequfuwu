@@ -928,10 +928,9 @@ function submitOrder() {
             $('#page_tag_load').hide();
             submitFlag = true;
         }
-
     });
-
 }
+
 function empty(id) {
     $('#' + id).val("");
 }
@@ -1007,7 +1006,6 @@ function commentOrder(id) {
         $('#orderComment-popup').hide();
         $('#comment-text').val("");
     });
-
 }
 
 function openLogin() {
@@ -1064,7 +1062,6 @@ function login() {
         complete: function () {
             $('#page_tag_load').hide();
         }
-
     });
 }
 function register() {
@@ -1103,7 +1100,6 @@ function register() {
         complete: function () {
             $('#page_tag_load').hide();
         }
-
     });
 }
 
@@ -1141,7 +1137,6 @@ function resetPassword() {
         complete: function () {
             $('#page_tag_load').hide();
         }
-
     });
 }
 
@@ -1253,7 +1248,6 @@ function openUser(o) {
         $('#shopcart-tip').html(totalNum);
     }
 
-
     if (data.user.length == 2) {
         openLogin();
         return;
@@ -1325,7 +1319,6 @@ function openUser(o) {
                         $('#items-order-result-list ul').html(html);
                     }
                 }
-
             }
         },
         beforeSend: function () {
@@ -1459,9 +1452,3 @@ function openSearch() {
         $('.shop-product li').hide().filter(':contains("' + searchtxt + '")').show();
     }
 }
-
-
-
-
-
-

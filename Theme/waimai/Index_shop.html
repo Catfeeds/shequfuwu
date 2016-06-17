@@ -17,21 +17,21 @@
         <div class="header-title" style="display:inline-block;width:100%;">选择店铺</div>
         <span id="pi_back" style="display:none" onclick="history.go(-1)"></span>
     </div>
-    
+
     <div class="pi_sousuo1" style="">
-    	<input class="pi_input" placeholder="请输入店铺名称"  style="">
-    	<span class="pi_sousuo" style=""></span>
-    	<span class="pi_sousuo2" style="" onclick="searchShop();">搜索</span>
+        <input class="pi_input" placeholder="请输入店铺名称" style="">
+        <span class="pi_sousuo" style=""></span>
+        <span class="pi_sousuo2" style="" onclick="searchShop();">搜索</span>
     </div>
     <div style="padding:5px 14px;background-color: #f5f5f5;">
         <i class="iconfont" style="color:A9A9A9;">&#xe600;</i>
-        <span id="pi_address" style=""></span> 
+        <span id="pi_address" style=""></span>
     </div>
-    
+
     <div class="shop-list" id="mod-desc">
-    
-    
-    </div>   
+
+
+    </div>
 </div>
 <div id="page_tag_load"><img src="__IMG__/ajax-loader.gif" alt="loader"></div>
 
@@ -46,7 +46,7 @@
         'baseUrl': '__APP__',
         'uploadsUrl': '__PUBLIC__/Uploads/',
         'imageUrl': '__IMG__',
-        'shopId':'',
+        'shopId': '',
     }
     console.log(data);
 </script>
@@ -78,24 +78,24 @@
                 lng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
                 var speed = res.speed; // 速度，以米/每秒计
                 var accuracy = res.accuracy; // 位置精度
-                locationmy(lat,lng);
-                shopList(lat,lng);            
+                locationmy(lat, lng);
+                shopList(lat, lng);
             }
-        });        
+        });
     })
-    function locationmy(lat,lng){
-            // lng = 113.650035;//用户经度
-            // lat = 34.7854;//用户纬度
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'http://restapi.amap.com/v3/geocode/regeo?output=json&location='+lng+','+lat+'&key=22f9022b217b7d764f5befb4aa74456f&radius=1000&extensions=all&callback=renderOption';
-            document.head.appendChild(script);
+    function locationmy(lat, lng) {
+        // lng = 113.650035;//用户经度
+        // lat = 34.7854;//用户纬度
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://restapi.amap.com/v3/geocode/regeo?output=json&location=' + lng + ',' + lat + '&key=22f9022b217b7d764f5befb4aa74456f&radius=1000&extensions=all&callback=renderOption';
+        document.head.appendChild(script);
     }
     function renderOption(response) {
         document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
     }
-    function shopList(){
-            $.ajax({
+    function shopList() {
+        $.ajax({
             type: "post",
             url: data.baseUrl + "/App/User/getShopList",
             data: {
@@ -105,9 +105,9 @@
             success: function (res) {
                 var html = '';
                 $.each(res, function (index, value) {
-                    html += '<a class="grst-block" onclick="openTHisShop('+value.id+')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="'+value.name+'" src="'+data.uploadsUrl+value.savepath+value.savename+'"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">'+value.name+'</span><span class="grst-misc ng-binding">&nbsp;&nbsp;'+value.km+'km</span></div><span class="grst-misc ng-binding">'+value.subname+'</span><div class="grst-misc"><span class="ng-binding">'+value.address+'</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满'+value.full+'减'+value.discount+')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
+                    html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
                 });
-    
+
                 $('#mod-desc').html(html);
             },
             beforeSend: function () {
@@ -116,26 +116,26 @@
             complete: function () {
                 $('#page_tag_load').hide();
             }
-    
+
         });
-     }
+    }
     //pidong 搜索店铺
-    function searchShop(){
-        var name = $('.pi_input').val(); 
+    function searchShop() {
+        var name = $('.pi_input').val();
         $.ajax({
             type: "post",
             url: data.baseUrl + "/App/User/getShopList",
             data: {
-                name:name,
+                name: name,
                 lng: lng,
-                lat: lat,            
+                lat: lat,
             },
             success: function (res) {
                 var html = '';
                 $.each(res, function (index, value) {
-                    html += '<a class="grst-block" onclick="openTHisShop('+value.id+')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="'+value.name+'" src="'+data.uploadsUrl+value.savepath+value.savename+'"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">'+value.name+'</span><span class="grst-misc ng-binding">&nbsp;&nbsp;'+value.km+'km</span></div><span class="grst-misc ng-binding">'+value.subname+'</span><div class="grst-misc"><span class="ng-binding">'+value.address+'</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满'+value.full+'减'+value.discount+')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
+                    html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
                 });
-    
+
                 $('#mod-desc').html(html);
             },
             beforeSend: function () {
@@ -144,11 +144,9 @@
             complete: function () {
                 $('#page_tag_load').hide();
             }
-    
+
         });
-     }
-
-
+    }
 </script>
 </body>
 </html>

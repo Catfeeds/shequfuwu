@@ -177,11 +177,14 @@
                             <div class="col-sm-10" style="height: 600px;margin-bottom: 20px;">
                                 <div class="districtsList" style="margin-top: 8px;margin-bottom: 5px;">
                                     省：
-                                    <select id='province' style="width:100px" onchange='amapAdcode.createCity(this.value)'></select>
+                                    <select id='province' style="width:100px"
+                                            onchange='amapAdcode.createCity(this.value)'></select>
                                     市：
-                                    <select id='city' style="width:100px" onchange='amapAdcode.createDistrict(this.value)'></select>
+                                    <select id='city' style="width:100px"
+                                            onchange='amapAdcode.createDistrict(this.value)'></select>
                                     区：
-                                    <select id='district' style="width:100px" onchange='amapAdcode.createBiz(this.value)'></select>
+                                    <select id='district' style="width:100px"
+                                            onchange='amapAdcode.createBiz(this.value)'></select>
                                     商圈：
                                     <select id='biz_area' style="width:100px"></select>
                                 </div>
@@ -192,10 +195,12 @@
                             <label class="control-label col-md-2">订单满减</label>
 
                             <div class="col-md-2">
-                                <input class="form-control" name="full" value="{$shop.full}" placeholder="满多少" type="text">
+                                <input class="form-control" name="full" value="{$shop.full}" placeholder="满多少"
+                                       type="text">
                             </div>
                             <div class="col-md-2">
-                                <input class="form-control" name="discount" value="{$shop.discount}" placeholder="减多少" type="text">
+                                <input class="form-control" name="discount" value="{$shop.discount}" placeholder="减多少"
+                                       type="text">
                             </div>
                         </div>
                         <!--<div class="form-group">-->
@@ -252,7 +257,9 @@
 <script type="text/javascript">
     var lng = {$shop['lng'] ? $shop['lng'] : 113};
     var lat = {$shop['lat'] ? $shop['lat'] : 34};
-    var ads = "{$shop['address'] ? $shop['address'] : "中国"}";
+    var ads = "{$shop['address'] ? $shop['address'] : "
+    中国
+    "}";
 
     var map = new AMap.Map('allmap', {
         resizeEnable: true,
@@ -262,11 +269,11 @@
     $(document).ready(function () {
 
         //为地图注册click事件获取鼠标点击出的经纬度坐标
-        var clickEventListener = map.on('click', function(e) {
+        var clickEventListener = map.on('click', function (e) {
             document.getElementById("lng").value = e.lnglat.getLng();
             document.getElementById("lat").value = e.lnglat.getLat();
         });
-        AMap.plugin('AMap.Geocoder', function() {
+        AMap.plugin('AMap.Geocoder', function () {
             var geocoder = new AMap.Geocoder({
                 city: "010" //城市，默认：“全国”
             });
@@ -278,9 +285,9 @@
             var lng = document.getElementById('lng');
             var lat = document.getElementById('lat');
             var message = document.getElementById('message');
-            map.on('click', function(e) {
+            map.on('click', function (e) {
                 marker.setPosition(e.lnglat);
-                geocoder.getAddress(e.lnglat, function(status, result) {
+                geocoder.getAddress(e.lnglat, function (status, result) {
                     if (status == 'complete') {
                         // console.log(result);
                         var address1 = result.regeocode.formattedAddress;
@@ -290,12 +297,12 @@
                         message.innerHTML = '无法获取地址'
                     }
                 });
-    
+
             })
-    
-            address.onchange = function(e) {
+
+            address.onchange = function (e) {
                 var address = address.value;
-                geocoder.getLocation(address, function(status, result) {
+                geocoder.getLocation(address, function (status, result) {
                     if (status == 'complete' && result.geocodes.length) {
                         marker.setPosition(result.geocodes[0].location);
                         map.setCenter(marker.getPosition())
@@ -305,18 +312,18 @@
                     }
                 })
             }
-    
+
         });
 
     });
-    
-//城市插件
+
+    //城市插件
     var amapAdcode = {};
     amapAdcode._district = new AMap.DistrictSearch({ //高德行政区划查询插件实例
         subdistrict: 1 //返回下一级行政区
     });
     amapAdcode._overlay = []; //行政区划覆盖物
-    amapAdcode.createSelectList = function(selectId, list) { //生成下拉列表
+    amapAdcode.createSelectList = function (selectId, list) { //生成下拉列表
         var selectList = document.getElementById(selectId);
         selectList.innerHTML = '';
         selectList.add(new Option('--请选择--'));
@@ -326,7 +333,7 @@
             selectList.add(option);
         }
     }
-    amapAdcode.search = function(adcodeLevel, keyword, selectId) { //查询行政区划列表并生成相应的下拉列表
+    amapAdcode.search = function (adcodeLevel, keyword, selectId) { //查询行政区划列表并生成相应的下拉列表
         var me = this;
         if (adcodeLevel == 'district' || adcodeLevel == 'city') { //第三级时查询边界点
             this._district.setExtensions('all');
@@ -334,7 +341,7 @@
             this._district.setExtensions('base');
         }
         this._district.setLevel(adcodeLevel); //行政区级别
-        this._district.search(keyword, function(status, result) { //注意，api返回的格式不统一，在下面用三个条件分别处理
+        this._district.search(keyword, function (status, result) { //注意，api返回的格式不统一，在下面用三个条件分别处理
             var districtData = result.districtList[0];
             if (districtData.districtList) {
                 me.createSelectList(selectId, districtData.districtList);
@@ -348,7 +355,7 @@
             // me.addPolygon(districtData.boundaries);
         });
     }
-    amapAdcode.searchs = function(adcodeLevel, keyword, selectId) { //查询行政区划列表并生成相应的下拉列表
+    amapAdcode.searchs = function (adcodeLevel, keyword, selectId) { //查询行政区划列表并生成相应的下拉列表
         var me = this;
         if (adcodeLevel == 'district' || adcodeLevel == 'city') { //第三级时查询边界点
             this._district.setExtensions('all');
@@ -356,7 +363,7 @@
             this._district.setExtensions('base');
         }
         this._district.setLevel(adcodeLevel); //行政区级别
-        this._district.search(keyword, function(status, result) { //注意，api返回的格式不统一，在下面用三个条件分别处理
+        this._district.search(keyword, function (status, result) { //注意，api返回的格式不统一，在下面用三个条件分别处理
             var districtData = result.districtList[0];
             if (districtData.districtList) {
                 me.createSelectList(selectId, districtData.districtList);
@@ -370,7 +377,7 @@
             // me.addPolygon(districtData.boundaries);
         });
     }
-    amapAdcode.clearMap = function(selectId) { //清空地图上的覆盖物
+    amapAdcode.clearMap = function (selectId) { //清空地图上的覆盖物
         map.remove(this._overlay);
         this._overlay = [];
     }
@@ -387,23 +394,23 @@
     //         map.setFitView(); //地图自适应
     //     }
     // }
-    amapAdcode.clear = function(selectId) { //清空下拉列表
+    amapAdcode.clear = function (selectId) { //清空下拉列表
         var selectList = document.getElementById(selectId);
         selectList.innerHTML = '';
     }
-    amapAdcode.createProvince = function() { //创建省列表
+    amapAdcode.createProvince = function () { //创建省列表
         this.searchs('country', "中国", 'province');
     }
-    amapAdcode.createCity = function(provinceAdcode) { //创建市列表
+    amapAdcode.createCity = function (provinceAdcode) { //创建市列表
         this.search('province', provinceAdcode, 'city');
         this.clear('district');
         this.clear('biz_area');
     }
-    amapAdcode.createDistrict = function(cityAdcode) { //创建区县列表
+    amapAdcode.createDistrict = function (cityAdcode) { //创建区县列表
         this.search('city', cityAdcode, 'district');
         this.clear('biz_area');
     }
-    amapAdcode.createBiz = function(districtAdcode) { //创建商圈列表
+    amapAdcode.createBiz = function (districtAdcode) { //创建商圈列表
         this.search('district', districtAdcode, 'biz_area');
     }
     amapAdcode.createProvince();
