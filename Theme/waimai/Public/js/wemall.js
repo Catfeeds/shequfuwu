@@ -18,11 +18,11 @@ $(document).ready(function () {
     }
 
     // js路由
-    Path.map("#/index").to(function() {
+    Path.map("#/index").to(function () {
         $(".navigation-wrap").show();
         $('#nav-ads').click();
-        var mySwiper = new Swiper('.swiper-container',{
-            pagination : '.swiper-pagination',
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
             autoplay: 5000,//可选选项，自动滑动
         })
     });
@@ -44,8 +44,8 @@ $(document).ready(function () {
         $('#nav-user').click();
     });
     Path.map("#/selectShop").to(function () {
-        selectShop()                
-    });    
+        selectShop()
+    });
     Path.root("#/index");
     Path.listen();
     // $("#selectShop12").click();
@@ -66,18 +66,18 @@ $(document).ready(function () {
 });
 // var firstCome=0;
 // if(firstCome==0){
-    
+
 //     firstCome = 1;
 // }
 
 var lng = '';//用户经度
 var lat = '';//用户纬度
-function locationmy(){
+function locationmy() {
     // lng = 113.650035;//用户经度
     // lat = 34.7854;//用户纬度
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'http://restapi.amap.com/v3/geocode/regeo?output=json&location='+lng+','+lat+'&key=22f9022b217b7d764f5befb4aa74456f&radius=1000&extensions=all&callback=renderOption';
+    script.src = 'http://restapi.amap.com/v3/geocode/regeo?output=json&location=' + lng + ',' + lat + '&key=22f9022b217b7d764f5befb4aa74456f&radius=1000&extensions=all&callback=renderOption';
     document.head.appendChild(script);
 }
 function renderOption(response) {
@@ -85,10 +85,10 @@ function renderOption(response) {
 }
 
 // 微信定位
-var  appIdo= ''; // 必填，公众号的唯一标识
-var  timestampo= ''; // 必填，生成签名的时间戳
-var  nonceStro= ''; // 必填，生成签名的随机串
-var  signatureo= '';// 必填，签名，见附录1
+var appIdo = ''; // 必填，公众号的唯一标识
+var timestampo = ''; // 必填，生成签名的时间戳
+var nonceStro = ''; // 必填，生成签名的随机串
+var signatureo = '';// 必填，签名，见附录1
 
 
 wx.config({
@@ -100,13 +100,13 @@ wx.config({
     jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 });
 //pidong 打开多店铺
- function selectShop(){
+function selectShop() {
     tabTmpl("select-shop");
     $(".navigation-wrap").hide();
     var firstOpen = data.config.id;
-    if(firstOpen != 0 && firstOpen != undefined && firstOpen !=''){
+    if (firstOpen != 0 && firstOpen != undefined && firstOpen != '') {
         $("#pi_back").show();
-    }else{
+    } else {
         $("#pi_back").hide();
     }
     wx.getLocation({
@@ -117,14 +117,13 @@ wx.config({
             var speed = res.speed; // 速度，以米/每秒计
             var accuracy = res.accuracy; // 位置精度
             locationmy();
-            shopList();            
+            shopList();
         }
     });
+}
 
- }
-
- function shopList(){
-        $.ajax({
+function shopList() {
+    $.ajax({
         type: "post",
         url: data.baseUrl + "/App/User/getShopList",
         data: {
@@ -134,7 +133,7 @@ wx.config({
         success: function (res) {
             var html = '';
             $.each(res, function (index, value) {
-                html += '<a class="grst-block" onclick="openTHisShop('+value.id+')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="'+value.name+'" src="'+data.uploadsUrl+value.savepath+value.savename+'"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">'+value.name+'</span><span class="grst-misc ng-binding">&nbsp;&nbsp;'+value.km+'km</span></div><span class="grst-misc ng-binding">'+value.subname+'</span><div class="grst-misc"><span class="ng-binding">'+value.address+'</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满'+value.full+'减'+value.discount+')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
+                html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
             });
 
             $('#mod-desc').html(html);
@@ -145,24 +144,23 @@ wx.config({
         complete: function () {
             $('#page_tag_load').hide();
         }
-
     });
- }
- //pidong 搜索店铺
- function searchShop(){
- var name = $('.pi_input').val(); 
+}
+//pidong 搜索店铺
+function searchShop() {
+    var name = $('.pi_input').val();
     $.ajax({
         type: "post",
         url: data.baseUrl + "/App/User/getShopList",
         data: {
-            name:name,
+            name: name,
             lng: lng,
-            lat: lat,            
+            lat: lat,
         },
         success: function (res) {
             var html = '';
             $.each(res, function (index, value) {
-                html += '<a class="grst-block" onclick="openTHisShop('+value.id+')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="'+value.name+'" src="'+data.uploadsUrl+value.savepath+value.savename+'"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">'+value.name+'</span><span class="grst-misc ng-binding">&nbsp;&nbsp;'+value.km+'km</span></div><span class="grst-misc ng-binding">'+value.subname+'</span><div class="grst-misc"><span class="ng-binding">'+value.address+'</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满'+value.full+'减'+value.discount+')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
+                html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
             });
 
             $('#mod-desc').html(html);
@@ -173,9 +171,8 @@ wx.config({
         complete: function () {
             $('#page_tag_load').hide();
         }
-
     });
- }
+}
 //pidong  懒加载店铺列表
 
 // function lazyShop(lazyNum){
@@ -206,13 +203,13 @@ wx.config({
 // }
 
 //pidong 打开当前店铺
-function openTHisShop(id){
-    window.location.href=data.baseUrl + "/App/Index/index/shopId/"+id;
+function openTHisShop(id) {
+    window.location.href = data.baseUrl + "/App/Index/index/shopId/" + id;
     initShop(id);
- }
+}
 
 function initShop(id) {
-    set("shopId",id);
+    set("shopId", id);
     cartData = [];
     totalNum = 0;
     totalPrice = 0;
@@ -229,7 +226,6 @@ function get(key) {
 function remove(key) {
     return window.localStorage.removeItem(key);
 }
-       
 
 function backToTop() {
     $("html,body").animate({scrollTop: 0}, 200);
@@ -240,7 +236,7 @@ function displayOrderResult(id) {
         type: "get",
         url: data.baseUrl + "/App/Order/getOrder",
         data: {
-            id:id
+            id: id
         },
         success: function (data) {
             $('#nav-cart').click();
@@ -250,7 +246,7 @@ function displayOrderResult(id) {
             $('#result-order-no').html(data.orderid);
             $('#items-order-result').find('.date').html(data.time);
             $('#items-order-result').find('.freight').html(data.freight);
-            if(data.totalprice >= data.full ){
+            if (data.totalprice >= data.full) {
                 $('#items-order-result').find('.discount').html(data.discount);
             }
             $('#items-order-result').find('.total').children().html(data.totalprice);
@@ -278,7 +274,6 @@ function displayOrderResult(id) {
         complete: function () {
             $('#page_tag_load').hide();
         }
-
     });
 }
 
@@ -349,7 +344,7 @@ function doCart(obj, id, name, price, skuIs) {
                 }
             });
             if (flag == 0) {
-                var current = '{"id":"' + id + '","name":"' + name + '","num":"' + 1 + '","price":"' + sku.price + '","sku_name":"' + sku.sku_name + '","sku_id":"' + sku.sku_id +'"}';
+                var current = '{"id":"' + id + '","name":"' + name + '","num":"' + 1 + '","price":"' + sku.price + '","sku_name":"' + sku.sku_name + '","sku_id":"' + sku.sku_id + '"}';
                 cartData.push(JSON.parse(current));
             }
         }
@@ -441,7 +436,7 @@ function clickItemDetail(id) {
             id: id
         },
         success: function (res) {
-           
+
             var json = eval(res);
             $('#itemsDetail .single-name').html(json.name);
             $('#itemsDetail .new-price').children().html(json.price);
@@ -454,7 +449,7 @@ function clickItemDetail(id) {
 
             if (json.status == 1) {
                 $('#itemsDetail #addCartBtn').show();
-                $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ','+json.sku.length+')');
+                $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',' + json.sku.length + ')');
             } else {
                 $('#itemsDetail #soldOut').show();
             }
@@ -462,7 +457,7 @@ function clickItemDetail(id) {
             if (json.sku.length) {
                 var html = '';
                 $.each(json.sku, function (index, value) {
-                    html += '<p class="attr-btn" onclick="addAttr(this , ' + json.id + ' ,' + value.id + ' , \'' + value.name + '\', \'' + value.price+ '\')">' + value.name+'</p>';
+                    html += '<p class="attr-btn" onclick="addAttr(this , ' + json.id + ' ,' + value.id + ' , \'' + value.name + '\', \'' + value.price + '\')">' + value.name + '</p>';
                 });
                 $('#itemsDetail #detail-attr-btn').html(html);
                 $('#product-attr').show();
@@ -510,7 +505,6 @@ function clickItemDetail(id) {
 
             $('.attr-btn').first().click();
         }
-
     });
 }
 
@@ -537,15 +531,15 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
         },
         success: function (res) {
             var json = eval(res);
-            var imgSrc='';
-            if(json.savename){
-                imgSrc= data.uploadsUrl+ json.savepath +json.savename;
-                $('#itemsDetail .detail-image').attr('style',"height:200px");
-            }else{
-                $('#itemsDetail .detail-image').attr('style',"height:0px");
+            var imgSrc = '';
+            if (json.savename) {
+                imgSrc = data.uploadsUrl + json.savepath + json.savename;
+                $('#itemsDetail .detail-image').attr('style', "height:200px");
+            } else {
+                $('#itemsDetail .detail-image').attr('style', "height:0px");
             }
 
-            $('#itemsDetail .detail-image').attr('src',imgSrc);
+            $('#itemsDetail .detail-image').attr('src', imgSrc);
         }
     });
 }
@@ -578,8 +572,8 @@ function addproductNum(obj, id, sku_id) {
     initCartDate();
     $('#items-total-price').html(totalPrice);
 }
-function reducehotproductNum(obj, id, sku_id){
- var productNum = 0;
+function reducehotproductNum(obj, id, sku_id) {
+    var productNum = 0;
     $.each(cartData, function (index, value) {
         if (sku_id == 0) {
             if (value.id == id) {
@@ -624,9 +618,7 @@ function reducehotproductNum(obj, id, sku_id){
     $(obj).parent().prev().find('.item-amount').html(productNum);
     initCartDate();
     $('#items-total-price').html(totalPrice);
-
 }
-
 
 
 function reduceproductNum(obj, id, sku_id) {
@@ -848,13 +840,13 @@ function submitOrder() {
     }
 
     var order = {
-        shop_id:shopId,
+        shop_id: shopId,
         remark: note,
         delivery_time: deliveryTime,
         totalprice: totalPrice,
-        freight:freights,
+        freight: freights,
         payment: payment,
-        discount:discount,       
+        discount: discount,
     }
 
     if (payment == -1) {
@@ -886,8 +878,7 @@ function submitOrder() {
 
                 $('.freight').html(res.freight);
                 $('.discount').html(res.discount);
-                
-                
+
 
                 if (res.pay_status == 1) {
                     $('#status').html("支付成功");
@@ -1223,7 +1214,7 @@ function openProduct(o) {
     });
 }
 
-function openCartsure(){
+function openCartsure() {
     $("#nav-cart").click();
 }
 
@@ -1261,7 +1252,6 @@ function openUser(o) {
         $('#shopcart-tip').show();
         $('#shopcart-tip').html(totalNum);
     }
-
 
 
     if (data.user.length == 2) {
@@ -1309,9 +1299,9 @@ function openUser(o) {
                                 order_status = '已完成';
                             }
                             // alert(value.shop.name);
-                            htmlfirst += '<li><span style="color:#16aad8;">'+ value.shop.name +'</span><div class="order-info"><span class="number">订单号：<span id="order-no">' + value.orderid + '</span></span><span class="date" style="float: right">' + value.time + '</span><span class="order-status">' + pay_status + ',' + order_status + '</span></div><div class="order-list" id="item-order-list"><ul>';
+                            htmlfirst += '<li><span style="color:#16aad8;">' + value.shop.name + '</span><div class="order-info"><span class="number">订单号：<span id="order-no">' + value.orderid + '</span></span><span class="date" style="float: right">' + value.time + '</span><span class="order-status">' + pay_status + ',' + order_status + '</span></div><div class="order-list" id="item-order-list"><ul>';
                             var jsoncenter = eval(value.detail);
-                            $.each(jsoncenter, function (index,value) {
+                            $.each(jsoncenter, function (index, value) {
                                 var sku = '';
                                 if (parseInt(value.sku_id)) {
                                     sku = '（' + value.sku_name + '）';
@@ -1448,26 +1438,25 @@ function switchMenu(obj, id) {
     });
 }
 
-function prevView(obj){
+function prevView(obj) {
     var src = $(obj).attr('src');
     layer.open({
-        content: '<img style="width: 200px" src="'+src+'"/>'
+        content: '<img style="width: 200px" src="' + src + '"/>'
     });
 }
 
 
-
-function openSearch(){
+function openSearch() {
     var searchtxt = $("input[name = 'searchtxt']").val();
-    var searchval = $('.shop-product li').filter(':contains("'+searchtxt+'")').html();
+    var searchval = $('.shop-product li').filter(':contains("' + searchtxt + '")').html();
     if (searchval == undefined) {
         // alert("没有此商品");
         layer.open({
             content: '没有搜到此商品'
         });
-    }else{
+    } else {
         $(".shop-menu .lib").removeClass("lib").addClass("lia");
-        $('.shop-product li').hide().filter(':contains("'+searchtxt+'")').show();
+        $('.shop-product li').hide().filter(':contains("' + searchtxt + '")').show();
     }
 }
 
