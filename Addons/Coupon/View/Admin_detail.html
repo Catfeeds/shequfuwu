@@ -30,7 +30,7 @@
                             <tbody>
                             <tr>
                                 <!--<th class="hidden-xs">-->
-                                    <!--<label><input onchange="checkAll()" type="checkbox" value=""></label>-->
+                                <!--<label><input onchange="checkAll()" type="checkbox" value=""></label>-->
                                 <!--</th>-->
                                 <th>ID</th>
                                 <th>优惠码</th>
@@ -42,8 +42,8 @@
                             <volist name="coupon" id="coupon">
                                 <tr>
                                     <!--<td class="hidden-xs">-->
-                                        <!--<label><input name="checkbox" class="check" type="checkbox"-->
-                                                      <!--value="{$coupon.id}"></label>-->
+                                    <!--<label><input name="checkbox" class="check" type="checkbox"-->
+                                    <!--value="{$coupon.id}"></label>-->
                                     <!--</td>-->
                                     <td>
                                         {$coupon.id}
@@ -61,7 +61,8 @@
                                         {:date('Y-m-d H:i:s',$coupon['last_time'])}
                                     </td>
                                     <td class="table-action"><a class="deleteConfirm"
-                                            href="{:u_addons(\'Coupon://Admin/Admin/detail_del\',array('id'=>$coupon['id']))}">删除</a></td>
+                                                                href="{:u_addons(\'Coupon://Admin/Admin/detail_del\',array('id'=>$coupon['id']))}">删除</a>
+                                    </td>
                                 </tr>
                             </volist>
                             </tbody>
@@ -69,9 +70,9 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <!--<div class="btn-group">-->
-                                    <!--<button type="button" class="btn btn-danger"-->
-                                            <!--onclick="batchUrl('{:U(\'Admin/coupon/delcoupon\')}')">全部删除-->
-                                    <!--</button>-->
+                                <!--<button type="button" class="btn btn-danger"-->
+                                <!--onclick="batchUrl('{:U(\'Admin/coupon/delcoupon\')}')">全部删除-->
+                                <!--</button>-->
                                 <!--</div>-->
                                 <div class="pull-right" style="margin-bottom: 6px">
                                     {$page}
@@ -88,11 +89,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

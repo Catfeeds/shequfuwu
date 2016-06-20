@@ -86,8 +86,10 @@
                                         {$artical.time}
                                     </td>
                                     <td class="table-action"><a
-                                            href="{:U('Admin/Artical/modArtical',array('id'=>$artical['id']))}">修改</a><a class="deleteConfirm"
-                                            href="{:U('Admin/Artical/delArtical',array('id'=>$artical['id']))}">删除</a></td>
+                                            href="{:U('Admin/Artical/modArtical',array('id'=>$artical['id']))}">修改</a><a
+                                            class="deleteConfirm"
+                                            href="{:U('Admin/Artical/delArtical',array('id'=>$artical['id']))}">删除</a>
+                                    </td>
                                 </tr>
                             </volist>
                             </tbody>
@@ -95,7 +97,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Artical/delArtical\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Artical/delArtical\')}')">全部删除
                                     </a>
                                 </div>
                                 <div class="pull-right">
@@ -113,11 +116,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

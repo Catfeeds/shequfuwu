@@ -49,7 +49,8 @@
                                     <td>{$label.subname}</td>
                                     <td>{$label.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Admin/Shop/modLabel',array('id'=>$label['id']))}">修改</a><a class="deleteConfirm"
+                                            href="{:U('Admin/Shop/modLabel',array('id'=>$label['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Admin/Shop/delLabel',array('id'=>$label['id']))}">删除</a>
                                     </td>
                                 </tr>
@@ -59,7 +60,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Shop/delLabel\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Shop/delLabel\')}')">全部删除
                                     </a>
                                 </div>
                             </div>
@@ -73,11 +75,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

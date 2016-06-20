@@ -132,7 +132,8 @@
                                     <td class="table-action"><a
                                             href="{:U('Admin/User/modifyUser',array('id'=>$user['id']))}">修改</a>
                                         <gt name="user.id" value="1">
-                                            <a class="deleteConfirm" href="{:U('Admin/User/delUser',array('id'=>$user['id']))}">删除</a>
+                                            <a class="deleteConfirm"
+                                               href="{:U('Admin/User/delUser',array('id'=>$user['id']))}">删除</a>
                                         </gt>
                                     </td>
                                 </tr>
@@ -142,7 +143,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group" style="height:45px">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/User/delUser\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/User/delUser\')}')">全部删除
                                     </a>
                                 </div>
                                 <!-- /.btn-group -->
@@ -162,11 +164,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

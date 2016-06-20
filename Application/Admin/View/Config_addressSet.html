@@ -61,7 +61,8 @@
                                     <td>{$province.id}</td>
                                     <td>{$province.name}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Admin/Config/modProvince',array('id'=>$province['id']))}">修改</a><a class="deleteConfirm"
+                                            href="{:U('Admin/Config/modProvince',array('id'=>$province['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Admin/Config/delProvince',array('id'=>$province['id']))}">删除</a>
                                     </td>
                                 </tr>
@@ -75,7 +76,8 @@
                 <div class="box-footer no-padding">
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Config/delProvince\')}')">全部删除
+                            <a class="btn btn-danger deleteConfirm"
+                               href="javascript:batchUrl('{:U(\'Admin/Config/delProvince\')}')">全部删除
                             </a>
                         </div>
                     </div>
@@ -86,11 +88,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

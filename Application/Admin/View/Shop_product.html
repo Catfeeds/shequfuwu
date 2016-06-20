@@ -171,8 +171,9 @@
                                     </td>
                                     <td>{$product.rank}</td>
                                     <td>
-                                        <if condition="$product.sku eq 1"><a href="{:U('Admin/Shop/sku',array('id'=>$product['id']))}"
-                                                                             class="btn bg-red" style="padding: 3px 6px;"><i
+                                        <if condition="$product.sku eq 1"><a
+                                                href="{:U('Admin/Shop/sku',array('id'=>$product['id']))}"
+                                                class="btn bg-red" style="padding: 3px 6px;"><i
                                                 class="fa fa-edit"></i> 管理</a></if>
                                         <if condition="$product.sku eq 0">未启用</if>
                                     </td>
@@ -189,7 +190,8 @@
                                             <a href="{:U('Admin/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>-1))}">下架</a>
                                         </if>
 
-                                        <a href="{:U('Admin/Shop/modProduct',array('id'=>$product['id']))}">修改</a><a class="deleteConfirm"
+                                        <a href="{:U('Admin/Shop/modProduct',array('id'=>$product['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Admin/Shop/delProduct',array('id'=>$product['id']))}">删除</a></td>
                                 </tr>
                             </volist>
@@ -198,7 +200,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Shop/delProduct\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Shop/delProduct\')}')">全部删除
                                     </a>
                                 </div>
 
@@ -241,11 +244,11 @@
     <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

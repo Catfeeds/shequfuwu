@@ -17,13 +17,13 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
-<!--                     <div class="mailbox-controls">
-                        <div class="btn-group">
-                            <a href="{:U('Admin/Shop/addMenu')}" class="btn btn-danger ">
-                                新增菜单
-                            </a>
-                        </div>
-                    </div> -->
+                    <!--                     <div class="mailbox-controls">
+                                            <div class="btn-group">
+                                                <a href="{:U('Admin/Shop/addMenu')}" class="btn btn-danger ">
+                                                    新增菜单
+                                                </a>
+                                            </div>
+                                        </div> -->
                     <div class="table-responsive" style="overflow-x: visible;">
                         <table class="table table-bordered table-hover">
                             <tbody>
@@ -65,7 +65,8 @@
                                     <td>{$menu.rank}</td>
                                     <td>{$menu.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Admin/Shop/modMenu',array('id'=>$menu['id']))}">修改</a><a class="deleteConfirm"
+                                            href="{:U('Admin/Shop/modMenu',array('id'=>$menu['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Admin/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
                                     </td>
                                 </tr>
@@ -75,7 +76,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Shop/delMenu\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Shop/delMenu\')}')">全部删除
                                     </a>
                                 </div>
                             </div>
@@ -89,11 +91,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

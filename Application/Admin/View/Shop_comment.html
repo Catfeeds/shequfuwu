@@ -36,7 +36,8 @@
                             <volist name="comment" id="comment">
                                 <tr>
                                     <td class="hidden-xs">
-                                        <label><input name="checkbox" class="check" type="checkbox" value="{$comment.id}"></label>
+                                        <label><input name="checkbox" class="check" type="checkbox"
+                                                      value="{$comment.id}"></label>
                                     </td>
                                     <td>{$comment.id}</td>
                                     <td>{$comment.shop_id}</td>
@@ -45,7 +46,7 @@
                                     <td>{$comment.name}</td>
                                     <td>{$comment.time}</td>
                                     <td class="table-action"><a class="deleteConfirm"
-                                            href="{:U('Admin/Shop/delComment',array('id'=>$comment['id']))}">删除</a>
+                                                                href="{:U('Admin/Shop/delComment',array('id'=>$comment['id']))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>
@@ -54,7 +55,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Shop/delComment\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Shop/delComment\')}')">全部删除
                                     </a>
                                 </div>
                                 <!-- /.btn-group -->
@@ -74,11 +76,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

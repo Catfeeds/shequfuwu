@@ -84,13 +84,13 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
-<!--                     <div class="mailbox-controls">
-                        <div class="btn-group">
-                            <a href="{:U('Admin/Shop/addShop')}" class="btn btn-danger ">
-                                新增店铺
-                            </a>
-                        </div>
-                    </div> -->
+                    <!--                     <div class="mailbox-controls">
+                                            <div class="btn-group">
+                                                <a href="{:U('Admin/Shop/addShop')}" class="btn btn-danger ">
+                                                    新增店铺
+                                                </a>
+                                            </div>
+                                        </div> -->
                     <div class="table-responsive" style="overflow-x: visible;">
                         <table class="table table-bordered table-hover">
                             <tbody>
@@ -151,14 +151,16 @@
                                         {$shop.time}
                                     </td>
                                     <td class="table-action">
-                                        <a  class="deleteConfirm" href="{:U('Admin/Shop/delShop',array('id'=>$shop['id']))}">删除</a>
+                                        <a class="deleteConfirm"
+                                           href="{:U('Admin/Shop/delShop',array('id'=>$shop['id']))}">删除</a>
                                         <if condition="$shop.status neq -1">
-                                            <a href="{:U('Admin/Shop/closeShop',array('id'=>$shop['id'],'status' => -1))}"><span style="color: red">关闭</span></a>
+                                            <a href="{:U('Admin/Shop/closeShop',array('id'=>$shop['id'],'status' => -1))}"><span
+                                                    style="color: red">关闭</span></a>
                                         </if>
                                         <if condition="$shop.status eq -1">
                                             <a href="{:U('Admin/Shop/openShop',array('id'=>$shop['id'],'status' => 2))}">开启</a>
                                         </if>
-                                    </td>                                   
+                                    </td>
                                 </tr>
                             </volist>
                             </tbody>
@@ -166,7 +168,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Shop/delShop\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Shop/delShop\')}')">全部删除
                                     </a>
                                 </div>
 
@@ -191,11 +194,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })
