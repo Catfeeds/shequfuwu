@@ -112,6 +112,6 @@ class FooController extends Controller
         $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopid), true, "rank desc", 0, 0, 0);
         $jsons = json_encode($product);
         dump(G('shopBeginTime', 'shopEndTime'));
+        dump($product);
     }
-
 }
