@@ -5,8 +5,8 @@
 
 $(document).ready(function(){
     var targetObject= $('.deleteConfirm');
-    targetObject.attr('onclickmsg',targetObject.attr('onclick'));
-    var onclickContent= targetObject.attr('onclick');
+    // targetObject.attr('onclickmsg',targetObject.attr('onclick'));
+    // var onclickContent= targetObject.attr('onclick');
     // targetObject.attr('onclick','');
     // var hrefContent= targetObject.attr('href');
     alter(onclickContent);
