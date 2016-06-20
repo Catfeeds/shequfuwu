@@ -4,11 +4,11 @@
 
 
 $(document).ready(function(){
-    var targetObject= $('.deleteConfirm');
+    var targetObject= $('a.deleteConfirm');
 
     targetObject.click(function (event) {
         if(confirm('您确认要删除选定的信息吗？')){
-            
+
         }else{
             event.preventDefault();
         }
