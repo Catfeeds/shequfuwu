@@ -2,6 +2,7 @@
  * Created by xiedalie on 2016/6/20.
  */
 
+
 $(document).ready(function(){
     var targetObject= $('.deleteConfirm');
     var onclickContent= targetObject.attr('onclick');
