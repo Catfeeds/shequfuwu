@@ -103,7 +103,9 @@ class FooController extends Controller
         dump($result);
     }
 
-    
+    /**
+     * @param int $shopid
+     */
     public function calctimeofshop($shopid = 146)
     {
         G('shopBeginTime');
