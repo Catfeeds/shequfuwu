@@ -68,9 +68,8 @@
                 <div class="box-footer no-padding">
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger deleteConfirm"
-                                    onclick="batchUrl('{:U(\'Home/Weixin/delWxMenu\')}')">全部删除
-                            </button>
+                            <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Home/Weixin/delWxMenu\')}')">全部删除
+                            </a>
                         </div>
                         <div class="btn-group">
                             <a class="btn btn-danger" href="{:U('Admin/Wechat/createWxMenu',array('shopId' => session('homeShopId')))}">生成自定义菜单</a>
