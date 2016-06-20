@@ -6,11 +6,15 @@
 $(document).ready(function(){
     var targetObject= $('.deleteConfirm');
     var onclickContent= targetObject.attr('onclick');
+    targetObject.attr('onclick','');
     var hrefContent= targetObject.attr('href');
 
     targetObject.click(function (event) {
         if(confirm('您确认要删除选定的信息吗？')){
             //$this.attr();
+            if(isNull(onclickContent)|| onclickContent==''){
+                onclickContent;
+            }
         }else{
             event.preventDefault();
         }
