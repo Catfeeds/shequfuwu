@@ -9,7 +9,7 @@ $(document).ready(function(){
     // var onclickContent= targetObject.attr('onclick');
     // targetObject.attr('onclick','');
     // var hrefContent= targetObject.attr('href');
-    alter(onclickContent);
+    //alter(onclickContent);
 
     targetObject.click(function (event) {
         if(confirm('您确认要删除选定的信息吗？')){
