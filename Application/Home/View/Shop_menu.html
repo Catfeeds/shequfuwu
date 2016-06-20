@@ -60,7 +60,7 @@
                                     <td>{$menu.remark}</td>
                                     <td class="table-action"><a
                                             href="{:U('Home/Shop/modifyMenu',array('id'=>$menu['id']))}">修改</a><a
-                                            href="{:U('Home/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
+                                            class="deleteConfirm" href="{:U('Home/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>
@@ -69,7 +69,7 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger "
+                                    <button type="button" class="btn btn-danger deleteConfirm"
                                             onclick="batchUrl('{:U(\'Home/Shop/delMenu\')}')">全部删除
                                     </button>
                                 </div>
