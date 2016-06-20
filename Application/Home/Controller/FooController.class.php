@@ -13,7 +13,6 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
-use Vendor\Hiland\Utils\Web\WebHelper;
 
 class FooController extends Controller
 {
@@ -70,41 +69,46 @@ class FooController extends Controller
         dump('SCRIPT_NAME' . $_SERVER['SCRIPT_NAME']);//它将返回包含当前脚本的路径。这在页面需要指向自己时非常有用
         dump('SCRIPT_FILENAME' . $_SERVER['SCRIPT_FILENAME']);//它将返回当前文件所在的绝对路径信息
 
-        dump('REQUEST_URI'.$_SERVER['REQUEST_URI']);
+        dump('REQUEST_URI' . $_SERVER['REQUEST_URI']);
 
-        dump(realpath(dirname(__FILE__).'/../'));
-        dump(str_replace('\\','/',realpath(dirname(__FILE__).'/../')));
+        dump(realpath(dirname(__FILE__) . '/../'));
+        dump(str_replace('\\', '/', realpath(dirname(__FILE__) . '/../')));
         dump('hostName:' . EnvironmentHelper::getServerHostName());
         //dump(WebHelper::getWebPhysicalRootPath());
     }
 
-    public function wxmenuop(){
+    public function wxmenuop()
+    {
         $m = D("WxMenu");
-        $menu = $m->getList(array("pid" => 0), false, array('rank'=>'desc','id'=>'desc'), 0, 0, 3);
+        $menu = $m->getList(array("pid" => 0), false, array('rank' => 'desc', 'id' => 'desc'), 0, 0, 3);
         dump($menu);
     }
 
-    public function paraUsed($order=array('id'=>'desc')){
+    public function paraUsed($order = array('id' => 'desc'))
+    {
         dump($order);
     }
 
-    public function paraop(){
+    public function paraop()
+    {
         $this->paraUsed("rank desc,id");
     }
 
-public function skulistop(){
-    $condition = array(
-        "product_id" => 23,
-    );
-    $result= D("ProductSku")->getList($condition,true,"rank desc");
-    dump($result);
-}
-
-    public function calctimeofshop($shopid=146){
-        G('shopBeginTime');
-        $product = D("Product")->getList(array("status" => array("neq", -1),"shop_id"=>$shopid), true, "rank desc", 0, 0, 0);
-        $jsons=json_encode($product);
-        dump(G('shopBeginTime','shopEndTime'));
+    public function skulistop()
+    {
+        $condition = array(
+            "product_id" => 23,
+        );
+        $result = D("ProductSku")->getList($condition, true, "rank desc");
+        dump($result);
     }
-    
+
+    public function calctimeofshop($shopid = 146)
+    {
+        G('shopBeginTime');
+        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopid), true, "rank desc", 0, 0, 0);
+        $jsons = json_encode($product);
+        dump(G('shopBeginTime', 'shopEndTime'));
+    }
+
 }
