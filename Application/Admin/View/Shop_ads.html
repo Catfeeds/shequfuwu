@@ -23,7 +23,7 @@
                     <!--            新增广告-->
                     <!--        </a>-->
                     <!--    </div>-->
-                        <!-- /.btn-group -->
+                    <!-- /.btn-group -->
                     <!--</div>-->
                     <div class="table-responsive" style="overflow-x: visible;">
                         <table class="table table-bordered table-hover">
@@ -55,13 +55,13 @@
                                     </td>
                                     <td>
                                         {$ads.shop_id}
-                                    </td>                                                                        
+                                    </td>
                                     <td>
                                         <if condition="$ads.adsname eq 1">
                                             <span class="label label-primary">幻灯片</span>
-                                        <elseif condition="$ads.adsname eq 2"/>
+                                            <elseif condition="$ads.adsname eq 2"/>
                                             <span class="label label-info">插件</span>
-                                        <else />
+                                            <else/>
                                             <span class="label label-warning">广告位</span>
                                         </if>
                                     </td>
@@ -95,6 +95,7 @@
                                     </td>
                                     <td class="table-action"><a
                                             href="{:U('Admin/Shop/modAds',array('id'=>$ads['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Admin/Shop/delAds',array('id'=>$ads['id']))}">删除</a></td>
                                 </tr>
                             </volist>
@@ -103,7 +104,7 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger"
+                                    <button type="button" class="btn btn-danger deleteConfirm"
                                             onclick="batchUrl('{:U(\'Admin/Shop/delAds\')}')">全部删除
                                     </button>
                                 </div>
@@ -121,4 +122,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
+
+                } else {
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>

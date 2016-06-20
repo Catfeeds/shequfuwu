@@ -60,7 +60,7 @@
                                     <td>
                                         {:date('Y-m-d H:i:s',$coupon['last_time'])}
                                     </td>
-                                    <td class="table-action"><a
+                                    <td class="table-action"><a class="deleteConfirm"
                                             href="{:u_addons(\'Coupon://Admin/Admin/detail_del\',array('id'=>$coupon['id']))}">删除</a></td>
                                 </tr>
                             </volist>
@@ -87,4 +87,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.deleteConfirm').on('click',function (event) {
+                if(confirm('您确认要删除选定的信息吗？')){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>

@@ -151,7 +151,7 @@
                                         {$shop.time}
                                     </td>
                                     <td class="table-action">
-                                        <a href="{:U('Admin/Shop/delShop',array('id'=>$shop['id']))}">删除</a>
+                                        <a  class="deleteConfirm" href="{:U('Admin/Shop/delShop',array('id'=>$shop['id']))}">删除</a>
                                         <if condition="$shop.status neq -1">
                                             <a href="{:U('Admin/Shop/closeShop',array('id'=>$shop['id'],'status' => -1))}"><span style="color: red">关闭</span></a>
                                         </if>
@@ -166,7 +166,7 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger"
+                                    <button type="button" class="btn btn-danger deleteConfirm"
                                             onclick="batchUrl('{:U(\'Admin/Shop/delShop\')}')">全部删除
                                     </button>
                                 </div>
@@ -191,6 +191,17 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.deleteConfirm').on('click',function (event) {
+                if(confirm('您确认要删除选定的信息吗？')){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>
 <script type="text/javascript">
     $(function () {

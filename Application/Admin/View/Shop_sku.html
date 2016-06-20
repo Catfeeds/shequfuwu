@@ -130,13 +130,15 @@
     }
 
     function removeAttr(obj, type, id) {
-        if (type == 'new') {
-            $(obj).parent().parent().remove();
-        } else if (type == 'old' && id != undefined) {
-            $.pjax({
-                url: URL + "Admin/Shop/delSku/id/" + id,
-                container: '#pjax-container'
-            })
+        if(confirm('您确认要删除选定的信息吗？')){
+            if (type == 'new') {
+                $(obj).parent().parent().remove();
+            } else if (type == 'old' && id != undefined) {
+                $.pjax({
+                    url: URL + "Admin/Shop/delSku/id/" + id,
+                    container: '#pjax-container'
+                })
+            }
         }
     }
 </script>

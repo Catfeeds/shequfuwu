@@ -54,7 +54,7 @@
                                     <td>{$menu.key}</td>
                                     <td>{$menu.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Admin/Weixin/modWxMenu',array('id'=>$menu['id']))}">修改</a><a
+                                            href="{:U('Admin/Weixin/modWxMenu',array('id'=>$menu['id']))}">修改</a><a class="deleteConfirm"
                                             href="{:U('Admin/Weixin/delWxMenu',array('id'=>$menu['id']))}">删除</a></td>
                                 </tr>
                             </volist>
@@ -67,7 +67,7 @@
                 <div class="box-footer no-padding">
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger"
+                            <button type="button" class="btn btn-danger deleteConfirm"
                                     onclick="batchUrl('{:U(\'Admin/Weixin/delWxMenu\')}')">全部删除
                             </button>
                         </div>
@@ -83,4 +83,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.deleteConfirm').on('click',function (event) {
+                if(confirm('您确认要删除选定的信息吗？')){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>

@@ -61,7 +61,7 @@
                                     <td>{$city.province.name}</td>
                                     <td class="table-action"><a
                                             href="{:U('Home/Config/modifyCity',array('id'=>$city['id']))}">修改</a><a
-                                            href="{:U('Home/Config/delCity',array('id'=>$city['id']))}">删除</a></td>
+                                            class="deleteConfirm" href="{:U('Home/Config/delCity',array('id'=>$city['id']))}">删除</a></td>
                                 </tr>
                             </volist>
                             </tbody>
@@ -73,7 +73,7 @@
                 <div class="box-footer no-padding">
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger"
+                            <button type="button" class="btn btn-danger deleteConfirm"
                                     onclick="batchUrl('{:U(\'Home/Config/delCity\')}')">全部删除
                             </button>
                         </div>
@@ -84,4 +84,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.deleteConfirm').on('click',function (event) {
+                if(confirm('您确认要删除选定的信息吗？')){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>

@@ -114,6 +114,7 @@
 
                                     <td class="table-action"><a
                                             href="{:U('Home/Coupon/detail',array('id'=>$coupon['id']))}">详情</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Home/Coupon/delCoupon',array('id'=>$coupon['id']))}">删除</a>
                                     </td>
                                 </tr>
@@ -123,7 +124,7 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger "
+                                    <button type="button" class="btn btn-danger deleteConfirm"
                                             onclick="batchUrl('{:U(\'Home/Shop/delMenu\')}')">全部删除
                                     </button>
                                 </div>
@@ -143,4 +144,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
+
+                } else {
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>

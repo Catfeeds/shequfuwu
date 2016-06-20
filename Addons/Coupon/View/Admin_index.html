@@ -62,7 +62,7 @@
                                     </td>
                                     <td class="table-action"><a
                                             href="{:U('Admin/coupon/modifycoupon',array('id'=>$coupon['id']))}">导出</a><a
-                                            href="{:U('Admin/Admin/detail/addon/Coupon',array('id'=>$coupon['id']))}">优惠券列表</a><a
+                                            href="{:U('Admin/Admin/detail/addon/Coupon',array('id'=>$coupon['id']))}">优惠券列表</a><a class="deleteConfirm"
                                             href="{:u_addons(\'Coupon://Admin/Admin/del\',array('id'=>$coupon['id']))}">删除</a>
                                     </td>
                                 </tr>
@@ -90,4 +90,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.deleteConfirm').on('click',function (event) {
+                if(confirm('您确认要删除选定的信息吗？')){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>

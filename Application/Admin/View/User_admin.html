@@ -61,7 +61,7 @@
                                     <td class="table-action"><a
                                             href="{:U('Admin/User/modAdmin',array('id'=>$user['id']))}">修改</a>
                                         <gt name="user.id" value="1">
-                                            <a href="{:U('Admin/User/delAdmin',array('id'=>$user['id']))}">删除</a>
+                                            <a class="deleteConfirm" href="{:U('Admin/User/delAdmin',array('id'=>$user['id']))}">删除</a>
                                         </gt>
                                     </td>
                                 </tr>
@@ -71,7 +71,7 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-danger"
+                                    <button type="button" class="btn btn-danger deleteConfirm"
                                             onclick="batchUrl('{:U(\'Admin/User/delAdmin\')}')">全部删除
                                     </button>
                                 </div>
@@ -91,4 +91,15 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.deleteConfirm').on('click',function (event) {
+                if(confirm('您确认要删除选定的信息吗？')){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
 </section>
