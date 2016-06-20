@@ -2,6 +2,7 @@
 namespace Common\Model;
 
 use Think\Model\RelationModel;
+use Vendor\Hiland\Utils\Data\ArrayHelper;
 
 class ProductModel extends RelationModel
 {
@@ -49,6 +50,14 @@ class ProductModel extends RelationModel
 
     public function getList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
     {
+        $conditionJson= json_encode($condition);
+        $cacheKey = "product::getlist:condition-$conditionJson||relation-$relation||order-$order||p-$p||num-$num||limit-$limit";
+        $valueCached= S($cacheKey);
+
+        if($valueCached){
+            return $valueCached;
+        }
+
         $data = $this->where($condition);
         if ($relation) {
             $data = $data->relation($relation);
@@ -61,6 +70,8 @@ class ProductModel extends RelationModel
         }
 
         $data = $data->order($order)->select();
+
+        S($cacheKey,$data,60);
 
         return $data;
     }
