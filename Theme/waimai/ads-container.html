@@ -22,17 +22,28 @@
     <div class="swiper-pagination"></div>
 </div>
 <div class="mod-desc">
-    {{each ads as value i}} {{if value.adsname == 2}}
-    <div class="mod-cnt mod-cnt-5">
-        <a href="{{value.url}}">
-            <div class="mod-icon">
-                <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}"
-                     style="display: inline;">
+    <ul>
+        {{each ads as value i}} {{if value.adsname == 2}}
+
+
+
+        <li class="item">
+            <a href="{{value.url}}" title="{{value.name}}">
+                <div class="item-image"><img src="{{imageUrl}}/blank.gif"
+                                             data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
+                                             style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
+                    <div class="select-shadow">
+                        <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="single-item-info">
+                <div class="item-title">{{value.name}}</div>
             </div>
-            <div class="mod-txt">{{value.name}}</div>
-        </a>
-    </div>
-    {{/if}} {{/each}}
+        </li>
+        {{/if}} {{/each}}
+    </ul>
 </div>
 
 <section class="m-component-promotion" id="list-section">

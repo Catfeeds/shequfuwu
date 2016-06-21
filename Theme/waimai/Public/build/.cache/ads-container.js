@@ -1,4 +1,4 @@
-/*TMODJS:{"version":181,"md5":"81ae7486423922c383124d970a17a5f0"}*/
+/*TMODJS:{"version":184,"md5":"479f9b6e0aae2393ddda40efb454ecbf"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -17,23 +17,29 @@ $out+='" style="display: inline; width: 100%;"> </a> </div> ';
 }
 $out+=' ';
 });
-$out+=' </div> <div class="swiper-pagination"></div> </div> <div class="mod-desc"> ';
+$out+=' </div> <div class="swiper-pagination"></div> </div> <div class="mod-desc"> <ul> ';
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 2){
-$out+=' <div class="mod-cnt mod-cnt-5"> <a href="';
+$out+=' <li class="item"> <a href="';
 $out+=$escape(value.url);
-$out+='"> <div class="mod-icon"> <img class="lazy" src="';
+$out+='" title="';
+$out+=$escape(value.name);
+$out+='"> <div class="item-image"><img src="';
 $out+=$escape(imageUrl);
 $out+='/blank.gif" data-echo="';
 $out+=$escape(uploadsUrl+value.savepath+value.savename);
-$out+='" style="display: inline;"> </div> <div class="mod-txt">';
+$out+='" class="lazy" style="width: 100%; margin-top: 0px; display: inline;background: #FFF url(';
+$out+=$escape(imageUrl);
+$out+='/loading.gif) no-repeat center center;background-size: 30px;"> <div class="select-shadow"> <div class="select-inner"><img src="';
+$out+=$escape(imageUrl);
+$out+='/ico_select.png" alt="selected"><span>已选</span> </div> </div> </div> </a> <div class="single-item-info"> <div class="item-title">';
 $out+=$escape(value.name);
-$out+='</div> </a> </div> ';
+$out+='</div> </div> </li> ';
 }
 $out+=' ';
 });
-$out+=' </div> <section class="m-component-promotion" id="list-section"> <div class="mod-title" style="padding-top: 5px;">热门活动</div> <ul class="list-unstyled" id="list-sale"> ';
+$out+=' </ul> </div> <section class="m-component-promotion" id="list-section"> <div class="mod-title" style="padding-top: 5px;">热门活动</div> <ul class="list-unstyled" id="list-sale"> ';
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 3){
