@@ -9,12 +9,12 @@
 <div class="swiper-container">
     <div class="swiper-wrapper" style="height:180px;">
         {{each ads as value i}} {{if value.adsname == 1}}
-        <a href="{{value.url}}">
-            <div class="swiper-slide">
-                <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}"
-                     style="display: inline; width: 100%;">
-            </div>
-        </a>
+
+        <div class="swiper-slide">
+            <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                 style="display: inline; width: 100%;">
+        </div>
+
         {{/if}} {{/each}}
     </div>
     <div class="swiper-pagination"></div>
