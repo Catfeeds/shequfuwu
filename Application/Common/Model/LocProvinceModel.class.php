@@ -74,8 +74,8 @@ class LocProvinceModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
-    
- //cui
+
+    //cui
     public function getProvinceList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
     {
         $list = $this->where($condition);
@@ -106,8 +106,7 @@ class LocProvinceModel extends RelationModel
     public function delProvince($ids)
     {
         $this->where(array("id" => array("in", $ids)))->delete();
-    }   
-    
-    
-    
+    }
+
+
 }

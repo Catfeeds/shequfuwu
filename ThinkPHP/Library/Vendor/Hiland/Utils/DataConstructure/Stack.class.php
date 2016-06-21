@@ -22,7 +22,7 @@ class Stack extends BasicQueueStack
     {
         return array_push($this->dataArray, $value);
     }
-    
+
     /**
      * 查询当前元素
      * @return NULL|mixed
@@ -33,8 +33,8 @@ class Stack extends BasicQueueStack
             return null;
         } else {
             $data = $this->dataArray;
-            $length= count($data);
-            return $data[$length-1];
+            $length = count($data);
+            return $data[$length - 1];
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 关闭订单输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseCloseOrder extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
     /**
      * 设置商户系统内部的订单号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOut_trade_no($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
      * 判断商户系统内部的订单号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOut_trade_noSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
     /**
      * 设置商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseCloseOrder extends WxPayDataBase
      * 判断商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {

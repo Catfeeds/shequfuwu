@@ -56,7 +56,8 @@
                                     <td>{$user.remark}</td>
                                     <td>{$user.time}</td>
                                     <td class="table-action"><a class="deleteConfirm"
-                                            href="{:U('Home/User/delEmployee',array('id'=>$user['id']))}">删除</a></td>
+                                                                href="{:U('Home/User/delEmployee',array('id'=>$user['id']))}">删除</a>
+                                    </td>
                                 </tr>
                             </volist>
                             </tbody>
@@ -82,11 +83,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

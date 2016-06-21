@@ -1,5 +1,5 @@
 $(function () {
-    var tophtml = "<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a target='_blank' href=\"http://wpa.qq.com/msgrd?v=3&uin=786699892&site=qq&menu=yes&from=singlemessage\" class=\"btn btn-qq\"></a><div class=\"btn btn-wx\"><img class=\"pic\" src=\""+PUBLICURL+"/Home/dist/img/weixin.jpg\"/></div><div class=\"btn btn-top\"></div></div>";
+    var tophtml = "<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a target='_blank' href=\"http://wpa.qq.com/msgrd?v=3&uin=786699892&site=qq&menu=yes&from=singlemessage\" class=\"btn btn-qq\"></a><div class=\"btn btn-wx\"><img class=\"pic\" src=\"" + PUBLICURL + "/Home/dist/img/weixin.jpg\"/></div><div class=\"btn btn-top\"></div></div>";
     $("#top").html(tophtml);
     $("#izl_rmenu").each(function () {
         $(this).find(".btn-wx").mouseenter(function () {

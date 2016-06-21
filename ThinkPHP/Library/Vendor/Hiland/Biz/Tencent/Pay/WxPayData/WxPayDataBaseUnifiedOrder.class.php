@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 统一下单输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseUnifiedOrder extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置微信支付分配的终端设备号，商户自定义
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetDevice_info($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断微信支付分配的终端设备号，商户自定义是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsDevice_infoSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置随机字符串，不长于32位。推荐随机数生成算法
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断随机字符串，不长于32位。推荐随机数生成算法是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置商品或支付单简要描述
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetBody($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断商品或支付单简要描述是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsBodySet()
     {
@@ -179,7 +179,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置商品名称明细列表
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetDetail($value)
@@ -202,7 +202,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断商品名称明细列表是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsDetailSet()
     {
@@ -212,7 +212,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAttach($value)
@@ -235,7 +235,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAttachSet()
     {
@@ -245,7 +245,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOut_trade_no($value)
@@ -268,7 +268,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOut_trade_noSet()
     {
@@ -278,7 +278,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetFee_type($value)
@@ -301,7 +301,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsFee_typeSet()
     {
@@ -311,7 +311,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置订单总金额，只能为整数，详见支付金额
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTotal_fee($value)
@@ -334,7 +334,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断订单总金额，只能为整数，详见支付金额是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTotal_feeSet()
     {
@@ -344,7 +344,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetSpbill_create_ip($value)
@@ -367,7 +367,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsSpbill_create_ipSet()
     {
@@ -377,7 +377,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTime_start($value)
@@ -400,7 +400,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTime_startSet()
     {
@@ -410,7 +410,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。其他详见时间规则
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTime_expire($value)
@@ -433,7 +433,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。其他详见时间规则是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTime_expireSet()
     {
@@ -443,7 +443,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetGoods_tag($value)
@@ -466,7 +466,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsGoods_tagSet()
     {
@@ -476,7 +476,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置接收微信支付异步通知回调地址
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNotify_url($value)
@@ -499,7 +499,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断接收微信支付异步通知回调地址是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNotify_urlSet()
     {
@@ -509,7 +509,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置取值如下：JSAPI，NATIVE，APP，详细说明见参数规定
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTrade_type($value)
@@ -532,7 +532,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断取值如下：JSAPI，NATIVE，APP，详细说明见参数规定是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTrade_typeSet()
     {
@@ -542,7 +542,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetProduct_id($value)
@@ -565,7 +565,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsProduct_idSet()
     {
@@ -575,7 +575,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
     /**
      * 设置trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识。下单前需要调用【网页授权获取用户信息】接口获取到用户的Openid。
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOpenid($value)
@@ -598,7 +598,7 @@ class WxPayDataBaseUnifiedOrder extends WxPayDataBase
      * 判断trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识。下单前需要调用【网页授权获取用户信息】接口获取到用户的Openid。 是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOpenidSet()
     {

@@ -1,102 +1,102 @@
 <include file="Public:header"/>
 <body class="hold-transition skin-red-light sidebar-mini">
 
-    <div id="top"></div>
-    <header class="main-header">
-        <!-- Logo -->
-        <a href="" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>{:C('PROJECT_NAME_SHORT')}</b></span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>{:C('PROJECT_NAME')}</b></span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
+<div id="top"></div>
+<header class="main-header">
+    <!-- Logo -->
+    <a href="" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>{:C('PROJECT_NAME_SHORT')}</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>{:C('PROJECT_NAME')}</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
 
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
 
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="__PUBLIC__/Admin/dist/img/avatar-wemall.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">{$Think.session.homeName}</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <img src="__PUBLIC__/Admin/dist/img/avatar-wemall.png" class="img-circle"
-                                     alt="User Image">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="__PUBLIC__/Admin/dist/img/avatar-wemall.png" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{$Think.session.homeName}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="__PUBLIC__/Admin/dist/img/avatar-wemall.png" class="img-circle"
+                                 alt="User Image">
 
-                                <p>
-                                    {$Think.session.homeName}
-                                    <small>管理员</small>
-                                </p>
-                            </li>
-                            <style type="text/css">
-                                .infobox {
-                                    display: inline-block;
-                                    width: 100%;
-                                    color: #555;
-                                    background-color: #FFF;
-                                    box-shadow: none;
-                                    margin: -1px 0 0 -1px;
-                                    padding: 8px 3px 6px 9px;
-                                    border: 1px dotted;
-                                    border-color: #D8D8D8 !important;
-                                    vertical-align: middle;
-                                    text-align: left;
-                                    position: relative;
-                                }
+                            <p>
+                                {$Think.session.homeName}
+                                <small>管理员</small>
+                            </p>
+                        </li>
+                        <style type="text/css">
+                            .infobox {
+                                display: inline-block;
+                                width: 100%;
+                                color: #555;
+                                background-color: #FFF;
+                                box-shadow: none;
+                                margin: -1px 0 0 -1px;
+                                padding: 8px 3px 6px 9px;
+                                border: 1px dotted;
+                                border-color: #D8D8D8 !important;
+                                vertical-align: middle;
+                                text-align: left;
+                                position: relative;
+                            }
 
-                                .infobox > .infobox-data {
-                                    display: inline-block;
-                                    border-width: 0;
-                                    font-size: 13px;
-                                    text-align: left;
-                                    line-height: 21px;
-                                    min-width: 130px;
-                                    padding-left: 8px;
-                                    position: relative;
-                                    top: 0;
-                                }
+                            .infobox > .infobox-data {
+                                display: inline-block;
+                                border-width: 0;
+                                font-size: 13px;
+                                text-align: left;
+                                line-height: 21px;
+                                min-width: 130px;
+                                padding-left: 8px;
+                                position: relative;
+                                top: 0;
+                            }
 
-                                .infobox > .infobox-data > .infobox-data-number {
-                                    display: block;
-                                    font-size: 22px;
-                                    margin: 2px 0 4px;
-                                    position: relative;
-                                    text-shadow: 1px 1px 0 rgba(0, 0, 0, .15);
-                                }
+                            .infobox > .infobox-data > .infobox-data-number {
+                                display: block;
+                                font-size: 22px;
+                                margin: 2px 0 4px;
+                                position: relative;
+                                text-shadow: 1px 1px 0 rgba(0, 0, 0, .15);
+                            }
 
-                                .infobox .infobox-content {
-                                    color: #555;
-                                }
+                            .infobox .infobox-content {
+                                color: #555;
+                            }
 
-                                .get-member {
-                                    position: absolute;
-                                    right: 10px;
-                                    top: 12px;
-                                    cursor: pointer;
-                                }
+                            .get-member {
+                                position: absolute;
+                                right: 10px;
+                                top: 12px;
+                                cursor: pointer;
+                            }
 
-                                .label-sm {
-                                    padding: .2em .4em .3em;
-                                    font-size: 11px;
-                                    line-height: 1;
-                                    height: 18px;
-                                }
-                            </style>
-                            <li class="user-footer">
-                                <a href="{:U('Home/Public/logout')}" target="_self"
-                                   class="btn btn-default btn-flat">注销</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+                            .label-sm {
+                                padding: .2em .4em .3em;
+                                font-size: 11px;
+                                line-height: 1;
+                                height: 18px;
+                            }
+                        </style>
+                        <li class="user-footer">
+                            <a href="{:U('Home/Public/logout')}" target="_self"
+                               class="btn btn-default btn-flat">注销</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
 <section class="content-header" style="margin-left: 10%;margin-top:5px;width:80%;">
     <h1>
@@ -182,8 +182,10 @@
                                         {$shop.time}
                                     </td>
                                     <td class="table-action">
-                                        <a target="_parent" href="{:U('Home/Shop/switchShop',array('id'=>$shop['id']))}">进入</a>
-                                        <a class="deleteConfirm" href="{:U('Home/Shop/delShop',array('id'=>$shop['id']))}">删除</a>
+                                        <a target="_parent"
+                                           href="{:U('Home/Shop/switchShop',array('id'=>$shop['id']))}">进入</a>
+                                        <a class="deleteConfirm"
+                                           href="{:U('Home/Shop/delShop',array('id'=>$shop['id']))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>
@@ -209,11 +211,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

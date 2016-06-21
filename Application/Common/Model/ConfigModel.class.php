@@ -5,9 +5,9 @@ use Think\Model;
 
 class ConfigModel extends Model
 {
-    public function get($id=1)
+    public function get($id = 1)
     {
-        $where['id']= $id;
+        $where['id'] = $id;
         $config = $this->where($where)->find();
         return $config;
     }

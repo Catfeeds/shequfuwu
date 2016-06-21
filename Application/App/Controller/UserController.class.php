@@ -19,11 +19,11 @@ class UserController extends BaseController
     {
         $user = D("User")->get(array("id" => session("userId")), true);
         if (I("get.getOrder")) {
-            $user["order"] = D("Order")->getList(array("user_id" => session("userId"),"status" => array("gt", -1)), true);
+            $user["order"] = D("Order")->getList(array("user_id" => session("userId"), "status" => array("gt", -1)), true);
         }
 
         if (I("get.getProvince")) {
-            $user["province"] = D("LocProvince")->getList(array("shop_id"=>session("shop_id")), true);
+            $user["province"] = D("LocProvince")->getList(array("shop_id" => session("shop_id")), true);
         }
 
         $this->ajaxReturn($user);
@@ -86,48 +86,50 @@ class UserController extends BaseController
     }
     // public function getShopList()
     // {
-        // $lng = I("post.lng");
-        // $lat = I("post.lat");
+    // $lng = I("post.lng");
+    // $lat = I("post.lat");
 
-        // $lng = '113.875';
-        // $lat = '34.0485';
-        // $lngMin = returnSquarePoint($lng, $lat)["left-top"]["lng"];
-        // $lngMax = returnSquarePoint($lng, $lat)["right-top"]["lng"];
+    // $lng = '113.875';
+    // $lat = '34.0485';
+    // $lngMin = returnSquarePoint($lng, $lat)["left-top"]["lng"];
+    // $lngMax = returnSquarePoint($lng, $lat)["right-top"]["lng"];
 
-        // $latMin = returnSquarePoint($lng, $lat)["left-top"]["lat"];
-        // $latMax = returnSquarePoint($lng, $lat)["right-top"]["lat"];
+    // $latMin = returnSquarePoint($lng, $lat)["left-top"]["lat"];
+    // $latMax = returnSquarePoint($lng, $lat)["right-top"]["lat"];
 
 
-        // $shop = D("Shop")->getShopList(array("status"=>I("post.status"),"lat" => array(array('gt', $latMin), array('lt', $latMax)), "lng" => array(array('gt', $lngMin), array('lt', $lngMax))),true,"id desc",$p,10,10);
-        // $u_lat = '40.017349';
-        // $u_lon = '116.407143,';
-        // $p = I("post.lazyNum") ? I("post.lazyNum") : 1;
-        // $shop = D("Shop")->getShopList(array("status"=>I("post.status")),true,"id desc",$p,10,10);
-        // $this->ajaxReturn($shop);
+    // $shop = D("Shop")->getShopList(array("status"=>I("post.status"),"lat" => array(array('gt', $latMin), array('lt', $latMax)), "lng" => array(array('gt', $lngMin), array('lt', $lngMax))),true,"id desc",$p,10,10);
+    // $u_lat = '40.017349';
+    // $u_lon = '116.407143,';
+    // $p = I("post.lazyNum") ? I("post.lazyNum") : 1;
+    // $shop = D("Shop")->getShopList(array("status"=>I("post.status")),true,"id desc",$p,10,10);
+    // $this->ajaxReturn($shop);
     // }
 
 
-    public function shopSelector(){
+    public function shopSelector()
+    {
         //dump('shopSelector');
-        $oauth2Url= "App/Public/oauthLogin";
+        $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
 
-        
+
     }
 
     /**
      * 获取消费者通过扫码关注的店铺
      */
-    public function getShopScanedList(){
+    public function getShopScanedList()
+    {
 
-        $openId= '';
-        $shopScanedMate= new ModelMate('usershopscaned');
+        $openId = '';
+        $shopScanedMate = new ModelMate('usershopscaned');
 
-        $where= array();
-        $where['openid']=$openId;
-        $shopScaneds= $shopScanedMate->select($where);
+        $where = array();
+        $where['openid'] = $openId;
+        $shopScaneds = $shopScanedMate->select($where);
 
-        if(!$shopScaneds){
+        if (!$shopScaneds) {
 
         }
     }
@@ -136,12 +138,13 @@ class UserController extends BaseController
     /**
      * 获取附近的店铺
      */
-    public function getShopList(){
+    public function getShopList()
+    {
         $lng = I("post.lng");
         $lat = I("post.lat");
         // $lat = '34.7913';
         // $lng = '113.673';
-        $name=I('post.name');
+        $name = I('post.name');
 
         $range = 180 / pi() * 15 / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km 
         $lngR = $range / cos($lat * pi() / 180);
@@ -151,46 +154,46 @@ class UserController extends BaseController
         $minLng = $lng - $lngR;//最小经度 
 
 
-        $map['lng'] = array('between',array($minLng,$maxLng)); //经度值
-        $map['lat'] = array('between',array($minLat,$maxLat)); //纬度值
-        $map['name']=array('like',"%$name%");//搜索
-        $map['status']=2;
+        $map['lng'] = array('between', array($minLng, $maxLng)); //经度值
+        $map['lat'] = array('between', array($minLat, $maxLat)); //纬度值
+        $map['name'] = array('like', "%$name%");//搜索
+        $map['status'] = 2;
 
-        $list = D("Shop")->getShopList($map,true);
-        $shop = $this->range($lat,$lng,$list);
+        $list = D("Shop")->getShopList($map, true);
+        $shop = $this->range($lat, $lng, $list);
         $this->ajaxReturn($shop);
-        
+
     }
-    
-	public function range($u_lat,$u_lng,$list)
+
+    public function range($u_lat, $u_lng, $list)
     {
-		/*
-		*u_lat 用户纬度
-		*u_lng 用户经度
-		*list sql语句
-		*/
-		if(!empty($u_lat) && !empty($u_lng)){
-			foreach ($list as $row) {
-				$row['km'] = $this->nearby_distance($u_lat, $u_lng, $row['lat'], $row['lng']);
-				$row['km'] = round($row['km'], 1);
-				$res[] = $row;
-			}
-			if (!empty($res)) {
-				foreach ($res as $user) {
-					$ages[] = $user['km'];
-				}
-				array_multisort($ages, SORT_ASC, $res);
-				return $res;
-			}else{
-				return false;
-			}
-		}else{
-			return false;
-		}
-	}
-		
-	//计算经纬度两点之间的距离
-	public function nearby_distance($lat1, $lng1, $lat2, $lng2) 
+        /*
+        *u_lat 用户纬度
+        *u_lng 用户经度
+        *list sql语句
+        */
+        if (!empty($u_lat) && !empty($u_lng)) {
+            foreach ($list as $row) {
+                $row['km'] = $this->nearby_distance($u_lat, $u_lng, $row['lat'], $row['lng']);
+                $row['km'] = round($row['km'], 1);
+                $res[] = $row;
+            }
+            if (!empty($res)) {
+                foreach ($res as $user) {
+                    $ages[] = $user['km'];
+                }
+                array_multisort($ages, SORT_ASC, $res);
+                return $res;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //计算经纬度两点之间的距离
+    public function nearby_distance($lat1, $lng1, $lat2, $lng2)
     {
         $EARTH_RADIUS = 6378.137;
         $radLat1 = $this->rad($lat1);
@@ -204,14 +207,10 @@ class UserController extends BaseController
         //print_r($s2);
     }
 
-    private function rad($d) {
+    private function rad($d)
+    {
         return $d * 3.1415926535898 / 180.0;
     }
 
 
-
-   
-    
-    
-    
 }

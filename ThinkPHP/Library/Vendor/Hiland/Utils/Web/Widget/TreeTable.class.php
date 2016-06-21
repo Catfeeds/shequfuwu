@@ -1,12 +1,12 @@
 <?php
 namespace Vendor\Hiland\Utils\Web\Widget;
 
-/**
- * File name: TreeTable.class.php
- * Author: run.gao 312854458@qq.com Date: 2012-07-24 23:22 GMT+8
- * Description: 通用的表格无限级分类
- * http://www.jb51.net/article/31101.htm
- */
+    /**
+     * File name: TreeTable.class.php
+     * Author: run.gao 312854458@qq.com Date: 2012-07-24 23:22 GMT+8
+     * Description: 通用的表格无限级分类
+     * http://www.jb51.net/article/31101.htm
+     */
 /**
  * 表格展示无限分类是将无线分类已表格的形式表现出来，更好的能体现出分类的所属关系
  * 使用方法：
@@ -76,8 +76,8 @@ class TreeTable
         $this->tdPropertyArray = $tdPropertyArray;
         $this->trPropertyArray = $trPropertyArray;
         $this->tablePropertyArray = $tablePropertyArray;
-        
-        if (! is_array($dataArray))
+
+        if (!is_array($dataArray))
             return false;
         foreach ($dataArray as $k => $v) {
             $this->tableContentArray[$v['id']] = $v;
@@ -90,7 +90,7 @@ class TreeTable
         }
         $this->columnCount = $this->getColumnCount(); // 总行数
         $this->rowCount = $this->getRowCount(); // 总列数
-                                                // 按照arrparentid和id号进行排序
+        // 按照arrparentid和id号进行排序
         $this->sort_arr();
         foreach ($this->tableContentArray as $k => $v) {
             $this->tableContentArray[$k]['row'] = $this->get_row_location($v['id']); // X轴位置
@@ -122,11 +122,11 @@ class TreeTable
         // 先根据arrparentid排序，再根据排序,id号排序
         array_multisort($order_pid_arr, SORT_ASC, SORT_STRING, $order_iscost, SORT_DESC, SORT_NUMERIC, $order_id_arr, SORT_ASC, SORT_NUMERIC, $this->tableContentArray);
         // 获取每一个节点层次
-        for ($column = 1; $column <= $this->columnCount; $column ++) {
+        for ($column = 1; $column <= $this->columnCount; $column++) {
             $row_level = 0;
             foreach ($this->tableContentArray as $key => $node) {
                 if ($node['column'] == $column) {
-                    $row_level ++;
+                    $row_level++;
                     $this->tableContentArray[$key]['column_level'] = $row_level;
                 }
             }
@@ -149,7 +149,7 @@ class TreeTable
     private function get_parent($myid)
     {
         $newarr = array();
-        if (! isset($this->tableContentArray[$myid]))
+        if (!isset($this->tableContentArray[$myid]))
             return false;
         $pid = $this->tableContentArray[$myid]['parentid'];
         $pid = $this->tableContentArray[$pid]['parentid'];
@@ -185,7 +185,7 @@ class TreeTable
     /**
      * 获取当前节点所在的层级
      *
-     * @param $myid 当前节点ID号            
+     * @param $myid 当前节点ID号
      *
      */
     private function get_level($myid, $init = true)
@@ -194,7 +194,7 @@ class TreeTable
         if ($init)
             $level = 1;
         if ($this->tableContentArray[$myid]['parentid']) {
-            $level ++;
+            $level++;
             $this->get_level($this->tableContentArray[$myid]['parentid'], false);
         }
         return $level;
@@ -203,8 +203,8 @@ class TreeTable
     /**
      * 获取当前节点所有底层节点（没有子节点的节点）的数量
      *
-     * @param $myid 节点ID号            
-     * @param $init 第一次加载将情况static变量            
+     * @param $myid 节点ID号
+     * @param $init 第一次加载将情况static变量
      *
      */
     private function get_child_count($myid, $init = true)
@@ -212,16 +212,16 @@ class TreeTable
         static $count = 0;
         if ($init)
             $count = 0;
-        if (! $this->get_child($myid) && $init)
+        if (!$this->get_child($myid) && $init)
             return 0;
-        
+
         $childarr = $this->get_child($myid);
-        if (! empty($childarr)) {
+        if (!empty($childarr)) {
             foreach ($childarr as $v) {
                 $this->get_child_count($v['id'], false);
             }
         } else {
-            $count ++;
+            $count++;
         }
         return $count;
     }
@@ -229,8 +229,8 @@ class TreeTable
     /**
      * 获取节点所有子节点ID号
      *
-     * @param $catid 节点ID号            
-     * @param $init 第一次加载将情况static初始化            
+     * @param $catid 节点ID号
+     * @param $init 第一次加载将情况static初始化
      *
      */
     private function get_arrchildid($myid, $init = true)
@@ -238,7 +238,7 @@ class TreeTable
         static $childid;
         if ($init)
             $childid = '';
-        if (! is_array($this->tableContentArray))
+        if (!is_array($this->tableContentArray))
             return false;
         foreach ($this->tableContentArray as $id => $a) {
             if ($a['parentid'] == $myid) {
@@ -252,12 +252,12 @@ class TreeTable
     /**
      * 获取该节点所有父节点ID号
      *
-     * @param $id 节点ID号            
+     * @param $id 节点ID号
      *
      */
     private function get_arrparentid($id, $arrparentid = '')
     {
-        if (! is_array($this->tableContentArray))
+        if (!is_array($this->tableContentArray))
             return false;
         $parentid = $this->tableContentArray[$id]['parentid'];
         if ($parentid > 0)
@@ -270,7 +270,7 @@ class TreeTable
     /**
      * 获取节点所在地行定位
      *
-     * @param $myid 节点ID号            
+     * @param $myid 节点ID号
      *
      */
     private function get_row_location($myid)
@@ -285,7 +285,7 @@ class TreeTable
                 foreach ($arrparentid as $pid) {
                     foreach ($nodearr as $node_row) {
                         if ($node_row['column'] == $nodearr[$pid]['column'] && $nodearr[$pid]['column_level'] > $node_row['column_level'] && $node_row['child_bottom_num'] == 0) {
-                            $node_row_count ++;
+                            $node_row_count++;
                         }
                     }
                 }
@@ -295,7 +295,7 @@ class TreeTable
                         $node_row_count += $node_row['child_bottom_num'] ? $node_row['child_bottom_num'] : 1;
                     }
                 }
-                $node_row_count ++;
+                $node_row_count++;
                 break;
             }
         }
@@ -310,7 +310,7 @@ class TreeTable
         $rowcount = 0;
         foreach ($this->tableContentArray as $key => $node) {
             if ($node['child_bottom_num'] == 0) {
-                $rowcount ++; // 总行数
+                $rowcount++; // 总行数
             }
         }
         return $rowcount;
@@ -336,28 +336,28 @@ class TreeTable
     public function generateTreeTable()
     {
         $tablePropertyString = '';
-        if (! empty($this->tablePropertyArray) && is_array($this->tablePropertyArray)) {
+        if (!empty($this->tablePropertyArray) && is_array($this->tablePropertyArray)) {
             foreach ($this->tablePropertyArray as $k => $v) {
                 $tablePropertyString .= " $k=\"$v\"";
             }
         }
-        
+
         $trPropertyString = '';
-        if (! empty($this->trPropertyArray) && is_array($this->trPropertyArray)) {
+        if (!empty($this->trPropertyArray) && is_array($this->trPropertyArray)) {
             foreach ($this->trPropertyArray as $k => $v) {
                 $trPropertyString .= " $k=\"$v\"";
             }
         }
-        
+
         $tdPropertyString = '';
-        if (! empty($this->tdPropertyArray) && is_array($this->tdPropertyArray)) {
+        if (!empty($this->tdPropertyArray) && is_array($this->tdPropertyArray)) {
             foreach ($this->tdPropertyArray as $k => $v) {
                 $tdPropertyString .= " $k=\"$v\"";
             }
         }
-        
+
         $table_string = "<table $tablePropertyString>";
-        for ($row = 1; $row <= $this->rowCount; $row ++) {
+        for ($row = 1; $row <= $this->rowCount; $row++) {
             $table_string .= "\r\t<tr $trPropertyString>";
             foreach ($this->tableContentArray as $v) {
                 if ($v['row'] == $row) {

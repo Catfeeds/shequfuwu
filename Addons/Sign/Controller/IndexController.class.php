@@ -11,6 +11,7 @@ namespace Addons\Sign\Controller;
 class IndexController extends InitController
 {
     public $appUrl = "";
+
     public function __construct()
     {
         parent::__construct();
@@ -90,7 +91,9 @@ class IndexController extends InitController
             $this->ajaxReturn($result);
         }
     }
-    public function sign(){
+
+    public function sign()
+    {
         $today = date("Y-m-d");
         $where["time"] = array("like", $today . "%");
         $where["user_id"] = session("userId");
@@ -103,13 +106,13 @@ class IndexController extends InitController
         $user = M("User")->where(array("id" => session("userId")))->find();
 
         $count = 0;
-        do{
+        do {
             $count++;
             $yesterday = date("Y-m-d", strtotime("-$count day"));
             $where["time"] = array("like", $yesterday . "%");
             $record = D("AddonSignRecord")->where($where)->find();
         } while ($record);
-        $continue_sign = $count-1;
+        $continue_sign = $count - 1;
 
         $config = M("AddonSignConfig")->find();
         if ($config) {

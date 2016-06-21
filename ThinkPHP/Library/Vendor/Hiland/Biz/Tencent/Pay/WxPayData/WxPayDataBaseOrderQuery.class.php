@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 订单查询输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseOrderQuery extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
     /**
      * 设置微信的订单号，优先使用
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTransaction_id($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
      * 判断微信的订单号，优先使用是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTransaction_idSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
     /**
      * 设置商户系统内部的订单号，当没提供transaction_id时需要传这个。
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOut_trade_no($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
      * 判断商户系统内部的订单号，当没提供transaction_id时需要传这个。是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOut_trade_noSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
     /**
      * 设置随机字符串，不长于32位。推荐随机数生成算法
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseOrderQuery extends WxPayDataBase
      * 判断随机字符串，不长于32位。推荐随机数生成算法是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {

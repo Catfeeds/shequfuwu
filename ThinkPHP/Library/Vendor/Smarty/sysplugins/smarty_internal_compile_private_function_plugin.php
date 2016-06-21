@@ -15,7 +15,8 @@
  * @package Smarty
  * @subpackage Compiler
  */
-class Smarty_Internal_Compile_Private_Function_Plugin extends Smarty_Internal_CompileBase {
+class Smarty_Internal_Compile_Private_Function_Plugin extends Smarty_Internal_CompileBase
+{
 
     /**
      * Attribute definition: Overwrites base class.

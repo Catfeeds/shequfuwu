@@ -86,23 +86,23 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      *
      * @link http://www.php.net/manual/en/openssl.pkcs7.flags.php
      *
-     * @param string       $certificate
-     * @param string|array $privateKey  If the key needs an passphrase use array('file-location', 'passphrase') instead
-     * @param int          $signOptions Bitwise operator options for openssl_pkcs7_sign()
-     * @param string       $extraCerts  A file containing intermediate certificates needed by the signing certificate
+     * @param string $certificate
+     * @param string|array $privateKey If the key needs an passphrase use array('file-location', 'passphrase') instead
+     * @param int $signOptions Bitwise operator options for openssl_pkcs7_sign()
+     * @param string $extraCerts A file containing intermediate certificates needed by the signing certificate
      *
      * @return Swift_Signers_SMimeSigner
      */
     public function setSignCertificate($certificate, $privateKey = null, $signOptions = PKCS7_DETACHED, $extraCerts = null)
     {
-        $this->signCertificate = 'file://'.str_replace('\\', '/', realpath($certificate));
+        $this->signCertificate = 'file://' . str_replace('\\', '/', realpath($certificate));
 
         if (null !== $privateKey) {
             if (is_array($privateKey)) {
                 $this->signPrivateKey = $privateKey;
-                $this->signPrivateKey[0] = 'file://'.str_replace('\\', '/', realpath($privateKey[0]));
+                $this->signPrivateKey[0] = 'file://' . str_replace('\\', '/', realpath($privateKey[0]));
             } else {
-                $this->signPrivateKey = 'file://'.str_replace('\\', '/', realpath($privateKey));
+                $this->signPrivateKey = 'file://' . str_replace('\\', '/', realpath($privateKey));
             }
         }
 
@@ -121,7 +121,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      * @link http://nl3.php.net/manual/en/openssl.ciphers.php
      *
      * @param string|array $recipientCerts Either an single X.509 certificate, or an assoc array of X.509 certificates.
-     * @param int          $cipher
+     * @param int $cipher
      *
      * @return Swift_Signers_SMimeSigner
      */
@@ -131,10 +131,10 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
             $this->encryptCert = array();
 
             foreach ($recipientCerts as $cert) {
-                $this->encryptCert[] = 'file://'.str_replace('\\', '/', realpath($cert));
+                $this->encryptCert[] = 'file://' . str_replace('\\', '/', realpath($cert));
             }
         } else {
-            $this->encryptCert = 'file://'.str_replace('\\', '/', realpath($recipientCerts));
+            $this->encryptCert = 'file://' . str_replace('\\', '/', realpath($recipientCerts));
         }
 
         if (null !== $cipher) {
@@ -234,7 +234,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
     /**
      * @param Swift_InputByteStream $inputStream
-     * @param Swift_Message         $mimeEntity
+     * @param Swift_Message $mimeEntity
      */
     protected function toSMimeByteStream(Swift_InputByteStream $inputStream, Swift_Message $message)
     {
@@ -283,7 +283,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     }
 
     /**
-     * @param Swift_FileStream      $outputStream
+     * @param Swift_FileStream $outputStream
      * @param Swift_InputByteStream $inputStream
      *
      * @throws Swift_IoException
@@ -305,7 +305,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     }
 
     /**
-     * @param Swift_FileStream      $outputStream
+     * @param Swift_FileStream $outputStream
      * @param Swift_InputByteStream $is
      *
      * @throws Swift_IoException
@@ -323,7 +323,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
     /**
      * @param Swift_OutputByteStream $fromStream
-     * @param Swift_InputByteStream  $toStream
+     * @param Swift_InputByteStream $toStream
      */
     protected function copyFromOpenSSLOutput(Swift_OutputByteStream $fromStream, Swift_InputByteStream $toStream)
     {
@@ -349,7 +349,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      * Merges an OutputByteStream to Swift_Message.
      *
      * @param Swift_OutputByteStream $fromStream
-     * @param Swift_Message          $message
+     * @param Swift_Message $message
      */
     protected function streamToMime(Swift_OutputByteStream $fromStream, Swift_Message $message)
     {
@@ -378,7 +378,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
         foreach ($headerLines as $headerLine) {
             // Line separated
             if (ctype_space($headerLines[0]) || false === strpos($headerLine, ':')) {
-                $headers[$currentHeaderName] .= ' '.trim($headerLine);
+                $headers[$currentHeaderName] .= ' ' . trim($headerLine);
                 continue;
             }
 

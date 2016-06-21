@@ -10,7 +10,8 @@
  * @author Uwe Tews
  * @author Rodney Rehm
  */
-class Smarty_Internal_Resource_PHP extends Smarty_Resource_Uncompiled {
+class Smarty_Internal_Resource_PHP extends Smarty_Resource_Uncompiled
+{
     /**
      * container for short_open_tag directive's value before executing PHP templates
      * @var string
@@ -23,7 +24,7 @@ class Smarty_Internal_Resource_PHP extends Smarty_Resource_Uncompiled {
      */
     public function __construct()
     {
-        $this->short_open_tag = ini_get( 'short_open_tag' );
+        $this->short_open_tag = ini_get('short_open_tag');
     }
 
     /**
@@ -33,7 +34,7 @@ class Smarty_Internal_Resource_PHP extends Smarty_Resource_Uncompiled {
      * @param Smarty_Internal_Template $_template template object
      * @return void
      */
-    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template=null)
+    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null)
     {
         $source->filepath = $this->buildFilepath($source, $_template);
 
@@ -105,9 +106,9 @@ class Smarty_Internal_Resource_PHP extends Smarty_Resource_Uncompiled {
         extract($_template->getTemplateVars());
 
         // include PHP template with short open tags enabled
-        ini_set( 'short_open_tag', '1' );
+        ini_set('short_open_tag', '1');
         include($source->filepath);
-        ini_set( 'short_open_tag', $this->short_open_tag );
+        ini_set('short_open_tag', $this->short_open_tag);
     }
 }
 

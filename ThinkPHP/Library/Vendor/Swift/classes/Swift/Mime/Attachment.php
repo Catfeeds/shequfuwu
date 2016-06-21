@@ -21,11 +21,11 @@ class Swift_Mime_Attachment extends Swift_Mime_SimpleMimeEntity
     /**
      * Create a new Attachment with $headers, $encoder and $cache.
      *
-     * @param Swift_Mime_HeaderSet      $headers
+     * @param Swift_Mime_HeaderSet $headers
      * @param Swift_Mime_ContentEncoder $encoder
-     * @param Swift_KeyCache            $cache
-     * @param Swift_Mime_Grammar        $grammar
-     * @param array                     $mimeTypes optional
+     * @param Swift_KeyCache $cache
+     * @param Swift_Mime_Grammar $grammar
+     * @param array $mimeTypes optional
      */
     public function __construct(Swift_Mime_HeaderSet $headers, Swift_Mime_ContentEncoder $encoder, Swift_KeyCache $cache, Swift_Mime_Grammar $grammar, $mimeTypes = array())
     {
@@ -128,7 +128,7 @@ class Swift_Mime_Attachment extends Swift_Mime_SimpleMimeEntity
      * Set the file that this attachment is for.
      *
      * @param Swift_FileStream $file
-     * @param string           $contentType optional
+     * @param string $contentType optional
      *
      * @return Swift_Mime_Attachment
      */

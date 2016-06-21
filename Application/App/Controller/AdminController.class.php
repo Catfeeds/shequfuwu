@@ -54,7 +54,7 @@ class AdminController extends BaseController
         $data ["status"] = "1";
         $data ["id"] = $_GET ["id"];
         M("Order")->save($data);
-        
+
         $order = D("Order")->getOrder(array("id" => $_GET ["id"]));
         $getUrl = "http://" . I("server.HTTP_HOST") . U("Admin/Wechat/sendTplMsgDeliver", array("order_id" => $_GET ["id"], "shopId" => $order["shop_id"]));
         http_get($getUrl);

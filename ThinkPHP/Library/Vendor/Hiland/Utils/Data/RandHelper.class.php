@@ -6,7 +6,7 @@ class RandHelper
 
     /**
      * 生成随机字符串
-     * 
+     *
      * @param int $length
      *            字符串长度
      * @param string $format
@@ -21,12 +21,12 @@ class RandHelper
     public static function rand($length = 8, $format = 'ALL')
     {
         $result = '';
-        
+
         $upperLetter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $lowerLetter = 'abcdefghijklmnopqrstuvwxyz';
         $digital = '0123456789';
         $sepcial = '~!@#$%^&*()_+|}{<>?-=\/,.';
-        
+
         switch ($format) {
             case 'ALL':
                 $chars = $upperLetter . $lowerLetter . $digital . $sepcial;
@@ -44,13 +44,13 @@ class RandHelper
                 $chars = $upperLetter . $lowerLetter . $digital;
                 break;
         }
-        
+
         $charCount = strlen($chars);
-        for ($i = 0; $i < $length; $i ++) {
+        for ($i = 0; $i < $length; $i++) {
             $position = mt_rand(0, $charCount);
             $result .= $chars[$position];
         }
-        
+
         return $result;
     }
 }

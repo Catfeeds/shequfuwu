@@ -52,6 +52,7 @@ class UserModel extends RelationModel
 
         return $data;
     }
+
     public function getUser($condition = array(), $relation = false)
     {
         $data = $this->where($condition);
@@ -61,7 +62,8 @@ class UserModel extends RelationModel
         $data = $data->field('password', true)->find();
 
         return $data;
-    }    
+    }
+
     public function getUserList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
     {
         $list = $this->where($condition);
@@ -87,6 +89,7 @@ class UserModel extends RelationModel
 
         return $list;
     }
+
     public function getUserListCount($condition = array())
     {
         $count = $this->where($condition)->count();

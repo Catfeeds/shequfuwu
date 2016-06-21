@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel */
@@ -62,148 +62,151 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Writer/IWriter.php';
  */
 class PHPExcel_Writer_Serialized implements PHPExcel_Writer_IWriter
 {
-	/**
-	 * Private PHPExcel
-	 *
-	 * @var PHPExcel
-	 */
-	private $_spreadSheet;
+    /**
+     * Private PHPExcel
+     *
+     * @var PHPExcel
+     */
+    private $_spreadSheet;
 
     /**
      * Create a new PHPExcel_Writer_Serialized
      *
-	 * @param 	PHPExcel	$pPHPExcel
+     * @param    PHPExcel $pPHPExcel
      */
     public function __construct(PHPExcel $pPHPExcel = null)
     {
-    	// Assign PHPExcel
-		$this->setPHPExcel($pPHPExcel);
+        // Assign PHPExcel
+        $this->setPHPExcel($pPHPExcel);
     }
 
-	/**
-	 * Save PHPExcel to file
-	 *
-	 * @param 	string 		$pFileName
-	 * @throws 	Exception
-	 */
-	public function save($pFilename = null)
-	{
-		if (!is_null($this->_spreadSheet)) {
-			// Garbage collect
-			$this->_spreadSheet->garbageCollect();
+    /**
+     * Save PHPExcel to file
+     *
+     * @param    string $pFileName
+     * @throws    Exception
+     */
+    public function save($pFilename = null)
+    {
+        if (!is_null($this->_spreadSheet)) {
+            // Garbage collect
+            $this->_spreadSheet->garbageCollect();
 
-			// Garbage collect...
-			foreach ($this->_spreadSheet->getAllSheets() as $sheet) {
-        		$sheet->garbageCollect();
-			}
+            // Garbage collect...
+            foreach ($this->_spreadSheet->getAllSheets() as $sheet) {
+                $sheet->garbageCollect();
+            }
 
-			// Create new ZIP file and open it for writing
-			$objZip = new ZipArchive();
+            // Create new ZIP file and open it for writing
+            $objZip = new ZipArchive();
 
-			// Try opening the ZIP file
-			if ($objZip->open($pFilename, ZIPARCHIVE::OVERWRITE) !== true) {
-				if ($objZip->open($pFilename, ZIPARCHIVE::CREATE) !== true) {
-					throw new Exception("Could not open " . $pFilename . " for writing.");
-				}
-			}
+            // Try opening the ZIP file
+            if ($objZip->open($pFilename, ZIPARCHIVE::OVERWRITE) !== true) {
+                if ($objZip->open($pFilename, ZIPARCHIVE::CREATE) !== true) {
+                    throw new Exception("Could not open " . $pFilename . " for writing.");
+                }
+            }
 
-			// Add media
-			$sheetCount = $this->_spreadSheet->getSheetCount();
-			for ($i = 0; $i < $sheetCount; ++$i) {
-				for ($j = 0; $j < $this->_spreadSheet->getSheet($i)->getDrawingCollection()->count(); ++$j) {
-					if ($this->_spreadSheet->getSheet($i)->getDrawingCollection()->offsetGet($j) instanceof PHPExcel_Worksheet_BaseDrawing) {
-						$imgTemp = $this->_spreadSheet->getSheet($i)->getDrawingCollection()->offsetGet($j);
-						$objZip->addFromString('media/' . $imgTemp->getFilename(), file_get_contents($imgTemp->getPath()));
-					}
-				}
-			}
+            // Add media
+            $sheetCount = $this->_spreadSheet->getSheetCount();
+            for ($i = 0; $i < $sheetCount; ++$i) {
+                for ($j = 0; $j < $this->_spreadSheet->getSheet($i)->getDrawingCollection()->count(); ++$j) {
+                    if ($this->_spreadSheet->getSheet($i)->getDrawingCollection()->offsetGet($j) instanceof PHPExcel_Worksheet_BaseDrawing) {
+                        $imgTemp = $this->_spreadSheet->getSheet($i)->getDrawingCollection()->offsetGet($j);
+                        $objZip->addFromString('media/' . $imgTemp->getFilename(), file_get_contents($imgTemp->getPath()));
+                    }
+                }
+            }
 
-			// Add phpexcel.xml to the document, which represents a PHP serialized PHPExcel object
-			$objZip->addFromString('phpexcel.xml', $this->_writeSerialized($this->_spreadSheet, $pFilename));
+            // Add phpexcel.xml to the document, which represents a PHP serialized PHPExcel object
+            $objZip->addFromString('phpexcel.xml', $this->_writeSerialized($this->_spreadSheet, $pFilename));
 
-			// Close file
-			if ($objZip->close() === false) {
-				throw new Exception("Could not close zip file $pFilename.");
-			}
-		} else {
-			throw new Exception("PHPExcel object unassigned.");
-		}
-	}
+            // Close file
+            if ($objZip->close() === false) {
+                throw new Exception("Could not close zip file $pFilename.");
+            }
+        } else {
+            throw new Exception("PHPExcel object unassigned.");
+        }
+    }
 
-	/**
-	 * Get PHPExcel object
-	 *
-	 * @return PHPExcel
-	 * @throws Exception
-	 */
-	public function getPHPExcel() {
-		if (!is_null($this->_spreadSheet)) {
-			return $this->_spreadSheet;
-		} else {
-			throw new Exception("No PHPExcel assigned.");
-		}
-	}
+    /**
+     * Get PHPExcel object
+     *
+     * @return PHPExcel
+     * @throws Exception
+     */
+    public function getPHPExcel()
+    {
+        if (!is_null($this->_spreadSheet)) {
+            return $this->_spreadSheet;
+        } else {
+            throw new Exception("No PHPExcel assigned.");
+        }
+    }
 
-	/**
-	 * Get PHPExcel object
-	 *
-	 * @param 	PHPExcel 	$pPHPExcel	PHPExcel object
-	 * @throws	Exception
-	 * @return PHPExcel_Writer_Serialized
-	 */
-	public function setPHPExcel(PHPExcel $pPHPExcel = null) {
-		$this->_spreadSheet = $pPHPExcel;
-		return $this;
-	}
+    /**
+     * Get PHPExcel object
+     *
+     * @param    PHPExcel $pPHPExcel PHPExcel object
+     * @throws    Exception
+     * @return PHPExcel_Writer_Serialized
+     */
+    public function setPHPExcel(PHPExcel $pPHPExcel = null)
+    {
+        $this->_spreadSheet = $pPHPExcel;
+        return $this;
+    }
 
-	/**
-	 * Serialize PHPExcel object to XML
-	 *
-	 * @param 	PHPExcel	$pPHPExcel
-	 * @param 	string		$pFilename
-	 * @return 	string 		XML Output
-	 * @throws 	Exception
-	 */
-	private function _writeSerialized(PHPExcel $pPHPExcel = null, $pFilename = '')
-	{
-		// Clone $pPHPExcel
-		$pPHPExcel = clone $pPHPExcel;
+    /**
+     * Serialize PHPExcel object to XML
+     *
+     * @param    PHPExcel $pPHPExcel
+     * @param    string $pFilename
+     * @return    string        XML Output
+     * @throws    Exception
+     */
+    private function _writeSerialized(PHPExcel $pPHPExcel = null, $pFilename = '')
+    {
+        // Clone $pPHPExcel
+        $pPHPExcel = clone $pPHPExcel;
 
-		// Update media links
-		$sheetCount = $pPHPExcel->getSheetCount();
-		for ($i = 0; $i < $sheetCount; ++$i) {
-			for ($j = 0; $j < $pPHPExcel->getSheet($i)->getDrawingCollection()->count(); ++$j) {
-				if ($pPHPExcel->getSheet($i)->getDrawingCollection()->offsetGet($j) instanceof PHPExcel_Worksheet_BaseDrawing) {
-					$imgTemp =& $pPHPExcel->getSheet($i)->getDrawingCollection()->offsetGet($j);
-					$imgTemp->setPath('zip://' . $pFilename . '#media/' . $imgTemp->getFilename(), false);
-				}
-			}
-		}
+        // Update media links
+        $sheetCount = $pPHPExcel->getSheetCount();
+        for ($i = 0; $i < $sheetCount; ++$i) {
+            for ($j = 0; $j < $pPHPExcel->getSheet($i)->getDrawingCollection()->count(); ++$j) {
+                if ($pPHPExcel->getSheet($i)->getDrawingCollection()->offsetGet($j) instanceof PHPExcel_Worksheet_BaseDrawing) {
+                    $imgTemp =& $pPHPExcel->getSheet($i)->getDrawingCollection()->offsetGet($j);
+                    $imgTemp->setPath('zip://' . $pFilename . '#media/' . $imgTemp->getFilename(), false);
+                }
+            }
+        }
 
-		// Create XML writer
-		$objWriter = new xmlWriter();
-		$objWriter->openMemory();
-		$objWriter->setIndent(true);
+        // Create XML writer
+        $objWriter = new xmlWriter();
+        $objWriter->openMemory();
+        $objWriter->setIndent(true);
 
-		// XML header
-		$objWriter->startDocument('1.0','UTF-8','yes');
+        // XML header
+        $objWriter->startDocument('1.0', 'UTF-8', 'yes');
 
-		// PHPExcel
-		$objWriter->startElement('PHPExcel');
-		$objWriter->writeAttribute('version', '1.7.0');
+        // PHPExcel
+        $objWriter->startElement('PHPExcel');
+        $objWriter->writeAttribute('version', '1.7.0');
 
-			// Comment
-			$objWriter->writeComment('This file has been generated using PHPExcel v1.7.0 (http://www.codeplex.com/PHPExcel). It contains a base64 encoded serialized version of the PHPExcel internal object.');
+        // Comment
+        $objWriter->writeComment('This file has been generated using PHPExcel v1.7.0 (http://www.codeplex.com/PHPExcel). It contains a base64 encoded serialized version of the PHPExcel internal object.');
 
-			// Data
-			$objWriter->startElement('data');
-				$objWriter->writeCData( base64_encode(serialize($pPHPExcel)) );
-			$objWriter->endElement();
+        // Data
+        $objWriter->startElement('data');
+        $objWriter->writeCData(base64_encode(serialize($pPHPExcel)));
+        $objWriter->endElement();
 
-		$objWriter->endElement();
+        $objWriter->endElement();
 
-		// Return
-		return $objWriter->outputMemory(true);
-	}
+        // Return
+        return $objWriter->outputMemory(true);
+    }
 }
+
 ?>

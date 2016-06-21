@@ -88,7 +88,8 @@
                                         {$ads.time}
                                     </td>
                                     <td class="table-action"><a
-                                            href="{:U('Home/Shop/modifyAds',array('id'=>$ads['id']))}">修改</a><a class="deleteConfirm"
+                                            href="{:U('Home/Shop/modifyAds',array('id'=>$ads['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Home/Shop/delAds',array('id'=>$ads['id']))}">删除</a></td>
                                 </tr>
                             </volist>
@@ -97,7 +98,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Home/Shop/delAds\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Home/Shop/delAds\')}')">全部删除
                                     </a>
                                 </div>
                                 <div class="pull-right">
@@ -115,11 +117,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

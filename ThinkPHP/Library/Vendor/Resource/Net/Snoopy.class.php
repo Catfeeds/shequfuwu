@@ -861,14 +861,14 @@ class Snoopy
                 if (isset($this->capath))
                     $context_opts['ssl']['capath'] = $this->capath;
             }
-                    
+
             $host = 'ssl://' . $host;
         }
 
         $context = stream_context_create($context_opts);
 
         if (version_compare(PHP_VERSION, '5.0.0', '>')) {
-            if($this->scheme == 'http')
+            if ($this->scheme == 'http')
                 $host = "tcp://" . $host;
             $fp = stream_socket_client(
                 "$host:$port",

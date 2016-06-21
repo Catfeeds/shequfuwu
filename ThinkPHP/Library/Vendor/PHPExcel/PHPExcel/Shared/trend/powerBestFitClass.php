@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
 }
 
 require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php';
@@ -46,49 +46,55 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php';
  */
 class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 {
-	protected $_bestFitType		= 'power';
+    protected $_bestFitType = 'power';
 
 
-	public function getValueOfYForX($xValue) {
-		return $this->getIntersect() * pow(($xValue - $this->_Xoffset),$this->getSlope());
-	}	//	function getValueOfYForX()
+    public function getValueOfYForX($xValue)
+    {
+        return $this->getIntersect() * pow(($xValue - $this->_Xoffset), $this->getSlope());
+    }    //	function getValueOfYForX()
 
 
-	public function getValueOfXForY($yValue) {
-		return pow((($yValue + $this->_Yoffset) / $this->getIntersect()),(1 / $this->getSlope()));
-	}	//	function getValueOfXForY()
+    public function getValueOfXForY($yValue)
+    {
+        return pow((($yValue + $this->_Yoffset) / $this->getIntersect()), (1 / $this->getSlope()));
+    }    //	function getValueOfXForY()
 
 
-	public function getEquation($dp=0) {
-		$slope = $this->getSlope($dp);
-		$intersect = $this->getIntersect($dp);
+    public function getEquation($dp = 0)
+    {
+        $slope = $this->getSlope($dp);
+        $intersect = $this->getIntersect($dp);
 
-		return 'Y = '.$intersect.' * X^'.$slope;
-	}	//	function getEquation()
-
-
-	public function getIntersect($dp=0) {
-		if ($dp != 0) {
-			return round(exp($this->_intersect),$dp);
-		}
-		return exp($this->_intersect);
-	}	//	function getIntersect()
+        return 'Y = ' . $intersect . ' * X^' . $slope;
+    }    //	function getEquation()
 
 
-	private function _power_regression($yValues, $xValues, $const) {
-		$mArray = $xValues;
-		sort($mArray,SORT_NUMERIC);
-		$xValues = array_map('log',$xValues);
-		$yValues = array_map('log',$yValues);
+    public function getIntersect($dp = 0)
+    {
+        if ($dp != 0) {
+            return round(exp($this->_intersect), $dp);
+        }
+        return exp($this->_intersect);
+    }    //	function getIntersect()
 
-		$this->_leastSquareFit($yValues, $xValues, $const);
-	}	//	function _power_regression()
+
+    private function _power_regression($yValues, $xValues, $const)
+    {
+        $mArray = $xValues;
+        sort($mArray, SORT_NUMERIC);
+        $xValues = array_map('log', $xValues);
+        $yValues = array_map('log', $yValues);
+
+        $this->_leastSquareFit($yValues, $xValues, $const);
+    }    //	function _power_regression()
 
 
-	function __construct($yValues, $xValues=array(), $const=True) {
-		if (parent::__construct($yValues, $xValues) !== False) {
-			$this->_power_regression($yValues, $xValues, $const);
-		}
-	}	//	function __construct()
+    function __construct($yValues, $xValues = array(), $const = True)
+    {
+        if (parent::__construct($yValues, $xValues) !== False) {
+            $this->_power_regression($yValues, $xValues, $const);
+        }
+    }    //	function __construct()
 
-}	//	class powerBestFit
+}    //	class powerBestFit

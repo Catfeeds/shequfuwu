@@ -71,7 +71,7 @@ class UserController extends BaseController
         $this->assign("page", $show);// 赋值分页输出
         $this->display();
     }
-    
+
     public function modifyUser()
     {
         $user = D("User")->getUser(array("id" => I("get.id")), true);

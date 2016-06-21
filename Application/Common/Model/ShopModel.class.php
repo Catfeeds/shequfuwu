@@ -86,17 +86,17 @@ class ShopModel extends RelationModel
     {
         $this->where(array("id" => array("in", $ids)))->delete();
     }
-    
+
 
     //店铺远近排序   
-    public function range($u_lat,$u_lon,$list)
+    public function range($u_lat, $u_lon, $list)
     {
         /*
         *u_lat 用户纬度
         *u_lon 用户经度
         *list sql语句
         */
-        if(!empty($u_lat) && !empty($u_lon)){
+        if (!empty($u_lat) && !empty($u_lon)) {
             foreach ($list as $row) {
                 $row['km'] = $this->nearby_distance($u_lat, $u_lon, $row['lat'], $row['lon']);
                 $row['km'] = round($row['km'], 1);
@@ -108,16 +108,16 @@ class ShopModel extends RelationModel
                 }
                 array_multisort($ages, SORT_ASC, $res);
                 return $res;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
-        
+
     //计算经纬度两点之间的距离
-    public function nearby_distance($lat1, $lon1, $lat2, $lon2) 
+    public function nearby_distance($lat1, $lon1, $lat2, $lon2)
     {
         $EARTH_RADIUS = 6378.137;
         $radLat1 = $this->rad($lat1);
@@ -131,8 +131,9 @@ class ShopModel extends RelationModel
         //print_r($s2);
     }
 
-    private function rad($d) {
+    private function rad($d)
+    {
         return $d * 3.1415926535898 / 180.0;
-    } 
+    }
 
 }

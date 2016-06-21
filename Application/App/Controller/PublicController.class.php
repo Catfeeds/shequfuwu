@@ -59,8 +59,7 @@ class PublicController extends Controller
         $this->oauthDebug();
 
         //dump('sssssssssssssssssf');
-        if (!session("userId"))
-        {
+        if (!session("userId")) {
             //dump('ooooooooo');
             $mate = new ModelMate('config');
             $config = $mate->get(1);

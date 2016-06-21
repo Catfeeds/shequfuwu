@@ -264,7 +264,7 @@ class PayController extends BaseController
             // 支付完成异步通知调用地址
             'notify_url' => $this->appUrl . U('App/Pay/alipayNotifyUrl'),
             // 支付完成同步返回地址
-            'return_url' => $this->appUrl . U('App/Pay/alipayReturnUrl', array("id" => I("get.id"),"shop_id" => I("get.shop_id"))),
+            'return_url' => $this->appUrl . U('App/Pay/alipayReturnUrl', array("id" => I("get.id"), "shop_id" => I("get.shop_id"))),
             // 证书路径
             'cacert' => DATA_PATH . 'cacert.pem',
             // 支付宝商家 ID
@@ -290,7 +290,7 @@ class PayController extends BaseController
 //        }
         $order = D("Order")->get(array("id" => I("get.id")));
         $shopId = I("get.shop_id");
-        
+
         Vendor("Alipay.Alipay");
         Vendor("Detection.Mobile_Detect");
 
@@ -315,7 +315,7 @@ class PayController extends BaseController
                 'subject' => $subject,
                 'body' => $body,
                 'total_fee' => $total_fee,
-                'merchant_url' => $this->appUrl . __ROOT__ . "/App/Index/index/shopid/".$shopId."#/order/" . I("get.id"),
+                'merchant_url' => $this->appUrl . __ROOT__ . "/App/Index/index/shopid/" . $shopId . "#/order/" . I("get.id"),
                 'req_id' => date('Ymdhis-')
             ));
             $url = $alipay->buildRequestUrl($params);
@@ -418,7 +418,7 @@ class PayController extends BaseController
     public function alipayReturnUrl()
     {
         // $url = $this->appUrl . __ROOT__ . "/App/Index/index#/order/" . I("get.id");
-        $url = $this->appUrl . __ROOT__ . "/App/Index/index/shopid/".I("get.shop_id")."#/order/" . I("get.id");
+        $url = $this->appUrl . __ROOT__ . "/App/Index/index/shopid/" . I("get.shop_id") . "#/order/" . I("get.id");
         // file_put_contents('1.txt',$url );
         header("location: $url");
     }

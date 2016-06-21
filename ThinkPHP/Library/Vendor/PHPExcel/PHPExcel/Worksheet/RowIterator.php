@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel */
@@ -46,7 +46,7 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Worksheet/Row.php';
 
 /**
  * PHPExcel_Worksheet_RowIterator
- * 
+ *
  * Used to iterate rows in a PHPExcel_Worksheet
  *
  * @category   PHPExcel
@@ -55,41 +55,44 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Worksheet/Row.php';
  */
 class PHPExcel_Worksheet_RowIterator extends IteratorIterator
 {
-	/**
-	 * PHPExcel_Worksheet to iterate
-	 *
-	 * @var PHPExcel_Worksheet
-	 */
-	private $_subject;
-	
-	/**
-	 * Current iterator position
-	 *
-	 * @var int
-	 */
-	private $_position = 0;
+    /**
+     * PHPExcel_Worksheet to iterate
+     *
+     * @var PHPExcel_Worksheet
+     */
+    private $_subject;
 
-	/**
-	 * Create a new row iterator
-	 *
-	 * @param PHPExcel_Worksheet 		$subject
-	 */
-	public function __construct(PHPExcel_Worksheet $subject = null) {
-		// Set subject
-		$this->_subject = $subject;
-	}
-	
-	/**
-	 * Destructor
-	 */
-	public function __destruct() {
-		unset($this->_subject);
-	}
-	
-	/**
-	 * Rewind iterator
-	 */
-    public function rewind() {
+    /**
+     * Current iterator position
+     *
+     * @var int
+     */
+    private $_position = 0;
+
+    /**
+     * Create a new row iterator
+     *
+     * @param PHPExcel_Worksheet $subject
+     */
+    public function __construct(PHPExcel_Worksheet $subject = null)
+    {
+        // Set subject
+        $this->_subject = $subject;
+    }
+
+    /**
+     * Destructor
+     */
+    public function __destruct()
+    {
+        unset($this->_subject);
+    }
+
+    /**
+     * Rewind iterator
+     */
+    public function rewind()
+    {
         $this->_position = 1;
     }
 
@@ -98,8 +101,9 @@ class PHPExcel_Worksheet_RowIterator extends IteratorIterator
      *
      * @return PHPExcel_Worksheet_Row
      */
-    public function current() {
-    	return new PHPExcel_Worksheet_Row($this->_subject, $this->_position);
+    public function current()
+    {
+        return new PHPExcel_Worksheet_Row($this->_subject, $this->_position);
     }
 
     /**
@@ -107,14 +111,16 @@ class PHPExcel_Worksheet_RowIterator extends IteratorIterator
      *
      * @return int
      */
-    public function key() {
+    public function key()
+    {
         return $this->_position;
     }
 
     /**
      * Next value
      */
-    public function next() {
+    public function next()
+    {
         ++$this->_position;
     }
 
@@ -123,7 +129,8 @@ class PHPExcel_Worksheet_RowIterator extends IteratorIterator
      *
      * @return boolean
      */
-    public function valid() {
+    public function valid()
+    {
         return $this->_position <= $this->_subject->getHighestRow();
     }
 }

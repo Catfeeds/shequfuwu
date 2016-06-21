@@ -78,7 +78,8 @@
                                             <else/>
                                             <img src="__PUBLIC__/Uploads/{$wxReply.savepath}{$wxReply.savename}">
                                         </empty>
-                                        <input class="form-control" name="file_id" id="file_id" placeholder="" value="{$wxReply['id']?$wxReply['id']:0}"
+                                        <input class="form-control" name="file_id" id="file_id" placeholder=""
+                                               value="{$wxReply['id']?$wxReply['id']:0}"
                                                type="hidden">
 
                                         <div class="edit_pic_mask">
@@ -131,40 +132,40 @@
         if ('{$wxReply}') {
             $('input[name="id"]').val('{$wxReply.id}');
             $('select[name="type"]').val('{$wxReply.type}');
-            
-            if('{$wxReply.key}' == 'subscribe'){
+
+            if ('{$wxReply.key}' == 'subscribe') {
                 $('#keyType').val('subscribe');
                 $('input[name="key"]').parent().parent().hide();
-            }else{
+            } else {
                 $('#keyType').val('');
             }
         }
 
-        if($('#changeTypeId').val() == "text"){
+        if ($('#changeTypeId').val() == "text") {
             $('#descriptionGroup').hide();
             $('#imageGroup').hide();
             $('#urlGroup').hide();
         }
     });
 
-    function changeType(obj){
+    function changeType(obj) {
         $('#descriptionGroup').show();
         $('#imageGroup').show();
         $('#urlGroup').show();
 
-        if($(obj).val() == "text"){
+        if ($(obj).val() == "text") {
             $('#descriptionGroup').hide();
             $('#imageGroup').hide();
             $('#urlGroup').hide();
         }
     }
 
-    function changeKey(obj){
+    function changeKey(obj) {
         var key = $(obj).val();
         $('input[name="key"]').val(key);
-        if(key == "subscribe"){
+        if (key == "subscribe") {
             $('input[name="key"]').parent().parent().hide();
-        }else{
+        } else {
             $('input[name="key"]').parent().parent().show();
         }
 

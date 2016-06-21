@@ -88,7 +88,7 @@ class CommentModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
-    
+
     //崔
     public function getComment($condition = array(), $relation = false)
     {
@@ -133,8 +133,7 @@ class CommentModel extends RelationModel
     public function addAllComment($data)
     {
         $this->addAll($data);
-    }    
-    
-    
-    
+    }
+
+
 }

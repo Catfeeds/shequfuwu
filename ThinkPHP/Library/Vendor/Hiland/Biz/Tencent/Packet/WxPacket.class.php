@@ -59,10 +59,10 @@ class WxPacket
             if ($this->checkSignParameters() == false) { // 检查生成签名参数
                 throw new WechatException("生成签名参数缺失！" . "<br>");
             }
-            
+
             $unSignParaString = WebHelper::formatArrayAsUrlParameter($this->parameters);
-            $result= CipherHelper::signature($unSignParaString, $key); 
-            
+            $result = CipherHelper::signature($unSignParaString, $key);
+
             return $result;
         } catch (WechatException $e) {
             die($e->errorMessage());
@@ -99,7 +99,7 @@ class WxPacket
         } catch (WechatException $e) {
             die('error' . $e->errorMessage());
         }
-        
+
         return $xml;
     }
 
@@ -114,19 +114,19 @@ class WxPacket
         foreach ($paraArray as $k => $v) {
             $this->parameters[$k] = $v;
         }
-        
+
         $postXml = $this->generatePacketXml();
         $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack';
-        
+
         $path = WechatConfig::CERTABSOLUTELYPATH(true);
-        
+
         $certfilearray = array(
             $path . 'apiclient_cert.pem',
             $path . 'apiclient_key.pem',
             $path . 'rootca.pem'
         );
         $responseXml = NetHelper::request($url, $postXml, 30, false, array(), $certfilearray);
-        
+
         // return $responseXml;
         $responseObj = simplexml_load_string($responseXml, 'SimpleXMLElement', LIBXML_NOCDATA);
         return $responseObj->return_code;

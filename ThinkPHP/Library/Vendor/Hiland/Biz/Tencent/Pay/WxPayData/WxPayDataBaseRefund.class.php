@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 提交退款输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseRefund extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置微信支付分配的终端设备号，与下单一致
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetDevice_info($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断微信支付分配的终端设备号，与下单一致是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsDevice_infoSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置随机字符串，不长于32位。推荐随机数生成算法
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断随机字符串，不长于32位。推荐随机数生成算法是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置微信订单号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTransaction_id($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断微信订单号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTransaction_idSet()
     {
@@ -179,7 +179,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置商户系统内部的订单号,transaction_id、out_trade_no二选一，如果同时存在优先级：transaction_id> out_trade_no
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOut_trade_no($value)
@@ -202,7 +202,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断商户系统内部的订单号,transaction_id、out_trade_no二选一，如果同时存在优先级：transaction_id> out_trade_no是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOut_trade_noSet()
     {
@@ -212,7 +212,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置商户系统内部的退款单号，商户系统内部唯一，同一退款单号多次请求只退一笔
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOut_refund_no($value)
@@ -235,7 +235,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断商户系统内部的退款单号，商户系统内部唯一，同一退款单号多次请求只退一笔是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOut_refund_noSet()
     {
@@ -245,7 +245,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置订单总金额，单位为分，只能为整数，详见支付金额
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTotal_fee($value)
@@ -268,7 +268,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断订单总金额，单位为分，只能为整数，详见支付金额是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTotal_feeSet()
     {
@@ -278,7 +278,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置退款总金额，订单总金额，单位为分，只能为整数，详见支付金额
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetRefund_fee($value)
@@ -301,7 +301,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断退款总金额，订单总金额，单位为分，只能为整数，详见支付金额是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsRefund_feeSet()
     {
@@ -311,7 +311,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetRefund_fee_type($value)
@@ -334,7 +334,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断货币类型，符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsRefund_fee_typeSet()
     {
@@ -344,7 +344,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
     /**
      * 设置操作员帐号, 默认为商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOp_user_id($value)
@@ -367,7 +367,7 @@ class WxPayDataBaseRefund extends WxPayDataBase
      * 判断操作员帐号, 默认为商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOp_user_idSet()
     {

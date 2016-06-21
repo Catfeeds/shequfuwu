@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel */
@@ -46,7 +46,7 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Worksheet.php';
 /** PHPExcel_Cell */
 require_once PHPEXCEL_ROOT . 'PHPExcel/Cell.php';
 
- /** PHPExcel_Reader_DefaultReadFilter */
+/** PHPExcel_Reader_DefaultReadFilter */
 require_once PHPEXCEL_ROOT . 'PHPExcel/Reader/DefaultReadFilter.php';
 
 
@@ -59,237 +59,249 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Reader/DefaultReadFilter.php';
  */
 class PHPExcel_Reader_CSV implements PHPExcel_Reader_IReader
 {
-	/**
-	 * Delimiter
-	 *
-	 * @var string
-	 */
-	private $_delimiter;
+    /**
+     * Delimiter
+     *
+     * @var string
+     */
+    private $_delimiter;
 
-	/**
-	 * Enclosure
-	 *
-	 * @var string
-	 */
-	private $_enclosure;
+    /**
+     * Enclosure
+     *
+     * @var string
+     */
+    private $_enclosure;
 
-	/**
-	 * Line ending
-	 *
-	 * @var string
-	 */
-	private $_lineEnding;
+    /**
+     * Line ending
+     *
+     * @var string
+     */
+    private $_lineEnding;
 
-	/**
-	 * Sheet index to read
-	 *
-	 * @var int
-	 */
-	private $_sheetIndex;
+    /**
+     * Sheet index to read
+     *
+     * @var int
+     */
+    private $_sheetIndex;
 
-	/**
-	 * PHPExcel_Reader_IReadFilter instance
-	 *
-	 * @var PHPExcel_Reader_IReadFilter
-	 */
-	private $_readFilter = null;
+    /**
+     * PHPExcel_Reader_IReadFilter instance
+     *
+     * @var PHPExcel_Reader_IReadFilter
+     */
+    private $_readFilter = null;
 
-	/**
-	 * Create a new PHPExcel_Reader_CSV
-	 */
-	public function __construct() {
-		$this->_delimiter 	= ',';
-		$this->_enclosure 	= '"';
-		$this->_lineEnding 	= PHP_EOL;
-		$this->_sheetIndex 	= 0;
-		$this->_readFilter 	= new PHPExcel_Reader_DefaultReadFilter();
-	}
-	
-	/**
-	 * Can the current PHPExcel_Reader_IReader read the file?
-	 *
-	 * @param 	string 		$pFileName
-	 * @return 	boolean
-	 */	
-	public function canRead($pFilename) 
-	{
-		// Check if file exists
-		if (!file_exists($pFilename)) {
-			throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
-		}
-		
-		// Check if it is a CSV file (using file name)
-		return (substr(strtolower($pFilename), -3) == 'csv');
-	}
+    /**
+     * Create a new PHPExcel_Reader_CSV
+     */
+    public function __construct()
+    {
+        $this->_delimiter = ',';
+        $this->_enclosure = '"';
+        $this->_lineEnding = PHP_EOL;
+        $this->_sheetIndex = 0;
+        $this->_readFilter = new PHPExcel_Reader_DefaultReadFilter();
+    }
 
-	/**
-	 * Loads PHPExcel from file
-	 *
-	 * @param 	string 		$pFilename
-	 * @throws 	Exception
-	 */
-	public function load($pFilename)
-	{
-		// Create new PHPExcel
-		$objPHPExcel = new PHPExcel();
+    /**
+     * Can the current PHPExcel_Reader_IReader read the file?
+     *
+     * @param    string $pFileName
+     * @return    boolean
+     */
+    public function canRead($pFilename)
+    {
+        // Check if file exists
+        if (!file_exists($pFilename)) {
+            throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
+        }
 
-		// Load into this instance
-		return $this->loadIntoExisting($pFilename, $objPHPExcel);
-	}
+        // Check if it is a CSV file (using file name)
+        return (substr(strtolower($pFilename), -3) == 'csv');
+    }
 
-	/**
-	 * Read filter
-	 *
-	 * @return PHPExcel_Reader_IReadFilter
-	 */
-	public function getReadFilter() {
-		return $this->_readFilter;
-	}
+    /**
+     * Loads PHPExcel from file
+     *
+     * @param    string $pFilename
+     * @throws    Exception
+     */
+    public function load($pFilename)
+    {
+        // Create new PHPExcel
+        $objPHPExcel = new PHPExcel();
 
-	/**
-	 * Set read filter
-	 *
-	 * @param PHPExcel_Reader_IReadFilter $pValue
-	 */
-	public function setReadFilter(PHPExcel_Reader_IReadFilter $pValue) {
-		$this->_readFilter = $pValue;
-	}
+        // Load into this instance
+        return $this->loadIntoExisting($pFilename, $objPHPExcel);
+    }
 
-	/**
-	 * Loads PHPExcel from file into PHPExcel instance
-	 *
-	 * @param 	string 		$pFilename
-	 * @param	PHPExcel	$objPHPExcel
-	 * @throws 	Exception
-	 */
-	public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel)
-	{
-		// Check if file exists
-		if (!file_exists($pFilename)) {
-			throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
-		}
+    /**
+     * Read filter
+     *
+     * @return PHPExcel_Reader_IReadFilter
+     */
+    public function getReadFilter()
+    {
+        return $this->_readFilter;
+    }
 
-		// Create new PHPExcel
-		while ($objPHPExcel->getSheetCount() <= $this->_sheetIndex) {
-			$objPHPExcel->createSheet();
-		}
-		$objPHPExcel->setActiveSheetIndex( $this->_sheetIndex );
+    /**
+     * Set read filter
+     *
+     * @param PHPExcel_Reader_IReadFilter $pValue
+     */
+    public function setReadFilter(PHPExcel_Reader_IReadFilter $pValue)
+    {
+        $this->_readFilter = $pValue;
+    }
 
-		// Open file
-		$fileHandle = fopen($pFilename, 'r');
-		if ($fileHandle === false) {
-			throw new Exception("Could not open file $pFilename for reading.");
-		}
+    /**
+     * Loads PHPExcel from file into PHPExcel instance
+     *
+     * @param    string $pFilename
+     * @param    PHPExcel $objPHPExcel
+     * @throws    Exception
+     */
+    public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel)
+    {
+        // Check if file exists
+        if (!file_exists($pFilename)) {
+            throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
+        }
 
-		// Loop trough file
-		$currentRow = 0;
-		$rowData = array();
-		while (($rowData = fgetcsv($fileHandle, 0, $this->_delimiter, $this->_enclosure)) !== FALSE) {
-			++$currentRow;
-			$rowDataCount = count($rowData);
-			for ($i = 0; $i < $rowDataCount; ++$i) {
-				$columnLetter = PHPExcel_Cell::stringFromColumnIndex($i);
-				if ($rowData[$i] != '' && $this->_readFilter->readCell($columnLetter, $currentRow)) {
-					// Unescape enclosures
-					$rowData[$i] = str_replace("\\" . $this->_enclosure, $this->_enclosure, $rowData[$i]);
-					$rowData[$i] = str_replace($this->_enclosure . $this->_enclosure, $this->_enclosure, $rowData[$i]);
+        // Create new PHPExcel
+        while ($objPHPExcel->getSheetCount() <= $this->_sheetIndex) {
+            $objPHPExcel->createSheet();
+        }
+        $objPHPExcel->setActiveSheetIndex($this->_sheetIndex);
 
-					// Set cell value
-					$objPHPExcel->getActiveSheet()->setCellValue(
-						 $columnLetter . $currentRow, $rowData[$i]
-					);
-				}
-			}
-		}
+        // Open file
+        $fileHandle = fopen($pFilename, 'r');
+        if ($fileHandle === false) {
+            throw new Exception("Could not open file $pFilename for reading.");
+        }
 
-		// Close file
-		fclose($fileHandle);
+        // Loop trough file
+        $currentRow = 0;
+        $rowData = array();
+        while (($rowData = fgetcsv($fileHandle, 0, $this->_delimiter, $this->_enclosure)) !== FALSE) {
+            ++$currentRow;
+            $rowDataCount = count($rowData);
+            for ($i = 0; $i < $rowDataCount; ++$i) {
+                $columnLetter = PHPExcel_Cell::stringFromColumnIndex($i);
+                if ($rowData[$i] != '' && $this->_readFilter->readCell($columnLetter, $currentRow)) {
+                    // Unescape enclosures
+                    $rowData[$i] = str_replace("\\" . $this->_enclosure, $this->_enclosure, $rowData[$i]);
+                    $rowData[$i] = str_replace($this->_enclosure . $this->_enclosure, $this->_enclosure, $rowData[$i]);
 
-		// Return
-		return $objPHPExcel;
-	}
+                    // Set cell value
+                    $objPHPExcel->getActiveSheet()->setCellValue(
+                        $columnLetter . $currentRow, $rowData[$i]
+                    );
+                }
+            }
+        }
 
-	/**
-	 * Get delimiter
-	 *
-	 * @return string
-	 */
-	public function getDelimiter() {
-		return $this->_delimiter;
-	}
+        // Close file
+        fclose($fileHandle);
 
-	/**
-	 * Set delimiter
-	 *
-	 * @param	string	$pValue		Delimiter, defaults to ,
-	 * @return PHPExcel_Reader_CSV
-	 */
-	public function setDelimiter($pValue = ',') {
-		$this->_delimiter = $pValue;
-		return $this;
-	}
+        // Return
+        return $objPHPExcel;
+    }
 
-	/**
-	 * Get enclosure
-	 *
-	 * @return string
-	 */
-	public function getEnclosure() {
-		return $this->_enclosure;
-	}
+    /**
+     * Get delimiter
+     *
+     * @return string
+     */
+    public function getDelimiter()
+    {
+        return $this->_delimiter;
+    }
 
-	/**
-	 * Set enclosure
-	 *
-	 * @param	string	$pValue		Enclosure, defaults to "
-	 * @return PHPExcel_Reader_CSV
-	 */
-	public function setEnclosure($pValue = '"') {
-		if ($pValue == '') {
-			$pValue = '"';
-		}
-		$this->_enclosure = $pValue;
-		return $this;
-	}
+    /**
+     * Set delimiter
+     *
+     * @param    string $pValue Delimiter, defaults to ,
+     * @return PHPExcel_Reader_CSV
+     */
+    public function setDelimiter($pValue = ',')
+    {
+        $this->_delimiter = $pValue;
+        return $this;
+    }
 
-	/**
-	 * Get line ending
-	 *
-	 * @return string
-	 */
-	public function getLineEnding() {
-		return $this->_lineEnding;
-	}
+    /**
+     * Get enclosure
+     *
+     * @return string
+     */
+    public function getEnclosure()
+    {
+        return $this->_enclosure;
+    }
 
-	/**
-	 * Set line ending
-	 *
-	 * @param	string	$pValue		Line ending, defaults to OS line ending (PHP_EOL)
-	 * @return PHPExcel_Reader_CSV
-	 */
-	public function setLineEnding($pValue = PHP_EOL) {
-		$this->_lineEnding = $pValue;
-		return $this;
-	}
+    /**
+     * Set enclosure
+     *
+     * @param    string $pValue Enclosure, defaults to "
+     * @return PHPExcel_Reader_CSV
+     */
+    public function setEnclosure($pValue = '"')
+    {
+        if ($pValue == '') {
+            $pValue = '"';
+        }
+        $this->_enclosure = $pValue;
+        return $this;
+    }
 
-	/**
-	 * Get sheet index
-	 *
-	 * @return int
-	 */
-	public function getSheetIndex() {
-		return $this->_sheetIndex;
-	}
+    /**
+     * Get line ending
+     *
+     * @return string
+     */
+    public function getLineEnding()
+    {
+        return $this->_lineEnding;
+    }
 
-	/**
-	 * Set sheet index
-	 *
-	 * @param	int		$pValue		Sheet index
-	 * @return PHPExcel_Reader_CSV
-	 */
-	public function setSheetIndex($pValue = 0) {
-		$this->_sheetIndex = $pValue;
-		return $this;
-	}
+    /**
+     * Set line ending
+     *
+     * @param    string $pValue Line ending, defaults to OS line ending (PHP_EOL)
+     * @return PHPExcel_Reader_CSV
+     */
+    public function setLineEnding($pValue = PHP_EOL)
+    {
+        $this->_lineEnding = $pValue;
+        return $this;
+    }
+
+    /**
+     * Get sheet index
+     *
+     * @return int
+     */
+    public function getSheetIndex()
+    {
+        return $this->_sheetIndex;
+    }
+
+    /**
+     * Set sheet index
+     *
+     * @param    int $pValue Sheet index
+     * @return PHPExcel_Reader_CSV
+     */
+    public function setSheetIndex($pValue = 0)
+    {
+        $this->_sheetIndex = $pValue;
+        return $this;
+    }
 }
+
 ?>

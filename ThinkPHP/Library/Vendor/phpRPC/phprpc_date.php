@@ -1,27 +1,26 @@
 <?php
 /**********************************************************\
-|                                                          |
-| The implementation of PHPRPC Protocol 3.0                |
-|                                                          |
-| phprpc_date.php                                          |
-|                                                          |
-| Release 3.0.1                                            |
-| Copyright by Team-PHPRPC                                 |
-|                                                          |
-| WebSite:  http://www.phprpc.org/                         |
-|           http://www.phprpc.net/                         |
-|           http://www.phprpc.com/                         |
-|           http://sourceforge.net/projects/php-rpc/       |
-|                                                          |
-| Authors:  Ma Bingyao <andot@ujn.edu.cn>                  |
-|                                                          |
-| This file may be distributed and/or modified under the   |
-| terms of the GNU General Public License (GPL) version    |
-| 2.0 as published by the Free Software Foundation and     |
-| appearing in the included file LICENSE.                  |
-|                                                          |
-\**********************************************************/
-
+ * |                                                          |
+ * | The implementation of PHPRPC Protocol 3.0                |
+ * |                                                          |
+ * | phprpc_date.php                                          |
+ * |                                                          |
+ * | Release 3.0.1                                            |
+ * | Copyright by Team-PHPRPC                                 |
+ * |                                                          |
+ * | WebSite:  http://www.phprpc.org/                         |
+ * |           http://www.phprpc.net/                         |
+ * |           http://www.phprpc.com/                         |
+ * |           http://sourceforge.net/projects/php-rpc/       |
+ * |                                                          |
+ * | Authors:  Ma Bingyao <andot@ujn.edu.cn>                  |
+ * |                                                          |
+ * | This file may be distributed and/or modified under the   |
+ * | terms of the GNU General Public License (GPL) version    |
+ * | 2.0 as published by the Free Software Foundation and     |
+ * | appearing in the included file LICENSE.                  |
+ * |                                                          |
+ * \**********************************************************/
 /* PHPRPC_Date Class for PHP.
  *
  * Copyright: Ma Bingyao <andot@ujn.edu.cn>
@@ -30,7 +29,8 @@
  * This library is free.  You can redistribute it and/or modify it under GPL.
  */
 
-class PHPRPC_Date {
+class PHPRPC_Date
+{
 
 // public fields
 
@@ -44,7 +44,8 @@ class PHPRPC_Date {
 
 // constructor
 
-    function PHPRPC_Date() {
+    function PHPRPC_Date()
+    {
         $num = func_num_args();
         $time = false;
         if ($num == 0) {
@@ -54,8 +55,7 @@ class PHPRPC_Date {
             $arg = func_get_arg(0);
             if (is_int($arg)) {
                 $time = getdate($arg);
-            }
-            elseif (is_string($arg)) {
+            } elseif (is_string($arg)) {
                 $time = getdate(strtotime($arg));
             }
         }
@@ -71,7 +71,8 @@ class PHPRPC_Date {
 
 // public instance methods
 
-    function addMilliseconds($milliseconds) {
+    function addMilliseconds($milliseconds)
+    {
         if (!is_int($milliseconds)) return false;
         if ($milliseconds == 0) return true;
         $millisecond = $this->millisecond + $milliseconds;
@@ -84,13 +85,13 @@ class PHPRPC_Date {
         if ($this->addSeconds($seconds)) {
             $this->millisecond = (int)$milliseconds;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function addSeconds($seconds) {
+    function addSeconds($seconds)
+    {
         if (!is_int($seconds)) return false;
         if ($seconds == 0) return true;
         $second = $this->second + $seconds;
@@ -102,13 +103,13 @@ class PHPRPC_Date {
         if ($this->addMinutes($minutes)) {
             $this->second = (int)$seconds;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function addMinutes($minutes) {
+    function addMinutes($minutes)
+    {
         if (!is_int($minutes)) return false;
         if ($minutes == 0) return true;
         $minute = $this->minute + $minutes;
@@ -120,13 +121,13 @@ class PHPRPC_Date {
         if ($this->addHours($hours)) {
             $this->minute = (int)$minutes;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function addHours($hours) {
+    function addHours($hours)
+    {
         if (!is_int($hours)) return false;
         if ($hours == 0) return true;
         $hour = $this->hour + $hours;
@@ -138,13 +139,13 @@ class PHPRPC_Date {
         if ($this->addDays($days)) {
             $this->hour = (int)$hours;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function addDays($days) {
+    function addDays($days)
+    {
         if (!is_int($days)) return false;
         $year = $this->year;
         if ($days == 0) return true;
@@ -184,18 +185,15 @@ class PHPRPC_Date {
             if ($month <= 2) {
                 if ((($year % 4) == 0) ? (($year % 100) == 0) ? (($year % 400) == 0) : true : false) {
                     $days -= 366;
-                }
-                else {
+                } else {
                     $days -= 365;
                 }
                 $year++;
-            }
-            else {
+            } else {
                 $year++;
                 if ((($year % 4) == 0) ? (($year % 100) == 0) ? (($year % 400) == 0) : true : false) {
                     $days -= 366;
-                }
-                else {
+                } else {
                     $days -= 365;
                 }
             }
@@ -206,16 +204,13 @@ class PHPRPC_Date {
                 $year--;
                 if ((($year % 4) == 0) ? (($year % 100) == 0) ? (($year % 400) == 0) : true : false) {
                     $days += 366;
-                }
-                else {
+                } else {
                     $days += 365;
                 }
-            }
-            else {
+            } else {
                 if ((($year % 4) == 0) ? (($year % 100) == 0) ? (($year % 400) == 0) : true : false) {
                     $days += 366;
-                }
-                else {
+                } else {
                     $days += 365;
                 }
                 $year--;
@@ -241,7 +236,8 @@ class PHPRPC_Date {
         return true;
     }
 
-    function addMonths($months) {
+    function addMonths($months)
+    {
         if (!is_int($months)) return false;
         if ($months == 0) return true;
         $month = $this->month + $months;
@@ -258,13 +254,13 @@ class PHPRPC_Date {
             }
             $this->month = (int)$months;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function addYears($years) {
+    function addYears($years)
+    {
         if (!is_int($years)) return false;
         if ($years == 0) return true;
         $year = $this->year + $years;
@@ -273,7 +269,8 @@ class PHPRPC_Date {
         return true;
     }
 
-    function after($when) {
+    function after($when)
+    {
         if (!is_a($when, 'PHPRPC_Date')) {
             $when = PHPRPC_Date::parse($when);
         }
@@ -294,7 +291,8 @@ class PHPRPC_Date {
         return false;
     }
 
-    function before($when) {
+    function before($when)
+    {
         if (!is_a($when, 'PHPRPC_Date')) {
             $when = new PHPRPC_Date($when);
         }
@@ -315,7 +313,8 @@ class PHPRPC_Date {
         return false;
     }
 
-    function equals($when) {
+    function equals($when)
+    {
         if (!is_a($when, 'PHPRPC_Date')) {
             $when = new PHPRPC_Date($when);
         }
@@ -328,16 +327,17 @@ class PHPRPC_Date {
             ($this->millisecond == $when->millisecond));
     }
 
-    function set() {
+    function set()
+    {
         $num = func_num_args();
         $args = func_get_args();
         if ($num >= 3) {
             if (!PHPRPC_Date::isValidDate($args[0], $args[1], $args[2])) {
                 return false;
             }
-            $this->year  = (int)$args[0];
+            $this->year = (int)$args[0];
             $this->month = (int)$args[1];
-            $this->day   = (int)$args[2];
+            $this->day = (int)$args[2];
             if ($num == 3) {
                 return true;
             }
@@ -346,7 +346,7 @@ class PHPRPC_Date {
             if (!PHPRPC_Date::isValidTime($args[3], $args[4], $args[5])) {
                 return false;
             }
-            $this->hour   = (int)$args[3];
+            $this->hour = (int)$args[3];
             $this->minute = (int)$args[4];
             $this->second = (int)$args[5];
             if ($num == 6) {
@@ -360,11 +360,13 @@ class PHPRPC_Date {
         return false;
     }
 
-    function time() {
+    function time()
+    {
         return mktime($this->hour, $this->minute, $this->second, $this->month, $this->day, $this->year);
     }
 
-    function toString() {
+    function toString()
+    {
         return sprintf('%04d-%02d-%02d %02d:%02d:%02d.%03d',
             $this->year, $this->month, $this->day,
             $this->hour, $this->minute, $this->second,
@@ -373,21 +375,22 @@ class PHPRPC_Date {
 
 // magic method for PHP 5
 
-    function __toString() {
+    function __toString()
+    {
         return $this->toString();
     }
 
 // public instance & static methods
 
-    function dayOfWeek() {
+    function dayOfWeek()
+    {
         $num = func_num_args();
         if ($num == 3) {
             $args = func_get_args();
             $y = $args[0];
             $m = $args[1];
             $d = $args[2];
-        }
-        else {
+        } else {
             $y = $this->year;
             $m = $this->month;
             $d = $this->day;
@@ -396,7 +399,8 @@ class PHPRPC_Date {
         return ((int)(23 * $m / 9) + $d + 4 + (int)($y / 4) - (int)($y / 100) + (int)($y / 400)) % 7;
     }
 
-    function dayOfYear() {
+    function dayOfYear()
+    {
         static $daysToMonth365 = array(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365);
         static $daysToMonth366 = array(0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366);
         $num = func_num_args();
@@ -405,8 +409,7 @@ class PHPRPC_Date {
             $y = $args[0];
             $m = $args[1];
             $d = $args[2];
-        }
-        else {
+        } else {
             $y = $this->year;
             $m = $this->month;
             $d = $this->day;
@@ -417,12 +420,14 @@ class PHPRPC_Date {
 
 // public static methods
 
-    function now() {
+    function now()
+    {
         $date = new PHPRPC_Date();
         return $date;
     }
 
-    function today() {
+    function today()
+    {
         $date = PHPRPC_Date::now();
         $date->hour = 0;
         $date->minute = 0;
@@ -430,7 +435,8 @@ class PHPRPC_Date {
         return $date;
     }
 
-    function parse($dt) {
+    function parse($dt)
+    {
         if (is_a($dt, 'PHPRPC_Date')) {
             return $dt;
         }
@@ -439,84 +445,86 @@ class PHPRPC_Date {
         }
         $shortFormat = '(\d|\d{2}|\d{3}|\d{4})-([1-9]|0[1-9]|1[012])-([1-9]|0[1-9]|[12]\d|3[01])';
         if (preg_match("/^$shortFormat$/", $dt, $match)) {
-            $year   = intval($match[1]);
-            $month  = intval($match[2]);
-            $day    = intval($match[3]);
+            $year = intval($match[1]);
+            $month = intval($match[2]);
+            $day = intval($match[3]);
             if (PHPRPC_Date::isValidDate($year, $month, $day)) {
                 $date = new PHPRPC_Date(false);
-                $date->year  = $year;
+                $date->year = $year;
                 $date->month = $month;
-                $date->day   = $day;
+                $date->day = $day;
                 return $date;
-            }
-            else {
+            } else {
                 return false;
             }
         }
         $longFormat = $shortFormat . ' (\d|0\d|1\d|2[0-3]):(\d|[0-5]\d):(\d|[0-5]\d)';
         if (preg_match("/^$longFormat$/", $dt, $match)) {
-            $year   = intval($match[1]);
-            $month  = intval($match[2]);
-            $day    = intval($match[3]);
+            $year = intval($match[1]);
+            $month = intval($match[2]);
+            $day = intval($match[3]);
             if (PHPRPC_Date::isValidDate($year, $month, $day)) {
                 $date = new PHPRPC_Date(false);
-                $date->year  = $year;
+                $date->year = $year;
                 $date->month = $month;
-                $date->day   = $day;
-                $date->hour   = intval($match[4]);
+                $date->day = $day;
+                $date->hour = intval($match[4]);
                 $date->minute = intval($match[5]);
                 $date->second = intval($match[6]);
                 return $date;
-            }
-            else {
+            } else {
                 return false;
             }
         }
         $fullFormat = $longFormat . '\.(\d|\d{2}|\d{3})';
         if (preg_match("/^$fullFormat$/", $dt, $match)) {
-            $year   = intval($match[1]);
-            $month  = intval($match[2]);
-            $day    = intval($match[3]);
+            $year = intval($match[1]);
+            $month = intval($match[2]);
+            $day = intval($match[3]);
             if (PHPRPC_Date::isValidDate($year, $month, $day)) {
                 $date = new PHPRPC_Date(false);
-                $date->year  = $year;
+                $date->year = $year;
                 $date->month = $month;
-                $date->day   = $day;
-                $date->hour        = intval($match[4]);
-                $date->minute      = intval($match[5]);
-                $date->second      = intval($match[6]);
+                $date->day = $day;
+                $date->hour = intval($match[4]);
+                $date->minute = intval($match[5]);
+                $date->second = intval($match[6]);
                 $date->millisecond = intval($match[7]);
                 return $date;
-            }
-            else {
+            } else {
                 return false;
             }
         }
         return false;
     }
 
-    function isLeapYear($year) {
+    function isLeapYear($year)
+    {
         return (($year % 4) == 0) ? (($year % 100) == 0) ? (($year % 400) == 0) : true : false;
     }
 
-    function daysInMonth($year, $month) {
+    function daysInMonth($year, $month)
+    {
         if (($month < 1) || ($month > 12)) {
             return false;
         }
         return cal_days_in_month(CAL_GREGORIAN, $month, $year);
     }
 
-    function isValidDate($year, $month, $day) {
+    function isValidDate($year, $month, $day)
+    {
         if (($year >= 1) && ($year <= 9999)) {
             return checkdate($month, $day, $year);
         }
         return false;
     }
 
-    function isValidTime($hour, $minute, $second) {
+    function isValidTime($hour, $minute, $second)
+    {
         return !(($hour < 0) || ($hour > 23) ||
             ($minute < 0) || ($minute > 59) ||
             ($second < 0) || ($second > 59));
     }
 }
+
 ?>

@@ -34,7 +34,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      * Create a new SimpleHeaderSet with the given $factory.
      *
      * @param Swift_Mime_HeaderFactory $factory
-     * @param string                   $charset
+     * @param string $charset
      */
     public function __construct(Swift_Mime_HeaderFactory $factory, $charset = null)
     {
@@ -59,25 +59,25 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     /**
      * Add a new Mailbox Header with a list of $addresses.
      *
-     * @param string       $name
+     * @param string $name
      * @param array|string $addresses
      */
     public function addMailboxHeader($name, $addresses = null)
     {
         $this->_storeHeader($name,
-        $this->_factory->createMailboxHeader($name, $addresses));
+            $this->_factory->createMailboxHeader($name, $addresses));
     }
 
     /**
      * Add a new Date header using $timestamp (UNIX time).
      *
      * @param string $name
-     * @param int    $timestamp
+     * @param int $timestamp
      */
     public function addDateHeader($name, $timestamp = null)
     {
         $this->_storeHeader($name,
-        $this->_factory->createDateHeader($name, $timestamp));
+            $this->_factory->createDateHeader($name, $timestamp));
     }
 
     /**
@@ -89,7 +89,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     public function addTextHeader($name, $value = null)
     {
         $this->_storeHeader($name,
-        $this->_factory->createTextHeader($name, $value));
+            $this->_factory->createTextHeader($name, $value));
     }
 
     /**
@@ -97,7 +97,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      *
      * @param string $name
      * @param string $value
-     * @param array  $params
+     * @param array $params
      */
     public function addParameterizedHeader($name, $value = null, $params = array())
     {
@@ -107,7 +107,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     /**
      * Add a new ID header for Message-ID or Content-ID.
      *
-     * @param string       $name
+     * @param string $name
      * @param string|array $ids
      */
     public function addIdHeader($name, $ids = null)
@@ -132,7 +132,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      * If multiple headers match, the actual one may be specified by $index.
      *
      * @param string $name
-     * @param int    $index
+     * @param int $index
      *
      * @return bool
      */
@@ -153,7 +153,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      * offset.
      *
      * @param Swift_Mime_Header $header
-     * @param int               $index
+     * @param int $index
      */
     public function set(Swift_Mime_Header $header, $index = 0)
     {
@@ -167,7 +167,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      * Returns NULL if none present.
      *
      * @param string $name
-     * @param int    $index
+     * @param int $index
      *
      * @return Swift_Mime_Header
      */
@@ -227,7 +227,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      * If multiple headers match, the actual one may be specified by $index.
      *
      * @param string $name
-     * @param int    $index
+     * @param int $index
      */
     public function remove($name, $index = 0)
     {

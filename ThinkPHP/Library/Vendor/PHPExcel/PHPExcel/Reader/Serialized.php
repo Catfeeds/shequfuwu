@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel */
@@ -53,82 +53,85 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/File.php';
  */
 class PHPExcel_Reader_Serialized implements PHPExcel_Reader_IReader
 {
-	/**
-	 * Can the current PHPExcel_Reader_IReader read the file?
-	 *
-	 * @param 	string 		$pFileName
-	 * @return 	boolean
-	 */	
-	public function canRead($pFilename) 
-	{
-		// Check if file exists
-		if (!file_exists($pFilename)) {
-			throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
-		}
-		
-		return $this->fileSupportsUnserializePHPExcel($pFilename);
-	}
-	
-	/**
-	 * Loads PHPExcel Serialized file
-	 *
-	 * @param 	string 		$pFilename
-	 * @return 	PHPExcel
-	 * @throws 	Exception
-	 */
-	public function load($pFilename)
-	{
-		// Check if file exists
-		if (!file_exists($pFilename)) {
-			throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
-		}
+    /**
+     * Can the current PHPExcel_Reader_IReader read the file?
+     *
+     * @param    string $pFileName
+     * @return    boolean
+     */
+    public function canRead($pFilename)
+    {
+        // Check if file exists
+        if (!file_exists($pFilename)) {
+            throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
+        }
 
-		// Unserialize... First make sure the file supports it!
-		if (!$this->fileSupportsUnserializePHPExcel($pFilename)) {
-			throw new Exception("Invalid file format for PHPExcel_Reader_Serialized: " . $pFilename . ".");
-		}
+        return $this->fileSupportsUnserializePHPExcel($pFilename);
+    }
 
-		return $this->_loadSerialized($pFilename);
-	}
+    /**
+     * Loads PHPExcel Serialized file
+     *
+     * @param    string $pFilename
+     * @return    PHPExcel
+     * @throws    Exception
+     */
+    public function load($pFilename)
+    {
+        // Check if file exists
+        if (!file_exists($pFilename)) {
+            throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
+        }
 
-	/**
-	 * Load PHPExcel Serialized file
-	 *
-	 * @param 	string 		$pFilename
-	 * @return 	PHPExcel
-	 */
-	private function _loadSerialized($pFilename) {
-		$xmlData = simplexml_load_string(file_get_contents("zip://$pFilename#phpexcel.xml"));
-		$excel = unserialize(base64_decode((string)$xmlData->data));
+        // Unserialize... First make sure the file supports it!
+        if (!$this->fileSupportsUnserializePHPExcel($pFilename)) {
+            throw new Exception("Invalid file format for PHPExcel_Reader_Serialized: " . $pFilename . ".");
+        }
 
-		// Update media links
-		for ($i = 0; $i < $excel->getSheetCount(); ++$i) {
-			for ($j = 0; $j < $excel->getSheet($i)->getDrawingCollection()->count(); ++$j) {
-				if ($excel->getSheet($i)->getDrawingCollection()->offsetGet($j) instanceof PHPExcl_Worksheet_BaseDrawing) {
-					$imgTemp =& $excel->getSheet($i)->getDrawingCollection()->offsetGet($j);
-					$imgTemp->setPath('zip://' . $pFilename . '#media/' . $imgTemp->getFilename(), false);
-				}
-			}
-		}
+        return $this->_loadSerialized($pFilename);
+    }
 
-		return $excel;
-	}
+    /**
+     * Load PHPExcel Serialized file
+     *
+     * @param    string $pFilename
+     * @return    PHPExcel
+     */
+    private function _loadSerialized($pFilename)
+    {
+        $xmlData = simplexml_load_string(file_get_contents("zip://$pFilename#phpexcel.xml"));
+        $excel = unserialize(base64_decode((string)$xmlData->data));
+
+        // Update media links
+        for ($i = 0; $i < $excel->getSheetCount(); ++$i) {
+            for ($j = 0; $j < $excel->getSheet($i)->getDrawingCollection()->count(); ++$j) {
+                if ($excel->getSheet($i)->getDrawingCollection()->offsetGet($j) instanceof PHPExcl_Worksheet_BaseDrawing) {
+                    $imgTemp =& $excel->getSheet($i)->getDrawingCollection()->offsetGet($j);
+                    $imgTemp->setPath('zip://' . $pFilename . '#media/' . $imgTemp->getFilename(), false);
+                }
+            }
+        }
+
+        return $excel;
+    }
 
     /**
      * Does a file support UnserializePHPExcel ?
      *
-	 * @param 	string 		$pFilename
-	 * @throws 	Exception
-	 * @return 	boolean
+     * @param    string $pFilename
+     * @throws    Exception
+     * @return    boolean
      */
-    public function fileSupportsUnserializePHPExcel($pFilename = '') {
-		// Check if file exists
-		if (!file_exists($pFilename)) {
-			throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
-		}
+    public function fileSupportsUnserializePHPExcel($pFilename = '')
+    {
+        // Check if file exists
+        if (!file_exists($pFilename)) {
+            throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
+        }
 
-		// File exists, does it contain phpexcel.xml?
-		return PHPExcel_Shared_File::file_exists("zip://$pFilename#phpexcel.xml");
+        // File exists, does it contain phpexcel.xml?
+        return PHPExcel_Shared_File::file_exists("zip://$pFilename#phpexcel.xml");
     }
 }
+
 ?>

@@ -80,7 +80,7 @@ class UserFavoritesModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
-    
+
 //崔
     public function getFavorites($condition = array(), $relation = false)
     {
@@ -131,8 +131,6 @@ class UserFavoritesModel extends RelationModel
     {
         $this->add($data);
     }
-    
-    
-    
-    
+
+
 }

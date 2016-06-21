@@ -30,11 +30,11 @@ class Swift_Mime_MimePart extends Swift_Mime_SimpleMimeEntity
     /**
      * Create a new MimePart with $headers, $encoder and $cache.
      *
-     * @param Swift_Mime_HeaderSet      $headers
+     * @param Swift_Mime_HeaderSet $headers
      * @param Swift_Mime_ContentEncoder $encoder
-     * @param Swift_KeyCache            $cache
-     * @param Swift_Mime_Grammar        $grammar
-     * @param string                    $charset
+     * @param Swift_KeyCache $cache
+     * @param Swift_Mime_Grammar $grammar
+     * @param string $charset
      */
     public function __construct(Swift_Mime_HeaderSet $headers, Swift_Mime_ContentEncoder $encoder, Swift_KeyCache $cache, Swift_Mime_Grammar $grammar, $charset = null)
     {
@@ -49,9 +49,9 @@ class Swift_Mime_MimePart extends Swift_Mime_SimpleMimeEntity
      * Set the body of this entity, either as a string, or as an instance of
      * {@link Swift_OutputByteStream}.
      *
-     * @param mixed  $body
+     * @param mixed $body
      * @param string $contentType optional
-     * @param string $charset     optional
+     * @param string $charset optional
      *
      * @return Swift_Mime_MimePart
      */

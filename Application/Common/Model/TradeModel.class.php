@@ -19,9 +19,8 @@ class TradeModel extends RelationModel
 //            'mapping_fields' => 'remark',
         ),
     );
-    
-    
-    
+
+
     public function get($condition = array(), $relation = false)
     {
         $data = $this->where($condition);
@@ -83,7 +82,7 @@ class TradeModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
-    
+
 //崔
     public function getTrade($condition = array(), $relation = false)
     {
@@ -124,5 +123,5 @@ class TradeModel extends RelationModel
     {
         $this->add($data);
     }
-    
+
 }

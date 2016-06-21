@@ -41,7 +41,8 @@ class EnvironmentHelper
      * 获取Web服务器名称
      * @return mixed
      */
-    public static function getWebServerName(){
+    public static function getWebServerName()
+    {
         return $_SERVER['SERVER_SOFTWARE'];
     }
 
@@ -55,7 +56,7 @@ class EnvironmentHelper
         // 自动识别SAE环境
         if (function_exists('saeAutoLoader')) {
             return 'sae';
-        }else{
+        } else {
             return 'file';
         }
     }
@@ -65,7 +66,8 @@ class EnvironmentHelper
      * @param $ip string ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
      * @return bool
      */
-    public static function isPrivateIP($ip) {
+    public static function isPrivateIP($ip)
+    {
         return !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
     }
 
@@ -74,18 +76,19 @@ class EnvironmentHelper
      * @param $domainNameOrIP string 域名或ip地址
      * @return bool
      */
-    public static function isLocalServer($domainNameOrIP){
-        $isIP= preg_match(RegexHelper::IP,$domainNameOrIP);
-        $isLocal= false;
-        if($isIP){
-            if(self::isPrivateIP($domainNameOrIP)){
+    public static function isLocalServer($domainNameOrIP)
+    {
+        $isIP = preg_match(RegexHelper::IP, $domainNameOrIP);
+        $isLocal = false;
+        if ($isIP) {
+            if (self::isPrivateIP($domainNameOrIP)) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
-            $domainNameOrIP= strtolower($domainNameOrIP);
-            switch ($domainNameOrIP){
+        } else {
+            $domainNameOrIP = strtolower($domainNameOrIP);
+            switch ($domainNameOrIP) {
                 case 'localhost':
                     return true;
                 default:
@@ -98,7 +101,8 @@ class EnvironmentHelper
      * 获取服务器域名
      * @return string
      */
-    public static function getServerHostName(){
+    public static function getServerHostName()
+    {
         $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
         return $host;
     }

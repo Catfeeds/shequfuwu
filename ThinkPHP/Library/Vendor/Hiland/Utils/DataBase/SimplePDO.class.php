@@ -56,46 +56,36 @@ class SimplePDO
             $commands = array();
             $dsn = '';
 
-            if (is_array($options))
-            {
-                foreach ($options as $option => $value)
-                {
+            if (is_array($options)) {
+                foreach ($options as $option => $value) {
                     $this->$option = $value;
                 }
-            }
-            else
-            {
+            } else {
                 return false;
             }
 
             if (
                 isset($this->port) &&
                 is_int($this->port * 1)
-            )
-            {
+            ) {
                 $port = $this->port;
             }
 
             $type = strtolower($this->database_type);
             $is_port = isset($port);
 
-            if (isset($options[ 'prefix' ]))
-            {
-                $this->prefix = $options[ 'prefix' ];
+            if (isset($options['prefix'])) {
+                $this->prefix = $options['prefix'];
             }
 
-            switch ($type)
-            {
+            switch ($type) {
                 case 'mariadb':
                     $type = 'mysql';
 
                 case 'mysql':
-                    if ($this->socket)
-                    {
+                    if ($this->socket) {
                         $dsn = $type . ':unix_socket=' . $this->socket . ';dbname=' . $this->database_name;
-                    }
-                    else
-                    {
+                    } else {
                         $dsn = $type . ':host=' . $this->server . ($is_port ? ';port=' . $port : '') . ';dbname=' . $this->database_name;
                     }
 
@@ -138,8 +128,7 @@ class SimplePDO
             if (
                 in_array($type, explode(' ', 'mariadb mysql pgsql sybase mssql')) &&
                 $this->charset
-            )
-            {
+            ) {
                 $commands[] = "SET NAMES '" . $this->charset . "'";
             }
 
@@ -150,20 +139,17 @@ class SimplePDO
                 $this->option
             );
 
-            foreach ($commands as $value)
-            {
+            foreach ($commands as $value) {
                 $this->pdo->exec($value);
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
     }
 
     public function query($query)
     {
-        if ($this->debug_mode)
-        {
+        if ($this->debug_mode) {
             echo $query;
 
             $this->debug_mode = false;
@@ -178,8 +164,7 @@ class SimplePDO
 
     public function exec($query)
     {
-        if ($this->debug_mode)
-        {
+        if ($this->debug_mode) {
             echo $query;
 
             $this->debug_mode = false;
@@ -204,29 +189,23 @@ class SimplePDO
 
     protected function column_push($columns)
     {
-        if ($columns == '*')
-        {
+        if ($columns == '*') {
             return $columns;
         }
 
-        if (is_string($columns))
-        {
+        if (is_string($columns)) {
             $columns = array($columns);
         }
 
         $stack = array();
 
-        foreach ($columns as $key => $value)
-        {
+        foreach ($columns as $key => $value) {
             preg_match('/([a-zA-Z0-9_\-\.]*)\s*\(([a-zA-Z0-9_\-]*)\)/i', $value, $match);
 
-            if (isset($match[ 1 ], $match[ 2 ]))
-            {
-                array_push($stack, $this->column_quote( $match[ 1 ] ) . ' AS ' . $this->column_quote( $match[ 2 ] ));
-            }
-            else
-            {
-                array_push($stack, $this->column_quote( $value ));
+            if (isset($match[1], $match[2])) {
+                array_push($stack, $this->column_quote($match[1]) . ' AS ' . $this->column_quote($match[2]));
+            } else {
+                array_push($stack, $this->column_quote($value));
             }
         }
 
@@ -237,8 +216,7 @@ class SimplePDO
     {
         $temp = array();
 
-        foreach ($array as $value)
-        {
+        foreach ($array as $value) {
             $temp[] = is_int($value) ? $value : $this->pdo->quote($value);
         }
 
@@ -249,8 +227,7 @@ class SimplePDO
     {
         $haystack = array();
 
-        foreach ($data as $value)
-        {
+        foreach ($data as $value) {
             $haystack[] = '(' . $this->data_implode($value, $conjunctor) . ')';
         }
 
@@ -270,32 +247,25 @@ class SimplePDO
     {
         $wheres = array();
 
-        foreach ($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             $type = gettype($value);
 
             if (
                 preg_match("/^(AND|OR)(\s+#.*)?$/i", $key, $relation_match) &&
                 $type == 'array'
-            )
-            {
+            ) {
                 $wheres[] = 0 !== count(array_diff_key($value, array_keys(array_keys($value)))) ?
-                    '(' . $this->data_implode($value, ' ' . $relation_match[ 1 ]) . ')' :
-                    '(' . $this->inner_conjunct($value, ' ' . $relation_match[ 1 ], $conjunctor) . ')';
-            }
-            else
-            {
+                    '(' . $this->data_implode($value, ' ' . $relation_match[1]) . ')' :
+                    '(' . $this->inner_conjunct($value, ' ' . $relation_match[1], $conjunctor) . ')';
+            } else {
                 preg_match('/(#?)([\w\.\-]+)(\[(\>|\>\=|\<|\<\=|\!|\<\>|\>\<|\!?~)\])?/i', $key, $match);
-                $column = $this->column_quote($match[ 2 ]);
+                $column = $this->column_quote($match[2]);
 
-                if (isset($match[ 4 ]))
-                {
-                    $operator = $match[ 4 ];
+                if (isset($match[4])) {
+                    $operator = $match[4];
 
-                    if ($operator == '!')
-                    {
-                        switch ($type)
-                        {
+                    if ($operator == '!') {
+                        switch ($type) {
                             case 'NULL':
                                 $wheres[] = $column . ' IS NOT NULL';
                                 break;
@@ -319,50 +289,36 @@ class SimplePDO
                         }
                     }
 
-                    if ($operator == '<>' || $operator == '><')
-                    {
-                        if ($type == 'array')
-                        {
-                            if ($operator == '><')
-                            {
+                    if ($operator == '<>' || $operator == '><') {
+                        if ($type == 'array') {
+                            if ($operator == '><') {
                                 $column .= ' NOT';
                             }
 
-                            if (is_numeric($value[ 0 ]) && is_numeric($value[ 1 ]))
-                            {
-                                $wheres[] = '(' . $column . ' BETWEEN ' . $value[ 0 ] . ' AND ' . $value[ 1 ] . ')';
-                            }
-                            else
-                            {
-                                $wheres[] = '(' . $column . ' BETWEEN ' . $this->quote($value[ 0 ]) . ' AND ' . $this->quote($value[ 1 ]) . ')';
+                            if (is_numeric($value[0]) && is_numeric($value[1])) {
+                                $wheres[] = '(' . $column . ' BETWEEN ' . $value[0] . ' AND ' . $value[1] . ')';
+                            } else {
+                                $wheres[] = '(' . $column . ' BETWEEN ' . $this->quote($value[0]) . ' AND ' . $this->quote($value[1]) . ')';
                             }
                         }
                     }
 
-                    if ($operator == '~' || $operator == '!~')
-                    {
-                        if ($type != 'array')
-                        {
+                    if ($operator == '~' || $operator == '!~') {
+                        if ($type != 'array') {
                             $value = array($value);
                         }
 
                         $like_clauses = array();
 
-                        foreach ($value as $item)
-                        {
+                        foreach ($value as $item) {
                             $item = strval($item);
                             $suffix = mb_substr($item, -1, 1);
 
-                            if ($suffix === '_')
-                            {
+                            if ($suffix === '_') {
                                 $item = substr_replace($item, '%', -1);
-                            }
-                            elseif ($suffix === '%')
-                            {
+                            } elseif ($suffix === '%') {
                                 $item = '%' . substr_replace($item, '', -1, 1);
-                            }
-                            elseif (preg_match('/^(?!%).+(?<!%)$/', $item))
-                            {
+                            } elseif (preg_match('/^(?!%).+(?<!%)$/', $item)) {
                                 $item = '%' . $item . '%';
                             }
 
@@ -372,26 +328,17 @@ class SimplePDO
                         $wheres[] = implode(' OR ', $like_clauses);
                     }
 
-                    if (in_array($operator, array('>', '>=', '<', '<=')))
-                    {
-                        if (is_numeric($value))
-                        {
+                    if (in_array($operator, array('>', '>=', '<', '<='))) {
+                        if (is_numeric($value)) {
                             $wheres[] = $column . ' ' . $operator . ' ' . $value;
-                        }
-                        elseif (strpos($key, '#') === 0)
-                        {
+                        } elseif (strpos($key, '#') === 0) {
                             $wheres[] = $column . ' ' . $operator . ' ' . $this->fn_quote($key, $value);
-                        }
-                        else
-                        {
+                        } else {
                             $wheres[] = $column . ' ' . $operator . ' ' . $this->quote($value);
                         }
                     }
-                }
-                else
-                {
-                    switch ($type)
-                    {
+                } else {
+                    switch ($type) {
                         case 'NULL':
                             $wheres[] = $column . ' IS NULL';
                             break;
@@ -424,8 +371,7 @@ class SimplePDO
     {
         $where_clause = '';
 
-        if (is_array($where))
-        {
+        if (is_array($where)) {
             $where_keys = array_keys($where);
             $where_AND = preg_grep("/^AND\s*#?$/i", $where_keys);
             $where_OR = preg_grep("/^OR\s*#?$/i", $where_keys);
@@ -434,114 +380,89 @@ class SimplePDO
                 explode(' ', 'AND OR GROUP ORDER HAVING LIMIT LIKE MATCH')
             ));
 
-            if ($single_condition != array())
-            {
+            if ($single_condition != array()) {
                 $condition = $this->data_implode($single_condition, '');
 
-                if ($condition != '')
-                {
+                if ($condition != '') {
                     $where_clause = ' WHERE ' . $condition;
                 }
             }
 
-            if (!empty($where_AND))
-            {
+            if (!empty($where_AND)) {
                 $value = array_values($where_AND);
-                $where_clause = ' WHERE ' . $this->data_implode($where[ $value[ 0 ] ], ' AND');
+                $where_clause = ' WHERE ' . $this->data_implode($where[$value[0]], ' AND');
             }
 
-            if (!empty($where_OR))
-            {
+            if (!empty($where_OR)) {
                 $value = array_values($where_OR);
-                $where_clause = ' WHERE ' . $this->data_implode($where[ $value[ 0 ] ], ' OR');
+                $where_clause = ' WHERE ' . $this->data_implode($where[$value[0]], ' OR');
             }
 
-            if (isset($where[ 'MATCH' ]))
-            {
-                $MATCH = $where[ 'MATCH' ];
+            if (isset($where['MATCH'])) {
+                $MATCH = $where['MATCH'];
 
-                if (is_array($MATCH) && isset($MATCH[ 'columns' ], $MATCH[ 'keyword' ]))
-                {
-                    $where_clause .= ($where_clause != '' ? ' AND ' : ' WHERE ') . ' MATCH ("' . str_replace('.', '"."', implode($MATCH[ 'columns' ], '", "')) . '") AGAINST (' . $this->quote($MATCH[ 'keyword' ]) . ')';
+                if (is_array($MATCH) && isset($MATCH['columns'], $MATCH['keyword'])) {
+                    $where_clause .= ($where_clause != '' ? ' AND ' : ' WHERE ') . ' MATCH ("' . str_replace('.', '"."', implode($MATCH['columns'], '", "')) . '") AGAINST (' . $this->quote($MATCH['keyword']) . ')';
                 }
             }
 
-            if (isset($where[ 'GROUP' ]))
-            {
-                $where_clause .= ' GROUP BY ' . $this->column_quote($where[ 'GROUP' ]);
+            if (isset($where['GROUP'])) {
+                $where_clause .= ' GROUP BY ' . $this->column_quote($where['GROUP']);
 
-                if (isset($where[ 'HAVING' ]))
-                {
-                    $where_clause .= ' HAVING ' . $this->data_implode($where[ 'HAVING' ], ' AND');
+                if (isset($where['HAVING'])) {
+                    $where_clause .= ' HAVING ' . $this->data_implode($where['HAVING'], ' AND');
                 }
             }
 
-            if (isset($where[ 'ORDER' ]))
-            {
+            if (isset($where['ORDER'])) {
                 $rsort = '/(^[a-zA-Z0-9_\-\.]*)(\s*(DESC|ASC))?/';
-                $ORDER = $where[ 'ORDER' ];
+                $ORDER = $where['ORDER'];
 
-                if (is_array($ORDER))
-                {
+                if (is_array($ORDER)) {
                     if (
-                        isset($ORDER[ 1 ]) &&
-                        is_array($ORDER[ 1 ])
-                    )
-                    {
-                        $where_clause .= ' ORDER BY FIELD(' . $this->column_quote($ORDER[ 0 ]) . ', ' . $this->array_quote($ORDER[ 1 ]) . ')';
-                    }
-                    else
-                    {
+                        isset($ORDER[1]) &&
+                        is_array($ORDER[1])
+                    ) {
+                        $where_clause .= ' ORDER BY FIELD(' . $this->column_quote($ORDER[0]) . ', ' . $this->array_quote($ORDER[1]) . ')';
+                    } else {
                         $stack = array();
 
-                        foreach ($ORDER as $column)
-                        {
+                        foreach ($ORDER as $column) {
                             preg_match($rsort, $column, $order_match);
 
-                            array_push($stack, '"' . str_replace('.', '"."', $order_match[ 1 ]) . '"' . (isset($order_match[ 3 ]) ? ' ' . $order_match[ 3 ] : ''));
+                            array_push($stack, '"' . str_replace('.', '"."', $order_match[1]) . '"' . (isset($order_match[3]) ? ' ' . $order_match[3] : ''));
                         }
 
                         $where_clause .= ' ORDER BY ' . implode($stack, ',');
                     }
-                }
-                else
-                {
+                } else {
                     preg_match($rsort, $ORDER, $order_match);
 
-                    $where_clause .= ' ORDER BY "' . str_replace('.', '"."', $order_match[ 1 ]) . '"' . (isset($order_match[ 3 ]) ? ' ' . $order_match[ 3 ] : '');
+                    $where_clause .= ' ORDER BY "' . str_replace('.', '"."', $order_match[1]) . '"' . (isset($order_match[3]) ? ' ' . $order_match[3] : '');
                 }
             }
 
-            if (isset($where[ 'LIMIT' ]))
-            {
-                $LIMIT = $where[ 'LIMIT' ];
+            if (isset($where['LIMIT'])) {
+                $LIMIT = $where['LIMIT'];
 
-                if (is_numeric($LIMIT))
-                {
+                if (is_numeric($LIMIT)) {
                     $where_clause .= ' LIMIT ' . $LIMIT;
                 }
 
                 if (
                     is_array($LIMIT) &&
-                    is_numeric($LIMIT[ 0 ]) &&
-                    is_numeric($LIMIT[ 1 ])
-                )
-                {
-                    if ($this->database_type === 'pgsql')
-                    {
-                        $where_clause .= ' OFFSET ' . $LIMIT[ 0 ] . ' LIMIT ' . $LIMIT[ 1 ];
-                    }
-                    else
-                    {
-                        $where_clause .= ' LIMIT ' . $LIMIT[ 0 ] . ',' . $LIMIT[ 1 ];
+                    is_numeric($LIMIT[0]) &&
+                    is_numeric($LIMIT[1])
+                ) {
+                    if ($this->database_type === 'pgsql') {
+                        $where_clause .= ' OFFSET ' . $LIMIT[0] . ' LIMIT ' . $LIMIT[1];
+                    } else {
+                        $where_clause .= ' LIMIT ' . $LIMIT[0] . ',' . $LIMIT[1];
                     }
                 }
             }
-        }
-        else
-        {
-            if ($where != null)
-            {
+        } else {
+            if ($where != null) {
                 $where_clause .= ' ' . $where;
             }
         }
@@ -555,10 +476,9 @@ class SimplePDO
         $join_key = is_array($join) ? array_keys($join) : null;
 
         if (
-            isset($join_key[ 0 ]) &&
-            strpos($join_key[ 0 ], '[') === 0
-        )
-        {
+            isset($join_key[0]) &&
+            strpos($join_key[0], '[') === 0
+        ) {
             $table_join = array();
 
             $join_array = array(
@@ -568,30 +488,22 @@ class SimplePDO
                 '><' => 'INNER'
             );
 
-            foreach($join as $sub_table => $relation)
-            {
+            foreach ($join as $sub_table => $relation) {
                 preg_match('/(\[(\<|\>|\>\<|\<\>)\])?([a-zA-Z0-9_\-]*)\s?(\(([a-zA-Z0-9_\-]*)\))?/', $sub_table, $match);
 
-                if ($match[ 2 ] != '' && $match[ 3 ] != '')
-                {
-                    if (is_string($relation))
-                    {
+                if ($match[2] != '' && $match[3] != '') {
+                    if (is_string($relation)) {
                         $relation = 'USING ("' . $relation . '")';
                     }
 
-                    if (is_array($relation))
-                    {
+                    if (is_array($relation)) {
                         // For ['column1', 'column2']
-                        if (isset($relation[ 0 ]))
-                        {
+                        if (isset($relation[0])) {
                             $relation = 'USING ("' . implode($relation, '", "') . '")';
-                        }
-                        else
-                        {
+                        } else {
                             $joins = array();
 
-                            foreach ($relation as $key => $value)
-                            {
+                            foreach ($relation as $key => $value) {
                                 $joins[] = $this->prefix . (
                                     strpos($key, '.') > 0 ?
                                         // For ['tableB.column' => 'column']
@@ -601,76 +513,57 @@ class SimplePDO
                                         $table . '."' . $key . '"'
                                     ) .
                                     ' = ' .
-                                    '"' . (isset($match[ 5 ]) ? $match[ 5 ] : $match[ 3 ]) . '"."' . $value . '"';
+                                    '"' . (isset($match[5]) ? $match[5] : $match[3]) . '"."' . $value . '"';
                             }
 
                             $relation = 'ON ' . implode($joins, ' AND ');
                         }
                     }
 
-                    $table_join[] = $join_array[ $match[ 2 ] ] . ' JOIN "' . $this->prefix . $match[ 3 ] . '" ' . (isset($match[ 5 ]) ?  'AS "' . $match[ 5 ] . '" ' : '') . $relation;
+                    $table_join[] = $join_array[$match[2]] . ' JOIN "' . $this->prefix . $match[3] . '" ' . (isset($match[5]) ? 'AS "' . $match[5] . '" ' : '') . $relation;
                 }
             }
 
             $table .= ' ' . implode($table_join, ' ');
-        }
-        else
-        {
-            if (is_null($columns))
-            {
-                if (is_null($where))
-                {
+        } else {
+            if (is_null($columns)) {
+                if (is_null($where)) {
                     if (
                         is_array($join) &&
                         isset($column_fn)
-                    )
-                    {
+                    ) {
                         $where = $join;
                         $columns = null;
-                    }
-                    else
-                    {
+                    } else {
                         $where = null;
                         $columns = $join;
                     }
-                }
-                else
-                {
+                } else {
                     $where = $join;
                     $columns = null;
                 }
-            }
-            else
-            {
+            } else {
                 $where = $columns;
                 $columns = $join;
             }
         }
 
-        if (isset($column_fn))
-        {
-            if ($column_fn == 1)
-            {
+        if (isset($column_fn)) {
+            if ($column_fn == 1) {
                 $column = '1';
 
-                if (is_null($where))
-                {
+                if (is_null($where)) {
                     $where = $columns;
                 }
-            }
-            else
-            {
-                if (empty($columns))
-                {
+            } else {
+                if (empty($columns)) {
                     $columns = '*';
                     $where = $join;
                 }
 
                 $column = $column_fn . '(' . $this->column_push($columns) . ')';
             }
-        }
-        else
-        {
+        } else {
             $column = $this->column_push($columns);
         }
 
@@ -691,22 +584,18 @@ class SimplePDO
         $lastId = array();
 
         // Check indexed or associative array
-        if (!isset($datas[ 0 ]))
-        {
+        if (!isset($datas[0])) {
             $datas = array($datas);
         }
 
-        foreach ($datas as $data)
-        {
+        foreach ($datas as $data) {
             $values = array();
             $columns = array();
 
-            foreach ($data as $key => $value)
-            {
+            foreach ($data as $key => $value) {
                 array_push($columns, $this->column_quote($key));
 
-                switch (gettype($value))
-                {
+                switch (gettype($value)) {
                     case 'NULL':
                         $values[] = 'NULL';
                         break;
@@ -714,7 +603,7 @@ class SimplePDO
                     case 'array':
                         preg_match("/\(JSON\)\s*([\w]+)/i", $key, $column_match);
 
-                        $values[] = isset($column_match[ 0 ]) ?
+                        $values[] = isset($column_match[0]) ?
                             $this->quote(json_encode($value)) :
                             $this->quote(serialize($value));
                         break;
@@ -736,30 +625,24 @@ class SimplePDO
             $lastId[] = $this->pdo->lastInsertId();
         }
 
-        return count($lastId) > 1 ? $lastId : $lastId[ 0 ];
+        return count($lastId) > 1 ? $lastId : $lastId[0];
     }
 
     public function update($table, $data, $where = null)
     {
         $fields = array();
 
-        foreach ($data as $key => $value)
-        {
+        foreach ($data as $key => $value) {
             preg_match('/([\w]+)(\[(\+|\-|\*|\/)\])?/i', $key, $match);
 
-            if (isset($match[ 3 ]))
-            {
-                if (is_numeric($value))
-                {
-                    $fields[] = $this->column_quote($match[ 1 ]) . ' = ' . $this->column_quote($match[ 1 ]) . ' ' . $match[ 3 ] . ' ' . $value;
+            if (isset($match[3])) {
+                if (is_numeric($value)) {
+                    $fields[] = $this->column_quote($match[1]) . ' = ' . $this->column_quote($match[1]) . ' ' . $match[3] . ' ' . $value;
                 }
-            }
-            else
-            {
+            } else {
                 $column = $this->column_quote($key);
 
-                switch (gettype($value))
-                {
+                switch (gettype($value)) {
                     case 'NULL':
                         $fields[] = $column . ' = NULL';
                         break;
@@ -768,7 +651,7 @@ class SimplePDO
                         preg_match("/\(JSON\)\s*([\w]+)/i", $key, $column_match);
 
                         $fields[] = $column . ' = ' . $this->quote(
-                                isset($column_match[ 0 ]) ? json_encode($value) : serialize($value)
+                                isset($column_match[0]) ? json_encode($value) : serialize($value)
                             );
                         break;
 
@@ -795,37 +678,28 @@ class SimplePDO
 
     public function replace($table, $columns, $search = null, $replace = null, $where = null)
     {
-        if (is_array($columns))
-        {
+        if (is_array($columns)) {
             $replace_query = array();
 
-            foreach ($columns as $column => $replacements)
-            {
-                foreach ($replacements as $replace_search => $replace_replacement)
-                {
+            foreach ($columns as $column => $replacements) {
+                foreach ($replacements as $replace_search => $replace_replacement) {
                     $replace_query[] = $column . ' = REPLACE(' . $this->column_quote($column) . ', ' . $this->quote($replace_search) . ', ' . $this->quote($replace_replacement) . ')';
                 }
             }
 
             $replace_query = implode(', ', $replace_query);
             $where = $search;
-        }
-        else
-        {
-            if (is_array($search))
-            {
+        } else {
+            if (is_array($search)) {
                 $replace_query = array();
 
-                foreach ($search as $replace_search => $replace_replacement)
-                {
+                foreach ($search as $replace_search => $replace_replacement) {
                     $replace_query[] = $columns . ' = REPLACE(' . $this->column_quote($columns) . ', ' . $this->quote($replace_search) . ', ' . $this->quote($replace_replacement) . ')';
                 }
 
                 $replace_query = implode(', ', $replace_query);
                 $where = $replace;
-            }
-            else
-            {
+            } else {
                 $replace_query = $columns . ' = REPLACE(' . $this->column_quote($columns) . ', ' . $this->quote($search) . ', ' . $this->quote($replace) . ')';
             }
         }
@@ -837,28 +711,21 @@ class SimplePDO
     {
         $query = $this->query($this->select_context($table, $join, $column, $where) . ' LIMIT 1');
 
-        if ($query)
-        {
+        if ($query) {
             $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            if (isset($data[ 0 ]))
-            {
+            if (isset($data[0])) {
                 $column = $where == null ? $join : $column;
 
-                if (is_string($column) && $column != '*')
-                {
-                    return $data[ 0 ][ $column ];
+                if (is_string($column) && $column != '*') {
+                    return $data[0][$column];
                 }
 
-                return $data[ 0 ];
-            }
-            else
-            {
+                return $data[0];
+            } else {
                 return false;
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -869,12 +736,9 @@ class SimplePDO
 
         $query = $this->query('SELECT EXISTS(' . $this->select_context($table, $join, $column, $where, 1) . ')');
 
-        if ($query)
-        {
+        if ($query) {
             return $query->fetchColumn() === '1';
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -890,14 +754,11 @@ class SimplePDO
     {
         $query = $this->query($this->select_context($table, $join, $column, $where, 'MAX'));
 
-        if ($query)
-        {
+        if ($query) {
             $max = $query->fetchColumn();
 
             return is_numeric($max) ? $max + 0 : $max;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -906,14 +767,11 @@ class SimplePDO
     {
         $query = $this->query($this->select_context($table, $join, $column, $where, 'MIN'));
 
-        if ($query)
-        {
+        if ($query) {
             $min = $query->fetchColumn();
 
             return is_numeric($min) ? $min + 0 : $min;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -934,23 +792,17 @@ class SimplePDO
 
     public function action($actions)
     {
-        if (is_callable($actions))
-        {
+        if (is_callable($actions)) {
             $this->pdo->beginTransaction();
 
             $result = $actions($this);
 
-            if ($result === false)
-            {
+            if ($result === false) {
                 $this->pdo->rollBack();
-            }
-            else
-            {
+            } else {
                 $this->pdo->commit();
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -987,9 +839,8 @@ class SimplePDO
             'connection' => 'CONNECTION_STATUS'
         );
 
-        foreach ($output as $key => $value)
-        {
-            $output[ $key ] = $this->pdo->getAttribute(constant('PDO::ATTR_' . $value));
+        foreach ($output as $key => $value) {
+            $output[$key] = $this->pdo->getAttribute(constant('PDO::ATTR_' . $value));
         }
 
         return $output;

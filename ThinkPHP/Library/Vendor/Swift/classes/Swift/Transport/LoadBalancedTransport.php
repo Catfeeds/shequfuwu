@@ -102,7 +102,7 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
      * The return value is the number of recipients who were accepted for delivery.
      *
      * @param Swift_Mime_Message $message
-     * @param string[]           $failedRecipients An array of failures by-reference
+     * @param string[] $failedRecipients An array of failures by-reference
      *
      * @return int
      */
@@ -113,7 +113,7 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
         $this->_lastUsedTransport = null;
 
         for ($i = 0; $i < $maxTransports
-            && $transport = $this->_getNextTransport(); ++$i) {
+        && $transport = $this->_getNextTransport(); ++$i) {
             try {
                 if (!$transport->isStarted()) {
                     $transport->start();
@@ -130,7 +130,7 @@ class Swift_Transport_LoadBalancedTransport implements Swift_Transport
         if (count($this->_transports) == 0) {
             throw new Swift_TransportException(
                 'All Transports in LoadBalancedTransport failed, or no Transports available'
-                );
+            );
         }
 
         return $sent;

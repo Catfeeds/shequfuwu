@@ -2,12 +2,13 @@
 namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
 
 use Vendor\Hiland\Biz\Tencent\Common\WechatException;
+
 /**
  *
  * 接口调用结果类
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseResults extends WxPayDataBase
 {
@@ -18,10 +19,10 @@ class WxPayDataBaseResults extends WxPayDataBase
     public function CheckSign()
     {
         // fix异常
-        if (! $this->IsSignSet()) {
+        if (!$this->IsSignSet()) {
             throw new WechatException("签名错误！");
         }
-        
+
         $sign = $this->MakeSign();
         if ($this->GetSign() == $sign) {
             return true;
@@ -33,7 +34,7 @@ class WxPayDataBaseResults extends WxPayDataBase
      *
      * 使用数组初始化
      *
-     * @param array $array            
+     * @param array $array
      */
     public function FromArray($array)
     {
@@ -63,8 +64,8 @@ class WxPayDataBaseResults extends WxPayDataBase
      *
      * 设置参数
      *
-     * @param string $key            
-     * @param string $value            
+     * @param string $key
+     * @param string $value
      */
     public function SetData($key, $value)
     {

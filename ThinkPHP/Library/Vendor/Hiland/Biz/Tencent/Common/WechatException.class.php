@@ -3,9 +3,9 @@ namespace Vendor\Hiland\Biz\Tencent\Common;
 
 /**
  * 微信支付API异常类
- * 
+ *
  * @author devel
- *        
+ *
  */
 class WechatException extends \Exception
 {
@@ -14,7 +14,7 @@ class WechatException extends \Exception
     {
         return $this->getMessage();
     }
-    
+
     /*
      * public static function message($messageconent){
      * $e= new self($messageconent);
@@ -22,4 +22,5 @@ class WechatException extends \Exception
      * }
      */
 }
+
 ?>

@@ -1,7 +1,7 @@
 /**
  * Created by heqing on 15/7/9.
  */
-$(function(){
+$(function () {
     //图片延时加载
     $("img.lazy").lazyload({
         threshold: 180,

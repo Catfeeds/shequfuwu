@@ -24,7 +24,7 @@ class AddShopController extends Controller
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
         $this->display();
     }
-    
+
     public function addShop()
     {
         if (IS_POST) {
@@ -49,11 +49,7 @@ class AddShopController extends Controller
         } else {
             $this->display();
         }
-    }  
-  
-    
-    
-    
-    
-    
+    }
+
+
 }

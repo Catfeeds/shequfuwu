@@ -133,7 +133,7 @@ class ShopController extends BaseController
 
         $productList = D("Product")->getProductList($condition, true, "id desc", $p, $num);
         $this->assign('productList', $productList);// 赋值数据集
-        
+
         // dump($productList);
         $count = D("Product")->getProductListCount($condition);// 查询满足要求的总记录数
         $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
@@ -230,7 +230,7 @@ class ShopController extends BaseController
         $condition = array(
             "shop_id" => session("homeShopId")
         );
-        
+
         $product = D("Product")->get(array("id" => I("get.id")), array('menu', 'file'));
         $product["label"] = explode(",", $product["label"]);
 
@@ -246,7 +246,7 @@ class ShopController extends BaseController
 
         // dump($product);
 
-        $this->display("Shop:addProduct");        
+        $this->display("Shop:addProduct");
     }
 
     public function updateProduct()
@@ -442,11 +442,12 @@ class ShopController extends BaseController
         $condition = array(
             "shop_id" => session("homeShopId")
         );
-        
+
         $label = D("ProductLabel")->getList($condition, false);
         $this->assign("label", $label);
         $this->display();
     }
+
     public function modLabel()
     {
         $label = D("ProductLabel")->get(array("id" => I("get.id")), false);
@@ -468,7 +469,7 @@ class ShopController extends BaseController
         } else {
             $this->display();
         }
-        
+
     }
 
     public function delLabel()
@@ -480,7 +481,7 @@ class ShopController extends BaseController
 
     public function sku()
     {
-        $productID= I("get.id");
+        $productID = I("get.id");
         cookie("prevUrl", U("Home/Shop/sku/id/$productID"));
 
         $condition = array(
@@ -488,7 +489,7 @@ class ShopController extends BaseController
             "product_id" => I("get.id")
         );
 
-        $sku = D("ProductSku")->getList($condition,true,"rank asc");
+        $sku = D("ProductSku")->getList($condition, true, "rank asc");
         $this->assign("sku", $sku);
 
         $this->display();
@@ -502,13 +503,13 @@ class ShopController extends BaseController
         $skuModel = D("ProductSku");
         foreach ($new as $key => $value) {
             $new[$key]["product_id"] = I("post.product_id");
-            $new[$key]["shop_id"] = session("homeShopId"); 
+            $new[$key]["shop_id"] = session("homeShopId");
             $skuModel->add($new[$key]);
         }
 
         foreach ($old as $key => $value) {
             $old[$key]["product_id"] = I("post.product_id");
-            $new[$key]["shop_id"] = session("homeShopId"); 
+            $new[$key]["shop_id"] = session("homeShopId");
             $skuModel->save($old[$key]);
         }
 
@@ -523,12 +524,13 @@ class ShopController extends BaseController
         $this->success("删除成功", cookie("prevUrl"));
     }
 
-    public function qrCode(){
+    public function qrCode()
+    {
         if (session("homeShopId")) {
             $id = session("homeShopId");
 
             //dump($id);
-            $qrUrl= BizHelper::getQRCodeUrl($id,'LONG');
+            $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
             $this->assign('qrUrl', $qrUrl);
             $this->display();
 

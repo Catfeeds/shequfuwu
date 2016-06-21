@@ -9,27 +9,27 @@ $CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("
 //自定义配置路径
 $CONFIG["imageManagerListPath"] = $_GET["publicPath"];
 $CONFIG["fileManagerListPath"] = $_GET["publicPath"];
-$CONFIG["imagePathFormat"] = $_GET["publicPath"]."{yyyy}{mm}{dd}/{time}{rand:6}";
-$CONFIG["scrawlPathFormat"] = $_GET["publicPath"]."{yyyy}{mm}{dd}/{time}{rand:6}";
-$CONFIG["snapscreenPathFormat"] = $_GET["publicPath"]."{yyyy}{mm}{dd}/{time}{rand:6}";
-$CONFIG["catcherPathFormat"] = $_GET["publicPath"]."{yyyy}{mm}{dd}/{time}{rand:6}";
-$CONFIG["videoPathFormat"] = $_GET["publicPath"]."{yyyy}{mm}{dd}/{time}{rand:6}";
-$CONFIG["filePathFormat"] = $_GET["publicPath"]."{yyyy}{mm}{dd}/{time}{rand:6}";
+$CONFIG["imagePathFormat"] = $_GET["publicPath"] . "{yyyy}{mm}{dd}/{time}{rand:6}";
+$CONFIG["scrawlPathFormat"] = $_GET["publicPath"] . "{yyyy}{mm}{dd}/{time}{rand:6}";
+$CONFIG["snapscreenPathFormat"] = $_GET["publicPath"] . "{yyyy}{mm}{dd}/{time}{rand:6}";
+$CONFIG["catcherPathFormat"] = $_GET["publicPath"] . "{yyyy}{mm}{dd}/{time}{rand:6}";
+$CONFIG["videoPathFormat"] = $_GET["publicPath"] . "{yyyy}{mm}{dd}/{time}{rand:6}";
+$CONFIG["filePathFormat"] = $_GET["publicPath"] . "{yyyy}{mm}{dd}/{time}{rand:6}";
 
 $action = $_GET['action'];
 
 switch ($action) {
     case 'config':
-        $result =  json_encode($CONFIG);
+        $result = json_encode($CONFIG);
         break;
 
     /* 上传图片 */
     case 'uploadimage':
-    /* 上传涂鸦 */
+        /* 上传涂鸦 */
     case 'uploadscrawl':
-    /* 上传视频 */
+        /* 上传视频 */
     case 'uploadvideo':
-    /* 上传文件 */
+        /* 上传文件 */
     case 'uploadfile':
         $result = include("action_upload.php");
         break;
@@ -50,7 +50,7 @@ switch ($action) {
 
     default:
         $result = json_encode(array(
-            'state'=> '请求地址出错'
+            'state' => '请求地址出错'
         ));
         break;
 }
@@ -61,7 +61,7 @@ if (isset($_GET["callback"])) {
         echo htmlspecialchars($_GET["callback"]) . '(' . $result . ')';
     } else {
         echo json_encode(array(
-            'state'=> 'callback参数不合法'
+            'state' => 'callback参数不合法'
         ));
     }
 } else {

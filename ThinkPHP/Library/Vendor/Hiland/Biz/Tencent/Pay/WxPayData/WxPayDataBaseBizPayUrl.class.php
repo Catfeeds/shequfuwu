@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 扫码支付模式一生成二维码参数
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseBizPayUrl extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return bool true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
     /**
      * 设置支付时间戳
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTime_stamp($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
      * 判断支付时间戳是否存在
      *
      * @return bool true 或 false
-     *        
+     *
      */
     public function IsTime_stampSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
     /**
      * 设置随机字符串
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
      * 判断随机字符串是否存在
      *
      * @return bool true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
     /**
      * 设置商品ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetProduct_id($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseBizPayUrl extends WxPayDataBase
      * 判断商品ID是否存在
      *
      * @return bool true 或 false
-     *        
+     *
      */
     public function IsProduct_idSet()
     {

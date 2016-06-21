@@ -12,7 +12,7 @@ class ProductSkuModel extends Model\RelationModel
             'foreign_key' => 'file_id',//关联id
             'as_fields' => 'savename:savename,savepath:savepath',
         ),
-     );
+    );
 
     public function get($condition = array(), $relation = false)
     {

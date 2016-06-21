@@ -21,6 +21,7 @@ namespace Addons\Wheel\Controller;
 class IndexController extends InitController
 {
     public $appUrl = "";
+
     public function __construct()
     {
         parent::__construct();
@@ -39,7 +40,7 @@ class IndexController extends InitController
 
     public function index()
     {
-        $user=R("App/Public/oauthLogin");
+        $user = R("App/Public/oauthLogin");
 
         // if (!session("userUid")) {
         //     $weObj = $this->init();

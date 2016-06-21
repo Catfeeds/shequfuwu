@@ -21,17 +21,17 @@
  * @category   PHPExcel
  * @package    PHPExcel_Writer_Excel5
  * @copyright  Copyright (c) 2006 - 2009 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	1.7.0, 2009-08-10
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
+ * @version    1.7.0, 2009-08-10
  */
 
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel_IWriter */
@@ -65,188 +65,193 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Writer/Excel5/Workbook.php';
  */
 class PHPExcel_Writer_Excel5 implements PHPExcel_Writer_IWriter
 {
-	/**
-	 * PHPExcel object
-	 *
-	 * @var PHPExcel
-	 */
-	private $_phpExcel;
+    /**
+     * PHPExcel object
+     *
+     * @var PHPExcel
+     */
+    private $_phpExcel;
 
-	/**
-	 * The BIFF version of the written Excel file, BIFF5 = 0x0500, BIFF8 = 0x0600
-	 *
-	 * @var integer
-	 */
-	private $_BIFF_version;
+    /**
+     * The BIFF version of the written Excel file, BIFF5 = 0x0500, BIFF8 = 0x0600
+     *
+     * @var integer
+     */
+    private $_BIFF_version;
 
-	/**
-	 * Temporary storage directory
-	 *
-	 * @var string
-	 */
-	private $_tempDir = '';
+    /**
+     * Temporary storage directory
+     *
+     * @var string
+     */
+    private $_tempDir = '';
 
-	/**
-	 * Total number of shared strings in workbook
-	 *
-	 * @var int
-	 */
-	private $_str_total;
+    /**
+     * Total number of shared strings in workbook
+     *
+     * @var int
+     */
+    private $_str_total;
 
-	/**
-	 * Number of unique shared strings in workbook
-	 *
-	 * @var int
-	 */
-	private $_str_unique;
+    /**
+     * Number of unique shared strings in workbook
+     *
+     * @var int
+     */
+    private $_str_unique;
 
-	/**
-	 * Array of unique shared strings in workbook
-	 *
-	 * @var array
-	 */
-	private $_str_table;
+    /**
+     * Array of unique shared strings in workbook
+     *
+     * @var array
+     */
+    private $_str_table;
 
-	/**
-	 * Formula parser
-	 *
-	 * @var PHPExcel_Writer_Excel5_Parser
-	 */
-	private $_parser;
+    /**
+     * Formula parser
+     *
+     * @var PHPExcel_Writer_Excel5_Parser
+     */
+    private $_parser;
 
 
-	/**
-	 * Create a new PHPExcel_Writer_Excel5
-	 *
-	 * @param	PHPExcel	$phpExcel	PHPExcel object
-	 */
-	public function __construct(PHPExcel $phpExcel) {
-		$this->_phpExcel		= $phpExcel;
-		$this->_BIFF_version	= 0x0600;
-		$this->_tempDir			= '';
-		
-		$this->_str_total       = 0;
-		$this->_str_unique      = 0;
-		$this->_str_table       = array();
-		$this->_parser          = new PHPExcel_Writer_Excel5_Parser($this->_BIFF_version);
-		
-	}
+    /**
+     * Create a new PHPExcel_Writer_Excel5
+     *
+     * @param    PHPExcel $phpExcel PHPExcel object
+     */
+    public function __construct(PHPExcel $phpExcel)
+    {
+        $this->_phpExcel = $phpExcel;
+        $this->_BIFF_version = 0x0600;
+        $this->_tempDir = '';
 
-	/**
-	 * Save PHPExcel to file
-	 *
-	 * @param	string		$pFileName
-	 * @throws	Exception
-	 */
-	public function save($pFilename = null) {
+        $this->_str_total = 0;
+        $this->_str_unique = 0;
+        $this->_str_table = array();
+        $this->_parser = new PHPExcel_Writer_Excel5_Parser($this->_BIFF_version);
 
-		// check mbstring.func_overload
-		if (ini_get('mbstring.func_overload') != 0) {
-			throw new Exception('Multibyte string function overloading in PHP must be disabled.');
-		}
+    }
 
-		// garbage collect
-		$this->_phpExcel->garbageCollect();
+    /**
+     * Save PHPExcel to file
+     *
+     * @param    string $pFileName
+     * @throws    Exception
+     */
+    public function save($pFilename = null)
+    {
 
-		$saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
-		PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
+        // check mbstring.func_overload
+        if (ini_get('mbstring.func_overload') != 0) {
+            throw new Exception('Multibyte string function overloading in PHP must be disabled.');
+        }
 
-		// Initialise workbook writer
-		$this->_writerWorkbook = new PHPExcel_Writer_Excel5_Workbook($this->_phpExcel, $this->_BIFF_version,
-					$this->_str_total, $this->_str_unique, $this->_str_table, $this->_parser, $this->_tempDir);
+        // garbage collect
+        $this->_phpExcel->garbageCollect();
 
-		// Initialise worksheet writers
-		$countSheets = count($this->_phpExcel->getAllSheets());
-		for ($i = 0; $i < $countSheets; ++$i) {
-			$phpSheet  = $this->_phpExcel->getSheet($i);
-			
-			$writerWorksheet = new PHPExcel_Writer_Excel5_Worksheet($this->_BIFF_version,
-									   $this->_str_total, $this->_str_unique,
-									   $this->_str_table,
-									   $this->_parser, $this->_tempDir,
-									   $phpSheet);
-			$this->_writerWorksheets[$i] = $writerWorksheet;
-		}
+        $saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
+        PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
 
-		// add 15 identical cell style Xfs
-		// for now, we use the first cellXf instead of cellStyleXf
-		$cellXfCollection = $this->_phpExcel->getCellXfCollection();
-		for ($i = 0; $i < 15; ++$i) {
-			$this->_writerWorkbook->addXfWriter($cellXfCollection[0], true);
-		}
+        // Initialise workbook writer
+        $this->_writerWorkbook = new PHPExcel_Writer_Excel5_Workbook($this->_phpExcel, $this->_BIFF_version,
+            $this->_str_total, $this->_str_unique, $this->_str_table, $this->_parser, $this->_tempDir);
 
-		// add all the cell Xfs
-		foreach ($this->_phpExcel->getCellXfCollection() as $style) {
-			$this->_writerWorkbook->addXfWriter($style, false);
-		}
+        // Initialise worksheet writers
+        $countSheets = count($this->_phpExcel->getAllSheets());
+        for ($i = 0; $i < $countSheets; ++$i) {
+            $phpSheet = $this->_phpExcel->getSheet($i);
 
-		// initialize OLE file
-		$workbookStreamName = ($this->_BIFF_version == 0x0600) ? 'Workbook' : 'Book';
-		$OLE = new PHPExcel_Shared_OLE_PPS_File(PHPExcel_Shared_OLE::Asc2Ucs($workbookStreamName));
+            $writerWorksheet = new PHPExcel_Writer_Excel5_Worksheet($this->_BIFF_version,
+                $this->_str_total, $this->_str_unique,
+                $this->_str_table,
+                $this->_parser, $this->_tempDir,
+                $phpSheet);
+            $this->_writerWorksheets[$i] = $writerWorksheet;
+        }
 
-		if ($this->_tempDir != '') {
-			$OLE->setTempDir($this->_tempDir);
-		}
-		$res = $OLE->init();
+        // add 15 identical cell style Xfs
+        // for now, we use the first cellXf instead of cellStyleXf
+        $cellXfCollection = $this->_phpExcel->getCellXfCollection();
+        for ($i = 0; $i < 15; ++$i) {
+            $this->_writerWorkbook->addXfWriter($cellXfCollection[0], true);
+        }
 
-		// Write the worksheet streams before the global workbook stream,
-		// because the byte sizes of these are needed in the global workbook stream
-		$worksheetSizes = array();
-		for ($i = 0; $i < $countSheets; ++$i) {
-			$this->_writerWorksheets[$i]->close();
-			$worksheetSizes[] = $this->_writerWorksheets[$i]->_datasize;
-		}
+        // add all the cell Xfs
+        foreach ($this->_phpExcel->getCellXfCollection() as $style) {
+            $this->_writerWorkbook->addXfWriter($style, false);
+        }
 
-		// add binary data for global workbook stream
-		$OLE->append( $this->_writerWorkbook->writeWorkbook($worksheetSizes) );
+        // initialize OLE file
+        $workbookStreamName = ($this->_BIFF_version == 0x0600) ? 'Workbook' : 'Book';
+        $OLE = new PHPExcel_Shared_OLE_PPS_File(PHPExcel_Shared_OLE::Asc2Ucs($workbookStreamName));
 
-		// add binary data for sheet streams
-		for ($i = 0; $i < $countSheets; ++$i) {
-			while ( ($tmp = $this->_writerWorksheets[$i]->getData()) !== false ) {
-				$OLE->append($tmp);
-			}
-		}
+        if ($this->_tempDir != '') {
+            $OLE->setTempDir($this->_tempDir);
+        }
+        $res = $OLE->init();
 
-		$root = new PHPExcel_Shared_OLE_PPS_Root(time(), time(), array($OLE));
-		if ($this->_tempDir != '') {
-			$root->setTempDir($this->_tempDir);
-		}
+        // Write the worksheet streams before the global workbook stream,
+        // because the byte sizes of these are needed in the global workbook stream
+        $worksheetSizes = array();
+        for ($i = 0; $i < $countSheets; ++$i) {
+            $this->_writerWorksheets[$i]->close();
+            $worksheetSizes[] = $this->_writerWorksheets[$i]->_datasize;
+        }
 
-		// save the OLE file
-		$res = $root->save($pFilename);
+        // add binary data for global workbook stream
+        $OLE->append($this->_writerWorkbook->writeWorkbook($worksheetSizes));
 
-		PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
+        // add binary data for sheet streams
+        for ($i = 0; $i < $countSheets; ++$i) {
+            while (($tmp = $this->_writerWorksheets[$i]->getData()) !== false) {
+                $OLE->append($tmp);
+            }
+        }
 
-		// clean up
-		foreach ($this->_writerWorksheets as $sheet) {
-			$sheet->cleanup();
-		}
-	}
+        $root = new PHPExcel_Shared_OLE_PPS_Root(time(), time(), array($OLE));
+        if ($this->_tempDir != '') {
+            $root->setTempDir($this->_tempDir);
+        }
 
-	/**
-	 * Get temporary storage directory
-	 *
-	 * @return string
-	 */
-	public function getTempDir() {
-		return $this->_tempDir;
-	}
+        // save the OLE file
+        $res = $root->save($pFilename);
 
-	/**
-	 * Set temporary storage directory
-	 *
-	 * @param	string	$pValue		Temporary storage directory
-	 * @throws	Exception	Exception when directory does not exist
-	 * @return PHPExcel_Writer_Excel5
-	 */
-	public function setTempDir($pValue = '') {
-		if (is_dir($pValue)) {
-			$this->_tempDir = $pValue;
-		} else {
-			throw new Exception("Directory does not exist: $pValue");
-		}
-		return $this;
-	}
+        PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
+
+        // clean up
+        foreach ($this->_writerWorksheets as $sheet) {
+            $sheet->cleanup();
+        }
+    }
+
+    /**
+     * Get temporary storage directory
+     *
+     * @return string
+     */
+    public function getTempDir()
+    {
+        return $this->_tempDir;
+    }
+
+    /**
+     * Set temporary storage directory
+     *
+     * @param    string $pValue Temporary storage directory
+     * @throws    Exception    Exception when directory does not exist
+     * @return PHPExcel_Writer_Excel5
+     */
+    public function setTempDir($pValue = '')
+    {
+        if (is_dir($pValue)) {
+            $this->_tempDir = $pValue;
+        } else {
+            throw new Exception("Directory does not exist: $pValue");
+        }
+        return $this;
+    }
 
 }
+
 ?>

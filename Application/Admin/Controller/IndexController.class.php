@@ -123,7 +123,7 @@ class IndexController extends BaseController
 
         $this->display();
     }
-    
+
     public function shopChart()
     {
         $yesterday = D("Analysis")->getAnalysis(array("time" => array("like", date("Y-m-d", strtotime("-1 day")) . "%")));

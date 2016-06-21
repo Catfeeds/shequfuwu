@@ -81,8 +81,9 @@ class AdsModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
+
 //cui    
-      public function getAds($condition = array(), $relation = false)
+    public function getAds($condition = array(), $relation = false)
     {
         $data = $this->where($condition);
         if ($relation) {
@@ -129,7 +130,7 @@ class AdsModel extends RelationModel
     public function delAds($ids)
     {
         $this->where(array("id" => array("in", $ids)))->delete();
-    }  
-    
-    
+    }
+
+
 }

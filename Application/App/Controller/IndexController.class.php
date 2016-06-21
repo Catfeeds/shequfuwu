@@ -6,17 +6,17 @@ class IndexController extends BaseController
 {
     public function index()
     {
-        $oauth2Url= "App/Public/oauthLogin";
+        $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
 
         $user = json_encode($user);
-        $this ->assign("user",$user);
+        $this->assign("user", $user);
         $shopId = I("get.shopId");
-        session("shop_id",$shopId);
-        $this->assign("shopId",$shopId);
+        session("shop_id", $shopId);
+        $this->assign("shopId", $shopId);
 
         $configs = D("Config")->get();
-        $config = D("Shop")->getShop(array('id'=>$shopId));
+        $config = D("Shop")->getShop(array('id' => $shopId));
         $config["delivery_time"] = explode(",", $config["delivery_time"]);
         $config["balance_payment"] = $configs["balance_payment"];
         $config["wechat_payment"] = $configs["wechat_payment"];
@@ -24,25 +24,26 @@ class IndexController extends BaseController
         $config["cool_payment"] = $configs["cool_payment"];
         $this->assign("config", json_encode($config));
 
-        $menu = D("Menu")->getList(array("shop_id"=>$shopId), true, "rank desc,id desc");
+        $menu = D("Menu")->getList(array("shop_id" => $shopId), true, "rank desc,id desc");
         $menu = list_to_tree($menu, 'id', 'pid', 'sub');
         $this->assign("menu", json_encode($menu));
 
-        $product = D("Product")->getList(array("status" => array("neq", -1),"shop_id"=>$shopId), true, "rank desc", 0, 0, 0);
+        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
         $this->assign("product", json_encode($product));
 
-        $ads = D("Ads")->getList(array("shop_id"=>$shopId), true);
+        $ads = D("Ads")->getList(array("shop_id" => $shopId), true);
         $this->assign("ads", json_encode($ads));
 
         $wxConfig = D("WxConfig")->getJsSign();
-        $this->assign("wxConfig",json_encode($wxConfig));
+        $this->assign("wxConfig", json_encode($wxConfig));
 
         $this->display();
     }
 
 
-    public function aop(){
-        $oauth2Url= "App/Public/oauthLogin";
+    public function aop()
+    {
+        $oauth2Url = "App/Public/oauthLogin";
 
         $user = R($oauth2Url);
 
@@ -50,32 +51,35 @@ class IndexController extends BaseController
     }
 
     //pidong 通过shopid获取当前店铺信息
-    public function getThisShop(){
+    public function getThisShop()
+    {
         $this->display();
     }
+
     //pidong 通过shopid获取当前店铺信息
-    public function shop(){
+    public function shop()
+    {
         $user = R("App/Public/oauthLogin");
         $user = json_encode($user);
-        $this ->assign("user",$user);
+        $this->assign("user", $user);
 
-        if(I("get.shopid")){
+        if (I("get.shopid")) {
             $shopId = I("get.shopid");
-            session("shop_id",$shopId);           
+            session("shop_id", $shopId);
         }
 
         $configs = D("Config")->get();
-        $config = D("Shop")->getShop(array('id'=>$shopId));
+        $config = D("Shop")->getShop(array('id' => $shopId));
         $config["delivery_time"] = explode(",", $config["delivery_time"]);
         $config["balance_payment"] = $configs["balance_payment"];
         $config["wechat_payment"] = $configs["wechat_payment"];
         $config["alipay_payment"] = $configs["alipay_payment"];
         $config["cool_payment"] = $configs["cool_payment"];
         $this->assign("config", json_encode($config));
-        
+
         $wxConfig = D("WxConfig")->getJsSign();
-        $this->assign("wxConfig",json_encode($wxConfig));
-        
+        $this->assign("wxConfig", json_encode($wxConfig));
+
         $this->display();
     }
 

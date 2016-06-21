@@ -8,14 +8,13 @@ class PublicController extends Controller
     public function login()
     {
         if (IS_POST) {
-           if (!$this->check_verify(I("post.verify"))) {
-               $this->error("验证码错误");
-           }
+            if (!$this->check_verify(I("post.verify"))) {
+                $this->error("验证码错误");
+            }
 
             $where = array();
             $where ["username"] = I("post.username");
             $where ["password"] = md5(I("post.password"));
-
 
 
             $user = D("Admin")->get($where, true);
@@ -66,7 +65,7 @@ class PublicController extends Controller
     public function logout()
     {
         session(null);
-        
+
         $this->redirect("Admin/Public/login");
     }
 }

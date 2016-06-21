@@ -89,7 +89,7 @@ class ConfigController extends BaseController
     public function tplSet()
     {
         if (I("get.theme")) {
-            D("Config")->add(array("theme" => I("get.theme"),"id"=>1));
+            D("Config")->add(array("theme" => I("get.theme"), "id" => 1));
             $this->success("设置成功", U("Admin/Config/tplSet"));
         } else {
             $config = D("Config")->get();

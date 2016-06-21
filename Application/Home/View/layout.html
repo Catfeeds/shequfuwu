@@ -131,21 +131,21 @@
 <include file="Public:footer"/>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('<audio id="chatAudio"><source src="__PUBLIC__/Admin/dist/wav/newtip.mp3" type="audio/mpeg"></audio>').appendTo('body');//载入声音文件
 
         function getNewOrderTip() {
             $.ajax({
-                type:"Get",
-                url:"__APP__/Home/Index/getNoticingOrderCount",
-                success:function(msg){
-                    var orderCount= parseInt(msg);
-                    if(orderCount>0) {
-                        var content= '<span class="get-member label label-sm label-danger">'+ orderCount+ '</span>';
+                type: "Get",
+                url: "__APP__/Home/Index/getNoticingOrderCount",
+                success: function (msg) {
+                    var orderCount = parseInt(msg);
+                    if (orderCount > 0) {
+                        var content = '<span class="get-member label label-sm label-danger">' + orderCount + '</span>';
                         $('#spanOrderCount').html(orderCount);
                         $("#infoTipSpan").html(content);
                         $('#chatAudio')[0].play();
-                    }else{
+                    } else {
                         $('#spanOrderCount').html('');
                         $("#infoTipSpan").html('');
                     }
@@ -153,7 +153,7 @@
             });
         }
 
-        setInterval(getNewOrderTip,60000);
+        setInterval(getNewOrderTip, 60000);
     });
 </script>
 </body>

@@ -15,7 +15,8 @@
  * @package Smarty
  * @subpackage Compiler
  */
-class Smarty_Internal_Compile_Foreach extends Smarty_Internal_CompileBase {
+class Smarty_Internal_Compile_Foreach extends Smarty_Internal_CompileBase
+{
     /**
      * Attribute definition: Overwrites base class.
      *
@@ -36,14 +37,14 @@ class Smarty_Internal_Compile_Foreach extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $shorttag_order = array('from','item','key','name');
+    public $shorttag_order = array('from', 'item', 'key', 'name');
 
     /**
      * Compiles code for the {foreach} tag
      *
-     * @param array  $args      array with attributes from parser
-     * @param object $compiler  compiler object
-     * @param array  $parameter array with compilation parameter
+     * @param array $args array with attributes from parser
+     * @param object $compiler compiler object
+     * @param array $parameter array with compilation parameter
      * @return string compiled code
      */
     public function compile($args, $compiler, $parameter)
@@ -173,14 +174,15 @@ class Smarty_Internal_Compile_Foreach extends Smarty_Internal_CompileBase {
  * @package Smarty
  * @subpackage Compiler
  */
-class Smarty_Internal_Compile_Foreachelse extends Smarty_Internal_CompileBase {
+class Smarty_Internal_Compile_Foreachelse extends Smarty_Internal_CompileBase
+{
 
     /**
      * Compiles code for the {foreachelse} tag
      *
-     * @param array  $args array with attributes from parser
+     * @param array $args array with attributes from parser
      * @param object $compiler compiler object
-     * @param array  $parameter array with compilation parameter
+     * @param array $parameter array with compilation parameter
      * @return string compiled code
      */
     public function compile($args, $compiler, $parameter)
@@ -202,14 +204,15 @@ class Smarty_Internal_Compile_Foreachelse extends Smarty_Internal_CompileBase {
  * @package Smarty
  * @subpackage Compiler
  */
-class Smarty_Internal_Compile_Foreachclose extends Smarty_Internal_CompileBase {
+class Smarty_Internal_Compile_Foreachclose extends Smarty_Internal_CompileBase
+{
 
     /**
      * Compiles code for the {/foreach} tag
      *
-     * @param array  $args      array with attributes from parser
-     * @param object $compiler  compiler object
-     * @param array  $parameter array with compilation parameter
+     * @param array $args array with attributes from parser
+     * @param object $compiler compiler object
+     * @param array $parameter array with compilation parameter
      * @return string compiled code
      */
     public function compile($args, $compiler, $parameter)

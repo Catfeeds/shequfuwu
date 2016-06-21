@@ -9,7 +9,7 @@
 /**
  * @ignore
  */
-require_once( SMARTY_PLUGINS_DIR .'shared.literal_compiler_param.php' );
+require_once(SMARTY_PLUGINS_DIR . 'shared.literal_compiler_param.php');
 
 /**
  * Smarty escape modifier plugin
@@ -37,25 +37,25 @@ function smarty_modifiercompiler_escape($params, $compiler)
         switch ($esc_type) {
             case 'html':
                 return 'htmlspecialchars('
-                    . $params[0] .', ENT_QUOTES, '
-                    . var_export($char_set, true) . ', '
-                    . var_export($double_encode, true) . ')';
+                . $params[0] . ', ENT_QUOTES, '
+                . var_export($char_set, true) . ', '
+                . var_export($double_encode, true) . ')';
 
             case 'htmlall':
-                if (SMARTY_MBSTRING /* ^phpunit */&&empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
+                if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
                     return 'mb_convert_encoding(htmlspecialchars('
-                        . $params[0] .', ENT_QUOTES, '
-                        . var_export($char_set, true) . ', '
-                        . var_export($double_encode, true)
-                        . '), "HTML-ENTITIES", '
-                        . var_export($char_set, true) . ')';
+                    . $params[0] . ', ENT_QUOTES, '
+                    . var_export($char_set, true) . ', '
+                    . var_export($double_encode, true)
+                    . '), "HTML-ENTITIES", '
+                    . var_export($char_set, true) . ')';
                 }
 
                 // no MBString fallback
                 return 'htmlentities('
-                    . $params[0] .', ENT_QUOTES, '
-                    . var_export($char_set, true) . ', '
-                    . var_export($double_encode, true) . ')';
+                . $params[0] . ', ENT_QUOTES, '
+                . var_export($char_set, true) . ', '
+                . var_export($double_encode, true) . ')';
 
             case 'url':
                 return 'rawurlencode(' . $params[0] . ')';
@@ -72,19 +72,19 @@ function smarty_modifiercompiler_escape($params, $compiler)
                 return 'strtr(' . $params[0] . ', array("\\\\" => "\\\\\\\\", "\'" => "\\\\\'", "\"" => "\\\\\"", "\\r" => "\\\\r", "\\n" => "\\\n", "</" => "<\/" ))';
 
         }
-    } catch(SmartyException $e) {
+    } catch (SmartyException $e) {
         // pass through to regular plugin fallback
     }
 
     // could not optimize |escape call, so fallback to regular plugin
     if ($compiler->tag_nocache | $compiler->nocache) {
-        $compiler->template->required_plugins['nocache']['escape']['modifier']['file'] = SMARTY_PLUGINS_DIR .'modifier.escape.php';
+        $compiler->template->required_plugins['nocache']['escape']['modifier']['file'] = SMARTY_PLUGINS_DIR . 'modifier.escape.php';
         $compiler->template->required_plugins['nocache']['escape']['modifier']['function'] = 'smarty_modifier_escape';
     } else {
-        $compiler->template->required_plugins['compiled']['escape']['modifier']['file'] = SMARTY_PLUGINS_DIR .'modifier.escape.php';
+        $compiler->template->required_plugins['compiled']['escape']['modifier']['file'] = SMARTY_PLUGINS_DIR . 'modifier.escape.php';
         $compiler->template->required_plugins['compiled']['escape']['modifier']['function'] = 'smarty_modifier_escape';
     }
-    return 'smarty_modifier_escape(' . join( ', ', $params ) . ')';
+    return 'smarty_modifier_escape(' . join(', ', $params) . ')';
 }
 
 ?>

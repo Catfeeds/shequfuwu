@@ -170,20 +170,26 @@
                                     </td>
                                     <td>
                                         {$order.shop_id}
-                                    </td>                                    
+                                    </td>
                                     <td>
                                         {$order.orderid}
                                     </td>
                                     <td>
-                                        <div>联系人:<span class="badge" style="margin-left: 3px;">{$order.contact.name}</span></div>
-                                        <div>手机号:<span class="badge" style="margin-left: 3px;">{$order.contact.phone}</span></div>
+                                        <div>联系人:<span class="badge"
+                                                       style="margin-left: 3px;">{$order.contact.name}</span></div>
+                                        <div>手机号:<span class="badge"
+                                                       style="margin-left: 3px;">{$order.contact.phone}</span></div>
 
                                     </td>
                                     <td style="max-width: 200px;overflow: hidden;">
-                                        <div>省:<span class="badge" style="margin-left: 3px;">{$order.contact.province}</span></div>
-                                        <div>市:<span class="badge" style="margin-left: 3px;">{$order.contact.city}</span></div>
-                                        <div>区:<span class="badge" style="margin-left: 3px;">{$order.contact.district}</span></div>
-                                        <div>地址:<span class="badge" style="margin-left: 3px;">{$order.contact.address}</span></div>
+                                        <div>省:<span class="badge"
+                                                     style="margin-left: 3px;">{$order.contact.province}</span></div>
+                                        <div>市:<span class="badge"
+                                                     style="margin-left: 3px;">{$order.contact.city}</span></div>
+                                        <div>区:<span class="badge"
+                                                     style="margin-left: 3px;">{$order.contact.district}</span></div>
+                                        <div>地址:<span class="badge"
+                                                      style="margin-left: 3px;">{$order.contact.address}</span></div>
                                     </td>
                                     <td class="hidden-xs">
                                         {$order.totalprice}
@@ -225,7 +231,7 @@
 
                                             $sku = '';
                                             if($data[$i]['sku_id']){
-                                                $sku = '('.$data[$i][sku_name].')';
+                                            $sku = '('.$data[$i][sku_name].')';
                                             }
                                             echo '
                                             <div>'.$data[$i][name].$sku.'<span class="badge" style="margin-left: 3px;">'.$data[$i][price].'元*'.$data[$i][num].'</span>

@@ -10,7 +10,7 @@ use Vendor\Hiland\Biz\Tencent\Common\WechatException;
  * 计算/设置/获取签名、输出xml格式的参数、从xml读取数据对象等
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBase
 {
@@ -44,7 +44,7 @@ class WxPayDataBase
      * 判断签名，详见签名生成算法是否存在
      *
      * @return bool true 或 false
-     *        
+     *
      */
     public function IsSignSet()
     {
@@ -59,10 +59,10 @@ class WxPayDataBase
      */
     public function ToXml()
     {
-        if (! is_array($this->values) || count($this->values) <= 0) {
+        if (!is_array($this->values) || count($this->values) <= 0) {
             throw new WechatException("数组数据异常！");
         }
-        
+
         $xml = "<xml>";
         foreach ($this->values as $key => $val) {
             if (is_numeric($val)) {
@@ -84,7 +84,7 @@ class WxPayDataBase
      */
     public function FromXml($xml)
     {
-        if (! $xml) {
+        if (!$xml) {
             throw new WechatException("xml数据异常！");
         }
         // 将XML转为array
@@ -101,11 +101,11 @@ class WxPayDataBase
     {
         $buff = "";
         foreach ($this->values as $k => $v) {
-            if ($k != "sign" && $v != "" && ! is_array($v)) {
+            if ($k != "sign" && $v != "" && !is_array($v)) {
                 $buff .= $k . "=" . $v . "&";
             }
         }
-        
+
         $buff = trim($buff, "&");
         return $buff;
     }

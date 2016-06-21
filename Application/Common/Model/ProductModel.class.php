@@ -50,11 +50,11 @@ class ProductModel extends RelationModel
 
     public function getList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
     {
-        $conditionJson= json_encode($condition);
+        $conditionJson = json_encode($condition);
         $cacheKey = "product::getlist:condition-$conditionJson||relation-$relation||order-$order||p-$p||num-$num||limit-$limit";
-        $valueCached= S($cacheKey);
+        $valueCached = S($cacheKey);
 
-        if($valueCached){
+        if ($valueCached) {
             return $valueCached;
         }
 
@@ -71,10 +71,11 @@ class ProductModel extends RelationModel
 
         $data = $data->order($order)->select();
 
-        S($cacheKey,$data,60);
+        S($cacheKey, $data, 60);
 
         return $data;
     }
+
 //崔
     public function getProductList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0, $userId)
     {
@@ -155,11 +156,8 @@ class ProductModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
-    
-    
-    
-    
-    
+
+
     public function getProduct($condition = array(), $relation = false, $isAnalysis = false)
     {
         $data = $this->where($condition);

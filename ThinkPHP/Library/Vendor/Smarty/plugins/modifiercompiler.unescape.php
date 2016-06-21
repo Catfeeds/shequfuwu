@@ -32,7 +32,7 @@ function smarty_modifiercompiler_unescape($params, $compiler)
         case 'entity':
             return 'mb_convert_encoding(' . $params[0] . ', ' . $params[2] . ', \'HTML-ENTITIES\')';
         case 'htmlall':
-            if (SMARTY_MBSTRING /* ^phpunit */&&empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
+            if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
                 return 'mb_convert_encoding(' . $params[0] . ', ' . $params[2] . ', \'HTML-ENTITIES\')';
             }
             return 'html_entity_decode(' . $params[0] . ', ENT_QUOTES, ' . $params[2] . ')';

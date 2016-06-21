@@ -15,7 +15,8 @@
  * @subpackage Compiler
  * @ignore
  */
-abstract class _smarty_parsetree {
+abstract class _smarty_parsetree
+{
 
     /**
      * Parser object
@@ -44,7 +45,8 @@ abstract class _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_tag extends _smarty_parsetree {
+class _smarty_tag extends _smarty_parsetree
+{
 
     /**
      * Saved block nesting level
@@ -55,8 +57,8 @@ class _smarty_tag extends _smarty_parsetree {
     /**
      * Create parse tree buffer for Smarty tag
      *
-     * @param object $parser    parser object
-     * @param string $data      content
+     * @param object $parser parser object
+     * @param string $data content
      */
     public function __construct($parser, $data)
     {
@@ -96,14 +98,15 @@ class _smarty_tag extends _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_code extends _smarty_parsetree {
+class _smarty_code extends _smarty_parsetree
+{
 
 
     /**
      * Create parse tree buffer for code fragment
      *
-     * @param object $parser    parser object
-     * @param string $data      content
+     * @param object $parser parser object
+     * @param string $data content
      */
     public function __construct($parser, $data)
     {
@@ -130,13 +133,14 @@ class _smarty_code extends _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_doublequoted extends _smarty_parsetree {
+class _smarty_doublequoted extends _smarty_parsetree
+{
 
     /**
      * Create parse tree buffer for double quoted string subtrees
      *
-     * @param object $parser    parser object
-     * @param _smarty_parsetree $subtree    parsetree buffer
+     * @param object $parser parser object
+     * @param _smarty_parsetree $subtree parsetree buffer
      */
     public function __construct($parser, _smarty_parsetree $subtree)
     {
@@ -150,7 +154,7 @@ class _smarty_doublequoted extends _smarty_parsetree {
     /**
      * Append buffer to subtree
      *
-     * @param _smarty_parsetree $subtree  parsetree buffer
+     * @param _smarty_parsetree $subtree parsetree buffer
      */
     public function append_subtree(_smarty_parsetree $subtree)
     {
@@ -207,14 +211,15 @@ class _smarty_doublequoted extends _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_dq_content extends _smarty_parsetree {
+class _smarty_dq_content extends _smarty_parsetree
+{
 
 
     /**
      * Create parse tree buffer with string content
      *
-     * @param object $parser  parser object
-     * @param string $data    string section
+     * @param object $parser parser object
+     * @param string $data string section
      */
     public function __construct($parser, $data)
     {
@@ -241,7 +246,8 @@ class _smarty_dq_content extends _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_template_buffer extends _smarty_parsetree {
+class _smarty_template_buffer extends _smarty_parsetree
+{
 
     /**
      * Array of template elements
@@ -253,7 +259,7 @@ class _smarty_template_buffer extends _smarty_parsetree {
     /**
      * Create root of parse tree for template elements
      *
-     * @param object $parser    parse object
+     * @param object $parser parse object
      */
     public function __construct($parser)
     {
@@ -332,14 +338,15 @@ class _smarty_template_buffer extends _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_text extends _smarty_parsetree {
+class _smarty_text extends _smarty_parsetree
+{
 
 
     /**
      * Create template text buffer
      *
-     * @param object $parser    parser object
-     * @param string $data      text
+     * @param object $parser parser object
+     * @param string $data text
      */
     public function __construct($parser, $data)
     {
@@ -366,13 +373,14 @@ class _smarty_text extends _smarty_parsetree {
  * @subpackage Compiler
  * @ignore
  */
-class _smarty_linebreak extends _smarty_parsetree {
+class _smarty_linebreak extends _smarty_parsetree
+{
 
     /**
      * Create buffer with linebreak content
      *
-     * @param object $parser    parser object
-     * @param string  $data     linebreak string
+     * @param object $parser parser object
+     * @param string $data linebreak string
      */
     public function __construct($parser, $data)
     {

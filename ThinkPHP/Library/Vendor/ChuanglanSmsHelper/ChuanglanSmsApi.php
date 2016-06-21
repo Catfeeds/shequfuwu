@@ -1,4 +1,5 @@
 ﻿<?php
+
 /* *
  * 类名：ChuanglanSmsApi
  * 功能：创蓝接口请求类
@@ -9,6 +10,7 @@
  * 以下代码只是为了方便客户测试而提供的样例代码，客户可以根据自己网站的需要，按照技术文档自行编写,并非一定要使用该代码。
  * 该代码仅供学习和研究创蓝接口使用，只是提供一个参考。
  */
+
 class ChuanglanSmsApi
 {
     public static $chuanglan_config = array(

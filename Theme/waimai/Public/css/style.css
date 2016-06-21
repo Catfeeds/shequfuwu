@@ -487,6 +487,7 @@ pre {
     color: #FF4146;
     margin-left: 10px;
 }
+
 .detail-price .new-price {
     font-size: 20px;
     color: #2c2c2c;
@@ -2531,7 +2532,7 @@ img, fieldset {
 .product-name {
     font-size: 15px;
     float: left;
-    color:#4D4D4D;
+    color: #4D4D4D;
     margin-left: 75px;
     margin-top: -55px;
 }
@@ -2641,9 +2642,6 @@ img, fieldset {
     border: 0;
 }
 
-
-
-
 #shopmenu-cart .shopmenu-cart-bar {
     position: fixed;
     left: 0;
@@ -2690,6 +2688,7 @@ img, fieldset {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 #shopmenu-cart .shopmenu-cart-bar .row-num .cart-count {
     position: absolute;
     font-style: normal;
@@ -2709,6 +2708,7 @@ img, fieldset {
     -webkit-flex: 1;
     flex: 1;
 }
+
 #shopmenu-cart .shopmenu-cart-bar .row-status {
     display: block;
     width: 120px;
@@ -2783,7 +2783,7 @@ img, fieldset {
 
 #header-searchInput .input-group .input-text .icon-input {
     height: 34px;
-    width:100%;
+    width: 100%;
     font-size: 15px;
     border-radius: 3px;
     border: 0;
@@ -2805,7 +2805,7 @@ img, fieldset {
     border: 0;
 }
 
-#header-searchInput .input-text i{
+#header-searchInput .input-text i {
     font-size: 25px;
     margin-left: 5px;
     line-height: 34px;
@@ -2815,7 +2815,7 @@ img, fieldset {
 .mod-desc {
     /*margin-top: .21333rem;*/
     height: 180px;
-    position:relative;
+    position: relative;
     background-color: #fff;
     /*border-top: 1px solid #e5e5e5;*/
     /*border-bottom: 1px solid #e5e5e5;*/
@@ -2858,21 +2858,21 @@ img, fieldset {
     margin-top: 5px;
 }
 
-
 /*首页推荐*/
 
-#product-hot{
-    position:absolute;
+#product-hot {
+    position: absolute;
     background-color: #FFFFFF;
-    width:100%;
+    width: 100%;
     margin-top: 5px;
 }
+
 .swiper-pagination-bullet-active {
     opacity: 1;
-    background: #ffffff!important;
+    background: #ffffff !important;
 }
 
-.contentCenter{
-    text-align:center;
+.contentCenter {
+    text-align: center;
 }
 

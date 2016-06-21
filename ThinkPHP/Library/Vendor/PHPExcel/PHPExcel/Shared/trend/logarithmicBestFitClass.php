@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
 }
 
 require_once(PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php');
@@ -46,39 +46,44 @@ require_once(PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php');
  */
 class PHPExcel_Logarithmic_Best_Fit extends PHPExcel_Best_Fit
 {
-	protected $_bestFitType		= 'logarithmic';
+    protected $_bestFitType = 'logarithmic';
 
 
-	public function getValueOfYForX($xValue) {
-		return $this->getIntersect() + $this->getSlope() * log($xValue - $this->_Xoffset);
-	}	//	function getValueOfYForX()
+    public function getValueOfYForX($xValue)
+    {
+        return $this->getIntersect() + $this->getSlope() * log($xValue - $this->_Xoffset);
+    }    //	function getValueOfYForX()
 
 
-	public function getValueOfXForY($yValue) {
-		return exp(($yValue - $this->getIntersect()) / $this->getSlope());
-	}	//	function getValueOfXForY()
+    public function getValueOfXForY($yValue)
+    {
+        return exp(($yValue - $this->getIntersect()) / $this->getSlope());
+    }    //	function getValueOfXForY()
 
 
-	public function getEquation($dp=0) {
-		$slope = $this->getSlope($dp);
-		$intersect = $this->getIntersect($dp);
+    public function getEquation($dp = 0)
+    {
+        $slope = $this->getSlope($dp);
+        $intersect = $this->getIntersect($dp);
 
-		return 'Y = '.$intersect.' + '.$slope.' * log(X)';
-	}	//	function getEquation()
-
-
-	private function _logarithmic_regression($yValues, $xValues, $const) {
-		$mArray = $xValues;
-		$xValues = array_map('log',$xValues);
-
-		$this->_leastSquareFit($yValues, $xValues, $const);
-	}	//	function _logarithmic_regression()
+        return 'Y = ' . $intersect . ' + ' . $slope . ' * log(X)';
+    }    //	function getEquation()
 
 
-	function __construct($yValues, $xValues=array(), $const=True) {
-		if (parent::__construct($yValues, $xValues) !== False) {
-			$this->_logarithmic_regression($yValues, $xValues, $const);
-		}
-	}	//	function __construct()
+    private function _logarithmic_regression($yValues, $xValues, $const)
+    {
+        $mArray = $xValues;
+        $xValues = array_map('log', $xValues);
 
-}	//	class logarithmicBestFit
+        $this->_leastSquareFit($yValues, $xValues, $const);
+    }    //	function _logarithmic_regression()
+
+
+    function __construct($yValues, $xValues = array(), $const = True)
+    {
+        if (parent::__construct($yValues, $xValues) !== False) {
+            $this->_logarithmic_regression($yValues, $xValues, $const);
+        }
+    }    //	function __construct()
+
+}    //	class logarithmicBestFit

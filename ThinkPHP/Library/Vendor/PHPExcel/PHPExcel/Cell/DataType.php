@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel_Cell_DefaultValueBinder */
@@ -47,40 +47,43 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Cell/DefaultValueBinder.php';
  */
 class PHPExcel_Cell_DataType
 {
-	/* Data types */
-	const TYPE_STRING		= 's';
-	const TYPE_FORMULA		= 'f';
-	const TYPE_NUMERIC		= 'n';
-	const TYPE_BOOL			= 'b';
-    const TYPE_NULL			= 's';
-    const TYPE_INLINE		= 'inlineStr';
-	const TYPE_ERROR		= 'e';
+    /* Data types */
+    const TYPE_STRING = 's';
+    const TYPE_FORMULA = 'f';
+    const TYPE_NUMERIC = 'n';
+    const TYPE_BOOL = 'b';
+    const TYPE_NULL = 's';
+    const TYPE_INLINE = 'inlineStr';
+    const TYPE_ERROR = 'e';
 
-	/**
-	 * List of error codes
-	 *
-	 * @var array
-	 */
-	private static $_errorCodes	= array('#NULL!' => 0, '#DIV/0!' => 1, '#VALUE!' => 2, '#REF!' => 3, '#NAME?' => 4, '#NUM!' => 5, '#N/A' => 6);
+    /**
+     * List of error codes
+     *
+     * @var array
+     */
+    private static $_errorCodes = array('#NULL!' => 0, '#DIV/0!' => 1, '#VALUE!' => 2, '#REF!' => 3, '#NAME?' => 4, '#NUM!' => 5, '#N/A' => 6);
 
-	/**
-	 * Get list of error codes
-	 *
-	 * @return array
-	 */
-	public static function getErrorCodes() {
-		return self::$_errorCodes;
-	}
-	
-	/**
-	 * DataType for value
-	 *
-	 * @deprecated Replaced by PHPExcel_Cell_IValueBinder infrastructure
-	 * @param	mixed 	$pValue
-	 * @return 	int
-	 */
-	public static function dataTypeForValue($pValue = null) {
-		return PHPExcel_Cell_DefaultValueBinder::dataTypeForValue($pValue);
-	}
+    /**
+     * Get list of error codes
+     *
+     * @return array
+     */
+    public static function getErrorCodes()
+    {
+        return self::$_errorCodes;
+    }
+
+    /**
+     * DataType for value
+     *
+     * @deprecated Replaced by PHPExcel_Cell_IValueBinder infrastructure
+     * @param    mixed $pValue
+     * @return    int
+     */
+    public static function dataTypeForValue($pValue = null)
+    {
+        return PHPExcel_Cell_DefaultValueBinder::dataTypeForValue($pValue);
+    }
 }
+
 ?>

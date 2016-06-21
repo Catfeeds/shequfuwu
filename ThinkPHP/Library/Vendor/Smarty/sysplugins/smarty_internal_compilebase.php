@@ -13,7 +13,8 @@
  * @package Smarty
  * @subpackage Compiler
  */
-abstract class Smarty_Internal_CompileBase {
+abstract class Smarty_Internal_CompileBase
+{
 
     /**
      * Array of names of required attribute required by tag
@@ -49,8 +50,8 @@ abstract class Smarty_Internal_CompileBase {
      * the corresponding list. The keyword '_any' specifies that any attribute will be accepted
      * as valid
      *
-     * @param object $compiler   compiler object
-     * @param array  $attributes attributes applied to the tag
+     * @param object $compiler compiler object
+     * @param array $attributes attributes applied to the tag
      * @return array of mapped attributes for further processing
      */
     public function getAttributes($compiler, $attributes)
@@ -129,9 +130,9 @@ abstract class Smarty_Internal_CompileBase {
      *
      * Optionally additional data can be saved on stack
      *
-     * @param object    $compiler   compiler object
-     * @param string    $openTag    the opening tag's name
-     * @param mixed     $data       optional data saved
+     * @param object $compiler compiler object
+     * @param string $openTag the opening tag's name
+     * @param mixed $data optional data saved
      */
     public function openTag($compiler, $openTag, $data = null)
     {
@@ -143,7 +144,7 @@ abstract class Smarty_Internal_CompileBase {
      *
      * Raise an error if this stack-top doesn't match with expected opening tags
      *
-     * @param object       $compiler    compiler object
+     * @param object $compiler compiler object
      * @param array|string $expectedTag the expected opening tag names
      * @return mixed any type the opening tag's name or saved data
      */
@@ -153,7 +154,7 @@ abstract class Smarty_Internal_CompileBase {
             // get stacked info
             list($_openTag, $_data) = array_pop($compiler->_tag_stack);
             // open tag must match with the expected ones
-            if (in_array($_openTag, (array) $expectedTag)) {
+            if (in_array($_openTag, (array)$expectedTag)) {
                 if (is_null($_data)) {
                     // return opening tag
                     return $_openTag;

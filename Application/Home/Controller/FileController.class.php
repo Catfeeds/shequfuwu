@@ -13,7 +13,7 @@ class FileController extends BaseController
     public function imageUploader()
     {
         $condition = array(
-            "shop_id" => session("homeShopId")?session("homeShopId"):0
+            "shop_id" => session("homeShopId") ? session("homeShopId") : 0
         );
 
         //dump($condition);

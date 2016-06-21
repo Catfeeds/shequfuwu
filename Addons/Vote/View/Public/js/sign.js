@@ -1,15 +1,15 @@
 var id = 0;
 var score = 0;
-function hidePop(){
+function hidePop() {
     $("#join_box").hide();
     $("#cover2").hide();
 }
-function showPop(){
+function showPop() {
     $("#join_box").show();
     $("#cover2").show();
 }
-function doCart(obj , scoreIn ,idIn){
-    if(parseFloat(scoreIn) > parseFloat($('#myscore').html())){
+function doCart(obj, scoreIn, idIn) {
+    if (parseFloat(scoreIn) > parseFloat($('#myscore').html())) {
         alert("积分不足!");
         return;
     }
@@ -19,20 +19,18 @@ function doCart(obj , scoreIn ,idIn){
 }
 
 var signFlag = true;
-function signIn(obj){
+function signIn(obj) {
     $.ajax({
         type: "post",
         url: baseUrl + "/App/Sign/sign",
-        data: {
-
-        },
+        data: {},
         success: function (data) {
-            if(data){
+            if (data) {
                 var json = eval(data)
                 $("#alert").show();
                 if (typeof json.score != "undefined") {
-                    $("#alert_text").html("恭喜您获得"+json.score+"积分");
-                }else{
+                    $("#alert_text").html("恭喜您获得" + json.score + "积分");
+                } else {
                     $("#alert_text").html("对不起，您已签到！");
                 }
 
@@ -48,16 +46,17 @@ function signIn(obj){
 
     $("#alert").show();
 }
-function hideAlert(){
+function hideAlert() {
     $("#alert").hide();
     location.reload();
 }
 var submitFlag = true;
-function submitOrder(){
+function submitOrder() {
     if (submitFlag == false) {
         alert("请不要重复操作!");
         return;
-    };
+    }
+    ;
     var name = $('#name').val();
     var phone = $('#phone').val();
     var address = $('#address').val();
@@ -66,7 +65,8 @@ function submitOrder(){
     if (name.length == 0 || phone.length == 0 || address.length == 0) {
         alert("请核对输入的信息!");
         return;
-    };
+    }
+    ;
     submitFlag = false;
 
     $.ajax({
@@ -81,7 +81,7 @@ function submitOrder(){
             note: note
         },
         success: function (data) {
-            if(data){
+            if (data) {
                 hidePop();
                 alert("商品兑换成功!");
                 location.reload();

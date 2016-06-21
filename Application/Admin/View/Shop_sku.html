@@ -130,7 +130,7 @@
     }
 
     function removeAttr(obj, type, id) {
-        if(confirm('您确认要删除选定的信息吗？')){
+        if (confirm('您确认要删除选定的信息吗？')) {
             if (type == 'new') {
                 $(obj).parent().parent().remove();
             } else if (type == 'old' && id != undefined) {

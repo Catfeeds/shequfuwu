@@ -41,7 +41,7 @@ class WxPrintModel extends Model
     {
         $this->where($condition)->delete();
     }
-    
+
 //cui    
     public function getWxPrint($condition)
     {
@@ -62,6 +62,6 @@ class WxPrintModel extends Model
     {
         $this->save($data);
     }
-    
-    
+
+
 }

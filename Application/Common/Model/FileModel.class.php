@@ -77,7 +77,8 @@ class FileModel extends Model
 
 
     //TODO:找到物理文件删除
-    public function delImage($condition = array()){
+    public function delImage($condition = array())
+    {
         //1.找到物理文件删除
 
         //2.删除数据库记录
@@ -97,7 +98,7 @@ class FileModel extends Model
             $arr['savepath'] = $v['savepath'];
 
             //----------------------------------------------
-            $arr['shop_id'] = session("homeShopId")?session("homeShopId"):0;
+            $arr['shop_id'] = session("homeShopId") ? session("homeShopId") : 0;
             //==============================================
 
             array_push($arrs, $arr);
@@ -140,6 +141,7 @@ class FileModel extends Model
 
         return $list;
     }
+
 //cui
     public function getFileListCount($condition = array())
     {

@@ -11,6 +11,7 @@ namespace Addons\Apply\Controller;
 class IndexController extends InitController
 {
     public $appUrl = "";
+
     public function __construct()
     {
         parent::__construct();
@@ -22,11 +23,11 @@ class IndexController extends InitController
     {
         $user = R("App/Public/oauthLogin");
         // $this->assign("user",$user);
-        
+
 
         $config = M("AddonApplyConfig")->where(array("status" => 1))->find();
         // print_r(explode(',',$config["event"]));
-        $this->assign("event", explode(',',$config["event"]));
+        $this->assign("event", explode(',', $config["event"]));
         $this->assign("config", $config);
 
         $contact = M("Contact")->where(array("user_id" => $user["id"]))->find();
@@ -47,7 +48,7 @@ class IndexController extends InitController
 
     public function addOrder()
     {
-   
+
 
         $userHas = M("AddonApplyContact")->where(array("user_id" => session("userId")))->find();
 

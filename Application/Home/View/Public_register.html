@@ -35,19 +35,21 @@
 
         <form action="{:U('Home/Public/register')}" method="post">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="账号" onblur="checkName(this)" name="username" id="username" required>
+                <input type="text" class="form-control" placeholder="账号" onblur="checkName(this)" name="username"
+                       id="username" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="邮箱" onblur="checkemail(this)" name="email" id="email" required>
+                <input type="email" class="form-control" placeholder="邮箱" onblur="checkemail(this)" name="email"
+                       id="email" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <!--<div class="form-group has-feedback">-->
-                <!--<input type="text" class="form-control" placeholder="邮箱验证码" name="smsVerify" -->
-                       <!--style="width: 70%;float: left">-->
-                <!--<button class="btn btn-default" id="btnSendCode" onclick="sendemail()"-->
-                        <!--style="width: 30%;border: 1px solid #ccc;border-radius:0px;height: 34px;border-left: 0px">发送验证码-->
-                <!--</button>-->
+            <!--<input type="text" class="form-control" placeholder="邮箱验证码" name="smsVerify" -->
+            <!--style="width: 70%;float: left">-->
+            <!--<button class="btn btn-default" id="btnSendCode" onclick="sendemail()"-->
+            <!--style="width: 30%;border: 1px solid #ccc;border-radius:0px;height: 34px;border-left: 0px">发送验证码-->
+            <!--</button>-->
             <!--</div>-->
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" placeholder="密码" name="password" required>
@@ -76,7 +78,7 @@
 </div>
 <!-- /.login-box -->
 <div class="common_footer">Powered by inuoer | Copyright © <a href="http://www.inuoer.com/"
-                                                                target="_blank">www.inuoer.com</a>
+                                                              target="_blank">www.inuoer.com</a>
     All rights reserved.
 </div>
 
@@ -93,32 +95,32 @@
     var InterValObj; //timer变量，控制时间
     var count = 60; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
-    
+
     function sendemail() {
         curCount = count;
         var email = $('#email').val();
-        
+
         //设置button效果，开始计时
         $("#btnSendCode").attr("disabled", true);
         $("#btnSendCode").html(curCount + "秒再获取");
         InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-        
+
         //向后台发送处理数据
         var url = '{:U("Home/Public/emailsms")}';
-        $.post(url, {email:email},
-            function(data){
-                layer.msg(data);
-                console.log(data);
-            }
+        $.post(url, {email: email},
+                function (data) {
+                    layer.msg(data);
+                    console.log(data);
+                }
         );//这里返回的类型有：json,html,xml,text
-        
+
     }
     //timer处理函数
     function SetRemainTime() {
-        if (curCount == 0) {                
+        if (curCount == 0) {
             window.clearInterval(InterValObj);//停止计时器
             $("#btnSendCode").removeAttr("disabled");//启用按钮
-            $("#btnSendCode").html("重新发送");  
+            $("#btnSendCode").html("重新发送");
         }
         else {
             curCount--;
@@ -127,44 +129,44 @@
     }
 
 
-    function checkName(obj){
-        
-        if($('#username').val()){
-            var url = '{:U("Home/Public/checkName")}'+'/username/'+ $('#username').val();
+    function checkName(obj) {
+
+        if ($('#username').val()) {
+            var url = '{:U("Home/Public/checkName")}' + '/username/' + $('#username').val();
             $.get(url, function (data) {
-                if(data == 0){
+                if (data == 0) {
                     layer.msg('名字已存在,请重新输入');
                     $(obj).focus();
-                }else{
-    
+                } else {
+
                 }
             });
         }
     }
-    
-    function checkemail(obj){
-        
-        if($('#email').val()){
+
+    function checkemail(obj) {
+
+        if ($('#email').val()) {
             // var url = '{:U("Home/Public/checkemail")}'+'/email/'+ $('#email').val();
             // $.get(url, function (data) {
             //     if(data == 0){
             //         layer.msg('该邮箱已经注册,请重新输入');
             //         $(obj).focus();
             //     }else{
-    
+
             //     }
             // });
             //向后台发送处理数据
             var url = '{:U("Home/Public/checkemail")}';
-            $.post(url, {email:$('#email').val()},
-                function(data){
-                    if(data == 0){
-                        layer.msg('该邮箱已经注册,请重新输入');
-                        $(obj).focus();
-                    }else{
-        
+            $.post(url, {email: $('#email').val()},
+                    function (data) {
+                        if (data == 0) {
+                            layer.msg('该邮箱已经注册,请重新输入');
+                            $(obj).focus();
+                        } else {
+
+                        }
                     }
-                }
             );//这里返回的类型有：json,html,xml,text
         }
     }

@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel_IWriter */
@@ -63,114 +63,120 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/PDF.php';
  * @package    PHPExcel_Writer
  * @copyright  Copyright (c) 2006 - 2009 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Writer_PDF extends PHPExcel_Writer_HTML implements PHPExcel_Writer_IWriter {
-	/**
-	 * Temporary storage directory
-	 *
-	 * @var string
-	 */
-	private $_tempDir = '';
+class PHPExcel_Writer_PDF extends PHPExcel_Writer_HTML implements PHPExcel_Writer_IWriter
+{
+    /**
+     * Temporary storage directory
+     *
+     * @var string
+     */
+    private $_tempDir = '';
 
-	/**
-	 * Create a new PHPExcel_Writer_PDF
-	 *
-	 * @param 	PHPExcel	$phpExcel	PHPExcel object
-	 */
-	public function __construct(PHPExcel $phpExcel) {
-		parent::__construct($phpExcel);
-		$this->setUseInlineCss(true);
-		$this->_tempDir = sys_get_temp_dir();
-	}
+    /**
+     * Create a new PHPExcel_Writer_PDF
+     *
+     * @param    PHPExcel $phpExcel PHPExcel object
+     */
+    public function __construct(PHPExcel $phpExcel)
+    {
+        parent::__construct($phpExcel);
+        $this->setUseInlineCss(true);
+        $this->_tempDir = sys_get_temp_dir();
+    }
 
-	/**
-	 * Save PHPExcel to file
-	 *
-	 * @param 	string 		$pFileName
-	 * @throws 	Exception
-	 */
-	public function save($pFilename = null) {
-		// garbage collect
-		$this->_phpExcel->garbageCollect();
+    /**
+     * Save PHPExcel to file
+     *
+     * @param    string $pFileName
+     * @throws    Exception
+     */
+    public function save($pFilename = null)
+    {
+        // garbage collect
+        $this->_phpExcel->garbageCollect();
 
-		$saveArrayReturnType = PHPExcel_Calculation::getArrayReturnType();
-		PHPExcel_Calculation::setArrayReturnType(PHPExcel_Calculation::RETURN_ARRAY_AS_VALUE);
+        $saveArrayReturnType = PHPExcel_Calculation::getArrayReturnType();
+        PHPExcel_Calculation::setArrayReturnType(PHPExcel_Calculation::RETURN_ARRAY_AS_VALUE);
 
-		// Open file
-		$fileHandle = fopen($pFilename, 'w');
-		if ($fileHandle === false) {
-			throw new Exception("Could not open file $pFilename for writing.");
-		}
-		
-		// Set PDF
-		$this->_isPdf = true;
+        // Open file
+        $fileHandle = fopen($pFilename, 'w');
+        if ($fileHandle === false) {
+            throw new Exception("Could not open file $pFilename for writing.");
+        }
 
-		// Build CSS
-		$this->buildCSS(true);
+        // Set PDF
+        $this->_isPdf = true;
 
-		// Generate HTML
-		$html = '';
-		//$html .= $this->generateHTMLHeader(false);
-		$html .= $this->generateSheetData();
-		//$html .= $this->generateHTMLFooter();
+        // Build CSS
+        $this->buildCSS(true);
 
-    	// Default PDF paper size
-    	$paperSize = 'A4';
-    	$orientation = 'P';
-    	    	
-    	// Check for overrides
-		if (is_null($this->getSheetIndex())) {
-			$orientation = $this->_phpExcel->getSheet(0)->getPageSetup()->getOrientation() == 'landscape' ? 'L' : 'P';
-		} else {
-			$orientation = $this->_phpExcel->getSheet($this->getSheetIndex())->getPageSetup()->getOrientation() == 'landscape' ? 'L' : 'P';
-		}
+        // Generate HTML
+        $html = '';
+        //$html .= $this->generateHTMLHeader(false);
+        $html .= $this->generateSheetData();
+        //$html .= $this->generateHTMLFooter();
 
-		// Create PDF
-		$pdf = new TCPDF($orientation, 'pt', $paperSize);
-		$pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->AddPage();
-		$pdf->SetFont('freesans');
-		$pdf->writeHTML($html);
+        // Default PDF paper size
+        $paperSize = 'A4';
+        $orientation = 'P';
 
-		// Document info
-		$pdf->SetTitle($this->_phpExcel->getProperties()->getTitle());
-		$pdf->SetAuthor($this->_phpExcel->getProperties()->getCreator());
-		$pdf->SetSubject($this->_phpExcel->getProperties()->getSubject());
-		$pdf->SetKeywords($this->_phpExcel->getProperties()->getKeywords());
-		$pdf->SetCreator($this->_phpExcel->getProperties()->getCreator());
+        // Check for overrides
+        if (is_null($this->getSheetIndex())) {
+            $orientation = $this->_phpExcel->getSheet(0)->getPageSetup()->getOrientation() == 'landscape' ? 'L' : 'P';
+        } else {
+            $orientation = $this->_phpExcel->getSheet($this->getSheetIndex())->getPageSetup()->getOrientation() == 'landscape' ? 'L' : 'P';
+        }
 
-		// Write to file
-		fwrite($fileHandle, $pdf->output($pFilename, 'S'));
+        // Create PDF
+        $pdf = new TCPDF($orientation, 'pt', $paperSize);
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->AddPage();
+        $pdf->SetFont('freesans');
+        $pdf->writeHTML($html);
 
-		// Close file
-		fclose($fileHandle);
+        // Document info
+        $pdf->SetTitle($this->_phpExcel->getProperties()->getTitle());
+        $pdf->SetAuthor($this->_phpExcel->getProperties()->getCreator());
+        $pdf->SetSubject($this->_phpExcel->getProperties()->getSubject());
+        $pdf->SetKeywords($this->_phpExcel->getProperties()->getKeywords());
+        $pdf->SetCreator($this->_phpExcel->getProperties()->getCreator());
 
-		PHPExcel_Calculation::setArrayReturnType($saveArrayReturnType);
-	}
+        // Write to file
+        fwrite($fileHandle, $pdf->output($pFilename, 'S'));
 
-	/**
-	 * Get temporary storage directory
-	 *
-	 * @return string
-	 */
-	public function getTempDir() {
-		return $this->_tempDir;
-	}
+        // Close file
+        fclose($fileHandle);
 
-	/**
-	 * Set temporary storage directory
-	 *
-	 * @param 	string	$pValue		Temporary storage directory
-	 * @throws 	Exception	Exception when directory does not exist
-	 * @return PHPExcel_Writer_PDF
-	 */
-	public function setTempDir($pValue = '') {
-		if (is_dir($pValue)) {
-			$this->_tempDir = $pValue;
-		} else {
-			throw new Exception("Directory does not exist: $pValue");
-		}
-		return $this;
-	}
+        PHPExcel_Calculation::setArrayReturnType($saveArrayReturnType);
+    }
+
+    /**
+     * Get temporary storage directory
+     *
+     * @return string
+     */
+    public function getTempDir()
+    {
+        return $this->_tempDir;
+    }
+
+    /**
+     * Set temporary storage directory
+     *
+     * @param    string $pValue Temporary storage directory
+     * @throws    Exception    Exception when directory does not exist
+     * @return PHPExcel_Writer_PDF
+     */
+    public function setTempDir($pValue = '')
+    {
+        if (is_dir($pValue)) {
+            $this->_tempDir = $pValue;
+        } else {
+            throw new Exception("Directory does not exist: $pValue");
+        }
+        return $this;
+    }
 }
+
 ?>

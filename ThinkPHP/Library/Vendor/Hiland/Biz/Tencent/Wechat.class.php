@@ -2,6 +2,7 @@
 namespace Vendor\Hiland\Biz\Tencent;
 
 use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
+
 /**
  * 微信公众平台 PHP SDK
  *
@@ -44,26 +45,26 @@ class Wechat
      * @param boolean $debug
      *            调试模式，默认为关闭
      */
-    public function __construct($token='', $debug = FALSE)
+    public function __construct($token = '', $debug = FALSE)
     {
-        if(empty($token)){
-            $token= WechatConfig::GATETOKEN;
+        if (empty($token)) {
+            $token = WechatConfig::GATETOKEN;
         }
-        
+
         if ($this->isValid() && $this->validateSignature($token)) {
             exit($_GET['echostr']);
         }
-        
+
         $this->debug = $debug;
         set_error_handler(array(
             &$this,
             'errorHandler'
         ));
         // 设置错误处理函数，将错误通过文本消息回复显示
-        
+
         $this->originalRequestData = $GLOBALS['HTTP_RAW_POST_DATA'];
-        $xml = (array) simplexml_load_string($this->originalRequestData, 'SimpleXMLElement', LIBXML_NOCDATA);
-        
+        $xml = (array)simplexml_load_string($this->originalRequestData, 'SimpleXMLElement', LIBXML_NOCDATA);
+
         $this->request = array_change_key_case($xml, CASE_LOWER);
         // 将数组键名转换为小写，提高健壮性，减少因大小写不同而出现的问题
     }
@@ -90,14 +91,14 @@ class Wechat
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];
         $nonce = $_GET['nonce'];
-        
+
         $signatureArray = array(
             $token,
             $timestamp,
             $nonce
         );
         sort($signatureArray, SORT_STRING);
-        
+
         return sha1(implode($signatureArray)) == $signature;
     }
 
@@ -113,13 +114,13 @@ class Wechat
         if ($param === FALSE) {
             return $this->request;
         }
-        
+
         $param = strtolower($param);
-        
+
         if (isset($this->request[$param])) {
             return $this->request[$param];
         }
-        
+
         return NULL;
     }
 
@@ -129,7 +130,8 @@ class Wechat
      * @return void
      */
     protected function onSubscribe()
-    {}
+    {
+    }
 
     /**
      * 用户取消关注时触发，用于子类重写
@@ -137,14 +139,16 @@ class Wechat
      * @return void
      */
     protected function onUnsubscribe()
-    {}
+    {
+    }
 
     /**
      * 收到扫描二维码的事件（用户扫描公众平台默认的二维码不会触发本事件）
      * （只有已经是微信公众平台用户了，扫描二维码的时候才会触发本事件；否则即便扫描二维码也是触发的为订阅事件onSubscribe）
      */
     protected function onScan()
-    {}
+    {
+    }
 
     /**
      * 收到文本消息时触发，用于子类重写
@@ -152,7 +156,8 @@ class Wechat
      * @return void
      */
     protected function onText()
-    {}
+    {
+    }
 
     /**
      * 收到图片消息时触发，用于子类重写
@@ -160,7 +165,8 @@ class Wechat
      * @return void
      */
     protected function onImage()
-    {}
+    {
+    }
 
     /**
      * 收到地理位置消息时触发，用于子类重写
@@ -168,7 +174,8 @@ class Wechat
      * @return void
      */
     protected function onLocation()
-    {}
+    {
+    }
 
     /**
      * 收到链接消息时触发，用于子类重写
@@ -176,13 +183,15 @@ class Wechat
      * @return void
      */
     protected function onLink()
-    {}
+    {
+    }
 
     /**
      * 收到菜单的点击事件
      */
     protected function onClick()
-    {}
+    {
+    }
 
     /**
      * 收到未知类型消息时触发，用于子类重写
@@ -190,7 +199,8 @@ class Wechat
      * @return void
      */
     protected function onUnknown()
-    {}
+    {
+    }
 
     /**
      * 获取当前跟公众平台交互用户的Openid
@@ -216,7 +226,7 @@ class Wechat
 
     /**
      * 回复图片消息
-     * 
+     *
      * @param int $mediaid
      *            已经上传到微信服务器上的图片id
      * @param int $funcFlag
@@ -268,7 +278,7 @@ class Wechat
     public function run()
     {
         switch ($this->getRequest('msgtype')) {
-            
+
             case 'event':
                 switch (strtolower($this->getRequest('event'))) {
                     case 'subscribe':
@@ -284,25 +294,25 @@ class Wechat
                         $this->onScan();
                         break;
                 }
-                
+
                 break;
-            
+
             case 'text':
                 $this->onText();
                 break;
-            
+
             case 'image':
                 $this->onImage();
                 break;
-            
+
             case 'location':
                 $this->onLocation();
                 break;
-            
+
             case 'link':
                 $this->onLink();
                 break;
-            
+
             default:
                 $this->onUnknown();
                 break;
@@ -324,10 +334,10 @@ class Wechat
      */
     public function errorHandler($level, $msg, $file, $line)
     {
-        if (! $this->debug) {
+        if (!$this->debug) {
             return;
         }
-        
+
         $error_type = array(
             // E_ERROR => 'Error',
             E_WARNING => 'Warning',
@@ -345,7 +355,7 @@ class Wechat
             E_DEPRECATED => 'Deprecated',
             E_USER_DEPRECATED => 'User Deprecated'
         );
-        
+
         $template = <<<ERR
 PHP 报错啦！
 
@@ -353,7 +363,7 @@ PHP 报错啦！
 File: %s
 Line: %s
 ERR;
-        
+
         $this->responseText(sprintf($template, $error_type[$level], $msg, $file, $line));
     }
 }

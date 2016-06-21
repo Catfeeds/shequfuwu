@@ -69,7 +69,8 @@
                                     <td>{$wxReply.key}</td>
                                     <td>{$wxReply.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Admin/Weixin/modWxReply',array('id'=>$wxReply['id']))}">修改</a><a class="deleteConfirm"
+                                            href="{:U('Admin/Weixin/modWxReply',array('id'=>$wxReply['id']))}">修改</a><a
+                                            class="deleteConfirm"
                                             href="{:U('Admin/Weixin/delWxReply',array('id'=>$wxReply['id']))}">删除</a>
                                     </td>
                                 </tr>
@@ -79,7 +80,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Admin/Weixin/delWxReply\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Admin/Weixin/delWxReply\')}')">全部删除
                                     </a>
                                 </div>
                             </div>
@@ -93,11 +95,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

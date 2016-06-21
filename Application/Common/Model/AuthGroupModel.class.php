@@ -11,12 +11,14 @@ class AuthGroupModel extends Model
         $data["rules"] = "," . $data["rules"] . ",";
         return $data;
     }
+
     public function getAuthGroup($id)
     {
         $group = $this->where(array("id" => $id))->find();
         $group["rules"] = "," . $group["rules"] . ",";
         return $group;
     }
+
     public function getList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
     {
         $data = $this->where($condition);
@@ -34,11 +36,13 @@ class AuthGroupModel extends Model
 
         return $data;
     }
+
     public function getAuthGroupList()
     {
         $list = $this->select();
         return $list;
     }
+
     public function getMethod($condition = array(), $method, $args)
     {
         $field = isset($args) ? $args : '*';

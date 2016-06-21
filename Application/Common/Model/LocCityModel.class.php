@@ -75,6 +75,7 @@ class LocCityModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
+
 //cui
     public function getCityList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
     {

@@ -291,7 +291,7 @@ class ShopController extends BaseController
 
     public function sku()
     {
-        $productID= I("get.id");
+        $productID = I("get.id");
         cookie("prevUrl", U("Admin/Shop/sku/id/$productID"));
 
         $sku = D("ProductSku")->getList(array("product_id" => $productID));
@@ -345,8 +345,8 @@ class ShopController extends BaseController
         if (I("post.name")) {
             array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
         }
-        
-        if (I("post.status") != ""){
+
+        if (I("post.status") != "") {
             array_push($condition, array("status" => I("post.status")));
         }
         if (I("post.timeRange")) {
@@ -366,9 +366,11 @@ class ShopController extends BaseController
         $this->assign('page', $show);// 赋值分页输出
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
         $this->display();
-    }    
+    }
+
     //pidong 新增店铺
-    public function addShop(){
+    public function addShop()
+    {
         if (IS_POST) {
             $data = I("post.");
 
@@ -385,6 +387,7 @@ class ShopController extends BaseController
             $this->display();
         }
     }
+
     //pidong 店铺审核成功
     public function updateShop()
     {
@@ -393,6 +396,7 @@ class ShopController extends BaseController
 
         $this->success("审核成功", cookie("prevUrl"));
     }
+
     //pidong 店铺删除
     public function delShop()
     {
@@ -400,18 +404,22 @@ class ShopController extends BaseController
 
         $this->success("删除成功", cookie("prevUrl"));
     }
+
     //pidong 关闭店铺
-    public function closeShop(){
+    public function closeShop()
+    {
         $data = I("get.");
         M("Shop")->where(array("id" => array("in", I("get.id"))))->save(array("status" => I("get.status")));
 
         $this->success("关闭成功", cookie("prevUrl"));
     }
+
     //pidong 开启店铺
-    public function openShop(){
+    public function openShop()
+    {
         $data = I("get.");
         M("Shop")->where(array("id" => array("in", I("get.id"))))->save(array("status" => I("get.status")));
 
         $this->success("开启成功", cookie("prevUrl"));
-    }         
+    }
 }

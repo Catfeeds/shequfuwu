@@ -38,11 +38,11 @@ abstract class Enum
     public function getConstList($includeDefault = false)
     {
         $class = get_class($this);
-        
-        if (! array_key_exists($class, self::$constants)) {
+
+        if (!array_key_exists($class, self::$constants)) {
             self::populateConstants();
         }
-        
+
         return $includeDefault ? array_merge(self::$constants[__CLASS__], array(
             "__default" => self::__default
         )) : self::$constants[__CLASS__];
@@ -63,21 +63,21 @@ abstract class Enum
     public function __construct($initialValue = null, $strict = true)
     {
         $class = get_class($this);
-        
-        if (! array_key_exists($class, self::$constants)) {
+
+        if (!array_key_exists($class, self::$constants)) {
             self::populateConstants();
         }
-        
+
         if ($initialValue === null) {
             $initialValue = self::$constants[$class]["__default"];
         }
-        
+
         $temp = self::$constants[$class];
-        
-        if (! in_array($initialValue, $temp, $strict)) {
+
+        if (!in_array($initialValue, $temp, $strict)) {
             throw new \UnexpectedValueException("Value is not in enum " . $class);
         }
-        
+
         $this->value = $initialValue;
         $this->strict = $strict;
     }
@@ -85,11 +85,11 @@ abstract class Enum
     private function populateConstants()
     {
         $class = get_class($this);
-        
+
         $r = new \ReflectionClass($class);
-        
+
         $constants = $r->getConstants();
-        
+
         self::$constants = array(
             $class => $constants
         );
@@ -104,7 +104,7 @@ abstract class Enum
      */
     public function __toString()
     {
-        return (string) $this->value;
+        return (string)$this->value;
     }
 
     /**
@@ -117,12 +117,12 @@ abstract class Enum
      */
     public function equals($object)
     {
-        if (! ($object instanceof Enum)) {
+        if (!($object instanceof Enum)) {
             return false;
         }
-        
+
         return $this->strict ? ($this->value === $object->value) : ($this->value == $object->value);
-    }   
+    }
 }
 
 ?>

@@ -8,7 +8,7 @@ class ArticalController extends BaseController
         $condition = array(
             "shop_id" => session("homeShopId")
         );
-        
+
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Artical/artical/page/$p"));

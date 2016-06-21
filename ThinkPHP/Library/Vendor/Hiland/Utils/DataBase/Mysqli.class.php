@@ -10,14 +10,14 @@ class Mysqli extends DAO
         $this->connection = mysqli_init();
         $this->connection->options(MYSQLI_OPT_CONNECT_TIMEOUT, 5); // 设置超时时间
         $this->connection->real_connect($this->dbHostName, $this->dbUserName, $this->dbPassword, $this->dbDataBase, $this->dbHostPort);
-        
+
         // 用函数来判断是否连接成功
         if (mysqli_connect_errno()) {
             if ($this->showError) {
                 $this->showError("连接数据库失败：", $this->dbDataBase);
             }
         }
-        
+
         // 2.设置数据库字符编码
         mysqli_query($this->connection, "SET NAMES $this->coding");
     }
@@ -69,10 +69,10 @@ class Mysqli extends DAO
     protected function destructInner()
     {
         // 1、释放结果集
-        if (! empty($this->result)) {
+        if (!empty($this->result)) {
             @ mysqli_free_result($this->result);
         }
-        
+
         // 2、关闭连接
         mysqli_close($this->connection);
     }
@@ -85,9 +85,9 @@ class Mysqli extends DAO
     protected function getFieldsInner($queryResult)
     {
         $total = mysqli_num_fields($queryResult);
-        
+
         $result = '';
-        for ($i = 0; $i < $total; $i ++) {
+        for ($i = 0; $i < $total; $i++) {
             $fieldInfo = mysqli_fetch_field($queryResult);
             $result[$i] = $fieldInfo;
         }

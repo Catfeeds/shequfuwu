@@ -16,12 +16,13 @@
  * @package Smarty
  * @subpackage Cacher
  */
-class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
+class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
+{
 
     /**
      * populate Cached Object with meta data from Resource
      *
-     * @param Smarty_Template_Cached   $cached    cached object
+     * @param Smarty_Template_Cached $cached cached object
      * @param Smarty_Internal_Template $_template template object
      * @return void
      */
@@ -58,7 +59,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
             } else {
                 $_lock_dir = $_cache_dir;
             }
-            $cached->lock_id = $_lock_dir.sha1($_cache_id.$_compile_id.$_template->source->uid).'.lock';
+            $cached->lock_id = $_lock_dir . sha1($_cache_id . $_compile_id . $_template->source->uid) . '.lock';
         }
         $cached->filepath = $_cache_dir . $_cache_id . $_compile_id . $_filepath . '.' . basename($_source_file_path) . '.php';
         $cached->timestamp = @filemtime($cached->filepath);
@@ -84,7 +85,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
      * @param Smarty_Template_Cached $cached cached object
      * @return booelan true or false if the cached content does not exist
      */
-    public function process(Smarty_Internal_Template $_template, Smarty_Template_Cached $cached=null)
+    public function process(Smarty_Internal_Template $_template, Smarty_Template_Cached $cached = null)
     {
         $_smarty_tpl = $_template;
         return @include $_template->cached->filepath;
@@ -94,7 +95,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
      * Write the rendered template output to cache
      *
      * @param Smarty_Internal_Template $_template template object
-     * @param string                   $content   content to cache
+     * @param string $content content to cache
      * @return boolean success
      */
     public function writeCachedContent(Smarty_Internal_Template $_template, $content)
@@ -111,7 +112,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
      * Empty cache
      *
      * @param Smarty_Internal_Template $_template template object
-     * @param integer                  $exp_time  expiration time (number of seconds, not timestamp)
+     * @param integer $exp_time expiration time (number of seconds, not timestamp)
      * @return integer number of cache files deleted
      */
     public function clearAll(Smarty $smarty, $exp_time = null)
@@ -122,13 +123,13 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
     /**
      * Empty cache for a specific template
      *
-     * @param Smarty  $_template     template object
-     * @param string  $resource_name template name
-     * @param string  $cache_id      cache id
-     * @param string  $compile_id    compile id
-     * @param integer $exp_time      expiration time (number of seconds, not timestamp)
+     * @param Smarty $_template template object
+     * @param string $resource_name template name
+     * @param string $cache_id cache id
+     * @param string $compile_id compile id
+     * @param integer $exp_time expiration time (number of seconds, not timestamp)
      * @return integer number of cache files deleted
-    */
+     */
     public function clear(Smarty $smarty, $resource_name, $cache_id, $compile_id, $exp_time)
     {
         $_cache_id = isset($cache_id) ? preg_replace('![^\w\|]+!', '_', $cache_id) : null;
@@ -176,7 +177,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
             $_cacheDirs = new RecursiveDirectoryIterator($_dir);
             $_cache = new RecursiveIteratorIterator($_cacheDirs, RecursiveIteratorIterator::CHILD_FIRST);
             foreach ($_cache as $_file) {
-                if (substr($_file->getBasename(),0,1) == '.' || strpos($_file, '.svn') !== false) continue;
+                if (substr($_file->getBasename(), 0, 1) == '.' || strpos($_file, '.svn') !== false) continue;
                 // directory ?
                 if ($_file->isDir()) {
                     if (!$_cache->isDot()) {
@@ -188,12 +189,12 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
                     $_parts_count = count($_parts);
                     // check name
                     if (isset($resource_name)) {
-                        if ($_parts[$_parts_count-1] != $_resourcename_parts) {
+                        if ($_parts[$_parts_count - 1] != $_resourcename_parts) {
                             continue;
                         }
                     }
                     // check compile id
-                    if (isset($_compile_id) && (!isset($_parts[$_parts_count-2 - $_compile_id_offset]) || $_parts[$_parts_count-2 - $_compile_id_offset] != $_compile_id)) {
+                    if (isset($_compile_id) && (!isset($_parts[$_parts_count - 2 - $_compile_id_offset]) || $_parts[$_parts_count - 2 - $_compile_id_offset] != $_compile_id)) {
                         continue;
                     }
                     // check cache id
@@ -211,7 +212,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource {
                     if (isset($exp_time) && $_time - @filemtime($_file) < $exp_time) {
                         continue;
                     }
-                    $_count += @unlink((string) $_file) ? 1 : 0;
+                    $_count += @unlink((string)$_file) ? 1 : 0;
                 }
             }
         }

@@ -31,6 +31,7 @@ class TradeController extends BaseController
         Vendor("PHPExcel.Excel#class");
         \Excel::export($trade);
     }
+
     public function tx()
     {
         $condition = array();
@@ -54,7 +55,7 @@ class TradeController extends BaseController
             $timeRange = explode(" --- ", $timeRange);
             array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
         }
-        
+
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
 
@@ -94,7 +95,8 @@ class TradeController extends BaseController
         }
 
     }
-        public function exportTx()
+
+    public function exportTx()
     {
         if (I("get.id")) {
             $trade = D("Tx")->getTxList(array("id" => array("in", I("get.id"))));

@@ -1,13 +1,13 @@
 <?php
 /**********************************************************\
-|                                                          |
-|                          hprose                          |
-|                                                          |
-| Official WebSite: http://www.hprose.com/                 |
-|                   http://www.hprose.net/                 |
-|                   http://www.hprose.org/                 |
-|                                                          |
-\**********************************************************/
+ * |                                                          |
+ * |                          hprose                          |
+ * |                                                          |
+ * | Official WebSite: http://www.hprose.com/                 |
+ * |                   http://www.hprose.net/                 |
+ * |                   http://www.hprose.org/                 |
+ * |                                                          |
+ * \**********************************************************/
 
 /**********************************************************\
  *                                                        *
@@ -18,9 +18,9 @@
  * LastModified: Nov 10, 2010                             *
  * Author: Ma Bingyao <andot@hprfc.com>                   *
  *                                                        *
-\**********************************************************/
-
-class HproseTags {
+ * \**********************************************************/
+class HproseTags
+{
     /* Serialize Tags */
     const TagInteger = 'i';
     const TagLong = 'l';
@@ -59,4 +59,5 @@ class HproseTags {
     const TagError = 'E';
     const TagEnd = 'z';
 }
+
 ?>

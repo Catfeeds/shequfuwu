@@ -12,6 +12,7 @@
             margin: 12px 0;
             text-align: center;
         }
+
         .current {
             float: left;
             width: 47px;
@@ -27,12 +28,13 @@
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafaf0', endColorstr='#dfdfdf', GradientType=0);
             filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
         }
+
         .current {
             background-color: #ff6703;
             color: #fff;
         }
 
-        .num{
+        .num {
             float: left;
             width: 47px;
             height: 24px;
@@ -48,7 +50,7 @@
             filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
         }
 
-        .prev{
+        .prev {
             float: left;
             width: 47px;
             height: 24px;
@@ -64,7 +66,7 @@
             filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
         }
 
-        .next{
+        .next {
             float: left;
             width: 47px;
             height: 24px;
@@ -130,16 +132,16 @@
                                         <php>
                                             $pay_status = '未付款';
                                             if ($order["pay_status"] == 1) {
-                                                $pay_status = '已付款';
+                                            $pay_status = '已付款';
                                             }
 
                                             $order_status = '未处理';
                                             if ($order["status"] == 1) {
-                                                $order_status = '正在配送';
+                                            $order_status = '正在配送';
                                             } else if ($order["status"] == 2) {
-                                                $order_status = '已完成';
-                                            }   else if ($order["status"] == -1) {
-                                                $order_status = '已取消';
+                                            $order_status = '已完成';
+                                            } else if ($order["status"] == -1) {
+                                            $order_status = '已取消';
                                             }
                                         </php>
                                         {$pay_status},{$order_status}
@@ -147,22 +149,29 @@
                                     <div class="order-list" id="item-order-list">
                                         <ul>
                                             <volist name="order.detail" id="detail">
-                                            <li><span class="order-item-name">{$detail.name}</span><span
-                                                    class="order-item-price">￥{$detail.price}</span><span
-                                                    class="order-item-amount">{$detail.num}份</span></li>
+                                                <li><span class="order-item-name">{$detail.name}</span><span
+                                                        class="order-item-price">￥{$detail.price}</span><span
+                                                        class="order-item-amount">{$detail.num}份</span></li>
                                             </volist>
                                         </ul>
-                                        <div class="mytotal-info"><span class="deliver">运费：{$order.freight}元</span><span class="total">共{$order.totalprice}元</span>
+                                        <div class="mytotal-info"><span class="deliver">运费：{$order.freight}元</span><span
+                                                class="total">共{$order.totalprice}元</span>
                                         </div>
-                                        <div class="mytotal-info"><span class="deliver">联系人：{$order.contact.name}</span></div>
-                                        <div class="mytotal-info"><span class="deliver">联系方式：{$order.contact.phone}</span></div>
-                                        <div class="mytotal-info"><span class="deliver">配送地址：{$order.contact.city}-{$order.contact.area}-{$order.contact.address}</span></div>
+                                        <div class="mytotal-info"><span class="deliver">联系人：{$order.contact.name}</span>
+                                        </div>
+                                        <div class="mytotal-info"><span
+                                                class="deliver">联系方式：{$order.contact.phone}</span></div>
+                                        <div class="mytotal-info"><span class="deliver">配送地址：{$order.contact.city}-{$order.contact.area}-{$order.contact.address}</span>
+                                        </div>
                                     </div>
                                     <div class="order-footer">
-                                        <span class="payOrder" onclick="openUrl('{:U(\'App/Admin/orderCancel\',array(\'id\'=>$order[\'id\']))}')">取消</span>
+                                        <span class="payOrder"
+                                              onclick="openUrl('{:U(\'App/Admin/orderCancel\',array(\'id\'=>$order[\'id\']))}')">取消</span>
                                         <!--<span class="payOrder" onclick="openUrl('{:U(\'App/Admin/orderWxPrint\',array(\'id\'=>$order[\'id\']))}')">打印</span>-->
-                                        <span class="payOrder" onclick="openUrl('{:U(\'App/Admin/orderPublish\',array(\'id\'=>$order[\'id\']))}')">发货</span>
-                                        <span class="payOrder" onclick="openUrl('{:U(\'App/Admin/orderComplete\',array(\'id\'=>$order[\'id\']))}')">完成</span>
+                                        <span class="payOrder"
+                                              onclick="openUrl('{:U(\'App/Admin/orderPublish\',array(\'id\'=>$order[\'id\']))}')">发货</span>
+                                        <span class="payOrder"
+                                              onclick="openUrl('{:U(\'App/Admin/orderComplete\',array(\'id\'=>$order[\'id\']))}')">完成</span>
                                         <!--<span class="payOrder" onclick="openUrl('{:U(\'App/Admin/orderPayComplete\',array(\'id\'=>$order[\'id\']))}')">已支付</span>-->
                                     </div>
                                     <div class="divider"></div>
@@ -178,7 +187,8 @@
     <div id="page_tag_load"><img src="__IMG__/ajax-loader.gif" alt="loader"></div>
 
     <div style="display: none">
-        <a href="javascript:void(0);" style="text-align: center;background-color: #fff; color: #949494;font-size: 12px;display: block;">inuoer</a>
+        <a href="javascript:void(0);"
+           style="text-align: center;background-color: #fff; color: #949494;font-size: 12px;display: block;">inuoer</a>
     </div>
 
 </div>

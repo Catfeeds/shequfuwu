@@ -33,7 +33,10 @@
                                     <td>{$rule.title}</td>
                                     <td>{$rule.name}</td>
                                     <td>
-                                        <eq name="rule.status" value="1">启用<else/>禁用</eq>
+                                        <eq name="rule.status" value="1">启用
+                                            <else/>
+                                            禁用
+                                        </eq>
                                     </td>
                                     <td>{$rule.time}</td>
                                 </tr>

@@ -17,7 +17,8 @@ class ShopController extends BaseController
         $this->ajaxReturn($product);
     }
 
-    public function getSku(){
+    public function getSku()
+    {
         $sku = D("ProductSku")->get(array("id" => I("get.id")), true);
         $albums = explode(",", $sku["albums"]);
         $sku["albums"] = $albums ? D("File")->getList(array("id" => array("in", $albums))) : "";
@@ -55,16 +56,16 @@ class ShopController extends BaseController
         $data["user_id"] = session("userId");
         D("Feedback")->addFeedback($data);
     }
-    
+
     public function bindShop()
     {
         R("App/Public/oauthLogin");
 
         $shop = D("Shop")->getShop(array("id" => I("get.shopId")));
         $employee = explode(",", $shop["employee"]);
-        foreach($employee as $key=>$value){
-            if($value == session("userId")){
-                $this->assign("result",1);
+        foreach ($employee as $key => $value) {
+            if ($value == session("userId")) {
+                $this->assign("result", 1);
                 $this->display();
                 die();
             }

@@ -14,9 +14,10 @@ use Think\Controller;
  * Class ConverterController
  * @package App\Controller
  */
-class ConverterController extends  Controller
+class ConverterController extends Controller
 {
-    public function redirecurl(){
-        
+    public function redirecurl()
+    {
+
     }
 }

@@ -15,7 +15,7 @@ function SendMail($address, $title, $message, $fromname = 'NONE')
     $toaddress = 'develope@163.com';
     $fromaddress = '9727005@qq.com';
     $fromname = '我是解大然';
-    
+
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->CharSet = 'utf-8'; // C('MAIL_CHARSET');
@@ -26,7 +26,7 @@ function SendMail($address, $title, $message, $fromname = 'NONE')
     $mail->Subject = '我是解大然，祝福你好';
     $mail->Host = 'smtp.qq.com';
     $mail->SMTPAuth = true; // C('MAIL_AUTH');
-                            // $mail->SMTPSecure='ssl';
+    // $mail->SMTPSecure='ssl';
     $mail->Port = 25;
     $mail->Username = '9727005@qq.com';
     $mail->Password = 'qingdao158416'; // C('MAIL_PASSWORD');

@@ -78,7 +78,8 @@
         </div>
     </div>
     <ul class="nav nav-bardown nav-justified" style="z-index:10;">
-        <li><a><span class="btn btn-default" style="border-radius: 50px;padding: 11.5px 30px;" onclick="submitApply();">点击报名</span></a></li>
+        <li><a><span class="btn btn-default" style="border-radius: 50px;padding: 11.5px 30px;" onclick="submitApply();">点击报名</span></a>
+        </li>
     </ul>
 
     <div id="page_tag_load"><img src="__IMG__/ajax-loader.gif" alt="loader"></div>
@@ -146,31 +147,33 @@
     </div>
 </div>
 <script type="text/javascript">
-    function submitApply(){
+    function submitApply() {
         $('#cover2').show();
         $('#join_box').show();
     }
-    function hidePop(){
+    function hidePop() {
         $("#join_box").hide();
         $("#cover2").hide();
     }
     var submitFlag = true;
-    function submitOrder(){
+    function submitOrder() {
         if (submitFlag == false) {
             alert("请不要重复操作!");
             return;
-        };
+        }
+        ;
         var name = $('#name').val();
         var phone = $('#phone').val();
         var event = $('#event').val();
         var note = $('#note').val();
         var address = $('#address').val();
-     
+
 
         if (name.length == 0 || phone.length == 0) {
             alert("请核对输入的信息!");
             return;
-        };
+        }
+        ;
         submitFlag = false;
 
         $.ajax({
@@ -184,7 +187,7 @@
                 address: address
             },
             success: function (data) {
-                if(data){
+                if (data) {
                     hidePop();
                     alert("报名成功!");
                     location.reload();

@@ -138,7 +138,6 @@ class MenuModel extends RelationModel
         $menuTree = list_to_tree($menu, 'id', 'pid', 'sub');
         return $menuTree;
     }
-    
-    
-    
+
+
 }

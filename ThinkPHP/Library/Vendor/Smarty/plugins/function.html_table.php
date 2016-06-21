@@ -43,7 +43,7 @@
  * @version 1.1
  * @link http://www.smarty.net/manual/en/language.function.html.table.php {html_table}
  *          (Smarty online manual)
- * @param array                    $params   parameters
+ * @param array $params parameters
  * @param Smarty_Internal_Template $template template object
  * @return string
  */
@@ -63,7 +63,7 @@ function smarty_function_html_table($params, $template)
     $loop = null;
 
     if (!isset($params['loop'])) {
-        trigger_error("html_table: missing 'loop' parameter",E_USER_WARNING);
+        trigger_error("html_table: missing 'loop' parameter", E_USER_WARNING);
         return;
     }
 
@@ -140,10 +140,10 @@ function smarty_function_html_table($params, $template)
     $output .= "<tbody>\n";
     for ($r = 0; $r < $rows; $r++) {
         $output .= "<tr" . smarty_function_html_table_cycle('tr', $tr_attr, $r) . ">\n";
-        $rx = ($vdir == 'down') ? $r * $cols_count : ($rows-1 - $r) * $cols_count;
+        $rx = ($vdir == 'down') ? $r * $cols_count : ($rows - 1 - $r) * $cols_count;
 
         for ($c = 0; $c < $cols_count; $c++) {
-            $x = ($hdir == 'right') ? $rx + $c : $rx + $cols_count-1 - $c;
+            $x = ($hdir == 'right') ? $rx + $c : $rx + $cols_count - 1 - $c;
             if ($inner != 'cols') {
                 /* shuffle x to loop over rows*/
                 $x = floor($x / $cols_count) + ($x % $cols_count) * $rows;

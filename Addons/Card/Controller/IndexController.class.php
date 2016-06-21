@@ -10,10 +10,10 @@ namespace Addons\Card\Controller;
 
 class IndexController extends InitController
 {
-     public function index()
+    public function index()
     {
         $user = R("App/Public/oauthLogin");
-        $this ->assign("user",$user);
+        $this->assign("user", $user);
 
         $config = M("AddonCardConfig")->find();
         $this->assign("config", $config);

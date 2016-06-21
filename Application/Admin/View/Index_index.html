@@ -132,11 +132,11 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $.get("{:U('Admin/Base/getNotify')}", function (data) {
-            if(data){
+            if (data) {
                 var json = eval(data);
                 var html = '';
-                $.each(json , function (index , value) {
-                    html += '<tr><td><a target="_blank" href="'+value.href+'">'+value.title+'</a></td><td class="pull-right">'+value.time+'</td></tr>';
+                $.each(json, function (index, value) {
+                    html += '<tr><td><a target="_blank" href="' + value.href + '">' + value.title + '</a></td><td class="pull-right">' + value.time + '</td></tr>';
                 });
                 $('#notify').html(html);
             }

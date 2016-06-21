@@ -1,15 +1,16 @@
 <?php
 /**
-* Smarty Internal Plugin Configfilelexer
-*
-* This is the lexer to break the config file source into tokens
-* @package Smarty
-* @subpackage Config
-* @author Uwe Tews
-*/
+ * Smarty Internal Plugin Configfilelexer
+ *
+ * This is the lexer to break the config file source into tokens
+ * @package Smarty
+ * @subpackage Config
+ * @author Uwe Tews
+ */
+
 /**
-* Smarty Internal Plugin Configfilelexer
-*/
+ * Smarty Internal Plugin Configfilelexer
+ */
 class Smarty_Internal_Configfilelexer
 {
 
@@ -20,8 +21,8 @@ class Smarty_Internal_Configfilelexer
     public $node;
     public $line;
     private $state = 1;
-    public $smarty_token_names = array (		// Text for parser error messages
-   				);
+    public $smarty_token_names = array(        // Text for parser error messages
+    );
 
 
     function __construct($data, $smarty)
@@ -34,6 +35,7 @@ class Smarty_Internal_Configfilelexer
         $this->smarty = $smarty;
         $this->mbstring_overload = ini_get('mbstring.func_overload') & 2;
     }
+
     public static function &instance($new_instance = null)
     {
         static $instance = null;
@@ -41,7 +43,6 @@ class Smarty_Internal_Configfilelexer
             $instance = $new_instance;
         return $instance;
     }
-
 
 
     private $_yy_state = 1;
@@ -69,32 +70,30 @@ class Smarty_Internal_Configfilelexer
     }
 
 
-
-
     function yylex1()
     {
-        $tokenMap = array (
-              1 => 0,
-              2 => 0,
-              3 => 0,
-              4 => 0,
-              5 => 0,
-              6 => 0,
-              7 => 0,
-            );
+        $tokenMap = array(
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
+            7 => 0,
+        );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
         $yy_global_pattern = "/\G(#|;)|\G(\\[)|\G(\\])|\G(=)|\G([ \t\r]+)|\G(\n)|\G([0-9]*[a-zA-Z_]\\w*)/iS";
 
         do {
-            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
+            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern, $this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
                         ' an empty string.  Input "' . substr($this->data,
-                        $this->counter, 5) . '... state START');
+                            $this->counter, 5) . '... state START');
                 }
                 next($yymatches); // skip global match
                 $this->token = key($yymatches); // token number
@@ -124,7 +123,8 @@ class Smarty_Internal_Configfilelexer
                     }
                     // skip this token
                     continue;
-                }            } else {
+                }
+            } else {
                 throw new Exception('Unexpected input at line' . $this->line .
                     ': ' . $this->data[$this->counter]);
             }
@@ -135,73 +135,79 @@ class Smarty_Internal_Configfilelexer
 
 
     const START = 1;
+
     function yy_r1_1($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_COMMENTSTART;
-    $this->yypushstate(self::COMMENT);
+        $this->token = Smarty_Internal_Configfileparser::TPC_COMMENTSTART;
+        $this->yypushstate(self::COMMENT);
     }
+
     function yy_r1_2($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_OPENB;
-    $this->yypushstate(self::SECTION);
+        $this->token = Smarty_Internal_Configfileparser::TPC_OPENB;
+        $this->yypushstate(self::SECTION);
     }
+
     function yy_r1_3($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_CLOSEB;
+        $this->token = Smarty_Internal_Configfileparser::TPC_CLOSEB;
     }
+
     function yy_r1_4($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_EQUAL;
-    $this->yypushstate(self::VALUE);
+        $this->token = Smarty_Internal_Configfileparser::TPC_EQUAL;
+        $this->yypushstate(self::VALUE);
     }
+
     function yy_r1_5($yy_subpatterns)
     {
 
-    return false;
+        return false;
     }
+
     function yy_r1_6($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_NEWLINE;
+        $this->token = Smarty_Internal_Configfileparser::TPC_NEWLINE;
     }
+
     function yy_r1_7($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_ID;
+        $this->token = Smarty_Internal_Configfileparser::TPC_ID;
     }
-
 
 
     function yylex2()
     {
-        $tokenMap = array (
-              1 => 0,
-              2 => 0,
-              3 => 0,
-              4 => 0,
-              5 => 0,
-              6 => 0,
-              7 => 0,
-              8 => 0,
-              9 => 0,
-            );
+        $tokenMap = array(
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
+            7 => 0,
+            8 => 0,
+            9 => 0,
+        );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
         $yy_global_pattern = "/\G([ \t\r]+)|\G(\\d+\\.\\d+(?=[ \t\r]*[\n#;]))|\G(\\d+(?=[ \t\r]*[\n#;]))|\G(\"\"\")|\G('[^'\\\\]*(?:\\\\.[^'\\\\]*)*'(?=[ \t\r]*[\n#;]))|\G(\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"(?=[ \t\r]*[\n#;]))|\G([a-zA-Z]+(?=[ \t\r]*[\n#;]))|\G([^\n]+?(?=[ \t\r]*\n))|\G(\n)/iS";
 
         do {
-            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
+            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern, $this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
                         ' an empty string.  Input "' . substr($this->data,
-                        $this->counter, 5) . '... state VALUE');
+                            $this->counter, 5) . '... state VALUE');
                 }
                 next($yymatches); // skip global match
                 $this->token = key($yymatches); // token number
@@ -231,7 +237,8 @@ class Smarty_Internal_Configfilelexer
                     }
                     // skip this token
                     continue;
-                }            } else {
+                }
+            } else {
                 throw new Exception('Unexpected input at line' . $this->line .
                     ': ' . $this->data[$this->counter]);
             }
@@ -242,87 +249,95 @@ class Smarty_Internal_Configfilelexer
 
 
     const VALUE = 2;
+
     function yy_r2_1($yy_subpatterns)
     {
 
-    return false;
+        return false;
     }
+
     function yy_r2_2($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_FLOAT;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_FLOAT;
+        $this->yypopstate();
     }
+
     function yy_r2_3($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_INT;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_INT;
+        $this->yypopstate();
     }
+
     function yy_r2_4($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_QUOTES;
-    $this->yypushstate(self::TRIPPLE);
+        $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_QUOTES;
+        $this->yypushstate(self::TRIPPLE);
     }
+
     function yy_r2_5($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_SINGLE_QUOTED_STRING;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_SINGLE_QUOTED_STRING;
+        $this->yypopstate();
     }
+
     function yy_r2_6($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_DOUBLE_QUOTED_STRING;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_DOUBLE_QUOTED_STRING;
+        $this->yypopstate();
     }
+
     function yy_r2_7($yy_subpatterns)
     {
 
-    if (!$this->smarty->config_booleanize || !in_array(strtolower($this->value), Array("true", "false", "on", "off", "yes", "no")) ) {
-        $this->yypopstate();
-        $this->yypushstate(self::NAKED_STRING_VALUE);
-        return true; //reprocess in new state
-    } else {
-        $this->token = Smarty_Internal_Configfileparser::TPC_BOOL;
-        $this->yypopstate();
+        if (!$this->smarty->config_booleanize || !in_array(strtolower($this->value), Array("true", "false", "on", "off", "yes", "no"))) {
+            $this->yypopstate();
+            $this->yypushstate(self::NAKED_STRING_VALUE);
+            return true; //reprocess in new state
+        } else {
+            $this->token = Smarty_Internal_Configfileparser::TPC_BOOL;
+            $this->yypopstate();
+        }
     }
-    }
+
     function yy_r2_8($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
+        $this->yypopstate();
     }
+
     function yy_r2_9($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
-    $this->value = "";
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
+        $this->value = "";
+        $this->yypopstate();
     }
-
 
 
     function yylex3()
     {
-        $tokenMap = array (
-              1 => 0,
-            );
+        $tokenMap = array(
+            1 => 0,
+        );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
         $yy_global_pattern = "/\G([^\n]+?(?=[ \t\r]*\n))/iS";
 
         do {
-            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
+            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern, $this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
                         ' an empty string.  Input "' . substr($this->data,
-                        $this->counter, 5) . '... state NAKED_STRING_VALUE');
+                            $this->counter, 5) . '... state NAKED_STRING_VALUE');
                 }
                 next($yymatches); // skip global match
                 $this->token = key($yymatches); // token number
@@ -352,7 +367,8 @@ class Smarty_Internal_Configfilelexer
                     }
                     // skip this token
                     continue;
-                }            } else {
+                }
+            } else {
                 throw new Exception('Unexpected input at line' . $this->line .
                     ': ' . $this->data[$this->counter]);
             }
@@ -363,35 +379,35 @@ class Smarty_Internal_Configfilelexer
 
 
     const NAKED_STRING_VALUE = 3;
+
     function yy_r3_1($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
+        $this->yypopstate();
     }
-
 
 
     function yylex4()
     {
-        $tokenMap = array (
-              1 => 0,
-              2 => 0,
-              3 => 0,
-            );
+        $tokenMap = array(
+            1 => 0,
+            2 => 0,
+            3 => 0,
+        );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
         $yy_global_pattern = "/\G([ \t\r]+)|\G([^\n]+?(?=[ \t\r]*\n))|\G(\n)/iS";
 
         do {
-            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
+            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern, $this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
                         ' an empty string.  Input "' . substr($this->data,
-                        $this->counter, 5) . '... state COMMENT');
+                            $this->counter, 5) . '... state COMMENT');
                 }
                 next($yymatches); // skip global match
                 $this->token = key($yymatches); // token number
@@ -421,7 +437,8 @@ class Smarty_Internal_Configfilelexer
                     }
                     // skip this token
                     continue;
-                }            } else {
+                }
+            } else {
                 throw new Exception('Unexpected input at line' . $this->line .
                     ': ' . $this->data[$this->counter]);
             }
@@ -432,44 +449,46 @@ class Smarty_Internal_Configfilelexer
 
 
     const COMMENT = 4;
+
     function yy_r4_1($yy_subpatterns)
     {
 
-    return false;
+        return false;
     }
+
     function yy_r4_2($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
+        $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
     }
+
     function yy_r4_3($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_NEWLINE;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_NEWLINE;
+        $this->yypopstate();
     }
-
 
 
     function yylex5()
     {
-        $tokenMap = array (
-              1 => 0,
-              2 => 0,
-            );
+        $tokenMap = array(
+            1 => 0,
+            2 => 0,
+        );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
         $yy_global_pattern = "/\G(\\.)|\G(.*?(?=[\.=[\]\r\n]))/iS";
 
         do {
-            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
+            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern, $this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
                         ' an empty string.  Input "' . substr($this->data,
-                        $this->counter, 5) . '... state SECTION');
+                            $this->counter, 5) . '... state SECTION');
                 }
                 next($yymatches); // skip global match
                 $this->token = key($yymatches); // token number
@@ -499,7 +518,8 @@ class Smarty_Internal_Configfilelexer
                     }
                     // skip this token
                     continue;
-                }            } else {
+                }
+            } else {
                 throw new Exception('Unexpected input at line' . $this->line .
                     ': ' . $this->data[$this->counter]);
             }
@@ -510,39 +530,41 @@ class Smarty_Internal_Configfilelexer
 
 
     const SECTION = 5;
+
     function yy_r5_1($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_DOT;
+        $this->token = Smarty_Internal_Configfileparser::TPC_DOT;
     }
+
     function yy_r5_2($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_SECTION;
-    $this->yypopstate();
+        $this->token = Smarty_Internal_Configfileparser::TPC_SECTION;
+        $this->yypopstate();
     }
 
 
     function yylex6()
     {
-        $tokenMap = array (
-              1 => 0,
-              2 => 0,
-              3 => 2,
-            );
+        $tokenMap = array(
+            1 => 0,
+            2 => 0,
+            3 => 2,
+        );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
         $yy_global_pattern = "/\G(\"\"\"(?=[ \t\r]*[\n#;]))|\G([ \t\r]*\n)|\G(([\S\s]*?)(?=([ \t\r]*\n|\"\"\")))/iS";
 
         do {
-            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
+            if ($this->mbstring_overload ? preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches) : preg_match($yy_global_pattern, $this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
                         ' an empty string.  Input "' . substr($this->data,
-                        $this->counter, 5) . '... state TRIPPLE');
+                            $this->counter, 5) . '... state TRIPPLE');
                 }
                 next($yymatches); // skip global match
                 $this->token = key($yymatches); // token number
@@ -572,7 +594,8 @@ class Smarty_Internal_Configfilelexer
                     }
                     // skip this token
                     continue;
-                }            } else {
+                }
+            } else {
                 throw new Exception('Unexpected input at line' . $this->line .
                     ': ' . $this->data[$this->counter]);
             }
@@ -583,24 +606,28 @@ class Smarty_Internal_Configfilelexer
 
 
     const TRIPPLE = 6;
+
     function yy_r6_1($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_QUOTES_END;
-    $this->yypopstate();
-    $this->yypushstate(self::START);
+        $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_QUOTES_END;
+        $this->yypopstate();
+        $this->yypushstate(self::START);
     }
+
     function yy_r6_2($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_CONTENT;
+        $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_CONTENT;
     }
+
     function yy_r6_3($yy_subpatterns)
     {
 
-    $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_CONTENT;
+        $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_CONTENT;
     }
 
 
 }
+
 ?>

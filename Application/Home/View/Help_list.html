@@ -27,7 +27,8 @@
                             <volist name="articalList" id="artical">
                                 <tr>
                                     <td>
-                                        <a target="_blank" href="{$url}{:U('App/Artical/index' , array('id'=>$artical['id']))}">{$artical.title}</a>
+                                        <a target="_blank"
+                                           href="{$url}{:U('App/Artical/index' , array('id'=>$artical['id']))}">{$artical.title}</a>
                                     </td>
                                     <td>
                                         {$artical.time}

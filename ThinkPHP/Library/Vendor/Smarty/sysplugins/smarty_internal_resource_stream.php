@@ -19,16 +19,17 @@
  * @package Smarty
  * @subpackage TemplateResources
  */
-class Smarty_Internal_Resource_Stream extends Smarty_Resource_Recompiled {
+class Smarty_Internal_Resource_Stream extends Smarty_Resource_Recompiled
+{
 
     /**
      * populate Source Object with meta data from Resource
      *
-     * @param Smarty_Template_Source   $source    source object
+     * @param Smarty_Template_Source $source source object
      * @param Smarty_Internal_Template $_template template object
      * @return void
      */
-    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template=null)
+    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null)
     {
         $source->filepath = str_replace(':', '://', $source->resource);
         $source->uid = false;
@@ -59,11 +60,11 @@ class Smarty_Internal_Resource_Stream extends Smarty_Resource_Recompiled {
             return false;
         }
     }
-    
+
     /**
      * modify resource_name according to resource handlers specifications
      *
-     * @param Smarty $smarty        Smarty instance
+     * @param Smarty $smarty Smarty instance
      * @param string $resource_name resource_name to make unique
      * @return string unique resource name
      */

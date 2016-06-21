@@ -18,16 +18,17 @@
  * @package Smarty
  * @subpackage TemplateResources
  */
-class Smarty_Internal_Resource_Eval extends Smarty_Resource_Recompiled {
+class Smarty_Internal_Resource_Eval extends Smarty_Resource_Recompiled
+{
 
     /**
      * populate Source Object with meta data from Resource
      *
-     * @param Smarty_Template_Source   $source    source object
+     * @param Smarty_Template_Source $source source object
      * @param Smarty_Internal_Template $_template template object
      * @return void
      */
-    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template=null)
+    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null)
     {
         $source->uid = $source->filepath = sha1($source->name);
         $source->timestamp = false;
@@ -45,7 +46,7 @@ class Smarty_Internal_Resource_Eval extends Smarty_Resource_Recompiled {
     {
         return $this->decode($source->name);
     }
-    
+
     /**
      * decode base64 and urlencode
      *
@@ -62,20 +63,20 @@ class Smarty_Internal_Resource_Eval extends Smarty_Resource_Recompiled {
                 return urldecode(substr($string, 10));
             }
         }
-        
+
         return $string;
     }
-    
+
     /**
      * modify resource_name according to resource handlers specifications
      *
-     * @param Smarty $smarty        Smarty instance
+     * @param Smarty $smarty Smarty instance
      * @param string $resource_name resource_name to make unique
      * @return string unique resource name
      */
     protected function buildUniqueResourceName(Smarty $smarty, $resource_name)
     {
-        return get_class($this) . '#' .$this->decode($resource_name);
+        return get_class($this) . '#' . $this->decode($resource_name);
     }
 
     /**

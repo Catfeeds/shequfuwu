@@ -15,7 +15,8 @@
  * @package Smarty
  * @subpackage Debug
  */
-class Smarty_Internal_Debug extends Smarty_Internal_Data {
+class Smarty_Internal_Debug extends Smarty_Internal_Data
+{
 
     /**
      * template data
@@ -169,13 +170,13 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data {
                 }
             }
         }
-        return (object) array('tpl_vars' => $tpl_vars, 'config_vars' => $config_vars);
+        return (object)array('tpl_vars' => $tpl_vars, 'config_vars' => $config_vars);
     }
 
     /**
      * Return key into $template_data for template
      *
-     * @param object $template  template object
+     * @param object $template template object
      * @return string   key into $template_data
      */
     private static function get_key($template)
@@ -190,7 +191,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data {
             return $key;
         } else {
             if (isset($_is_stringy[$template->source->type])) {
-                self::$template_data[$key]['name'] = '\''.substr($template->source->name,0,25).'...\'';
+                self::$template_data[$key]['name'] = '\'' . substr($template->source->name, 0, 25) . '...\'';
             } else {
                 self::$template_data[$key]['name'] = $template->source->filepath;
             }

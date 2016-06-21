@@ -57,12 +57,14 @@ class OrderModel extends RelationModel
 
         return $data;
     }
+
 //崔
     public function getOrderListCount($condition = array())
     {
         $count = $this->where($condition)->count();
         return $count;
     }
+
 //崔
     public function getOrderListSum($condition)
     {
@@ -102,8 +104,9 @@ class OrderModel extends RelationModel
     {
         $this->where($condition)->delete();
     }
- //崔  
-     public function getOrder($condition = array(), $relation = false)
+
+    //崔  
+    public function getOrder($condition = array(), $relation = false)
     {
         $data = $this->where($condition);
         if ($relation) {
@@ -134,7 +137,7 @@ class OrderModel extends RelationModel
 
     public function getOrderDetail($id)
     {
-        $order = $this->getOrder(array("id" => $id) , true);
+        $order = $this->getOrder(array("id" => $id), true);
         $orderDetail = $order["detail"];
         return $orderDetail;
     }
@@ -144,7 +147,7 @@ class OrderModel extends RelationModel
         $this->where(array("id" => array("in", $ids)))->save(array("status" => -1));
     }
 
-    public function addOrder($userId, $contact_id, $payFlag, $discount, $data , $shopId)
+    public function addOrder($userId, $contact_id, $payFlag, $discount, $data, $shopId)
     {
         $order ["user_id"] = $userId;
         $order ["contact_id"] = $contact_id;
@@ -162,7 +165,7 @@ class OrderModel extends RelationModel
         $order ["delivery_time"] = $data["deliveryTime"];
 
         $config = D("Shop")->getShop(array("id" => $shopId));
-        $order ["freight"] = $config["freight"]?$config["freight"]:0;
+        $order ["freight"] = $config["freight"] ? $config["freight"] : 0;
 
         $order ["discount"] = $discount;
         $order ["time"] = date("Y-m-d H:i:s");
@@ -210,7 +213,7 @@ class OrderModel extends RelationModel
         if ($buyUser) {
             $newBuyUser = 1;
         }
-        D("Analysis")->addAnalysis(1, floatval($order ["totalprice"]), 0, $newBuyUser , 0);
+        D("Analysis")->addAnalysis(1, floatval($order ["totalprice"]), 0, $newBuyUser, 0);
 
         return $order_id;
     }
@@ -230,9 +233,10 @@ class OrderModel extends RelationModel
      * @param $condition
      * @param int $noticeStatus
      */
-    public function updateNoticeStatus($condition,$noticeStatus=1){
-        $this -> where($condition)->setField('notice_status',$noticeStatus);
+    public function updateNoticeStatus($condition, $noticeStatus = 1)
+    {
+        $this->where($condition)->setField('notice_status', $noticeStatus);
     }
-    
-    
+
+
 }

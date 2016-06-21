@@ -55,21 +55,21 @@ class UserController extends BaseController
         $this->assign("qrcode", "http://" . I("server.HTTP_HOST") . __ROOT__ . "/Data/employee/" . session("homeShopId") . ".png");
 
         $shop = D("Shop")->getShop(array("id" => session("homeShopId")));
-        if($shop["employee"]){
+        if ($shop["employee"]) {
             $userList = D("User")->getUserList(array("id" => array("in", $shop["employee"])));
             $this->assign("userList", $userList);
         }
 
         $this->display();
     }
-    
+
     public function delEmployee()
     {
         $shop = D("Shop")->getShop(array("id" => session("homeShopId")));
         $employee = explode(",", $shop["employee"]);
 
-        foreach($employee as $key=>$value){
-            if($value != "" && $value == I("get.id")){
+        foreach ($employee as $key => $value) {
+            if ($value != "" && $value == I("get.id")) {
                 unset($employee[$key]);
             }
         }
@@ -176,12 +176,14 @@ class UserController extends BaseController
             $this->display();
         }
     }
+
     public function delUser()
     {
         D("User")->del(array("id" => array("in", I("get.id"))));
 
         $this->success("删除成功", cookie("prevUrl"));
     }
+
     public function modUser()
     {
         $user = D("User")->get(array("id" => I("get.id")), true);
@@ -202,6 +204,7 @@ class UserController extends BaseController
         $this->assign("userList", $user);
         $this->display();
     }
+
     public function addAdmin()
     {
         if (IS_POST) {
@@ -243,9 +246,6 @@ class UserController extends BaseController
 
         $this->display("User:addAdmin");
     }
-
-
-
 
 
 }

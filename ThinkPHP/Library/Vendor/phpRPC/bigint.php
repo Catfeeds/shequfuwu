@@ -1,26 +1,26 @@
 <?php
 /**********************************************************\
-|                                                          |
-| The implementation of PHPRPC Protocol 3.0                |
-|                                                          |
-| bigint.php                                               |
-|                                                          |
-| Release 3.0.1                                            |
-| Copyright by Team-PHPRPC                                 |
-|                                                          |
-| WebSite:  http://www.phprpc.org/                         |
-|           http://www.phprpc.net/                         |
-|           http://www.phprpc.com/                         |
-|           http://sourceforge.net/projects/php-rpc/       |
-|                                                          |
-| Authors:  Ma Bingyao <andot@ujn.edu.cn>                  |
-|                                                          |
-| This file may be distributed and/or modified under the   |
-| terms of the GNU General Public License (GPL) version    |
-| 2.0 as published by the Free Software Foundation and     |
-| appearing in the included file LICENSE.                  |
-|                                                          |
-\**********************************************************/
+ * |                                                          |
+ * | The implementation of PHPRPC Protocol 3.0                |
+ * |                                                          |
+ * | bigint.php                                               |
+ * |                                                          |
+ * | Release 3.0.1                                            |
+ * | Copyright by Team-PHPRPC                                 |
+ * |                                                          |
+ * | WebSite:  http://www.phprpc.org/                         |
+ * |           http://www.phprpc.net/                         |
+ * |           http://www.phprpc.com/                         |
+ * |           http://sourceforge.net/projects/php-rpc/       |
+ * |                                                          |
+ * | Authors:  Ma Bingyao <andot@ujn.edu.cn>                  |
+ * |                                                          |
+ * | This file may be distributed and/or modified under the   |
+ * | terms of the GNU General Public License (GPL) version    |
+ * | 2.0 as published by the Free Software Foundation and     |
+ * | appearing in the included file LICENSE.                  |
+ * |                                                          |
+ * \**********************************************************/
 
 /* Big integer expansion library.
  *
@@ -32,24 +32,33 @@
  */
 
 if (extension_loaded('gmp')) {
-    function bigint_dec2num($dec) {
+    function bigint_dec2num($dec)
+    {
         return gmp_init($dec);
     }
-    function bigint_num2dec($num) {
+
+    function bigint_num2dec($num)
+    {
         return gmp_strval($num);
     }
-    function bigint_str2num($str) {
-        return gmp_init("0x".bin2hex($str));
+
+    function bigint_str2num($str)
+    {
+        return gmp_init("0x" . bin2hex($str));
     }
-    function bigint_num2str($num) {
+
+    function bigint_num2str($num)
+    {
         $str = gmp_strval($num, 16);
         $len = strlen($str);
         if ($len % 2 == 1) {
-            $str = '0'.$str;
+            $str = '0' . $str;
         }
         return pack("H*", $str);
     }
-    function bigint_random($n, $s) {
+
+    function bigint_random($n, $s)
+    {
         $result = gmp_init(0);
         for ($i = 0; $i < $n; $i++) {
             if (mt_rand(0, 1)) {
@@ -61,47 +70,63 @@ if (extension_loaded('gmp')) {
         }
         return $result;
     }
-    function bigint_powmod($x, $y, $m) {
+
+    function bigint_powmod($x, $y, $m)
+    {
         return gmp_powm($x, $y, $m);
     }
-}
-else if (extension_loaded('big_int')) {
-    function bigint_dec2num($dec) {
+} else if (extension_loaded('big_int')) {
+    function bigint_dec2num($dec)
+    {
         return bi_from_str($dec);
     }
-    function bigint_num2dec($num) {
+
+    function bigint_num2dec($num)
+    {
         return bi_to_str($num);
     }
-    function bigint_str2num($str) {
+
+    function bigint_str2num($str)
+    {
         return bi_from_str(bin2hex($str), 16);
     }
-    function bigint_num2str($num) {
+
+    function bigint_num2str($num)
+    {
         $str = bi_to_str($num, 16);
         $len = strlen($str);
         if ($len % 2 == 1) {
-            $str = '0'.$str;
+            $str = '0' . $str;
         }
         return pack("H*", $str);
     }
-    function bigint_random($n, $s) {
+
+    function bigint_random($n, $s)
+    {
         $result = bi_rand($n);
         if ($s) {
             $result = bi_set_bit($result, $n - 1);
         }
         return $result;
     }
-    function bigint_powmod($x, $y, $m) {
+
+    function bigint_powmod($x, $y, $m)
+    {
         return bi_powmod($x, $y, $m);
     }
-}
-else if (extension_loaded('bcmath')) {
-    function bigint_dec2num($dec) {
+} else if (extension_loaded('bcmath')) {
+    function bigint_dec2num($dec)
+    {
         return $dec;
     }
-    function bigint_num2dec($num) {
+
+    function bigint_num2dec($num)
+    {
         return $num;
     }
-    function bigint_str2num($str) {
+
+    function bigint_str2num($str)
+    {
         bcscale(0);
         $len = strlen($str);
         $result = '0';
@@ -112,17 +137,21 @@ else if (extension_loaded('bcmath')) {
         }
         return $result;
     }
-    function bigint_num2str($num) {
+
+    function bigint_num2str($num)
+    {
         bcscale(0);
         $str = "";
         while (bccomp($num, '0') == 1) {
-           $str = chr(bcmod($num, '256')) . $str;
-           $num = bcdiv($num, '256');
+            $str = chr(bcmod($num, '256')) . $str;
+            $num = bcdiv($num, '256');
         }
         return $str;
     }
+
     // author of bcmath bigint_random: mgccl <mgcclx@gmail.com>
-    function bigint_pow($b, $e) {
+    function bigint_pow($b, $e)
+    {
         if ($b == 2) {
             $a[96] = '79228162514264337593543950336';
             $a[128] = '340282366920938463463374607431768211456';
@@ -141,21 +170,22 @@ else if (extension_loaded('bcmath')) {
         }
         return bcpow($b, $e);
     }
-    function bigint_random($n, $s) {
+
+    function bigint_random($n, $s)
+    {
         bcscale(0);
         $t = bigint_pow(2, $n);
         if ($s == 1) {
             $m = bcdiv($t, 2);
             $t = bcsub($m, 1);
-        }
-        else {
+        } else {
             $m = 0;
             $t = bcsub($t, 1);
         }
         $l = strlen($t);
-        $n = (int) ($l / 9) + 1;
+        $n = (int)($l / 9) + 1;
         $r = '';
-        while($n) {
+        while ($n) {
             $r .= substr('000000000' . mt_rand(0, 999999999), -9);
             --$n;
         }
@@ -163,8 +193,10 @@ else if (extension_loaded('bcmath')) {
         while (bccomp($r, $t) == 1) $r = substr($r, 1, $l) . mt_rand(0, 9);
         return bcadd($r, $m);
     }
+
     if (!function_exists('bcpowmod')) {
-        function bcpowmod($x, $y, $modulus, $scale = 0) {
+        function bcpowmod($x, $y, $modulus, $scale = 0)
+        {
             $t = '1';
             while (bccomp($y, '0')) {
                 if (bccomp(bcmod($y, '2'), '0')) {
@@ -178,12 +210,13 @@ else if (extension_loaded('bcmath')) {
             return $t;
         }
     }
-    function bigint_powmod($x, $y, $m) {
+    function bigint_powmod($x, $y, $m)
+    {
         return bcpowmod($x, $y, $m);
     }
-}
-else {
-    function bigint_mul($a, $b) {
+} else {
+    function bigint_mul($a, $b)
+    {
         $n = count($a);
         $m = count($b);
         $nm = $n + $m;
@@ -197,7 +230,9 @@ else {
         }
         return $c;
     }
-    function bigint_div($a, $b, $is_mod = 0) {
+
+    function bigint_div($a, $b, $is_mod = 0)
+    {
         $n = count($a);
         $m = count($b);
         $c = array();
@@ -237,10 +272,14 @@ else {
         for ($i = 0; $i < $m; $i++) $b[$i] = $a[$i];
         return bigint_div($b, array($d));
     }
-    function bigint_zerofill($str, $num) {
+
+    function bigint_zerofill($str, $num)
+    {
         return str_pad($str, $num, '0', STR_PAD_LEFT);
     }
-    function bigint_dec2num($dec) {
+
+    function bigint_dec2num($dec)
+    {
         $n = strlen($dec);
         $a = array(0);
         $n += 4 - ($n % 4);
@@ -260,7 +299,9 @@ else {
         }
         return $a;
     }
-    function bigint_num2dec($num) {
+
+    function bigint_num2dec($num)
+    {
         $n = count($num) << 1;
         $b = array();
         for ($i = 0; $i < $n; $i++) {
@@ -274,7 +315,9 @@ else {
         $b = join('', array_reverse($b));
         return $b;
     }
-    function bigint_str2num($str) {
+
+    function bigint_str2num($str)
+    {
         $n = strlen($str);
         $n += 15 - ($n % 15);
         $str = str_pad($str, $n, chr(0), STR_PAD_LEFT);
@@ -298,7 +341,9 @@ else {
         }
         return $result;
     }
-    function bigint_num2str($num) {
+
+    function bigint_num2str($num)
+    {
         ksort($num, SORT_NUMERIC);
         $n = count($num);
         $n += 8 - ($n % 8);
@@ -324,11 +369,12 @@ else {
         return ltrim($s, chr(0));
     }
 
-    function bigint_random($n, $s) {
+    function bigint_random($n, $s)
+    {
         $lowBitMasks = array(0x0000, 0x0001, 0x0003, 0x0007,
-                             0x000f, 0x001f, 0x003f, 0x007f,
-                             0x00ff, 0x01ff, 0x03ff, 0x07ff,
-                             0x0fff, 0x1fff, 0x3fff);
+            0x000f, 0x001f, 0x003f, 0x007f,
+            0x00ff, 0x01ff, 0x03ff, 0x07ff,
+            0x0fff, 0x1fff, 0x3fff);
         $r = $n % 15;
         $q = floor($n / 15);
         $result = array();
@@ -340,13 +386,14 @@ else {
             if ($s) {
                 $result[$q] |= 1 << ($r - 1);
             }
-        }
-        else if ($s) {
+        } else if ($s) {
             $result[$q - 1] |= 0x4000;
         }
         return $result;
     }
-    function bigint_powmod($x, $y, $m) {
+
+    function bigint_powmod($x, $y, $m)
+    {
         $n = count($y);
         $p = array(1);
         for ($i = 0; $i < $n - 1; $i++) {

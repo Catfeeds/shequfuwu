@@ -108,20 +108,20 @@
             $('select[name="type"]').val('{$wxMenu.type}');
             $('select[name="pid"]').val('{$wxMenu.pid}');
         }
-        if($('#changeTypeId').val() == "view"){
+        if ($('#changeTypeId').val() == "view") {
             $('#keyGroup').hide();
-        }else{
+        } else {
             $('#urlGroup').hide();
         }
     });
 
-    function changeType(obj){
+    function changeType(obj) {
         $('#keyGroup').show();
         $('#urlGroup').show();
 
-        if($(obj).val() == "view"){
+        if ($(obj).val() == "view") {
             $('#keyGroup').hide();
-        }else if ($(obj).val() == "click"){
+        } else if ($(obj).val() == "click") {
             $('#urlGroup').hide();
         }
     }

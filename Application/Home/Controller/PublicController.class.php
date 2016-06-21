@@ -6,36 +6,37 @@ use Think\Controller;
 class PublicController extends Controller
 {
     // 发送邮箱验证码
-    public function emailsms(){
-        
+    public function emailsms()
+    {
+
         Vendor('Swift.swift_required');
 
         $emailCode = rand_code(6);
         session("emailCode", $emailCode);
         $email = I("post.email");
 
-        $transport=\Swift_SmtpTransport::newInstance("smtp.qq.com","465","ssl")
+        $transport = \Swift_SmtpTransport::newInstance("smtp.qq.com", "465", "ssl")
             ->setUsername("1604583867@qq.com")
             ->setPassword("owllesvpfjvujbjb");
-        $mailer =\Swift_Mailer::newInstance($transport);
-        $message=\Swift_Message::newInstance()
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
             ->setSubject("WeMall多用户商城注册验证码")
-            ->setFrom(array("1604583867@qq.com"=>"WeMall"))
+            ->setFrom(array("1604583867@qq.com" => "WeMall"))
             ->setTo($email)
             ->setContentType("text/html")
             ->setBody('您好，您的验证码是' . $emailCode);
-            // ->attach(\Swift_Attachment::fromPath('1.jpg', 'image/jpeg'));//发送附件
-        $mailer->protocol='smtp';
+        // ->attach(\Swift_Attachment::fromPath('1.jpg', 'image/jpeg'));//发送附件
+        $mailer->protocol = 'smtp';
         $result = $mailer->send($message);
-        
+
         if ($result == 1) {
             $this->ajaxReturn('发送成功');
         } else {
             $this->ajaxReturn('发送失败');
-        }  
+        }
 
     }
-    
+
     //发送手机验证码
     public function sendSms()
     {
@@ -187,7 +188,7 @@ class PublicController extends Controller
             if (I("post.password") != I("post.password2")) {
                 $this->error("密码不匹配");
             }
-            
+
             $email = D("User")->get(array("email" => I("post.email")));
             if ($email) {
                 $this->error("该邮箱已经注册,请重新输入");

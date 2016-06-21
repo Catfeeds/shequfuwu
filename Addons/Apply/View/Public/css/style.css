@@ -268,6 +268,7 @@ pre {
     background-position-x: right;
     background-position-y: center;
 }
+
 .more-header {
     position: fixed;
     top: 0;
@@ -280,6 +281,7 @@ pre {
     background-color: rgba(255, 255, 255, .9);
     margin-top: 46px;
 }
+
 .search {
     float: left;
     width: 10%;
@@ -934,7 +936,7 @@ pre {
 .detail-content ul li {
     margin-top: 12px;
     font-size: 14px;
-    line-height:24px;
+    line-height: 24px;
 }
 
 .detail-content .detail-main {
@@ -2153,8 +2155,6 @@ select {
     width: 15px
 }
 
-
-
 .navigation-wrap {
     position: fixed;
     bottom: 0px;
@@ -2271,11 +2271,29 @@ select {
 }
 
 /*home_page promotion*/
-.m-component-promotion>ul{margin-bottom:0;cursor: pointer}
-.m-component-promotion>ul>li{margin:0 10px 5px; padding-bottom:5px; }
-.m-component-promotion>ul>li>a{display:block; width:100%; background:#f1f1f1;}
-.m-component-promotion>ul>li>a>img{width:100%;}
-.m-component-promotion>ul>li:last-child{border-bottom:none;}
+.m-component-promotion > ul {
+    margin-bottom: 0;
+    cursor: pointer
+}
+
+.m-component-promotion > ul > li {
+    margin: 0 10px 5px;
+    padding-bottom: 5px;
+}
+
+.m-component-promotion > ul > li > a {
+    display: block;
+    width: 100%;
+    background: #f1f1f1;
+}
+
+.m-component-promotion > ul > li > a > img {
+    width: 100%;
+}
+
+.m-component-promotion > ul > li:last-child {
+    border-bottom: none;
+}
 
 .attr-btn {
     float: left;

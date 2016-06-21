@@ -8,7 +8,7 @@
                     <div class="widget-common-eraser widget-common-eraser-hidden"></div>
                 </div>
             </div>
-            <input type="button"class="search-btn" onclick="openSearch()" value="搜索">
+            <input type="button" class="search-btn" onclick="openSearch()" value="搜索">
         </div>
     </div>
 </div>
@@ -25,8 +25,12 @@
     <!-- <div class="menu-name"><span></span></div> -->
     <ul class="mui-table-view mui-table-viewa" id="items">
         {{each product as value i}}
-        <li class="mui-table-view-cell mui-media" label-cate="{{value.menu_id}}" label-id="{{value.id}}" style="display: none">
-            <img onclick="prevView(this)" class="mui-media-object mui-pull-left mui-pull-lefts" src="{{imageUrl}}/blank.gif" style="background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 20px;" data-echo="{{uploadsUrl+value.savepath+value.savename}}">
+        <li class="mui-table-view-cell mui-media" label-cate="{{value.menu_id}}" label-id="{{value.id}}"
+            style="display: none">
+            <img onclick="prevView(this)" class="mui-media-object mui-pull-left mui-pull-lefts"
+                 src="{{imageUrl}}/blank.gif"
+                 style="background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 20px;"
+                 data-echo="{{uploadsUrl+value.savepath+value.savename}}">
             <div class="mui-media-body">
                 <a href="#/product/{{value.id}}" title="">
                     <span class="product-name">{{value.name}}</span>
@@ -34,9 +38,11 @@
                 <span class="monthlySales"><span>{{value.subname}}</span></span>
                 <span class="mui-ellipsis mui-ellipsisa">￥{{value.price}}</span>
                 <div class="message-icon">
-                    <input class="numbers-minus" type="button" onclick="reducehotproductNum(this,'{{value.id}}' , false)" style="display: none;">
+                    <input class="numbers-minus" type="button"
+                           onclick="reducehotproductNum(this,'{{value.id}}' , false)" style="display: none;">
                     <input class="numbers" type="text" value="0" style="display: none;">
-                    <input class="numbers-add" type="button" onclick="doCart(this ,'{{value.id}}','{{value.name}}','{{value.price}}','')">
+                    <input class="numbers-add" type="button"
+                           onclick="doCart(this ,'{{value.id}}','{{value.name}}','{{value.price}}','')">
                 </div>
             </div>
         </li>
@@ -46,11 +52,13 @@
 
 <div id="shopmenu-cart">
     <div id="shopmenu-cart-bar" class="shopmenu-cart-bar">
-        <div class="row-num" onclick="location.href='#/cart'" ng-class="shopCartAnimate"><em class="cart-count " id="shopcart-tip" style="display:none">1</em>
+        <div class="row-num" onclick="location.href='#/cart'" ng-class="shopCartAnimate"><em class="cart-count "
+                                                                                             id="shopcart-tip"
+                                                                                             style="display:none">1</em>
         </div>
         <div class="row-cart">
             <div class="price-info">
-                <div class="cart-price" >共&nbsp;¥<span id="shopcart-totalPrice">0.00</span>元</div>
+                <div class="cart-price">共&nbsp;¥<span id="shopcart-totalPrice">0.00</span>元</div>
                 <div class="cart-premium" style="display: none;"></div>
             </div>
             <a class="row-status" style="display: none;">差¥8起送</a>

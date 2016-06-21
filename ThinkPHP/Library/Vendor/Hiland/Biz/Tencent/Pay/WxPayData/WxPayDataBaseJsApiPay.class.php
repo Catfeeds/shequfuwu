@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 提交JSAPI输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseJsApiPay extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
     /**
      * 设置支付时间戳
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTimeStamp($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
      * 判断支付时间戳是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTimeStampSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
     /**
      * 随机字符串
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonceStr($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
      * 判断随机字符串是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsReturn_codeSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
     /**
      * 设置订单详情扩展字符串
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetPackage($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
      * 判断订单详情扩展字符串是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsPackageSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
     /**
      * 设置签名方式
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetSignType($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
      * 判断签名方式是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsSignTypeSet()
     {
@@ -179,7 +179,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
     /**
      * 设置签名方式
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetPaySign($value)
@@ -202,7 +202,7 @@ class WxPayDataBaseJsApiPay extends WxPayDataBase
      * 判断签名方式是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsPaySignSet()
     {

@@ -59,8 +59,10 @@
                                     <td>{$menu.rank}</td>
                                     <td>{$menu.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Home/Shop/modifyMenu',array('id'=>$menu['id']))}">修改</a><a class="deleteConfirm"
-                                            class="deleteConfirm" href="{:U('Home/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
+                                            href="{:U('Home/Shop/modifyMenu',array('id'=>$menu['id']))}">修改</a><a
+                                            class="deleteConfirm"
+                                            class="deleteConfirm"
+                                            href="{:U('Home/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>
@@ -69,7 +71,8 @@
                         <div class="box-footer no-padding">
                             <div class="mailbox-controls">
                                 <div class="btn-group">
-                                    <a class="btn btn-danger deleteConfirm" href="javascript:batchUrl('{:U(\'Home/Shop/delMenu\')}')">全部删除
+                                    <a class="btn btn-danger deleteConfirm"
+                                       href="javascript:batchUrl('{:U(\'Home/Shop/delMenu\')}')">全部删除
                                     </a>
                                 </div>
                             </div>
@@ -83,11 +86,11 @@
         <!-- /.col -->
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('.deleteConfirm').on('click',function (event) {
-                if(confirm('您确认要删除选定的信息吗？')){
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
 
-                }else{
+                } else {
                     event.preventDefault();
                 }
             })

@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 测速上报输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseReport extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置微信支付分配的终端设备号，商户自定义
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetDevice_info($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断微信支付分配的终端设备号，商户自定义是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsDevice_infoSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置随机字符串，不长于32位。推荐随机数生成算法
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断随机字符串，不长于32位。推荐随机数生成算法是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置上报对应的接口的完整URL，类似：https://api.mch.weixin.qq.com/pay/unifiedorder对于被扫支付，为更好的和商户共同分析一次业务行为的整体耗时情况，对于两种接入模式，请都在门店侧对一次被扫行为进行一次单独的整体上报，上报URL指定为：https://api.mch.weixin.qq.com/pay/micropay/total关于两种接入模式具体可参考本文档章节：被扫支付商户接入模式其它接口调用仍然按照调用一次，上报一次来进行。
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetInterface_url($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断上报对应的接口的完整URL，类似：https://api.mch.weixin.qq.com/pay/unifiedorder对于被扫支付，为更好的和商户共同分析一次业务行为的整体耗时情况，对于两种接入模式，请都在门店侧对一次被扫行为进行一次单独的整体上报，上报URL指定为：https://api.mch.weixin.qq.com/pay/micropay/total关于两种接入模式具体可参考本文档章节：被扫支付商户接入模式其它接口调用仍然按照调用一次，上报一次来进行。是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsInterface_urlSet()
     {
@@ -179,7 +179,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置接口耗时情况，单位为毫秒
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetExecute_time_($value)
@@ -202,7 +202,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断接口耗时情况，单位为毫秒是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsExecute_time_Set()
     {
@@ -212,7 +212,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置SUCCESS/FAIL此字段是通信标识，非交易标识，交易是否成功需要查看trade_state来判断
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetReturn_code($value)
@@ -235,7 +235,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断SUCCESS/FAIL此字段是通信标识，非交易标识，交易是否成功需要查看trade_state来判断是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsReturn_codeSet()
     {
@@ -245,7 +245,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置返回信息，如非空，为错误原因签名失败参数格式校验错误
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetReturn_msg($value)
@@ -268,7 +268,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断返回信息，如非空，为错误原因签名失败参数格式校验错误是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsReturn_msgSet()
     {
@@ -278,7 +278,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置SUCCESS/FAIL
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetResult_code($value)
@@ -301,7 +301,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断SUCCESS/FAIL是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsResult_codeSet()
     {
@@ -311,7 +311,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置ORDERNOTEXIST—订单不存在SYSTEMERROR—系统错误
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetErr_code($value)
@@ -334,7 +334,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断ORDERNOTEXIST—订单不存在SYSTEMERROR—系统错误是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsErr_codeSet()
     {
@@ -344,7 +344,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置结果信息描述
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetErr_code_des($value)
@@ -367,7 +367,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断结果信息描述是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsErr_code_desSet()
     {
@@ -377,7 +377,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置商户系统内部的订单号,商户可以在上报时提供相关商户订单号方便微信支付更好的提高服务质量。
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetOut_trade_no($value)
@@ -400,7 +400,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断商户系统内部的订单号,商户可以在上报时提供相关商户订单号方便微信支付更好的提高服务质量。 是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsOut_trade_noSet()
     {
@@ -410,7 +410,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置发起接口调用时的机器IP
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetUser_ip($value)
@@ -433,7 +433,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断发起接口调用时的机器IP 是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsUser_ipSet()
     {
@@ -443,7 +443,7 @@ class WxPayDataBaseReport extends WxPayDataBase
     /**
      * 设置系统时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。其他详见时间规则
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetTime($value)
@@ -466,7 +466,7 @@ class WxPayDataBaseReport extends WxPayDataBase
      * 判断系统时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。其他详见时间规则是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsTimeSet()
     {

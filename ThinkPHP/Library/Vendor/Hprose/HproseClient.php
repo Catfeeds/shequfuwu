@@ -1,13 +1,13 @@
 <?php
 /**********************************************************\
-|                                                          |
-|                          hprose                          |
-|                                                          |
-| Official WebSite: http://www.hprose.com/                 |
-|                   http://www.hprose.net/                 |
-|                   http://www.hprose.org/                 |
-|                                                          |
-\**********************************************************/
+ * |                                                          |
+ * |                          hprose                          |
+ * |                                                          |
+ * | Official WebSite: http://www.hprose.com/                 |
+ * |                   http://www.hprose.net/                 |
+ * |                   http://www.hprose.org/                 |
+ * |                                                          |
+ * \**********************************************************/
 
 /**********************************************************\
  *                                                        *
@@ -18,28 +18,36 @@
  * LastModified: Nov 13, 2013                             *
  * Author: Ma Bingyao <andot@hprfc.com>                   *
  *                                                        *
-\**********************************************************/
+ * \**********************************************************/
 
 require_once('HproseCommon.php');
 require_once('HproseIO.php');
 
-abstract class HproseClient {
+abstract class HproseClient
+{
     protected $url;
     private $filter;
     private $simple;
+
     protected abstract function send($request);
-    public function __construct($url = '') {
+
+    public function __construct($url = '')
+    {
         $this->useService($url);
         $this->filter = NULL;
         $this->simple = false;
     }
-    public function useService($url = '', $namespace = '') {
+
+    public function useService($url = '', $namespace = '')
+    {
         if ($url) {
             $this->url = $url;
         }
         return new HproseProxy($this, $namespace);
     }
-    public function invoke($functionName, &$arguments = array(), $byRef = false, $resultMode = HproseResultMode::Normal, $simple = NULL) {
+
+    public function invoke($functionName, &$arguments = array(), $byRef = false, $resultMode = HproseResultMode::Normal, $simple = NULL)
+    {
         if ($simple === NULL) $simple = $this->simple;
         $stream = new HproseStringStream(HproseTags::TagCall);
         $hproseWriter = ($simple ? new HproseSimpleWriter($stream) : new HproseWriter($stream));
@@ -67,16 +75,15 @@ abstract class HproseClient {
         $hproseReader = new HproseReader($stream);
         $result = NULL;
         while (($tag = $hproseReader->checkTags(
-            array(HproseTags::TagResult,
-                  HproseTags::TagArgument,
-                  HproseTags::TagError,
-                  HproseTags::TagEnd))) !== HproseTags::TagEnd) {
+                array(HproseTags::TagResult,
+                    HproseTags::TagArgument,
+                    HproseTags::TagError,
+                    HproseTags::TagEnd))) !== HproseTags::TagEnd) {
             switch ($tag) {
                 case HproseTags::TagResult:
                     if ($resultMode == HproseResultMode::Serialized) {
                         $result = $hproseReader->readRaw()->toString();
-                    }
-                    else {
+                    } else {
                         $hproseReader->reset();
                         $result = &$hproseReader->unserialize();
                     }
@@ -96,39 +103,59 @@ abstract class HproseClient {
         }
         return $result;
     }
-    public function getFilter() {
+
+    public function getFilter()
+    {
         return $this->filter;
     }
-    public function setFilter($filter) {
+
+    public function setFilter($filter)
+    {
         $this->filter = $filter;
     }
-    public function getSimpleMode() {
+
+    public function getSimpleMode()
+    {
         return $this->simple;
     }
-    public function setSimpleMode($simple = true) {
+
+    public function setSimpleMode($simple = true)
+    {
         $this->simple = $simple;
     }
-    public function __call($function, $arguments) {
+
+    public function __call($function, $arguments)
+    {
         return $this->invoke($function, $arguments);
     }
-    public function __get($name) {
+
+    public function __get($name)
+    {
         return new HproseProxy($this, $name . '_');
     }
 }
 
-class HproseProxy {
+class HproseProxy
+{
     private $client;
     private $namespace;
-    public function __construct($client, $namespace = '') {
+
+    public function __construct($client, $namespace = '')
+    {
         $this->client = $client;
         $this->namespace = $namespace;
     }
-    public function __call($function, $arguments) {
+
+    public function __call($function, $arguments)
+    {
         $function = $this->namespace . $function;
         return $this->client->invoke($function, $arguments);
     }
-    public function __get($name) {
+
+    public function __get($name)
+    {
         return new HproseProxy($this->client, $this->namespace . $name . '_');
     }
 }
+
 ?>

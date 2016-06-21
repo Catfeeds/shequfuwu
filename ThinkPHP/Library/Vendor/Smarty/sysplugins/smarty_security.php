@@ -6,7 +6,7 @@
  * @subpackage Security
  * @author Uwe Tews
  */
- 
+
 /*
  * FIXME: Smarty_Security API
  *      - getter and setter instead of public properties would allow cultivating an internal cache properly
@@ -19,7 +19,8 @@
 /**
  * This class does contain the security settings
  */
-class Smarty_Security {
+class Smarty_Security
+{
 
     /**
      * This determines how Smarty handles "<?php ... ?>" tags in templates.
@@ -158,8 +159,8 @@ class Smarty_Security {
      * @var array
      */
     protected $_trusted_dir = null;
-    
-    
+
+
     /**
      * @param Smarty $smarty
      */
@@ -167,7 +168,7 @@ class Smarty_Security {
     {
         $this->smarty = $smarty;
     }
-    
+
     /**
      * Check if PHP function is trusted.
      *
@@ -234,7 +235,7 @@ class Smarty_Security {
     {
         // check for internal always required tags
         if (in_array($tag_name, array('assign', 'call', 'private_filter', 'private_block_plugin', 'private_function_plugin', 'private_object_block_function',
-                    'private_object_function', 'private_registered_function', 'private_registered_block', 'private_special_variable', 'private_print_expression', 'private_modifier'))) {
+            'private_object_function', 'private_registered_function', 'private_registered_block', 'private_special_variable', 'private_print_expression', 'private_modifier'))) {
             return true;
         }
         // check security settings
@@ -315,8 +316,8 @@ class Smarty_Security {
 
         // check if index is outdated
         if ((!$this->_template_dir || $this->_template_dir !== $_template_dir)
-                || (!$this->_config_dir || $this->_config_dir !== $_config_dir)
-                || (!empty($this->secure_dir) && (!$this->_secure_dir || $this->_secure_dir !== $this->secure_dir))
+            || (!$this->_config_dir || $this->_config_dir !== $_config_dir)
+            || (!empty($this->secure_dir) && (!$this->_secure_dir || $this->_secure_dir !== $this->secure_dir))
         ) {
             $this->_resource_dir = array();
             $_template = true;
@@ -345,7 +346,7 @@ class Smarty_Security {
         // rebuild secure dir index
         if ($_secure) {
             $this->_secure_dir = $this->secure_dir;
-            foreach ((array) $this->secure_dir as $directory) {
+            foreach ((array)$this->secure_dir as $directory) {
                 $directory = realpath($directory);
                 $this->_resource_dir[$directory] = true;
             }
@@ -393,7 +394,7 @@ class Smarty_Security {
             $this->_php_resource_dir = array();
 
             $this->_trusted_dir = $this->trusted_dir;
-            foreach ((array) $this->trusted_dir as $directory) {
+            foreach ((array)$this->trusted_dir as $directory) {
                 $directory = realpath($directory);
                 $this->_php_resource_dir[$directory] = true;
             }

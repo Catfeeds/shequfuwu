@@ -82,7 +82,7 @@ class Swift_Transport_SpoolTransport implements Swift_Transport
      * Sends the given message.
      *
      * @param Swift_Mime_Message $message
-     * @param string[]           $failedRecipients An array of failures by-reference
+     * @param string[] $failedRecipients An array of failures by-reference
      *
      * @return int The number of sent e-mail's
      */

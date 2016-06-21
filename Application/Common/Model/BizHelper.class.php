@@ -117,7 +117,7 @@ class BizHelper
 
         $buyerShopMate = new ModelMate('usershopscaned');
 
-        $where= array();
+        $where = array();
         $where['shopid'] = $merchantScanedID;
         $where['openid'] = $openId;
         $relation = $buyerShopMate->find($where);
@@ -133,8 +133,7 @@ class BizHelper
 
         return $merchantScanedName;
     }
-    
-    
+
 
 }
 

@@ -142,7 +142,7 @@ class CalendarHelper
         $leapMonth = $yearData[0];
         $bit = decbin($yearData[3]);
 
-        $bitArray=null;
+        $bitArray = null;
         for ($i = 0; $i < strlen($bit); $i++) {
             $bitArray[$i] = substr($bit, $i, 1);
         }

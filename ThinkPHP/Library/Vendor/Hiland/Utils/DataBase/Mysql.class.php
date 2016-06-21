@@ -4,7 +4,7 @@ namespace Vendor\Hiland\Utils\DataBase;
 /**
  *
  * @author devel
- *        
+ *
  */
 class Mysql extends DAO
 {
@@ -12,7 +12,7 @@ class Mysql extends DAO
     protected function connectInner()
     {
         $dbHost = $this->dbHostName . ":" . $this->dbHostPort;
-        
+
         // 1.设置连接
         if ($this->connectionType == "pconn") {
             // 永久链接
@@ -21,13 +21,13 @@ class Mysql extends DAO
             // 即使链接
             $this->connection = mysql_connect($dbHost, $this->dbUserName, $this->dbPassword);
         }
-        
-        if (! mysql_select_db($this->dbDataBase, $this->connection)) {
+
+        if (!mysql_select_db($this->dbDataBase, $this->connection)) {
             if ($this->showError) {
                 $this->showError("数据库不可用：", $this->dbDataBase);
             }
         }
-        
+
         // 2.设置数据库字符编码
         mysql_query("SET NAMES $this->coding");
     }
@@ -76,10 +76,10 @@ class Mysql extends DAO
     protected function destructInner()
     {
         // 1、释放结果集
-        if (! empty($this->result)) {
+        if (!empty($this->result)) {
             @ mysql_free_result($this->result);
         }
-        
+
         // 2、关闭连接
         mysql_close($this->connection);
     }
@@ -92,9 +92,9 @@ class Mysql extends DAO
     protected function getFieldsInner($queryResult)
     {
         $total = mysql_num_fields($queryResult);
-        
+
         $result = '';
-        for ($i = 0; $i < $total; $i ++) {
+        for ($i = 0; $i < $total; $i++) {
             $fieldInfo = mysql_fetch_field($queryResult, $i);
             $result[$i] = $fieldInfo;
         }

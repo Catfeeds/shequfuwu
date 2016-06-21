@@ -35,9 +35,9 @@
             //正则匹配JSON
             if (data.match("^\{(.+:.+,*){1,}\}$")) {
                 var data = JSON.parse(data);
-                if(data.status == 1){
+                if (data.status == 1) {
                     toastr.success(data.info);
-                }else{
+                } else {
                     toastr.error(data.info);
                 }
 
@@ -193,7 +193,7 @@ function batchUrl(url, is_pajx) {
         }
     });
     id = id.substr(0, id.length - 1);
-    if(id){
+    if (id) {
         is_pajx = (typeof(is_pajx) == "undefined") ? true : false;
         if (is_pajx) {
             $.pjax({
@@ -204,7 +204,7 @@ function batchUrl(url, is_pajx) {
         } else {
             window.location.href = url + '/id/' + id;
         }
-    }else{
+    } else {
         toastr.error("请先选择目标");
     }
 }

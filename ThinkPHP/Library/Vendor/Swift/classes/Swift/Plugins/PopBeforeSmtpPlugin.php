@@ -46,7 +46,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      * Create a new PopBeforeSmtpPlugin for $host and $port.
      *
      * @param string $host
-     * @param int    $port
+     * @param int $port
      * @param string $crypto as "tls" or "ssl"
      */
     public function __construct($host, $port = 110, $crypto = null)
@@ -60,7 +60,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      * Create a new PopBeforeSmtpPlugin for $host and $port.
      *
      * @param string $host
-     * @param int    $port
+     * @param int $port
      * @param string $crypto as "tls" or "ssl"
      *
      * @return Swift_Plugins_PopBeforeSmtpPlugin
@@ -103,7 +103,7 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
      */
     public function setTimeout($timeout)
     {
-        $this->_timeout = (int) $timeout;
+        $this->_timeout = (int)$timeout;
 
         return $this;
     }
@@ -148,7 +148,8 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
         } else {
             if (!isset($this->_socket)) {
                 if (!$socket = fsockopen(
-                    $this->_getHostString(), $this->_port, $errno, $errstr, $this->_timeout)) {
+                    $this->_getHostString(), $this->_port, $errno, $errstr, $this->_timeout)
+                ) {
                     throw new Swift_Plugins_Pop_Pop3Exception(
                         sprintf('Failed to connect to POP3 host [%s]: %s', $this->_host, $errstr)
                     );
@@ -260,11 +261,11 @@ class Swift_Plugins_PopBeforeSmtpPlugin implements Swift_Events_TransportChangeL
         $host = $this->_host;
         switch (strtolower($this->_crypto)) {
             case 'ssl':
-                $host = 'ssl://'.$host;
+                $host = 'ssl://' . $host;
                 break;
 
             case 'tls':
-                $host = 'tls://'.$host;
+                $host = 'tls://' . $host;
                 break;
         }
 

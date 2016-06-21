@@ -71,7 +71,7 @@
 <script type="text/javascript">
     (function () {
         var wait = document.getElementById('wait'), href = document.getElementById('href').href;
-        var intWait= parseInt(wait.innerHTML);
+        var intWait = parseInt(wait.innerHTML);
         //alert(intWait);
 
         if (intWait <= 0) {

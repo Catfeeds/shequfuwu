@@ -66,13 +66,14 @@
         </div>
     </div>
     <ul class="nav nav-bardown nav-justified" style="z-index:10;">
-        <li><a href="javascript:openUrl('{:u_addons(\'Vote://App/Index/vote\',array(\'id\'=>$config[\'id\']))}')"><span class="btn btn-default" style="border-radius: 50px;padding: 10px 30px;">点击投票</span></a></li>
+        <li><a href="javascript:openUrl('{:u_addons(\'Vote://App/Index/vote\',array(\'id\'=>$config[\'id\']))}')"><span
+                class="btn btn-default" style="border-radius: 50px;padding: 10px 30px;">点击投票</span></a></li>
     </ul>
 </div>
 
 <script type="text/javascript">
-    function openUrl(url){
-        $.get(url , function (data) {
+    function openUrl(url) {
+        $.get(url, function (data) {
             alert('投票成功!');
             location.reload();
         });

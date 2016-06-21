@@ -21,7 +21,7 @@ class Queue extends BasicQueueStack
     {
         return array_shift($this->dataArray);
     }
-    
+
     /**
      * 查询当前元素
      * @return NULL|mixed

@@ -413,8 +413,6 @@ function sendSmsVerify($user, $pass, $phone)
 // 订购时间：' . $result["time"] . '
 
 
-
-
 // ';//自由输出
 
 //     $msg .= $msgtitle . $msgcontent . $msgfooter;
@@ -445,7 +443,7 @@ function sendSmsVerify($user, $pass, $phone)
  */
 function wxPrint($id)
 {
-    $result = D("Order")->getOrder(array("id" => $id) , true);
+    $result = D("Order")->getOrder(array("id" => $id), true);
     if ($result["pay_status"] == 0) {
         $pay_status = "未付款";
     } else {
@@ -469,7 +467,7 @@ function wxPrint($id)
         $price = $row['price'];
         $num = $row['num'];
 
-        $detail .= wxPrintFormet($title).number_format($price,2)."           ".$num."\n";
+        $detail .= wxPrintFormet($title) . number_format($price, 2) . "           " . $num . "\n";
     }
     $msgcontent = $detail;
 
@@ -490,7 +488,7 @@ function wxPrint($id)
 ';//自由输出
 
     $msg .= $msgtitle . $msgcontent . $msgfooter;
-    
+
     // print_r($msg);
     // die();
 
@@ -514,21 +512,22 @@ function wxPrint($id)
     $wxPrint->httppost1($params);
 }
 
-function wxPrintFormet($str){
+function wxPrintFormet($str)
+{
     // print_r(iconv_strlen($str)."-");
     // if(strlen($str) <= 8){
     //     $num = 8-strlen($str);
-        
+
     //     print_r($num."?");
     //     for($x=0; $x<=$num; $x++) {
     //         $str .= " ";
     //     }
     //     // $str .= "\t";
     // }else{
-        $str .= "\n" . "            ";
+    $str .= "\n" . "            ";
     // }
-    
-    return $str;                    
+
+    return $str;
 }
 
 /**
@@ -574,20 +573,21 @@ function deleteDir($dir)
  * @param string $suffix 截断显示字符
  * @return string
  */
-function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
-    if(function_exists("mb_substr"))
+function msubstr($str, $start = 0, $length, $charset = "utf-8", $suffix = true)
+{
+    if (function_exists("mb_substr"))
         $slice = mb_substr($str, $start, $length, $charset);
-    elseif(function_exists('iconv_substr')) {
-        $slice = iconv_substr($str,$start,$length,$charset);
-    }else{
-        $re['utf-8']   = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+    elseif (function_exists('iconv_substr')) {
+        $slice = iconv_substr($str, $start, $length, $charset);
+    } else {
+        $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
         $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
-        $re['gbk']    = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
-        $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+        $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+        $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
         preg_match_all($re[$charset], $str, $match);
-        $slice = join("",array_slice($match[0], $start, $length));
+        $slice = join("", array_slice($match[0], $start, $length));
     }
-    return $suffix ? $slice.'...' : $slice;
+    return $suffix ? $slice . '...' : $slice;
 }
 
 //多维数组全组合
@@ -628,10 +628,10 @@ function arrMerge($arr)
 /**
  *计算某个经纬度的周围某段距离的正方形的四个点
  *
- *@param lng float 经度
- *@param lat float 纬度
- *@param distance float 该点所在圆的半径，该圆与此正方形内切，默认值为0.5千米
- *@return array 正方形的四个点的经纬度坐标
+ * @param lng float 经度
+ * @param lat float 纬度
+ * @param distance float 该点所在圆的半径，该圆与此正方形内切，默认值为0.5千米
+ * @return array 正方形的四个点的经纬度坐标
  */
 //获取周围坐标
 function returnSquarePoint($lng, $lat, $distance = 0.5)
@@ -671,21 +671,22 @@ function getDistance($lat1, $lng1, $lat2, $lng2)
  * GET 请求
  * @param string $url
  */
-function http_get($url){
+function http_get($url)
+{
     $oCurl = curl_init();
-    if(stripos($url,"https://")!==FALSE){
+    if (stripos($url, "https://") !== FALSE) {
         curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
     }
     curl_setopt($oCurl, CURLOPT_URL, $url);
-    curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+    curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
     $sContent = curl_exec($oCurl);
     $aStatus = curl_getinfo($oCurl);
     curl_close($oCurl);
-    if(intval($aStatus["http_code"])==200){
+    if (intval($aStatus["http_code"]) == 200) {
         return $sContent;
-    }else{
+    } else {
         return false;
     }
 }

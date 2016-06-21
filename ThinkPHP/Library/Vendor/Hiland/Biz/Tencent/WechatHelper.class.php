@@ -51,7 +51,7 @@ class WechatHelper
         }
 
         $url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $accessToken;
-        $result =  NetHelper::request($url,$qrrequest);//NetHelper::Post($url, $qrrequest);
+        $result = NetHelper::request($url, $qrrequest);//NetHelper::Post($url, $qrrequest);
         $jsoninfo = json_decode($result);
         $ticket = $jsoninfo->ticket;
 
@@ -89,9 +89,9 @@ class WechatHelper
             }
         }
 
-        $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appID&secret=$appSecret";
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appID&secret=$appSecret";
 
-        $output= NetHelper::request($url);
+        $output = NetHelper::request($url);
         // 检查错误、你可以加一段检查错误的语句（虽然这并不是必需的）
         if ($output === FALSE) {
             // 不解析返回的json信息

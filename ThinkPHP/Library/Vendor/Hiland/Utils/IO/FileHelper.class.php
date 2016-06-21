@@ -6,7 +6,7 @@ class FileHelper
 
     /**
      * 获取文件所在的目录信息
-     * 
+     *
      * @param string $filename
      *            带路径的全文件名
      */
@@ -19,7 +19,7 @@ class FileHelper
 
     /**
      * 获取文件的基本名称信息（不带路径的文件名称）
-     * 
+     *
      * @param string $filename
      *            带路径的全文件名
      */
@@ -32,7 +32,7 @@ class FileHelper
 
     /**
      * 获取文件的基本名称信息（不带路径不带扩张名的文件名称）
-     * 
+     *
      * @param string $filename
      *            带路径的全文件名
      */
@@ -45,7 +45,7 @@ class FileHelper
 
     /**
      * 获取文件扩张名称信息（扩张名不带点（“.”））
-     * 
+     *
      * @param string $filename
      *            带路径的全文件名
      */

@@ -6,7 +6,7 @@ namespace Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
  * 下载对账单输入对象
  *
  * @author widyhu
- *        
+ *
  */
 class WxPayDataBaseDownloadBill extends WxPayDataBase
 {
@@ -14,7 +14,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
     /**
      * 设置微信分配的公众账号ID
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetAppid($value)
@@ -37,7 +37,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
      * 判断微信分配的公众账号ID是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsAppidSet()
     {
@@ -47,7 +47,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
     /**
      * 设置微信支付分配的商户号
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetMch_id($value)
@@ -70,7 +70,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
      * 判断微信支付分配的商户号是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsMch_idSet()
     {
@@ -80,7 +80,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
     /**
      * 设置微信支付分配的终端设备号，填写此字段，只下载该设备号的对账单
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetDevice_info($value)
@@ -103,7 +103,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
      * 判断微信支付分配的终端设备号，填写此字段，只下载该设备号的对账单是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsDevice_infoSet()
     {
@@ -113,7 +113,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
     /**
      * 设置随机字符串，不长于32位。推荐随机数生成算法
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetNonce_str($value)
@@ -136,7 +136,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
      * 判断随机字符串，不长于32位。推荐随机数生成算法是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsNonce_strSet()
     {
@@ -146,7 +146,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
     /**
      * 设置下载对账单的日期，格式：20140603
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetBill_date($value)
@@ -169,7 +169,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
      * 判断下载对账单的日期，格式：20140603是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsBill_dateSet()
     {
@@ -179,7 +179,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
     /**
      * 设置ALL，返回当日所有订单信息，默认值SUCCESS，返回当日成功支付的订单REFUND，返回当日退款订单REVOKED，已撤销的订单
      *
-     * @param string $value            
+     * @param string $value
      *
      */
     public function SetBill_type($value)
@@ -202,7 +202,7 @@ class WxPayDataBaseDownloadBill extends WxPayDataBase
      * 判断ALL，返回当日所有订单信息，默认值SUCCESS，返回当日成功支付的订单REFUND，返回当日退款订单REVOKED，已撤销的订单是否存在
      *
      * @return true 或 false
-     *        
+     *
      */
     public function IsBill_typeSet()
     {

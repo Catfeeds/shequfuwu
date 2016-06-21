@@ -138,13 +138,13 @@ class OrderController extends BaseController
         if ($order["payment"] == 1) {
             $wxConfig = D("WxConfig")->get();
             if ($wxConfig["switch"] == 0) {
-                $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id,"shop_id"=>$order["shop_id"]));
+                $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
             } else {
-                $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id,"shop_id"=>$order["shop_id"]));
+                $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
                 $order["payUrlMent"] = 1;
             }
         } elseif ($order["payment"] == 2) {
-            $order["payUrl"] = U("Pay/alipay", array("id" => $order_id,"shop_id" => $order["shop_id"]));
+            $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
         }
 
         $this->ajaxReturn($order);
@@ -156,13 +156,13 @@ class OrderController extends BaseController
     }
 
     public function commentOrder()
-    {   
+    {
         $orderDetail = D("OrderDetail")->get(array("id" => I("post.id")));
         $user = D("User")->get(array("id" => session("userId")), true);
 
         if ($orderDetail["remark"] == 1) {
             $data["msg"] = "您已经评价过了";
-        }else{
+        } else {
             $condition = array();
             $condition["id"] = I("post.id");
             $condition["remark"] = 1;
@@ -175,19 +175,11 @@ class OrderController extends BaseController
             $data1 ["user_name"] = $user["username"];
             $data1 ["name"] = I("post.name");
             D("Comment")->add($data1);
-            $data["msg"] = "评论成功";            
+            $data["msg"] = "评论成功";
         }
 
         $this->ajaxReturn($data);
     }
-
-
-
-
-
-
-
-
 
 
 }

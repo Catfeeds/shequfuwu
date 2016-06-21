@@ -28,10 +28,10 @@
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
 }
 
 require_once(PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php');
@@ -46,55 +46,62 @@ require_once(PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php');
  */
 class PHPExcel_Exponential_Best_Fit extends PHPExcel_Best_Fit
 {
-	protected $_bestFitType		= 'exponential';
+    protected $_bestFitType = 'exponential';
 
 
-	public function getValueOfYForX($xValue) {
-		return $this->getIntersect() * pow($this->getSlope(),($xValue - $this->_Xoffset));
-	}	//	function getValueOfYForX()
+    public function getValueOfYForX($xValue)
+    {
+        return $this->getIntersect() * pow($this->getSlope(), ($xValue - $this->_Xoffset));
+    }    //	function getValueOfYForX()
 
 
-	public function getValueOfXForY($yValue) {
-		return log(($yValue + $this->_Yoffset) / $this->getIntersect()) / log($this->getSlope());
-	}	//	function getValueOfXForY()
+    public function getValueOfXForY($yValue)
+    {
+        return log(($yValue + $this->_Yoffset) / $this->getIntersect()) / log($this->getSlope());
+    }    //	function getValueOfXForY()
 
 
-	public function getEquation($dp=0) {
-		$slope = $this->getSlope($dp);
-		$intersect = $this->getIntersect($dp);
+    public function getEquation($dp = 0)
+    {
+        $slope = $this->getSlope($dp);
+        $intersect = $this->getIntersect($dp);
 
-		return 'Y = '.$intersect.' * '.$slope.'^X';
-	}	//	function getEquation()
-
-
-	public function getSlope($dp=0) {
-		if ($dp != 0) {
-			return round(exp($this->_slope),$dp);
-		}
-		return exp($this->_slope);
-	}	//	function getSlope()
+        return 'Y = ' . $intersect . ' * ' . $slope . '^X';
+    }    //	function getEquation()
 
 
-	public function getIntersect($dp=0) {
-		if ($dp != 0) {
-			return round(exp($this->_intersect),$dp);
-		}
-		return exp($this->_intersect);
-	}	//	function getIntersect()
+    public function getSlope($dp = 0)
+    {
+        if ($dp != 0) {
+            return round(exp($this->_slope), $dp);
+        }
+        return exp($this->_slope);
+    }    //	function getSlope()
 
 
-	private function _exponential_regression($yValues, $xValues, $const) {
-		$mArray = $xValues;
-		$yValues = array_map('log',$yValues);
+    public function getIntersect($dp = 0)
+    {
+        if ($dp != 0) {
+            return round(exp($this->_intersect), $dp);
+        }
+        return exp($this->_intersect);
+    }    //	function getIntersect()
 
-		$this->_leastSquareFit($yValues, $xValues, $const);
-	}	//	function _exponential_regression()
+
+    private function _exponential_regression($yValues, $xValues, $const)
+    {
+        $mArray = $xValues;
+        $yValues = array_map('log', $yValues);
+
+        $this->_leastSquareFit($yValues, $xValues, $const);
+    }    //	function _exponential_regression()
 
 
-	function __construct($yValues, $xValues=array(), $const=True) {
-		if (parent::__construct($yValues, $xValues) !== False) {
-			$this->_exponential_regression($yValues, $xValues, $const);
-		}
-	}	//	function __construct()
+    function __construct($yValues, $xValues = array(), $const = True)
+    {
+        if (parent::__construct($yValues, $xValues) !== False) {
+            $this->_exponential_regression($yValues, $xValues, $const);
+        }
+    }    //	function __construct()
 
-}	//	class exponentialBestFit
+}    //	class exponentialBestFit

@@ -21,16 +21,16 @@
  * @category   PHPExcel
  * @package    PHPExcel_Calculation
  * @copyright  Copyright (c) 2006 - 2009 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	1.7.0, 2009-08-10
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
+ * @version    1.7.0, 2009-08-10
  */
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
+    /**
+     * @ignore
+     */
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
 }
 
 /** PHPExcel_Calculation_Exception */
@@ -43,19 +43,23 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Calculation/Exception.php';
  * @package    PHPExcel_Calculation
  * @copyright  Copyright (c) 2006 - 2009 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Calculation_ExceptionHandler { 
-	/**
-	 * Register errorhandler
-	 */
-	public function __construct() {
-		set_error_handler(array('PHPExcel_Calculation_Exception', 'errorHandlerCallback'), E_ALL); 
-	}
-	
-	/**
-	 * Unregister errorhandler
-	 */
-	public function __destruct() {
-		restore_error_handler();
-	}
+class PHPExcel_Calculation_ExceptionHandler
+{
+    /**
+     * Register errorhandler
+     */
+    public function __construct()
+    {
+        set_error_handler(array('PHPExcel_Calculation_Exception', 'errorHandlerCallback'), E_ALL);
+    }
+
+    /**
+     * Unregister errorhandler
+     */
+    public function __destruct()
+    {
+        restore_error_handler();
+    }
 }
+
 ?>

@@ -82,7 +82,7 @@ class Swift_CharacterStream_NgCharacterStream implements Swift_CharacterStream
      * Constructor.
      *
      * @param Swift_CharacterReaderFactory $factory
-     * @param string                       $charset
+     * @param string $charset
      */
     public function __construct(Swift_CharacterReaderFactory $factory, $charset)
     {
@@ -170,8 +170,8 @@ class Swift_CharacterStream_NgCharacterStream implements Swift_CharacterStream
             case Swift_CharacterReader::MAP_TYPE_FIXED_LEN:
                 $len = $length * $this->_map;
                 $ret = substr($this->_datas,
-                        $this->_currentPos * $this->_map,
-                        $len);
+                    $this->_currentPos * $this->_map,
+                    $len);
                 $this->_currentPos += $length;
                 break;
 
@@ -197,7 +197,7 @@ class Swift_CharacterStream_NgCharacterStream implements Swift_CharacterStream
                 $to = $start;
                 for (; $this->_currentPos < $end; ++$this->_currentPos) {
                     if (isset($this->_map['i'][$this->_currentPos])) {
-                        $ret .= substr($this->_datas, $start, $to - $start).'?';
+                        $ret .= substr($this->_datas, $start, $to - $start) . '?';
                         $start = $this->_map['p'][$this->_currentPos];
                     } else {
                         $to = $this->_map['p'][$this->_currentPos];

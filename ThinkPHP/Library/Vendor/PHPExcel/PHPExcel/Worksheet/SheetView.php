@@ -35,99 +35,104 @@
  */
 class PHPExcel_Worksheet_SheetView
 {
-	/**
-	 * ZoomScale
-	 * 
-	 * Valid values range from 10 to 400.
-	 *
-	 * @var int
-	 */
-	private $_zoomScale;
+    /**
+     * ZoomScale
+     *
+     * Valid values range from 10 to 400.
+     *
+     * @var int
+     */
+    private $_zoomScale;
 
-	/**
-	 * ZoomScaleNormal
-	 * 
-	 * Valid values range from 10 to 400.
-	 *
-	 * @var int
-	 */
-	private $_zoomScaleNormal;
+    /**
+     * ZoomScaleNormal
+     *
+     * Valid values range from 10 to 400.
+     *
+     * @var int
+     */
+    private $_zoomScaleNormal;
 
     /**
      * Create a new PHPExcel_Worksheet_SheetView
      */
     public function __construct()
     {
-    	// Initialise values
-    	$this->_zoomScale 				= 100;
-    	$this->_zoomScaleNormal 		= 100;
+        // Initialise values
+        $this->_zoomScale = 100;
+        $this->_zoomScaleNormal = 100;
     }
 
-	/**
-	 * Get ZoomScale
-	 *
-	 * @return int
-	 */
-	public function getZoomScale() {
-		return $this->_zoomScale;
-	}
+    /**
+     * Get ZoomScale
+     *
+     * @return int
+     */
+    public function getZoomScale()
+    {
+        return $this->_zoomScale;
+    }
 
-	/**
-	 * Set ZoomScale
-	 *
-	 * Valid values range from 10 to 400.
-	 *
-	 * @param 	int 	$pValue
-	 * @throws 	Exception
-	 * @return PHPExcel_Worksheet_SheetView
-	 */
-	public function setZoomScale($pValue = 100) {
-		if (($pValue >= 10 && $pValue <= 400) || is_null($pValue)) {
-			$this->_zoomScale = $pValue;
-		} else {
-			throw new Exception("Valid scale is between 10 and 400.");
-		}
-		return $this;
-	}
-	
-	/**
-	 * Get ZoomScaleNormal
-	 *
-	 * @return int
-	 */
-	public function getZoomScaleNormal() {
-		return $this->_zoomScaleNormal;
-	}
+    /**
+     * Set ZoomScale
+     *
+     * Valid values range from 10 to 400.
+     *
+     * @param    int $pValue
+     * @throws    Exception
+     * @return PHPExcel_Worksheet_SheetView
+     */
+    public function setZoomScale($pValue = 100)
+    {
+        if (($pValue >= 10 && $pValue <= 400) || is_null($pValue)) {
+            $this->_zoomScale = $pValue;
+        } else {
+            throw new Exception("Valid scale is between 10 and 400.");
+        }
+        return $this;
+    }
 
-	/**
-	 * Set ZoomScale
-	 *
-	 * Valid values range from 10 to 400.
-	 *
-	 * @param 	int 	$pValue
-	 * @throws 	Exception
-	 * @return PHPExcel_Worksheet_SheetView
-	 */
-	public function setZoomScaleNormal($pValue = 100) {
-		if (($pValue >= 10 && $pValue <= 400) || is_null($pValue)) {
-			$this->_zoomScaleNormal = $pValue;
-		} else {
-			throw new Exception("Valid scale is between 10 and 400.");
-		}
-		return $this;
-	}
+    /**
+     * Get ZoomScaleNormal
+     *
+     * @return int
+     */
+    public function getZoomScaleNormal()
+    {
+        return $this->_zoomScaleNormal;
+    }
 
-	/**
-	 * Implement PHP __clone to create a deep clone, not just a shallow copy.
-	 */
-	public function __clone() {
-		$vars = get_object_vars($this);
-		foreach ($vars as $key => $value) {
-			if (is_object($value)) {
-				$this->$key = clone $value;
-			} else {
-				$this->$key = $value;
-			}
-		}
-	}
+    /**
+     * Set ZoomScale
+     *
+     * Valid values range from 10 to 400.
+     *
+     * @param    int $pValue
+     * @throws    Exception
+     * @return PHPExcel_Worksheet_SheetView
+     */
+    public function setZoomScaleNormal($pValue = 100)
+    {
+        if (($pValue >= 10 && $pValue <= 400) || is_null($pValue)) {
+            $this->_zoomScaleNormal = $pValue;
+        } else {
+            throw new Exception("Valid scale is between 10 and 400.");
+        }
+        return $this;
+    }
+
+    /**
+     * Implement PHP __clone to create a deep clone, not just a shallow copy.
+     */
+    public function __clone()
+    {
+        $vars = get_object_vars($this);
+        foreach ($vars as $key => $value) {
+            if (is_object($value)) {
+                $this->$key = clone $value;
+            } else {
+                $this->$key = $value;
+            }
+        }
+    }
 }

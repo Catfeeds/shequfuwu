@@ -1,22 +1,22 @@
 <?php
 namespace Vendor\Resource\Net\Mail;
-/**
- * PHPMailer RFC821 SMTP email transport class.
- * PHP Version 5
- * @package PHPMailer
- * @link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
- * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
- * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
- * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
- * @author Brent R. Matzelle (original founder)
- * @copyright 2014 Marcus Bointon
- * @copyright 2010 - 2012 Jim Jagielski
- * @copyright 2004 - 2009 Andy Prevost
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- * @note This program is distributed in the hope that it will be useful - WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.
- */
+    /**
+     * PHPMailer RFC821 SMTP email transport class.
+     * PHP Version 5
+     * @package PHPMailer
+     * @link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
+     * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
+     * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
+     * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
+     * @author Brent R. Matzelle (original founder)
+     * @copyright 2014 Marcus Bointon
+     * @copyright 2010 - 2012 Jim Jagielski
+     * @copyright 2004 - 2009 Andy Prevost
+     * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+     * @note This program is distributed in the hope that it will be useful - WITHOUT
+     * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+     * FITNESS FOR A PARTICULAR PURPOSE.
+     */
 
 /**
  * PHPMailer RFC821 SMTP email transport class.
@@ -218,21 +218,21 @@ class SMTP
             case 'html':
                 //Cleans up output a bit for a better looking, HTML-safe output
                 echo htmlentities(
-                    preg_replace('/[\r\n]+/', '', $str),
-                    ENT_QUOTES,
-                    'UTF-8'
-                )
-                . "<br>\n";
+                        preg_replace('/[\r\n]+/', '', $str),
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )
+                    . "<br>\n";
                 break;
             case 'echo':
             default:
                 //Normalize line breaks
                 $str = preg_replace('/(\r\n|\r|\n)/ms', "\n", $str);
                 echo gmdate('Y-m-d H:i:s') . "\t" . str_replace(
-                    "\n",
-                    "\n                   \t                  ",
-                    trim($str)
-                )."\n";
+                        "\n",
+                        "\n                   \t                  ",
+                        trim($str)
+                    ) . "\n";
         }
     }
 
@@ -266,7 +266,7 @@ class SMTP
         }
         // Connect to the SMTP server
         $this->edebug(
-            "Connection: opening to $host:$port, timeout=$timeout, options=".var_export($options, true),
+            "Connection: opening to $host:$port, timeout=$timeout, options=" . var_export($options, true),
             self::DEBUG_CONNECTION
         );
         $errno = 0;
@@ -342,7 +342,8 @@ class SMTP
             $this->smtp_conn,
             true,
             STREAM_CRYPTO_METHOD_TLS_CLIENT
-        )) {
+        )
+        ) {
             return false;
         }
         return true;
@@ -367,14 +368,15 @@ class SMTP
         $realm = '',
         $workstation = '',
         $OAuth = null
-    ) {
+    )
+    {
         if (!$this->server_caps) {
             $this->setError('Authentication is not allowed before HELO/EHLO');
             return false;
         }
 
         if (array_key_exists('EHLO', $this->server_caps)) {
-        // SMTP extensions are available. Let's try to find a proper authentication method
+            // SMTP extensions are available. Let's try to find a proper authentication method
 
             if (!array_key_exists('AUTH', $this->server_caps)) {
                 $this->setError('Authentication is not allowed at this stage');
@@ -400,7 +402,7 @@ class SMTP
                     $this->setError('No supported authentication methods found');
                     return false;
                 }
-                self::edebug('Auth method selected: '.$authtype, self::DEBUG_LOWLEVEL);
+                self::edebug('Auth method selected: ' . $authtype, self::DEBUG_LOWLEVEL);
             }
 
             if (!in_array($authtype, $this->server_caps['AUTH'])) {
@@ -526,7 +528,7 @@ class SMTP
      * Works like hash_hmac('md5', $data, $key)
      * in case that function is not available
      * @param string $data The data to hash
-     * @param string $key  The key to hash with
+     * @param string $key The key to hash with
      * @access protected
      * @return string
      */
@@ -869,7 +871,7 @@ class SMTP
             $code_ex = (count($matches) > 2 ? $matches[2] : null);
             // Cut off error code from each response line
             $detail = preg_replace(
-                "/{$code}[ -]".($code_ex ? str_replace('.', '\\.', $code_ex).' ' : '')."/m",
+                "/{$code}[ -]" . ($code_ex ? str_replace('.', '\\.', $code_ex) . ' ' : '') . "/m",
                 '',
                 $this->last_reply
             );
@@ -1081,7 +1083,7 @@ class SMTP
             // Now check if reads took too long
             if ($endtime and time() > $endtime) {
                 $this->edebug(
-                    'SMTP -> get_lines(): timelimit reached ('.
+                    'SMTP -> get_lines(): timelimit reached (' .
                     $this->Timelimit . ' sec)',
                     self::DEBUG_LOWLEVEL
                 );

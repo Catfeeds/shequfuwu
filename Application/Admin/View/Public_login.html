@@ -87,7 +87,7 @@
             increaseArea: '20%' // optional
         });
         $('#changeVerity').click(function () {
-            var url = '{:U("Admin/Public/getVerify","r=".mt_rand())}'+Math.random();
+            var url = '{:U("Admin/Public/getVerify","r=".mt_rand())}' + Math.random();
             $(this).attr('src', url);
         });
     });

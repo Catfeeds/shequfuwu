@@ -13,7 +13,7 @@ class HttpHeader
                 $headers[str_replace('_', '-', substr($key, 5))] = $value;
             }
         }
-        
+
         if (isset($_SERVER['PHP_AUTH_DIGEST'])) {
             $header['AUTHORIZATION'] = $_SERVER['PHP_AUTH_DIGEST'];
         } elseif (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])) {
@@ -25,7 +25,7 @@ class HttpHeader
         if (isset($_SERVER['CONTENT_TYPE'])) {
             $header['CONTENT-TYPE'] = $_SERVER['CONTENT_TYPE'];
         }
-        
+
         return $headers;
     }
 
@@ -38,7 +38,7 @@ class HttpHeader
                 return $v;
             }
         }
-        
+
         return false;
     }
 
@@ -53,8 +53,8 @@ class HttpHeader
      *
      * }
      */
-    
-    
+
+
     /**
      * 设置http头信息
      * @param mixed $value
@@ -87,7 +87,7 @@ class HttpHeader
     {
         self::set('HTTP/1.1 301 Moved Permanently');
     }
-    
+
     /**
      * 告诉浏览器文档内容没有发生改变
      */
@@ -95,12 +95,13 @@ class HttpHeader
     {
         self::set('HTTP/1.1 304 Not Modified');
     }
-    
-   /**
-    * 转到一个新地址
-    * @param string $url 目标地址
-    */
-    public static function redirectUrl($url){
+
+    /**
+     * 转到一个新地址
+     * @param string $url 目标地址
+     */
+    public static function redirectUrl($url)
+    {
         self::set("Location: $url");
     }
 
@@ -109,14 +110,16 @@ class HttpHeader
      * @param string $url 目标地址
      * @param int $seconds 延迟时间
      */
-    public static function redirectUrlDelay($url,$seconds=10){
+    public static function redirectUrlDelay($url, $seconds = 10)
+    {
         self::set("Refresh: $seconds; url=$url");
     }
-    
+
     /**
      * 对当前文档禁用缓存
      */
-    public static function setNoCache(){
+    public static function setNoCache()
+    {
         self::set("Cache-Control: no-cache, no-store, max-age=0, must-revalidate");
         self::set("Expires: Mon, 26 Jul 1997 05:00:00 GMT");// Date in the past
         self::set("Pragma: no-cache");

@@ -14,9 +14,9 @@
                 <p style="font-size: 14px;">您当前的会员版本是：<span class="badge badge-success">
                         {$memberPay.level}
                 </span>
-                <a href="{:U('Home/Buy/pay',array('type'=>1))}" class="label label-sm label-danger">
-                    升级会员
-                </a>
+                    <a href="{:U('Home/Buy/pay',array('type'=>1))}" class="label label-sm label-danger">
+                        升级会员
+                    </a>
                 </p>
                 <p style="font-size: 14px;">开始时间：<span class="badge badge-success">
                         {:date('Y-m-d H:i:s',$memberPay['start_time'])}
@@ -24,7 +24,7 @@
                 <p style="font-size: 14px;">结束时间：<span class="badge badge-success">
                         {:date('Y-m-d H:i:s',$memberPay['end_time'])}
                 </span></p>
-                
+
             </div>
         </div>
     </div>

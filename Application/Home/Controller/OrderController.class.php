@@ -16,7 +16,7 @@ class OrderController extends BaseController
         /**
          * 更新订单的通知状态
          */
-        D("Order")-> updateNoticeStatus($condition);
+        D("Order")->updateNoticeStatus($condition);
 
 
         $data = I("get.");
@@ -118,11 +118,11 @@ class OrderController extends BaseController
         //发货通知
         if (I("get.status") == 1) {
             $ids = explode(",", I("get.id"));
-            
+
             $orderModel = D("Order");
             foreach ($ids as $key => $value) {
                 $order = $orderModel->getOrder(array("id" => $value));
-                
+
                 $getUrl = "http://" . I("server.HTTP_HOST") . U("Admin/Wechat/sendTplMsgDeliver", array("order_id" => $value, "shopId" => $order["shop_id"]));
                 // 先暂时注销
                 // http_get($getUrl);

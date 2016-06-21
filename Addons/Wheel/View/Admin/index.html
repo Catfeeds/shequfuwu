@@ -32,7 +32,8 @@
 
                                     <p>
 
-                                    <form action="{:u_addons('Wheel://Admin/Admin/addConfig')}" id="myForm" method="post"
+                                    <form action="{:u_addons('Wheel://Admin/Admin/addConfig')}" id="myForm"
+                                          method="post"
                                           onsubmit="return false;" class="form-horizontal">
                                         <div class="form-group">
                                             <label class="control-label col-md-2">大转盘名称</label>
@@ -55,7 +56,8 @@
 
                                             <div class="col-md-7">
                                                 <!--style给定宽度可以影响编辑器的最终宽度-->
-                                                <script type="text/plain" id="myEditor" style="width:100%;height:340px;"></script>
+                                                <script type="text/plain" id="myEditor"
+                                                        style="width:100%;height:340px;"></script>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -271,8 +273,8 @@
 
 <script type="text/javascript">
     //实例化编辑器
-    var um = UM.getEditor('myEditor' , {
-        textarea : 'activity_explain'
+    var um = UM.getEditor('myEditor', {
+        textarea: 'activity_explain'
     });
 
     function setFocus() {

@@ -25,10 +25,10 @@
  *
  * @link http://www.smarty.net/manual/en/language.function.textformat.php {textformat}
  *       (Smarty online manual)
- * @param array                    $params   parameters
- * @param string                   $content  contents of the block
+ * @param array $params parameters
+ * @param string $content contents of the block
  * @param Smarty_Internal_Template $template template object
- * @param boolean                  &$repeat  repeat flag
+ * @param boolean &$repeat repeat flag
  * @return string content re-formatted
  * @author Monte Ohrt <monte at ohrt dot com>
  */
@@ -90,7 +90,7 @@ function smarty_block_textformat($params, $content, $template, &$repeat)
             $_paragraph = str_repeat($indent_char, $indent_first) . $_paragraph;
         }
         // wordwrap sentences
-        if (SMARTY_MBSTRING /* ^phpunit */&&empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
+        if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
             require_once(SMARTY_PLUGINS_DIR . 'shared.mb_wordwrap.php');
             $_paragraph = smarty_mb_wordwrap($_paragraph, $wrap - $indent, $wrap_char, $wrap_cut);
         } else {
@@ -102,7 +102,7 @@ function smarty_block_textformat($params, $content, $template, &$repeat)
         }
     }
     $_output = implode($wrap_char . $wrap_char, $_paragraphs);
-    
+
     if ($assign) {
         $template->assign($assign, $_output);
     } else {

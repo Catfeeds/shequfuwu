@@ -16,7 +16,8 @@
  * @package Smarty
  * @subpackage Config
  */
-class Smarty_Internal_Config_File_Compiler {
+class Smarty_Internal_Config_File_Compiler
+{
 
     /**
      * Lexer object

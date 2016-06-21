@@ -67,8 +67,13 @@
         <span class="close"></span>
 
         <div class="content">
-            <div class="null"><empty name="record['level']">暂无奖品，继续加油哦~<else/>恭喜您获得
-                {$record.level}等奖<br/>时间：{$record.time}</empty></div>
+            <div class="null">
+                <empty name="record['level']">暂无奖品，继续加油哦~
+                    <else/>
+                    恭喜您获得
+                    {$record.level}等奖<br/>时间：{$record.time}
+                </empty>
+            </div>
         </div>
     </div>
 
@@ -123,7 +128,7 @@
         var totalDeg = 360 * 3 + 0;
         var steps = [];
 
-        var lostDeg = [72, 128, 180 , 230 , 285 , 360];
+        var lostDeg = [72, 128, 180, 230, 285, 360];
 //        var prizeDeg = [36, 102, 158, 202, 259, 314];
         var prizeDeg = [314, 259, 202, 158, 102, 36];
         var prize, sncode;
@@ -189,7 +194,7 @@
                 level = rid;
                 $('#loader').hide();
                 $('#inner-cont').css('top', '-210px');
-                if(rid == "-1"){
+                if (rid == "-1") {
                     alert("今日已用完，请明天再来!");
                     return;
                 }
@@ -205,7 +210,7 @@
             $(this).parent().hide();
         });
 
-        $('#explain').click(function(){
+        $('#explain').click(function () {
             $('#rule').show();
         });
 
@@ -222,12 +227,12 @@
             location.reload();
         });
     });
-    function leave(){
+    function leave() {
         $('#win').hide();
         location.reload();
     }
 
-    function flaunt(){
+    function flaunt() {
         $('#win').hide();
         $('#shareTip').show();
     }

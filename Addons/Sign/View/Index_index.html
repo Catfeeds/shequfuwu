@@ -49,7 +49,8 @@
                             <div class="list-ft">
                                 <div class="pull-left" style="margin-left: 12px;">积分:<b>{$product.score}</b></div>
                                 <div class="pull-right btn btn-default" style="margin-right: 12px;"><a
-                                        onclick="doCart(this , '{$product.score}' , '{$product.id}')" style="color: black;">立即兑换</a>
+                                        onclick="doCart(this , '{$product.score}' , '{$product.id}')"
+                                        style="color: black;">立即兑换</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +113,9 @@
     <div id="alert" class="alert" style="display: none; top: 165px; left: 42.5px;text-align: center;">
         <div id="alert_title">温馨提示</div>
         <div id="alert_text"></div>
-        <div id="alert_button"><button id="alert_button_ok" class="button_3" ontouchstart="" onclick="hideAlert()">知道了</button></div>
+        <div id="alert_button">
+            <button id="alert_button_ok" class="button_3" ontouchstart="" onclick="hideAlert()">知道了</button>
+        </div>
         <div id="alert_cancel" class="alert_cancel" ontouchstart="" onclick=""></div>
     </div>
 </div>
@@ -121,16 +124,16 @@
 <script>
     var id = 0;
     var score = 0;
-    function hidePop(){
+    function hidePop() {
         $("#join_box").hide();
         $("#cover2").hide();
     }
-    function showPop(){
+    function showPop() {
         $("#join_box").show();
         $("#cover2").show();
     }
-    function doCart(obj , scoreIn ,idIn){
-        if(parseFloat(scoreIn) > parseFloat($('#myscore').html())){
+    function doCart(obj, scoreIn, idIn) {
+        if (parseFloat(scoreIn) > parseFloat($('#myscore').html())) {
             alert("积分不足!");
             return;
         }
@@ -140,20 +143,18 @@
     }
 
     var signFlag = true;
-    function signIn(obj){
+    function signIn(obj) {
         $.ajax({
             type: "post",
             url: "{:u_addons('Sign://Index/sign')}",
-            data: {
-
-            },
+            data: {},
             success: function (data) {
-                if(data){
+                if (data) {
                     var json = eval(data)
                     $("#alert").show();
                     if (typeof json.score != "undefined") {
-                        $("#alert_text").html("恭喜您获得"+json.score+"积分");
-                    }else{
+                        $("#alert_text").html("恭喜您获得" + json.score + "积分");
+                    } else {
                         $("#alert_text").html("对不起，您已签到！");
                     }
 
@@ -169,16 +170,17 @@
 
         // $("#alert").show();
     }
-    function hideAlert(){
+    function hideAlert() {
         $("#alert").hide();
         location.reload();
     }
     var submitFlag = true;
-    function submitOrder(){
+    function submitOrder() {
         if (submitFlag == false) {
             alert("请不要重复操作!");
             return;
-        };
+        }
+        ;
         var name = $('#name').val();
         var phone = $('#phone').val();
         var address = $('#address').val();
@@ -187,7 +189,8 @@
         if (name.length == 0 || phone.length == 0 || address.length == 0) {
             alert("请核对输入的信息!");
             return;
-        };
+        }
+        ;
         submitFlag = false;
 
         $.ajax({
@@ -202,7 +205,7 @@
                 note: note
             },
             success: function (data) {
-                if(data){
+                if (data) {
                     hidePop();
                     alert("商品兑换成功!");
                     location.reload();

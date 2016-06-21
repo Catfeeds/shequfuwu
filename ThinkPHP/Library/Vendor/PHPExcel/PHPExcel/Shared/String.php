@@ -35,288 +35,294 @@
  */
 class PHPExcel_Shared_String
 {
-	/**
-	 * Control characters array
-	 *
-	 * @var string[]
-	 */
-	private static $_controlCharacters = array();
+    /**
+     * Control characters array
+     *
+     * @var string[]
+     */
+    private static $_controlCharacters = array();
 
-	/**
-	 * Is mbstring extension avalable?
-	 *
-	 * @var boolean
-	 */
-	private static $_isMbstringEnabled;
+    /**
+     * Is mbstring extension avalable?
+     *
+     * @var boolean
+     */
+    private static $_isMbstringEnabled;
 
-	/**
-	 * Is iconv extension avalable?
-	 *
-	 * @var boolean
-	 */
-	private static $_isIconvEnabled;
+    /**
+     * Is iconv extension avalable?
+     *
+     * @var boolean
+     */
+    private static $_isIconvEnabled;
 
-	/**
-	 * Build control characters array
-	 */
-	private static function _buildControlCharacters() {
-		for ($i = 0; $i <= 19; ++$i) {
-			if ($i != 9 && $i != 10 && $i != 13) {
-				$find = '_x' . sprintf('%04s' , strtoupper(dechex($i))) . '_';
-				$replace = chr($i);
-				self::$_controlCharacters[$find] = $replace;
-			}
-		}
-	}
+    /**
+     * Build control characters array
+     */
+    private static function _buildControlCharacters()
+    {
+        for ($i = 0; $i <= 19; ++$i) {
+            if ($i != 9 && $i != 10 && $i != 13) {
+                $find = '_x' . sprintf('%04s', strtoupper(dechex($i))) . '_';
+                $replace = chr($i);
+                self::$_controlCharacters[$find] = $replace;
+            }
+        }
+    }
 
-	/**
-	 * Get whether mbstring extension is available
-	 *
-	 * @return boolean
-	 */
-	public static function getIsMbstringEnabled()
-	{
-		if (isset(self::$_isMbstringEnabled)) {
-			return self::$_isMbstringEnabled;
-		}
+    /**
+     * Get whether mbstring extension is available
+     *
+     * @return boolean
+     */
+    public static function getIsMbstringEnabled()
+    {
+        if (isset(self::$_isMbstringEnabled)) {
+            return self::$_isMbstringEnabled;
+        }
 
-		self::$_isMbstringEnabled = function_exists('mb_convert_encoding') ?
-			true : false;
+        self::$_isMbstringEnabled = function_exists('mb_convert_encoding') ?
+            true : false;
 
-		return self::$_isMbstringEnabled;
-	}
+        return self::$_isMbstringEnabled;
+    }
 
-	/**
-	 * Get whether iconv extension is available
-	 *
-	 * @return boolean
-	 */
-	public static function getIsIconvEnabled()
-	{
-		if (isset(self::$_isIconvEnabled)) {
-			return self::$_isIconvEnabled;
-		}
+    /**
+     * Get whether iconv extension is available
+     *
+     * @return boolean
+     */
+    public static function getIsIconvEnabled()
+    {
+        if (isset(self::$_isIconvEnabled)) {
+            return self::$_isIconvEnabled;
+        }
 
-		self::$_isIconvEnabled = function_exists('iconv') ?
-			true : false;
+        self::$_isIconvEnabled = function_exists('iconv') ?
+            true : false;
 
-		return self::$_isIconvEnabled;
-	}
+        return self::$_isIconvEnabled;
+    }
 
-	/**
-	 * Convert from OpenXML escaped control character to PHP control character
-	 *
-	 * Excel 2007 team:
-	 * ----------------
-	 * That's correct, control characters are stored directly in the shared-strings table.
-	 * We do encode characters that cannot be represented in XML using the following escape sequence:
-	 * _xHHHH_ where H represents a hexadecimal character in the character's value...
-	 * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
-	 * element or in the shared string <t> element.
-	 *
-	 * @param 	string	$value	Value to unescape
-	 * @return 	string
-	 */
-	public static function ControlCharacterOOXML2PHP($value = '') {
-		if(empty(self::$_controlCharacters)) {
-			self::_buildControlCharacters();
-		}
+    /**
+     * Convert from OpenXML escaped control character to PHP control character
+     *
+     * Excel 2007 team:
+     * ----------------
+     * That's correct, control characters are stored directly in the shared-strings table.
+     * We do encode characters that cannot be represented in XML using the following escape sequence:
+     * _xHHHH_ where H represents a hexadecimal character in the character's value...
+     * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
+     * element or in the shared string <t> element.
+     *
+     * @param    string $value Value to unescape
+     * @return    string
+     */
+    public static function ControlCharacterOOXML2PHP($value = '')
+    {
+        if (empty(self::$_controlCharacters)) {
+            self::_buildControlCharacters();
+        }
 
-		return str_replace( array_keys(self::$_controlCharacters), array_values(self::$_controlCharacters), $value );
-	}
+        return str_replace(array_keys(self::$_controlCharacters), array_values(self::$_controlCharacters), $value);
+    }
 
-	/**
-	 * Convert from PHP control character to OpenXML escaped control character
-	 *
-	 * Excel 2007 team:
-	 * ----------------
-	 * That's correct, control characters are stored directly in the shared-strings table.
-	 * We do encode characters that cannot be represented in XML using the following escape sequence:
-	 * _xHHHH_ where H represents a hexadecimal character in the character's value...
-	 * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
-	 * element or in the shared string <t> element.
-	 *
-	 * @param 	string	$value	Value to escape
-	 * @return 	string
-	 */
-	public static function ControlCharacterPHP2OOXML($value = '') {
-		if(empty(self::$_controlCharacters)) {
-			self::_buildControlCharacters();
-		}
+    /**
+     * Convert from PHP control character to OpenXML escaped control character
+     *
+     * Excel 2007 team:
+     * ----------------
+     * That's correct, control characters are stored directly in the shared-strings table.
+     * We do encode characters that cannot be represented in XML using the following escape sequence:
+     * _xHHHH_ where H represents a hexadecimal character in the character's value...
+     * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
+     * element or in the shared string <t> element.
+     *
+     * @param    string $value Value to escape
+     * @return    string
+     */
+    public static function ControlCharacterPHP2OOXML($value = '')
+    {
+        if (empty(self::$_controlCharacters)) {
+            self::_buildControlCharacters();
+        }
 
-		return str_replace( array_values(self::$_controlCharacters), array_keys(self::$_controlCharacters), $value );
-	}
+        return str_replace(array_values(self::$_controlCharacters), array_keys(self::$_controlCharacters), $value);
+    }
 
-	/**
-	 * Try to sanitize UTF8, stripping invalid byte sequences. Not perfect. Does not surrogate characters.
-	 *
-	 * @param string $value
-	 * @return string
-	 */
-	public static function SanitizeUTF8($value)
-	{
-		if (self::getIsIconvEnabled()) {
-			$value = @iconv('UTF-8', 'UTF-8', $value);
-			return $value;
-		}
+    /**
+     * Try to sanitize UTF8, stripping invalid byte sequences. Not perfect. Does not surrogate characters.
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function SanitizeUTF8($value)
+    {
+        if (self::getIsIconvEnabled()) {
+            $value = @iconv('UTF-8', 'UTF-8', $value);
+            return $value;
+        }
 
-		if (self::getIsMbstringEnabled()) {
-			$value = mb_convert_encoding($value, 'UTF-8', 'UTF-8');
-			return $value;
-		}
+        if (self::getIsMbstringEnabled()) {
+            $value = mb_convert_encoding($value, 'UTF-8', 'UTF-8');
+            return $value;
+        }
 
-		// else, no conversion
-		return $value;
-	}
-	
-	/**
-	 * Check if a string contains UTF8 data
-	 *
-	 * @param string $value
-	 * @return boolean
-	 */
-	public static function IsUTF8($value = '') {
-		return utf8_encode(utf8_decode($value)) === $value;
-	}
+        // else, no conversion
+        return $value;
+    }
 
-	/**
-	 * Formats a numeric value as a string for output in various output writers forcing
-	 * point as decimal separator in case locale is other than English.
-	 *
-	 * @param mixed $value
-	 * @return string
-	 */
-	public static function FormatNumber($value) {
-		if (is_float($value)) {
-			return str_replace(',', '.', $value);
-		}
-		return (string) $value;
-	}
+    /**
+     * Check if a string contains UTF8 data
+     *
+     * @param string $value
+     * @return boolean
+     */
+    public static function IsUTF8($value = '')
+    {
+        return utf8_encode(utf8_decode($value)) === $value;
+    }
 
-	/**
-	 * Converts a UTF-8 string into BIFF8 Unicode string data (8-bit string length)
-	 * Writes the string using uncompressed notation, no rich text, no Asian phonetics
-	 * If mbstring extension is not available, ASCII is assumed, and compressed notation is used
-	 * although this will give wrong results for non-ASCII strings
-	 * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
-	 *
-	 * @param string $value UTF-8 encoded string
-	 * @return string
-	 */
-	public static function UTF8toBIFF8UnicodeShort($value)
-	{
-		// character count
-		$ln = self::CountCharacters($value, 'UTF-8');
+    /**
+     * Formats a numeric value as a string for output in various output writers forcing
+     * point as decimal separator in case locale is other than English.
+     *
+     * @param mixed $value
+     * @return string
+     */
+    public static function FormatNumber($value)
+    {
+        if (is_float($value)) {
+            return str_replace(',', '.', $value);
+        }
+        return (string)$value;
+    }
 
-		// option flags
-		$opt = (self::getIsIconvEnabled() || self::getIsMbstringEnabled()) ? 
-			0x0001 : 0x0000;
+    /**
+     * Converts a UTF-8 string into BIFF8 Unicode string data (8-bit string length)
+     * Writes the string using uncompressed notation, no rich text, no Asian phonetics
+     * If mbstring extension is not available, ASCII is assumed, and compressed notation is used
+     * although this will give wrong results for non-ASCII strings
+     * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
+     *
+     * @param string $value UTF-8 encoded string
+     * @return string
+     */
+    public static function UTF8toBIFF8UnicodeShort($value)
+    {
+        // character count
+        $ln = self::CountCharacters($value, 'UTF-8');
 
-		// characters
-		$chars = self::ConvertEncoding($value, 'UTF-16LE', 'UTF-8');
+        // option flags
+        $opt = (self::getIsIconvEnabled() || self::getIsMbstringEnabled()) ?
+            0x0001 : 0x0000;
 
-		$data = pack('CC', $ln, $opt) . $chars;
-		return $data;
-	}
+        // characters
+        $chars = self::ConvertEncoding($value, 'UTF-16LE', 'UTF-8');
 
-	/**
-	 * Converts a UTF-8 string into BIFF8 Unicode string data (16-bit string length)
-	 * Writes the string using uncompressed notation, no rich text, no Asian phonetics
-	 * If mbstring extension is not available, ASCII is assumed, and compressed notation is used
-	 * although this will give wrong results for non-ASCII strings
-	 * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
-	 *
-	 * @param string $value UTF-8 encoded string
-	 * @return string
-	 */
-	public static function UTF8toBIFF8UnicodeLong($value)
-	{
-		// character count
-		$ln = self::CountCharacters($value, 'UTF-8');
+        $data = pack('CC', $ln, $opt) . $chars;
+        return $data;
+    }
 
-		// option flags
-		$opt = (self::getIsIconvEnabled() || self::getIsMbstringEnabled()) ? 
-			0x0001 : 0x0000;
+    /**
+     * Converts a UTF-8 string into BIFF8 Unicode string data (16-bit string length)
+     * Writes the string using uncompressed notation, no rich text, no Asian phonetics
+     * If mbstring extension is not available, ASCII is assumed, and compressed notation is used
+     * although this will give wrong results for non-ASCII strings
+     * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
+     *
+     * @param string $value UTF-8 encoded string
+     * @return string
+     */
+    public static function UTF8toBIFF8UnicodeLong($value)
+    {
+        // character count
+        $ln = self::CountCharacters($value, 'UTF-8');
 
-		// characters
-		$chars = self::ConvertEncoding($value, 'UTF-16LE', 'UTF-8');
+        // option flags
+        $opt = (self::getIsIconvEnabled() || self::getIsMbstringEnabled()) ?
+            0x0001 : 0x0000;
 
-		$data = pack('vC', $ln, $opt) . $chars;
-		return $data;
-	}
+        // characters
+        $chars = self::ConvertEncoding($value, 'UTF-16LE', 'UTF-8');
 
-	/**
-	 * Convert string from one encoding to another. First try mbstring, then iconv, or no convertion
-	 *
-	 * @param string $value
-	 * @param string $to Encoding to convert to, e.g. 'UTF-8'
-	 * @param string $from Encoding to convert from, e.g. 'UTF-16LE'
-	 * @return string
-	 */
-	public static function ConvertEncoding($value, $to, $from)
-	{
-		if (self::getIsIconvEnabled()) {
-			$value = iconv($from, $to, $value);
-			return $value;
-		}
+        $data = pack('vC', $ln, $opt) . $chars;
+        return $data;
+    }
 
-		if (self::getIsMbstringEnabled()) {
-			$value = mb_convert_encoding($value, $to, $from);
-			return $value;
-		}
+    /**
+     * Convert string from one encoding to another. First try mbstring, then iconv, or no convertion
+     *
+     * @param string $value
+     * @param string $to Encoding to convert to, e.g. 'UTF-8'
+     * @param string $from Encoding to convert from, e.g. 'UTF-16LE'
+     * @return string
+     */
+    public static function ConvertEncoding($value, $to, $from)
+    {
+        if (self::getIsIconvEnabled()) {
+            $value = iconv($from, $to, $value);
+            return $value;
+        }
 
-		// else, no conversion
-		return $value;
-	}
-	
-	/**
-	 * Get character count. First try mbstring, then iconv, finally strlen
-	 *
-	 * @param string $value
-	 * @param string $enc Encoding
-	 * @return int Character count
-	 */
-	public static function CountCharacters($value, $enc = 'UTF-8')
-	{
-		if (self::getIsIconvEnabled()) {
-			$count = iconv_strlen($value, $enc);
-			return $count;
-		}
+        if (self::getIsMbstringEnabled()) {
+            $value = mb_convert_encoding($value, $to, $from);
+            return $value;
+        }
 
-		if (self::getIsMbstringEnabled()) {
-			$count = mb_strlen($value, $enc);
-			return $count;
-		}
+        // else, no conversion
+        return $value;
+    }
 
-		// else strlen
-		$count = strlen($value);
-		return $count;
-	}
+    /**
+     * Get character count. First try mbstring, then iconv, finally strlen
+     *
+     * @param string $value
+     * @param string $enc Encoding
+     * @return int Character count
+     */
+    public static function CountCharacters($value, $enc = 'UTF-8')
+    {
+        if (self::getIsIconvEnabled()) {
+            $count = iconv_strlen($value, $enc);
+            return $count;
+        }
 
-	/**
-	 * Get a substring of a UTF-8 encoded string
-	 *
-	 * @param string $pValue UTF-8 encoded string
-	 * @param int $start Start offset
-	 * @param int $length Maximum number of characters in substring
-	 * @return string
-	 */
-	public static function Substring($pValue = '', $pStart = 0, $pLength = 0)
-	{
-		if (self::getIsIconvEnabled()) {
-			$string = iconv_substr($pValue, $pStart, $pLength, 'UTF-8');
-			return $string;
-		}
+        if (self::getIsMbstringEnabled()) {
+            $count = mb_strlen($value, $enc);
+            return $count;
+        }
 
-		if (self::getIsMbstringEnabled()) {
-			$string = mb_substr($pValue, $pStart, $pLength, 'UTF-8');
-			return $string;
-		}
+        // else strlen
+        $count = strlen($value);
+        return $count;
+    }
 
-		// else substr
-		$string = substr($pValue, $pStart, $pLength);
-		return $string;
-	}
+    /**
+     * Get a substring of a UTF-8 encoded string
+     *
+     * @param string $pValue UTF-8 encoded string
+     * @param int $start Start offset
+     * @param int $length Maximum number of characters in substring
+     * @return string
+     */
+    public static function Substring($pValue = '', $pStart = 0, $pLength = 0)
+    {
+        if (self::getIsIconvEnabled()) {
+            $string = iconv_substr($pValue, $pStart, $pLength, 'UTF-8');
+            return $string;
+        }
+
+        if (self::getIsMbstringEnabled()) {
+            $string = mb_substr($pValue, $pStart, $pLength, 'UTF-8');
+            return $string;
+        }
+
+        // else substr
+        $string = substr($pValue, $pStart, $pLength);
+        return $string;
+    }
 
 }
+
 ?>
