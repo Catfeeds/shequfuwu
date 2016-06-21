@@ -1,9 +1,9 @@
-/*TMODJS:{"version":179,"md5":"6e2962275b70b085f5b2647df01eb96d"}*/
+/*TMODJS:{"version":181,"md5":"81ae7486423922c383124d970a17a5f0"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
 $out+=$escape(imageUrl);
-$out+='/dianpu.png"> </a> </span> </div> <div class="swiper-container"> <div class="swiper-wrapper" style="height:180px;"> ';
+$out+='/dianpu.png"> </a> </span> </div>  <div class="swiper-container"> <div class="swiper-wrapper" style="height:180px;"> ';
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 1){
@@ -37,13 +37,13 @@ $out+=' </div> <section class="m-component-promotion" id="list-section"> <div cl
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 3){
-$out+=' <li> <a onclick="clickItemDetail(\'';
-$out+=$escape(value.remark);
-$out+='\')"><img class="lazy" src="';
+$out+=' <li> <a href="';
+$out+=$escape(value.url);
+$out+='"> <img class="lazy" src="';
 $out+=$escape(imageUrl);
 $out+='/blank.gif" data-echo="';
 $out+=$escape(uploadsUrl+value.savepath+value.savename);
-$out+='" style="display: inline; height: 137px;"></a> </li> ';
+$out+='" style="display: inline; height: 137px;"> </a> </li> ';
 }
 $out+=' ';
 });

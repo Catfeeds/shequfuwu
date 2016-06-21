@@ -6,6 +6,8 @@
         </a>
     </span>
 </div>
+
+<!--幻灯片播放-->
 <div class="swiper-container">
     <div class="swiper-wrapper" style="height:180px;">
         {{each ads as value i}} {{if value.adsname == 1}}
@@ -38,9 +40,11 @@
     <ul class="list-unstyled" id="list-sale">
         {{each ads as value i}} {{if value.adsname == 3}}
         <li>
-            <a onclick="clickItemDetail('{{value.remark}}')"><img class="lazy" src="{{imageUrl}}/blank.gif"
-                                                                  data-echo="{{uploadsUrl+value.savepath+value.savename}}"
-                                                                  style="display: inline; height: 137px;"></a>
+            <a href="{{value.url}}">
+                <img class="lazy" src="{{imageUrl}}/blank.gif"
+                     data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                     style="display: inline; height: 137px;">
+            </a>
         </li>
         {{/if}} {{/each}}
     </ul>
