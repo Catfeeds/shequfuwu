@@ -1,4 +1,4 @@
-/*TMODJS:{"version":190,"md5":"616c4efe72dda77f9f45c0421f257ed7"}*/
+/*TMODJS:{"version":191,"md5":"d635db9bb262e2365b26cb204126192e"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -25,7 +25,7 @@ $out+=' <li class="item item_third"> <a href="';
 $out+=$escape(value.url);
 $out+='" title="';
 $out+=$escape(value.name);
-$out+='"> <div class="item-image"><img src="';
+$out+='"> <div class="item-image item-image_third"><img src="';
 $out+=$escape(imageUrl);
 $out+='/blank.gif" data-echo="';
 $out+=$escape(uploadsUrl+value.savepath+value.savename);
@@ -67,7 +67,7 @@ $out+='" label-id="';
 $out+=$escape(value.id);
 $out+='"> <a href="#/product/';
 $out+=$escape(value.id);
-$out+='" title=""> <div class="item-image"><img src="';
+$out+='" title=""> <div class="item-image item-image_harf"><img src="';
 $out+=$escape(imageUrl);
 $out+='/blank.gif" data-echo="';
 $out+=$escape(uploadsUrl+value.savepath+value.savename);
