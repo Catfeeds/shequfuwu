@@ -534,12 +534,14 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
             var imgSrc = '';
             if (json.savename) {
                 imgSrc = data.uploadsUrl + json.savepath + json.savename;
-                $('#itemsDetail .detail-image').attr('style', "height:200px");
+                var html='<img class="detail-image contentCenter" style="height:200px" src="'+imgSrc+ '">';
+                $('#itemsDetail .detail-image-container').html(html);
+                //$('#itemsDetail .detail-image').attr('style', "height:200px");
+                //$('#itemsDetail .detail-image').attr('src', imgSrc);
             } else {
-                $('#itemsDetail .detail-image').attr('style', "height:0px");
+                //$('#itemsDetail .detail-image').attr('style', "height:0px");
+                $('#itemsDetail .detail-image-container').html('');
             }
-
-            $('#itemsDetail .detail-image').attr('src', imgSrc);
         }
     });
 }
