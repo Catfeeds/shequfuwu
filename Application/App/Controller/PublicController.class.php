@@ -56,10 +56,10 @@ class PublicController extends Controller
 
     public function oauthLogin()
     {
-        //$this->oauthDebug();
+        $this->oauthDebug();
 
         //dump('sssssssssssssssssf');
-        //if (!session("userId"))
+        if (!session("userId"))
         {
             //dump('ooooooooo');
             $mate = new ModelMate('config');
