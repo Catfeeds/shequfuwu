@@ -43,7 +43,7 @@
     </ul>
 </div>
 
-<section class="m-component-promotion" id="list-section">
+<div class="m-component-promotion" id="list-section">
     <div class="mod-title" style="padding-top: 5px;">热门活动</div>
     <ul class="list-unstyled" id="list-sale">
         {{each ads as value i}} {{if value.adsname == 3}}
@@ -56,13 +56,14 @@
         </li>
         {{/if}} {{/each}}
     </ul>
-</section>
+</div>
 <div id="product-hot">
     <div class="mod-title">推荐</div>
     <ul>
         {{each product as value i}}
         {{if value.label == "推荐"}}
-        <li class="item item_half {{if value.recommend == 1}}large{{/if}}" label-cate="{{value.menu_id}}" label-id="{{value.id}}">
+        <li class="item item_half {{if value.recommend == 1}}large{{/if}}" label-cate="{{value.menu_id}}"
+            label-id="{{value.id}}">
             <a href="#/product/{{value.id}}" title="">
                 <div class="item-image"><img src="{{imageUrl}}/blank.gif"
                                              data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
