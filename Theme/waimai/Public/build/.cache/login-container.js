@@ -1,4 +1,4 @@
-/*TMODJS:{"version":1,"md5":"936e8b362316238cf2b468b6d667a2a1"}*/
+/*TMODJS:{"version":2,"md5":"2cdff276dd52b8a72afa6de211b79383"}*/
 template('login-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,title=$data.title,$out='';$out+='<div class="container-gird"> <div class="login-header"> <center><h3>';

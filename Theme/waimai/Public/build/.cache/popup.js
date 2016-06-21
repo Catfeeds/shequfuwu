@@ -1,4 +1,4 @@
-/*TMODJS:{"version":1,"md5":"4939328897ad0726367bc88ef990aa0f"}*/
+/*TMODJS:{"version":2,"md5":"8f727b6d6d4c939134f7033880c9b55c"}*/
 template('popup',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,header=$data.header,tips=$data.tips,$out='';$out+='<div id="popup" class="popup"> <div class="popup-header">';
