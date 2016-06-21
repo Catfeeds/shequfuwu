@@ -1,4 +1,4 @@
-/*TMODJS:{"version":186,"md5":"1cb1aeb93795c73c8cf7482997967ddd"}*/
+/*TMODJS:{"version":187,"md5":"ff70b60de07307423dea6d048ddba14d"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -21,7 +21,7 @@ $out+=' </div> <div class="swiper-pagination"></div> </div> <div class="mod-desc
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 2){
-$out+=' <li class="item item_half"> <a href="';
+$out+=' <li class="item item_third"> <a href="';
 $out+=$escape(value.url);
 $out+='" title="';
 $out+=$escape(value.name);
