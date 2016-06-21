@@ -1,4 +1,4 @@
-/*TMODJS:{"version":184,"md5":"479f9b6e0aae2393ddda40efb454ecbf"}*/
+/*TMODJS:{"version":186,"md5":"1cb1aeb93795c73c8cf7482997967ddd"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -21,7 +21,7 @@ $out+=' </div> <div class="swiper-pagination"></div> </div> <div class="mod-desc
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 2){
-$out+=' <li class="item"> <a href="';
+$out+=' <li class="item item_half"> <a href="';
 $out+=$escape(value.url);
 $out+='" title="';
 $out+=$escape(value.name);
@@ -57,7 +57,7 @@ $out+=' </ul> </section> <div id="product-hot"> <div class="mod-title">推荐</d
 $each(product,function(value,i){
 $out+=' ';
 if(value.label == "推荐"){
-$out+=' <li class="item ';
+$out+=' <li class="item item_half ';
 if(value.recommend == 1){
 $out+='large';
 }

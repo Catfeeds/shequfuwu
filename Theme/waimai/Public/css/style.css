@@ -597,6 +597,20 @@ pre {
     float: left;
 }
 
+.item_half,
+.tuan_half {
+    margin: 1.7%;
+    width: 42%;
+    padding: 2%;
+}
+
+.item_third,
+.tuan_third {
+    margin: 1.7%;
+    width: 42%;
+    padding: 2%;
+}
+
 .item .item-title,
 .tuan .tuan-title {
     width: 100%;
@@ -2811,7 +2825,7 @@ img, fieldset {
 
 .mod-desc {
     /*margin-top: .21333rem;*/
-    height: 180px;
+    /*height: 180px;*/
     position: relative;
     background-color: #fff;
     /*border-top: 1px solid #e5e5e5;*/

@@ -24,10 +24,7 @@
 <div class="mod-desc">
     <ul>
         {{each ads as value i}} {{if value.adsname == 2}}
-
-
-
-        <li class="item">
+        <li class="item item_half">
             <a href="{{value.url}}" title="{{value.name}}">
                 <div class="item-image"><img src="{{imageUrl}}/blank.gif"
                                              data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
@@ -65,7 +62,7 @@
     <ul>
         {{each product as value i}}
         {{if value.label == "推荐"}}
-        <li class="item {{if value.recommend == 1}}large{{/if}}" label-cate="{{value.menu_id}}" label-id="{{value.id}}">
+        <li class="item item_half {{if value.recommend == 1}}large{{/if}}" label-cate="{{value.menu_id}}" label-id="{{value.id}}">
             <a href="#/product/{{value.id}}" title="">
                 <div class="item-image"><img src="{{imageUrl}}/blank.gif"
                                              data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
