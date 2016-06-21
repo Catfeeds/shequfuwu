@@ -1,4 +1,4 @@
-/*TMODJS:{"version":189,"md5":"b3721f2d99609f8b6df9f0f045a03197"}*/
+/*TMODJS:{"version":190,"md5":"616c4efe72dda77f9f45c0421f257ed7"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -39,7 +39,7 @@ $out+='</div> </div> </li> ';
 }
 $out+=' ';
 });
-$out+=' </ul> </div> <div class="m-component-promotion" id="list-section"> <div class="mod-title" style="padding-top: 5px;">热门活动</div> <ul class="list-unstyled" id="list-sale"> ';
+$out+=' </ul> </div> <div class="m-component-promotion" id="list-section"> <ul class="list-unstyled" id="list-sale"> ';
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 3){
