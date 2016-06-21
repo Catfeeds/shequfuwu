@@ -969,25 +969,22 @@ pre {
     line-height: 16px
 }
 
-.detail-content .detail-score {
+.detail-content .detail-item {
+    height: 24px;
     color: #2c2c2c;
     font-size: 14px;
     font-weight: bold;
 }
 
+.detail-content .detail-score {
+
+}
+
 .detail-content .detail-title {
-    height: 24px;
-    color: #2c2c2c;
-    font-size: 14px;
-    font-weight: bold;
     border-bottom: 1px solid #949494
 }
 
 .detail-content .detail-commit {
-    height: 24px;
-    color: #2c2c2c;
-    font-size: 14px;
-    font-weight: bold;
     border-bottom: 1px solid #949494
 }
 
