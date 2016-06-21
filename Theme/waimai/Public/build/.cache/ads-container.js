@@ -1,4 +1,4 @@
-/*TMODJS:{"version":177,"md5":"6e2962275b70b085f5b2647df01eb96d"}*/
+/*TMODJS:{"version":178,"md5":"8a2e96c37408ff5304c050c2391acc2c"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -7,13 +7,11 @@ $out+='/dianpu.png"> </a> </span> </div> <div class="swiper-container"> <div cla
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 1){
-$out+=' <div class="swiper-slide"> <a href="';
-$out+=$escape(value.url);
-$out+='"> <img class="lazy" src="';
+$out+=' <div class="swiper-slide"> <img class="lazy" src="';
 $out+=$escape(imageUrl);
 $out+='/blank.gif" data-echo="';
 $out+=$escape(uploadsUrl+value.savepath+value.savename);
-$out+='" style="display: inline; width: 100%;"> </a> </div> ';
+$out+='" style="display: inline; width: 100%;"> </div> ';
 }
 $out+=' ';
 });
