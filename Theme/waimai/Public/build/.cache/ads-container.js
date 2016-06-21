@@ -1,4 +1,4 @@
-/*TMODJS:{"version":188,"md5":"56d9be310446b5872a3ad1a241865942"}*/
+/*TMODJS:{"version":189,"md5":"b3721f2d99609f8b6df9f0f045a03197"}*/
 template('ads-container',function($data,$filename
 /**/) {
 'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
@@ -33,7 +33,7 @@ $out+='" class="lazy" style="width: 100%; margin-top: 0px; display: inline;backg
 $out+=$escape(imageUrl);
 $out+='/loading.gif) no-repeat center center;background-size: 30px;"> <div class="select-shadow"> <div class="select-inner"><img src="';
 $out+=$escape(imageUrl);
-$out+='/ico_select.png" alt="selected"><span>已选</span> </div> </div> </div> </a> <div class="single-item-info"> <div class="item-title">';
+$out+='/ico_select.png" alt="selected"><span>已选</span> </div> </div> </div> </a> <div class="single-item-info"> <div class="item-title contentCenter">';
 $out+=$escape(value.name);
 $out+='</div> </div> </li> ';
 }
