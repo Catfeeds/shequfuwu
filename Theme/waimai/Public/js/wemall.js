@@ -476,6 +476,9 @@ function clickItemDetail(id) {
             });
             $('#itemsDetail .swiper-wrapper').html(html);
 
+            initCartDate();
+            $('#items-total-price').html(totalPrice);
+
             if (res.comment != null) {
                 json = eval(res.comment);
                 var html = '';
