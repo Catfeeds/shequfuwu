@@ -1,9 +1,7 @@
-/*TMODJS:{"version":172,"md5":"1f2c35092ebc05c2e3ccce95641e6d65"}*/
+/*TMODJS:{"version":173,"md5":"818ada63da7143d54e7743c915c647f5"}*/
 template('ads-container',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="thisShopContact"> <img class="dianpu-img" src="';
-$out+=$escape(imageUrl);
-$out+='/dianpu.png"> </a> </span> <div class="header-title" style="display:inline-block;">{$name}</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
+'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> sssss <div class="header-title" style="display:inline-block;">{$name}</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
 $out+=$escape(imageUrl);
 $out+='/dianpu.png"> </a> </span> </div> <div class="swiper-container"> <div class="swiper-wrapper" style="height:180px;"> ';
 $each(ads,function(value,i){
