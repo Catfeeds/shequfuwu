@@ -16,7 +16,7 @@ class IndexController extends BaseController
         $this->assign("shopId", $shopId);
 
         $configs = D("Config")->get();
-        $config = D("Shop")->getShop(array('id' => $shopId));
+        $config = D("Shop")->getShop(array('id' => $shopId),true);
         $config["delivery_time"] = explode(",", $config["delivery_time"]);
         $config["balance_payment"] = $configs["balance_payment"];
         $config["wechat_payment"] = $configs["wechat_payment"];

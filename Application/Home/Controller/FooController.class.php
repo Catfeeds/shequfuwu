@@ -114,4 +114,8 @@ class FooController extends Controller
         dump(G('shopBeginTime', 'shopEndTime'));
         //dump($product);
     }
+
+    public function getshopop($shopid=144){
+        $data= D('shop')->getShop();
+    }
 }
