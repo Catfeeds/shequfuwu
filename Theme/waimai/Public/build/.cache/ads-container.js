@@ -1,7 +1,7 @@
-/*TMODJS:{"version":195,"md5":"93ea871ef84a662c6daf5bf7c2a21c3b"}*/
+/*TMODJS:{"version":197,"md5":"583c1e6a56dd3155a38342fc4e6d10cf"}*/
 template('ads-container',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <span style="line-height:45px;position:relative;float:right"> <a href="#/showShopInfo" id="showShopInfo"> <img class="dianpu-img" src="';
+'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <span style="line-height:45px;position:relative;float:right;Z-index:1056"> <a href="#/showShopInfo" id="showShopInfo"> <img class="dianpu-img" src="';
 $out+=$escape(imageUrl);
 $out+='/dianpu.png"> </a> </span> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
 $out+=$escape(imageUrl);
