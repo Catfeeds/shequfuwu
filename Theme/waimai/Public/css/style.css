@@ -2473,6 +2473,14 @@ select {
     background-size: 30px;
 }
 
+.shopAvater{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    background: #FFF url(../image/loading.gif) no-repeat center center;
+    background-size: 30px;
+}
+
 /*loading*/
 /*<div id="loading" style="top: 150px; display: none;"><div class="lbk"></div><div class="lcont"><img src="__IMG__/loading.gif" alt="loading...">正在加载...</div></div>*/
 #loading, #loading .lbk, #loading .lcont {
