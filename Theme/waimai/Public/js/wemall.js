@@ -44,7 +44,10 @@ $(document).ready(function () {
         $('#nav-user').click();
     });
     Path.map("#/selectShop").to(function () {
-        selectShop()
+        selectShop();
+    });
+    Path.map("#/showShopInfo").to(function () {
+        showShopInfo();
     });
     Path.root("#/index");
     Path.listen();
@@ -120,6 +123,10 @@ function selectShop() {
             shopList();
         }
     });
+}
+
+function showShopInfo() {
+    tabTmpl("show-shopinfo");
 }
 
 function shopList() {

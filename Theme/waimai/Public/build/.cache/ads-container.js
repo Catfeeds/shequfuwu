@@ -1,11 +1,11 @@
-/*TMODJS:{"version":194,"md5":"a42a30bbf9c26a3cc19904381b454198"}*/
+/*TMODJS:{"version":195,"md5":"93ea871ef84a662c6daf5bf7c2a21c3b"}*/
 template('ads-container',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <span style="line-height:45px;position:relative;float:right"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
+'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,imageUrl=$data.imageUrl,$each=$utils.$each,ads=$data.ads,value=$data.value,i=$data.i,uploadsUrl=$data.uploadsUrl,product=$data.product,$out='';$out+='<div class="header-bar select-shopbar"> <span style="line-height:45px;position:relative;float:right"> <a href="#/showShopInfo" id="showShopInfo"> <img class="dianpu-img" src="';
 $out+=$escape(imageUrl);
 $out+='/dianpu.png"> </a> </span> <div class="header-title" style="display:inline-block;">=={$name}==</div> <span style="line-height:45px;position:absolute;"> <a href="#/selectShop" id="selectShop"> <img class="dianpu-img" src="';
 $out+=$escape(imageUrl);
-$out+='/dianpu.png"> </a> </span> </div>  <div class="swiper-container"> <div class="swiper-wrapper" style="height:180px;"> ';
+$out+='/zhoubian.png"> </a> </span> </div>  <div class="swiper-container"> <div class="swiper-wrapper" style="height:180px;"> ';
 $each(ads,function(value,i){
 $out+=' ';
 if(value.adsname == 1){
