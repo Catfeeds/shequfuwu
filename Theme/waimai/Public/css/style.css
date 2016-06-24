@@ -1649,12 +1649,12 @@ select {
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
-.order-footer .dail-small {
+.dail-small {
     float: right;
     font-size: 0;
 }
 
-.order-footer .dail-small .dail-text {
+.dail-small .dail-text {
     display: inline-block;
     vertical-align: top;
     width: 108px;
@@ -1670,7 +1670,7 @@ select {
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
-.order-footer .dail-small .dail-ico {
+.dail-small .dail-ico {
     display: inline-block;
     vertical-align: top;
     width: 26px;
@@ -1678,7 +1678,7 @@ select {
     background-color: #2c2c2c
 }
 
-.order-footer .dail-small .dail-ico i {
+.dail-small .dail-ico i {
     position: relative;
     top: 6px;
     left: 6px;
