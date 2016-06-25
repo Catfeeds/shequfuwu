@@ -123,5 +123,8 @@ class FooController extends Controller
     public function wechatop(){
         $token= WechatHelper::getAccessToken();
         dump($token);
+
+        $qrTicket= WechatHelper::getQRTicket(146,'','QR_LIMIT_SCENE');
+        dump($qrTicket);
     }
 }
