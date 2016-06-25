@@ -359,9 +359,19 @@ class ShopController extends BaseController
         if (I("post.id")) {
             array_push($condition, array("id" => I("post.id")));
         }
+
+        $shopId= 0;
         if (I("post.shop_id") || session("homeShopId")) {
-            array_push($condition, array("shop_id" => I("post.shop_id") ? I("post.shop_id") : session("homeShopId")));
+            $shopId= I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
+            array_push($condition, array("shop_id" => $shopId));
         }
+
+        $menuList= D('Menu')->getList(array("shop_id"=>$shopId),false);
+
+        if (I("post.category") != -10) {
+            array_push($condition, array("menu_id" => I("post.category")));
+        }
+
         if (I("post.name")) {
             array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
         }
@@ -381,6 +391,7 @@ class ShopController extends BaseController
 
         $this->assign("productPost", I("post."));
         $this->assign("productList", $productList);
+        $this->assign("menuList",$menuList);
         $this->display("product");
     }
 

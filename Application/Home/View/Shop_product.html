@@ -19,26 +19,24 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label class="col-sm-1 control-label">商品名称</label>
-
                             <div class="col-sm-3">
                                 <input class="form-control" name="name" placeholder="" value="{$productPost.name}"
                                        type="text">
                             </div>
 
-                            <label class="col-sm-1 control-label">推荐状态</label>
-
+                            <label class="col-sm-1 control-label">商品类别</label>
                             <div class="col-sm-3">
-                                <select name="recommend" class="form-control">
-                                    <option value="-10">请选择推荐状态</option>
-                                    <option value="0">正常</option>
-                                    <option value="1">推荐</option>
+                                <select name="category" class="form-control">
+                                    <option value="-10">请选择商品类别</option>
+                                    <volist name="menuList" id="vo">
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </volist>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-1 control-label">商品状态</label>
-
                             <div class="col-sm-3">
                                 <select name="status" class="form-control">
                                     <option value="-10">请选择商品状态</option>
@@ -48,14 +46,12 @@
                                 </select>
                             </div>
 
-                            <label class="col-sm-1 control-label">商品类别</label>
-
+                            <label class="col-sm-1 control-label">推荐状态</label>
                             <div class="col-sm-3">
-                                <select name="category" class="form-control">
-                                    <option value="-10">请选择商品类别</option>
-                                    <volist name="menuList" id="vo">
-                                        <option value="{$vo.id}">{$vo.name}</option>
-                                    </volist>
+                                <select name="recommend" class="form-control">
+                                    <option value="-10">请选择推荐状态</option>
+                                    <option value="0">正常</option>
+                                    <option value="1">推荐</option>
                                 </select>
                             </div>
                         </div>
