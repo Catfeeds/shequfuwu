@@ -26,11 +26,11 @@
 
                             <label class="col-sm-1 control-label">商品类别</label>
                             <div class="col-sm-3">
-                                <?php  echo I('post.category')?>
                                 <select name="category" class="form-control">
                                     <option value="-10">请选择商品类别</option>
                                     <volist name="menuList" id="vo">
-                                        <if condition="(string)(I('post.category')) eq (string)($vo.id)">
+                                        <if condition="I('post.category') eq $vo.id">
+                                            dump(I('post.category').'----' . $vo.id);
                                             <option value="{$vo.id}" selected="selected">{$vo.name}</option>
                                             <else/>
                                             <option value="{$vo.id}">{$vo.name}</option>
