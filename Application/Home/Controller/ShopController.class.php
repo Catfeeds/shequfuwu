@@ -371,9 +371,9 @@ class ShopController extends BaseController
             array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
         }
 
-        if (I("post.recommend") != -10) {
-            array_push($condition, array("recommend" => I("post.recommend")));
-        }
+//        if (I("post.recommend") != -10) {
+//            array_push($condition, array("recommend" => I("post.recommend")));
+//        }
 
         if (I("post.status") != -10) {
             array_push($condition, array("status" => I("post.status")));
