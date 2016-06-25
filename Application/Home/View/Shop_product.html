@@ -29,7 +29,7 @@
                                 <select name="category" class="form-control">
                                     <option value="-10">请选择商品类别</option>
                                     <volist name="menuList" id="vo">
-                                        dump(I('post.category').'----' . $vo.id);
+                                        <?php dump(I('post.category').'----' . $vo.id); ?>
                                         <if condition="I('post.category') eq $vo.id">
                                             <option value="{$vo.id}" selected="selected">{$vo.name}</option>
                                             <else/>
