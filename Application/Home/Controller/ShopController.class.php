@@ -134,6 +134,10 @@ class ShopController extends BaseController
         $productList = D("Product")->getProductList($condition, true, "id desc", $p, $num);
         $this->assign('productList', $productList);// 赋值数据集
 
+
+        $menuList= D('Menu')->getList(array("shop_id"=>session("homeShopId")),false);
+        $this->assign("menuList",$menuList);
+
         // dump($productList);
         $count = D("Product")->getProductListCount($condition);// 查询满足要求的总记录数
         $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
@@ -366,7 +370,7 @@ class ShopController extends BaseController
             array_push($condition, array("shop_id" => $shopId));
         }
 
-        $menuList= D('Menu')->getList(array("shop_id"=>$shopId),false);
+
 
         if (I("post.category") != -10) {
             array_push($condition, array("menu_id" => I("post.category")));
@@ -391,7 +395,7 @@ class ShopController extends BaseController
 
         $this->assign("productPost", I("post."));
         $this->assign("productList", $productList);
-        $this->assign("menuList",$menuList);
+
         $this->display("product");
     }
 
