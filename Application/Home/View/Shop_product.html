@@ -27,10 +27,10 @@
                             <label class="col-sm-1 control-label">商品类别</label>
                             <div class="col-sm-3">
                                 <select name="category" class="form-control">
-                                    <?php dump(I('post.category')); ?>
+
                                     <option value="-10">请选择商品类别</option>
                                     <volist name="menuList" id="vo">
-
+                                        <?php dump($vo.id); ?>
                                         <if condition="I('post.category') eq $vo.id">
                                             <option value="{$vo.id}" selected="selected">{$vo.name}</option>
                                             <else/>
