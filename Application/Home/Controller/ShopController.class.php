@@ -127,6 +127,21 @@ class ShopController extends BaseController
             "shop_id" => session("homeShopId")
         );
 
+
+        if (I("post.category") && I("post.category") != -10) {
+            array_push($condition, array("menu_id" => I("post.category")));
+        }
+
+        if (I("post.name")) {
+            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
+        }
+        if (I("post.recommend") && I("post.recommend") != -10) {
+            array_push($condition, array("recommend" => I("post.recommend")));
+        }
+        if (I("post.status") && I("post.status") != -10) {
+            array_push($condition, array("status" => I("post.status")));
+        }
+
         $num = 25;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Shop/product/page/$p"));
@@ -135,8 +150,8 @@ class ShopController extends BaseController
         $this->assign('productList', $productList);// 赋值数据集
 
 
-        $menuList= D('Menu')->getList(array("shop_id"=>session("homeShopId")),false);
-        $this->assign("menuList",$menuList);
+        $menuList = D('Menu')->getList(array("shop_id" => session("homeShopId")), false);
+        $this->assign("menuList", $menuList);
 
         // dump($productList);
         $count = D("Product")->getProductListCount($condition);// 查询满足要求的总记录数
@@ -146,7 +161,53 @@ class ShopController extends BaseController
 
         $this->assign('page', $show);// 赋值分页输出
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
+
+        $this->assign("productPost", I("post."));
         $this->display();
+    }
+
+    public function productSearch()
+    {
+        $condition = array(
+            "shop_id" => session("homeShopId")
+        );
+
+        if (I("post.id")) {
+            array_push($condition, array("id" => I("post.id")));
+        }
+
+        $shopId = 0;
+        if (I("post.shop_id") || session("homeShopId")) {
+            $shopId = I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
+            array_push($condition, array("shop_id" => $shopId));
+        }
+
+
+        if (I("post.category") != -10) {
+            array_push($condition, array("menu_id" => I("post.category")));
+        }
+
+        if (I("post.name")) {
+            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
+        }
+        if (I("post.recommend") != -10) {
+            array_push($condition, array("recommend" => I("post.recommend")));
+        }
+        if (I("post.status") != -10) {
+            array_push($condition, array("status" => I("post.status")));
+        }
+        if (I("post.timeRange")) {
+            $timeRange = I("post.timeRange");
+            $timeRange = explode(" --- ", $timeRange);
+            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
+        }
+
+        $productList = D("Product")->getProductList($condition, true);
+
+        $this->assign("productPost", I("post."));
+        $this->assign("productList", $productList);
+
+        $this->display("product");
     }
 
     public function shop()
@@ -354,50 +415,6 @@ class ShopController extends BaseController
         $this->success("删除成功", cookie("prevUrl"));
     }
 
-    public function productSearch()
-    {
-        $condition = array(
-            "shop_id" => session("homeShopId")
-        );
-
-        if (I("post.id")) {
-            array_push($condition, array("id" => I("post.id")));
-        }
-
-        $shopId= 0;
-        if (I("post.shop_id") || session("homeShopId")) {
-            $shopId= I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
-            array_push($condition, array("shop_id" => $shopId));
-        }
-
-
-
-        if (I("post.category") != -10) {
-            array_push($condition, array("menu_id" => I("post.category")));
-        }
-
-        if (I("post.name")) {
-            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
-        }
-        if (I("post.recommend") != -10) {
-            array_push($condition, array("recommend" => I("post.recommend")));
-        }
-        if (I("post.status") != -10) {
-            array_push($condition, array("status" => I("post.status")));
-        }
-        if (I("post.timeRange")) {
-            $timeRange = I("post.timeRange");
-            $timeRange = explode(" --- ", $timeRange);
-            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
-        }
-
-        $productList = D("Product")->getProductList($condition, true);
-
-        $this->assign("productPost", I("post."));
-        $this->assign("productList", $productList);
-
-        $this->display("product");
-    }
 
     public function exportProduct()
     {
