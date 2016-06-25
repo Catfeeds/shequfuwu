@@ -8,7 +8,7 @@ class ProductModel extends RelationModel
 {
     protected $_link = array(
 
-                'Comment' => array(
+        'Comment' => array(
             'mapping_type' => self::HAS_MANY,
             'mapping_name' => 'comment',
             'foreign_key' => 'product_id',//关联id

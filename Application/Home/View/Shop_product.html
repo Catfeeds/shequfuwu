@@ -25,11 +25,23 @@
                                        type="text">
                             </div>
 
+                            <label class="col-sm-1 control-label">商品类别</label>
+
+                            <div class="col-sm-3">
+                                <select name="category" class="form-control">
+                                    <option value="-10">请选择</option>
+                                    <volist name="menuList" id="vo">
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+
                             <label class="col-sm-1 control-label">推荐状态</label>
 
                             <div class="col-sm-3">
                                 <select name="recommend" class="form-control">
-                                    <option value="-10">不选择推荐状态</option>
+                                    <option value="-10">请选择</option>
                                     <option value="0">正常</option>
                                     <option value="1">推荐</option>
                                 </select>
@@ -41,8 +53,9 @@
 
                             <div class="col-sm-3">
                                 <select name="status" class="form-control">
-                                    <option value="-10">不选择商品状态</option>
-                                    <option value="0">下架</option>
+                                    <option value="-10">请选择</option>
+                                    <option value="-1">下架</option>
+                                    <option value="0">售罄</option>
                                     <option value="1">出售</option>
                                 </select>
                             </div>
@@ -114,7 +127,7 @@
                                 <th>标签</th>
                                 <th>出售状态</th>
                                 <th>排序</th>
-                                <th>表识属性</th>
+                                <th>标示属性</th>
                                 <th>备注</th>
                                 <th>操作</th>
                             </tr>
@@ -256,6 +269,7 @@
         if ('{$productPost}') {
             $('select[name="recommend"]').val('{$productPost.recommend}');
             $('select[name="status"]').val('{$productPost.status}');
+            $('select[name="category"]').val('{$productPost.category}');
         }
     });
 </script>
