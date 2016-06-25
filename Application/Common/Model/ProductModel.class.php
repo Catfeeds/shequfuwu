@@ -7,34 +7,34 @@ use Vendor\Hiland\Utils\Data\ArrayHelper;
 class ProductModel extends RelationModel
 {
     protected $_link = array(
-        'Menu' => array(
-            'mapping_type' => self::BELONGS_TO,
-            'mapping_name' => 'menu',
-            'foreign_key' => 'menu_id',//关联id
-            'as_fields' => 'name:menu_name',
-        ),
+//        'Menu' => array(
+//            'mapping_type' => self::BELONGS_TO,
+//            'mapping_name' => 'menu',
+//            'foreign_key' => 'menu_id',//关联id
+//            'as_fields' => 'name:menu_name',
+//        ),
         'File' => array(
             'mapping_type' => self::BELONGS_TO,
             'mapping_name' => 'file',
             'foreign_key' => 'file_id',//关联id
             'as_fields' => 'savename:savename,savepath:savepath',
         ),
-        'Comment' => array(
-            'mapping_type' => self::HAS_MANY,
-            'mapping_name' => 'comment',
-            'foreign_key' => 'product_id',//关联id
-        ),
-        'ProductSku' => array(
-            'mapping_type' => self::HAS_MANY,
-            'mapping_name' => 'sku',
-            'foreign_key' => 'product_id',//关联id
-        ),
-        'Shop' => array(
-            'mapping_type' => self::BELONGS_TO,
-            'mapping_name' => 'shop',
-            'foreign_key' => 'shop_id',//关联id
-//            'mapping_fields' => 'remark',
-        ),
+//        'Comment' => array(
+//            'mapping_type' => self::HAS_MANY,
+//            'mapping_name' => 'comment',
+//            'foreign_key' => 'product_id',//关联id
+//        ),
+//        'ProductSku' => array(
+//            'mapping_type' => self::HAS_MANY,
+//            'mapping_name' => 'sku',
+//            'foreign_key' => 'product_id',//关联id
+//        ),
+//        'Shop' => array(
+//            'mapping_type' => self::BELONGS_TO,
+//            'mapping_name' => 'shop',
+//            'foreign_key' => 'shop_id',//关联id
+////            'mapping_fields' => 'remark',
+//        ),
     );
 
     public function get($condition = array(), $relation = false)
