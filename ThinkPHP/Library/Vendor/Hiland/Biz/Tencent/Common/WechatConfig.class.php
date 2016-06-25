@@ -28,7 +28,7 @@ class WechatConfig
 
     const MCHKEY = 'mLqPaqRwf7DqyJfhAhElq8FORPoYahPz';
 
-    const APPSECRET = 'b0a14b3d7f45fdac195de4ffd6ec0797';
+    const APPSECRET = '28f79589da83856fbb6ccca55aaba39e';
 
     // 微信二次开发入口token
     const GATETOKEN = 'bigseaguall20160608';
