@@ -15,7 +15,7 @@
 
 <ul class="shop-menu">
     {{each menu as value i}}
-    <li onclick="switchMenu(this,'{{value.id}}','')">
+    <li id="menu_li_{{value.id}}" onclick="switchMenu(this,'{{value.id}}','')">
         <span>{{value.name}}</span>
     </li>
     {{/each}}
@@ -48,6 +48,17 @@
         </li>
         {{/each}}
     </ul>
+
+    <script type="text/javascript">
+        var lastSelectedMenuID= window.JSON.parse(window.localStorage.getItem('lastSelectedMenuID'));
+        if(lastSelectedMenuID){
+            alert(lastSelectedMenuID);
+        }else{
+            alert('nnnnnooooooooooooooo');
+        }
+        //lastSelectedMenuID
+        //alert('sssssssssssssss');
+    </script>
 </div>
 
 <div id="shopmenu-cart">

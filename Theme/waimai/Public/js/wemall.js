@@ -1432,7 +1432,9 @@ function switchMenu(obj, id) {
         }
     });
 
-    backToTop();
+    //将选定的id保存起来，用于用户“返回”操作的东西
+    set("lastSelectedMenuID",id);
+    //backToTop();
 
     echo.init({
         offset: 100,
