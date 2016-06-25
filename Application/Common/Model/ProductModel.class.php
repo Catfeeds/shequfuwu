@@ -7,12 +7,7 @@ use Vendor\Hiland\Utils\Data\ArrayHelper;
 class ProductModel extends RelationModel
 {
     protected $_link = array(
-//        'Menu' => array(
-//            'mapping_type' => self::BELONGS_TO,
-//            'mapping_name' => 'menu',
-//            'foreign_key' => 'menu_id',//关联id
-//            'as_fields' => 'name:menu_name',
-//        ),
+
         //        'Comment' => array(
 //            'mapping_type' => self::HAS_MANY,
 //            'mapping_name' => 'comment',
@@ -29,6 +24,12 @@ class ProductModel extends RelationModel
 //            'foreign_key' => 'shop_id',//关联id
 ////            'mapping_fields' => 'remark',
 //        ),
+        'Menu' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'mapping_name' => 'menu',
+            'foreign_key' => 'menu_id',//关联id
+            'as_fields' => 'name:menu_name',
+        ),
         'File' => array(
             'mapping_type' => self::BELONGS_TO,
             'mapping_name' => 'file',
