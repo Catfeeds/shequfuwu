@@ -122,5 +122,6 @@ class FooController extends Controller
 
     public function wechatop(){
         $token= WechatHelper::getAccessToken();
+        dump($token);
     }
 }
