@@ -29,7 +29,12 @@
                                 <select name="category" class="form-control">
                                     <option value="-10">请选择商品类别</option>
                                     <volist name="menuList" id="vo">
-                                        <option value="{$vo.id}">{$vo.name}</option>
+                                        <if condition="I('post.category') eq $vo.id">
+                                            <option value="{$vo.id}" selected="selected">{$vo.name}</option>
+                                            <else/>
+                                            <option value="{$vo.id}">{$vo.name}</option>
+                                        </if>
+
                                     </volist>
                                 </select>
                             </div>
