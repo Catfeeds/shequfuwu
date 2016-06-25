@@ -533,19 +533,6 @@ class ShopController extends BaseController
             $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
             $this->assign('qrUrl', $qrUrl);
             $this->display();
-
-//            $shop = D("Shop")->getShop(array("id" => $id), true);
-//
-//            $username = array();
-//            $employee = explode(',', $shop["employee"]);
-//            foreach ($employee as $key => $value) {
-//                $user = D("User")->get(array("id" => $value));
-//                array_push($username, $user["username"]);
-//            }
-//            $shop["employeeName"] = implode(",", $username);
-//            $this->assign("shop", $shop);
-//
-//            $this->display("Shop:addShop");
         } else {
             $this->error("请先选择店铺", "Home/Shop/shop");
         }

@@ -11,6 +11,7 @@ namespace Home\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
+use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
 
@@ -117,5 +118,9 @@ class FooController extends Controller
 
     public function getshopop($shopid=144){
         $data= D('shop')->getShop();
+    }
+
+    public function wechatop(){
+        $token= WechatHelper::getAccessToken();
     }
 }
