@@ -1213,7 +1213,16 @@ function openProduct(o) {
 
     initProduct();
 
-    $('.shop-menu li').first().click();
+    var lastSelectedMenuID= get('lastSelectedMenuID');
+    if(lastSelectedMenuID){
+        $('#menu_li_'+ lastSelectedMenuID).click();
+        //$('.shop-menu li').first().click();
+        //alert(lastSelectedMenuID);
+    }else{
+        $('.shop-menu li').first().click();
+        //alert('nnnnnooooooooooooooo');
+    }
+
 
     var swiper = new Swiper('#swiper-container', {
         slidesPerView: 3,
