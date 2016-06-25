@@ -109,7 +109,7 @@ class FooController extends Controller
     public function calctimeofshop($shopid = 146)
     {
         G('shopBeginTime');
-        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopid), true, "rank desc", 0, 0, 0);
+        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopid), false, "rank desc", 0, 0, 0);
         $jsons = json_encode($product);
         dump(G('shopBeginTime', 'shopEndTime'));
         //dump($product);
