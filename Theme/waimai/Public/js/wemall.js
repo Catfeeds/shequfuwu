@@ -1196,6 +1196,11 @@ function tabTmpl(id) {
     menuId = 0;
 }
 
+function openProductNoSelect(o) {
+    set('lastSelectedMenuID','');
+    openProduct(o);
+}
+
 function openProduct(o) {
     navSelect(o);
     $('#shopcart-tip').hide();
