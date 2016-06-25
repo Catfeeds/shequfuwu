@@ -13,13 +13,7 @@ class ProductModel extends RelationModel
 //            'foreign_key' => 'menu_id',//关联id
 //            'as_fields' => 'name:menu_name',
 //        ),
-        'File' => array(
-            'mapping_type' => self::BELONGS_TO,
-            'mapping_name' => 'file',
-            'foreign_key' => 'file_id',//关联id
-            'as_fields' => 'savename:savename,savepath:savepath',
-        ),
-//        'Comment' => array(
+        //        'Comment' => array(
 //            'mapping_type' => self::HAS_MANY,
 //            'mapping_name' => 'comment',
 //            'foreign_key' => 'product_id',//关联id
@@ -35,6 +29,13 @@ class ProductModel extends RelationModel
 //            'foreign_key' => 'shop_id',//关联id
 ////            'mapping_fields' => 'remark',
 //        ),
+        'File' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'mapping_name' => 'file',
+            'foreign_key' => 'file_id',//关联id
+            'as_fields' => 'savename:savename,savepath:savepath',
+        ),
+
     );
 
     public function get($condition = array(), $relation = false)
