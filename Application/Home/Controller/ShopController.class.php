@@ -352,52 +352,35 @@ class ShopController extends BaseController
 
     public function productSearch()
     {
-        $shopId= 0;
-
         $condition = array(
             "shop_id" => session("homeShopId")
         );
 
-        if (I("post.shop_id") || session("homeShopId")) {
-            $shopId= I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
-            array_push($condition, array("shop_id" => $shopId));
-        }
-
         if (I("post.id")) {
             array_push($condition, array("id" => I("post.id")));
         }
-
+        if (I("post.shop_id") || session("homeShopId")) {
+            array_push($condition, array("shop_id" => I("post.shop_id") ? I("post.shop_id") : session("homeShopId")));
+        }
         if (I("post.name")) {
             array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
         }
-
-//        if (I("post.recommend") != -10) {
-//            array_push($condition, array("recommend" => I("post.recommend")));
-//        }
-
+        if (I("post.recommend") != -10) {
+            array_push($condition, array("recommend" => I("post.recommend")));
+        }
         if (I("post.status") != -10) {
             array_push($condition, array("status" => I("post.status")));
         }
-
         if (I("post.timeRange")) {
             $timeRange = I("post.timeRange");
             $timeRange = explode(" --- ", $timeRange);
             array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
         }
 
-        $menuCondition= array();
-        $menuCondition['shop_id']= $shopId;
-
-        $menuList= D('Menu')->getList($menuCondition,false);
-        if(I("post.category")&& I("post.category")!=-10){
-            array_push($condition, array("shop_id" => I("post.category")));
-        }
-
         $productList = D("Product")->getProductList($condition, true);
 
         $this->assign("productPost", I("post."));
         $this->assign("productList", $productList);
-        $this->assign("menuList", $menuList);
         $this->display("product");
     }
 
@@ -545,8 +528,9 @@ class ShopController extends BaseController
     {
         if (session("homeShopId")) {
             $id = session("homeShopId");
-            $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
 
+            //dump($id);
+            $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
             $this->assign('qrUrl', $qrUrl);
             $this->display();
         } else {
