@@ -27,7 +27,6 @@
                             <label class="col-sm-1 control-label">商品类别</label>
                             <div class="col-sm-3">
                                 <select name="category" class="form-control">
-
                                     <option value="-10">请选择商品类别</option>
                                     <volist name="menuList" id="vo">
                                         <if condition="I('post.category') eq (string)$vo['id']">
@@ -35,7 +34,6 @@
                                             <else/>
                                             <option value="{$vo.id}">{$vo.name}</option>
                                         </if>
-
                                     </volist>
                                 </select>
                             </div>
