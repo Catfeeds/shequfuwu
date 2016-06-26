@@ -137,6 +137,8 @@ class ShopController extends BaseController
 
         if (I("productName")) {
             cookie("$cookiePrefix-productName",I("productName"));
+        }else{
+            cookie("$cookiePrefix-productName",'');
         }
 
         $cookieProductName= cookie("$cookiePrefix-productName");
