@@ -123,6 +123,9 @@ class ShopController extends BaseController
 
     public function product()
     {
+
+        $shopId= session("homeShopId");
+        $cookiePrefix= "shop$shopId";
         $condition = array(
             "shop_id" => session("homeShopId")
         );
@@ -132,9 +135,18 @@ class ShopController extends BaseController
             array_push($condition, array("menu_id" => I("post.category")));
         }
 
-        if (I("post.name")) {
-            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
+        if (I("productName")) {
+            cookie("$cookiePrefix-productName",I("productName"));
         }
+
+        $cookieProductName= cookie("$cookiePrefix-productName");
+        if($cookieProductName){
+            array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
+        }
+
+
+
+
         if (I("post.recommend") && I("post.recommend") != -10) {
             array_push($condition, array("recommend" => I("post.recommend")));
         }

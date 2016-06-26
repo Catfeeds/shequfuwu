@@ -7,6 +7,9 @@
 
 <!-- Main content -->
 <section class="content">
+    <?php
+
+    ?>
     <div class="row">
         <div class="col-md-12">
             <!-- general form elements -->
@@ -20,7 +23,8 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">商品名称</label>
                             <div class="col-sm-3">
-                                <input class="form-control" name="name" placeholder="" value="{$productPost.name}"
+                                <input class="form-control" name="productName" placeholder="" value="<?php $shopId= session('homeShopId');
+                                $cookiePrefix= 'shop'.$shopId; echo cookie($cookiePrefix.'-productName') ?>"
                                        type="text">
                             </div>
 
