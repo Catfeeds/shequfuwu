@@ -142,7 +142,7 @@ class ShopController extends BaseController
             array_push($condition, array("status" => I("post.status")));
         }
 
-        $num = 25;
+        $num = 10;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Shop/product/page/$p"));
 
