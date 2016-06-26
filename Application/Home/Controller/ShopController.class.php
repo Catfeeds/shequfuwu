@@ -137,8 +137,10 @@ class ShopController extends BaseController
 
         if (I("productName")) {
             cookie("$cookiePrefix-productName",I("productName"));
+            dump('yy');
         }else{
             cookie("$cookiePrefix-productName",'');
+            dump('nnn');
         }
 
         dump(I("productName"));
