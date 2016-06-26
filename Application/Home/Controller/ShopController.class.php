@@ -142,6 +142,7 @@ class ShopController extends BaseController
         }
 
         $cookieProductName= cookie("$cookiePrefix-productName");
+        dump($cookieProductName);
         if($cookieProductName&& $cookieProductName!='<NoN>'){
             array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
         }
