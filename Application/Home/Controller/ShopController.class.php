@@ -141,8 +141,10 @@ class ShopController extends BaseController
             cookie("$cookiePrefix-productName",'');
         }
 
+        dump(I("productName"));
+
         $cookieProductName= cookie("$cookiePrefix-productName");
-        dump($cookieProductName);
+
         if($cookieProductName){
             array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
         }
