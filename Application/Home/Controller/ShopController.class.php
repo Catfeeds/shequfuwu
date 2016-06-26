@@ -139,7 +139,7 @@ class ShopController extends BaseController
             cookie("$cookiePrefix-productName",I("productName"));
             dump('yy');
         }else{
-            cookie("$cookiePrefix-productName",'');
+            cookie("$cookiePrefix-productName",'<NoN>');
             dump('nnn');
         }
 
@@ -147,7 +147,7 @@ class ShopController extends BaseController
         dump(cookie("$cookiePrefix-productName"));
 
         $cookieProductName= cookie("$cookiePrefix-productName");
-        if($cookieProductName){
+        if($cookieProductName&& $cookieProductName!='<NoN>'){
             array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
         }
 
