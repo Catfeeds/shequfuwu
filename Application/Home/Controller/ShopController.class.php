@@ -168,7 +168,7 @@ class ShopController extends BaseController
 //        }
 
         if(IS_POST){
-            cookie("$cookiePrefix-status", I("post.status"));
+            cookie("$cookiePrefix-status", I("post.productStatus"));
         }
 
         $cookieStatus= cookie("$cookiePrefix-status");

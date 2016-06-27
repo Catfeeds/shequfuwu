@@ -50,7 +50,7 @@
                             <div class="col-sm-3">
                                 <?php $cookieValue= cookie($cookiePrefix.'-status');?>
 
-                                <select name="status" class="form-control">
+                                <select name="productStatus" class="form-control">
                                     <option value="-10">请选择商品状态</option>
                                     <if condition="$cookieValue=='1'">
                                         <option value="1" selected="selected">出售</option>
