@@ -422,4 +422,25 @@ class ShopController extends BaseController
 
         $this->success("开启成功", cookie("prevUrl"));
     }
+
+    /**
+     * 店铺复制
+     */
+    public function copy(){
+        if (IS_POST) {
+//            $data = I("post.");
+//
+//            if (!$data["id"]) {
+//                $data["user_id"] = session("adminId");
+//            }
+//
+//            unset($data["wd"]);
+//
+//            D("Shop")->addShop($data);
+//
+//            $this->success("保存成功", U("Admin/Shop/shop"));
+        } else {
+            $this->display();
+        }
+    }
 }
