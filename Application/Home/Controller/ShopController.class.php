@@ -172,6 +172,7 @@ class ShopController extends BaseController
         }
 
         $cookieStatus= cookie("$cookiePrefix-status");
+        dump($cookieStatus);
         if ($cookieStatus && $cookieStatus != -10) {
             array_push($condition, array("status" => $cookieStatus));
         }
