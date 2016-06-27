@@ -48,16 +48,18 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">商品状态</label>
                             <div class="col-sm-3">
+                                <?php $cookieValue= cookie($cookiePrefix.'-status'); ?>
                                 <select name="status" class="form-control">
                                     <option value="-10">请选择商品状态</option>
-                                    <option value="1">出售</option>
-                                    <option value="-1">下架</option>
-                                    <option value="0">售罄</option>
+                                    <option value="1" <?php if($cookieValue=="1"){ echo " selected=selected "} ?>>出售</option>
+                                    <option value="-1" <?php if($cookieValue=="-1"){ echo " selected=selected "} ?>>下架</option>
+                                    <option value="0" <?php if($cookieValue=="0"){ echo " selected=selected "} ?>>售罄</option>
                                 </select>
                             </div>
 
                             <label class="col-sm-1 control-label">推荐状态</label>
                             <div class="col-sm-3">
+                                <?php $cookieValue= cookie($cookiePrefix.'-recommend'); ?>
                                 <select name="recommend" class="form-control">
                                     <option value="-10">请选择推荐状态</option>
                                     <option value="0">正常</option>

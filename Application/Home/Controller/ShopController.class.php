@@ -155,9 +155,17 @@ class ShopController extends BaseController
         }
 
 
-        if (I("post.recommend") && I("post.recommend") != -10) {
-            array_push($condition, array("recommend" => I("post.recommend")));
+        if(IS_POST){
+            cookie("$cookiePrefix-recommend", I("post.recommend"));
         }
+
+        $cookieRecommend= cookie("$cookiePrefix-recommend");
+        if ($cookieRecommend && $cookieRecommend != -10) {
+            array_push($condition, array("recommend" => $cookieRecommend));
+        }
+//        if (I("post.recommend") && I("post.recommend") != -10) {
+//            array_push($condition, array("recommend" => I("post.recommend")));
+//        }
         if (I("post.status") && I("post.status") != -10) {
             array_push($condition, array("status" => I("post.status")));
         }
