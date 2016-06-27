@@ -137,12 +137,14 @@ class ShopController extends BaseController
 
         dump(I("post.productName"));
 
-        if (I("post.productName") == "") {
-            cookie("$cookiePrefix-productName", null);
-        } else {
-            cookie("$cookiePrefix-productName", I("productName"));
+        if (IS_POST) {
+            if (I("post.productName") == "") {
+                cookie("$cookiePrefix-productName", null);
+            } else {
+                cookie("$cookiePrefix-productName", I("productName"));
+            }
         }
-        
+
 
         $cookieProductName = cookie("$cookiePrefix-productName");
         dump($cookieProductName);
