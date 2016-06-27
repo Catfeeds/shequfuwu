@@ -160,7 +160,7 @@ class ShopController extends BaseController
         }
 
         $cookieRecommend= cookie("$cookiePrefix-recommend");
-        if ($cookieRecommend && $cookieRecommend != -10) {
+        if ($cookieRecommend!=null && $cookieRecommend != -10) {
             array_push($condition, array("recommend" => $cookieRecommend));
         }
 //        if (I("post.recommend") && I("post.recommend") != -10) {
@@ -172,8 +172,8 @@ class ShopController extends BaseController
         }
 
         $cookieStatus= cookie("$cookiePrefix-status");
-        dump($cookieStatus);
-        if ($cookieStatus && $cookieStatus != -10) {
+        //dump($cookieStatus);
+        if ($cookieStatus!=null && $cookieStatus != -10) {
             array_push($condition, array("status" => $cookieStatus));
         }
 //        if (I("post.status") && I("post.status") != -10) {
