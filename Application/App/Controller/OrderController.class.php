@@ -107,6 +107,9 @@ class OrderController extends BaseController
 
             $getProduct = $product->get(array("id" => $value["id"]));
             $detail["file_id"] = $getProduct["file_id"];
+            //---添加内容---------------------------------------------
+            $detail["product_unit"]= $getProduct["unit"];
+            //-------------------------------------------------------
             $scoreInc += floatval($getProduct["score"]);
 
             array_push($detailAll, $detail);
