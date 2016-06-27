@@ -135,6 +135,7 @@ class ShopController extends BaseController
             array_push($condition, array("menu_id" => I("post.category")));
         }
 
+        dump(I("productName"));
         if (I("productName")!=null) {
             if (I("productName") == "") {
                 cookie("$cookiePrefix-productName", null);
