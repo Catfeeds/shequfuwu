@@ -51,9 +51,9 @@
                                 <?php $cookieValue= cookie($cookiePrefix.'-status'); ?>
                                 <select name="status" class="form-control">
                                     <option value="-10">请选择商品状态</option>
-                                    <option value="1" <?php if($cookieValue=="1"){ echo " selected=selected "} ?>>出售</option>
-                                    <option value="-1" <?php if($cookieValue=="-1"){ echo " selected=selected "} ?>>下架</option>
-                                    <option value="0" <?php if($cookieValue=="0"){ echo " selected=selected "} ?>>售罄</option>
+                                    <option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>出售</option>
+                                    <option value="-1" <?php if($cookieValue=="-1") echo " selected=selected "; ?>>下架</option>
+                                    <option value="0" <?php if($cookieValue=="0") echo " selected=selected "; ?>>售罄</option>
                                 </select>
                             </div>
 
