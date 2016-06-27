@@ -136,15 +136,13 @@ class ShopController extends BaseController
         }
 
         dump(I("post.productName"));
-        if (I("post.productName")!=null) {
-            if (I("productName") == "") {
-                cookie("$cookiePrefix-productName", null);
-            } else {
-                cookie("$cookiePrefix-productName", I("productName"));
-            }
-        } else {
 
+        if (I("post.productName") == "") {
+            cookie("$cookiePrefix-productName", null);
+        } else {
+            cookie("$cookiePrefix-productName", I("productName"));
         }
+        
 
         $cookieProductName = cookie("$cookiePrefix-productName");
         dump($cookieProductName);
