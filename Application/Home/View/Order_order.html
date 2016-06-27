@@ -267,7 +267,7 @@
                                             $data = $order[detail];
                                             for($i=0;$i < count($data);$i++){
                                             echo '
-                                            <div>'.$data[$i][name].$data[$i][attr].'<span class="badge">'.$data[$i][price].'元*'.$data[$i][num].'</span>
+                                            <div>'.$data[$i][name].'('.$data[$i][sku_name].')<span class="badge">'.$data[$i][price].'元*'.$data[$i][num].'</span>
                                             </div>
                                             ';
                                             }
