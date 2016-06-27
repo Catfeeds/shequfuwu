@@ -1,6 +1,8 @@
 <?php
 namespace Admin\Controller;
 
+use Vendor\Hiland\Utils\DataModel\ModelMate;
+
 class ShopController extends BaseController
 {
     public function menu()
@@ -426,7 +428,8 @@ class ShopController extends BaseController
     /**
      * 店铺复制
      */
-    public function copy(){
+    public function copy()
+    {
         if (IS_POST) {
 //            $data = I("post.");
 //
@@ -440,7 +443,21 @@ class ShopController extends BaseController
 //
 //            $this->success("保存成功", U("Admin/Shop/shop"));
         } else {
+            $shopMate= new ModelMate('shop');
+
+            $shopList= $shopMate->select();
+            $this->assign("shopList",$shopList);
+
             $this->display();
         }
+    }
+
+    public function getMenus($shopId)
+    {
+        $mate= new ModelMate('menu');
+        $condition= array();
+        $condition['shop_id']=$shopId;
+        $result= $mate->select($condition);
+        $this->ajaxReturn($result);
     }
 }

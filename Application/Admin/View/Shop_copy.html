@@ -16,48 +16,86 @@
                 </div>
                 <!-- form start -->
 
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">被复制店铺名称</label>
-
-                            <div class="col-md-5">
-
-                                <select name="sourceShop" class="form-control">
-                                    <option value="0">请选择店铺</option>
-                                    <volist name="shopList" id="source_vo">
-                                        <option value="{$source_vo.id}">{$source_vo.name}</option>
-                                    </volist>
-                                </select>
-                            </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">被复制店铺名称</label>
+                        <div class="col-sm-3">
+                            <select name="sourceShop" id="sourceShop" class="form-control">
+                                <option value="0">请选择店铺</option>
+                                <volist name="shopList" id="source_vo">
+                                    <option value="{$source_vo.id}">{$source_vo.name}</option>
+                                </volist>
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label class="control-label col-md-2">目标店铺名称</label>
-
-                            <div class="col-md-5">
-                                <select name="targetShop" class="form-control">
-                                    <option value="0">请选择店铺</option>
-                                    <volist name="shopList" id="target_vo">
-                                        <option value="{$target_vo.id}">{$target_vo.name}</option>
-                                    </volist>
-                                </select>
-                            </div>
+                        <label class="control-label col-sm-1">目标店铺名称</label>
+                        <div class="col-sm-3">
+                            <select name="targetShop" id="targetShop" class="form-control">
+                                <option value="0">请选择店铺</option>
+                                <volist name="shopList" id="target_vo">
+                                    <option value="{$target_vo.id}">{$target_vo.name}</option>
+                                </volist>
+                            </select>
                         </div>
                     </div>
-                    <!-- /.box-body -->
+                </div>
+                <!-- /.box-body -->
 
-                    <div class="box-footer">
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-block btn-danger">复制</button>
-                        </div>
+                <div class="box-footer">
+                    <div class="col-sm-2">
+                        <button type="button" id="buttonCopy" class="btn btn-block btn-danger">复制</button>
                     </div>
+                </div>
+                <div id="displayBoard"  class="box-footer">
 
+                </div>
             </div>
             <!-- /.box -->
 
         </div>
         <!--/.col (right) -->
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#buttonCopy').click(function () {
+                var sourceShopId= $("#sourceShop").val();
+                //alert(sourceShopId);
+                //$("#displayBoard").html(sourceShopId);
+                $.ajax({
+                    type: "get",
+                    url: "__APP__/Admin/Shop/getMenus",
+                    data: {
+                        shopId: sourceShopId
+                    },
+                    success: function (menuArray) {
+                        if (menuArray) {
+                            var menuCount= menuArray.length;
+
+                            var newContent= "共有"+menuCount+"个菜单需要复制<br/>";
+                            var oldHtml= $("#displayBoard").html();
+                            $("#displayBoard").html(oldHtml + newContent);
+
+                            for(var i=0;i<menuCount;i++){
+                                var newContent= "正在复制类别-"+ menuArray[i]['name'] + "<br/>";
+                                var oldHtml= $("#displayBoard").html();
+                                $("#displayBoard").html(oldHtml + newContent);
+                            }
+                        } else {
+                            //alert('提交失败!余额不足或者商品已下架,请重新选购!');
+                        }
+                    },
+                    beforeSend: function () {
+
+                    },
+                    complete: function () {
+
+                    }
+                });
+            });
+        });
+    </script>
 </section>
 
 
