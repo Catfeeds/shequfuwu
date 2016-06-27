@@ -133,6 +133,7 @@ class FooController extends Controller
         cookie($cookieKey,'qingdao');
         dump(cookie($cookieKey));
         cookie($cookieKey,'-');
+        Cookie:
         dump(cookie($cookieKey));
     }
 }

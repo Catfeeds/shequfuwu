@@ -135,9 +135,9 @@ class ShopController extends BaseController
             array_push($condition, array("menu_id" => I("post.category")));
         }
 
-        if (I("productName")) {
+        if (I("productName")!=null) {
             if (I("productName") == "") {
-                cookie("$cookiePrefix-productName", '<NoN>');
+                cookie("$cookiePrefix-productName", null);
             } else {
                 cookie("$cookiePrefix-productName", I("productName"));
             }
@@ -147,7 +147,7 @@ class ShopController extends BaseController
 
         $cookieProductName = cookie("$cookiePrefix-productName");
         dump($cookieProductName);
-        if ($cookieProductName && $cookieProductName != '<NoN>') {
+        if ($cookieProductName) {
             array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
         }
 
