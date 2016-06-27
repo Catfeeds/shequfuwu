@@ -127,4 +127,12 @@ class FooController extends Controller
         $qrTicket= WechatHelper::getQRTicket(146,'','QR_LIMIT_SCENE');
         dump($qrTicket);
     }
+
+    public function cookieop(){
+        $cookieKey= "my-ss";
+        cookie($cookieKey,'qingdao');
+        dump(cookie($cookieKey));
+        cookie($cookieKey,'');
+        dump(cookie($cookieKey));
+    }
 }
