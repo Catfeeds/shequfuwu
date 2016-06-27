@@ -160,6 +160,7 @@ class ShopController extends BaseController
         }
 
         $cookieRecommend= cookie("$cookiePrefix-recommend");
+        dump($cookieRecommend);
         if ($cookieRecommend && $cookieRecommend != -10) {
             array_push($condition, array("recommend" => $cookieRecommend));
         }
