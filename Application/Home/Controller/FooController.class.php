@@ -132,8 +132,8 @@ class FooController extends Controller
         $cookieKey= "my-ss";
         cookie($cookieKey,'qingdao');
         dump(cookie($cookieKey));
-        cookie($cookieKey,'-');
-        Cookie:
+        cookie($cookieKey,null);
+        //Cookie:
         dump(cookie($cookieKey));
     }
 }
