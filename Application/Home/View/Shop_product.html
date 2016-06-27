@@ -53,9 +53,23 @@
 
                                 <select name="status" class="form-control">
                                     <option value="-10">请选择商品状态</option>
-                                    <option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>出售</option>
-                                    <option value="-1" <?php if($cookieValue=="-1") echo " selected=selected "; ?>>下架</option>
-                                    <option value="0" <?php if($cookieValue=="0") echo " selected=selected "; ?>>售罄</option>
+                                    <if condition="$cookieValue=='1'">
+                                        <option value="1" selected="selected">出售</option>
+                                        <else/>
+                                        <option value="1" >出售</option>
+                                    </if>
+
+                                    <if condition="$cookieValue=='-1'">
+                                        <option value="-1" selected="selected">下架</option>
+                                        <else/>
+                                        <option value="-1" >下架</option>
+                                    </if>
+
+                                    <if condition="$cookieValue=='0'">
+                                        <option value="0" selected="selected">售罄</option>
+                                        <else/>
+                                        <option value="0" >售罄</option>
+                                    </if>
                                 </select>
                             </div>
 
