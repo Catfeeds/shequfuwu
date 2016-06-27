@@ -21,19 +21,21 @@
                 <form class="form-horizontal" action="{:U('Home/Shop/product')}" method="post">
                     <div class="box-body">
                         <div class="form-group">
+                            <?php $shopId= session('homeShopId');
+                                $cookiePrefix= 'shop'.$shopId; ?>
                             <label class="col-sm-1 control-label">商品名称</label>
                             <div class="col-sm-3">
-                                <input class="form-control" name="productName" placeholder="" value="<?php $shopId= session('homeShopId');
-                                $cookiePrefix= 'shop'.$shopId; $cookieValue=cookie($cookiePrefix.'-productName'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
+                                <input class="form-control" name="productName" placeholder="" value="<?php $cookieValue=cookie($cookiePrefix.'-productName'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
                                 type="text">
                             </div>
 
                             <label class="col-sm-1 control-label">商品类别</label>
                             <div class="col-sm-3">
+                                <?php $cookieValue= cookie($cookiePrefix.'-category'); ?>
                                 <select name="category" class="form-control">
                                     <option value="-10">请选择商品类别</option>
                                     <volist name="menuList" id="vo">
-                                        <if condition="I('post.category') eq (string)$vo['id']">
+                                        <if condition="$cookieValue eq (string)$vo['id']">
                                             <option value="{$vo.id}" selected="selected">{$vo.name}</option>
                                             <else/>
                                             <option value="{$vo.id}">{$vo.name}</option>

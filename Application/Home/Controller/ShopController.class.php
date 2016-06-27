@@ -131,11 +131,15 @@ class ShopController extends BaseController
         );
 
 
-        if (I("post.category") && I("post.category") != -10) {
-            array_push($condition, array("menu_id" => I("post.category")));
+        if(IS_POST){
+            cookie("$cookiePrefix-category", I("post.category"));
         }
 
-        dump(I("post.productName"));
+        $cookieCategory= cookie("$cookiePrefix-category");
+        if ($cookieCategory && $cookieCategory != -10) {
+            array_push($condition, array("menu_id" => $cookieCategory));
+        }
+
 
         if (IS_POST) {
             if (I("post.productName") == "") {
@@ -145,9 +149,7 @@ class ShopController extends BaseController
             }
         }
 
-
         $cookieProductName = cookie("$cookiePrefix-productName");
-        dump($cookieProductName);
         if ($cookieProductName) {
             array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
         }
