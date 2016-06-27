@@ -156,7 +156,7 @@ class ShopController extends BaseController
 
 
         if(IS_POST){
-            cookie("$cookiePrefix-recommend", I("post.recommend"));
+            cookie("$cookiePrefix-recommend", I("post.productRecommend"));
         }
 
         $cookieRecommend= cookie("$cookiePrefix-recommend");

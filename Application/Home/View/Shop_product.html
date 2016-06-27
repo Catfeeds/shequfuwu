@@ -75,7 +75,7 @@
                             <label class="col-sm-1 control-label">推荐状态</label>
                             <div class="col-sm-3">
                                 <?php $cookieValue= cookie($cookiePrefix.'-recommend'); ?>
-                                <select name="recommend" class="form-control">
+                                <select name="productRecommend" class="form-control">
                                     <option value="-10">请选择推荐状态</option>
                                     <option value="0" <?php if($cookieValue=="0") echo " selected=selected "; ?>>正常</option>
                                     <option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>推荐</option>
