@@ -48,7 +48,8 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">商品状态</label>
                             <div class="col-sm-3">
-                                <?php $cookieValue= cookie($cookiePrefix.'-status'); ?>
+                                <?php $cookieValue= cookie($cookiePrefix.'-status'); dump($cookieValue);?>
+
                                 <select name="status" class="form-control">
                                     <option value="-10">请选择商品状态</option>
                                     <option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>出售</option>
