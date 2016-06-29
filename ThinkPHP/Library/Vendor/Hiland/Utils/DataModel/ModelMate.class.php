@@ -74,6 +74,8 @@ class ModelMate
         return $this->model->where($condition)->select();
     }
 
+
+
     /**
      * 交互信息
      *
@@ -132,6 +134,16 @@ class ModelMate
     }
 
     /**
+     * 删除数据
+     * @param array $condition
+     * @return mixed 失败返回false；成功返回删除数据的条数
+     */
+    public function delete($condition = array())
+    {
+        return $this->model->where($condition)->delete();
+    }
+
+    /**
      * 获取某记录的字段的值
      * @param int|string $key
      * @param string $feildName
@@ -182,7 +194,7 @@ class ModelMate
     }
 
     /**
-     * 执行SQL语句，如果语句里面涉及到本模型对应的表名称，建议不要直接写。可以使用“关键字”  __MODELTABLENAME__,或者__MTN__ ，本函数自动翻译为带前缀的表名称
+     * 执行SQL语句，如果语句里面涉及到本模型对应的表名称，建议不要直接写。可以使用“关键字”  __MODELTABLENAME__,或者__MTN__,推荐使用 __TABLE__ ，本函数自动翻译为带前缀的表名称
      * @param $sql
      * @return mixed
      */
@@ -203,5 +215,9 @@ class ModelMate
         }
 
         return $this->model->query($sql);
+    }
+
+    public function execute($sql,$parse = false){
+        return $this->model->execute($sql,$parse);
     }
 }

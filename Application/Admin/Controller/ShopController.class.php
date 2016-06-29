@@ -431,33 +431,109 @@ class ShopController extends BaseController
     public function copy()
     {
         if (IS_POST) {
-//            $data = I("post.");
-//
-//            if (!$data["id"]) {
-//                $data["user_id"] = session("adminId");
-//            }
-//
-//            unset($data["wd"]);
-//
-//            D("Shop")->addShop($data);
-//
-//            $this->success("保存成功", U("Admin/Shop/shop"));
-        } else {
-            $shopMate= new ModelMate('shop');
 
-            $shopList= $shopMate->select();
-            $this->assign("shopList",$shopList);
+        } else {
+            $shopMate = new ModelMate('shop');
+
+            $shopList = $shopMate->select();
+            $this->assign("shopList", $shopList);
 
             $this->display();
         }
     }
 
-    public function getMenus($shopId)
+    public function reorganizeProduct($sourceShopId = 0, $targetShopId = 0)
     {
-        $mate= new ModelMate('menu');
-        $condition= array();
-        $condition['shop_id']=$shopId;
-        $result= $mate->select($condition);
-        $this->ajaxReturn($result);
+        $menus = $this->getMenus($targetShopId,false);
+        foreach ($menus as $menu) {
+            $menuIDNew= $menu['id'];
+            $menuIDOld= $menu['copysourceid'];
+            $sql= "Update __TABLE__ set menu_id=$menuIDNew where shop_id=$targetShopId and  menu_id=$menuIDOld";
+            $mateProduct = new ModelMate('product');
+            $mateProduct->execute($sql);
+        }
+
+        $this->ajaxReturn('success');
     }
+
+    public function reorganizeSku($sourceShopId = 0, $targetShopId = 0)
+    {
+        $products = $this->getProducts($targetShopId,false);
+        foreach ($products as $product) {
+            $productIDNew= $product['id'];
+            $productIDOld= $product['copysourceid'];
+            $sql= "Update __TABLE__ set product_id=$productIDNew where shop_id=$targetShopId and  product_id=$productIDOld";
+            $mateProduct = new ModelMate('productSku');
+            $mateProduct->execute($sql);
+        }
+
+        $this->ajaxReturn('success');
+    }
+
+    public function copyData($sourceShopId = 0, $targetShopId = 0)
+    {
+        $mateMenu = new ModelMate('menu');
+        $sqlMenu = "INSERT INTO __TABLE__(`name`,pid,file_id,remark,rank,time,shop_id,copysourceid) SELECT `name`,pid,file_id,remark,rank,time,$targetShopId,id FROM __TABLE__ where shop_id=$sourceShopId";
+        $menuResult = $mateMenu->execute($sqlMenu);
+        //dump($menuResult);
+
+        $mateProduct = new ModelMate('product');
+        $sqlProduct = "INSERT INTO __TABLE__(shop_id,menu_id,`name`,subname,price,old_price,unit,score,sales,store,albums,visiter,psku,file_id,detail,`status`,label,remark,rank,time,copysourceid) SELECT $targetShopId,menu_id,`name`,subname,price,old_price,unit,score,sales,store,albums,visiter,psku,file_id,detail,`status`,label,remark,rank,time,id FROM __TABLE__ where shop_id=$sourceShopId";
+        $resultProduct = $mateProduct->execute($sqlProduct);
+        //dump($resultProduct);
+
+        $mateSku = new ModelMate('productSku');
+        $sqlSku = "INSERT INTO __TABLE__(shop_id,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,copysourceid) SELECT $targetShopId,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,id FROM __TABLE__ where shop_id=$sourceShopId";
+        $resultSku = $mateSku->execute($sqlSku);
+
+        $this->ajaxReturn('success');
+    }
+
+    public function cleanShop($shopId)
+    {
+
+        $condition = array();
+        $condition['shop_id'] = $shopId;
+
+        $mateMenu = new ModelMate('menu');
+        $resultMenu = $mateMenu->delete($condition);
+
+        $mateProduct = new ModelMate('product');
+        $resultMenu = $mateProduct->delete($condition);
+
+        $mateProductSku = new ModelMate('productSku');
+        $resultMenu = $mateProductSku->delete($condition);
+
+        $this->ajaxReturn('success');
+    }
+
+    private function getMenus($shopId, $returnAjax = true)
+    {
+        $mate = new ModelMate('menu');
+        $condition = array();
+        $condition['shop_id'] = $shopId;
+        $result = $mate->select($condition);
+
+        if ($returnAjax) {
+            $this->ajaxReturn($result);
+        } else {
+            return $result;
+        }
+    }
+
+    private function getProducts($shopId, $returnAjax = true)
+    {
+        $mate = new ModelMate('product');
+        $condition = array();
+        $condition['shop_id'] = $shopId;
+        $result = $mate->select($condition);
+
+        if ($returnAjax) {
+            $this->ajaxReturn($result);
+        } else {
+            return $result;
+        }
+    }
+
+
 }

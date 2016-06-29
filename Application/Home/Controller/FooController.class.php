@@ -116,24 +116,62 @@ class FooController extends Controller
         //dump($product);
     }
 
-    public function getshopop($shopid=144){
-        $data= D('shop')->getShop();
+    public function getshopop($shopid = 144)
+    {
+        $data = D('shop')->getShop();
     }
 
-    public function wechatop(){
-        $token= WechatHelper::getAccessToken();
+    public function wechatop()
+    {
+        $token = WechatHelper::getAccessToken();
         dump($token);
 
-        $qrTicket= WechatHelper::getQRTicket(146,'','QR_LIMIT_SCENE');
+        $qrTicket = WechatHelper::getQRTicket(146, '', 'QR_LIMIT_SCENE');
         dump($qrTicket);
     }
 
-    public function cookieop(){
-        $cookieKey= "my-ss";
-        cookie($cookieKey,'qingdao');
+    public function cookieop()
+    {
+        $cookieKey = "my-ss";
+        cookie($cookieKey, 'qingdao');
         dump(cookie($cookieKey));
-        cookie($cookieKey,null);
+        cookie($cookieKey, null);
         //Cookie:
         dump(cookie($cookieKey));
+    }
+
+    public function modelmateop($shopId = 0)
+    {
+        $mate = new ModelMate('menu');
+        $condition = array();
+        $condition['shop_id'] = $shopId;
+        $result = $mate->delete($condition);
+        dump($result);
+    }
+
+    public function keywordop($shopId = 144)
+    {
+        $mate = new ModelMate('menu');
+        $sql = "select * from __TABLE__ where shop_id= $shopId";
+        $result = $mate->query($sql);
+        dump($result);
+    }
+
+    public function copydataop($sourceShopId = 144, $targetShopId = 2)
+    {
+        $mateMenu = new ModelMate('menu');
+        $sqlMenu = "INSERT INTO __TABLE__(`name`,pid,file_id,remark,rank,time,shop_id,copysourceid) SELECT `name`,pid,file_id,remark,rank,time,$targetShopId,id FROM __TABLE__ where shop_id=$sourceShopId";
+        $menuResult = $mateMenu->execute($sqlMenu);
+        dump($menuResult);
+
+        $mateProduct = new ModelMate('product');
+        $sqlProduct = "INSERT INTO __TABLE__(shop_id,menu_id,`name`,subname,price,old_price,unit,score,sales,store,albums,visiter,psku,file_id,detail,`status`,label,remark,rank,time,copysourceid) SELECT $targetShopId,menu_id,`name`,subname,price,old_price,unit,score,sales,store,albums,visiter,psku,file_id,detail,`status`,label,remark,rank,time,id FROM __TABLE__ where shop_id=$sourceShopId";
+        $resultProduct = $mateProduct->execute($sqlProduct);
+        dump($resultProduct);
+
+        $mateSku = new ModelMate('productSku');
+        $sqlSku = "INSERT INTO __TABLE__(shop_id,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,copysourceid) SELECT $targetShopId,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,id FROM __TABLE__ where shop_id=$sourceShopId";
+        $resultSku = $mateSku->execute($sqlSku);
+        dump($resultSku);
     }
 }

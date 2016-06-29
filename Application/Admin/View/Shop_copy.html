@@ -15,87 +15,215 @@
                     <h3 class="box-title">店铺复制</h3>
                 </div>
                 <!-- form start -->
-
-                <div class="box-body">
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label">被复制店铺名称</label>
-                        <div class="col-sm-3">
-                            <select name="sourceShop" id="sourceShop" class="form-control">
-                                <option value="0">请选择店铺</option>
-                                <volist name="shopList" id="source_vo">
-                                    <option value="{$source_vo.id}">{$source_vo.name}</option>
-                                </volist>
-                            </select>
+                <form action="" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">被复制店铺名称</label>
+                            <div class="col-sm-3">
+                                <select name="sourceShop" id="sourceShop" class="form-control">
+                                    <option value="0">请选择店铺</option>
+                                    <volist name="shopList" id="source_vo">
+                                        <option value="{$source_vo.id}">{$source_vo.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
                         </div>
 
-                        <label class="control-label col-sm-1">目标店铺名称</label>
-                        <div class="col-sm-3">
-                            <select name="targetShop" id="targetShop" class="form-control">
-                                <option value="0">请选择店铺</option>
-                                <volist name="shopList" id="target_vo">
-                                    <option value="{$target_vo.id}">{$target_vo.name}</option>
-                                </volist>
-                            </select>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">目标店铺名称</label>
+                            <div class="col-sm-3">
+                                <select name="targetShop" id="targetShop" class="form-control">
+                                    <option value="0">请选择店铺</option>
+                                    <volist name="shopList" id="target_vo">
+                                        <option value="{$target_vo.id}">{$target_vo.name}</option>
+                                    </volist>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-7"><input type="checkbox" checked="checked" id="ckbCleanTargetShop"
+                                                         name="ckbCleanTargetShop"
+                                                         value=""/><label
+                                    for="ckbCleanTargetShop">复制前，先清空目标店铺内的商品等信息</label>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <div class="col-sm-2">
+                                <button type="button" id="buttonCopy" class="btn btn-block btn-danger">复制</button>
+                            </div>
+                        </div>
+                        <div id="displayBoard" class="box-footer">
+
                         </div>
                     </div>
-                </div>
-                <!-- /.box-body -->
-
-                <div class="box-footer">
-                    <div class="col-sm-2">
-                        <button type="button" id="buttonCopy" class="btn btn-block btn-danger">复制</button>
-                    </div>
-                </div>
-                <div id="displayBoard"  class="box-footer">
-
-                </div>
+                    <!-- /.box -->
+                </form>
             </div>
-            <!-- /.box -->
-
+            <!--/.col (right) -->
         </div>
-        <!--/.col (right) -->
-    </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-            $('#buttonCopy').click(function () {
-                var sourceShopId= $("#sourceShop").val();
-                //alert(sourceShopId);
-                //$("#displayBoard").html(sourceShopId);
+                $('#buttonCopy').click(function () {
+                    var sourceShopId = $("#sourceShop").val();
+                    var targetShopId = $("#targetShop").val();
+
+                    if ($("#ckbCleanTargetShop").is(':checked')) {
+                        if (confirm("非常重要。本操作将会对所选店铺的商品等信息进行复制并删除目标店铺的所有数据，是否要继续？") == false) {
+                            return;
+                        }
+                    } else {
+                        if (confirm("非常重要。本操作将会对所选店铺的商品等信息进行复制，是否要继续？") == false) {
+                            return;
+                        }
+                    }
+
+                    if (sourceShopId == 0) {
+                        alert("请选择被复制店铺！");
+                        return;
+                    }
+
+                    if (targetShopId == 0) {
+                        alert("请选择目标店铺！");
+                        return;
+                    }
+
+                    if (sourceShopId == targetShopId) {
+                        alert("目标店铺不能与被复制店铺一致！");
+                        return;
+                    }
+                    //alert(sourceShopId);
+                    $("#displayBoard").html('');
+                    cleanShopData(sourceShopId, targetShopId);
+                });
+            });
+
+            function appendDisplayInfo(newContent) {
+                var oldHtml = $("#displayBoard").html();
+                $("#displayBoard").html(oldHtml + newContent);
+            }
+
+            function cleanShopData(sourceShopId, targetShopId) {
+                //1、首先删除目标店铺的数据
+                if ($("#ckbCleanTargetShop").is(':checked')) {
+                    $.ajax({
+                        type: "get",
+                        url: "__APP__/Admin/Shop/cleanShop",
+                        data: {
+                            shopId: targetShopId
+                        },
+                        success: function (menuArray) {
+                            if (menuArray) {
+                                var newContent = "目标店铺的数据已经清除完毕。<br/>";
+                                appendDisplayInfo(newContent);
+
+                                //开始复制数据
+                                copyData(sourceShopId, targetShopId);
+                            }
+                        },
+                        beforeSend: function () {
+                            var newContent = "开始删除目标店铺的数据...<br/>";
+                            appendDisplayInfo(newContent);
+                        },
+                        complete: function () {
+
+                        }
+                    });
+                } else {
+                    copyData(sourceShopId, targetShopId);
+                }
+            }
+
+
+            function copyData(sourceShopId, targetShopId) {
                 $.ajax({
                     type: "get",
-                    url: "__APP__/Admin/Shop/getMenus",
+                    url: "__APP__/Admin/Shop/copyData",
                     data: {
-                        shopId: sourceShopId
+                        sourceShopId: sourceShopId,
+                        targetShopId: targetShopId
                     },
-                    success: function (menuArray) {
-                        if (menuArray) {
-                            var menuCount= menuArray.length;
+                    success: function (res) {
+                        if (res) {
+                            var newContent = "店铺内的数据信息复制完毕。<br/>";
+                            appendDisplayInfo(newContent);
 
-                            var newContent= "共有"+menuCount+"个菜单需要复制<br/>";
-                            var oldHtml= $("#displayBoard").html();
-                            $("#displayBoard").html(oldHtml + newContent);
-
-                            for(var i=0;i<menuCount;i++){
-                                var newContent= "正在复制类别-"+ menuArray[i]['name'] + "<br/>";
-                                var oldHtml= $("#displayBoard").html();
-                                $("#displayBoard").html(oldHtml + newContent);
-                            }
+                            reorganizeProduct(sourceShopId, targetShopId);
                         } else {
                             //alert('提交失败!余额不足或者商品已下架,请重新选购!');
                         }
                     },
                     beforeSend: function () {
-
+                        var newContent = "开始复制店铺内的数据信息...<br/>";
+                        appendDisplayInfo(newContent);
                     },
                     complete: function () {
 
                     }
                 });
-            });
-        });
-    </script>
+            }
+
+            function reorganizeProduct(sourceShopId, targetShopId) {
+                $.ajax({
+                    type: "get",
+                    url: "__APP__/Admin/Shop/reorganizeProduct",
+                    data: {
+                        sourceShopId: sourceShopId,
+                        targetShopId: targetShopId
+                    },
+                    success: function (res) {
+                        if (res) {
+                            var newContent = "目标店铺内的产品信息整理完毕。<br/>";
+                            appendDisplayInfo(newContent);
+
+                            reorganizeSku(sourceShopId, targetShopId)
+                        } else {
+                            //alert('提交失败!余额不足或者商品已下架,请重新选购!');
+                        }
+                    },
+                    beforeSend: function () {
+                        var newContent = "开始整理目标店铺内的产品信息...<br/>";
+                        appendDisplayInfo(newContent);
+                    },
+                    complete: function () {
+
+                    }
+                });
+            }
+
+            function reorganizeSku(sourceShopId, targetShopId) {
+                $.ajax({
+                    type: "get",
+                    url: "__APP__/Admin/Shop/reorganizeSku",
+                    data: {
+                        sourceShopId: sourceShopId,
+                        targetShopId: targetShopId
+                    },
+                    success: function (res) {
+                        if (res) {
+                            var newContent = "目标店铺内的SKU信息整理完毕。<br/>";
+                            appendDisplayInfo(newContent);
+                        } else {
+                            //alert('提交失败!余额不足或者商品已下架,请重新选购!');
+                        }
+                    },
+                    beforeSend: function () {
+                        var newContent = "开始整理目标店铺内的SKU信息...<br/>";
+                        appendDisplayInfo(newContent);
+                    },
+                    complete: function () {
+
+                    }
+                });
+            }
+        </script>
+    </div>
 </section>
+
 
 
