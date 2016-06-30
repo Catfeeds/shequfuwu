@@ -11,6 +11,7 @@ namespace Home\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
@@ -173,5 +174,9 @@ class FooController extends Controller
         $sqlSku = "INSERT INTO __TABLE__(shop_id,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,copysourceid) SELECT $targetShopId,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,id FROM __TABLE__ where shop_id=$sourceShopId";
         $resultSku = $mateSku->execute($sqlSku);
         dump($resultSku);
+    }
+    
+    public function logop(){
+        CommonLoger::log('logtest',time());
     }
 }

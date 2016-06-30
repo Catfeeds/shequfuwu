@@ -2,10 +2,13 @@
 namespace App\Controller;
 
 
+use Vendor\Hiland\Biz\Loger\CommonLoger;
+
 class IndexController extends BaseController
 {
     public function index()
     {
+        G('weixin_mainPageBegin');
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
 
@@ -36,6 +39,9 @@ class IndexController extends BaseController
 
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
+        
+        $timeUsed= G('weixin_mainPageBegin','weixin_mainPageEnd');
+        CommonLoger::log('微信首页加载耗时',$timeUsed);
 
         $this->display();
     }
