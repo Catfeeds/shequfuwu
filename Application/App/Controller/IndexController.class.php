@@ -36,7 +36,7 @@ class IndexController extends BaseController
         $menu = list_to_tree($menu, 'id', 'pid', 'sub');
         $this->assign("menu", json_encode($menu));
 
-        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), false, "rank desc", 0, 0, 0);
+        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
         $this->assign("product", json_encode($product));
 
         $ads = D("Ads")->getList(array("shop_id" => $shopId), true);

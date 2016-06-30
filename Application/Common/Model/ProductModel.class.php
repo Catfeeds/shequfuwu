@@ -39,6 +39,15 @@ class ProductModel extends RelationModel
 
     );
 
+    protected $_linkOnlyFile = array(
+        'File' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'mapping_name' => 'file',
+            'foreign_key' => 'file_id',//关联id
+            'as_fields' => 'savename:savename,savepath:savepath',
+        )
+    );
+
     public function get($condition = array(), $relation = false)
     {
         $data = $this->where($condition);
@@ -55,6 +64,7 @@ class ProductModel extends RelationModel
         $conditionJson = json_encode($condition);
         $cacheKey = "product::getlist:condition-$conditionJson||relation-$relation||order-$order||p-$p||num-$num||limit-$limit";
         $valueCached = S($cacheKey);
+        $_linkTemp="";
 
         if ($valueCached) {
             return $valueCached;
@@ -62,6 +72,8 @@ class ProductModel extends RelationModel
 
         $data = $this->where($condition);
         if ($relation) {
+            $_linkTemp= $this->_link;
+            $this->_link= $this->_linkOnlyFile;
             $data = $data->relation($relation);
         }
         if ($p && $num) {
@@ -72,6 +84,10 @@ class ProductModel extends RelationModel
         }
 
         $data = $data->order($order)->select();
+
+        if(!empty($_linkTemp)){
+            $this->_link= $_linkTemp;
+        }
 
         S($cacheKey, $data, 60);
 
