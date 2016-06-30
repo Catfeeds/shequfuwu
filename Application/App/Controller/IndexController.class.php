@@ -31,7 +31,7 @@ class IndexController extends BaseController
         $menu = list_to_tree($menu, 'id', 'pid', 'sub');
         $this->assign("menu", json_encode($menu));
 
-        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
+        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), false, "rank desc", 0, 0, 0);
         $this->assign("product", json_encode($product));
 
         $ads = D("Ads")->getList(array("shop_id" => $shopId), true);
@@ -39,7 +39,7 @@ class IndexController extends BaseController
 
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
-        
+
         $timeUsed= G('weixin_mainPageBegin','weixin_mainPageEnd');
         CommonLoger::log('微信首页加载耗时',$timeUsed);
 
