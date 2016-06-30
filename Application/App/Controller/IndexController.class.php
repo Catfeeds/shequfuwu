@@ -9,8 +9,13 @@ class IndexController extends BaseController
     public function index()
     {
         G('weixin_mainPageBegin');
+        G('weixin_oauthBegin');
+
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
+
+        $oautTimeUsed= G('weixin_oauthBegin','weixin_oauthEnd');
+        CommonLoger::log('微信认证加载耗时',$oautTimeUsed);
 
         $user = json_encode($user);
         $this->assign("user", $user);
