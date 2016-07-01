@@ -1448,8 +1448,8 @@ function switchMenu(obj, id) {
         },
         success: function (res) {
 
-            var products = eval(res);
-            alert(products);
+            var products = res;//eval(res);
+            //alert(products);
             var html = template("productItems", products);
             $(".shop-product #productItems").html(html);
         },
