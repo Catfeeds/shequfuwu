@@ -1439,6 +1439,7 @@ function switchMenu(obj, id) {
     $('.menu-name span').html($(obj).html());
     menuId = id;
 
+    alert(menuId);
     $.ajax({
         type: "get",
         url: data.baseUrl + "/App/Index/getProducts",
