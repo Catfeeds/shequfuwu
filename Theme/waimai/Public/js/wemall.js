@@ -1455,7 +1455,6 @@ function switchMenu(obj, id) {
                 imageUrl:data.imageUrl
             };
             var html = template("productItems", dataSending);
-            //alert(html);
             $("#productInfoItems").html(html);
         },
         error: function () {
@@ -1466,6 +1465,7 @@ function switchMenu(obj, id) {
             //$('#page_tag_load').show();
         },
         complete: function () {
+            backToTop();
             //$('#page_tag_load').hide();
         }
     });
