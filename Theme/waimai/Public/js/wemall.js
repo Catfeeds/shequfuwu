@@ -1452,7 +1452,7 @@ function switchMenu(obj, id) {
             //alert(products);
             var html = template("productItems", products);
             alert(html);
-            $("#productItems").html(html);
+            $("#productInfoItems").html(html);
         },
         error: function () {
             // view("异常！");
