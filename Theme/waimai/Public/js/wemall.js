@@ -1451,7 +1451,8 @@ function switchMenu(obj, id) {
             var products = res;//eval(res);
             //alert(products);
             var html = template("productItems", products);
-            $(".shop-product #productItems").html(html);
+            alert(html);
+            $("#productItems").html(html);
         },
         error: function () {
             // view("异常！");
