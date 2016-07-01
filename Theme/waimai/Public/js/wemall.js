@@ -1456,6 +1456,14 @@ function switchMenu(obj, id) {
             };
             var html = template("productItems", dataSending);
             $("#productInfoItems").html(html);
+
+            echo.init({
+                offset: 100,
+                throttle: 250,
+                unload: false,
+                callback: function (element, op) {
+                }
+            });
             backToTop();
         },
         error: function () {
