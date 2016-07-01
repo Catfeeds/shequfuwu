@@ -1456,6 +1456,7 @@ function switchMenu(obj, id) {
             };
             var html = template("productItems", dataSending);
             $("#productInfoItems").html(html);
+            backToTop();
         },
         error: function () {
             // view("异常！");
@@ -1465,7 +1466,7 @@ function switchMenu(obj, id) {
             //$('#page_tag_load').show();
         },
         complete: function () {
-            backToTop();
+
             //$('#page_tag_load').hide();
         }
     });
