@@ -1450,8 +1450,9 @@ function switchMenu(obj, id) {
 
             var products = res;//eval(res);
             //alert(products);
-            var html = template("productItems", products);
-            alert(html);
+            var data={products:products};
+            var html = template("productItems", data);
+            //alert(html);
             $("#productInfoItems").html(html);
         },
         error: function () {
