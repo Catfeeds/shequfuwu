@@ -1439,7 +1439,7 @@ function switchMenu(obj, id) {
     $('.menu-name span').html($(obj).html());
     menuId = id;
 
-    alert(menuId);
+    //alert(menuId);
     $.ajax({
         type: "get",
         url: data.baseUrl + "/App/Index/getProducts",
@@ -1447,6 +1447,7 @@ function switchMenu(obj, id) {
             menuId: id
         },
         success: function (res) {
+            alert(111111111);
             var products = eval(res);
             var html = template("productItems", products);
             $(".shop-product #productItems").html(html);
@@ -1456,10 +1457,10 @@ function switchMenu(obj, id) {
             alert("异常！");
         },
         beforeSend: function () {
-            $('#page_tag_load').show();
+            //$('#page_tag_load').show();
         },
         complete: function () {
-            $('#page_tag_load').hide();
+            //$('#page_tag_load').hide();
         }
     });
 
