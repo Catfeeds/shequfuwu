@@ -1450,7 +1450,10 @@ function switchMenu(obj, id) {
 
             var products = res;//eval(res);
             //alert(products);
-            var data={products:products};
+            var data={products:products,
+                uploadsUrl:data.uploadsUrl,
+                imageUrl:data.imageUrl
+            };
             var html = template("productItems", data);
             //alert(html);
             $("#productInfoItems").html(html);
