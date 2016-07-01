@@ -544,7 +544,7 @@ function addAttr(obj, product_id, sku_id, sku_name, price) {
             var imgSrc = '';
             if (json.savename) {
                 imgSrc = data.uploadsUrl + json.savepath + json.savename;
-                var html='<img class="detail-image contentCenter" style="height:200px" src="'+imgSrc+ '">';
+                var html = '<img class="detail-image contentCenter" style="height:200px" src="' + imgSrc + '">';
                 $('#itemsDetail .detail-image-container').html(html);
                 //$('#itemsDetail .detail-image').attr('style', "height:200px");
                 //$('#itemsDetail .detail-image').attr('src', imgSrc);
@@ -1218,12 +1218,12 @@ function openProduct(o) {
 
     initProduct();
 
-    var lastSelectedMenuID= get('lastSelectedMenuID');
-    if(lastSelectedMenuID){
-        $('#menu_li_'+ lastSelectedMenuID).click();
+    var lastSelectedMenuID = get('lastSelectedMenuID');
+    if (lastSelectedMenuID) {
+        $('#menu_li_' + lastSelectedMenuID).click();
         //$('.shop-menu li').first().click();
         //alert(lastSelectedMenuID);
-    }else{
+    } else {
         $('.shop-menu li').first().click();
         //alert('nnnnnooooooooooooooo');
     }
@@ -1446,9 +1446,13 @@ function switchMenu(obj, id) {
             menuId: id
         },
         success: function (res) {
-            var products= eval(res);
+            var products = eval(res);
             var html = template("productItems", products);
             $(".shop-product #items").html(html);
+        },
+        error: function () {
+            // view("异常！");
+            alert("异常！");
         },
         beforeSend: function () {
             $('#page_tag_load').show();
@@ -1457,7 +1461,7 @@ function switchMenu(obj, id) {
             $('#page_tag_load').hide();
         }
     });
-    
+
     // $.each($('.mui-table-viewa').children(), function (index, value) {
     //     if ($(this).attr("label-cate") == id) {
     //         $(this).show();
@@ -1467,7 +1471,7 @@ function switchMenu(obj, id) {
     // });
 
     //将选定的id保存起来，用于用户“返回”操作的东西
-    set("lastSelectedMenuID",id);
+    set("lastSelectedMenuID", id);
     //backToTop();
 
     echo.init({
