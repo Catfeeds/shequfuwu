@@ -24,29 +24,7 @@
 <div class="shop-product">
     <!-- <div class="menu-name"><span></span></div> -->
     <ul class="mui-table-view mui-table-viewa" id="items">
-        {{each product as value i}}
-        <li class="mui-table-view-cell mui-media" label-cate="{{value.menu_id}}" label-id="{{value.id}}"
-            style="display: none">
-            <img onclick="prevView(this)" class="mui-media-object mui-pull-left mui-pull-lefts"
-                 src="{{imageUrl}}/blank.gif"
-                 style="background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 20px;"
-                 data-echo="{{uploadsUrl+value.savepath+value.savename}}">
-            <div class="mui-media-body">
-                <a href="#/product/{{value.id}}" title="">
-                    <span class="product-name">{{value.name}}</span>
-                </a>
-                <span class="monthlySales"><span>{{value.subname}}</span></span>
-                <span class="mui-ellipsis mui-ellipsisa">￥{{value.price}}</span>
-                <div class="message-icon">
-                    <input class="numbers-minus" type="button"
-                           onclick="reducehotproductNum(this,'{{value.id}}' , false)" style="display: none;">
-                    <input class="numbers" type="text" value="0" style="display: none;">
-                    <input class="numbers-add" type="button"
-                           onclick="doCart(this ,'{{value.id}}','{{value.name}}','{{value.price}}','')">
-                </div>
-            </div>
-        </li>
-        {{/each}}
+
     </ul>
 
     <script type="text/javascript">

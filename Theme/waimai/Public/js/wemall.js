@@ -1438,13 +1438,33 @@ function switchMenu(obj, id) {
     $(obj).removeClass("lia").addClass("lib").siblings().removeClass("lib").addClass("lia");
     $('.menu-name span').html($(obj).html());
     menuId = id;
-    $.each($('.mui-table-viewa').children(), function (index, value) {
-        if ($(this).attr("label-cate") == id) {
-            $(this).show();
-        } else {
-            $(this).hide();
+
+    $.ajax({
+        type: "get",
+        url: data.baseUrl + "/App/Index/getProducts",
+        data: {
+            menuId: id
+        },
+        success: function (res) {
+            var products= eval(res);
+            var html = template("productItems", products);
+            $(".shop-product #items").html(html);
+        },
+        beforeSend: function () {
+            $('#page_tag_load').show();
+        },
+        complete: function () {
+            $('#page_tag_load').hide();
         }
     });
+    
+    // $.each($('.mui-table-viewa').children(), function (index, value) {
+    //     if ($(this).attr("label-cate") == id) {
+    //         $(this).show();
+    //     } else {
+    //         $(this).hide();
+    //     }
+    // });
 
     //将选定的id保存起来，用于用户“返回”操作的东西
     set("lastSelectedMenuID",id);
