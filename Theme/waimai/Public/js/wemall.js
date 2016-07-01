@@ -1447,8 +1447,9 @@ function switchMenu(obj, id) {
             menuId: id
         },
         success: function (res) {
-            alert(res);
+
             var products = eval(res);
+            alert(products);
             var html = template("productItems", products);
             $(".shop-product #productItems").html(html);
         },
