@@ -127,7 +127,7 @@
                                 <th class="hidden-xs">
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
-                                <th>店铺名称</th>
+
                                 <th>菜单</th>
                                 <th>商品名称</th>
                                 <th>图片</th>
@@ -147,9 +147,7 @@
                                         <label><input name="checkbox" class="check" type="checkbox"
                                                       value="{$product.id}"></label>
                                     </td>
-                                    <td>
-                                        {$product.shop.name}
-                                    </td>
+
                                     <td>{$product.menu_name}</td>
                                     <td>{$product.name|msubstr=0,12}</td>
                                     <td>

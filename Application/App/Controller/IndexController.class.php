@@ -14,8 +14,8 @@ class IndexController extends BaseController
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
 
-        $oautTimeUsed= G('weixin_oauthBegin','weixin_oauthEnd');
-        CommonLoger::log('微信认证加载耗时',$oautTimeUsed);
+        $oautTimeUsed = G('weixin_oauthBegin', 'weixin_oauthEnd');
+        CommonLoger::log('微信认证加载耗时', $oautTimeUsed);
 
         $user = json_encode($user);
         $this->assign("user", $user);
@@ -24,7 +24,7 @@ class IndexController extends BaseController
         $this->assign("shopId", $shopId);
 
         $configs = D("Config")->get();
-        $config = D("Shop")->getShop(array('id' => $shopId),true);
+        $config = D("Shop")->getShop(array('id' => $shopId), true);
         $config["delivery_time"] = explode(",", $config["delivery_time"]);
         $config["balance_payment"] = $configs["balance_payment"];
         $config["wechat_payment"] = $configs["wechat_payment"];
@@ -45,8 +45,8 @@ class IndexController extends BaseController
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
 
-        $timeUsed= G('weixin_mainPageBegin','weixin_mainPageEnd');
-        CommonLoger::log('微信首页加载耗时',$timeUsed);
+        $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');
+        CommonLoger::log('微信首页加载耗时', $timeUsed);
 
         $this->display();
     }
@@ -112,8 +112,18 @@ class IndexController extends BaseController
         $this->ajaxReturn($data);
     }
 
-    public function getProducts($menuId=0){
+    /**
+     * 按照类别获取产品
+     * @param int $menuId 产品类别id（菜单id）
+     */
+    public function getProducts($menuId = 0)
+    {
         $products = D("Product")->getList(array("status" => array("neq", -1), "menu_id" => $menuId), true, "rank desc", 0, 0, 0);
         $this->ajaxReturn($products);
+    }
+
+
+    public function searchProducts(){
+
     }
 }

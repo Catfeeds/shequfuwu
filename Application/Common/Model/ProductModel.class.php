@@ -24,12 +24,12 @@ class ProductModel extends RelationModel
 //            'foreign_key' => 'shop_id',//关联id
 ////            'mapping_fields' => 'remark',
 //        ),
-//        'Menu' => array(
-//            'mapping_type' => self::BELONGS_TO,
-//            'mapping_name' => 'menu',
-//            'foreign_key' => 'menu_id',//关联id
-//            'as_fields' => 'name:menu_name',
-//        ),
+        'Menu' => array(
+            'mapping_type' => self::BELONGS_TO,
+            'mapping_name' => 'menu',
+            'foreign_key' => 'menu_id',//关联id
+            'as_fields' => 'name:menu_name',
+        ),
         'File' => array(
             'mapping_type' => self::BELONGS_TO,
             'mapping_name' => 'file',
