@@ -1218,15 +1218,20 @@ function openProduct(o) {
 
     initProduct();
 
-    // var lastSelectedMenuID = get('lastSelectedMenuID');
-    // if (lastSelectedMenuID) {
-    //     $('#menu_li_' + lastSelectedMenuID).click();
-    //     //$('.shop-menu li').first().click();
-    //     //alert(lastSelectedMenuID);
-    // } else {
-    //     $('.shop-menu li').first().click();
-    //     //alert('nnnnnooooooooooooooo');
-    // }
+    var lastSelectedMenuID = get('lastSelectedMenuID');
+    if (lastSelectedMenuID) {
+        $('#menu_li_' + lastSelectedMenuID).click();
+        //$('.shop-menu li').first().click();
+        //alert(lastSelectedMenuID);
+
+        var scrollPosition= get('scrollPositionOfProductPage');
+        if(scrollPosition){
+            window.scroll(0,y);
+        }
+    } else {
+        $('.shop-menu li').first().click();
+        //alert('nnnnnooooooooooooooo');
+    }
 
 
     var swiper = new Swiper('#swiper-container', {
