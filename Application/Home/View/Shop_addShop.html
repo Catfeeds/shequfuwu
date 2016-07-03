@@ -257,9 +257,7 @@
 <script type="text/javascript">
     var lng = {$shop['lng'] ? $shop['lng'] : 113};
     var lat = {$shop['lat'] ? $shop['lat'] : 34};
-    var ads = "{$shop['address'] ? $shop['address'] : "
-    中国
-    "}";
+    var ads = "{$shop['address'] ? $shop['address'] : '中国'}";
 
     var map = new AMap.Map('allmap', {
         resizeEnable: true,

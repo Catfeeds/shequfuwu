@@ -364,11 +364,10 @@
 </section>
 <include file="Public:footer"/>
 <script type="text/javascript">
+    //alert(111111111111);
     var lng = {$shop['lng'] ? $shop['lng'] : 113};
     var lat = {$shop['lat'] ? $shop['lat'] : 34};
-    var ads = "{$shop['address'] ? $shop['address'] : "
-    中国
-    "}";
+    var ads = "{$shop['address'] ? $shop['address'] : '中国'}";
 
     var map = new AMap.Map('allmap', {
         resizeEnable: true,
@@ -376,6 +375,8 @@
         center: [lng, lat]
     });
     $(document).ready(function () {
+
+
 
         //为地图注册click事件获取鼠标点击出的经纬度坐标
         var clickEventListener = map.on('click', function (e) {
