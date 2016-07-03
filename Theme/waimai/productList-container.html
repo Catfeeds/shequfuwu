@@ -29,6 +29,8 @@
 
     <script type="text/javascript">
         $(window).scroll(function () {
+            alert($(document).scrollTop());
+            alert($(window).scrollTop());
             window.localStorage.setItem('scrollPositionOfProductPage',$(document).scrollTop());
         });
     </script>
