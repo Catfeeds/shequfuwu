@@ -144,8 +144,9 @@
                         $('#spanOrderCount').html(orderCount);
                         $("#infoTipSpan").html(content);
 
-                        SetInterval(function(){ $("#infoTipSpan").fadeOut(100).fadeIn(100); },200);
+
                         $('#chatAudio')[0].play();
+                        SetInterval(function(){ $("#infoTipSpan").fadeOut(100).fadeIn(100); },200);
                     } else {
                         $('#spanOrderCount').html('0');
                         $("#infoTipSpan").html('');
