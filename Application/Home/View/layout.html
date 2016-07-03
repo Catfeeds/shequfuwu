@@ -131,19 +131,16 @@
 <include file="Public:footer"/>
 
 <script type="text/javascript">
-    jQuery.fn.flash = function( color, duration )
-    {
-        var current = this.css( 'color' );
-        this.animate( { color: 'rgb(' + color + ')' }, duration / 2 );
-        this.animate( { color: current }, duration / 2 );
+    jQuery.fn.flash = function (color, duration) {
+        var current = this.css('color');
+        this.animate({color: 'rgb(' + color + ')'}, duration / 2);
+        this.animate({color: current}, duration / 2);
     }
 
     $(document).ready(function () {
         $('<audio id="chatAudio"><source src="__PUBLIC__/Admin/dist/wav/newtip.mp3" type="audio/mpeg"></audio>').appendTo('body');//载入声音文件
-        //if ($("#infoTipSpan").html())
-        {
-            $("#infoTipSpan").flash( '255,0,0', 1000 );
-        }
+
+        $("#infoTipSpan").flash('255,0,0', 1000);
 
         function getNewOrderTip() {
             $.ajax({
