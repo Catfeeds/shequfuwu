@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>wemall微商城</title>
+    <title>{:C('PROJECT_NAME')}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -33,7 +33,7 @@
             <img src="__PUBLIC__/Admin/dist/img/logo.png">
         </div>
 
-        <form action="{:U('Home/Public/register')}" method="post">
+        <form action="" method="post">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="账号" onblur="checkName(this)" name="username"
                        id="username" required>
@@ -52,11 +52,11 @@
             <!--</button>-->
             <!--</div>-->
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="密码" name="password" required>
+                <input type="password" class="form-control" placeholder="密码" name="password" id="password" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="重复密码" name="password2" required>
+                <input type="password" class="form-control" placeholder="重复密码" name="password2" id="password2" required>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -64,7 +64,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">注册</button>
+                    <button type="button" id="btnRegister" class="btn btn-primary btn-block btn-flat">注册</button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -77,9 +77,7 @@
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-<div class="common_footer">Powered by inuoer | Copyright © <a href="http://www.inuoer.com/"
-                                                              target="_blank">www.inuoer.com</a>
-    All rights reserved.
+<div class="common_footer">Powered by {:C('PROJECT_NAME_SHORT')} | Copyright © {:C('PROJECT_NAME')} All rights reserved.
 </div>
 
 <!-- jQuery 2.1.4 -->
@@ -147,15 +145,6 @@
     function checkemail(obj) {
 
         if ($('#email').val()) {
-            // var url = '{:U("Home/Public/checkemail")}'+'/email/'+ $('#email').val();
-            // $.get(url, function (data) {
-            //     if(data == 0){
-            //         layer.msg('该邮箱已经注册,请重新输入');
-            //         $(obj).focus();
-            //     }else{
-
-            //     }
-            // });
             //向后台发送处理数据
             var url = '{:U("Home/Public/checkemail")}';
             $.post(url, {email: $('#email').val()},
@@ -170,6 +159,47 @@
             );//这里返回的类型有：json,html,xml,text
         }
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnRegister").click(function () {
+            //alert($("#username").val());
+
+            $.ajax({
+                type: "get",
+                url: "__APP__/Home/Public/registerUser",
+                data: {
+                    username:$("#username").val(),
+                    email:$("#email").val(),
+                    password:$("#password").val(),
+                    password2:$("#password2").val()
+                },
+                success: function (res) {
+                    //alert(1111111111111);
+                    if (res) {
+                        if(res['status']=='success'){
+                            alert("商户注册成功，请使用刚才注册的信息登录后，完善商铺基本信息。");
+                            window.location.href="__APP__/Home/Public/login";
+                        }else{
+                            alert(res['info']);
+                        }
+                    }else{
+                        alert('注册错误！');
+                    }
+                },
+                error:function (xhr, textStatus, errorThrown) {
+                    alert('注册错误！');
+                },
+
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>

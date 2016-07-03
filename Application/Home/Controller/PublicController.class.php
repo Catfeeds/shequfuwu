@@ -2,6 +2,7 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 class PublicController extends Controller
 {
@@ -184,42 +185,43 @@ class PublicController extends Controller
     public function register()
     {
         if (IS_POST) {
-
-            if (I("post.password") != I("post.password2")) {
-                $this->error("密码不匹配");
-            }
-
-            $email = D("User")->get(array("email" => I("post.email")));
-            if ($email) {
-                $this->error("该邮箱已经注册,请重新输入");
-            } else {
-
-            }
-
-            $data = I("post.");
-            unset($data["password2"]);
-
-//            if ($data["smsVerify"] != session("emailCode")) {
-//                $this->error("邮箱验证码无效");
+//            if (I("post.password") != I("post.password2")) {
+//                $this->error("密码不匹配");
 //            }
-//            //核对验证码
-//            unset($data["smsVerify"]);
+//
+//            $email = D("User")->get(array("email" => I("post.email")));
+//            if ($email) {
+//                $this->error("该邮箱已经注册,请重新输入");
+//            } else {
+//
+//            }
+//
+//            $data = I("post.");
+//            unset($data["password2"]);
+//
+////            if ($data["smsVerify"] != session("emailCode")) {
+////                $this->error("邮箱验证码无效");
+////            }
+////            //核对验证码
+////            unset($data["smsVerify"]);
+//
+//            $data["type"] = 2;
+//            $data["password"] = md5($data["password"]);
+//
+//            $user_id = D("User")->addUser($data);
+//
+//            D("Analysis")->addAnalysis(0, 0, 1, 0, 1);
+//
+//            //auto create shop
+//            // D("Shop")->addShop(array("user_id" => $user_id, "name" => "默认店铺"));
 
-            $data["type"] = 2;
-            $data["password"] = md5($data["password"]);
-
-            $user_id = D("User")->addUser($data);
-
-            D("Analysis")->addAnalysis(0, 0, 1, 0, 1);
-
-            //auto create shop
-            // D("Shop")->addShop(array("user_id" => $user_id, "name" => "默认店铺"));
-            if ($user_id) {
-                $this->redirect("Home/User/login");
-                $this->success("注册成功", U("Home/User/login"));
-            } else {
-                $this->error("注册失败");
-            }
+//            if ($user_id) {
+//
+//                //$this->redirect("Home/User/login");
+//                $this->success("注册成功", U("Home/User/login"));
+//            } else {
+//                $this->error("注册失败");
+//            }
         } else {
             $arr = array();
             for ($i = 1; $i <= 8; $i++) {
@@ -230,6 +232,67 @@ class PublicController extends Controller
             $this->assign("wallpaper", $wallpaper);
             $this->display();
         }
+    }
+
+    public function registerUser($username, $email, $password, $password2)
+    {
+        //return 'sssssssssss';
+        $result = array();
+        $result['status'] = 'success';
+        $result['info'] = 'ok';
+
+        if(empty($password)){
+            $result['status'] = 'error';
+            $result['info'] = '密码不可以为空';
+
+            return WebHelper::serverReturn( $result);
+        }
+
+        if ($password != $password2) {
+            $result['status'] = 'error';
+            $result['info'] = '两次输入的密码不匹配';
+
+            return WebHelper::serverReturn( $result);
+        }
+
+        $emailGotten = D("User")->get(array("email" => $email));
+        if ($emailGotten) {
+            $result['status'] = 'error';
+            $result['info'] = '该邮箱已经注册,请重新输入';
+            //$this->error("该邮箱已经注册,请重新输入");
+
+            return WebHelper::serverReturn( $result);
+        }
+
+        $data = array();//I("post.");
+        //unset($data["password2"]);
+
+//            if ($data["smsVerify"] != session("emailCode")) {
+//                $this->error("邮箱验证码无效");
+//            }
+//            //核对验证码
+//            unset($data["smsVerify"]);
+
+        $data["type"] = 2;
+        $data["password"] = md5($password);
+        $data["username"] = $username;
+        $data["email"] = $email;
+
+        $user_id = D("User")->addUser($data);
+
+        D("Analysis")->addAnalysis(0, 0, 1, 0, 1);
+
+        //auto create shop
+        // D("Shop")->addShop(array("user_id" => $user_id, "name" => "默认店铺"));
+
+        if ($user_id) {
+            $result['status'] = 'success';
+            $result['info'] = $user_id;
+        } else {
+            $result['status'] = 'error';
+            $result['info'] = '用户注册失败。';
+        }
+        return WebHelper::serverReturn($result);
     }
 
     public function getVerify()
