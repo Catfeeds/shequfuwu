@@ -1221,7 +1221,9 @@ function openProduct(o) {
     var lastSelectedMenuID = get('lastSelectedMenuID');
     //alert(lastSelectedMenuID);
     if (lastSelectedMenuID) {
-        $('#menu_li_' + lastSelectedMenuID).click();
+        //$('#menu_li_' + lastSelectedMenuID).click();
+        switchMenu(null,lastSelectedMenuID,false);
+
         //$('.shop-menu li').first().click();
         //alert(lastSelectedMenuID);
     } else {
@@ -1436,7 +1438,11 @@ function headerBack() {
 //new js
 //左侧菜单切换
 var menuId = 0;
-function switchMenu(obj, id) {
+function switchMenu(obj, id, isManual) {
+    if (!obj) {
+        obj = $('#menu_li_' + id);
+    }
+
     $(obj).removeClass("lia").addClass("lib").siblings().removeClass("lib").addClass("lia");
     $('.menu-name span').html($(obj).html());
     menuId = id;
@@ -1468,11 +1474,15 @@ function switchMenu(obj, id) {
                 }
             });
 
-            var scrollPosition= get("scrollPositionOfProductPage");
-            if(scrollPosition){
-                $("html,body").animate({scrollTop: scrollPosition}, 200);
-            }else {
+            if(isManual== true){
                 backToTop();
+            }else{
+                var scrollPosition = get("scrollPositionOfProductPage");
+                if (scrollPosition) {
+                    $("html,body").animate({scrollTop: scrollPosition}, 200);
+                } else {
+                    backToTop();
+                }
             }
         },
         error: function () {

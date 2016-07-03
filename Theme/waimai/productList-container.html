@@ -15,7 +15,7 @@
 
 <ul class="shop-menu">
     {{each menu as value i}}
-    <li id="menu_li_{{value.id}}" onclick="switchMenu(this,'{{value.id}}','')">
+    <li id="menu_li_{{value.id}}" onclick="switchMenu(this,'{{value.id}}',true)">
         <span>{{value.name}}</span>
     </li>
     {{/each}}
