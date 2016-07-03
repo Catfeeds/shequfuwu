@@ -1219,10 +1219,11 @@ function openProduct(o) {
     initProduct();
 
     var lastSelectedMenuID = get('lastSelectedMenuID');
+    alert(lastSelectedMenuID);
     if (lastSelectedMenuID) {
         $('#menu_li_' + lastSelectedMenuID).click();
         //$('.shop-menu li').first().click();
-        alert(lastSelectedMenuID);
+        //alert(lastSelectedMenuID);
     } else {
         $('.shop-menu li').first().click();
         //alert('nnnnnooooooooooooooo');
