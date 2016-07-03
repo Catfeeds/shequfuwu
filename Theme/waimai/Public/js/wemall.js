@@ -1224,10 +1224,6 @@ function openProduct(o) {
         //$('.shop-menu li').first().click();
         //alert(lastSelectedMenuID);
 
-        var scrollPosition= get('scrollPositionOfProductPage');
-        if(scrollPosition){
-            window.scroll(0,y);
-        }
     } else {
         $('.shop-menu li').first().click();
         //alert('nnnnnooooooooooooooo');
@@ -1463,14 +1459,20 @@ function switchMenu(obj, id) {
             var html = template("productItems", dataSending);
             $("#productInfoItems").html(html);
 
-            echo.init({
-                offset: 100,
-                throttle: 250,
-                unload: false,
-                callback: function (element, op) {
-                }
-            });
-            backToTop();
+            // echo.init({
+            //     offset: 100,
+            //     throttle: 250,
+            //     unload: false,
+            //     callback: function (element, op) {
+            //     }
+            // });
+            // backToTop();
+
+
+            var scrollPosition= get('scrollPositionOfProductPage');
+            if(scrollPosition){
+                window.scroll(0,y);
+            }
         },
         error: function () {
             // view("异常！");
