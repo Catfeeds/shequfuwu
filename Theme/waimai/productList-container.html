@@ -28,10 +28,10 @@
     </ul>
 
     <script type="text/javascript">
-        $(window).scroll(function () {
-//            alert($(document).scrollTop());
-//            alert($(window).scrollTop());
-            window.localStorage.setItem('scrollPositionOfProductPage', $(document).scrollTop());
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                window.localStorage.setItem('scrollPositionOfProductPage', $(document).scrollTop());
+            });
         });
     </script>
 </div>
