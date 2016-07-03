@@ -29,7 +29,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#productInfoItems").scroll(function () {
-                window.localStorage.setItem('scrollPositionOfProductPage', $(document).scrollTop());
+                var scrollPositionOfProductPage= $("#productInfoItems").scrollTop();
+                alert(scrollPositionOfProductPage);
+                window.localStorage.setItem('scrollPositionOfProductPage', scrollPositionOfProductPage);
             });
         });
     </script>
