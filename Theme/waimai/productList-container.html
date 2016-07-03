@@ -28,8 +28,8 @@
     </ul>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#productInfoItems").on("scroll", function () {
-                var scrollPositionOfProductPage = $("#productInfoItems").scrollTop();
+            $(".shop-product").on("scroll", function () {
+                var scrollPositionOfProductPage = $(".shop-product").scrollTop();
                 alert(scrollPositionOfProductPage);
                 window.localStorage.setItem('scrollPositionOfProductPage', scrollPositionOfProductPage);
             });
