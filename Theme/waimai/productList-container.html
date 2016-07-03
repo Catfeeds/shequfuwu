@@ -26,6 +26,13 @@
     <ul class="mui-table-view mui-table-viewa" id="productInfoItems">
 
     </ul>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                window.localStorage.setItem('scrollPositionOfProductPage', $(document).scrollTop());
+            });
+        });
+    </script>
 </div>
 
 <div id="shopmenu-cart">
@@ -45,11 +52,3 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(window).scroll(function () {
-            //alert($(document).scrollTop());
-            window.localStorage.setItem('scrollPositionOfProductPage', $(document).scrollTop());
-        });
-    });
-</script>
