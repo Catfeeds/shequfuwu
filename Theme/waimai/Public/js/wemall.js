@@ -1219,7 +1219,7 @@ function openProduct(o) {
     initProduct();
 
     var lastSelectedMenuID = get('lastSelectedMenuID');
-    alert(lastSelectedMenuID);
+    //alert(lastSelectedMenuID);
     if (lastSelectedMenuID) {
         $('#menu_li_' + lastSelectedMenuID).click();
         //$('.shop-menu li').first().click();
@@ -1467,7 +1467,13 @@ function switchMenu(obj, id) {
                 callback: function (element, op) {
                 }
             });
-            backToTop();
+
+            var scrollPosition= get("scrollPositionOfProductPage");
+            if(scrollPosition){
+                $("html,body").animate({scrollTop: scrollPosition}, 200);
+            }else {
+                backToTop();
+            }
         },
         error: function () {
             // view("异常！");
