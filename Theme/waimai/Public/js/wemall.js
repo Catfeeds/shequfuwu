@@ -1222,7 +1222,7 @@ function openProduct(o) {
     if (lastSelectedMenuID) {
         $('#menu_li_' + lastSelectedMenuID).click();
         //$('.shop-menu li').first().click();
-        //alert(lastSelectedMenuID);
+        alert(lastSelectedMenuID);
     } else {
         $('.shop-menu li').first().click();
         //alert('nnnnnooooooooooooooo');
