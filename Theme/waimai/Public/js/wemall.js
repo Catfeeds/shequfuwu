@@ -1208,13 +1208,13 @@ function openProduct(o) {
     var html = template("product-container", data);
     $("#main").html(html);
 
-    // echo.init({
-    //     offset: 100,
-    //     throttle: 250,
-    //     unload: false,
-    //     callback: function (element, op) {
-    //     }
-    // });
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+        }
+    });
 
     initProduct();
 
@@ -1223,7 +1223,6 @@ function openProduct(o) {
         $('#menu_li_' + lastSelectedMenuID).click();
         //$('.shop-menu li').first().click();
         //alert(lastSelectedMenuID);
-
     } else {
         $('.shop-menu li').first().click();
         //alert('nnnnnooooooooooooooo');
@@ -1466,13 +1465,7 @@ function switchMenu(obj, id) {
                 callback: function (element, op) {
                 }
             });
-            // backToTop();
-
-
-            var scrollPosition= get('scrollPositionOfProductPage');
-            if(scrollPosition){
-                window.scroll(0,y);
-            }
+            backToTop();
         },
         error: function () {
             // view("异常！");
