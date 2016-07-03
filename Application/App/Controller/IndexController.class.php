@@ -123,7 +123,13 @@ class IndexController extends BaseController
     }
 
 
-    public function searchProducts(){
+    public function searchProducts($shopId,$keyword){
+        $condition= array();
+        $condition['status']= array("neq", -1);
+        $condition['shop_id']= $shopId;
+        $condition['name']= array("like","%$keyword%");
 
+        $products = D("Product")->getList($condition, true, "rank desc", 0, 0, 0);
+        $this->ajaxReturn($products);
     }
 }

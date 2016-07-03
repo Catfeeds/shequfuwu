@@ -1450,9 +1450,10 @@ function switchMenu(obj, id) {
 
             var products = res;//eval(res);
             //alert(products);
-            var dataSending={products:products,
-                uploadsUrl:data.uploadsUrl,
-                imageUrl:data.imageUrl
+            var dataSending = {
+                products: products,
+                uploadsUrl: data.uploadsUrl,
+                imageUrl: data.imageUrl
             };
             var html = template("productItems", dataSending);
             $("#productInfoItems").html(html);
@@ -1468,7 +1469,7 @@ function switchMenu(obj, id) {
         },
         error: function () {
             // view("异常！");
-            alert("异常！");
+            alert("网络异常，请稍后再试！");
         },
         beforeSend: function () {
             //$('#page_tag_load').show();
@@ -1510,14 +1511,63 @@ function prevView(obj) {
 
 function openSearch() {
     var searchtxt = $("input[name = 'searchtxt']").val();
-    var searchval = $('.shop-product li').filter(':contains("' + searchtxt + '")').html();
-    if (searchval == undefined) {
-        // alert("没有此商品");
+    if (!searchtxt) {
         layer.open({
-            content: '没有搜到此商品'
+            content: '请输入要查询的产品名称！'
         });
     } else {
-        $(".shop-menu .lib").removeClass("lib").addClass("lia");
-        $('.shop-product li').hide().filter(':contains("' + searchtxt + '")').show();
+
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/App/Index/searchProducts",
+            data: {
+                keyword: searchtxt,
+                shopId: data.shopId
+            },
+            success: function (res) {
+                if (res) {
+                    var products = res;//eval(res);
+                    //alert(products);
+                    var dataSending = {
+                        products: products,
+                        uploadsUrl: data.uploadsUrl,
+                        imageUrl: data.imageUrl
+                    };
+
+                    var html = template("productItems", dataSending);
+                    $("#productInfoItems").html(html);
+
+                    $(".shop-menu .lib").removeClass("lib").addClass("lia");
+                    $('.shop-product li').hide().filter(':contains("' + searchtxt + '")').show();
+
+                } else {
+                    layer.open({
+                        content: '没有搜到此商品'
+                    });
+                }
+
+                echo.init({
+                    offset: 100,
+                    throttle: 250,
+                    unload: false,
+                    callback: function (element, op) {
+                    }
+                });
+                backToTop();
+            },
+            error: function () {
+                // view("异常！");
+                alert("网络异常，请稍后再试！");
+            },
+            beforeSend: function () {
+                //$('#page_tag_load').show();
+            },
+            complete: function () {
+
+                //$('#page_tag_load').hide();
+            }
+        });
     }
+
+
 }
