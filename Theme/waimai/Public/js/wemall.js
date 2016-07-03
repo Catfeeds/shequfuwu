@@ -1208,13 +1208,13 @@ function openProduct(o) {
     var html = template("product-container", data);
     $("#main").html(html);
 
-    echo.init({
-        offset: 100,
-        throttle: 250,
-        unload: false,
-        callback: function (element, op) {
-        }
-    });
+    // echo.init({
+    //     offset: 100,
+    //     throttle: 250,
+    //     unload: false,
+    //     callback: function (element, op) {
+    //     }
+    // });
 
     initProduct();
 
