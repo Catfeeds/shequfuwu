@@ -3,6 +3,7 @@ namespace App\Controller;
 
 
 use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class IndexController extends BaseController
 {
@@ -13,6 +14,16 @@ class IndexController extends BaseController
 
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
+        
+        if(C('BROWSE_MUST_SUBSCRIBE')){
+            $userMate= new ModelMate('user');
+            $condition= array();
+            $condition['openid']= $user['openid'];
+            $userFound= $userMate->find($condition);
+            if(empty($userFound)){
+                $this->display('mustsubscribe');
+            }
+        }
 
         $oautTimeUsed = G('weixin_oauthBegin', 'weixin_oauthEnd');
         CommonLoger::log('微信认证加载耗时', $oautTimeUsed);
