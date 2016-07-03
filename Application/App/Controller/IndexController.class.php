@@ -20,8 +20,8 @@ class IndexController extends BaseController
             $condition= array();
             $condition['openid']= $user['openid'];
             $userFound= $userMate->find($condition);
-//            dump($user);
-//            dump($userFound);
+            dump($user);
+            dump($userFound);
             if(empty($userFound)){
                 $this->display('mustsubscribe');
             }

@@ -1492,13 +1492,13 @@ function switchMenu(obj, id) {
     set("lastSelectedMenuID", id);
     //backToTop();
 
-    echo.init({
-        offset: 100,
-        throttle: 250,
-        unload: false,
-        callback: function (element, op) {
-        }
-    });
+    // echo.init({
+    //     offset: 100,
+    //     throttle: 250,
+    //     unload: false,
+    //     callback: function (element, op) {
+    //     }
+    // });
 }
 
 function prevView(obj) {
