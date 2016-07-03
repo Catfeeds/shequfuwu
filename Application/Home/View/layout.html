@@ -140,13 +140,13 @@
                 success: function (msg) {
                     var orderCount = parseInt(msg);
                     if (orderCount > 0) {
-                        var content = '<span class="get-member label label-sm label-danger">' + orderCount + '</span>';
+                        var content = '<span">' + orderCount + '</span>';
                         $('#spanOrderCount').html(orderCount);
                         $("#infoTipSpan").html(content);
 
 
                         $('#chatAudio')[0].play();
-                        setInterval(function(){ $("#infoTipSpan").fadeOut(100).fadeIn(100); },200);
+                        setInterval(function(){ $("#infoTipSpan").fadeOut(200).fadeIn(200); },400);
                     } else {
                         $('#spanOrderCount').html('0');
                         $("#infoTipSpan").html('');
