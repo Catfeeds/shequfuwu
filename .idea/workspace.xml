@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,8 +29,8 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29620">
-              <caret line="1481" column="30" selection-start-line="1481" selection-start-column="30" selection-end-line="1481" selection-end-column="30" />
+            <state relative-caret-position="917">
+              <caret line="1486" column="9" selection-start-line="1450" selection-start-column="11" selection-end-line="1486" selection-end-column="9" />
               <folding>
                 <marker date="1467590221256" expanded="true" signature="4178:4215" ph="..." />
                 <marker date="1467590221256" expanded="true" signature="4730:4761" ph="..." />
@@ -47,52 +49,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Thread.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/IO/Thread.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetHelper.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/NetHelper.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="118" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="191" column="8" selection-start-line="191" selection-start-column="8" selection-end-line="191" selection-end-column="8" />
-              <folding>
-                <marker date="1467774374776" expanded="true" signature="4228:4266" ph="select * fro... " />
-                <marker date="1467774374776" expanded="true" signature="4228:4267" ph="select * fro... " />
-                <marker date="1467774374776" expanded="true" signature="4485:4654" ph="INSERT INTO " />
-                <marker date="1467774374776" expanded="true" signature="4822:5177" ph="INSERT INTO " />
-                <marker date="1467774374776" expanded="true" signature="5352:5611" ph="INSERT INTO " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hiland_config.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Common/Conf/hiland_config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="productList-container.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/productList-container.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -106,11 +62,21 @@
       <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="2" selection-end-line="26" selection-end-column="11" />
+            <state relative-caret-position="200">
+              <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
               <folding>
                 <element signature="e#34#74#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -133,7 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
         <option value="$PROJECT_DIR$/Theme/waimai/productList-container.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/IO/Drawing/CircleSeal.class.php" />
@@ -141,6 +106,8 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/IO/Thread.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+        <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
       </list>
     </option>
   </component>
@@ -155,10 +122,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-7" />
     <option name="width" value="1378" />
-    <option name="height" value="744" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -227,15 +193,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vendor" />
+              <option name="myItemId" value="Theme" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -249,19 +207,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
+              <option name="myItemId" value="Theme" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hiland" />
+              <option name="myItemId" value="waimai" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -275,27 +225,19 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
+              <option name="myItemId" value="Theme" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
+              <option name="myItemId" value="waimai" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Vendor" />
+              <option name="myItemId" value="Public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Hiland" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Utils" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -309,23 +251,15 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
+              <option name="myItemId" value="Theme" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
+              <option name="myItemId" value="waimai" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Vendor" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hiland" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Utils" />
+              <option name="myItemId" value="Public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -339,11 +273,47 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ThinkPHP" />
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -410,22 +380,22 @@
       <updated>1467585341016</updated>
       <workItem from="1467585347003" duration="5638000" />
       <workItem from="1467683131546" duration="15825000" />
-      <workItem from="1467790525399" duration="573000" />
+      <workItem from="1467790525399" duration="4658000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22087000" />
+    <option name="totallyTimeSpent" value="26172000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28863636" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24242425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3590909" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3590909" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25679758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -467,6 +437,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -481,6 +452,117 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="15" column="829" selection-start-line="15" selection-start-column="829" selection-end-line="15" selection-end-column="829" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <marker date="1467590444082" expanded="true" signature="8119:8178" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8328:8349" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8382:8417" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8606:8619" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8829:8858" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="9248:9389" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="9973:10004" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="10397:10441" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="11008:11150" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="11195:11213" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="13707:13849" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="13900:13917" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="13957:14022" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14154:14165" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14192:14218" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14288:14314" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14330:14340" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14414:14423" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14523:14549" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14619:14645" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14661:14671" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14737:14746" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14843:14869" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14939:14965" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14981:14991" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="15064:15073" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="15189:15214" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="15308:15319" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="16561:16573" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="25367:25380" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="25780:25801" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="25990:26003" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26180:26193" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26209:26237" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26416:26436" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26579:26599" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26621:26641" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26998:27016" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27443:27455" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27647:27661" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27706:27720" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27830:27844" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28263:28274" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28301:28327" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28397:28423" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28439:28449" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28514:28523" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28619:28645" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28733:28759" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28775:28785" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28860:28869" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28984:29009" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29088:29099" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29152:29167" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29198:29208" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29296:29307" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30002:30014" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30262:30279" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30590:30607" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30647:30712" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="31003:31053" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="31887:31900" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="32003:32098" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="32574:32588" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="32643:32657" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35194:35206" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35398:35412" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35457:35471" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35581:35595" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="37633:37651" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="37680:37708" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="37806:37824" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38459:38470" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38489:38515" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38585:38611" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38627:38637" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38715:38724" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38826:38852" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38922:38948" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38964:38974" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39044:39053" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39152:39178" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39266:39292" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39308:39318" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39400:39409" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39511:39537" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39625:39651" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39667:39677" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39760:39769" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39887:39912" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39997:40008" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40162:40177" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40213:40245" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40609:40652" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40682:40695" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42319:42334" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42370:42402" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42538:42577" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42656:42693" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42825:42862" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42967:43011" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="43217:43229" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="44751:44788" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="44898:44942" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="46050:46067" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="46107:46172" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="46642:46692" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="47021:47071" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -538,6 +620,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8720">
           <caret line="441" column="11" selection-start-line="441" selection-start-column="3" selection-end-line="441" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -577,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/ClientHelper.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1500">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Mode/Lite/Controller.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
@@ -616,6 +692,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3781">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -689,28 +766,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="22" column="85" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/PublicController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1760">
           <caret line="89" column="25" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="2" selection-end-line="26" selection-end-column="11" />
-          <folding>
-            <element signature="e#34#74#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -739,27 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-761">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29620">
-          <caret line="1481" column="30" selection-start-line="1481" selection-start-column="30" selection-end-line="1481" selection-end-column="30" />
-          <folding>
-            <marker date="1467590221256" expanded="true" signature="4178:4215" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="4730:4761" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="4970:4998" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="5799:5836" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="6351:6382" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="6591:6619" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="17521:17548" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="17562:17575" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="19642:19654" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="43846:43860" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="44022:44034" ph="..." />
-            <marker date="1467590221256" expanded="true" signature="50764:50776" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,8 +865,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Conf/hiland_config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        <state relative-caret-position="140">
+          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/ClientHelper.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="917">
+          <caret line="1486" column="9" selection-start-line="1450" selection-start-column="11" selection-end-line="1486" selection-end-column="9" />
+          <folding>
+            <marker date="1467590221256" expanded="true" signature="4178:4215" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="4730:4761" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="4970:4998" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="5799:5836" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="6351:6382" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="6591:6619" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="17521:17548" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="17562:17575" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="19642:19654" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="43846:43860" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="44022:44034" ph="..." />
+            <marker date="1467590221256" expanded="true" signature="50764:50776" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+          <folding>
+            <element signature="e#34#74#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
           <folding />
         </state>
       </provider>

@@ -67,8 +67,24 @@
 <script src="__JS__/wemall.js?v=<?php echo mt_rand() ?>"></script>
 
 <script>
-    $('#oti').html('欢迎来到' +data.config.name);
+    $('#oti').html('欢迎来到' + data.config.name);
     initShop({$shopId});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/App/Index/calcTime",
+            data: {
+                beginName: 'html-main-page-begin',
+                endName:'html-main-page-end'
+            },
+            success: function (res) {
+
+            }
+        });
+    });
 </script>
 </body>
 </html>
