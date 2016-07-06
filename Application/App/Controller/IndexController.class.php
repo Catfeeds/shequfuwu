@@ -60,7 +60,7 @@ class IndexController extends BaseController
         $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');
         CommonLoger::log('微信首页加载耗时', $timeUsed);
 
-        self::calcTime('html-main-page-begin');
+        //self::calcTime('html-main-page-begin');
 
         $this->display();
     }
