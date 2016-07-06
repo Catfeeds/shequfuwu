@@ -14,7 +14,12 @@ use Think\Controller;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\IO\Drawing\CircleSeal;
+use Vendor\Hiland\Utils\IO\Thread;
+use Vendor\Hiland\Utils\Web\AsynHandle;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
+use Vendor\Hiland\Utils\Web\NetHelper;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 class FooController extends Controller
 {
@@ -178,5 +183,40 @@ class FooController extends Controller
     
     public function logop(){
         CommonLoger::log('logtest',time());
+    }
+
+    public function asynop(){
+        dump(22222222222);
+        CommonLoger::log('asynCalled','1111111111111');
+        //self::asynCalled();
+        
+        $url= U("asynCalled","info=9999999999");
+        dump($url);
+
+        Thread::asynExec($url);
+
+        dump('hhhh');
+
+//        $thread= new Thread();
+//        $thread->add(asynCalled);
+        //dump($asyn->makeRequest($url));
+        //dump($asyn->request($url));
+        //NetHelper::request($url);
+        //dump($asyn->Get("http://www.wtoutiao.com/p/147Sf8z.html"));
+
+
+    }
+
+    public function asynCalled($info){
+        sleep(10);
+        //dump('ccccccccccccccccc-called');
+        CommonLoger::log('asynCalled',$info);
+        dump('oooooooooo');
+        //return 'ok';
+    }
+
+    public function CircleSealop(){
+        $seal = new CircleSeal('你我他坐站走东西南北中',75,6,24,0,0,16,40);
+        $seal->draw();
     }
 }
