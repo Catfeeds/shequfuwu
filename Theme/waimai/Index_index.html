@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="__CSS__/icon/iconfont.css">
     <link rel="stylesheet" href="__CSS__/iphone.css">
     <link rel="stylesheet" href="__CSS__/swiper.min.css">
-    
+
 </head>
 <body>
 
@@ -57,7 +57,8 @@
     }
     console.log(data);
 </script>
-<script src="__JS__/jquery.min.js"></script>
+<!--<script src="__JS__/jquery.min.js"></script>-->
+<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
 <script src="__JS__/path.min.js"></script>
 <script src="__JS__/jquery.cookie.js"></script>
 <script src="__JS__/swiper.min.js"></script>
@@ -65,7 +66,7 @@
 <script src="__TPL_PUBLIC__/build/template.js?v=<?php echo mt_rand() ?>"></script>
 <script src="__JS__/echo.min.js"></script>
 <script src="__JS__/layer.m.js"></script>
-<script src="__JS__/wemall.js?v=<?php echo mt_rand() ?>"></script>
+<script src="__JS__/wemall.js?v=<?php if(C('SYSTEM_DEBUGGING')){ echo mt_rand();}else{ echo 1;} ?>"></script>
 
 <script>
     $('#oti').html('欢迎来到' + data.config.name);
