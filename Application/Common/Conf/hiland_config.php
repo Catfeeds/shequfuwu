@@ -7,8 +7,8 @@
  */
 
 return array(
-    'PROJECT_NAME' => '小蜜蜂社区服务系统',
-    'PROJECT_NAME_SHORT' => '小蜜蜂',
+    'PROJECT_NAME' => '福轮网络社区服务系统',
+    'PROJECT_NAME_SHORT' => '福轮网络',
 
     'BROWSE_MUST_SUBSCRIBE'=>true, //用户订阅公众号之后才能浏览购物
 
