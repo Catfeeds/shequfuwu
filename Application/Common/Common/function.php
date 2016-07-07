@@ -458,7 +458,7 @@ function wxPrint($id)
 订单编号：' . $result["orderid"] . '
 
 条目        单价（元）      数量
---------------------------------------------
+------------------------------
 ';
     $detail = '';
     for ($j = 0; $j < count($result["detail"]); $j++) {
@@ -473,7 +473,7 @@ function wxPrint($id)
 
     $msgfooter = '
 备注：' . $result["remark"] . '
---------------------------------------------
+------------------------------
 合计：' . $result["totalprice"] . '元
 付款状态：' . $pay_status . '
 
@@ -481,9 +481,6 @@ function wxPrint($id)
 送货地址：' . $result["contact"]["province"] . $result["contact"]["city"] . $result["contact"]["district"] . $result["contact"]["address"] . '
 联系电话：' . $result["contact"]["phone"] . '
 订购时间：' . $result["time"] . '
-
-
-
 
 ';//自由输出
 

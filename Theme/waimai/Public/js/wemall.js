@@ -1196,11 +1196,6 @@ function tabTmpl(id) {
     menuId = 0;
 }
 
-// function openProductNoSelect(o) {
-//     set('lastSelectedMenuID','');
-//     openProduct(o);
-// }
-
 function openProduct(o) {
     navSelect(o);
     $('#shopcart-tip').hide();
@@ -1219,18 +1214,13 @@ function openProduct(o) {
     initProduct();
 
     var lastSelectedMenuID = get('lastSelectedMenuID');
+    var lastSelectedOfShopID= get('lastSelectedOfShopID');
     //alert(lastSelectedMenuID);
-    if (lastSelectedMenuID) {
-        //$('#menu_li_' + lastSelectedMenuID).click();
+    if (lastSelectedMenuID && lastSelectedOfShopID==data.shopId) {
         switchMenu(null,lastSelectedMenuID,false);
-
-        //$('.shop-menu li').first().click();
-        //alert(lastSelectedMenuID);
     } else {
         $('.shop-menu li').first().click();
-        //alert('nnnnnooooooooooooooo');
     }
-
 
     var swiper = new Swiper('#swiper-container', {
         slidesPerView: 3,
@@ -1447,7 +1437,6 @@ function switchMenu(obj, id, isManual) {
     $('.menu-name span').html($(obj).html());
     menuId = id;
 
-    //alert(menuId);
     $.ajax({
         type: "get",
         url: data.baseUrl + "/App/Index/getProducts",
@@ -1457,7 +1446,6 @@ function switchMenu(obj, id, isManual) {
         success: function (res) {
 
             var products = res;//eval(res);
-            //alert(products);
             var dataSending = {
                 products: products,
                 uploadsUrl: data.uploadsUrl,
@@ -1498,25 +1486,9 @@ function switchMenu(obj, id, isManual) {
         }
     });
 
-    // $.each($('.mui-table-viewa').children(), function (index, value) {
-    //     if ($(this).attr("label-cate") == id) {
-    //         $(this).show();
-    //     } else {
-    //         $(this).hide();
-    //     }
-    // });
-
     //将选定的id保存起来，用于用户“返回”操作的东西
     set("lastSelectedMenuID", id);
-    //backToTop();
-
-    // echo.init({
-    //     offset: 100,
-    //     throttle: 250,
-    //     unload: false,
-    //     callback: function (element, op) {
-    //     }
-    // });
+    set("lastSelectedOfShopID",data.shopId);
 }
 
 function prevView(obj) {
