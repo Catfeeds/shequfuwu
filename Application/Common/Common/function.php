@@ -691,4 +691,18 @@ function http_get($url)
     }
 }
 
+/**
+ * 根据是否为调试状态，返回资源的版本信息
+ * （调试状态下使用新的版本号可以保证被修改的js等资源被有效加载）
+ * @return int
+ */
+function getResourceVersion()
+{
+    if (C("SYSTEM_DEBUGGING")) {
+        return mt_rand();
+    } else {
+        return 1;
+    }
+}
+
 ?>
