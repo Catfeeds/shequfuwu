@@ -5,6 +5,17 @@ use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class ShopController extends BaseController
 {
+    public function categoryList(){
+        $categoryMate = new ModelMate('category'); //D("category")->getList(array(), true);
+        $category= $categoryMate->select();
+        $this->assign("category", $category);
+        $this->display();
+    }
+
+    public function category($id=0){
+
+    }
+
     public function menu()
     {
         $menu = D("Menu")->getList(array(), true);

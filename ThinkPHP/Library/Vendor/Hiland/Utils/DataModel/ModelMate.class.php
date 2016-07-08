@@ -10,7 +10,6 @@ use Think\Model;
  */
 class ModelMate
 {
-
     var $model;
 
     /**
@@ -30,6 +29,29 @@ class ModelMate
     }
 
     /**
+     * 获取get数据时候需要的model
+     * @param $key
+     * @param string $keyName
+     * @return Model
+     */
+    protected function getModel_Get($key, $keyName = 'id')
+    {
+        $condition[$keyName] = $key;
+        return self::getModel_Where($condition);
+    }
+
+    /**
+     * 获取加入where过滤条件的modle
+     * @param array $condition
+     * @return Model
+     */
+    protected function getModel_Where($condition = array())
+    {
+        return $this->model->where($condition);
+    }
+    
+    
+    /**
      * 按照主键获取信息
      *
      * @param int|string $key
@@ -40,8 +62,7 @@ class ModelMate
      */
     public function get($key, $keyName = 'id')
     {
-        $condition[$keyName] = $key;
-        return $this->model->where($condition)->find();
+        return self::getModel_Get()->find($key, $keyName);
     }
 
     /**
@@ -52,11 +73,12 @@ class ModelMate
      * $where= array();
      * $where['shopid'] = $merchantScanedID;
      * $where['openid'] = $openId;
-     * $relation = $buyerShopMate->find($where);
+     * $result = $buyerShopMate->find($where);
      */
     public function find($condition = array())
     {
-        return $this->model->where($condition)->find();
+        $model= $this->getModel_Where($condition);
+        return $model->find();
     }
 
     /**
@@ -71,10 +93,107 @@ class ModelMate
      */
     public function select($condition = array())
     {
-        return $this->model->where($condition)->select();
+        $model= $this->getModel_Where($condition);
+        return $model->select();
     }
 
+    /**
+     * 删除数据
+     * @param array $condition
+     * @return mixed 失败返回false；成功返回删除数据的条数
+     */
+    public function delete($condition = array())
+    {
+        $model= $this->getModel_Where($condition);
+        return $model->delete();
+    }
 
+    /**
+     * 获取某记录的字段的值
+     * @param int|string $key
+     * @param string $feildName
+     * @param string $keyName
+     * @return mixed 字段的值
+     */
+    public function getValue($key, $feildName, $keyName = 'id')
+    {
+        $condition[$keyName] = $key;
+        $model= $this->getModel_Where($condition);
+        return $model->getField($feildName);
+    }
+
+    /**
+     * 设置某记录的字段的值
+     * @param int|string $key
+     * @param string $feildName
+     * @param mixed $feildValue
+     * @param string $keyName
+     * @return bool|int 成功时返回受影响的行数，失败时返回false
+     */
+    public function setValue($key, $feildName, $feildValue, $keyName = 'id')
+    {
+        $condition[$keyName] = $key;
+        $model= $this->getModel_Where($condition);
+        return $model->setField($feildName, $feildValue);
+    }
+
+    /**
+     * 查找单个值
+     * @param string $searcher 要查找的内容
+     * @param string|null $whereClause
+     * @return null|mixed
+     */
+    public function queryValue($searcher, $whereClause = null)
+    {
+        $tableName = $this->model->getTableName();
+        $sql = "SELECT $searcher FROM $tableName";
+        if (!empty($whereClause)) {
+            $sql .= ' where ' . $whereClause;
+        }
+
+        $dbset = $this->query($sql);
+
+        if ($dbset) {
+            return $dbset[0][$searcher];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 执行SQL语句，如果语句里面涉及到本模型对应的表名称，建议不要直接写。可以使用“关键字”  __MODELTABLENAME__,或者__MTN__,推荐使用 __TABLE__ ，本函数自动翻译为带前缀的表名称
+     * @param $sql
+     * @return mixed
+     */
+    public function query($sql)
+    {
+        $tableName = '';
+        if (strstr($sql, '__MODELTABLENAME__')) {
+            $tableName = $this->model->getTableName();
+            $sql = str_replace('__MODELTABLENAME__', $tableName, $sql);
+        }
+
+        if (strstr($sql, '__MTN__')) {
+            if ($tableName == '') {
+                $tableName = $this->model->getTableName();
+            }
+
+            $sql = str_replace('__MTN__', $tableName, $sql);
+        }
+
+        return $this->model->query($sql);
+    }
+
+    /**
+     * 执行原始的sql语句
+     * @param $sql
+     * @param bool $parse
+     * @return false|int
+     */
+    public function execute($sql, $parse = false)
+    {
+        return $this->model->execute($sql, $parse);
+    }
 
     /**
      * 交互信息
@@ -131,93 +250,5 @@ class ModelMate
 
         // 内容添加或更新完成
         return $recordID;
-    }
-
-    /**
-     * 删除数据
-     * @param array $condition
-     * @return mixed 失败返回false；成功返回删除数据的条数
-     */
-    public function delete($condition = array())
-    {
-        return $this->model->where($condition)->delete();
-    }
-
-    /**
-     * 获取某记录的字段的值
-     * @param int|string $key
-     * @param string $feildName
-     * @param string $keyName
-     * @return mixed 字段的值
-     */
-    public function getValue($key, $feildName, $keyName = 'id')
-    {
-        $condition[$keyName] = $key;
-        return $this->model->where($condition)->getField($feildName);
-    }
-
-    /**
-     * 设置某记录的字段的值
-     * @param int|string $key
-     * @param string $feildName
-     * @param mixed $feildValue
-     * @param string $keyName
-     * @return bool|int 成功时返回受影响的行数，失败时返回false
-     */
-    public function setValue($key, $feildName, $feildValue, $keyName = 'id')
-    {
-        $condition[$keyName] = $key;
-        return $this->model->where($condition)->setField($feildName, $feildValue);
-    }
-
-    /**
-     * 查找单个值
-     * @param string $searcher 要查找的内容
-     * @param string|null $whereClause
-     * @return null|mixed
-     */
-    public function queryValue($searcher, $whereClause = null)
-    {
-        $tableName = $this->model->getTableName();
-        $sql = "SELECT $searcher FROM $tableName";
-        if (!empty($whereClause)) {
-            $sql .= ' where ' . $whereClause;
-        }
-
-        $dbset = $this->query($sql);
-
-        if ($dbset) {
-            return $dbset[0][$searcher];
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * 执行SQL语句，如果语句里面涉及到本模型对应的表名称，建议不要直接写。可以使用“关键字”  __MODELTABLENAME__,或者__MTN__,推荐使用 __TABLE__ ，本函数自动翻译为带前缀的表名称
-     * @param $sql
-     * @return mixed
-     */
-    public function query($sql)
-    {
-        $tableName = '';
-        if (strstr($sql, '__MODELTABLENAME__')) {
-            $tableName = $this->model->getTableName();
-            $sql = str_replace('__MODELTABLENAME__', $tableName, $sql);
-        }
-
-        if (strstr($sql, '__MTN__')) {
-            if ($tableName == '') {
-                $tableName = $this->model->getTableName();
-            }
-
-            $sql = str_replace('__MTN__', $tableName, $sql);
-        }
-
-        return $this->model->query($sql);
-    }
-
-    public function execute($sql,$parse = false){
-        return $this->model->execute($sql,$parse);
     }
 }

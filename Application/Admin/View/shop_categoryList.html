@@ -12,14 +12,14 @@
         <div class="col-md-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">类别管理</h3>
+                    <h3 class="box-title">店铺类别管理</h3>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <a href="{:U('Home/Shop/addMenu')}" class="btn btn-danger ">
+                            <a href="{:U('Admin/Shop/category')}" class="btn btn-danger ">
                                 新增类别
                             </a>
                         </div>
@@ -32,37 +32,37 @@
                                 <th class="hidden-xs">
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
-                                <th>店铺名称</th>
-                                <th>菜单名称</th>
+                                <th>类别名称</th>
                                 <th>图片</th>
                                 <th>排序</th>
+                                <th>是否可用</th>
                                 <th>备注</th>
                                 <th>操作</th>
                             </tr>
 
-                            <volist name="menu" id="menu">
+                            <volist name="category" id="category">
                                 <tr>
                                     <td class="hidden-xs">
-                                        <label><input name="checkbox" class="check" type="checkbox" value="{$menu.id}"></label>
+                                        <label><input name="checkbox" class="check" type="checkbox" value="{$category.id}"></label>
                                     </td>
 
+
+                                    <td>{category.name}</td>
                                     <td>
-                                        {$menu.shop.name}
-                                    </td>
-                                    <td>{$menu.name}</td>
-                                    <td>
-                                        <if condition="$menu.savepath && $menu.savename">
+                                        <if condition="$category.savepath && $category.savename">
                                             <img style="height: 48px;max-width: 72px"
-                                                 src="__PUBLIC__/Uploads/{$menu.savepath}{$menu.savename}">
+                                                 src="__PUBLIC__/Uploads/{$category.savepath}{$category.savename}">
                                         </if>
                                     </td>
-                                    <td>{$menu.rank}</td>
-                                    <td>{$menu.remark}</td>
+                                    <td>{$category.rank}</td>
+
+                                    <td>{$category.usable}</td>
+                                    <td>{$category.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Home/Shop/modifyMenu',array('id'=>$menu['id']))}">修改</a><a
+                                            href="{:U('Admin/Shop/category',array('id'=>$category['id']))}">修改</a><a
                                             class="deleteConfirm"
                                             class="deleteConfirm"
-                                            href="{:U('Home/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
+                                            href="{:U('Admin/Shop/categoryDelete',array('id'=>$category['id']))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>

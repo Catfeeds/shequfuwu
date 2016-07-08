@@ -27,6 +27,14 @@ class RelationModel extends Model
     protected $_link = array();
 
     /**
+     * 设置关联信息
+     * @param array $link
+     */
+    public function setLink($link){
+        $this->_link= $link;
+    }
+
+    /**
      * 动态方法实现
      * @access public
      * @param string $method 方法名称
