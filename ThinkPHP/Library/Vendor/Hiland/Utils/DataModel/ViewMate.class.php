@@ -15,6 +15,7 @@ use Think\Model\RelationModel;
  * Class ViewMate
  * @package Vendor\Hiland\Utils\DataModel
  *
+ * ==非常重要veryImportant================
  * 此类型要求 RelationModel添加如下方法
  * public function setLink($link){
  * $this->_link= $link;

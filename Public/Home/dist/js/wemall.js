@@ -57,9 +57,6 @@
 })(jQuery);
 
 function imageUploader(obj, more) {
-    // var selectorPath= "index.php/Home/File/imageUploader" ;
-    // alert(URL + selectorPath);
-
     $.ajax({
         type: "post",
         url: URL + "index.php/Home/File/imageUploader",
@@ -94,7 +91,7 @@ function imageUploader(obj, more) {
                     "删除": {
                         className: "btn-danger",
                         callback: function () {
-                            var delUrl = URL + "Home/File/delImage/id/" + selectedImage.id;
+                            var delUrl = URL + "index.php/Home/File/delImage/id/" + selectedImage.id;
                             $.get(delUrl, function (data) {
                                 var p = $('#dialog-imageUploader .pagination .current').text();
                                 var pagUrl = URL + "index.php/Home/File/imageUploader/p/" + p;
@@ -111,15 +108,6 @@ function imageUploader(obj, more) {
             });
         },
         error: function (xhr) {
-            //toastr.error(xhr);
-            //alert(xhr.toString());
-            // var property='';
-            // for(var i in xhr){
-            //     property+="属性："+i+":"+ xhr[i] +"<br/>";
-            //     //document.getElementById("myp").innerHTML=Property;
-            // }
-            // alert(property);
-
             toastr.error("通讯失败！请重试！");
         }
     });

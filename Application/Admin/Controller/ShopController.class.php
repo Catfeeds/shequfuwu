@@ -2,18 +2,48 @@
 namespace Admin\Controller;
 
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 
 class ShopController extends BaseController
 {
-    public function categoryList(){
-        $categoryMate = new ModelMate('category'); //D("category")->getList(array(), true);
-        $category= $categoryMate->select();
-        $this->assign("category", $category);
+    private function getCategoryViewMate()
+    {
+        $link = array(
+            'File' => array(
+                'mapping_type' => ViewMate::BELONGS_TO,
+                'mapping_name' => 'file',
+                'foreign_key' => 'file_id',//关联id
+                'as_fields' => 'savename:savename,savepath:savepath',
+            ),
+        );
+        $categoryMate = new ViewMate('shopCategory', $link);
+        return $categoryMate;
+    }
+
+    public function categoryList()
+    {
+        cookie("prevUrl", U("Admin/Shop/categoryList"));
+        $categoryMate = self::getCategoryViewMate();
+        $categoryList = $categoryMate->select();
+        $this->assign("categoryList", $categoryList);
         $this->display();
     }
 
-    public function category($id=0){
-
+    public function category($id = 0)
+    {
+        $categoryMate = self::getCategoryViewMate();
+        
+        if (IS_POST) {
+            $data = I("post.");
+            $categoryMate->interact($data);
+            $this->success("保存成功", cookie("prevUrl"));
+        } else {
+            if (!empty($id)) {
+                $category = $categoryMate->get($id);
+                $this->assign("category", $category);
+            }
+            $this->display();
+        }
     }
 
     public function menu()
@@ -455,11 +485,11 @@ class ShopController extends BaseController
 
     public function reorganizeProduct($sourceShopId = 0, $targetShopId = 0)
     {
-        $menus = $this->getMenus($targetShopId,false);
+        $menus = $this->getMenus($targetShopId, false);
         foreach ($menus as $menu) {
-            $menuIDNew= $menu['id'];
-            $menuIDOld= $menu['copysourceid'];
-            $sql= "Update __TABLE__ set menu_id=$menuIDNew where shop_id=$targetShopId and  menu_id=$menuIDOld";
+            $menuIDNew = $menu['id'];
+            $menuIDOld = $menu['copysourceid'];
+            $sql = "Update __TABLE__ set menu_id=$menuIDNew where shop_id=$targetShopId and  menu_id=$menuIDOld";
             $mateProduct = new ModelMate('product');
             $mateProduct->execute($sql);
         }
@@ -469,11 +499,11 @@ class ShopController extends BaseController
 
     public function reorganizeSku($sourceShopId = 0, $targetShopId = 0)
     {
-        $products = $this->getProducts($targetShopId,false);
+        $products = $this->getProducts($targetShopId, false);
         foreach ($products as $product) {
-            $productIDNew= $product['id'];
-            $productIDOld= $product['copysourceid'];
-            $sql= "Update __TABLE__ set product_id=$productIDNew where shop_id=$targetShopId and  product_id=$productIDOld";
+            $productIDNew = $product['id'];
+            $productIDOld = $product['copysourceid'];
+            $sql = "Update __TABLE__ set product_id=$productIDNew where shop_id=$targetShopId and  product_id=$productIDOld";
             $mateProduct = new ModelMate('productSku');
             $mateProduct->execute($sql);
         }

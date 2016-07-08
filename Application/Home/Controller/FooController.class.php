@@ -243,4 +243,9 @@ class FooController extends Controller
         $list= $viewMate->select($condition);
         dump($list);
     }
+
+    public function physicalpathop(){
+        //dump($_SERVER['PHP_SELF']);
+        dump(realpath(dirname(__FILE__)));
+    }
 }

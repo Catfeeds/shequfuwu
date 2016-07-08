@@ -12,7 +12,7 @@ class FileController extends BaseController
 {
     public function imageUploader()
     {
-        $num = 12;
+        $num = 8;
         $p = I("get.page") ? I("get.page") : 1;
         $file = D("File")->getList(array(), false, "id desc", $p, $num);
         $this->assign('file', $file);

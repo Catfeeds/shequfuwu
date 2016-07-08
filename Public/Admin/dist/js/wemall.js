@@ -58,9 +58,10 @@
 })(jQuery);
 
 function imageUploader(obj, more) {
+    //alert(URL + "Admin/File/imageUploader");
     $.ajax({
         type: "post",
-        url: URL + "Admin/File/imageUploader",
+        url: URL + "index.php/Admin/File/imageUploader",
         data: {},
         success: function (data) {
             bootbox.dialog({
@@ -92,10 +93,10 @@ function imageUploader(obj, more) {
                     "删除": {
                         className: "btn-danger",
                         callback: function () {
-                            var delUrl = URL + "Admin/File/delImage/id/" + selectedImage.id;
+                            var delUrl = URL + "index.php/Admin/File/delImage/id/" + selectedImage.id;
                             $.get(delUrl, function (data) {
                                 var p = $('#dialog-imageUploader .pagination .current').text();
-                                var pagUrl = URL + "Admin/File/imageUploader/p/" + p;
+                                var pagUrl = URL + "index.php/Admin/File/imageUploader/p/" + p;
                                 $.pjax({
                                     url: pagUrl,
                                     container: '.bootbox .bootbox-body',
@@ -154,7 +155,7 @@ function cancelSelectImage(obj, id) {
 
 function ajaxForm() {
     $('#myForm').ajaxSubmit(function (data) {
-        var pagUrl = URL + "Admin/File/imageUploader/p/1";
+        var pagUrl = URL + "index.php/Admin/File/imageUploader/p/1";
         $.pjax({
             url: pagUrl,
             container: '.bootbox .bootbox-body',
