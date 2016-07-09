@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/HtmlHelper.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/PublicController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/PublicController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/ShopModel.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/ShopModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/AddShopController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/AddShopController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/ShopController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/ShopController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/AddShop_addShop.html" afterPath="$PROJECT_DIR$/Application/Home/View/AddShop_addShop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/AddShop_shop.html" afterPath="$PROJECT_DIR$/Application/Home/View/AddShop_shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Public_forgetPassword.html" afterPath="$PROJECT_DIR$/Application/Home/View/Public_forgetPassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Public_resetPassword.html" afterPath="$PROJECT_DIR$/Application/Home/View/Public_resetPassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Shop_addShop.html" afterPath="$PROJECT_DIR$/Application/Home/View/Shop_addShop.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Shop_shop.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Shop_shop.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +24,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AddShop_shop.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Home/View/AddShop_shop.html">
+      <file leaf-file-name="ShopController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="155" column="59" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="59" />
+            <state relative-caret-position="-6940">
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+              <folding>
+                <element signature="e#35#79#0#PHP" expanded="true" />
+                <marker date="1467973929460" expanded="true" signature="15914:16083" ph="INSERT INTO " />
+                <marker date="1467973929460" expanded="true" signature="16253:16608" ph="INSERT INTO " />
+                <marker date="1467973929460" expanded="true" signature="16785:17044" ph="INSERT INTO " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shop_shop.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/View/Shop_shop.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="127" column="55" selection-start-line="127" selection-start-column="55" selection-end-line="127" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -81,22 +83,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RelationModel.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Model/RelationModel.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="22" />
-              <folding>
-                <marker date="1467888257144" expanded="true" signature="8844:8998" ph="SELECT b.${{... " />
-                <marker date="1467888257144" expanded="true" signature="17615:17939" ph="INSERT INTO ${$mappingRelationTable}... " />
-                <marker date="1467888257144" expanded="true" signature="17705:17939" ph="SELECT a.${$... ${$this-&gt;getTableName()}" />
-                <marker date="1467888257144" expanded="true" signature="18941:19265" ph="INSERT INTO ${$mappingRelationTable}... " />
-                <marker date="1467888257144" expanded="true" signature="19031:19265" ph="SELECT a.${$... ${$this-&gt;getTableName()}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Shop_addShop.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/Shop_addShop.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -107,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WechatController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WechatController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="214">
@@ -202,6 +188,7 @@
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/PublicController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/View/Shop_shop.html" />
       </list>
     </option>
   </component>
@@ -637,6 +624,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -714,12 +723,12 @@
       <workItem from="1467585347003" duration="5638000" />
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
-      <workItem from="1467936393388" duration="27739000" />
+      <workItem from="1467936393388" duration="28136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72009000" />
+    <option name="totallyTimeSpent" value="72406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -760,14 +769,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="619" column="30" selection-start-line="619" selection-start-column="30" selection-end-line="619" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/swiper.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -967,19 +968,6 @@
           <caret line="210" column="37" selection-start-line="210" selection-start-column="37" selection-end-line="210" selection-end-column="37" />
           <folding>
             <marker date="1467940442999" expanded="true" signature="3433:3455" ph="SELECT ${$se... ${$tableName}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-          <folding>
-            <element signature="e#35#79#0#PHP" expanded="true" />
-            <marker date="1467973929460" expanded="true" signature="15914:16083" ph="INSERT INTO " />
-            <marker date="1467973929460" expanded="true" signature="16253:16608" ph="INSERT INTO " />
-            <marker date="1467973929460" expanded="true" signature="16785:17044" ph="INSERT INTO " />
           </folding>
         </state>
       </provider>
@@ -1200,6 +1188,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="225" column="59" selection-start-line="225" selection-start-column="59" selection-end-line="225" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6940">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding>
+            <element signature="e#35#79#0#PHP" expanded="true" />
+            <marker date="1467973929460" expanded="true" signature="15914:16083" ph="INSERT INTO " />
+            <marker date="1467973929460" expanded="true" signature="16253:16608" ph="INSERT INTO " />
+            <marker date="1467973929460" expanded="true" signature="16785:17044" ph="INSERT INTO " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/View/Shop_shop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="127" column="55" selection-start-line="127" selection-start-column="55" selection-end-line="127" selection-end-column="55" />
           <folding />
         </state>
       </provider>

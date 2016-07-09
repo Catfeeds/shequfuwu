@@ -102,6 +102,7 @@
                                 <th>ID</th>
 
                                 <th>名称</th>
+                                <th>类别</th>
                                 <th>图片</th>
                                 <th>链接</th>
                                 <th>状态</th>
@@ -122,6 +123,9 @@
 
                                     <td>
                                         {$shop.name}
+                                    </td>
+                                    <td>
+                                        {$shop.categoryname}
                                     </td>
                                     <td>
                                         <if condition="$shop.savepath && $shop.savename">
