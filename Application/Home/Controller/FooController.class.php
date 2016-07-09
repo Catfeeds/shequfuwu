@@ -284,4 +284,12 @@ class FooController extends Controller
         $data= HttpResponseHeader::getAll($url);
         dump($data);
     }
+
+    public function modelMateop2($openid='oqfK9vsaghlVPWev6l6Nuz1TZd9M'){
+        $userMate = new ModelMate('user');
+        $condition = array();
+        $condition['openid'] = $openid;
+        $userFound = $userMate->find($condition);
+        dump($userFound);
+    }
 }
