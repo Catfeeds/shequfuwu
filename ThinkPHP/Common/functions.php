@@ -1518,6 +1518,14 @@ function get_client_ip($type = 0, $adv = false)
     return $ip[$type];
 }
 
+function get_server_compress(){
+    $result=\Vendor\Hiland\Utils\Web\EnvironmentHelper::getServerCompressType(U("Home/Public/login"));
+    if(empty($result)){
+        $result='未压缩';
+    }
+    return $result;
+}
+
 /**
  * 发送HTTP状态
  * @param integer $code 状态码

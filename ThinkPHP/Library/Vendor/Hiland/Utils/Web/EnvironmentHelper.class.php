@@ -38,7 +38,7 @@ class EnvironmentHelper
     }
 
     /**
-     * 获取Web服务器名称
+     * 获取Web服务器名称（IIS还是apache等）
      * @return mixed
      */
     public static function getWebServerName()
@@ -105,6 +105,13 @@ class EnvironmentHelper
     {
         $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
         return $host;
+    }
+
+    public static function getServerCompressType($url)
+    {
+        $result= HttpResponseHeader::get($url,"Content-Encoding");
+
+        return $result;
     }
 }
 

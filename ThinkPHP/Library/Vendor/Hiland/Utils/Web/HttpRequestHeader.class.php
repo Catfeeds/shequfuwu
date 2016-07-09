@@ -1,9 +1,8 @@
 <?php
 namespace Vendor\Hiland\Utils\Web;
 
-class HttpHeader
+class HttpRequestHeader
 {
-
     public static function getAll()
     {
         $headers = array();
@@ -41,6 +40,8 @@ class HttpHeader
 
         return false;
     }
+
+    
 
     public static function getUserAgent()
     {

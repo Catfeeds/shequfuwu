@@ -20,6 +20,10 @@ use Vendor\Hiland\Utils\IO\Drawing\CircleSeal;
 use Vendor\Hiland\Utils\IO\Thread;
 use Vendor\Hiland\Utils\Web\AsynHandle;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
+use Vendor\Hiland\Utils\Web\HttpHeader;
+use Vendor\Hiland\Utils\Web\HttpRequestHeader;
+use Vendor\Hiland\Utils\Web\HttpRequstHeader;
+use Vendor\Hiland\Utils\Web\HttpResponseHeader;
 use Vendor\Hiland\Utils\Web\NetHelper;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
@@ -267,5 +271,16 @@ class FooController extends Controller
         dump($html);
         $result= HtmlHelper::cleanComment($html);
         dump($result);
+    }
+
+    public function compressop(){
+        $url= "http://app.rainytop.com/mm/index.php?s=/Home/Public/login";
+        $result= EnvironmentHelper::getServerCompressType($url);
+        dump($result);
+
+        dump(HttpRequestHeader::getAll());
+
+        $data= HttpResponseHeader::getAll($url);
+        dump($data);
     }
 }
