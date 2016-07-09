@@ -274,7 +274,7 @@ class FooController extends Controller
     }
 
     public function compressop(){
-        $url= "http://app.rainytop.com/mm/index.php?s=/Home/Public/login";
+        $url= U("Home/Public/login");
         $result= EnvironmentHelper::getServerCompressType($url);
         dump($result);
 
