@@ -24,8 +24,8 @@ class IndexController extends BaseController
             $userFound = $userMate->find($condition);
 
             if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
-                dump($user['openid']);
-                dump($userFound['subscribe']);
+//                dump($user['openid']);
+//                dump($userFound['subscribe']);
                 $this->display('mustsubscribe');
                 exit;
             }
