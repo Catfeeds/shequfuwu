@@ -245,7 +245,7 @@ class WechatController extends Controller
     {
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
-            D("User")->save(array("id" => $user["id"], "subscribe" => 0));
+            D("User")->save(array("id" => $user["id"], "subscribe" => C("USER_COMEFROM_NOWEIXINUSER")));
         }
     }
 
