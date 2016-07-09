@@ -17,19 +17,19 @@ class IndexController extends BaseController
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
 
-        if (C('BROWSE_MUST_SUBSCRIBE')) {
-            $userMate = new ModelMate('user');
-            $condition = array();
-            $condition['openid'] = $user['openid'];
-            $userFound = $userMate->find($condition);
-
-            if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
-                dump($user['openid']);
-                dump($userFound['subscribe']);
-                $this->display('mustsubscribe');
-                exit;
-            }
-        }
+//        if (C('BROWSE_MUST_SUBSCRIBE')) {
+//            $userMate = new ModelMate('user');
+//            $condition = array();
+//            $condition['openid'] = $user['openid'];
+//            $userFound = $userMate->find($condition);
+//
+//            if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
+//                dump($user['openid']);
+//                dump($userFound['subscribe']);
+//                $this->display('mustsubscribe');
+//                exit;
+//            }
+//        }
 
         if (APP_DEBUG) {
             $oautTimeUsed = G('weixin_oauthBegin', 'weixin_oauthEnd');
