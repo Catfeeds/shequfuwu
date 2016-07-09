@@ -9,25 +9,30 @@ class IndexController extends BaseController
 {
     public function index()
     {
-        G('weixin_mainPageBegin');
-        G('weixin_oauthBegin');
+        if (APP_DEBUG) {
+            G('weixin_mainPageBegin');
+            G('weixin_oauthBegin');
+        }
 
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
-        
-        if(C('BROWSE_MUST_SUBSCRIBE')){
-            $userMate= new ModelMate('user');
-            $condition= array();
-            $condition['openid']= $user['openid'];
-            $userFound= $userMate->find($condition);
 
-            if($userFound['subscribe']!=C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")){
+        if (C('BROWSE_MUST_SUBSCRIBE')) {
+            $userMate = new ModelMate('user');
+            $condition = array();
+            $condition['openid'] = $user['openid'];
+            $userFound = $userMate->find($condition);
+
+            if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
                 $this->display('mustsubscribe');
+                exit;
             }
         }
 
-        $oautTimeUsed = G('weixin_oauthBegin', 'weixin_oauthEnd');
-        CommonLoger::log('微信认证加载耗时', $oautTimeUsed);
+        if (APP_DEBUG) {
+            $oautTimeUsed = G('weixin_oauthBegin', 'weixin_oauthEnd');
+            CommonLoger::log('微信认证加载耗时', $oautTimeUsed);
+        }
 
         $user = json_encode($user);
         $this->assign("user", $user);
@@ -57,18 +62,21 @@ class IndexController extends BaseController
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
 
-        $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');
-        CommonLoger::log('微信首页加载耗时', $timeUsed);
+        if (APP_DEBUG) {
+            $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');
+            CommonLoger::log('微信首页加载耗时', $timeUsed);
+        }
 
         //self::calcTime('html-main-page-begin');
 
         $this->display();
     }
 
-    public function calcTime($beginName='beginName',$endName=''){
-        if(empty($endName)){
+    public function calcTime($beginName = 'beginName', $endName = '')
+    {
+        if (empty($endName)) {
             G($beginName);
-        }else{
+        } else {
             $timeUsed = G($beginName, $endName);
             CommonLoger::log("$beginName 到 $endName 耗时", $timeUsed);
         }
@@ -145,11 +153,12 @@ class IndexController extends BaseController
     }
 
 
-    public function searchProducts($shopId,$keyword){
-        $condition= array();
-        $condition['status']= array("neq", -1);
-        $condition['shop_id']= $shopId;
-        $condition['name']= array("like","%$keyword%");
+    public function searchProducts($shopId, $keyword)
+    {
+        $condition = array();
+        $condition['status'] = array("neq", -1);
+        $condition['shop_id'] = $shopId;
+        $condition['name'] = array("like", "%$keyword%");
 
         $products = D("Product")->getList($condition, true, "rank desc", 0, 0, 0);
         $this->ajaxReturn($products);

@@ -695,7 +695,7 @@ function http_get($url)
  */
 function getResourceVersion()
 {
-    if (C("SYSTEM_DEBUGGING")) {
+    if (APP_DEBUG) {
         return mt_rand();
     } else {
         return 1;
