@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Common/functions.php" afterPath="$PROJECT_DIR$/ThinkPHP/Common/functions.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,19 +60,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="276" column="36" selection-start-line="276" selection-start-column="36" selection-end-line="276" selection-end-column="36" />
+              <caret line="276" column="53" selection-start-line="276" selection-start-column="14" selection-end-line="276" selection-end-column="53" />
               <folding>
-                <marker date="1468034733122" expanded="true" signature="4494:4532" ph="select * fro... " />
-                <marker date="1468034733122" expanded="true" signature="4494:4533" ph="select * fro... " />
-                <marker date="1468034733122" expanded="true" signature="4751:4920" ph="INSERT INTO " />
-                <marker date="1468034733122" expanded="true" signature="5088:5443" ph="INSERT INTO " />
-                <marker date="1468034733122" expanded="true" signature="5618:5877" ph="INSERT INTO " />
-                <marker date="1468034733122" expanded="true" signature="8200:8245" ph="..." />
-                <marker date="1468034733122" expanded="true" signature="8208:8236" ph="{...}" />
+                <marker date="1468034943760" expanded="true" signature="4494:4532" ph="select * fro... " />
+                <marker date="1468034943760" expanded="true" signature="4494:4533" ph="select * fro... " />
+                <marker date="1468034943760" expanded="true" signature="4751:4920" ph="INSERT INTO " />
+                <marker date="1468034943760" expanded="true" signature="5088:5443" ph="INSERT INTO " />
+                <marker date="1468034943760" expanded="true" signature="5618:5877" ph="INSERT INTO " />
+                <marker date="1468034943760" expanded="true" signature="8200:8245" ph="..." />
+                <marker date="1468034943760" expanded="true" signature="8208:8236" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -107,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="1521" column="100" selection-start-line="1521" selection-start-column="78" selection-end-line="1521" selection-end-column="100" />
+            <state relative-caret-position="230">
+              <caret line="1521" column="72" selection-start-line="1521" selection-start-column="72" selection-end-line="1521" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -196,9 +197,9 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/HttpRequestHeader.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/EnvironmentHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/HttpResponseHeader.class.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Common/functions.php" />
         <option value="$PROJECT_DIR$/Application/Admin/View/Index_index.html" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Common/functions.php" />
       </list>
     </option>
   </component>
@@ -550,6 +551,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -623,12 +646,12 @@
       <workItem from="1467585347003" duration="5638000" />
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
-      <workItem from="1467936393388" duration="36532000" />
+      <workItem from="1467936393388" duration="36822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80802000" />
+    <option name="totallyTimeSpent" value="81092000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -1001,19 +1024,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6940">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-          <folding>
-            <element signature="e#35#79#0#PHP" expanded="true" />
-            <marker date="1467973929460" expanded="true" signature="15914:16083" ph="INSERT INTO " />
-            <marker date="1467973929460" expanded="true" signature="16253:16608" ph="INSERT INTO " />
-            <marker date="1467973929460" expanded="true" signature="16785:17044" ph="INSERT INTO " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/View/Shop_shop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1086,27 +1096,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="1521" column="100" selection-start-line="1521" selection-start-column="78" selection-end-line="1521" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="276" column="36" selection-start-line="276" selection-start-column="36" selection-end-line="276" selection-end-column="36" />
+          <caret line="276" column="53" selection-start-line="276" selection-start-column="14" selection-end-line="276" selection-end-column="53" />
           <folding>
-            <marker date="1468034733122" expanded="true" signature="4494:4532" ph="select * fro... " />
-            <marker date="1468034733122" expanded="true" signature="4494:4533" ph="select * fro... " />
-            <marker date="1468034733122" expanded="true" signature="4751:4920" ph="INSERT INTO " />
-            <marker date="1468034733122" expanded="true" signature="5088:5443" ph="INSERT INTO " />
-            <marker date="1468034733122" expanded="true" signature="5618:5877" ph="INSERT INTO " />
-            <marker date="1468034733122" expanded="true" signature="8200:8245" ph="..." />
-            <marker date="1468034733122" expanded="true" signature="8208:8236" ph="{...}" />
+            <marker date="1468034943760" expanded="true" signature="4494:4532" ph="select * fro... " />
+            <marker date="1468034943760" expanded="true" signature="4494:4533" ph="select * fro... " />
+            <marker date="1468034943760" expanded="true" signature="4751:4920" ph="INSERT INTO " />
+            <marker date="1468034943760" expanded="true" signature="5088:5443" ph="INSERT INTO " />
+            <marker date="1468034943760" expanded="true" signature="5618:5877" ph="INSERT INTO " />
+            <marker date="1468034943760" expanded="true" signature="8200:8245" ph="..." />
+            <marker date="1468034943760" expanded="true" signature="8208:8236" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6940">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding>
+            <element signature="e#35#79#0#PHP" expanded="true" />
+            <marker date="1467973929460" expanded="true" signature="15914:16083" ph="INSERT INTO " />
+            <marker date="1467973929460" expanded="true" signature="16253:16608" ph="INSERT INTO " />
+            <marker date="1467973929460" expanded="true" signature="16785:17044" ph="INSERT INTO " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="1521" column="72" selection-start-line="1521" selection-start-column="72" selection-end-line="1521" selection-end-column="72" />
+          <folding />
         </state>
       </provider>
     </entry>

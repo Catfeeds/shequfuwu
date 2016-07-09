@@ -274,7 +274,8 @@ class FooController extends Controller
     }
 
     public function compressop(){
-        $url= U("Home/Public/login");
+        $url= EnvironmentHelper::getServerHostName(). U("Home/Public/login");
+        dump($url);
         $result= EnvironmentHelper::getServerCompressType($url);
         dump($result);
 
