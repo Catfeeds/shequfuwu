@@ -138,18 +138,22 @@
                             <tbody>
                             <tr>
                                 <th>名称</th>
+                                <th>类别</th>
                                 <th>图片</th>
                                 <th>链接</th>
                                 <th>状态</th>
                                 <th>排序</th>
                                 <th>备注</th>
-                                <th>时间</th>
+                                <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
                             <volist name="shopList" id="shop">
                                 <tr>
                                     <td>
                                         {$shop.name}
+                                    </td>
+                                    <td>
+                                        {$shop.categoryname}
                                     </td>
                                     <td>
                                         <if condition="$shop.savepath && $shop.savename">

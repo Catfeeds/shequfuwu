@@ -2,6 +2,7 @@
 namespace Home\Controller;
 
 use Common\Model\BizHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class ShopController extends BaseController
 {
@@ -9,12 +10,6 @@ class ShopController extends BaseController
     {
         if (IS_POST) {
             $data = I("post.");
-
-// dump($data);
-
-            // if( floatval($data["zhekou"]) > 1 || floatval($data["zhekou"]) <= 0){
-            //     $this->error("账户支付折扣的值只能设置(  0 < x <= 1 )" , "Home/Shop/modifyShop");
-            // }
 
             if (!$data["id"]) {
                 $data["user_id"] = session("homeId");
@@ -29,8 +24,11 @@ class ShopController extends BaseController
             } else {
                 $this->success("创建成功", U("Home/AddShop/shop"));
             }
-
         } else {
+            $categoryMate= new ModelMate('shopCategory');
+            $categoryList= $categoryMate->select(array('usable'=>1));
+            $this->assign('categoryList',$categoryList);
+            
             $this->display();
         }
     }
@@ -65,6 +63,9 @@ class ShopController extends BaseController
             $shop["employeeName"] = implode(",", $username);
             $this->assign("shop", $shop);
 
+            $categoryMate= new ModelMate('shopCategory');
+            $categoryList= $categoryMate->select(array('usable'=>1));
+            $this->assign('categoryList',$categoryList);
             $this->display("Shop:addShop");
         } else {
             $this->error("请先选择店铺", "Home/Shop/shop");
@@ -131,11 +132,11 @@ class ShopController extends BaseController
         );
 
 
-        if(IS_POST){
+        if (IS_POST) {
             cookie("$cookiePrefix-category", I("post.category"));
         }
 
-        $cookieCategory= cookie("$cookiePrefix-category");
+        $cookieCategory = cookie("$cookiePrefix-category");
         if ($cookieCategory && $cookieCategory != -10) {
             array_push($condition, array("menu_id" => $cookieCategory));
         }
@@ -165,12 +166,12 @@ class ShopController extends BaseController
 //        }
 
 
-        if(IS_POST){
+        if (IS_POST) {
             cookie("$cookiePrefix-status", I("post.productStatus"));
         }
 
-        $cookieStatus= cookie("$cookiePrefix-status");
-        if ($cookieStatus!=null && $cookieStatus != -10) {
+        $cookieStatus = cookie("$cookiePrefix-status");
+        if ($cookieStatus != null && $cookieStatus != -10) {
             array_push($condition, array("status" => $cookieStatus));
         }
 

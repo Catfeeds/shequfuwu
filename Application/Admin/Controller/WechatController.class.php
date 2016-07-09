@@ -220,20 +220,20 @@ class WechatController extends Controller
         $userID = 0;
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
-            D("User")->save(array("id" => $user["id"], "subscribe" => 1));
+            D("User")->save(array("id" => $user["id"], "subscribe" => C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")));
             $userID = $user["id"];
         } else {
             $userInfo = self::$weObj->getUserInfo($openId);
             $user = array(
                 "username" => $userInfo["nickname"],
                 "openid" => $userInfo["openid"],
-                "subscribe" => 1,
                 "sex" => $userInfo["sex"],
                 "language" => $userInfo["language"],
                 "city" => $userInfo["city"],
                 "province" => $userInfo["province"],
                 "avater" => $userInfo["headimgurl"],
                 "status" => C('USER_DEFAULT_STATUS'),
+                "subscribe" => C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER"),
             );
             $userID = D("User")->add($user);
         }

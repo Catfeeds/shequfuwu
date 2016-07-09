@@ -17,6 +17,12 @@ class ShopModel extends RelationModel
             'mapping_name' => 'user',
             'foreign_key' => 'user_id',//关联id
         ),
+        'ShopCategory'=>array(
+            'mapping_type' => self::BELONGS_TO,
+            'mapping_name' => 'shopCategory',
+            'foreign_key' => 'category_id',//关联id
+            'as_fields' => 'name:categoryname',
+        ),
     );
 
     // public function add(){

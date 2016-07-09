@@ -15,4 +15,8 @@ return array(
 
     'SYSTEM_DEBUGGING' => false, //系统是否在开发调试状态
     'USER_DEFAULT_STATUS' => 1, //用户注册后默认启用
+
+    'USER_COMEFROM_NOWEIXINUSER'=>0,// 后台注册用户，非微信用户
+    'USER_COMEFROM_COMMONWEIXINUSER'=>1,// 微信用户，尚未关注公众号
+    'USER_COMEFROM_SUBSCRIBEDWEIXINUSER'=>2,// 微信用户，已经关注公众号
 );

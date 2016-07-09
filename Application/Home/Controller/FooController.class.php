@@ -13,6 +13,7 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\IO\Drawing\CircleSeal;
@@ -247,5 +248,24 @@ class FooController extends Controller
     public function physicalpathop(){
         //dump($_SERVER['PHP_SELF']);
         dump(realpath(dirname(__FILE__)));
+    }
+
+    public function cleancommnetop(){
+        $html= '<meta charset="UTF-8">
+	<!--引入标题，关键之，描述等-->
+	<title>易联云-API开发文档</title>
+	<meta name="keywords" content="">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<link rel="stylesheet" type="text/css" href="Common/style/base.min.css">
+	<link rel="stylesheet" href="Common/style/download.min.css">
+	<link rel="stylesheet" type="text/css" href="Common/style/home-common.min.css">
+	<style type="text/css">
+		body{
+			background:#f5f8fb;
+		}
+	</style>';//NetHelper::get("http://www.10ss.net/doc.html");
+        dump($html);
+        $result= HtmlHelper::cleanComment($html);
+        dump($result);
     }
 }

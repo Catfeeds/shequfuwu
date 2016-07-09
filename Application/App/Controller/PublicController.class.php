@@ -109,7 +109,7 @@ class PublicController extends Controller
         $user = D("User")->get(array("openid" => $userInfo["openid"]));
         $data = array(
             "username" => $userInfo["nickname"],
-            "subscribe" => 1,
+            "subscribe" => C("USER_COMEFROM_COMMONWEIXINUSER"),
             "sex" => $userInfo["sex"],
             "language" => $userInfo["language"],
             "city" => $userInfo["city"],
@@ -120,8 +120,8 @@ class PublicController extends Controller
 
         $userId = $user["id"] ? $user["id"] : 0;
         if ($user) {
-            $data["id"] = $user["id"];
-            D("User")->save($data);
+//            $data["id"] = $user["id"];
+//            D("User")->save($data);
         } else {
             $data["openid"] = $userInfo["openid"];
             $userId = D("User")->add($data);

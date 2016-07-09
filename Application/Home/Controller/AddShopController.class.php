@@ -2,6 +2,7 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class AddShopController extends Controller
 {
@@ -30,12 +31,6 @@ class AddShopController extends Controller
         if (IS_POST) {
             $data = I("post.");
 
-// dump($data);
-
-            // if( floatval($data["zhekou"]) > 1 || floatval($data["zhekou"]) <= 0){
-            //     $this->error("账户支付折扣的值只能设置(  0 < x <= 1 )" , "Home/Shop/modifyShop");
-            // }
-
             if (!$data["id"]) {
                 $data["user_id"] = session("homeId");
             }
@@ -47,9 +42,11 @@ class AddShopController extends Controller
             $this->success("保存成功", U("Home/AddShop/shop"));
 
         } else {
+            $categoryMate= new ModelMate('shopCategory');
+            $categoryList= $categoryMate->select(array('usable'=>1));
+            $this->assign('categoryList',$categoryList);
+            
             $this->display();
         }
     }
-
-
 }
