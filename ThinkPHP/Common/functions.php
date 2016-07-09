@@ -1519,7 +1519,7 @@ function get_client_ip($type = 0, $adv = false)
 }
 
 function get_server_compress(){
-    $url= EnvironmentHelper::getServerHostName().U("Home/Public/login");
+    $url= \Vendor\Hiland\Utils\Web\EnvironmentHelper::getServerHostName().U("Home/Public/login");
     $result=\Vendor\Hiland\Utils\Web\EnvironmentHelper::getServerCompressType($url);
     if(empty($result)){
         $result='未压缩';

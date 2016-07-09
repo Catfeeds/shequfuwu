@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Common/functions.php" afterPath="$PROJECT_DIR$/ThinkPHP/Common/functions.php" />
     </list>
     <ignored path="src.iws" />
@@ -112,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="230">
-              <caret line="1521" column="72" selection-start-line="1521" selection-start-column="72" selection-end-line="1521" selection-end-column="72" />
+              <caret line="1521" column="35" selection-start-line="1521" selection-start-column="35" selection-end-line="1521" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -646,12 +645,12 @@
       <workItem from="1467585347003" duration="5638000" />
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
-      <workItem from="1467936393388" duration="36822000" />
+      <workItem from="1467936393388" duration="36918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81092000" />
+    <option name="totallyTimeSpent" value="81188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -1128,7 +1127,7 @@
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
-          <caret line="1521" column="72" selection-start-line="1521" selection-start-column="72" selection-end-line="1521" selection-end-column="72" />
+          <caret line="1521" column="35" selection-start-line="1521" selection-start-column="35" selection-end-line="1521" selection-end-column="35" />
           <folding />
         </state>
       </provider>
