@@ -107,7 +107,8 @@
 
         var shareData;
         var shopData= eval({$config});
-        alert(data.uploadsUrl + shopData.savepath+ shopData.savename);
+
+        alert('{$hostName}'+  data.uploadsUrl + shopData.savepath+ shopData.savename);
         //alert(pageUrl);
         if(pageUrl.indexOf("#/product/")>=0){
             shareData = {
@@ -121,7 +122,7 @@
                 title: shopData.name,
                 desc: shopData.remark,
                 link: pageUrl,
-                imgUrl: data.uploadsUrl + shopData.savepath+ shopData.savename,
+                imgUrl: '{$hostName}' + data.uploadsUrl + shopData.savepath+ shopData.savename,
             };
         }
 

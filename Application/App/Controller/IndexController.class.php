@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\Web\EnvironmentHelper;
 
 class IndexController extends BaseController
 {
@@ -52,6 +53,9 @@ class IndexController extends BaseController
         $menu = D("Menu")->getList(array("shop_id" => $shopId), true, "rank desc,id desc");
         $menu = list_to_tree($menu, 'id', 'pid', 'sub');
         $this->assign("menu", json_encode($menu));
+
+        $hostName= EnvironmentHelper::getServerHostName();
+        $this->assign("hostName", $hostName);
 
 //        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
 //        $this->assign("product", json_encode($product));
