@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/Common/WechatConfig.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/Common/WechatConfig.class.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,21 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WechatController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="247" column="103" selection-start-line="247" selection-start-column="103" selection-end-line="247" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+            <state relative-caret-position="103">
+              <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -55,19 +45,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="287" column="32" selection-start-line="287" selection-start-column="20" selection-end-line="287" selection-end-column="32" />
+            <state relative-caret-position="329">
+              <caret line="295" column="27" selection-start-line="295" selection-start-column="20" selection-end-line="295" selection-end-column="27" />
               <folding>
-                <marker date="1468051184563" expanded="true" signature="4494:4532" ph="select * fro... " />
-                <marker date="1468051184563" expanded="true" signature="4494:4533" ph="select * fro... " />
-                <marker date="1468051184563" expanded="true" signature="4751:4920" ph="INSERT INTO " />
-                <marker date="1468051184563" expanded="true" signature="5088:5443" ph="INSERT INTO " />
-                <marker date="1468051184563" expanded="true" signature="5618:5877" ph="INSERT INTO " />
-                <marker date="1468051184563" expanded="true" signature="8200:8245" ph="..." />
-                <marker date="1468051184563" expanded="true" signature="8208:8236" ph="{...}" />
+                <marker date="1468112335981" expanded="true" signature="4494:4532" ph="select * fro... " />
+                <marker date="1468112335981" expanded="true" signature="4494:4533" ph="select * fro... " />
+                <marker date="1468112335981" expanded="true" signature="4751:4920" ph="INSERT INTO " />
+                <marker date="1468112335981" expanded="true" signature="5088:5443" ph="INSERT INTO " />
+                <marker date="1468112335981" expanded="true" signature="5618:5877" ph="INSERT INTO " />
+                <marker date="1468112335981" expanded="true" signature="8200:8245" ph="..." />
+                <marker date="1468112335981" expanded="true" signature="8208:8236" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -88,8 +78,8 @@
       <file leaf-file-name="WechatHelper.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/WechatHelper.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-66">
-              <caret line="567" column="38" selection-start-line="567" selection-start-column="38" selection-end-line="567" selection-end-column="38" />
+            <state relative-caret-position="114">
+              <caret line="567" column="41" selection-start-line="567" selection-start-column="41" selection-end-line="567" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -164,13 +154,13 @@
         <option value="$PROJECT_DIR$/ThinkPHP/ThinkPHP.php" />
         <option value="$PROJECT_DIR$/Application/Common/Common/function.php" />
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_mustsubscribe.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/Common/WechatConfig.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
       </list>
     </option>
   </component>
@@ -653,6 +643,46 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -725,12 +755,12 @@
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
-      <workItem from="1468107720891" duration="3604000" />
+      <workItem from="1468107720891" duration="3879000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95018000" />
+    <option name="totallyTimeSpent" value="95293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1370" height="734" extended-state="0" />
@@ -831,6 +861,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="130" column="23" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -947,6 +978,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="1521" column="35" selection-start-line="1521" selection-start-column="35" selection-end-line="1521" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,14 +1124,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="247" column="103" selection-start-line="247" selection-start-column="103" selection-end-line="247" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/OrderController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1134,22 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="287" column="32" selection-start-line="287" selection-start-column="20" selection-end-line="287" selection-end-column="32" />
-          <folding>
-            <marker date="1468051184563" expanded="true" signature="4494:4532" ph="select * fro... " />
-            <marker date="1468051184563" expanded="true" signature="4494:4533" ph="select * fro... " />
-            <marker date="1468051184563" expanded="true" signature="4751:4920" ph="INSERT INTO " />
-            <marker date="1468051184563" expanded="true" signature="5088:5443" ph="INSERT INTO " />
-            <marker date="1468051184563" expanded="true" signature="5618:5877" ph="INSERT INTO " />
-            <marker date="1468051184563" expanded="true" signature="8200:8245" ph="..." />
-            <marker date="1468051184563" expanded="true" signature="8208:8236" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/Common/WechatConfig.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
@@ -1158,19 +1166,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/WechatHelper.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="567" column="38" selection-start-line="567" selection-start-column="38" selection-end-line="567" selection-end-column="38" />
+        <state relative-caret-position="254">
+          <caret line="247" column="103" selection-start-line="247" selection-start-column="103" selection-end-line="247" selection-end-column="103" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+        <state relative-caret-position="103">
+          <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/WechatHelper.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="567" column="41" selection-start-line="567" selection-start-column="41" selection-end-line="567" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="295" column="27" selection-start-line="295" selection-start-column="20" selection-end-line="295" selection-end-column="27" />
+          <folding>
+            <marker date="1468112335981" expanded="true" signature="4494:4532" ph="select * fro... " />
+            <marker date="1468112335981" expanded="true" signature="4494:4533" ph="select * fro... " />
+            <marker date="1468112335981" expanded="true" signature="4751:4920" ph="INSERT INTO " />
+            <marker date="1468112335981" expanded="true" signature="5088:5443" ph="INSERT INTO " />
+            <marker date="1468112335981" expanded="true" signature="5618:5877" ph="INSERT INTO " />
+            <marker date="1468112335981" expanded="true" signature="8200:8245" ph="..." />
+            <marker date="1468112335981" expanded="true" signature="8208:8236" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

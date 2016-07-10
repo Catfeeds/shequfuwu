@@ -292,4 +292,9 @@ class FooController extends Controller
         $userFound = $userMate->find($condition);
         dump($userFound);
     }
+
+    public function jsapiop(){
+        $jsApiTicket= WechatHelper::getJsApiTicket();
+        dump($jsApiTicket);
+    }
 }
