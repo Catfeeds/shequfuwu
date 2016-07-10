@@ -103,14 +103,15 @@
         });
 
         var pageUrl= window.location.href;
+        var hash= window.location.hash;
 
         var shareData;
         var shopData= eval({$config});
 
         //alert('{$hostName}'+  data.uploadsUrl + shopData.savepath+ shopData.savename);
         //alert(pageUrl);
-        alert(window.location.hash)
-        if(pageUrl.indexOf("#/product/")>=0){
+        //alert(window.location.hash)
+        if(hash.indexOf("#/product/")>=0){
             shareData = {
                 title: '这是产品',
                 desc: '这是一个很好游戏一起来玩吧。',
