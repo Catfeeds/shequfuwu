@@ -105,12 +105,24 @@
 
         var pageUrl= window.location.href;
 
-        var shareData = {
-            title: '我是解大然',
-            desc: '这是一个很好游戏一起来玩吧。',
-            link: pageUrl,
-            imgUrl: '缩略图',
-        };
+        var shareData;
+        if(pageUrl.indexOf("#/product/")>=0){
+            shareData = {
+                title: '这是产品',
+                desc: '这是一个很好游戏一起来玩吧。',
+                link: pageUrl,
+                imgUrl: '缩略图',
+            };
+        }else{
+            shareData = {
+                title: '我是店铺',
+                desc: '这是一个很好游戏一起来玩吧。',
+                link: pageUrl,
+                imgUrl: '缩略图',
+            };
+        }
+
+
 
         wx.onMenuShareAppMessage(shareData);
         wx.onMenuShareTimeline(shareData);
