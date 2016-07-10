@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Think\Controller;
+use Vendor\Hiland\Biz\Tencent\WechatHelper;
 
 
 class BaseController extends Controller
@@ -21,6 +22,12 @@ class BaseController extends Controller
             '__JS__' => __ROOT__ . '/Theme/' . C("DEFAULT_THEME") . '/Public/js',
             '__TPL_PUBLIC__' => __ROOT__ . '/Theme/' . C("DEFAULT_THEME") . '/Public',
         ));
+
+        /**
+         * 添加jsapi的签名
+         */
+        $signPackage = WechatHelper::getJSAPISignPackage();
+        $this->assign('signPackage', $signPackage);
 
         //自动登录
         if (I("get.token")) {
