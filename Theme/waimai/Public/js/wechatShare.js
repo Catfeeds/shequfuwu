@@ -9,8 +9,10 @@ var wechatjs_shopData_remark = $("#wechatjs_shopData_remark").val();
 var wechatjs_shopData_image = $("#wechatjs_shopData_image").val();
 var wechatjs_hostName = $("#wechatjs_hostName").val();
 
+var productMainImageUrl= 'http://'+ wechatjs_hostName +$('#itemsDetail #productMainImage').val()
+
 //alert(productID);
-alert(wechatjs_hostName +$('#itemsDetail #productMainImage').val());
+//alert(productMainImageUrl);
 //alert('http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image);
 
 wx.config({
@@ -46,7 +48,7 @@ wx.ready(function () {
             title: $('#itemsDetail .single-name').html(),
             desc: $('#itemsDetail .detail-title').next().html(),
             //link: pageUrl,
-            imgUrl: $('#itemsDetail .swiper-slide-active img').attr('src'),
+            imgUrl: productMainImageUrl,
         };
     } else {
         shareData = {
