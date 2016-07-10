@@ -1,5 +1,7 @@
 var productID = $("#itemsDetail #detail-id").val();
 
+alert($("wechatjs_appId").val);
+
 wx.config({
     appId: $("wechatjs_appId").val,
     timestamp: $("wechatjs_timestamp").val,
