@@ -137,7 +137,7 @@ class WechatHelper
         }
 
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$accessToken&openid=$openID&lang=zh_CN";
-        $output = NetHelper::Get($url);
+        $output = NetHelper::request($url);
         $jsoninfo = json_decode($output);
         return $jsoninfo;
     }
@@ -243,38 +243,46 @@ class WechatHelper
         $result = false;
         $MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" . $accessToken;
 
-        // $header[] = "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+//        $ch = curl_init();
+//
+//        curl_setopt($ch, CURLOPT_URL, $MENU_URL);
+//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+//        // curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+//        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+//        curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, $menuJson);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//
+//        $info = curl_exec($ch);
+//        // return $info;
+//        if (curl_errno($ch)) {
+//            $result = false;
+//        } else {
+//            $result = json_decode($info, true);
+//            $result = $result["errcode"];
+//            // return $result;
+//            if ($result == 0) {
+//                $result = true;
+//            } else {
+//                $result = false;
+//            }
+//        }
+//
+//        curl_close($ch);
 
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $MENU_URL);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $menuJson);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $info = curl_exec($ch);
-        // return $info;
-
-        if (curl_errno($ch)) {
-            $result = false;
+        $info = NetHelper::request($MENU_URL, $menuJson);
+        $result = json_decode($info, true);
+        $result = $result["errcode"];
+        // return $result;
+        if ($result == 0) {
+            $result = true;
         } else {
-            $result = json_decode($info, true);
-            $result = $result["errcode"];
-            // return $result;
-            if ($result == 0) {
-                $result = true;
-            } else {
-                $result = false;
-            }
+            $result = false;
         }
 
-        curl_close($ch);
 
         return $result;
     }
@@ -504,7 +512,7 @@ class WechatHelper
     public static function getOAuth2UserInfo($openID, $oauth2AccessToken)
     {
         $url = "https://api.weixin.qq.com/sns/userinfo?access_token=$oauth2AccessToken&openid=$openID";
-        $output = NetHelper::Get($url);
+        $output = NetHelper::request($url);
         $jsoninfo = json_decode($output);
         return $jsoninfo;
     }
@@ -605,7 +613,7 @@ class WechatHelper
         }
         $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
 
-        $res = json_decode(NetHelper::Get($url));
+        $res = json_decode(NetHelper::request($url));
         $ticket = $res->ticket;
 
         return $ticket;
@@ -637,6 +645,34 @@ class WechatHelper
         return $result;
     }
 
+
+    /**
+     * 发送文本型内容的客服消息
+     *
+     * @param string $toUserOpenID
+     *            目标方微信用户openid
+     * @param string $mediaID
+     *            发送图片的id（此图片需要提前上传到微信服务器，获取的上传后的资源id）
+     * @param string $accessToken
+     *            访问口令
+     * @return bool|string 发送成功返回true，错误的时候则返回错误代码和错误信息拼接的字符串。
+     */
+    public static function responseCustomerServiceImage($toUserOpenID, $mediaID, $accessToken = '')
+    {
+        $data = '{
+                    "touser":"' . $toUserOpenID . '",
+                    "msgtype":"image",
+                    "image":
+                    {
+                         "media_id":"' . $mediaID . '"
+                    }
+                }';
+
+        $result = self::responseCustomerService($data, $accessToken);
+        return $result;
+    }
+
+
     private static function responseCustomerService($data, $accessToken = '')
     {
         if (empty($accessToken)) {
@@ -644,7 +680,7 @@ class WechatHelper
         }
 
         $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=$accessToken";
-        $result = NetHelper::Post($url, $data);
+        $result = NetHelper::request($url, $data);
 
         $result = json_decode($result);
         $errorCode = $result->errcode;
@@ -656,6 +692,32 @@ class WechatHelper
             return '错误代码:[' . $errorCode . '].错误信息为:' . $errorMessage;
         }
     }
+
+    /**
+     * 将长地址转换为短地址
+     * @param $longUrl
+     * @param string $accessToken
+     * @return bool|string 成功返回转换后的短地址，失败返回false
+     * @throws Common\WechatException
+     */
+    public static function shortenUrl($longUrl, $accessToken = '')
+    {
+        if (empty($accessToken)) {
+            $accessToken = self::getAccessToken();
+        }
+
+        $url = "https://api.weixin.qq.com/cgi-bin/shorturl?access_token=$accessToken";
+        $data = "{\"action\":\"long2short\",\"long_url\":\"$longUrl\"}";
+
+        $out = NetHelper::request($url, $data);
+        $result = json_decode($out, true);
+        if ($result['errcode'] == 0) {
+            return $result['short_url'];
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>
