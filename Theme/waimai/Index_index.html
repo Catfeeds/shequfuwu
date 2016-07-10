@@ -106,7 +106,7 @@
         var pageUrl= window.location.href;
 
         var shareData;
-        alert(pageUrl);
+        //alert(pageUrl);
         if(pageUrl.indexOf("#/product/")>=0){
             shareData = {
                 title: '这是产品',
@@ -116,10 +116,10 @@
             };
         }else{
             shareData = {
-                title: '我是店铺',
-                desc: '这是一个很好游戏一起来玩吧。',
+                title: '{$config.name}',
+                desc: '{$config.remark}',
                 link: pageUrl,
-                imgUrl: '缩略图',
+                imgUrl: data.uploadsUrl + '{$config.savepath}'+ '{$config.savename}',
             };
         }
 
