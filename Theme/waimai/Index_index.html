@@ -113,15 +113,12 @@
         var shareData;
         var shopData = eval({$config});
 
-        //alert('{$hostName}'+  data.uploadsUrl + shopData.savepath+ shopData.savename);
-        //alert(pageUrl);
-        //alert(window.location.hash)
         if (hash.indexOf("#/product/") >= 0) {
             shareData = {
-                title: '这是产品',
-                desc: '这是一个很好游戏一起来玩吧。',
+                title: shopData.name,
+                desc: shopData.remark,
                 //link: pageUrl,
-                imgUrl: '缩略图',
+                //imgUrl: '缩略图',
             };
         } else {
             shareData = {
