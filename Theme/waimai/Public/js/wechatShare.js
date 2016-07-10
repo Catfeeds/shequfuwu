@@ -9,7 +9,8 @@ var wechatjs_shopData_remark = $("#wechatjs_shopData_remark").val();
 var wechatjs_shopData_image = $("#wechatjs_shopData_image").val();
 var wechatjs_hostName = $("#wechatjs_hostName").val();
 
-alert('http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image);
+alert(productID);
+//alert('http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image);
 
 wx.config({
     appId: $("#wechatjs_appId").val(),
