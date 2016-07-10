@@ -18,7 +18,7 @@ $(document).ready(function () {
     }
 
     // js路由
-    Path.map("^/index").to(function () {
+    Path.map("#/index").to(function () {
         $(".navigation-wrap").show();
         $('#nav-ads').click();
         var mySwiper = new Swiper('.swiper-container', {
