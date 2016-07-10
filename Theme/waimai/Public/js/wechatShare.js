@@ -1,4 +1,4 @@
-var productID = $("#itemsDetail #detail-id").val();
+var productID = $("#itemsDetail #detail-id").html();
 var pageUrl = window.location.href;
 var hash = window.location.hash;
 
