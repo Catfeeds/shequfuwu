@@ -1,12 +1,12 @@
 var productID = $("#itemsDetail #detail-id").val();
 
-alert($("#wechatjs_appId").val);
+alert($("#wechatjs_appId").val());
 
 wx.config({
-    appId: $("#wechatjs_appId").val,
-    timestamp: $("#wechatjs_timestamp").val,
-    nonceStr: $("#wechatjs_nonceStr").val,
-    signature: $("#wechatjs_signature").val,
+    appId: $("#wechatjs_appId").val(),
+    timestamp: $("#wechatjs_timestamp").val(),
+    nonceStr: $("#wechatjs_nonceStr").val(),
+    signature: $("#wechatjs_signature").val(),
     jsApiList: [
         'checkJsApi',
         'onMenuShareTimeline',
@@ -33,7 +33,7 @@ wx.ready(function () {
     var hash = window.location.hash;
 
     var shareData;
-    var shopData = eval($("#wechatjs_shopData").val);
+    var shopData = eval($("#wechatjs_shopData").val());
 
 
     if (productID) {
