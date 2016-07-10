@@ -59,8 +59,9 @@ class IndexController extends BaseController
         $ads = D("Ads")->getList(array("shop_id" => $shopId), true);
         $this->assign("ads", json_encode($ads));
 
-        $wxConfig = D("WxConfig")->getJsSign();
-        $this->assign("wxConfig", json_encode($wxConfig));
+        //暂时先在base基类中实现
+//        $wxConfig = D("WxConfig")->getJsSign();
+//        $this->assign("wxConfig", json_encode($wxConfig));
 
         if (APP_DEBUG) {
             $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');

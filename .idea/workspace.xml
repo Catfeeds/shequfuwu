@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,72 +26,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WechatController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
+      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="251" column="4" selection-start-line="251" selection-start-column="4" selection-end-line="256" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="240">
+              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+              <folding>
+                <marker date="1468120593290" expanded="true" signature="4178:4215" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="4730:4761" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="4970:4998" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="5799:5836" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="6351:6382" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="6591:6619" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="17521:17548" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="17562:17575" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="19642:19654" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="43658:43672" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="43834:43846" ph="..." />
+                <marker date="1468120593290" expanded="true" signature="50152:50164" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state relative-caret-position="183">
+              <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="311" column="33" selection-start-line="311" selection-start-column="33" selection-end-line="311" selection-end-column="33" />
-              <folding>
-                <marker date="1468117734072" expanded="true" signature="4563:4601" ph="select * fro... " />
-                <marker date="1468117734072" expanded="true" signature="4563:4602" ph="select * fro... " />
-                <marker date="1468117734072" expanded="true" signature="4820:4989" ph="INSERT INTO " />
-                <marker date="1468117734072" expanded="true" signature="5157:5512" ph="INSERT INTO " />
-                <marker date="1468117734072" expanded="true" signature="5687:5946" ph="INSERT INTO " />
-                <marker date="1468117734072" expanded="true" signature="8269:8314" ph="..." />
-                <marker date="1468117734072" expanded="true" signature="8277:8305" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WechatBiz.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Common/Model/WechatBiz.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="62" column="31" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-              <folding>
-                <element signature="e#33#60#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -114,7 +78,6 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/IO/Thread.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/Index_left.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Config_wxPrintSet.html" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/MinController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/min/readme.txt" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/minify/config.php" />
@@ -158,9 +121,10 @@
         <option value="$PROJECT_DIR$/Application/Home/Controller/ShopController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/WechatBiz.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
+        <option value="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
-        <option value="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       </list>
     </option>
   </component>
@@ -463,6 +427,190 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".cache" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UEditor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UEditor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="third-party" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -699,12 +847,12 @@
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
-      <workItem from="1468107720891" duration="11078000" />
+      <workItem from="1468107720891" duration="12060000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102492000" />
+    <option name="totallyTimeSpent" value="103474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1370" height="734" extended-state="0" />
@@ -714,7 +862,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.125" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27667683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22027439" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -745,56 +893,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="130" column="23" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/shop_category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="40" column="69" selection-start-line="35" selection-start-column="32" selection-end-line="40" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/AddShop_addShop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="176" column="78" selection-start-line="176" selection-start-column="78" selection-end-line="176" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/AddShop_shop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="155" column="59" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Model/RelationModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="22" />
-          <folding>
-            <marker date="1467888257144" expanded="true" signature="8844:8998" ph="SELECT b.${{... " />
-            <marker date="1467888257144" expanded="true" signature="17615:17939" ph="INSERT INTO ${$mappingRelationTable}... " />
-            <marker date="1467888257144" expanded="true" signature="17705:17939" ph="SELECT a.${$... ${$this-&gt;getTableName()}" />
-            <marker date="1467888257144" expanded="true" signature="18941:19265" ph="INSERT INTO ${$mappingRelationTable}... " />
-            <marker date="1467888257144" expanded="true" signature="19031:19265" ph="SELECT a.${$... ${$this-&gt;getTableName()}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/AddShopController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="46" column="56" selection-start-line="44" selection-start-column="12" selection-end-line="46" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/ShopModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1133,22 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="62" column="31" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1156,6 +1238,194 @@
           <folding>
             <element signature="e#33#60#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1160">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/Admin/UEditor/third-party/jquery-1.10.2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="7568" column="4" selection-start-line="7568" selection-start-column="4" selection-end-line="7568" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/build/template.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="273" selection-start-line="3" selection-start-column="273" selection-end-line="3" selection-end-column="273" />
+          <folding>
+            <marker date="1467590444082" expanded="true" signature="8117:8176" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8326:8347" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8380:8415" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8604:8617" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="8827:8856" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="9246:9387" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="9971:10002" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="10395:10439" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="11006:11148" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="11193:11211" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="13705:13847" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="13898:13915" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="13955:14020" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14152:14163" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14190:14216" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14286:14312" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14328:14338" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14412:14421" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14521:14547" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14617:14643" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14659:14669" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14735:14744" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14841:14867" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14937:14963" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="14979:14989" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="15062:15071" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="15187:15212" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="15306:15317" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="16557:16569" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26328:26341" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26741:26762" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="26951:26964" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27141:27154" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27170:27198" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27377:27397" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27540:27560" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27582:27602" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="27959:27977" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28404:28416" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28608:28622" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28667:28681" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="28791:28805" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29224:29235" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29262:29288" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29358:29384" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29400:29410" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29475:29484" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29580:29606" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29694:29720" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29736:29746" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29821:29830" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="29945:29970" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30049:30060" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30113:30128" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30159:30169" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30257:30268" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="30963:30975" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="31223:31240" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="31551:31568" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="31608:31673" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="31964:32014" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="32964:33059" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="33535:33549" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="33604:33618" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="34610:34624" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35229:35241" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35433:35447" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35492:35506" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="35616:35630" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="37669:37687" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="37716:37744" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="37842:37860" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38495:38506" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38525:38551" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38621:38647" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38663:38673" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38751:38760" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38862:38888" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="38958:38984" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39000:39010" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39080:39089" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39188:39214" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39302:39328" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39344:39354" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39436:39445" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39547:39573" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39661:39687" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39703:39713" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39796:39805" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="39923:39948" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40033:40044" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40196:40211" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40247:40279" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40643:40686" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="40716:40729" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42352:42367" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42403:42435" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42571:42610" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42689:42726" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="42858:42895" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="43000:43044" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="43250:43262" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="44751:44788" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="44898:44942" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="46050:46067" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="46107:46172" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="46642:46692" ph="..." />
+            <marker date="1467590444082" expanded="true" signature="47021:47071" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="745" selection-start-line="1" selection-start-column="745" selection-end-line="1" selection-end-column="745" />
+          <folding>
+            <marker date="1467585778763" expanded="true" signature="1205:1217" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/productItems.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+          <folding>
+            <marker date="1468120593290" expanded="true" signature="4178:4215" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="4730:4761" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="4970:4998" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="5799:5836" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="6351:6382" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="6591:6619" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="17521:17548" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="17562:17575" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="19642:19654" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="43658:43672" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="43834:43846" ph="..." />
+            <marker date="1468120593290" expanded="true" signature="50152:50164" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
