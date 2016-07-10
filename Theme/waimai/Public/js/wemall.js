@@ -500,8 +500,8 @@ function clickItemDetail(id) {
             } else {
                 $('#commentList').html('');
             }
-
-            var html= "<script src=\"__JS__/wechatShare.js\" />";
+            //E:\myworkspace\project-php\社区服务\src\Theme\waimai\Public\js\wechatShare.js
+            var html= "<script src=data.baseUrl+  \"/Theme/waimai/Public/js/wechatShare.js\" />";
             $("#wechatShareJS").html(html);
         },
         beforeSend: function () {

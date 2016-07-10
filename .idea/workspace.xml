@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/itemsDetail-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/itemsDetail-container.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +27,7 @@
       <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
+            <state relative-caret-position="1163">
               <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="101" selection-end-column="9" />
               <folding />
             </state>
@@ -38,7 +37,7 @@
       <file leaf-file-name="wechatShare.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="-80">
               <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding />
             </state>
@@ -58,21 +57,21 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="504" column="43" selection-start-line="504" selection-start-column="43" selection-end-line="504" selection-end-column="43" />
+            <state relative-caret-position="194">
+              <caret line="503" column="53" selection-start-line="503" selection-start-column="53" selection-end-line="503" selection-end-column="53" />
               <folding>
-                <marker date="1468149340859" expanded="true" signature="4178:4215" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="4730:4761" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="4970:4998" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="5799:5836" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="6351:6382" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="6591:6619" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="17627:17654" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="17668:17681" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="19859:19871" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="43875:43889" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="44051:44063" ph="..." />
-                <marker date="1468149340859" expanded="true" signature="50369:50381" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="4178:4215" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="4730:4761" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="4970:4998" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="5799:5836" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="6351:6382" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="6591:6619" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="17627:17654" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="17668:17681" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="19978:19990" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="43994:44008" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="44170:44182" ph="..." />
+                <marker date="1468149736925" expanded="true" signature="50488:50500" ph="..." />
               </folding>
             </state>
           </provider>
@@ -91,7 +90,7 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Addons/Apply/View/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
+            <state relative-caret-position="-397">
               <caret line="183" column="66" selection-start-line="183" selection-start-column="12" selection-end-line="183" selection-end-column="66" />
               <folding>
                 <marker date="1468144269846" expanded="true" signature="6831:6858" ph="..." />
@@ -187,8 +186,8 @@
         <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js" />
         <option value="$PROJECT_DIR$/Theme/waimai/productList-container.html" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
         <option value="$PROJECT_DIR$/Theme/waimai/itemsDetail-container.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       </list>
     </option>
   </component>
@@ -787,6 +786,84 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Addons" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Apply" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Addons" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Apply" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Addons" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Apply" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -860,12 +937,12 @@
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
-      <workItem from="1468107720891" duration="26112000" />
+      <workItem from="1468107720891" duration="26504000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117526000" />
+    <option name="totallyTimeSpent" value="117918000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1370" height="734" extended-state="0" />
@@ -1236,18 +1313,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Apply/View/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="183" column="66" selection-start-line="183" selection-start-column="12" selection-end-line="183" selection-end-column="66" />
-          <folding>
-            <marker date="1468144269846" expanded="true" signature="6831:6858" ph="..." />
-            <marker date="1468144269846" expanded="true" signature="6872:6885" ph="..." />
-            <marker date="1468144269846" expanded="true" signature="24809:24821" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/admin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1272,22 +1337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="101" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/productItems.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1304,14 +1353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/product-container.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/itemsDetail-container.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
@@ -1320,23 +1361,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-80">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1163">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="101" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Addons/Apply/View/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-397">
+          <caret line="183" column="66" selection-start-line="183" selection-start-column="12" selection-end-line="183" selection-end-column="66" />
+          <folding>
+            <marker date="1468144269846" expanded="true" signature="6831:6858" ph="..." />
+            <marker date="1468144269846" expanded="true" signature="6872:6885" ph="..." />
+            <marker date="1468144269846" expanded="true" signature="24809:24821" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/product-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="504" column="43" selection-start-line="504" selection-start-column="43" selection-end-line="504" selection-end-column="43" />
+        <state relative-caret-position="194">
+          <caret line="503" column="53" selection-start-line="503" selection-start-column="53" selection-end-line="503" selection-end-column="53" />
           <folding>
-            <marker date="1468149340859" expanded="true" signature="4178:4215" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="4730:4761" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="4970:4998" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="5799:5836" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="6351:6382" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="6591:6619" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="17627:17654" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="17668:17681" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="19859:19871" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="43875:43889" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="44051:44063" ph="..." />
-            <marker date="1468149340859" expanded="true" signature="50369:50381" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="4178:4215" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="4730:4761" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="4970:4998" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="5799:5836" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="6351:6382" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="6591:6619" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="17627:17654" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="17668:17681" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="19978:19990" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="43994:44008" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="44170:44182" ph="..." />
+            <marker date="1468149736925" expanded="true" signature="50488:50500" ph="..." />
           </folding>
         </state>
       </provider>
