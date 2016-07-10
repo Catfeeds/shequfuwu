@@ -454,7 +454,7 @@ function clickItemDetail(id) {
             $('#itemsDetail .detail-title').next().html(json.detail);
             $('#itemsDetail .detail-score').children().html(json.score);
             $('#itemsDetail #sale-unit').html(json.unit);
-            $('#itemsDetail #detail-id').html(json.id);
+            $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
             $('#product-attr').hide();
