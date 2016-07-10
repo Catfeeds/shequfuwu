@@ -447,7 +447,6 @@ function clickItemDetail(id) {
             id: id
         },
         success: function (res) {
-
             var json = eval(res);
             $('#itemsDetail .single-name').html(json.name);
             $('#itemsDetail .new-price').children().html(json.price);
@@ -455,6 +454,7 @@ function clickItemDetail(id) {
             $('#itemsDetail .detail-title').next().html(json.detail);
             $('#itemsDetail .detail-score').children().html(json.score);
             $('#itemsDetail #sale-unit').html(json.unit);
+            $('#itemsDetail #detail-id').html(json.id);
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
             $('#product-attr').hide();
