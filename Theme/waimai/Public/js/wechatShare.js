@@ -42,8 +42,8 @@ wx.ready(function () {
     if (productID) {
         var imgurl= '';
         shareData = {
-            title: 'sssss',//$('#itemsDetail-container .single-name').html(),
-            desc: 'ddddd',//$('#itemsDetail-container .detail-title').next().html(),
+            title: $('#itemsDetail .single-name').html(),
+            desc: $('#itemsDetail .detail-title').next().html(),
             //link: pageUrl,
             imgUrl: '缩略图',
         };
