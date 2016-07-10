@@ -13,11 +13,11 @@ class WechatBiz
 {
     public static function getWechat()
     {
-        $cacheKey = "system-wechatinstance20160710";
-        $dataCached = S($cacheKey);
-        if (!empty($dataCached)) {
-            return $dataCached;
-        }
+//        $cacheKey = "system-wechatinstance20160710";
+//        $dataCached = S($cacheKey);
+//        if (!empty($dataCached)) {
+//            return $dataCached;
+//        }
 
         Vendor("Wechat.wechat#class");
         $config = D("WxConfig")->get();
@@ -30,7 +30,7 @@ class WechatBiz
         );
         $wecaht = new \Wechat ($options);
         
-        S($cacheKey, $wecaht);
+        //S($cacheKey, $wecaht);
 
         return $wecaht;
     }
