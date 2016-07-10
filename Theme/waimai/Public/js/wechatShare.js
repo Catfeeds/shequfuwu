@@ -11,10 +11,6 @@ var wechatjs_hostName = $("#wechatjs_hostName").val();
 
 var productMainImageUrl= 'http://'+ wechatjs_hostName +$('#itemsDetail #productMainImage').val()
 
-//alert(productID);
-//alert(productMainImageUrl);
-//alert('http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image);
-
 wx.config({
     appId: $("#wechatjs_appId").val(),
     timestamp: $("#wechatjs_timestamp").val(),
@@ -43,7 +39,6 @@ wx.ready(function () {
     });
 
     if (productID) {
-        var imgurl= '';
         shareData = {
             title: $('#itemsDetail .single-name').html(),
             desc: $('#itemsDetail .detail-title').next().text(),

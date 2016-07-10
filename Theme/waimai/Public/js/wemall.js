@@ -24,10 +24,14 @@ $(document).ready(function () {
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.swiper-pagination',
             autoplay: 5000,//可选选项，自动滑动
-        })
+        });
+        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        $("#wechatShareJS").html(html);
     });
     Path.map("#/product").to(function () {
         $('#nav-product').click();
+        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        $("#wechatShareJS").html(html);
     });
     Path.map("#/product/:id").to(function () {
         var id = this.params['id'];
@@ -35,6 +39,8 @@ $(document).ready(function () {
     });
     Path.map("#/cart").to(function () {
         $('#nav-cart').click();
+        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        $("#wechatShareJS").html(html);
     });
     Path.map("#/order/:id").to(function () {
         var id = this.params['id'];
@@ -42,12 +48,18 @@ $(document).ready(function () {
     });
     Path.map("#/user").to(function () {
         $('#nav-user').click();
+        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        $("#wechatShareJS").html(html);
     });
     Path.map("#/selectShop").to(function () {
         selectShop();
+        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        $("#wechatShareJS").html(html);
     });
     Path.map("#/showShopInfo").to(function () {
         showShopInfo();
+        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        $("#wechatShareJS").html(html);
     });
     Path.root("#/index");
     Path.listen();
