@@ -294,7 +294,10 @@ class FooController extends Controller
     }
 
     public function jsapiop(){
+        $accessToken= WechatHelper::getAccessToken();
+        dump("accessToken-- $accessToken");
+
         $jsApiTicket= WechatHelper::getJsApiTicket();
-        dump($jsApiTicket);
+        dump("jsApiTicket-- $jsApiTicket");
     }
 }
