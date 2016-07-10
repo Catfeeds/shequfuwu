@@ -26,30 +26,30 @@ $(document).ready(function () {
             autoplay: 5000,//可选选项，自动滑动
         })
     });
-    Path.map("^/product").to(function () {
+    Path.map("#/product").to(function () {
         $('#nav-product').click();
     });
-    Path.map("^/product/:id").to(function () {
+    Path.map("#/product/:id").to(function () {
         var id = this.params['id'];
         clickItemDetail(id);
     });
-    Path.map("^/cart").to(function () {
+    Path.map("#/cart").to(function () {
         $('#nav-cart').click();
     });
-    Path.map("^/order/:id").to(function () {
+    Path.map("#/order/:id").to(function () {
         var id = this.params['id'];
         displayOrderResult(id);
     });
-    Path.map("^/user").to(function () {
+    Path.map("#/user").to(function () {
         $('#nav-user').click();
     });
-    Path.map("^/selectShop").to(function () {
+    Path.map("#/selectShop").to(function () {
         selectShop();
     });
-    Path.map("^/showShopInfo").to(function () {
+    Path.map("#/showShopInfo").to(function () {
         showShopInfo();
     });
-    Path.root("^/index");
+    Path.root("#/index");
     Path.listen();
     // $("#selectShop12").click();
     // selectShop();
