@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller;
 
+use Common\Model\WechatBiz;
 use Think\Controller;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\RandHelper;
 
 
 class BaseController extends Controller
@@ -26,7 +28,29 @@ class BaseController extends Controller
         /**
          * 添加jsapi的签名
          */
-        $signPackage = WechatHelper::getJSAPISignPackage();
+
+//        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+//        $timeStamp = time();
+//        $nonceString = RandHelper::rand(16);
+//
+//        // 这里参数的顺序要按照 key 值 ASCII 码升序排序
+//        $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceString&timestamp=$timeStamp&url=$url";
+//        $signature = sha1($string);
+//        $signPackage = array(
+//            "appID" => $appID,
+//            "nonceString" => $nonceString,
+//            "timeStamp" => $timeStamp,
+//            "url" => $url,
+//            "signature" => $signature,
+//            "rawString" => $string
+//        );
+//        return $signPackage;
+
+
+        //$signPackage = WechatHelper::getJSAPISignPackage();
+        $wechat= WechatBiz::getWechat();
+        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $signPackage= $wechat->getJsSign($url);
         $this->assign('signPackage', $signPackage);
 
         //自动登录
