@@ -49,6 +49,7 @@ class IndexController extends BaseController
         $config["alipay_payment"] = $configs["alipay_payment"];
         $config["cool_payment"] = $configs["cool_payment"];
         $this->assign("config", json_encode($config));
+        $this->assign("shopData", $config);
 
         $menu = D("Menu")->getList(array("shop_id" => $shopId), true, "rank desc,id desc");
         $menu = list_to_tree($menu, 'id', 'pid', 'sub');

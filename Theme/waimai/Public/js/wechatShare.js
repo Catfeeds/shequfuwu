@@ -33,7 +33,11 @@ wx.ready(function () {
     var hash = window.location.hash;
 
     var shareData;
-    var shopData = eval($("#wechatjs_shopData").val());
+
+    var wechatjs_shopData_name = $("#wechatjs_shopData_name").val();
+    var wechatjs_shopData_remark = $("#wechatjs_shopData_remark").val();
+    var wechatjs_shopData_image = $("#wechatjs_shopData_image").val();
+    var wechatjs_hostName = $("#wechatjs_hostName").val();
 
 
     if (productID) {
@@ -46,10 +50,10 @@ wx.ready(function () {
         };
     } else {
         shareData = {
-            title: shopData.name,
-            desc: shopData.remark,
+            title: wechatjs_shopData_name,
+            desc: wechatjs_shopData_remark,
             //link: pageUrl,
-            imgUrl: 'http://{$hostName}' + data.uploadsUrl + shopData.savepath + shopData.savename,
+            imgUrl: 'http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image,
         };
     }
 

@@ -85,7 +85,10 @@
     <input type="hidden" id="wechatjs_timestamp" value="{$signPackage.timestamp}">
     <input type="hidden" id="wechatjs_nonceStr" value="{$signPackage.nonceStr}">
     <input type="hidden" id="wechatjs_signature" value="{$signPackage.signature}">
-    <input type="hidden" id="wechatjs_shopData" value="{$config}">
+    <input type="hidden" id="wechatjs_shopData_name" value="{$shopData.name}">
+    <input type="hidden" id="wechatjs_shopData_remark" value="{$shopData.remark}">
+    <input type="hidden" id="wechatjs_shopData_image" value="{$shopData.savepath} +{$shopData.savename}">
+    <input type="hidden" id="wechatjs_hostName" value="{$hostName}">
 
     <div id="wechatShareJS">
 
