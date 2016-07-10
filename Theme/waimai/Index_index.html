@@ -106,6 +106,7 @@
         var pageUrl= window.location.href;
 
         var shareData;
+        var shopData= eval({$config});
         //alert(pageUrl);
         if(pageUrl.indexOf("#/product/")>=0){
             shareData = {
@@ -116,7 +117,7 @@
             };
         }else{
             shareData = {
-                title: "{$config}",
+                title: shopData.name,
                 desc: "{$config.remark}",
                 link: pageUrl,
                 imgUrl: data.uploadsUrl + '{$config.savepath}'+ '{$config.savename}',
