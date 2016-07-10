@@ -1,6 +1,15 @@
 var productID = $("#itemsDetail #detail-id").val();
+var pageUrl = window.location.href;
+var hash = window.location.hash;
 
-alert($("#wechatjs_appId").val());
+var shareData;
+
+var wechatjs_shopData_name = $("#wechatjs_shopData_name").val();
+var wechatjs_shopData_remark = $("#wechatjs_shopData_remark").val();
+var wechatjs_shopData_image = $("#wechatjs_shopData_image").val();
+var wechatjs_hostName = $("#wechatjs_hostName").val();
+
+alert('http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image);
 
 wx.config({
     appId: $("#wechatjs_appId").val(),
@@ -28,17 +37,6 @@ wx.ready(function () {
             'onMenuShareWeibo'
         ],
     });
-
-    var pageUrl = window.location.href;
-    var hash = window.location.hash;
-
-    var shareData;
-
-    var wechatjs_shopData_name = $("#wechatjs_shopData_name").val();
-    var wechatjs_shopData_remark = $("#wechatjs_shopData_remark").val();
-    var wechatjs_shopData_image = $("#wechatjs_shopData_image").val();
-    var wechatjs_hostName = $("#wechatjs_hostName").val();
-
 
     if (productID) {
         var imgurl= '';
