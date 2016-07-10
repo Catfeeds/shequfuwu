@@ -313,4 +313,8 @@ class FooController extends Controller
         $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
         dump($signPackage);
     }
+
+    public function jstestop(){
+        $this->display();
+    }
 }

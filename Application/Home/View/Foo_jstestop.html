@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p class="jump">
+    页面
+</p>
+
+<script type="text/javascript">
+    (function () {
+        var pageUrl= window.location.href;
+        alert(pageUrl);
+        if(pageUrl.indexOf("#/product/")>=0){
+            alert('have');
+        }else{
+            alert('no');
+        }
+    })();
+</script>
+</body>
+</html>
