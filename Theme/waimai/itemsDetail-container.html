@@ -1,7 +1,8 @@
 <div class="detail" id="itemsDetail">
     <div class="container-gird">
         <div class="swiper-container" style="height: 200px">
-            <div class="swiper-wrapper">
+            <!--以下div的class“productsContainer”请一定不要修改，通过其来判断是否为产品详情页面-->
+            <div class="swiper-wrapper productsContainer">
                 <!-- 幻灯片 -->
             </div>
             <!-- 如果需要滚动条 -->
@@ -36,6 +37,7 @@
         </div>
     </div>
     <div class="detail-content">
+        <input type="hidden" name="detail-id" id="detail-id" class="detail-id">
         <div class="container-gird">
             <p class="detail-score detail-item">赠送积分：<span style="font-weight: normal;"></span></p>
         </div>

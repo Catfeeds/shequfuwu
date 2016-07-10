@@ -178,6 +178,7 @@ function clickItemDetail(id) {
         success: function (data) {
             var json = eval(data.product);
             //$('#itemsDetail-container .detail-image').attr('src', publicUrl + json.image);
+            $('#itemsDetail-container #detail-id').html(json.id);
             $('#itemsDetail-container .single-name').html(json.name);
             $('#itemsDetail-container .new-price').children().html(json.price);
             $('#itemsDetail-container .detail-title').next().html(json.detail);

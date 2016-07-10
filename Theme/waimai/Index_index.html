@@ -113,12 +113,16 @@
         var shareData;
         var shopData = eval({$config});
 
-        if (hash.indexOf("#/product/") >= 0) {
+        var productID = $("#itemsDetail #detail-id").val();
+        alert(productID);
+        if (productID) {
+            var imgurl= '';
+            //$('#itemsDetail-container .productsContainer').html()
             shareData = {
-                title: shopData.name,
-                desc: shopData.remark,
+                title: $('#itemsDetail-container .single-name').html(),
+                desc: $('#itemsDetail-container .detail-title').next().html(),
                 //link: pageUrl,
-                //imgUrl: '缩略图',
+                imgUrl: '缩略图',
             };
         } else {
             shareData = {
