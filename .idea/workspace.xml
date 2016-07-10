@@ -28,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="142" column="240" selection-start-line="142" selection-start-column="191" selection-end-line="142" selection-end-column="240" />
+              <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
               <folding>
                 <marker date="1468120712075" expanded="true" signature="4178:4215" ph="..." />
                 <marker date="1468120712075" expanded="true" signature="4730:4761" ph="..." />
@@ -60,8 +60,8 @@
       <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="121" column="23" selection-start-line="121" selection-start-column="23" selection-end-line="121" selection-end-column="23" />
+            <state relative-caret-position="449">
+              <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -730,12 +730,12 @@
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
-      <workItem from="1468107720891" duration="15998000" />
+      <workItem from="1468107720891" duration="16198000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107412000" />
+    <option name="totallyTimeSpent" value="107612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1370" height="734" extended-state="0" />
@@ -1222,27 +1222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="142" column="240" selection-start-line="142" selection-start-column="191" selection-end-line="142" selection-end-column="240" />
-          <folding>
-            <marker date="1468120712075" expanded="true" signature="4178:4215" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="4730:4761" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="4970:4998" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="5799:5836" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="6351:6382" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="6591:6619" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="17521:17548" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="17562:17575" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="19642:19654" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="43658:43672" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="43834:43846" ph="..." />
-            <marker date="1468120712075" expanded="true" signature="50152:50164" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1307,10 +1286,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="217" column="9" selection-start-line="217" selection-start-column="9" selection-end-line="217" selection-end-column="9" />
+          <folding>
+            <marker date="1468120712075" expanded="true" signature="4178:4215" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="4730:4761" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="4970:4998" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="5799:5836" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="6351:6382" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="6591:6619" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="17521:17548" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="17562:17575" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="19642:19654" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="43658:43672" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="43834:43846" ph="..." />
+            <marker date="1468120712075" expanded="true" signature="50152:50164" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="121" column="23" selection-start-line="121" selection-start-column="23" selection-end-line="121" selection-end-column="23" />
+        <state relative-caret-position="449">
+          <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
           <folding />
         </state>
       </provider>

@@ -71,11 +71,10 @@
 
 <script>
     $('#oti').html('欢迎来到' + data.config.name);
-    initShop({$shopId});
+    //initShop({$shopId});
 </script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-
     wx.config({
         appId: '{$signPackage.appId}',
         timestamp: '{$signPackage.timestamp}',
@@ -109,7 +108,7 @@
         var shopData= eval({$config});
 
         //alert('{$hostName}'+  data.uploadsUrl + shopData.savepath+ shopData.savename);
-        //alert(pageUrl);
+        alert(pageUrl);
         if(pageUrl.indexOf("#/product/")>=0){
             shareData = {
                 title: '这是产品',
