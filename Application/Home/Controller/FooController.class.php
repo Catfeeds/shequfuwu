@@ -15,6 +15,7 @@ use Think\Controller;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
+use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\IO\Drawing\CircleSeal;
@@ -306,6 +307,10 @@ class FooController extends Controller
         $ticket= $wechat->getJsTicket();
         dump("jsApiTicket2-- $ticket");
 
-        //$wechat->getJsSign();
+        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $timeStamp = time();
+        $nonceString = RandHelper::rand(16);
+        $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
+        dump($signPackage);
     }
 }
