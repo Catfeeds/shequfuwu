@@ -46,7 +46,7 @@ wx.ready(function () {
         var imgurl= '';
         shareData = {
             title: $('#itemsDetail .single-name').html(),
-            desc: $('#itemsDetail .detail-title').next().html(),
+            desc: $('#itemsDetail .detail-title').next().text(),
             //link: pageUrl,
             imgUrl: productMainImageUrl,
         };
