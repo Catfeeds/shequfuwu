@@ -215,6 +215,10 @@ function openTHisShop(id) {
     initShop(id);
 }
 
+function setShopID(id) {
+    set("shopId", id);
+}
+
 function initShop(id) {
     set("shopId", id);
     cartData = [];
