@@ -33,27 +33,14 @@ class BaseController extends Controller
 //        $timeStamp = time();
 //        $nonceString = RandHelper::rand(16);
 //
-//        // 这里参数的顺序要按照 key 值 ASCII 码升序排序
-//        $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceString&timestamp=$timeStamp&url=$url";
-//        $signature = sha1($string);
-//        $signPackage = array(
-//            "appID" => $appID,
-//            "nonceString" => $nonceString,
-//            "timeStamp" => $timeStamp,
-//            "url" => $url,
-//            "signature" => $signature,
-//            "rawString" => $string
-//        );
-//        return $signPackage;
 
-
-        //$signPackage = WechatHelper::getJSAPISignPackage();
-        $wechat = WechatBiz::getWechat();
-        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $timeStamp = time();
-        $nonceString = RandHelper::rand(16);
-        $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
-        $this->assign('signPackage', $signPackage);
+//        //$signPackage = WechatHelper::getJSAPISignPackage();
+//        $wechat = WechatBiz::getWechat();
+//        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+//        $timeStamp = time();
+//        $nonceString = RandHelper::rand(16);
+//        $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
+//        $this->assign('signPackage', $signPackage);
 
         //自动登录
         if (I("get.token")) {
