@@ -500,6 +500,9 @@ function clickItemDetail(id) {
             } else {
                 $('#commentList').html('');
             }
+
+            var html= "<script src=\"__JS__/wechatShare.js\" />";
+            $("#wechatShareJS").html(html);
         },
         beforeSend: function () {
             $('#page_tag_load').show();
