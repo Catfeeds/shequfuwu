@@ -80,6 +80,8 @@
 </if>
 
 <script>
+    var productID = $("#itemsDetail #detail-id").val();
+
     wx.config({
         appId: '{$signPackage.appId}',
         timestamp: '{$signPackage.timestamp}',
@@ -113,11 +115,9 @@
         var shareData;
         var shopData = eval({$config});
 
-        var productID = $("#itemsDetail #detail-id").val();
-        alert(productID);
+
         if (productID) {
             var imgurl= '';
-            //$('#itemsDetail-container .productsContainer').html()
             shareData = {
                 title: $('#itemsDetail-container .single-name').html(),
                 desc: $('#itemsDetail-container .detail-title').next().html(),
