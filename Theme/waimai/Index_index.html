@@ -73,7 +73,12 @@
     $('#oti').html('欢迎来到' + data.config.name);
     initShop({$shopId});
 </script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<if condition="APP_DEBUG eq true">
+    <script src="__JS__/jweixin-1.0.0.js"></script>
+    <else/>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</if>
+
 <script>
     wx.config({
         appId: '{$signPackage.appId}',
@@ -102,31 +107,30 @@
             ],
         });
 
-        var pageUrl= window.location.href;
-        var hash= window.location.hash;
+        var pageUrl = window.location.href;
+        var hash = window.location.hash;
 
         var shareData;
-        var shopData= eval({$config});
+        var shopData = eval({$config});
 
         //alert('{$hostName}'+  data.uploadsUrl + shopData.savepath+ shopData.savename);
         //alert(pageUrl);
         //alert(window.location.hash)
-        if(hash.indexOf("#/product/")>=0){
+        if (hash.indexOf("#/product/") >= 0) {
             shareData = {
                 title: '这是产品',
                 desc: '这是一个很好游戏一起来玩吧。',
-                link: pageUrl,
+                //link: pageUrl,
                 imgUrl: '缩略图',
             };
-        }else{
+        } else {
             shareData = {
                 title: shopData.name,
                 desc: shopData.remark,
-                link: pageUrl,
-                imgUrl: 'http://{$hostName}' + data.uploadsUrl + shopData.savepath+ shopData.savename,
+                //link: pageUrl,
+                imgUrl: 'http://{$hostName}' + data.uploadsUrl + shopData.savepath + shopData.savename,
             };
         }
-
 
 
         wx.onMenuShareAppMessage(shareData);
