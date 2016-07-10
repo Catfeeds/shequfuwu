@@ -10,6 +10,7 @@ namespace Home\Controller;
 
 
 use Common\Model\BizHelper;
+use Common\Model\WechatBiz;
 use Think\Controller;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
@@ -295,9 +296,16 @@ class FooController extends Controller
 
     public function jsapiop(){
         $accessToken= WechatHelper::getAccessToken();
-        dump("accessToken-- $accessToken");
+        dump("accessToken1-- $accessToken");
 
-        $jsApiTicket= WechatHelper::getJsApiTicket();
-        dump("jsApiTicket-- $jsApiTicket");
+        $jsApiTicket1= WechatHelper::getJsApiTicket();
+        dump("jsApiTicket1-- $jsApiTicket1");
+
+        $wechat= WechatBiz::getWechat();
+
+        $ticket= $wechat->getJsTicket();
+        dump("jsApiTicket2-- $ticket");
+
+        //$wechat->getJsSign();
     }
 }
