@@ -35,12 +35,12 @@ class BaseController extends Controller
 //
 
 //        //$signPackage = WechatHelper::getJSAPISignPackage();
-//        $wechat = WechatBiz::getWechat();
-//        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-//        $timeStamp = time();
-//        $nonceString = RandHelper::rand(16);
-//        $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
-//        $this->assign('signPackage', $signPackage);
+        $wechat = WechatBiz::getWechat();
+        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $timeStamp = time();
+        $nonceString = RandHelper::rand(16);
+        $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
+        $this->assign('signPackage', $signPackage);
 
         //自动登录
         if (I("get.token")) {

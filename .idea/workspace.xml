@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
     </list>
     <ignored path="src.iws" />
@@ -34,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+            <state relative-caret-position="255">
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BaseController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+            <state relative-caret-position="63">
+              <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
               <folding>
                 <element signature="e#33#60#0#PHP" expanded="true" />
               </folding>
@@ -158,8 +159,8 @@
         <option value="$PROJECT_DIR$/Application/Common/Model/WechatBiz.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
-        <option value="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+        <option value="$PROJECT_DIR$/Application/App/Controller/BaseController.class.php" />
       </list>
     </option>
   </component>
@@ -698,12 +699,12 @@
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
-      <workItem from="1468107720891" duration="10825000" />
+      <workItem from="1468107720891" duration="11078000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102239000" />
+    <option name="totallyTimeSpent" value="102492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1370" height="734" extended-state="0" />
@@ -1140,21 +1141,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
-          <folding>
-            <element signature="e#33#60#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="77" column="27" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="63">
+          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+          <folding>
+            <element signature="e#33#60#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

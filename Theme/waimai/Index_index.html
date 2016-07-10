@@ -75,7 +75,20 @@
 </script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-    wx.config({$wxConfig});
+    wx.config({
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'
+        ]
+    })
+    ;
     wx.ready(function () {
         // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
         wx.checkJsApi({
@@ -95,8 +108,6 @@
             link: '{$signPackage.url}',
             imgUrl: '缩略图',
         };
-
-
 
         wx.onMenuShareAppMessage(shareData);
         wx.onMenuShareTimeline(shareData);
