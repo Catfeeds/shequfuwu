@@ -31,7 +31,7 @@ wx.ready(function () {
     var hash = window.location.hash;
 
     var shareData;
-    var shopData = eval('{$config}');
+    var shopData = eval($("wechatjs_shopData").val);
 
 
     if (productID) {
