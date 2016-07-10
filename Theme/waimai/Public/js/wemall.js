@@ -501,7 +501,7 @@ function clickItemDetail(id) {
                 $('#commentList').html('');
             }
             //E:\myworkspace\project-php\社区服务\src\Theme\waimai\Public\js\wechatShare.js
-            var html= "<script src= " +data.jsUrl+  "\"/wechatShare.js\" />";
+            var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
             $("#wechatShareJS").html(html);
         },
         beforeSend: function () {
