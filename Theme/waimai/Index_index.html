@@ -118,9 +118,9 @@
         }else{
             shareData = {
                 title: shopData.name,
-                desc: "{$config.remark}",
+                desc: shopData.remark,
                 link: pageUrl,
-                imgUrl: data.uploadsUrl + '{$config.savepath}'+ '{$config.savename}',
+                imgUrl: data.uploadsUrl + shopData.savepath+ shopData.savename,
             };
         }
 
