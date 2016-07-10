@@ -103,15 +103,10 @@
         });
 
         var shareData = {
-//标题
             title: '我是解大然',
-//摘要
             desc: '这是一个很好游戏一起来玩吧。',
-//链接,可以换主页
             link: '{$signPackage.url}',
-//缩略图
             imgUrl: '缩略图',
-
         };
         wx.onMenuShareAppMessage(shareData);
         wx.onMenuShareTimeline(shareData);

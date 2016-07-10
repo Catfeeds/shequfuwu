@@ -249,11 +249,16 @@ class WechatController extends Controller
         }
     }
 
+    public function generateQRCode($key="0"){
+        $this->init();
+        $ticket = self::$weObj->getQRCode($key, 1);
+        $qrcode = self::$weObj->getQRUrl($ticket["ticket"]);
+        return $qrcode;
+    }
+
     public function getQRCode()
     {
-        $this->init();
-        $ticket = self::$weObj->getQRCode("0", 1);
-        $qrcode = self::$weObj->getQRUrl($ticket["ticket"]);
+        $qrcode= self::generateQRCode("0");
         if ($qrcode) {
             D("Config")->save(array("id" => 1, "qrcode" => $qrcode));
             $this->success("生成二维码成功", U("Admin/Config/configSet"));

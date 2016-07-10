@@ -2,6 +2,7 @@
 namespace Home\Controller;
 
 use Common\Model\BizHelper;
+use Common\Model\WechatBiz;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class ShopController extends BaseController
@@ -595,7 +596,8 @@ class ShopController extends BaseController
             $id = session("homeShopId");
 
             //dump($id);
-            $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
+            //$qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
+            $qrUrl= WechatBiz::getQRCodeUrl($id);
             $this->assign('qrUrl', $qrUrl);
             $this->display();
         } else {
