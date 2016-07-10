@@ -79,13 +79,21 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </if>
 
-<div id="wechatShare">
 
+<div id="wechatShare">
+    <input type="hidden" id="wechatjs_appId" value="{$signPackage.appId}">
+    <input type="hidden" id="wechatjs_timestamp" value="{$signPackage.timestamp}">
+    <input type="hidden" id="wechatjs_nonceStr" value="{$signPackage.nonceStr}">
+    <input type="hidden" id="wechatjs_signature" value="{$signPackage.signature}">
+
+    <div id="wechatShareJS">
+
+    </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
         var html= "<script src=\"__JS__/wechatShare.js\" />";
-        $("#wechatShare").html(html);
+        $("#wechatShareJS").html(html);
     });
 </script>
 </body>

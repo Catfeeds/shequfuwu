@@ -1,10 +1,10 @@
 var productID = $("#itemsDetail #detail-id").val();
 
 wx.config({
-    appId: '{$signPackage.appId}',
-    timestamp: '{$signPackage.timestamp}',
-    nonceStr: '{$signPackage.nonceStr}',
-    signature: '{$signPackage.signature}',
+    appId: $("wechatjs_appId").val,
+    timestamp: $("wechatjs_timestamp").val,
+    nonceStr: $("wechatjs_nonceStr").val,
+    signature: $("wechatjs_signature").val,
     jsApiList: [
         'checkJsApi',
         'onMenuShareTimeline',
