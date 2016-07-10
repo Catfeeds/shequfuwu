@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +47,8 @@
       <file leaf-file-name="wechatShare.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="51" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
+            <state relative-caret-position="240">
+              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -68,7 +67,7 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="-626">
               <caret line="456" column="44" selection-start-line="456" selection-start-column="44" selection-end-line="456" selection-end-column="44" />
               <folding>
                 <marker date="1468150949983" expanded="true" signature="4178:4215" ph="..." />
@@ -924,12 +923,12 @@
       <workItem from="1467683131546" duration="15825000" />
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
-      <workItem from="1468107720891" duration="27713000" />
+      <workItem from="1468107720891" duration="28109000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119127000" />
+    <option name="totallyTimeSpent" value="119523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1370" height="734" extended-state="0" />
@@ -1378,7 +1377,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="-626">
           <caret line="456" column="44" selection-start-line="456" selection-start-column="44" selection-end-line="456" selection-end-column="44" />
           <folding>
             <marker date="1468150949983" expanded="true" signature="4178:4215" ph="..." />
@@ -1399,8 +1398,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wechatShare.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="51" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
+        <state relative-caret-position="240">
+          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
           <folding />
         </state>
       </provider>

@@ -9,7 +9,7 @@ var wechatjs_shopData_remark = $("#wechatjs_shopData_remark").val();
 var wechatjs_shopData_image = $("#wechatjs_shopData_image").val();
 var wechatjs_hostName = $("#wechatjs_hostName").val();
 
-alert(productID);
+//alert(productID);
 //alert('http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image);
 
 wx.config({
@@ -42,8 +42,8 @@ wx.ready(function () {
     if (productID) {
         var imgurl= '';
         shareData = {
-            title: $('#itemsDetail-container .single-name').html(),
-            desc: $('#itemsDetail-container .detail-title').next().html(),
+            title: 'sssss',//$('#itemsDetail-container .single-name').html(),
+            desc: 'ddddd',//$('#itemsDetail-container .detail-title').next().html(),
             //link: pageUrl,
             imgUrl: '缩略图',
         };
@@ -55,7 +55,6 @@ wx.ready(function () {
             imgUrl: 'http://'+ wechatjs_hostName + data.uploadsUrl + wechatjs_shopData_image,
         };
     }
-
 
     wx.onMenuShareAppMessage(shareData);
     wx.onMenuShareTimeline(shareData);
