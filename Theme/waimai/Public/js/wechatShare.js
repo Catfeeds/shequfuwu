@@ -45,7 +45,7 @@ wx.ready(function () {
             title: $('#itemsDetail .single-name').html(),
             desc: $('#itemsDetail .detail-title').next().html(),
             //link: pageUrl,
-            imgUrl: '缩略图',
+            imgUrl: $('#itemsDetail .swiper-slide-active img').attr('src'),
         };
     } else {
         shareData = {
