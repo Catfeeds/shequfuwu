@@ -34,9 +34,9 @@ class WechatConfig
     const GATETOKEN = 'bigseaguall20160608';
 
     // 微信公众平台商户的名称
-    const MCHNAME = '商盟生活馆';
+    const MCHNAME = '福轮网络';
 
-    const NOTIFYURL = 'http://hilandwechat.sinaapp.com/index.php/tencent/pay/notify';
+    const NOTIFYURL = 'http://app.rainytop.com/mm/index.php/tencent/pay/notify';
 
     // =======【证书路径设置】=====================================
     /**
