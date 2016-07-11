@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="__CSS__/icon/iconfont.css">
     <link rel="stylesheet" href="__CSS__/iphone.css">
     <link rel="stylesheet" href="__CSS__/swiper.min.css">
+
+    <if condition="APP_DEBUG eq true">
+        <link rel="stylesheet" href="__CSS__/weui.min.css">
+        <else/>
+        <link href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css" rel="stylesheet">
+    </if>
+
 </head>
 <body>
 
 <div id="main">
     <div class="header-bar select-shopbar" style="position:fixed;">
-        <div class="header-title" style="display:inline-block;width:100%;">选择店铺</div>
+        <div class="header-title" style="display:inline-block;width:100%;">{:C('PROJECT_NAME')}</div>
         <span id="pi_back" style="display:none" onclick="history.go(-1)"></span>
     </div>
 
@@ -50,11 +57,19 @@
     }
     console.log(data);
 </script>
-<script src="__JS__/jquery.min.js"></script>
+
+<if condition="APP_DEBUG eq true">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/swiper.min.js"></script>
+    <script src="__JS__/jweixin-1.0.0.js"></script>
+    <else/>
+    <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/Swiper/3.0.4/js/swiper.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</if>
+
 <script src="__JS__/path.min.js"></script>
 <script src="__JS__/jquery.cookie.js"></script>
-<script src="__JS__/swiper.min.js"></script>
-<script src="__JS__/jweixin-1.0.0.js"></script>
 <script src="__TPL_PUBLIC__/build/template.js"></script>
 <script src="__JS__/echo.min.js"></script>
 <script src="__JS__/layer.m.js"></script>
@@ -94,59 +109,6 @@
     function renderOption(response) {
         document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
     }
-    function shopList() {
-        $.ajax({
-            type: "post",
-            url: data.baseUrl + "/App/User/getShopList",
-            data: {
-                lng: lng,
-                lat: lat,
-            },
-            success: function (res) {
-                var html = '';
-                $.each(res, function (index, value) {
-                    html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
-                });
-
-                $('#mod-desc').html(html);
-            },
-            beforeSend: function () {
-                // $('#page_tag_load').show();
-            },
-            complete: function () {
-                $('#page_tag_load').hide();
-            }
-
-        });
-    }
-    //pidong 搜索店铺
-    function searchShop() {
-        var name = $('.pi_input').val();
-        $.ajax({
-            type: "post",
-            url: data.baseUrl + "/App/User/getShopList",
-            data: {
-                name: name,
-                lng: lng,
-                lat: lat,
-            },
-            success: function (res) {
-                var html = '';
-                $.each(res, function (index, value) {
-                    html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
-                });
-
-                $('#mod-desc').html(html);
-            },
-            beforeSend: function () {
-                $('#page_tag_load').show();
-            },
-            complete: function () {
-                $('#page_tag_load').hide();
-            }
-
-        });
-    }
-</script>
+ </script>
 </body>
 </html>
