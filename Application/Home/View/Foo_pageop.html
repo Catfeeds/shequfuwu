@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" id="btnSearchShop">查询店铺</button>
+<p class="dataContainer" id="dataContainer">
+    显示内容
+</p>
+
+<script type="text/javascript" src="__ROOT__/Public/Admin/dist/js/jquery-2.1.4.min.js">
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSearchShop").on("click", function () {
+            //alert(222222222);
+            $.ajax({
+                type: "post",
+                url: "__APP__/App/Biz/getShopList",
+                data: {
+                    name: '酒',
+                },
+                success: function (res) {
+                    var html = '';
+                    //html = res;
+                    alert(res);
+
+                    $.each(res, function (index, value) {
+                        html+= index;
+                        //html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
+                    });
+
+                    $('#dataContainer').html(html);
+                },
+                error: function () {
+                    $('#dataContainer').html('错误');
+                },
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                }
+            });
+        });
+
+    });
+</script>
+</body>
+</html>

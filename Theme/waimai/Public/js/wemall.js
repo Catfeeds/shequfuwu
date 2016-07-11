@@ -168,6 +168,7 @@ function shopList() {
 //pidong 搜索店铺
 function searchShop() {
     var name = $('.pi_input').val();
+    var searchContentType= $('#searchContentType').val();
     $.ajax({
         type: "post",
         url: data.baseUrl + "/App/User/getShopList",

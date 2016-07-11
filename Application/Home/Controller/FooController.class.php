@@ -188,17 +188,19 @@ class FooController extends Controller
         $resultSku = $mateSku->execute($sqlSku);
         dump($resultSku);
     }
-    
-    public function logop(){
-        CommonLoger::log('logtest',time());
+
+    public function logop()
+    {
+        CommonLoger::log('logtest', time());
     }
 
-    public function asynop(){
+    public function asynop()
+    {
         dump(22222222222);
-        CommonLoger::log('asynCalled','1111111111111');
+        CommonLoger::log('asynCalled', '1111111111111');
         //self::asynCalled();
 
-        $url= U("asynCalled","info=9999999999");
+        $url = U("asynCalled", "info=9999999999");
         dump($url);
 
         Thread::asynExec($url);
@@ -215,20 +217,23 @@ class FooController extends Controller
 
     }
 
-    public function asynCalled($info){
+    public function asynCalled($info)
+    {
         sleep(10);
         //dump('ccccccccccccccccc-called');
-        CommonLoger::log('asynCalled',$info);
+        CommonLoger::log('asynCalled', $info);
         dump('oooooooooo');
         //return 'ok';
     }
 
-    public function CircleSealop(){
-        $seal = new CircleSeal('你我他坐站走东西南北中',75,6,24,0,0,16,40);
+    public function CircleSealop()
+    {
+        $seal = new CircleSeal('你我他坐站走东西南北中', 75, 6, 24, 0, 0, 16, 40);
         $seal->draw();
     }
 
-    public function viewmodelop(){
+    public function viewmodelop()
+    {
         $link = array(
             'File' => array(
                 'mapping_type' => ViewMate::BELONGS_TO,
@@ -237,27 +242,29 @@ class FooController extends Controller
                 'as_fields' => 'savename:savename,savepath:savepath',
             ),
         );
-        $viewMate= new ViewMate('menu',$link);
+        $viewMate = new ViewMate('menu', $link);
 
-        $viewData= $viewMate->get(100,'id',true);
+        $viewData = $viewMate->get(100, 'id', true);
         dump($viewData);
 
-        $modelMate= new ModelMate('menu');
-        $modelData= $modelMate->get(100);
+        $modelMate = new ModelMate('menu');
+        $modelData = $modelMate->get(100);
         dump($modelData);
 
-        $condition['id']= array('NEQ','1');
-        $list= $viewMate->select($condition);
+        $condition['id'] = array('NEQ', '1');
+        $list = $viewMate->select($condition);
         dump($list);
     }
 
-    public function physicalpathop(){
+    public function physicalpathop()
+    {
         //dump($_SERVER['PHP_SELF']);
         dump(realpath(dirname(__FILE__)));
     }
 
-    public function cleancommnetop(){
-        $html= '<meta charset="UTF-8">
+    public function cleancommnetop()
+    {
+        $html = '<meta charset="UTF-8">
 	<!--引入标题，关键之，描述等-->
 	<title>易联云-API开发文档</title>
 	<meta name="keywords" content="">
@@ -271,23 +278,25 @@ class FooController extends Controller
 		}
 	</style>';//NetHelper::get("http://www.10ss.net/doc.html");
         dump($html);
-        $result= HtmlHelper::cleanComment($html);
+        $result = HtmlHelper::cleanComment($html);
         dump($result);
     }
 
-    public function compressop(){
-        $url= EnvironmentHelper::getServerHostName(). U("Home/Public/login");
+    public function compressop()
+    {
+        $url = EnvironmentHelper::getServerHostName() . U("Home/Public/login");
         dump($url);
-        $result= EnvironmentHelper::getServerCompressType($url);
+        $result = EnvironmentHelper::getServerCompressType($url);
         dump($result);
 
         dump(HttpRequestHeader::getAll());
 
-        $data= HttpResponseHeader::getAll($url);
+        $data = HttpResponseHeader::getAll($url);
         dump($data);
     }
 
-    public function modelMateop2($openid='oqfK9vsaghlVPWev6l6Nuz1TZd9M'){
+    public function modelMateop2($openid = 'oqfK9vsaghlVPWev6l6Nuz1TZd9M')
+    {
         $userMate = new ModelMate('user');
         $condition = array();
         $condition['openid'] = $openid;
@@ -295,26 +304,33 @@ class FooController extends Controller
         dump($userFound);
     }
 
-    public function jsapiop(){
-        $accessToken= WechatHelper::getAccessToken();
+    public function jsapiop()
+    {
+        $accessToken = WechatHelper::getAccessToken();
         dump("accessToken1-- $accessToken");
 
-        $jsApiTicket1= WechatHelper::getJsApiTicket();
+        $jsApiTicket1 = WechatHelper::getJsApiTicket();
         dump("jsApiTicket1-- $jsApiTicket1");
 
-        $wechat= WechatBiz::getWechat();
+        $wechat = WechatBiz::getWechat();
 
-        $ticket= $wechat->getJsTicket();
+        $ticket = $wechat->getJsTicket();
         dump("jsApiTicket2-- $ticket");
 
         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $timeStamp = time();
         $nonceString = RandHelper::rand(16);
-        $signPackage = $wechat->getJsSign($url,$timeStamp,$nonceString);
+        $signPackage = $wechat->getJsSign($url, $timeStamp, $nonceString);
         dump($signPackage);
     }
 
-    public function jstestop(){
+    public function jstestop()
+    {
+        $this->display();
+    }
+
+    public function pageop()
+    {
         $this->display();
     }
 }

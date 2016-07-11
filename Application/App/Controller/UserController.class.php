@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 
 class UserController extends BaseController
 {
@@ -112,8 +113,6 @@ class UserController extends BaseController
         //dump('shopSelector');
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
-
-
     }
 
     /**
@@ -121,7 +120,6 @@ class UserController extends BaseController
      */
     public function getShopScanedList()
     {
-
         $openId = '';
         $shopScanedMate = new ModelMate('usershopscaned');
 
@@ -139,13 +137,30 @@ class UserController extends BaseController
      * 获取附近的店铺
      * @param int $distanceKM 公里数
      */
-    public function getShopList($distanceKM=15)
+    public function getShopList()
     {
-        $lng = I("post.lng");
-        $lat = I("post.lat");
-        // $lat = '34.7913';
-        // $lng = '113.673';
         $name = I('post.name');
+        $searchShopCategory = I('post.searchShopCategory');
+
+        $lng = I("post.lng");
+        if (empty($lng)) {
+            $lng = '117.359';
+        }
+
+        $lat = I("post.lat");
+        if (empty($lat)) {
+            $lat = '34.8177';
+        }
+
+        $searchContentType = I('post.searchContentType');
+        if (empty($searchContentType)) {
+            $searchContentType = 'shop';
+        }
+
+        $distanceKM = I('post.distanceKM');
+        if (empty($distanceKM)) {
+            $distanceKM = 15;
+        }
 
         $range = 180 / pi() * $distanceKM / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km
         $lngR = $range / cos($lat * pi() / 180);
@@ -154,16 +169,40 @@ class UserController extends BaseController
         $maxLng = $lng + $lngR;//最大经度 
         $minLng = $lng - $lngR;//最小经度 
 
-
         $map['lng'] = array('between', array($minLng, $maxLng)); //经度值
         $map['lat'] = array('between', array($minLat, $maxLat)); //纬度值
         $map['name'] = array('like', "%$name%");//搜索
         $map['status'] = 2;
 
-        $list = D("Shop")->getShopList($map, true);
-        $shop = $this->range($lat, $lng, $list);
-        $this->ajaxReturn($shop);
+        if (!empty($searchShopCategory)) {
+            $map['category_id'] = $searchShopCategory;
+        }
 
+        //$this->ajaxReturn('ssssssssssssss');
+
+        if ($searchContentType == 'shop') {
+            $list = D("Shop")->getShopList($map, true);
+            $shopes = $this->range($lat, $lng, $list);
+            //dump($shopes);
+            $this->ajaxReturn($shopes);
+        } else {
+            $link = array(
+                'Shop' => array(
+                    'mapping_type' => self::BELONGS_TO,
+                    'mapping_name' => 'shop',
+                    'foreign_key' => 'shop_id',//关联id
+                    'as_fields' => 'name:shopname',
+                ),
+                'File' => array(
+                    'mapping_type' => self::BELONGS_TO,
+                    'mapping_name' => 'file',
+                    'foreign_key' => 'file_id',//关联id
+                    'as_fields' => 'savename:savename,savepath:savepath',
+                ),
+            );
+            $mate = new ViewMate('product', $link);
+            $list = $mate->select($map);
+        }
     }
 
     public function range($u_lat, $u_lng, $list)

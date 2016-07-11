@@ -4,6 +4,9 @@ namespace Common\Model;
 use Think\Model;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
+use Vendor\Hiland\Utils\Web\NetHelper;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizHelper
 {
@@ -132,6 +135,122 @@ class BizHelper
         }
 
         return $merchantScanedName;
+    }
+
+    /**
+     * 获取附近的店铺
+     * @param int $distanceKM 公里数
+     */
+    public static function getShopList($dataName = '', $shopCategory = 0, $searchContentType = '', $shopLng = 0, $shopLat = 0, $distanceKM = 0)
+    {
+        $name = $dataName;
+
+        if (empty($lng)) {
+            $lng = '117.359';
+        }
+
+        if (empty($lat)) {
+            $lat = '34.8177';
+        }
+
+        if (empty($searchContentType)) {
+            $searchContentType = 'shop';
+        }
+
+        if (empty($distanceKM)) {
+            $distanceKM = 15;
+        }
+
+        $range = 180 / pi() * $distanceKM / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km
+        $lngR = $range / cos($lat * pi() / 180);
+        $maxLat = $lat + $range;//最大纬度
+        $minLat = $lat - $range;//最小纬度
+        $maxLng = $lng + $lngR;//最大经度
+        $minLng = $lng - $lngR;//最小经度
+
+        $map['lng'] = array('between', array($minLng, $maxLng)); //经度值
+        $map['lat'] = array('between', array($minLat, $maxLat)); //纬度值
+        $map['name'] = array('like', "%$name%");//搜索
+        $map['status'] = 2;
+
+        if (!empty($shopCategory)) {
+            $map['category_id'] = $shopCategory;
+        }
+
+        //$this->ajaxReturn('ssssssssssssss');
+
+        if ($searchContentType == 'shop') {
+            $list = D("Shop")->getShopList($map, true);
+            $shopes = self::rank($lat, $lng, $list);
+            //dump($shopes);
+            //$this->ajaxReturn($shopes);
+            //WebHelper::serverReturn($shopes);
+            return $shopes;
+        } else {
+            $link = array(
+                'Shop' => array(
+                    'mapping_type' => self::BELONGS_TO,
+                    'mapping_name' => 'shop',
+                    'foreign_key' => 'shop_id',//关联id
+                    'as_fields' => 'name:shopname',
+                ),
+                'File' => array(
+                    'mapping_type' => self::BELONGS_TO,
+                    'mapping_name' => 'file',
+                    'foreign_key' => 'file_id',//关联id
+                    'as_fields' => 'savename:savename,savepath:savepath',
+                ),
+            );
+            $mate = new ViewMate('product', $link);
+            $list = $mate->select($map);
+        }
+    }
+
+    public static function rank($u_lat, $u_lng, $list)
+    {
+        /*
+        *u_lat 用户纬度
+        *u_lng 用户经度
+        *list sql语句
+        */
+        if (!empty($u_lat) && !empty($u_lng)) {
+            foreach ($list as $row) {
+                $row['km'] = self::getDistance($u_lat, $u_lng, $row['lat'], $row['lng']);
+                $row['km'] = round($row['km'], 1);
+                $res[] = $row;
+            }
+            if (!empty($res)) {
+                foreach ($res as $user) {
+                    $ages[] = $user['km'];
+                }
+                array_multisort($ages, SORT_ASC, $res);
+                return $res;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //计算经纬度两点之间的距离
+    public static function getDistance($lat1, $lng1, $lat2, $lng2)
+    {
+        $EARTH_RADIUS = 6378.137;
+        $radLat1 = self::rad($lat1);
+        $radLat2 = self::rad($lat2);
+        $a = $radLat1 - $radLat2;
+        $b = self::rad($lng1) - self::rad($lng2);
+        $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
+        $s1 = $s * $EARTH_RADIUS;
+        $s2 = round($s1 * 10000) / 10000;
+        return $s2;
+        //print_r($s2);
+    }
+
+    private static function rad($d)
+    {
+        return $d * 3.1415926535898 / 180.0;
     }
 
 
