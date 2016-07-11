@@ -137,8 +137,9 @@ class UserController extends BaseController
 
     /**
      * 获取附近的店铺
+     * @param int $distanceKM 公里数
      */
-    public function getShopList()
+    public function getShopList($distanceKM=15)
     {
         $lng = I("post.lng");
         $lat = I("post.lat");
@@ -146,7 +147,7 @@ class UserController extends BaseController
         // $lng = '113.673';
         $name = I('post.name');
 
-        $range = 180 / pi() * 15 / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km 
+        $range = 180 / pi() * $distanceKM / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km
         $lngR = $range / cos($lat * pi() / 180);
         $maxLat = $lat + $range;//最大纬度
         $minLat = $lat - $range;//最小纬度 
