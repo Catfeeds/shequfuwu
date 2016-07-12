@@ -28,8 +28,8 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="187" column="22" selection-start-line="187" selection-start-column="16" selection-end-line="187" selection-end-column="22" />
+            <state relative-caret-position="97">
+              <caret line="459" column="24" selection-start-line="459" selection-start-column="9" selection-end-line="459" selection-end-column="24" />
               <folding>
                 <marker date="1468314171330" expanded="true" signature="16998:17025" ph="..." />
                 <marker date="1468314171330" expanded="true" signature="17039:17052" ph="..." />
@@ -45,8 +45,8 @@
       <file leaf-file-name="shopItemsWithProduct.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItemsWithProduct.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+            <state relative-caret-position="520">
+              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#p#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
@@ -1141,12 +1141,12 @@
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
       <workItem from="1468107720891" duration="38947000" />
-      <workItem from="1468206088330" duration="37743000" />
+      <workItem from="1468206088330" duration="38382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168104000" />
+    <option name="totallyTimeSpent" value="168743000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1597,21 +1597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="187" column="22" selection-start-line="187" selection-start-column="16" selection-end-line="187" selection-end-column="22" />
-          <folding>
-            <marker date="1468314171330" expanded="true" signature="16998:17025" ph="..." />
-            <marker date="1468314171330" expanded="true" signature="17039:17052" ph="..." />
-            <marker date="1468314171330" expanded="true" signature="19242:19254" ph="..." />
-            <marker date="1468314171330" expanded="true" signature="43263:43277" ph="..." />
-            <marker date="1468314171330" expanded="true" signature="43439:43451" ph="..." />
-            <marker date="1468314171330" expanded="true" signature="49763:49775" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItems.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
@@ -1625,10 +1610,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="459" column="24" selection-start-line="459" selection-start-column="9" selection-end-line="459" selection-end-column="24" />
+          <folding>
+            <marker date="1468314171330" expanded="true" signature="16998:17025" ph="..." />
+            <marker date="1468314171330" expanded="true" signature="17039:17052" ph="..." />
+            <marker date="1468314171330" expanded="true" signature="19242:19254" ph="..." />
+            <marker date="1468314171330" expanded="true" signature="43263:43277" ph="..." />
+            <marker date="1468314171330" expanded="true" signature="43439:43451" ph="..." />
+            <marker date="1468314171330" expanded="true" signature="49763:49775" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItemsWithProduct.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        <state relative-caret-position="520">
+          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#p#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />

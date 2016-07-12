@@ -1,19 +1,19 @@
 {{each shopes as value index}}
-<a class="grst-block" onclick="openTHisShop('{{value.id}}')"><img class="grst-logo"
+<a class="grst-block" onclick="clickItemDetail('{{value.id}}')"><img class="grst-logo"
                                                                   style="opacity: 1; transition: opacity 0.5s;"
                                                                   alt="{{value.name}}"
                                                                   src="{{uploadsUrl + value.savepath+ value.savename}}">
     <div class="grst-detail">
-        <div class="grst-name"><span class="ng-binding">{{value.name}}</span><span class="grst-misc ng-binding">&nbsp;&nbsp;{{value.km}}km</span>
+        <div class="grst-name"><span class="ng-binding">{{value.name}}</span><span class="grst-misc ng-binding">&nbsp;&nbsp;{{value.price}}元</span>
         </div>
-        <span class="grst-misc ng-binding">{{value.subname}}</span>
+        <span class="grst-misc ng-binding">{{value.shop.name}}</span><span class="grst-misc ng-binding">&nbsp;&nbsp;{{value.km}}km</span>
         <div class="grst-misc"><span class="ng-binding">{{value.address}}</span></div>
         <div class="grst-activity ">
             <p class="grst-activity-detail "><span class="rst-badge ng-binding"
                                                    style="background: rgb(240, 115, 115);">减</span>
                 <span class="ng-binding">满减优惠</span>
                 <span
-                        class="activity-offline"> (满{{value.full}}减{{value.discount}})</span>
+                        class="activity-offline"> (满{{value.shop.full}}减{{value.shop.discount}})</span>
             </p>
             <p class="grst-activity-detail "><span class="rst-badge ng-binding"
                                                    style="background: rgb(255, 78, 0);">付</span>
@@ -21,11 +21,11 @@
                 <span class="rst-badge ng-binding"
                       style="background: rgb(255, 78, 0);">送</span>
                 <span class="ng-binding">
-                    {{if value.is_sent== 0}}
+                    {{if value.shop.is_sent== 0}}
                         暂不支持送货上门
                     {{/if}}
-                    {{if value.is_sent== 1}}
-                        满{{value.send_lowestamount}}元起送
+                    {{if value.shop.is_sent== 1}}
+                        满{{value.shop.send_lowestamount}}元起送
                     {{/if}}
                 </span>
             </p>
