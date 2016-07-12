@@ -2,11 +2,11 @@
 namespace Common\Model;
 
 use Think\Model;
+use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
-use Vendor\Hiland\Utils\Web\NetHelper;
-use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizHelper
 {
@@ -138,8 +138,14 @@ class BizHelper
     }
 
     /**
-     * 获取附近的店铺
-     * @param int $distanceKM 公里数
+     * 获取店铺或产品列表
+     * @param string $dataName 店铺或商品名称
+     * @param int $shopCategory 店铺类别
+     * @param string $searchContentType 检索类型（店铺（shop）还是产品（product））
+     * @param int $shopLng 店铺的经度坐标
+     * @param int $shopLat 店铺的纬度坐标
+     * @param int $distanceKM 周围公里数
+     * @return array|bool
      */
     public static function getShopList($dataName = '', $shopCategory = 0, $searchContentType = '', $shopLng = 0, $shopLat = 0, $distanceKM = 0)
     {
@@ -170,90 +176,65 @@ class BizHelper
 
         $map['lng'] = array('between', array($minLng, $maxLng)); //经度值
         $map['lat'] = array('between', array($minLat, $maxLat)); //纬度值
-        $map['name'] = array('like', "%$name%");//搜索
-        $map['status'] = 2;
+
 
         if (!empty($shopCategory)) {
             $map['category_id'] = $shopCategory;
         }
 
-        //$this->ajaxReturn('ssssssssssssss');
+        if ($searchContentType == 'shop') {
+            $map['name'] = array('like', "%$name%");//搜索
+        }
+
+        $map['status'] = 2;//2表示审核通过的店铺
+
+        $shoplist = D("Shop")->getShopList($map, true);
+
 
         if ($searchContentType == 'shop') {
-            $list = D("Shop")->getShopList($map, true);
-            $shopes = self::rank($lat, $lng, $list);
-            //dump($shopes);
-            //$this->ajaxReturn($shopes);
-            //WebHelper::serverReturn($shopes);
+            $shopes = GeoHelper::rankDistance($lat, $lng, $shoplist);
             return $shopes;
         } else {
             $link = array(
                 'Shop' => array(
-                    'mapping_type' => self::BELONGS_TO,
+                    'mapping_type' => ViewMate::BELONGS_TO,
                     'mapping_name' => 'shop',
                     'foreign_key' => 'shop_id',//关联id
-                    'as_fields' => 'name:shopname',
+                    //'as_fields' => 'name:shopname',
                 ),
                 'File' => array(
-                    'mapping_type' => self::BELONGS_TO,
+                    'mapping_type' => ViewMate::BELONGS_TO,
                     'mapping_name' => 'file',
                     'foreign_key' => 'file_id',//关联id
                     'as_fields' => 'savename:savename,savepath:savepath',
                 ),
             );
+
             $mate = new ViewMate('product', $link);
-            $list = $mate->select($map);
-        }
-    }
 
-    public static function rank($u_lat, $u_lng, $list)
-    {
-        /*
-        *u_lat 用户纬度
-        *u_lng 用户经度
-        *list sql语句
-        */
-        if (!empty($u_lat) && !empty($u_lng)) {
-            foreach ($list as $row) {
-                $row['km'] = self::getDistance($u_lat, $u_lng, $row['lat'], $row['lng']);
-                $row['km'] = round($row['km'], 1);
-                $res[] = $row;
-            }
-            if (!empty($res)) {
-                foreach ($res as $user) {
-                    $ages[] = $user['km'];
-                }
-                array_multisort($ages, SORT_ASC, $res);
-                return $res;
-            } else {
+            $map['status'] = 1;
+            $map['name'] = array('like', "%$name%");//搜索
+
+            if (empty($shoplist)) {
                 return false;
+            } else {
+                $shopIDs = '';
+                foreach ($shoplist as $shop) {
+                    //dump($shop['id']);
+                    $shopIDs .= $shop['id'] . ",";
+                }
+
+                if (StringHelper::isEndWith($shopIDs, ",")) {
+                    $shopIDs = substr($shopIDs, 0, strlen($shopIDs) - 1);
+                }
+
+                $map['shop_id'] = array('in', $shopIDs);
+                $productList = $mate->select($map);
+                $productList = GeoHelper::rankDistance($lat, $lng, $productList, "asc", "shop.lat", "shop.lng");
+                return $productList;
             }
-        } else {
-            return false;
         }
     }
-
-    //计算经纬度两点之间的距离
-    public static function getDistance($lat1, $lng1, $lat2, $lng2)
-    {
-        $EARTH_RADIUS = 6378.137;
-        $radLat1 = self::rad($lat1);
-        $radLat2 = self::rad($lat2);
-        $a = $radLat1 - $radLat2;
-        $b = self::rad($lng1) - self::rad($lng2);
-        $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
-        $s1 = $s * $EARTH_RADIUS;
-        $s2 = round($s1 * 10000) / 10000;
-        return $s2;
-        //print_r($s2);
-    }
-
-    private static function rad($d)
-    {
-        return $d * 3.1415926535898 / 180.0;
-    }
-
-
 }
 
 ?>
