@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizController extends Controller
@@ -44,6 +45,7 @@ class BizController extends Controller
         }
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
+        CommonLoger::log('getproducts',json_encode($result));
         WebHelper::serverReturn($result);
     }
 }
