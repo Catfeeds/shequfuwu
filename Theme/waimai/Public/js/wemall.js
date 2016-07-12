@@ -173,7 +173,7 @@ function shopList() {
 function searchShop() {
     var name = $('.pi_input').val();
     var searchContentType = $('#searchContentType').val();
-    alert(name + searchContentType);
+    //alert(name + searchContentType);
     $.ajax({
         type: "post",
         url: data.baseUrl + "/App/Biz/getShopList",
@@ -194,7 +194,7 @@ function searchShop() {
             if (searchContentType == 'shop') {
                 html = template("shopItems", dataSending);
             } else {
-                html = template("shopItemsWithProduct", dataSending);
+                html = res;//template("shopItemsWithProduct", dataSending);
             }
 
             $('#mod-desc').html(html);
