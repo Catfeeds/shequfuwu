@@ -26,7 +26,6 @@ class GeoHelper
     //计算经纬度两点之间的距离
     public static function getDistance($lat1, $lng1, $lat2, $lng2)
     {
-
         $radLat1 = self::getRadian($lat1);
         $radLat2 = self::getRadian($lat2);
         $a = $radLat1 - $radLat2;
