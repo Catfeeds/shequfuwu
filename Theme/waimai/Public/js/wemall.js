@@ -25,12 +25,12 @@ $(document).ready(function () {
             pagination: '.swiper-pagination',
             autoplay: 5000,//可选选项，自动滑动
         });
-        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
         $("#wechatShareJS").html(html);
     });
     Path.map("#/product").to(function () {
         $('#nav-product').click();
-        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
         $("#wechatShareJS").html(html);
     });
     Path.map("#/product/:id").to(function () {
@@ -39,7 +39,7 @@ $(document).ready(function () {
     });
     Path.map("#/cart").to(function () {
         $('#nav-cart').click();
-        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
         $("#wechatShareJS").html(html);
     });
     Path.map("#/order/:id").to(function () {
@@ -48,17 +48,17 @@ $(document).ready(function () {
     });
     Path.map("#/user").to(function () {
         $('#nav-user').click();
-        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
         $("#wechatShareJS").html(html);
     });
     Path.map("#/selectShop").to(function () {
         selectShop();
-        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
         $("#wechatShareJS").html(html);
     });
     Path.map("#/showShopInfo").to(function () {
         showShopInfo();
-        var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+        var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
         $("#wechatShareJS").html(html);
     });
     Path.root("#/index");
@@ -141,6 +141,9 @@ function showShopInfo() {
     tabTmpl("show-shopinfo");
 }
 
+/**
+ * 根据定位获取附近的店铺
+ */
 function shopList() {
     $.ajax({
         type: "post",
@@ -150,11 +153,6 @@ function shopList() {
             lat: lat,
         },
         success: function (res) {
-            var html = '';
-            // $.each(res, function (index, value) {
-            //     html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
-            // });
-
             var dataSending = {
                 shopes: res,
                 uploadsUrl: data.uploadsUrl,
@@ -174,20 +172,30 @@ function shopList() {
 //pidong 搜索店铺
 function searchShop() {
     var name = $('.pi_input').val();
-    var searchContentType= $('#searchContentType').val();
+    var searchContentType = $('#searchContentType').val();
+    alert(name + searchContentType);
     $.ajax({
         type: "post",
-        url: data.baseUrl + "/App/User/getShopList",
+        url: data.baseUrl + "/App/Biz/getShopList",
         data: {
             name: name,
+            searchContentType:searchContentType,
             lng: lng,
             lat: lat,
         },
         success: function (res) {
+            var dataSending = {
+                shopes: res,
+                uploadsUrl: data.uploadsUrl,
+                imageUrl: data.imageUrl
+            };
+
             var html = '';
-            $.each(res, function (index, value) {
-                html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
-            });
+            if (searchContentType == 'shop') {
+                html = template("shopItems", dataSending);
+            } else {
+                html = template("shopItemsWithProduct", dataSending);
+            }
 
             $('#mod-desc').html(html);
         },
@@ -474,7 +482,7 @@ function clickItemDetail(id) {
             $('#itemsDetail .detail-score').children().html(json.score);
             $('#itemsDetail #sale-unit').html(json.unit);
             $('#itemsDetail #detail-id').val(json.id);
-            $('#itemsDetail #productMainImage').val(data.uploadsUrl+ json.savepath+ json.savename);
+            $('#itemsDetail #productMainImage').val(data.uploadsUrl + json.savepath + json.savename);
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
             $('#product-attr').hide();
@@ -521,7 +529,7 @@ function clickItemDetail(id) {
                 $('#commentList').html('');
             }
 
-            var html= "<script src= '" +data.jsUrl+  "/wechatShare.js' />";
+            var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
             $("#wechatShareJS").html(html);
         },
         beforeSend: function () {
@@ -1241,10 +1249,10 @@ function openProduct(o) {
     initProduct();
 
     var lastSelectedMenuID = get('lastSelectedMenuID');
-    var lastSelectedOfShopID= get('lastSelectedOfShopID');
+    var lastSelectedOfShopID = get('lastSelectedOfShopID');
     //alert(lastSelectedMenuID);
-    if (lastSelectedMenuID && lastSelectedOfShopID==data.shopId) {
-        switchMenu(null,lastSelectedMenuID,false);
+    if (lastSelectedMenuID && lastSelectedOfShopID == data.shopId) {
+        switchMenu(null, lastSelectedMenuID, false);
     } else {
         $('.shop-menu li').first().click();
     }
@@ -1489,9 +1497,9 @@ function switchMenu(obj, id, isManual) {
                 }
             });
 
-            if(isManual== true){
+            if (isManual == true) {
                 backToTop();
-            }else{
+            } else {
                 var scrollPosition = get("scrollPositionOfProductPage");
                 if (scrollPosition) {
                     $(document).animate({scrollTop: scrollPosition}, 200);
@@ -1515,7 +1523,7 @@ function switchMenu(obj, id, isManual) {
 
     //将选定的id保存起来，用于用户“返回”操作的东西
     set("lastSelectedMenuID", id);
-    set("lastSelectedOfShopID",data.shopId);
+    set("lastSelectedOfShopID", data.shopId);
 }
 
 function prevView(obj) {
