@@ -151,10 +151,16 @@ function shopList() {
         },
         success: function (res) {
             var html = '';
-            $.each(res, function (index, value) {
-                html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
-            });
+            // $.each(res, function (index, value) {
+            //     html += '<a class="grst-block" onclick="openTHisShop(' + value.id + ')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="' + value.name + '" src="' + data.uploadsUrl + value.savepath + value.savename + '"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">' + value.name + '</span><span class="grst-misc ng-binding">&nbsp;&nbsp;' + value.km + 'km</span></div><span class="grst-misc ng-binding">' + value.subname + '</span><div class="grst-misc"><span class="ng-binding">' + value.address + '</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满' + value.full + '减' + value.discount + ')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
+            // });
 
+            var dataSending = {
+                shopes: res,
+                uploadsUrl: data.uploadsUrl,
+                imageUrl: data.imageUrl
+            };
+            var html = template("shopItems", dataSending);
             $('#mod-desc').html(html);
         },
         beforeSend: function () {
