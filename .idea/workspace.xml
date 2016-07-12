@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Guuu/GeoHelper.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Geo/GeoHelper.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,24 +24,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="146" column="50" selection-start-line="146" selection-start-column="50" selection-end-line="146" selection-end-column="50" />
+            <state relative-caret-position="205">
+              <caret line="146" column="37" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
               <folding>
-                <marker date="1468206809909" expanded="true" signature="4851:4888" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="5403:5434" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="5643:5671" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="6530:6567" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="7082:7113" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="7322:7350" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="18457:18484" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="18498:18511" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="20699:20711" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="44715:44729" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="44891:44903" ph="..." />
-                <marker date="1468206809909" expanded="true" signature="51209:51221" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="4850:4887" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="5402:5433" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="5642:5670" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="6529:6566" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="7081:7112" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="7321:7349" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="18456:18483" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="18497:18510" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="20698:20710" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="44714:44728" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="44890:44902" ph="..." />
+                <marker date="1468308746844" expanded="true" signature="51208:51220" ph="..." />
               </folding>
             </state>
           </provider>
@@ -75,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
-              <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+              <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -103,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeoHelper.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GeoHelper.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Geo/GeoHelper.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-544">
@@ -207,9 +207,9 @@
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/css/shop.css" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_shop.html" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
         <option value="$PROJECT_DIR$/Application/App/Controller/UserController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Geo/GeoHelper.class.php" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       </list>
     </option>
   </component>
@@ -1184,18 +1184,18 @@
       <workItem from="1467790525399" duration="22756000" />
       <workItem from="1467936393388" duration="47144000" />
       <workItem from="1468107720891" duration="38947000" />
-      <workItem from="1468206088330" duration="29650000" />
+      <workItem from="1468206088330" duration="29729000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160011000" />
+    <option name="totallyTimeSpent" value="160090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23036253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23036253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1608,37 +1608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="146" column="50" selection-start-line="146" selection-start-column="50" selection-end-line="146" selection-end-column="50" />
-          <folding>
-            <marker date="1468206809909" expanded="true" signature="4851:4888" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="5403:5434" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="5643:5671" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="6530:6567" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="7082:7113" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="7322:7350" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="18457:18484" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="18498:18511" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="20699:20711" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="44715:44729" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="44891:44903" ph="..." />
-            <marker date="1468206809909" expanded="true" signature="51209:51221" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/UserController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -1664,6 +1633,37 @@
         <state relative-caret-position="-544">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="146" column="37" selection-start-line="146" selection-start-column="37" selection-end-line="146" selection-end-column="37" />
+          <folding>
+            <marker date="1468308746844" expanded="true" signature="4850:4887" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="5402:5433" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="5642:5670" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="6529:6566" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="7081:7112" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="7321:7349" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="18456:18483" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="18497:18510" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="20698:20710" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="44714:44728" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="44890:44902" ph="..." />
+            <marker date="1468308746844" expanded="true" signature="51208:51220" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

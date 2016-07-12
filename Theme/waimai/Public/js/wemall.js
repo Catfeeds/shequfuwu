@@ -144,7 +144,7 @@ function showShopInfo() {
 function shopList() {
     $.ajax({
         type: "post",
-        url: data.baseUrl + "/App/User/getShopList",
+        url: data.baseUrl + "/App/Biz/getShopList",
         data: {
             lng: lng,
             lat: lat,
