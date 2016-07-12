@@ -24,6 +24,12 @@
                             </a>
                         </div>
                         <!-- /.btn-group -->
+
+                        <div class="btn-group">
+                            <a class="btn btn-danger deleteConfirm"
+                               href="javascript:batchUrl('{:U(\'Admin/Weixin/delWxMenu\')}')">全部删除
+                            </a>
+                        </div>
                     </div>
                     <div class="table-responsive" style="overflow-x: visible;">
                         <table class="table table-bordered table-hover">
@@ -68,13 +74,6 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer no-padding">
-                    <div class="mailbox-controls">
-                        <div class="btn-group">
-                            <a class="btn btn-danger deleteConfirm"
-                               href="javascript:batchUrl('{:U(\'Admin/Weixin/delWxMenu\')}')">全部删除
-                            </a>
-                        </div>
-                    </div>
                     <div class="mailbox-controls">
                         <div class="btn-group">
                             <a class="btn btn-danger" href="{:U('Admin/Wechat/createWxMenu')}">生成自定义菜单</a>

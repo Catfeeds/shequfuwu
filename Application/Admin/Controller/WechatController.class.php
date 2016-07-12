@@ -134,12 +134,15 @@ class WechatController extends Controller
                 $str = "<a href='http://wpa.qq.com/msgrd?v=3&uin=" . $qq . "&site=qq&menu=yes&from=singlemessage'>" . htmlspecialchars_decode('点击联系QQ客服') . "</a>";
                 self::$weObj->text($str)->reply();
                 break;
+            case 'menu_fjsp':
+                self::$weObj->text('附近商铺')->reply();
+                break;
             case 'csgw':
-            case 'menu_wdsp':
+            case 'menu_wdgz':
                 //超市购物，弹出其当初扫描的超市
                 $openId = self::$revData['FromUserName'];
+                $newsArray = self::getMyScanedShopeResponse($openId);
 
-                self::getMyScanedShopeResponse($openId);
 //                $usershopscanedMate = new ModelMate('usershopscaned');
 //                $where = array();
 //                $where['openid'] = $openId;
@@ -216,7 +219,8 @@ class WechatController extends Controller
         }
     }
 
-    private function getMyScanedShopeResponse($openId){
+    private function getMyScanedShopeResponse($openId)
+    {
         //超市购物，弹出其当初扫描的超市
         //$openId = self::$revData['FromUserName'];
         $usershopscanedMate = new ModelMate('usershopscaned');
@@ -308,7 +312,8 @@ class WechatController extends Controller
         }
     }
 
-    public function generateQRCode($key="0"){
+    public function generateQRCode($key = "0")
+    {
         $this->init();
         $ticket = self::$weObj->getQRCode($key, 1);
         $qrcode = self::$weObj->getQRUrl($ticket["ticket"]);
@@ -317,7 +322,7 @@ class WechatController extends Controller
 
     public function getQRCode()
     {
-        $qrcode= self::generateQRCode("0");
+        $qrcode = self::generateQRCode("0");
         if ($qrcode) {
             D("Config")->save(array("id" => 1, "qrcode" => $qrcode));
             $this->success("生成二维码成功", U("Admin/Config/configSet"));
