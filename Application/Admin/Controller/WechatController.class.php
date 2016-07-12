@@ -134,67 +134,14 @@ class WechatController extends Controller
                 $str = "<a href='http://wpa.qq.com/msgrd?v=3&uin=" . $qq . "&site=qq&menu=yes&from=singlemessage'>" . htmlspecialchars_decode('点击联系QQ客服') . "</a>";
                 self::$weObj->text($str)->reply();
                 break;
-            case 'menu_fjsp':
-                self::$weObj->text('附近商铺')->reply();
-                break;
+//            case 'menu_fjsp':
+//                self::$weObj->text('附近商铺')->reply();
+//                break;
             case 'csgw':
             case 'menu_wdgz':
                 //超市购物，弹出其当初扫描的超市
                 $openId = self::$revData['FromUserName'];
                 $newsArray = self::getMyScanedShopeResponse($openId);
-
-//                $usershopscanedMate = new ModelMate('usershopscaned');
-//                $where = array();
-//                $where['openid'] = $openId;
-//                $shopscaned = $usershopscanedMate->select($where);
-//
-//                $shopMate = new ModelMate('shop');
-//                $fileMate = new ModelMate('file');
-//
-//                $newsArray = array();
-//                $newsCover = array(
-//                    'Title' => "欢迎使用" . C('PROJECT_NAME'),
-//                    'Description' => "请选择以下列表中你关注过的店铺进行采购吧！",
-//                    'PicUrl' => self::$appUrl . '/Public/Uploads/wechat_news_cover.jpg',
-//                    'Url' => '',
-//                );
-//                $newsArray[] = $newsCover;
-//
-//                if ($shopscaned) {
-//                    foreach ($shopscaned as $shopScaned) {
-//                        $shopId = $shopScaned['shopid'];
-//                        $shopWhere = array();
-//                        $shopWhere['id'] = $shopId;
-//                        $shop = $shopMate->find($shopWhere);
-//                        if ($shop) {
-//                            $fileId = $shop['file_id'];
-//                            $pictureUrl = '';
-//                            $defaultFilePath = '/Public/Uploads/defaultshopimage.jpg';
-//                            if ($fileId) {
-//                                $file = $fileMate->get($fileId);
-//                                $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-//
-//                                if (is_file(PHYSICAL_ROOT_PATH . $filePath)) {
-//                                    $pictureUrl = self::$appUrl . $filePath;
-//                                } else {
-//                                    $pictureUrl = self::$appUrl . $defaultFilePath;
-//                                }
-//                            } else {
-//                                $pictureUrl = self::$appUrl . $defaultFilePath;
-//                            }
-//
-//                            $news = array(
-//                                'Title' => $shop["name"],
-//                                'Description' => $shop["notification"],
-//                                'PicUrl' => $pictureUrl,
-//                                'Url' => self::$appUrl . "/index.php?s=/App/Index/index/shopId/$shopId",
-//                            );
-//
-//                            $newsArray[] = $news;
-//                        }
-//                    }
-//                }
-
                 self::$weObj->news($newsArray)->reply();
                 break;
             default:

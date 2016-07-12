@@ -3,7 +3,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=100%, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title id="oti"></title>
+    <title id="oti">{:C('PROJECT_NAME')}</title>
     <link rel="stylesheet" href="__CSS__/style.css?v=7">
     <link rel="stylesheet" href="__CSS__/shop.css?v=<?php echo getResourceVersion(); ?>">
     <link rel="stylesheet" href="__CSS__/icon/iconfont.css">
@@ -20,16 +20,12 @@
 <body>
 
 <div id="main">
-    <div class="header-bar select-shopbar" style="position:fixed;">
-        <div class="header-title" style="display:inline-block;width:100%;">{:C('PROJECT_NAME')}</div>
-        <span id="pi_back" style="display:none" onclick="history.go(-1)"></span>
-    </div>
-
     <div class="pi_sousuo1" style="">
         <div class="weui_cells">
             <div class="weui_cell weui_cell_select weui_select_before">
                 <div class="weui_cell_hd">
-                    <select class="weui_select" style="width:85px;padding-left:10px;" name="searchContentType" id="searchContentType">
+                    <select class="weui_select" style="width:85px;padding-left:10px;" name="searchContentType"
+                            id="searchContentType">
                         <option value="shop">店铺</option>
                         <option value="product">产品</option>
                     </select>
@@ -121,6 +117,6 @@
     function renderOption(response) {
         document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
     }
- </script>
+</script>
 </body>
 </html>
