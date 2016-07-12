@@ -21,11 +21,12 @@
                 <span class="rst-badge ng-binding"
                       style="background: rgb(255, 78, 0);">送</span>
                 <span class="ng-binding">
-                    <if condition="value.is_sent eq 0">
+                    {{if value.is_sent== 0}}
                         暂不支持送货上门
-                        <else/>
+                    {{/if}}
+                    {{if value.is_sent== 1}}
                         满{{value.send_lowestamount}}起送
-                    </if>
+                    {{/if}}
                 </span>
             </p>
         </div>
