@@ -194,7 +194,7 @@ function searchShop() {
             if (searchContentType == 'shop') {
                 html = template("shopItems", dataSending);
             } else {
-                html = res;//template("shopItemsWithProduct", dataSending);
+                html = template("shopItemsWithProduct", dataSending);
             }
 
             $('#mod-desc').html(html);
