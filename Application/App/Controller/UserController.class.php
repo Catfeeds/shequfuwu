@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use Common\Model\BizHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
-use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class UserController extends BaseController

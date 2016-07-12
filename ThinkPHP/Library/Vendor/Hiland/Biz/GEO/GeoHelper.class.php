@@ -35,7 +35,6 @@ class GeoHelper
         $s1 = $s * self::EARTH_RADIUS;
         $s2 = round($s1 * 10000) / 10000;
         return $s2;
-        //print_r($s2);
     }
 
     /**
@@ -51,7 +50,6 @@ class GeoHelper
     public static function rankDistance($userLat, $userLng, $dataList, $rankType = 'asc', $dataItemLatFormat = "lat", $dataItemLngFormat = "lng")
     {
         if (!empty($userLat) && !empty($userLng)) {
-
             foreach ($dataList as $row) {
                 $latArray= explode(".",$dataItemLatFormat);
                 $itemLat= $row;
