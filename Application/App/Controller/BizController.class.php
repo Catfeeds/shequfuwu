@@ -45,7 +45,7 @@ class BizController extends Controller
         }
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
-        CommonLoger::log('getproducts',json_encode($result));
+        //CommonLoger::log('getproducts',json_encode($result));
         WebHelper::serverReturn($result);
     }
 }
