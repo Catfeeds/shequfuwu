@@ -1,5 +1,5 @@
 {{each shopes as value index}}
-<a class="grst-block" href="http://{{jsData.baseUrl}}?s=/App/Index/index/shopId/{{value.shop_id}}#/product/{{value.id}}"><img class="grst-logo"
+<a class="grst-block" href="{{jsData.baseUrl}}?s=/App/Index/index/shopId/{{value.shop_id}}#/product/{{value.id}}"><img class="grst-logo"
                                                                   style="opacity: 1; transition: opacity 0.5s;"
                                                                   alt="{{value.name}}"
                                                                   src="{{uploadsUrl + value.savepath+ value.savename}}">
