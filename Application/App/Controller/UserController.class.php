@@ -139,53 +139,30 @@ class UserController extends BaseController
      */
     public function getShopList()
     {
-//        $name = I('name');
-//        $shopCategory = I('shopCategory');
-//
-//        $lng = I("lng");
-//        if (empty($lng)) {
-//            $lng = '117.359';
-//        }
-//
-//        $lat = I("lat");
-//        if (empty($lat)) {
-//            $lat = '34.8177';
-//        }
-//
-//        $searchContentType = I('searchContentType');
-//        if (empty($searchContentType)) {
-//            $searchContentType = 'shop';
-//        }
-//
-//        $distanceKM = I('distanceKM');
-//        if (empty($distanceKM)) {
-//            $distanceKM = 15;
-//        }
-//
-//        $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
-//        WebHelper::serverReturn($result);
+        $name = I('name');
+        $shopCategory = I('shopCategory');
 
-        $lng = I("post.lng");
-        $lat = I("post.lat");
-        // $lat = '34.7913';
-        // $lng = '113.673';
-        $name = I('post.name');
+        $lng = I("lng");
+        if (empty($lng)) {
+            $lng = '117.359';
+        }
 
-        $range = 180 / pi() * 15 / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km
-        $lngR = $range / cos($lat * pi() / 180);
-        $maxLat = $lat + $range;//最大纬度
-        $minLat = $lat - $range;//最小纬度
-        $maxLng = $lng + $lngR;//最大经度
-        $minLng = $lng - $lngR;//最小经度
+        $lat = I("lat");
+        if (empty($lat)) {
+            $lat = '34.8177';
+        }
 
+        $searchContentType = I('searchContentType');
+        if (empty($searchContentType)) {
+            $searchContentType = 'shop';
+        }
 
-        $map['lng'] = array('between', array($minLng, $maxLng)); //经度值
-        $map['lat'] = array('between', array($minLat, $maxLat)); //纬度值
-        $map['name'] = array('like', "%$name%");//搜索
-        $map['status'] = 2;
+        $distanceKM = I('distanceKM');
+        if (empty($distanceKM)) {
+            $distanceKM = 15;
+        }
 
-        $list = D("Shop")->getShopList($map, true);
-        $shop = $this->range($lat, $lng, $list);
-        $this->ajaxReturn($shop);
+        $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
+        WebHelper::serverReturn($result);
     }
 }
