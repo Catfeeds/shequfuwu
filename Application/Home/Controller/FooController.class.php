@@ -333,4 +333,9 @@ class FooController extends Controller
     {
         $this->display();
     }
+
+    public function getFileImageUrlop($fileid = 1029)
+    {
+        dump(BizHelper::getFileImageUrl($fileid));
+    }
 }

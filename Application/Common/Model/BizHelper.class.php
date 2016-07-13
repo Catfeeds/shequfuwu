@@ -242,6 +242,7 @@ class BizHelper
      */
     public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg')
     {
+        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
         $fileMate = new ModelMate('file');
         $pictureUrl = '';
         $defaultFilePath = '/Public/Uploads/' . $defaultImage;
@@ -253,7 +254,7 @@ class BizHelper
             $filePathLocal = str_replace("/", "\\", $filePathLocal);
 
             if (is_file($filePathLocal)) {
-                $pictureUrl = self::$appUrl . $filePath;
+                $pictureUrl = $appUrl . $filePath;
             }
         }
 
@@ -261,7 +262,7 @@ class BizHelper
             if (empty($defaultImage)) {
                 $pictureUrl = '';
             } else {
-                $pictureUrl = self::$appUrl . $defaultFilePath;
+                $pictureUrl = $appUrl . $defaultFilePath;
             }
         }
 
