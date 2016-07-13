@@ -148,7 +148,7 @@ class WechatController extends Controller
             $shopData= $shopMate->get($shopID);
 
             if(empty($title)){
-                $title = $shopData['Name'];
+                $title = $shopData['name'];
             }
 
             $description = $shopData['remark'];
@@ -164,7 +164,6 @@ class WechatController extends Controller
                 'Url' => $url,
             )
         );
-        //self::$weObj->news($newsArray)->reply();
 
         return $newsArray;
     }
