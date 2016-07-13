@@ -14,7 +14,6 @@
 return array(
 
     'appCss' => array(
-        '//Theme/waimai/Public/css/style.css',
         '//Theme/waimai/Public/css/shop.css',
         '//Theme/waimai/Public/css/iphone.css',
         '//Theme/waimai/Public/css/swiper.min.css',
