@@ -4,11 +4,10 @@
     <meta name="viewport" content="width=100%, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title id="oti">{:C('PROJECT_NAME')}</title>
-    <link rel="stylesheet" href="__CSS__/style.css?v=7">
-    <link rel="stylesheet" href="__CSS__/shop.css?v=<?php echo getResourceVersion(); ?>">
+    <link rel="stylesheet" href='{:U("Home/Min/Index","g=appCss")}'>
+    <!--<link rel="stylesheet" href="__CSS__/shop.css?v=<?php echo getResourceVersion(); ?>">-->
+
     <link rel="stylesheet" href="__CSS__/icon/iconfont.css">
-    <link rel="stylesheet" href="__CSS__/iphone.css">
-    <link rel="stylesheet" href="__CSS__/swiper.min.css">
 
     <if condition="APP_DEBUG eq true">
         <link rel="stylesheet" href="__CSS__/weui.min.css">
@@ -75,12 +74,10 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </if>
 
-<script src="__JS__/path.min.js"></script>
-<script src="__JS__/jquery.cookie.js"></script>
-<script src="__TPL_PUBLIC__/build/template.js?v=<?php echo getResourceVersion(); ?>"></script>
-<script src="__JS__/echo.min.js"></script>
-<script src="__JS__/layer.m.js"></script>
-<script src="__JS__/wemall.js?v=<?php echo getResourceVersion(); ?>"></script>
+<script src='{:U("Home/Min/Index","g=appJs")}'></script>
+
+<!--<script src="__TPL_PUBLIC__/build/template.js?v=<?php echo getResourceVersion(); ?>"></script>-->
+<!--<script src="__JS__/wemall.js?v=<?php echo getResourceVersion(); ?>"></script>-->
 
 <script>
     $('#page_tag_load').show();

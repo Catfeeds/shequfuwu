@@ -4,11 +4,9 @@
     <meta name="viewport" content="width=100%, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title id="oti"></title>
-    <link rel="stylesheet" href="__CSS__/style.css?v=<?php echo getResourceVersion(); ?>">
-    <link rel="stylesheet" href="__CSS__/shop.css?v=2">
+    <link rel="stylesheet" href='{:U("Home/Min/Index","g=appCss")}'>
+
     <link rel="stylesheet" href="__CSS__/icon/iconfont.css">
-    <link rel="stylesheet" href="__CSS__/iphone.css">
-    <link rel="stylesheet" href="__CSS__/swiper.min.css">
 
 </head>
 <body>
@@ -37,6 +35,21 @@
     </a>
 </div>
 
+<div id="wechatShare">
+    <input type="hidden" id="wechatjs_appId" value="{$signPackage.appId}">
+    <input type="hidden" id="wechatjs_timestamp" value="{$signPackage.timestamp}">
+    <input type="hidden" id="wechatjs_nonceStr" value="{$signPackage.nonceStr}">
+    <input type="hidden" id="wechatjs_signature" value="{$signPackage.signature}">
+    <input type="hidden" id="wechatjs_shopData_name" value="{$shopData.name}">
+    <input type="hidden" id="wechatjs_shopData_remark" value="{$shopData.remark}">
+    <input type="hidden" id="wechatjs_shopData_image" value="{$shopData.savepath}{$shopData.savename}">
+    <input type="hidden" id="wechatjs_hostName" value="{$hostName}">
+
+    <div id="wechatShareJS">
+
+    </div>
+</div>
+
 <script>
     var cartData = [];
     var totalNum = 0;
@@ -58,6 +71,8 @@
     }
     console.log(data);
 </script>
+
+
 <if condition="APP_DEBUG eq true">
     <script src="__JS__/jquery.min.js"></script>
     <script src="__JS__/swiper.min.js"></script>
@@ -68,41 +83,20 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </if>
 
-<script src="__JS__/path.min.js"></script>
-<script src="__JS__/jquery.cookie.js"></script>
+<script src='{:U("Home/Min/Index","g=appJs")}'></script>
 
+<!--<script src="__TPL_PUBLIC__/build/template.js?v=<?php echo getResourceVersion(); ?>"></script>-->
+<!--<script src="__JS__/wemall.js?v=<?php echo getResourceVersion(); ?>"></script>-->
 
-<script src="__JS__/jweixin-1.0.0.js"></script>
-<script src="__TPL_PUBLIC__/build/template.js?v=<?php echo getResourceVersion(); ?>"></script>
-<script src="__JS__/echo.min.js"></script>
-<script src="__JS__/layer.m.js"></script>
-<script src="__JS__/wemall.js?v=<?php echo getResourceVersion(); ?>"></script>
-
-<script>
-    $('#oti').html('欢迎来到' + data.config.name);
-    initShop({$shopId});
-</script>
-
-
-<div id="wechatShare">
-    <input type="hidden" id="wechatjs_appId" value="{$signPackage.appId}">
-    <input type="hidden" id="wechatjs_timestamp" value="{$signPackage.timestamp}">
-    <input type="hidden" id="wechatjs_nonceStr" value="{$signPackage.nonceStr}">
-    <input type="hidden" id="wechatjs_signature" value="{$signPackage.signature}">
-    <input type="hidden" id="wechatjs_shopData_name" value="{$shopData.name}">
-    <input type="hidden" id="wechatjs_shopData_remark" value="{$shopData.remark}">
-    <input type="hidden" id="wechatjs_shopData_image" value="{$shopData.savepath}{$shopData.savename}">
-    <input type="hidden" id="wechatjs_hostName" value="{$hostName}">
-
-    <div id="wechatShareJS">
-
-    </div>
-</div>
 <script type="text/javascript">
     $(document).ready(function () {
         var html= "<script src=\"__JS__/wechatShare.js\" />";
         $("#wechatShareJS").html(html);
     });
+</script>
+<script>
+    $('#oti').html('欢迎来到' + data.config.name);
+    initShop({$shopId});
 </script>
 </body>
 </html>

@@ -17,13 +17,13 @@ class MinController extends Controller
     {
         //header('Content-Type:text/html; charset=utf-8');
 
-        $cacheDir = PHYSICAL_ROOT_PATH . '/Public/Uploads/Minify';
+        $cacheDir = PHYSICAL_ROOT_PATH . '\\Public\\Uploads\\Minify';
         define("MINIFY_TEMP_PATH", $cacheDir);
-        define("MINIFY_ROOT_PATH", PHYSICAL_ROOT_PATH);
+        define("SYSTEM_ROOT_PATH", PHYSICAL_ROOT_PATH);
 
-        echo PHYSICAL_ROOT_PATH;
+        //echo PHYSICAL_ROOT_PATH;
         //dump(I('f'));
-        dump(PHYSICAL_ROOT_PATH);
+        //dump(PHYSICAL_ROOT_PATH);
         import('index', VENDOR_PATH . 'Minify', '.php');
         exit();
     }
