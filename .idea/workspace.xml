@@ -2,71 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/Controller/MinController.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/index.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/min/builder/index.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/.htaccess" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/.htaccess" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/.htaccess" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/.htaccess" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/_index.js" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/_index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/bm.js" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/bm.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/bm2.js" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/bm2.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/jquery-1.6.3.min.js" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/jquery-1.6.3.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/ocCheck.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/ocCheck.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/rewriteTest.js" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/rewriteTest.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/builder/test.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/builder/test.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/config-test.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/config-test.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/config.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/config.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/groupsConfig.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/index.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/CSSmin.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/CSSmin.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/DooDigestAuth.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/DooDigestAuth.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/FirePHP.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/FirePHP.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/HTTP/ConditionalGet.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/HTTP/ConditionalGet.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/HTTP/Encoder.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/HTTP/Encoder.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/JSMin.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/JSMin.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/JSMinPlus.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/JSMinPlus.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Build.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Build.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/CSS.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/CSS.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/CSS/Compressor.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/CSS/Compressor.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/CSS/UriRewriter.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/CSS/UriRewriter.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/CSSmin.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/CSSmin.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Cache/APC.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Cache/APC.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Cache/File.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Cache/File.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Cache/Memcache.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Cache/Memcache.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Cache/WinCache.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Cache/WinCache.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Cache/XCache.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Cache/XCache.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Cache/ZendPlatform.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Cache/ZendPlatform.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/ClosureCompiler.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/ClosureCompiler.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/CommentPreserver.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/CommentPreserver.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Controller/Base.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Controller/Base.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Controller/Files.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Controller/Files.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Controller/Groups.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Controller/Groups.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Controller/MinApp.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Controller/MinApp.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Controller/Page.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Controller/Page.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Controller/Version1.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Controller/Version1.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/DebugDetector.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/DebugDetector.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/HTML.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/HTML.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/HTML/Helper.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/HTML/Helper.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/ImportProcessor.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/ImportProcessor.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/JS/ClosureCompiler.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/JS/ClosureCompiler.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Lines.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Lines.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Loader.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Loader.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Logger.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Logger.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Packer.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Packer.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/Source.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/Source.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/YUI/CssCompressor.java" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/YUI/CssCompressor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/YUI/CssCompressor.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/YUI/CssCompressor.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/Minify/YUICompressor.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/Minify/YUICompressor.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/MrClay/Cli.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/MrClay/Cli.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/lib/MrClay/Cli/Arg.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/lib/MrClay/Cli/Arg.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/quick-test.css" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/quick-test.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/quick-test.js" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/quick-test.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/readme.txt" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/readme.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/server-info.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/server-info.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/min/utils.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/utils.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -595,16 +531,24 @@
       <workItem from="1468107720891" duration="38947000" />
       <workItem from="1468206088330" duration="58325000" />
       <workItem from="1468397778885" duration="4515000" />
-      <workItem from="1468403261984" duration="166000" />
+      <workItem from="1468403261984" duration="339000" />
     </task>
+    <task id="LOCAL-00001" summary="加入Minify功能">
+      <created>1468403563283</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1468403563283</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193367000" />
+    <option name="totallyTimeSpent" value="193540000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29154077" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -635,6 +579,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="加入Minify功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入Minify功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -820,6 +768,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -932,6 +881,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -961,6 +911,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
