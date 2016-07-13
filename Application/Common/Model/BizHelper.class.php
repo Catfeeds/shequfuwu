@@ -235,6 +235,40 @@ class BizHelper
             }
         }
     }
+
+    /**
+     * @param $fileId
+     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
+     */
+    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg')
+    {
+        $fileMate = new ModelMate('file');
+        $pictureUrl = '';
+        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
+        if ($fileId) {
+            $file = $fileMate->get($fileId);
+            $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+
+            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
+            $filePathLocal = str_replace("/", "\\", $filePathLocal);
+
+            if (is_file($filePathLocal)) {
+                $pictureUrl = self::$appUrl . $filePath;
+            }
+        }
+
+        if (empty($pictureUrl)) {
+            if (empty($defaultImage)) {
+                $pictureUrl = '';
+            } else {
+                $pictureUrl = self::$appUrl . $defaultFilePath;
+            }
+        }
+
+        $pictureUrl = str_replace("\\", "/", $pictureUrl);
+
+        return $pictureUrl;
+    }
 }
 
 ?>

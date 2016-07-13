@@ -122,6 +122,18 @@ class WechatController extends Controller
                 break;
         }
     }
+    
+    public function generateShopScanedNewsInformation(){
+        $newsArr = array(
+            array(
+                'Title' => $replay["title"],
+                'Description' => $replay["description"],
+                'PicUrl' => self::$appUrl . '/Public/Uploads/' . $replay["savepath"] . $replay["savename"],
+                'Url' => $replay["url"]
+            )
+        );
+        self::$weObj->news($newsArr)->reply();
+    }
 
     public function checkKeyWords($key)
     {
@@ -134,9 +146,6 @@ class WechatController extends Controller
                 $str = "<a href='http://wpa.qq.com/msgrd?v=3&uin=" . $qq . "&site=qq&menu=yes&from=singlemessage'>" . htmlspecialchars_decode('点击联系QQ客服') . "</a>";
                 self::$weObj->text($str)->reply();
                 break;
-//            case 'menu_fjsp':
-//                self::$weObj->text('附近商铺')->reply();
-//                break;
             case 'csgw':
             case 'menu_wdgz':
                 //超市购物，弹出其当初扫描的超市
@@ -195,20 +204,21 @@ class WechatController extends Controller
                 $shop = $shopMate->find($shopWhere);
                 if ($shop) {
                     $fileId = $shop['file_id'];
-                    $pictureUrl = '';
-                    $defaultFilePath = '/Public/Uploads/defaultshopimage.jpg';
-                    if ($fileId) {
-                        $file = $fileMate->get($fileId);
-                        $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-
-                        if (is_file(PHYSICAL_ROOT_PATH . $filePath)) {
-                            $pictureUrl = self::$appUrl . $filePath;
-                        } else {
-                            $pictureUrl = self::$appUrl . $defaultFilePath;
-                        }
-                    } else {
-                        $pictureUrl = self::$appUrl . $defaultFilePath;
-                    }
+                    $pictureUrl= BizHelper::getFileImageUrl($fileId);
+//                    $pictureUrl = '';
+//                    $defaultFilePath = '/Public/Uploads/defaultshopimage.jpg';
+//                    if ($fileId) {
+//                        $file = $fileMate->get($fileId);
+//                        $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+//
+//                        if (is_file(PHYSICAL_ROOT_PATH . $filePath)) {
+//                            $pictureUrl = self::$appUrl . $filePath;
+//                        } else {
+//                            $pictureUrl = self::$appUrl . $defaultFilePath;
+//                        }
+//                    } else {
+//                        $pictureUrl = self::$appUrl . $defaultFilePath;
+//                    }
 
                     $news = array(
                         'Title' => $shop["name"],

@@ -9,6 +9,8 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 namespace Think;
+use Think\Misc\Minify;
+
 /**
  * ThinkPHP 视图类
  */
@@ -95,9 +97,16 @@ class View
         // 网页字符编码
         header('Content-Type:' . $contentType . '; charset=' . $charset);
         header('Cache-control: ' . C('HTTP_CACHE_CONTROL'));  // 页面缓存控制
-        header('X-Powered-By:ThinkPHP');
+        header('X-Powered-By:ThinkPHP(rainytop)');
         // 输出模板文件
+
         echo $content;
+        //echo Minify::compress($content);
+//        if (function_exists(Minify::compress())&& APP_USE_VIEWCOMPRESS) {
+//            echo Minify::compress($content);
+//        } else {
+//            echo $content;
+//        }
     }
 
     /**

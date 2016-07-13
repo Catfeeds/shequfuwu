@@ -19,6 +19,9 @@ define('APP_DEBUG', True);
 define('APP_VERSION', '5.1.0');
 define('APP_VERSION_TIME', '2016.1.1');
 
+//是否启用view页面压缩
+define('APP_USE_VIEWCOMPRESS',true);
+
 
 /**
  * 系统的物理根目录
