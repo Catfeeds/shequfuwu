@@ -173,20 +173,20 @@ function shopList() {
 function searchShop() {
     var name = $('.pi_input').val();
     var searchContentType = $('#searchContentType').val();
-    //alert(name + searchContentType);
+
     $.ajax({
         type: "post",
         url: data.baseUrl + "/App/Biz/getShopList",
         data: {
             name: name,
-            searchContentType:searchContentType,
+            searchContentType: searchContentType,
             lng: lng,
             lat: lat,
         },
         success: function (res) {
             var dataSending = {
                 shopes: res,
-                jsData:data,
+                jsData: data,
                 uploadsUrl: data.uploadsUrl,
                 imageUrl: data.imageUrl
             };

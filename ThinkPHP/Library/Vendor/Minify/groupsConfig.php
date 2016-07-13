@@ -12,7 +12,6 @@
  **/
 
 return array(
-
     'appCss' => array(
         '//Theme/waimai/Public/css/shop.css',
         '//Theme/waimai/Public/css/iphone.css',
@@ -27,8 +26,6 @@ return array(
         '//Theme/waimai/Public/build/template.js',
     ),
 
-
-
     'homeCss' => array(
         '//Public/Admin/bootstrap/css/bootstrap.min.css',
         '//Public/Admin/dist/css/AdminLTE.min.css',
@@ -41,7 +38,6 @@ return array(
         '//Public/Home/dist/css/lrtk.css',
         '//Public/Admin/bootstrap/css/piAdmin.css',
     ),
-
     'homeJsTop' => array(
         '//Public/Admin/plugins/jQuery/jQuery-2.1.4.min.js',
         '//Public/Admin/UEditor/ueditor.config.js',
@@ -49,7 +45,6 @@ return array(
         '//Public/Admin/UEditor/lang/zh-cn/zh-cn.js',
         '//Public/Admin/nprogress/nprogress.js',
     ),
-
     'homeJsBottom' => array(
         '//Public/Admin/bootstrap/js/bootstrap.min.js',
         '//Public/Admin/plugins/chartjs/Chart.min.js',
@@ -81,7 +76,6 @@ return array(
         '//Public/Admin/nprogress/nprogress.css',
         '//Public/Admin/bootstrap/css/piAdmin.css',
     ),
-
     'adminJsTop' => array(
         '//Public/Admin/plugins/jQuery/jQuery-2.1.4.min.js',
         '//Public/Admin/UEditor/ueditor.config.js',
@@ -89,7 +83,6 @@ return array(
         '//Public/Admin/UEditor/lang/zh-cn/zh-cn.js',
         '//Public/Admin/nprogress/nprogress.js',
     ),
-
     'adminJsBottom' => array(
         '//Public/Admin/bootstrap/js/bootstrap.min.js',
         '//Public/Admin/plugins/chartjs/Chart.min.js',
