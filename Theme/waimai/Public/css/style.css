@@ -271,11 +271,14 @@ pre {
     height: 45px;
     width: 45px;
     float: left;
+    background-image: url("../image/left.png");
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-y: center;
     display: none;
     z-index: 1;
     position: absolute;
-
-    background:url(../image/allbgs.png) no-repeat 0px -171px;height:64px;padding-left:66px;
+    background-size: 32px;
 }
 
 .header-bar .header-title {
