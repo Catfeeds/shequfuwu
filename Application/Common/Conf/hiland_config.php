@@ -9,6 +9,7 @@
 return array(
     'PROJECT_NAME' => '福轮网络社区服务系统',
     'PROJECT_NAME_SHORT' => '福轮网络',
+    'PROJECT_DESCRIPTION' => '福轮网络拉近你好！购物就从福轮开始。',
 
     'BROWSE_MUST_SUBSCRIBE' => true, //用户订阅公众号之后才能浏览购物
 

@@ -252,7 +252,7 @@ span.icon-pay {
 }
 
 .pi_input {
-    padding-left: 40px;
+    padding-left: 0;
     height: 40px;
     width: 90%;
     margin-top: 5px;
