@@ -239,6 +239,7 @@ class BizHelper
     /**
      * @param $fileId
      * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
+     * @return string 图片对应的url完整地址
      */
     public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg')
     {

@@ -5,6 +5,7 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 class WechatController extends Controller
 {
@@ -94,7 +95,9 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
-                self::$weObj->text($messageContent)->reply();
+                //self::$weObj->text($messageContent)->reply();
+                $newsArray= self::generateWecomeNewsInformation($messageContent,$merchantScanedID);
+                self::$weObj->news($newsArray)->reply();
                 break;
             case 'unsubscribe':
                 $this->updateUser($openId);
@@ -118,21 +121,76 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
-                self::$weObj->text($messageContent)->reply();
+//                if(!empty($merchantScanedID)){
+//                    $shopMate= new ModelMate('shop');
+//                    $shopData= $shopMate->get($merchantScanedID);
+//
+//                    $description = $shopData['remark'];
+//                    $picUrl = BizHelper::getFileImageUrl($shopData['file_id']);
+//                    $url = WebHelper::getHostName().U('Home/Index/index','shopId='.$merchantScanedID);
+//                }else{
+//                    $description = "";
+//                    $picUrl = BizHelper::getFileImageUrl(0,"wechat_news_cover.jpg");
+//                    $url = WebHelper::getHostName().U('Home/Index/shop');
+//                }
+//
+//                $newsArray = array(
+//                    array(
+//                        'Title' => $messageContent,
+//                        'Description' => $description,
+//                        'PicUrl' => $picUrl,
+//                        'Url' => $url,
+//                    )
+//                );
+
+                $newsArray= self::generateWecomeNewsInformation($messageContent,$merchantScanedID);
+
+                self::$weObj->news($newsArray)->reply();
+                //self::$weObj->text($messageContent)->reply();
                 break;
         }
     }
-    
-    public function generateShopScanedNewsInformation(){
-        $newsArr = array(
+
+    public function generateWecomeNewsInformation($title='',$shopID = 0)
+    {
+        //__APP__
+        $title = '';
+        $description = '';
+        $picUrl = '';
+        $url = '';
+
+        if (empty($shopID)) {
+            if(empty($title)){
+                $projectName = C('PROJECT_NAME');
+                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
+            }
+            $description = '福轮网络'; //TODO
+            $picUrl = BizHelper::getFileImageUrl(0,"wechat_news_cover.jpg");
+            $url = WebHelper::getHostName().U('Home/Index/shop');
+        }else{
+            $shopMate= new ModelMate('shop');
+            $shopData= $shopMate->get($shopID);
+
+            if(empty($title)){
+                $title = $shopData['Name'];
+            }
+
+            $description = $shopData['remark'];
+            $picUrl = BizHelper::getFileImageUrl($shopData['file_id']);
+            $url = WebHelper::getHostName().U('Home/Index/index','shopId='.$shopID);
+        }
+
+        $newsArray = array(
             array(
-                'Title' => $replay["title"],
-                'Description' => $replay["description"],
-                'PicUrl' => self::$appUrl . '/Public/Uploads/' . $replay["savepath"] . $replay["savename"],
-                'Url' => $replay["url"]
+                'Title' => $title,
+                'Description' => $description,
+                'PicUrl' => $picUrl,
+                'Url' => $url,
             )
         );
-        self::$weObj->news($newsArr)->reply();
+        //self::$weObj->news($newsArray)->reply();
+
+        return $newsArray;
     }
 
     public function checkKeyWords($key)
@@ -204,21 +262,7 @@ class WechatController extends Controller
                 $shop = $shopMate->find($shopWhere);
                 if ($shop) {
                     $fileId = $shop['file_id'];
-                    $pictureUrl= BizHelper::getFileImageUrl($fileId);
-//                    $pictureUrl = '';
-//                    $defaultFilePath = '/Public/Uploads/defaultshopimage.jpg';
-//                    if ($fileId) {
-//                        $file = $fileMate->get($fileId);
-//                        $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-//
-//                        if (is_file(PHYSICAL_ROOT_PATH . $filePath)) {
-//                            $pictureUrl = self::$appUrl . $filePath;
-//                        } else {
-//                            $pictureUrl = self::$appUrl . $defaultFilePath;
-//                        }
-//                    } else {
-//                        $pictureUrl = self::$appUrl . $defaultFilePath;
-//                    }
+                    $pictureUrl = BizHelper::getFileImageUrl($fileId);
 
                     $news = array(
                         'Title' => $shop["name"],
