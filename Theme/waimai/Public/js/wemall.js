@@ -1331,12 +1331,12 @@ function openUser(o) {
                     var json = eval(res.order);
 
                     var dataSending = {
-                        orders: res,
+                        orders: json,
                         jsData: data,
                     };
 
                     var html = template("orderItems", dataSending);
-                    $("#items-order-result-list ul").html(html);
+                    $("#items-order-result-list ul").html('ssssssssssss');
                     
                     // //alert(json.length);
                     // if (json.length != 0) {
