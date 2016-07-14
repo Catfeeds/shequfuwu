@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/show-shopinfo.html" afterPath="$PROJECT_DIR$/Theme/waimai/show-shopinfo.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,15 +109,15 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="1332" column="37" selection-start-line="1332" selection-start-column="37" selection-end-line="1332" selection-end-column="37" />
+            <state relative-caret-position="217">
+              <caret line="1351" column="28" selection-start-line="1351" selection-start-column="28" selection-end-line="1351" selection-end-column="28" />
               <folding>
-                <marker date="1468457609816" expanded="true" signature="16991:17018" ph="..." />
-                <marker date="1468457609816" expanded="true" signature="17032:17045" ph="..." />
-                <marker date="1468457609816" expanded="true" signature="19235:19247" ph="..." />
-                <marker date="1468457609816" expanded="true" signature="43297:43311" ph="..." />
-                <marker date="1468457609816" expanded="true" signature="43473:43485" ph="..." />
-                <marker date="1468457609816" expanded="true" signature="49797:49809" ph="..." />
+                <marker date="1468458161225" expanded="true" signature="16991:17018" ph="..." />
+                <marker date="1468458161225" expanded="true" signature="17032:17045" ph="..." />
+                <marker date="1468458161225" expanded="true" signature="19235:19247" ph="..." />
+                <marker date="1468458161225" expanded="true" signature="43296:43310" ph="..." />
+                <marker date="1468458161225" expanded="true" signature="43472:43484" ph="..." />
+                <marker date="1468458161225" expanded="true" signature="49796:49808" ph="..." />
               </folding>
             </state>
           </provider>
@@ -609,7 +609,7 @@
       <workItem from="1468107720891" duration="38947000" />
       <workItem from="1468206088330" duration="58325000" />
       <workItem from="1468397778885" duration="4515000" />
-      <workItem from="1468403261984" duration="17259000" />
+      <workItem from="1468403261984" duration="17798000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -622,7 +622,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210460000" />
+    <option name="totallyTimeSpent" value="210999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1065,15 +1065,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="1332" column="37" selection-start-line="1332" selection-start-column="37" selection-end-line="1332" selection-end-column="37" />
+        <state relative-caret-position="217">
+          <caret line="1351" column="28" selection-start-line="1351" selection-start-column="28" selection-end-line="1351" selection-end-column="28" />
           <folding>
-            <marker date="1468457609816" expanded="true" signature="16991:17018" ph="..." />
-            <marker date="1468457609816" expanded="true" signature="17032:17045" ph="..." />
-            <marker date="1468457609816" expanded="true" signature="19235:19247" ph="..." />
-            <marker date="1468457609816" expanded="true" signature="43297:43311" ph="..." />
-            <marker date="1468457609816" expanded="true" signature="43473:43485" ph="..." />
-            <marker date="1468457609816" expanded="true" signature="49797:49809" ph="..." />
+            <marker date="1468458161225" expanded="true" signature="16991:17018" ph="..." />
+            <marker date="1468458161225" expanded="true" signature="17032:17045" ph="..." />
+            <marker date="1468458161225" expanded="true" signature="19235:19247" ph="..." />
+            <marker date="1468458161225" expanded="true" signature="43296:43310" ph="..." />
+            <marker date="1468458161225" expanded="true" signature="43472:43484" ph="..." />
+            <marker date="1468458161225" expanded="true" signature="49796:49808" ph="..." />
           </folding>
         </state>
       </provider>

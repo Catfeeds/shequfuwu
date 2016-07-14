@@ -1330,7 +1330,7 @@ function openUser(o) {
                 if (res.order != undefined) {
                     var json = eval(res.order);
 
-                    alert(json.length);
+                    //alert(json.length);
                     if (json.length != 0) {
                         $('.myOrderList').show();
                         var html = '';
@@ -1349,7 +1349,7 @@ function openUser(o) {
                             } else if (value.status == 2) {
                                 order_status = '已完成';
                             }
-                            // alert(value.shop.name);
+                            alert(value.shop.name);
                             htmlfirst += '<li><span style="color:#16aad8;">' + value.shop.name + '</span><div class="order-info"><span class="number">订单号：<span id="order-no">' + value.orderid + '</span></span><span class="date" style="float: right">' + value.time + '</span><span class="order-status">' + pay_status + ',' + order_status + '</span></div><div class="order-list" id="item-order-list"><ul>';
                             var jsoncenter = eval(value.detail);
                             $.each(jsoncenter, function (index, value) {
