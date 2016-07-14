@@ -1362,17 +1362,17 @@ function openUser(o) {
                                 }
                                 htmlcenter += '<li><span class="order-item-name">' + value.name + sku + '</span><span class="order-item-price">￥' + value.price + '</span><span class="order-item-amount">' + value.num + '份</span></li>';
                             });
-                            //
-                            // var pay_status = '';
-                            // var cancel_status = '';
-                            // var comment_status = '';
-                            // if (value.pay_status == 0) {
-                            //     pay_status = '<span class="payOrder" onclick="payOrder(1,\'' + value.id + '\')">微信付款</span><span class="payOrder" onclick="payOrder(2,\'' + value.id + '\')">支付宝</span>';
-                            //     cancel_status = '<span class="cancelOrder" onclick="cancelOrder(' + value.id + ')">取消</span>';
-                            // } else if (value.pay_status == 1) {
-                            //     comment_status = '<span class="commitOrder" onclick="commentOrder(' + value.id + ')">评论</span>';
-                            // }
-                            // htmlend += '</ul><div class="mytotal-info"><span class="deliver">运费：' + value.freight + '元</span><span class="deliver">优惠：' + value.discount + '元</span><span class="total">共' + value.totalprice + '元</span></div></div><div class="order-footer">' + cancel_status + comment_status + pay_status + '<a class="dail-small" href="tel:' + data.config.tel + '"><span class="dail-ico"><i class="ico ico-phone"></i></span><span class="dail-text">拨打电话催一催</span></a></div><div class="divider"></div></li>';
+                            
+                            var pay_status = '';
+                            var cancel_status = '';
+                            var comment_status = '';
+                            if (value.pay_status == 0) {
+                                pay_status = '<span class="payOrder" onclick="payOrder(1,\'' + value.id + '\')">微信付款</span><span class="payOrder" onclick="payOrder(2,\'' + value.id + '\')">支付宝</span>';
+                                cancel_status = '<span class="cancelOrder" onclick="cancelOrder(' + value.id + ')">取消</span>';
+                            } else if (value.pay_status == 1) {
+                                comment_status = '<span class="commitOrder" onclick="commentOrder(' + value.id + ')">评论</span>';
+                            }
+                            htmlend += '</ul><div class="mytotal-info"><span class="deliver">运费：' + value.freight + '元</span><span class="deliver">优惠：' + value.discount + '元</span><span class="total">共' + value.totalprice + '元</span></div></div><div class="order-footer">' + cancel_status + comment_status + pay_status + '<a class="dail-small" href="tel:' + data.config.tel + '"><span class="dail-ico"><i class="ico ico-phone"></i></span><span class="dail-text">拨打电话催一催</span></a></div><div class="divider"></div></li>';
 
 
                             html += htmlfirst + htmlcenter + htmlend;
