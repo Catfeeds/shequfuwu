@@ -1354,14 +1354,14 @@ function openUser(o) {
 
                             // //alert(value.shop.name);
                             htmlfirst += '<li><span style="color:#16aad8;">' + value.shop.name + '</span><div class="order-info"><span class="number">订单号：<span id="order-no">' + value.orderid + '</span></span><span class="date" style="float: right">' + value.time + '</span><span class="order-status">' + pay_status + ',' + order_status + '</span></div><div class="order-list" id="item-order-list"><ul>';
-                            // var jsoncenter = eval(value.detail);
-                            // $.each(jsoncenter, function (index, value) {
-                            //     var sku = '';
-                            //     if (parseInt(value.sku_id)) {
-                            //         sku = '（' + value.sku_name + '）';
-                            //     }
-                            //     htmlcenter += '<li><span class="order-item-name">' + value.name + sku + '</span><span class="order-item-price">￥' + value.price + '</span><span class="order-item-amount">' + value.num + '份</span></li>';
-                            // });
+                            var jsoncenter = eval(value.detail);
+                            $.each(jsoncenter, function (index, value) {
+                                var sku = '';
+                                if (parseInt(value.sku_id)) {
+                                    sku = '（' + value.sku_name + '）';
+                                }
+                                htmlcenter += '<li><span class="order-item-name">' + value.name + sku + '</span><span class="order-item-price">￥' + value.price + '</span><span class="order-item-amount">' + value.num + '份</span></li>';
+                            });
                             //
                             // var pay_status = '';
                             // var cancel_status = '';
