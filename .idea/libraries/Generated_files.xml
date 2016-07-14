@@ -8,6 +8,8 @@
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_shop.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/user-container.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/orderItems.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/.debug.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -17,6 +19,8 @@
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_shop.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/user-container.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/orderItems.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/.debug.min.js" />
     </CLASSES>
     <SOURCES />
   </library>
