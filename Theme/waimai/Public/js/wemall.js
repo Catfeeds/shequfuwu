@@ -1330,13 +1330,16 @@ function openUser(o) {
                 if (res.order != undefined) {
                     var json = eval(res.order);
 
-                    var dataSending = {
-                        orders: json,
-                        jsData: data,
-                    };
+                    if (json.length != 0) {
+                        $('.myOrderList').show();
+                        var dataSending = {
+                            orders: json,
+                            jsData: data,
+                        };
 
-                    var html = template("orderItems", dataSending);
-                    $("#items-order-result-list ul").html('ssssssssssss');
+                        var html = template("orderItems", dataSending);
+                        $("#items-order-result-list ul").html(html);
+                    }
                     
                     // //alert(json.length);
                     // if (json.length != 0) {
