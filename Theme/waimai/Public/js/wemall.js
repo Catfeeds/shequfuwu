@@ -1332,11 +1332,11 @@ function openUser(o) {
 
                     var dataSending = {
                         orders: res,
-                        //jsData: data,
+                        jsData: data,
                     };
 
-                    // var html = template("orderItems", dataSending);
-                    // $("#items-order-result-list ul").html(html);
+                    var html = template("orderItems", dataSending);
+                    $("#items-order-result-list ul").html(html);
                     
                     // //alert(json.length);
                     // if (json.length != 0) {
