@@ -1331,8 +1331,8 @@ function openUser(o) {
                     var json = eval(res.order);
 
                     var dataSending = {
-                        orders: json,
-                        jsData: data,
+                        orders: res,
+                        //jsData: data,
                     };
 
                     var html = template("orderItems", dataSending);
