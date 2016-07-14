@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,21 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <file leaf-file-name="groupsConfig.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+            <state relative-caret-position="153">
+              <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index_mustsubscribe.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_mustsubscribe.html">
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -106,18 +107,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="1351" column="28" selection-start-line="1351" selection-start-column="28" selection-end-line="1351" selection-end-column="28" />
+            <state relative-caret-position="717">
+              <caret line="1372" column="63" selection-start-line="1372" selection-start-column="63" selection-end-line="1372" selection-end-column="63" />
               <folding>
-                <marker date="1468458161225" expanded="true" signature="16991:17018" ph="..." />
-                <marker date="1468458161225" expanded="true" signature="17032:17045" ph="..." />
-                <marker date="1468458161225" expanded="true" signature="19235:19247" ph="..." />
-                <marker date="1468458161225" expanded="true" signature="43296:43310" ph="..." />
-                <marker date="1468458161225" expanded="true" signature="43472:43484" ph="..." />
-                <marker date="1468458161225" expanded="true" signature="49796:49808" ph="..." />
+                <marker date="1468458261274" expanded="true" signature="16991:17018" ph="..." />
+                <marker date="1468458261274" expanded="true" signature="17032:17045" ph="..." />
+                <marker date="1468458261274" expanded="true" signature="19235:19247" ph="..." />
+                <marker date="1468458261274" expanded="true" signature="43298:43312" ph="..." />
+                <marker date="1468458261274" expanded="true" signature="43474:43486" ph="..." />
+                <marker date="1468458261274" expanded="true" signature="49798:49810" ph="..." />
               </folding>
             </state>
           </provider>
@@ -196,10 +197,10 @@
         <option value="$PROJECT_DIR$/Application/Admin/View/Public_header.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/css/shop.css" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/show-shopinfo.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php" />
       </list>
     </option>
   </component>
@@ -609,7 +610,7 @@
       <workItem from="1468107720891" duration="38947000" />
       <workItem from="1468206088330" duration="58325000" />
       <workItem from="1468397778885" duration="4515000" />
-      <workItem from="1468403261984" duration="17798000" />
+      <workItem from="1468403261984" duration="18672000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -622,7 +623,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210999000" />
+    <option name="totallyTimeSpent" value="211873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -983,22 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_mustsubscribe.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1065,16 +1050,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="1351" column="28" selection-start-line="1351" selection-start-column="28" selection-end-line="1351" selection-end-column="28" />
+        <state relative-caret-position="717">
+          <caret line="1372" column="63" selection-start-line="1372" selection-start-column="63" selection-end-line="1372" selection-end-column="63" />
           <folding>
-            <marker date="1468458161225" expanded="true" signature="16991:17018" ph="..." />
-            <marker date="1468458161225" expanded="true" signature="17032:17045" ph="..." />
-            <marker date="1468458161225" expanded="true" signature="19235:19247" ph="..." />
-            <marker date="1468458161225" expanded="true" signature="43296:43310" ph="..." />
-            <marker date="1468458161225" expanded="true" signature="43472:43484" ph="..." />
-            <marker date="1468458161225" expanded="true" signature="49796:49808" ph="..." />
+            <marker date="1468458261274" expanded="true" signature="16991:17018" ph="..." />
+            <marker date="1468458261274" expanded="true" signature="17032:17045" ph="..." />
+            <marker date="1468458261274" expanded="true" signature="19235:19247" ph="..." />
+            <marker date="1468458261274" expanded="true" signature="43298:43312" ph="..." />
+            <marker date="1468458261274" expanded="true" signature="43474:43486" ph="..." />
+            <marker date="1468458261274" expanded="true" signature="49798:49810" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Minify/groupsConfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
