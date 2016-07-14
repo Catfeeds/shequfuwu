@@ -1329,6 +1329,8 @@ function openUser(o) {
 
                 if (res.order != undefined) {
                     var json = eval(res.order);
+
+                    alert(json.length);
                     if (json.length != 0) {
                         $('.myOrderList').show();
                         var html = '';
