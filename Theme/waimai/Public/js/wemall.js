@@ -1594,6 +1594,4 @@ function openSearch() {
             }
         });
     }
-
-
 }
