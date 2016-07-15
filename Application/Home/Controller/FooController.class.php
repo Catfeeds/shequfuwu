@@ -10,12 +10,14 @@ namespace Home\Controller;
 
 
 use Common\Model\BizHelper;
+use Common\Model\OrderViewMate;
 use Common\Model\WechatBiz;
 use Think\Controller;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
+use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\IO\Drawing\CircleSeal;
@@ -337,5 +339,45 @@ class FooController extends Controller
     public function getFileImageUrlop($fileid = 1029)
     {
         dump(BizHelper::getFileImageUrl($fileid));
+    }
+
+    public function getorders($userID = 802)
+    {
+        //$result = D("Order")->getList(array("user_id" => $userID, "status" => array("gt", -1)), true);
+        //dump($result);
+
+
+        $mate = new OrderViewMate();
+        //$result= $mate->get(82);
+        $result = $mate->select(array("user_id" => $userID, "status" => array("gt", -1)));
+
+        dump($result);
+    }
+
+    public function classkeyop(){
+        dump(__NAMESPACE__);
+        dump(__CLASS__);
+
+//        $ns= __NAMESPACE__;
+//        $cn= __CLASS__;
+//
+//        $nsLength= strlen($ns);
+//        if($nsLength){
+//            $cn= substr($cn,$nsLength+1);
+//        }
+//
+//        $postFixPostion= strpos($cn,'Controller');
+//        $cn= substr($cn,0,$postFixPostion);
+
+        $ns= __NAMESPACE__;
+        $cn= __CLASS__;
+        $cn= StringHelper::getSeperatorAfterString($cn,$ns);
+        $cn= StringHelper::getSeperatorBeforeString($cn,'Controller');
+        $cn= StringHelper::getSeperatorAfterString($cn,"\\");
+        dump($cn);
+    }
+
+    public function templateop(){
+        $this->display();
     }
 }

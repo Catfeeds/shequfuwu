@@ -10,6 +10,7 @@ namespace Vendor\Hiland\Utils\DataModel;
 
 
 use Think\Model\RelationModel;
+use Vendor\Hiland\Utils\Data\StringHelper;
 
 /**
  * Class ViewMate
@@ -40,6 +41,19 @@ class ViewMate extends ModelMate
      */
     public function __construct($model, $link = array())
     {
+//        if (empty($model)) {
+//            $ns = __NAMESPACE__;
+//            $cn = __CLASS__;
+//
+//            if ($ns) {
+//                $cn = StringHelper::getSeperatorAfterString($cn, $ns);
+//            }
+//            $cn = StringHelper::getSeperatorBeforeString($cn, 'ViewMate');
+//            $cn = StringHelper::getSeperatorAfterString($cn, "\\");
+//
+//            $model= $cn;
+//        }
+
         if (is_string($model)) {
             $this->model = new RelationModel($model);
         } else {
@@ -47,6 +61,10 @@ class ViewMate extends ModelMate
         }
 
         $this->model->setLink($link);
+    }
+
+    protected function getClassName(){
+        return __CLASS__;
     }
 
     /**
@@ -85,9 +103,11 @@ class ViewMate extends ModelMate
     public function find($condition = array(), $useRelation = true)
     {
         $model = $this->getModel_Where($condition);
+
         if ($useRelation) {
             $model = $model->relation($useRelation);
         }
+
         return $model->find();
     }
 
@@ -95,6 +115,10 @@ class ViewMate extends ModelMate
      * 根据条件获取多条记录
      * @param array $condition
      * @param bool $useRelation 是否启用关联数据
+     * @param string $orderBy 排序信息
+     * @param int $pageIndex 页面序号
+     * @param int $itemCountPerPage 每页显示的信息条目数
+     * @param int $limit 查询信息的条目数
      * @return array 符合条件的结果，多维数组
      * @example
      * $where= array();
@@ -102,12 +126,14 @@ class ViewMate extends ModelMate
      * $where['openid'] = $openId;
      * $relation = $buyerShopMate->select($where);
      */
-    public function select($condition = array(), $useRelation = true)
+    public function select($condition = array(), $useRelation = true, $orderBy = "id desc", $pageIndex = 0, $itemCountPerPage = 0, $limit = 0)
     {
-        $model= $this->getModel_Where($condition);
+        $model = $this->getModel_Select($condition, $orderBy, $pageIndex, $itemCountPerPage, $limit);
+
         if ($useRelation) {
             $model = $model->relation($useRelation);
         }
+
         return $model->select();
     }
 }

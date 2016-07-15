@@ -1,18 +1,17 @@
 <?php
-/** 本类型迁移到Common模块下
+/**
  * Created by PhpStorm.
  * User: xiedalie
  * Date: 2016/7/11
  * Time: 15:17
  */
 
-namespace App\Controller;
+namespace Common\Controller;
 
 
 use Common\Model\BizHelper;
 use Common\Model\OrderViewMate;
 use Think\Controller;
-use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizController extends Controller
@@ -50,17 +49,10 @@ class BizController extends Controller
         WebHelper::serverReturn($result);
     }
 
-    public function getOrders($userId = 802, $reorgnize = false)
+    public function getOrders($userId = 802)
     {
         $mate = new OrderViewMate();
         $result = $mate->select(array("user_id" => $userId, "status" => array("gt", -1)));
-        if ($reorgnize) {
-            $orderCount = sizeof($result);
-            for ($i = 0; $i < $orderCount; $i++) {
-                $result[$i]= ArrayHelper::convert2DTo1D($result[$i]);
-            }
-        }
-
         WebHelper::serverReturn($result);
     }
 }

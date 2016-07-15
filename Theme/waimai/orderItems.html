@@ -4,6 +4,21 @@
             class="date" style="float: right">{{value.time}}</span><span
             class="order-status">pay_status,order_status</span>
     </div>
-    
+    <div class="order-list" id="item-order-list">
+        <ul>
+            {{each value.detail as skuItem index}}
+            <li><span class="order-item-name">{{skuItem.name}} {{sku}}</span><span
+                    class="order-item-price">￥{{skuItem.price}}</span><span
+                    class="order-item-amount">{{skuItem.num}} 份</span>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="mytotal-info"><span class="deliver">运费：{{value.freight}} 元</span><span class="deliver">优惠：{{value.discount}} 元</span><span
+                class="total">共 {{value.totalprice}} 元</span></div>
+    </div>
+    <div class="order-footer">cancel_status,comment_status,pay_status<a class="dail-small"
+                                                                        href="tel:' + jsData.config.tel + '"><span
+            class="dail-ico"><i class="ico ico-phone"></i></span><span class="dail-text">拨打电话催一催</span></a></div>
+    <div class="divider"></div>
 </li>
 {{/each}}

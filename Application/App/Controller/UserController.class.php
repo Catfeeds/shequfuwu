@@ -20,6 +20,7 @@ class UserController extends BaseController
     public function getUser()
     {
         $user = D("User")->get(array("id" => session("userId")), true);
+
         if (I("get.getOrder")) {
             $user["order"] = D("Order")->getList(array("user_id" => session("userId"), "status" => array("gt", -1)), true);
         }

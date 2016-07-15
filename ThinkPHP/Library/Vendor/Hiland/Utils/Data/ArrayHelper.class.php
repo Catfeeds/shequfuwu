@@ -70,10 +70,10 @@ class ArrayHelper
      * 对数组的key和value进行翻转
      *
      * @param array $originalArray
-     *            有简单值构成key和value的名值对数组
+     *            有简单值构成key和value的名值对一维数组
      * @return array
      */
-    public static function convert1DKeyValue($originalArray)
+    public static function exchangeKeyValue($originalArray)
     {
         $newarray = array();
         foreach ($originalArray as $key => $value) {
@@ -112,28 +112,28 @@ class ArrayHelper
      *          )
      *
      *
-     *          1、convert2DTo1D($originalarray, 'value', 'display')的结果为
+     *          1、extract2DTo1D($originalarray, 'value', 'display')的结果为
      *          array(3) {
      *          [0] => string(9) "未出局"
      *          [1] => string(15) "锁定未出局"
      *          [10] => string(6) "出局"
      *          }
      *
-     *          2、convert2DTo1D($originalarray, 'value')的结果为
+     *          2、extract2DTo1D($originalarray, 'value')的结果为
      *          array(3) {
      *          [0] => string(5) "UNOUT"
      *          [1] => string(16) "PARTIALOUTASLOCK"
      *          [10] => string(3) "OUT"
      *          }
      *
-     *          3、convert2DTo1D($originalarray,'','display')的结果为
+     *          3、extract2DTo1D($originalarray,'','display')的结果为
      *          array(3) {
      *          ["UNOUT"] => string(9) "未出局"
      *          ["PARTIALOUTASLOCK"] => string(15) "锁定未出局"
      *          ["OUT"] => string(6) "出局"
      *          }
      *
-     *          4、convert2DTo1D($originalarray)的结果为
+     *          4、extract2DTo1D($originalarray)的结果为
      *          array(3) {
      *          ["UNOUT"] => string(5) "UNOUT"
      *          ["PARTIALOUTASLOCK"] => string(16) "PARTIALOUTASLOCK"
@@ -141,7 +141,7 @@ class ArrayHelper
      *          }
      *
      */
-    public static function convert2DTo1D($originalArray, $newKeyName = '', $newValueName = '')
+    public static function extract2DTo1D($originalArray, $newKeyName = '', $newValueName = '')
     {
         $newArray = array();
         foreach ($originalArray as $k => $v) {
@@ -161,6 +161,75 @@ class ArrayHelper
         }
 
         return $newArray;
+    }
+
+    /**
+     * 把第二维度中的value为名值对的 二维数组，转换为一维数组
+     * @param $originalArray
+     * @param string $convertNodeName
+     * @return mixed
+     * @example
+     * 原二维数组为
+     * {
+            ["id"] => "82"
+            ["remark"] => 'hello',
+            ["time"] => "2016-06-15 15:23:21",
+            ["contact"] =>
+                {
+                    ["id"] => "182",
+                    ["name"] => "解然",
+                    ["phone"] => "18888888888",
+                }
+        }
+     经过转换后为
+     *
+    {
+        ["id"] => "82"
+        ["remark"] => 'hello',
+        ["time"] => "2016-06-15 15:23:21",
+        ["contact__id"] => "182",
+        ["contact__name"] => "解然",
+        ["contact__phone"] =>"18888888888",
+    }
+     *
+     */
+    public static function convert2DTo1D(&$originalArray, $convertNodeName = '')
+    {
+        if ($convertNodeName) {
+            $node = $originalArray[$convertNodeName];
+            $originalArray = self::convert2DNodeTo1D($originalArray, $convertNodeName, $node);
+        } else {
+            foreach ($originalArray as $oneKey => $oneValue) {
+                self::convert2DNodeTo1D($originalArray, $oneKey, $oneValue);
+            }
+        }
+
+        return $originalArray;
+    }
+
+    /**
+     * @param $array
+     * @param $nodeName
+     * @param $node
+     * @return mixed
+     */
+    private static function convert2DNodeTo1D(&$array, $nodeName, $node)
+    {
+        if ($node && is_array($node)) {
+            foreach ($node as $k => $v) {
+                if (empty($k)) {
+                    break;
+                } else {
+                    $newKey= $nodeName . "__" . $k;
+                    if(array_key_exists($newKey,$array)){
+                        $newKey= $newKey."__";
+                    }
+                    $array[$newKey] = $v;
+                }
+            }
+        }
+
+        return $array;
     }
 
     /**

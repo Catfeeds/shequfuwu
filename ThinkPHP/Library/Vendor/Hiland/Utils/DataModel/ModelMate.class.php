@@ -49,8 +49,8 @@ class ModelMate
     {
         return $this->model->where($condition);
     }
-    
-    
+
+
     /**
      * 按照主键获取信息
      *
@@ -77,13 +77,17 @@ class ModelMate
      */
     public function find($condition = array())
     {
-        $model= $this->getModel_Where($condition);
+        $model = $this->getModel_Where($condition);
         return $model->find();
     }
 
     /**
      * 根据条件获取多条记录
      * @param array $condition
+     * @param string $orderBy 排序信息
+     * @param int $pageIndex 页面序号
+     * @param int $itemCountPerPage 每页显示的信息条目数
+     * @param int $limit 查询信息的条目数
      * @return array 符合条件的结果，多维数组
      * @example
      * $where= array();
@@ -91,10 +95,39 @@ class ModelMate
      * $where['openid'] = $openId;
      * $relation = $buyerShopMate->select($where);
      */
-    public function select($condition = array())
+    public function select($condition = array(), $orderBy = "id desc", $pageIndex = 0, $itemCountPerPage = 0, $limit = 0)
     {
-        $model= $this->getModel_Where($condition);
+        $model = $this->getModel_Select($condition, $orderBy, $pageIndex, $itemCountPerPage, $limit);
+
         return $model->select();
+    }
+
+    /**
+     * 根据条件获取Select需要的model
+     * @param array $condition
+     * @param string $orderBy 排序信息
+     * @param int $pageIndex 页面序号
+     * @param int $itemCountPerPage 每页显示的信息条目数
+     * @param int $limit 查询信息的条目数
+     * @return Model
+     */
+    protected function getModel_Select($condition = array(), $orderBy = "id desc", $pageIndex = 0, $itemCountPerPage = 0, $limit = 0)
+    {
+        $model = $this->getModel_Where($condition);
+
+        if ($pageIndex && $itemCountPerPage) {
+            $model = $model->page($pageIndex, $itemCountPerPage);
+        }
+
+        if ($limit) {
+            $model = $model->limit($limit);
+        }
+
+        if ($orderBy) {
+            $model = $model->order($orderBy);
+        }
+
+        return $model;
     }
 
     /**
@@ -104,7 +137,7 @@ class ModelMate
      */
     public function delete($condition = array())
     {
-        $model= $this->getModel_Where($condition);
+        $model = $this->getModel_Where($condition);
         return $model->delete();
     }
 
@@ -118,7 +151,7 @@ class ModelMate
     public function getValue($key, $feildName, $keyName = 'id')
     {
         $condition[$keyName] = $key;
-        $model= $this->getModel_Where($condition);
+        $model = $this->getModel_Where($condition);
         return $model->getField($feildName);
     }
 
@@ -133,7 +166,7 @@ class ModelMate
     public function setValue($key, $feildName, $feildValue, $keyName = 'id')
     {
         $condition[$keyName] = $key;
-        $model= $this->getModel_Where($condition);
+        $model = $this->getModel_Where($condition);
         return $model->setField($feildName, $feildValue);
     }
 
