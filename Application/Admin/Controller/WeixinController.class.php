@@ -1,6 +1,8 @@
 <?php
 namespace Admin\Controller;
 
+use Common\Model\WxMenuModelMate;
+
 class WeixinController extends BaseController
 {
     public function wxSet()
@@ -15,12 +17,11 @@ class WeixinController extends BaseController
             $this->assign("url", 'http://' . $_SERVER["HTTP_HOST"] . U("Admin/Wechat/index"));
             $this->display();
         }
-
     }
 
     public function wxMenuSet()
     {
-        $wxMenu = D("WxMenu")->getList();
+        $wxMenu= WxMenuModelMate::getRankedList();
         $this->assign("wxMenu", $wxMenu);
         $this->display();
     }

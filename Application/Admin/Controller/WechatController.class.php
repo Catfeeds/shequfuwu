@@ -319,9 +319,10 @@ class WechatController extends Controller
         $m = D("WxMenu");
         $menu = $m->getList(array("pid" => 0), false, array('rank' => 'desc', 'id' => 'desc'), 0, 0, 3);
 
-        $newmenu["button"] = array();
+        $newMenu["button"] = array();
         $menuCount = count($menu);
         for ($i = 0; $i < $menuCount; $i++) {
+
 //            $menuItem= $this->builderMenuItems($menu[$i],$m);
 //            array_push($sub_button,$menuItem);
             if ($menu[$i]["type"] == "view") {
@@ -336,9 +337,9 @@ class WechatController extends Controller
                             array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
                         }
                     }
-                    array_push($newmenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
+                    array_push($newMenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
                 } else {
-                    array_push($newmenu["button"], array('type' => 'view', 'name' => $menu[$i]["name"], 'url' => $menu[$i]["url"]));
+                    array_push($newMenu["button"], array('type' => 'view', 'name' => $menu[$i]["name"], 'url' => $menu[$i]["url"]));
                 }
             } else {
                 $sub = $m->getList(array("pid" => $menu[$i]["id"]), false, "rank desc,id desc", 0, 0, 5);
@@ -352,15 +353,15 @@ class WechatController extends Controller
                             array_push($sub_button, array('type' => 'click', 'name' => $sub[$j]["name"], 'key' => $sub[$j]["key"]));
                         }
                     }
-                    array_push($newmenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
+                    array_push($newMenu["button"], array('name' => $menu[$i]["name"], 'sub_button' => $sub_button));
                 } else {
-                    array_push($newmenu["button"], array('type' => 'click', 'name' => $menu[$i]["name"], 'key' => $menu[$i]["key"]));
+                    array_push($newMenu["button"], array('type' => 'click', 'name' => $menu[$i]["name"], 'key' => $menu[$i]["key"]));
                 }
             }
         }
 
         $this->init();
-        $json = self::$weObj->createMenu($newmenu);
+        $json = self::$weObj->createMenu($newMenu);
         $json = json_decode($json, true);
 
         if ($json["errcode"] == 0) {
