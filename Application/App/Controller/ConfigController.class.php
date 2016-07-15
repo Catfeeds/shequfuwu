@@ -8,5 +8,4 @@ class ConfigController extends BaseController
         $config = D("Config")->get();
         $this->ajaxReturn($config);
     }
-
 }
