@@ -311,7 +311,8 @@ class WechatController extends Controller
     {
         $this->init();
 
-        self::$weObj->getMenu();
+        $result= self::$weObj->getMenu();
+        dump($result);
     }
 
     public function createWxMenu()
