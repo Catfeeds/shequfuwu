@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Application/App/Controller/BizController.class.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/ConfigController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/ConfigController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" afterPath="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,46 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Foo_templateop.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Foo_templateop.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1220">
-              <caret line="178" column="37" selection-start-line="178" selection-start-column="37" selection-end-line="178" selection-end-column="37" />
-              <folding>
-                <marker date="1468563458062" expanded="true" signature="16999:17026" ph="..." />
-                <marker date="1468563458062" expanded="true" signature="17040:17053" ph="..." />
-                <marker date="1468563458062" expanded="true" signature="19243:19255" ph="..." />
-                <marker date="1468563458062" expanded="true" signature="50565:50577" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WeixinController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WeixinController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1047">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WechatController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="349" column="59" selection-start-line="349" selection-start-column="59" selection-end-line="349" selection-end-column="59" />
+            <state relative-caret-position="33">
+              <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -143,13 +105,13 @@
         <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/BizController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
-        <option value="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
         <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataModel/ModelMate.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/WxMenuModelMate.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WeixinController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/ConfigController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
       </list>
     </option>
   </component>
@@ -799,7 +761,7 @@
       <workItem from="1468397778885" duration="4515000" />
       <workItem from="1468403261984" duration="41818000" />
       <workItem from="1468530804086" duration="8847000" />
-      <workItem from="1468545729049" duration="15022000" />
+      <workItem from="1468545729049" duration="15433000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -812,7 +774,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258888000" />
+    <option name="totallyTimeSpent" value="259299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1204,14 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/BizController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1224,6 +1178,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1067">
+          <caret line="349" column="59" selection-start-line="349" selection-start-column="59" selection-end-line="349" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WeixinController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1047">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1241,18 +1211,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WeixinController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1047">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="349" column="59" selection-start-line="349" selection-start-column="59" selection-end-line="349" selection-end-column="59" />
+        <state relative-caret-position="33">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
           <folding />
         </state>
       </provider>
