@@ -147,7 +147,7 @@ function showShopInfo() {
 function shopList() {
     $.ajax({
         type: "post",
-        url: data.baseUrl + "/App/Biz/getShopList",
+        url: data.baseUrl + "/General/Biz/getShopList",
         data: {
             lng: lng,
             lat: lat,
@@ -176,7 +176,7 @@ function searchShop() {
 
     $.ajax({
         type: "post",
-        url: data.baseUrl + "/App/Biz/getShopList",
+        url: data.baseUrl + "/General/Biz/getShopList",
         data: {
             name: name,
             searchContentType: searchContentType,

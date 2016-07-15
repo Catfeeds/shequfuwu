@@ -16,7 +16,6 @@
 <script id="test" type="text/html">
     {{each orders as value index}}
     <li><span style="color:#16aad8;">
-        {{value.shop.name}}
         {{value.shop__name}}
     </span>
 
@@ -27,10 +26,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnSearchShop").on("click", function () {
-            //alert(222222222);
             $.ajax({
                 type: "get",
-                url: "__APP__/App/Biz/getOrders",
+                url: "__APP__/General/Biz/getOrders",
                 data: {
                     reorgnize:true,
                     userId: 802,
