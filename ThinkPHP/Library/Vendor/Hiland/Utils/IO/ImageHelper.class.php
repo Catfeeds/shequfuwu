@@ -127,10 +127,10 @@ class ImageHelper
     public static function loadImage($imageFileName, $imageType = '')
     {
         if (empty($imageType)) {
-            $imagetype = self::getImageType($imageFileName);
+            $imageType = self::getImageType($imageFileName);
         }
 
-        switch ($imagetype) {
+        switch ($imageType) {
             case 'png':
                 $image = imagecreatefrompng($imageFileName);
                 break;
@@ -161,7 +161,7 @@ class ImageHelper
                 if (empty($srcData)) {
                     die("图片源为空");
                 }
-                $image = @ImageCreateFromString($srcData);
+                $image = @imagecreatefromstring ($srcData);
                 break;
         }
         return $image;
@@ -262,7 +262,6 @@ class ImageHelper
      */
     private static function getImageTypeFromImageSize($imageFileName)
     {
-        $result = 'jpg';
         $array = getimagesize($imageFileName);
         // 索引 2 给出的是图像的类型，返回的是数字，
         // 其中1 = GIF，2 = JPG，3 = PNG，4 = SWF，5 = PSD，

@@ -28,7 +28,6 @@ class WechatHelper
 
         $effectType = strtoupper($effectType);
 
-        $qrrequest = '';
         if ($effectType == 'QR_LIMIT_SCENE') { // 长效二维码
             $qrrequest = '{
                 "action_name": "QR_LIMIT_SCENE",
@@ -240,39 +239,7 @@ class WechatHelper
             $accessToken = self::getAccessToken();
         }
 
-        $result = false;
         $MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" . $accessToken;
-
-//        $ch = curl_init();
-//
-//        curl_setopt($ch, CURLOPT_URL, $MENU_URL);
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-//        // curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-//        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
-//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-//        curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, $menuJson);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//
-//        $info = curl_exec($ch);
-//        // return $info;
-//        if (curl_errno($ch)) {
-//            $result = false;
-//        } else {
-//            $result = json_decode($info, true);
-//            $result = $result["errcode"];
-//            // return $result;
-//            if ($result == 0) {
-//                $result = true;
-//            } else {
-//                $result = false;
-//            }
-//        }
-//
-//        curl_close($ch);
-
         $info = NetHelper::request($MENU_URL, $menuJson);
         $result = json_decode($info, true);
         $result = $result["errcode"];
@@ -290,16 +257,16 @@ class WechatHelper
     /**
      * 获取菜单（JSON格式的数据）
      *
-     * @param string $accesstoken
+     * @param string $accessToken
      * @return mixed
      */
-    public static function getMenu($accesstoken = '')
+    public static function getMenu($accessToken = '')
     {
         if (empty($accessToken)) {
             $accessToken = self::getAccessToken();
         }
 
-        $MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=" . $accesstoken;
+        $MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=" . $accessToken;
 
         $cu = curl_init();
         curl_setopt($cu, CURLOPT_URL, $MENU_URL);
@@ -347,7 +314,7 @@ class WechatHelper
             //触发微信返回code码
             $redirectUrl = urlencode('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']);
             $url = self::getOAuth2PageUrl($redirectState, $redirectUrl, $appID);
-            Header("Location: $url");
+            header("Location: $url");
             exit();
         } else {
             //获取code码，以获取openid
@@ -716,7 +683,5 @@ class WechatHelper
             return false;
         }
     }
-
 }
-
 ?>

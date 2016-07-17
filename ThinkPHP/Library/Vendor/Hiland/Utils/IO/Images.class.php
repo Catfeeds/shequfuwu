@@ -671,7 +671,7 @@ class Images
                 die("水印文字过大");
             } else {
                 // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+                $white = imagecolorallocate($this->destImage, 255, 255, 255);
                 imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
 
                 $this->drawImageBorder();
@@ -686,14 +686,14 @@ class Images
                 // 将水印生成在原图上再拷
                 $this->createMaskImage($this->sourceImage);
                 // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+                $white = imagecolorallocate($this->destImage, 255, 255, 255);
                 imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
                 $this->drawImageBorder();
                 imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->destImagePaintY, $this->copyedImageWidth, $this->copyedImageHeight);
             } else {
                 // 创建新图并拷贝
                 // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+                $white = imagecolorallocate($this->destImage, 255, 255, 255);
                 imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
                 $this->drawImageBorder();
                 imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
@@ -703,7 +703,7 @@ class Images
 
         if (empty($this->maskWord) && empty($this->maskImageFileName)) {
             // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-            $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+            $white = imagecolorallocate($this->destImage, 255, 255, 255);
             imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
             $this->drawImageBorder();
 
@@ -726,7 +726,7 @@ class Images
     {
         if (!empty($this->imageBorderSize)) {
             $c = ColorHelper::Hex2RGB($this->imageBorderColor);
-            $color = ImageColorAllocate($this->sourceImage, $c[0], $c[1], $c[2]);
+            $color = imagecolorallocate($this->sourceImage, $c[0], $c[1], $c[2]);
             imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $color); // 填充背景色
         }
     }

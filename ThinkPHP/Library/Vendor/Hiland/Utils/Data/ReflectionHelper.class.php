@@ -60,7 +60,7 @@ class ReflectionHelper
         $class = self::getClassReflectionInfo($className, $constructArgs);
         $instance = $class->newInstanceArgs((array)$constructArgs);
 
-        $method = $class->getmethod($methodName);
+        $method = $class->getMethod($methodName);
         if (empty($methodArgs)) {
             $result = $method->invoke($instance);
         } else {

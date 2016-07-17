@@ -81,7 +81,7 @@ class SaeHelper
                 imagegif($image);
                 break;
             case 'bmp':
-                imagexbm($image);
+                imagexbm($image,null);
                 break;
             default:
                 imagejpeg($image);

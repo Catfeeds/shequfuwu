@@ -39,6 +39,6 @@ class PageHelper
      */
     public static function setCoding($coding = 'utf-8')
     {
-        Header('Content-Type: text/html; charset=' . $coding);
+        header('Content-Type: text/html; charset=' . $coding);
     }
 }

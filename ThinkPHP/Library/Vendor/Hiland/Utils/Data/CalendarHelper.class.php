@@ -78,11 +78,11 @@ class CalendarHelper
     {
         //debugger;
         $lunarArray = array();
-        $yearMonth = array();
+        //$yearMonth = array();
         $t = 0;
         $e = 0;
         $leapMonth = 0;
-        $m = '';
+        //$m = '';
         if ($between == 0) {
             array_push($lunarArray, $year, '正月', '初一');
             $t = 1;
@@ -118,7 +118,7 @@ class CalendarHelper
         //debugger;
         $monthData = self::getLunarMonths($year);
         $res = array();
-        $temp = 0;
+        //$temp = 0;
         $yearData = self::$LUNARINFO[$year - self::$MINYEAR];
         $len = ($yearData[0] == 0 ? 12 : 13);
         for ($i = 0; $i < $len; $i++) {
@@ -169,10 +169,11 @@ class CalendarHelper
     /**
      * 获取农历每年的天数
      * @param int $year 农历年份
+     * @return mixed
      */
     private static function getLunarYearDays($year)
     {
-        $yearData = self::$LUNARINFO[$year - self::$MINYEAR];
+        //$yearData = self::$LUNARINFO[$year - self::$MINYEAR];
         $monthArray = self::getLunarYearMonths($year);
         $len = count($monthArray);
         return ($monthArray[$len - 1] == 0 ? $monthArray[$len - 2] : $monthArray[$len - 1]);
@@ -224,6 +225,7 @@ class CalendarHelper
     /**
      * 根据阴历年获取生肖
      * @param int $year 阴历年
+     * @return mixed
      */
     private static function getYearZodiac($year)
     {
@@ -322,6 +324,7 @@ class CalendarHelper
      * 获取阳历月份的天数
      * @param int $year 阳历-年
      * @param int $month 阳历-月
+     * @return mixed
      */
     public static function getSolarMonthDays($year, $month)
     {
@@ -333,7 +336,7 @@ class CalendarHelper
      * 获取阴历月份的天数
      * @param int $year 阴历-年
      * @param int $month 阴历-月，从一月开始
-     * @return
+     * @return int
      */
     public static function getLunarMonthDays($year, $month)
     {

@@ -92,8 +92,8 @@ class DAO
 
     /**
      * 获取数据库下所有的表名称
-     *
      * @param string $dataBaseName
+     * @return string
      */
     public function getTableNames($dataBaseName = '')
     {
@@ -116,8 +116,8 @@ class DAO
 
     /**
      * 获取数据库下所有的表名称
-     *
      * @param string $dataBaseName
+     * @return string
      */
     public function getTables($dataBaseName = '')
     {
@@ -137,6 +137,10 @@ class DAO
         return $result;
     }
 
+    /**
+     * @param $sql
+     * @return bool|void
+     */
     public function query($sql)
     {
         if (empty($sql)) {
@@ -161,6 +165,10 @@ class DAO
         }
     }
 
+    /**
+     * @param string $message
+     * @param string $sql
+     */
     public function showError($message = "", $sql = "")
     {
         if (!$sql) {
@@ -330,6 +338,10 @@ class DAO
 
     // 获取关联数组,使用$row['字段名']
 
+    /**
+     * @param $tableName
+     * @return string
+     */
     public function getFieldNames($tableName)
     {
         $queryResult = $this->getFields($tableName);

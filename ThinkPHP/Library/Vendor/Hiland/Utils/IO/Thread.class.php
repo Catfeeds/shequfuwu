@@ -15,7 +15,7 @@ class Thread
 {
     /**
      * 不需要返回值的异步执行（只在后台执行业务逻辑，不能有返回值）
-     * @param $url 请求地址，不包括域名信息
+     * @param $url string 请求地址，不包括域名信息
      * @param string $host 域名主机信息
      * @param int $port 端口
      */

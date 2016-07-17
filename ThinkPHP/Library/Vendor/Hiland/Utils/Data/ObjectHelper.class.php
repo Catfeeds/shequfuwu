@@ -84,7 +84,7 @@ class ObjectHelper
 
     public static function getString($data)
     {
-        $result = '';
+        //$result = '';
         $type = gettype($data);
         //return $type;
         switch ($type) {
@@ -103,7 +103,6 @@ class ObjectHelper
                 $result = '';
             case 'double':
             case 'integer':
-            case 'double':
             case 'string':
             default:
                 $result = (string)$data;

@@ -18,8 +18,7 @@ abstract class BasicQueueStack
      * @param $value
      * @throws \Exception
      */
-    public
-    function push($value)
+    public function push($value)
     {
         $myValue = $value;
         throw new \Exception('请在派生类实现入队操作');
@@ -28,8 +27,7 @@ abstract class BasicQueueStack
     /**
      * 出队*
      */
-    public
-    function pop()
+    public function pop()
     {
         throw new \Exception('请在派生类实现出队操作');
     }
@@ -40,8 +38,7 @@ abstract class BasicQueueStack
      * @return mixed|NULL
      * @throws \Exception
      */
-    public
-    function seek()
+    public function seek()
     {
         throw new \Exception('请在派生类实现查询当前元素操作');
     }
@@ -58,8 +55,7 @@ abstract class BasicQueueStack
     /**
      * 获取长度 *
      */
-    public
-    function getLength()
+    public function getLength()
     {
         return count($this->dataArray);
     }

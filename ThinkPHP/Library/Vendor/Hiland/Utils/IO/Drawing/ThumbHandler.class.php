@@ -253,8 +253,8 @@ class ThumbHandler
 
     /**
      * 取得图片类型
-     *
      * @param    string $file_path 文件路径
+     * @return mixed
      */
     function _getImgType($file_path)
     {
@@ -274,6 +274,7 @@ class ThumbHandler
      * php版本大于4.1.0
      *
      * @param    string $img_type 文件类型
+     * @return bool
      */
     function _checkValid($img_type)
     {
@@ -359,10 +360,7 @@ class ThumbHandler
 
     /**
      * 设置文字水印
-     *
-     * @param    string $word 水印文字
-     * @param    integer $font 水印字体
-     * @param    string $color 水印字体颜色
+     * @param string $word 水印文字
      */
     function setMaskWord($word)
     {
@@ -372,7 +370,7 @@ class ThumbHandler
     /**
      * 设置字体颜色
      *
-     * @param    string $color 字体颜色
+     * @param string $color 字体颜色
      */
     function setMaskFontColor($color = "#ffffff")
     {
@@ -382,7 +380,7 @@ class ThumbHandler
     /**
      * 设置水印字体
      *
-     * @param    string|integer $font 字体
+     * @param string|integer $font 字体
      */
     function setMaskFont($font = 2)
     {

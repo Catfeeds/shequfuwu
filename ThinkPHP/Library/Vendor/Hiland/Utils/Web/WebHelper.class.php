@@ -59,7 +59,7 @@ class WebHelper
      */
     public static function attachUrlParameter($url, $paraData, $isUrlEncode = false)
     {
-        $paraString = '';
+        //$paraString = '';
         if (is_string($paraData)) {
             $paraString = $paraData;
         } else {

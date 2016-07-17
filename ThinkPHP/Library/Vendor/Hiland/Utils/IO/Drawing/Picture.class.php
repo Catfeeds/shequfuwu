@@ -30,10 +30,6 @@ class Picture
     var $FONT_COLOR = "#000000"; // 文字颜色
     var $FONT_PATH = "font/simkai.ttf"; // 字体库，默认为宋体
 
-    /**
-     * 水印图片
-     * @var unknown
-     */
     var $FORCE_URL; // 水印图片
     var $FORCE_X = 0; // 水印横坐标
     var $FORCE_Y = 0; // 水印纵坐标
