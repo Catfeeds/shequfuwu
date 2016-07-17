@@ -20,33 +20,9 @@ abstract class Enum
      * Constant with default value for creating enum object
      */
     const __default = null;
-
-    private $value;
-
-    private $strict;
-
     private static $constants = array();
-
-    /**
-     * Returns list of all defined constants in enum class.
-     * Constants value are enum values.
-     *
-     * @param bool $includeDefault
-     *            If true, default value is included into return
-     * @return array Array with constant values
-     */
-    public function getConstList($includeDefault = false)
-    {
-        $class = get_class($this);
-
-        if (!array_key_exists($class, self::$constants)) {
-            self::populateConstants();
-        }
-
-        return $includeDefault ? array_merge(self::$constants[__CLASS__], array(
-            "__default" => self::__default
-        )) : self::$constants[__CLASS__];
-    }
+    private $value;
+    private $strict;
 
     /**
      * Creates new enum object.
@@ -80,6 +56,27 @@ abstract class Enum
 
         $this->value = $initialValue;
         $this->strict = $strict;
+    }
+
+    /**
+     * Returns list of all defined constants in enum class.
+     * Constants value are enum values.
+     *
+     * @param bool $includeDefault
+     *            If true, default value is included into return
+     * @return array Array with constant values
+     */
+    public function getConstList($includeDefault = false)
+    {
+        $class = get_class($this);
+
+        if (!array_key_exists($class, self::$constants)) {
+            self::populateConstants();
+        }
+
+        return $includeDefault ? array_merge(self::$constants[__CLASS__], array(
+            "__default" => self::__default
+        )) : self::$constants[__CLASS__];
     }
 
     private function populateConstants()

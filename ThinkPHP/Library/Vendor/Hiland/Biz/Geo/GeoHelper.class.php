@@ -14,29 +14,6 @@ class GeoHelper
     const EARTH_RADIUS = 6378.137;
 
     /**
-     * 由角度计算弧度
-     * @param float $angle 角度
-     * @return float 弧度
-     */
-    public static function getRadian($angle)
-    {
-        return $angle * 3.1415926535898 / 180.0;
-    }
-
-    //计算经纬度两点之间的距离
-    public static function getDistance($lat1, $lng1, $lat2, $lng2)
-    {
-        $radLat1 = self::getRadian($lat1);
-        $radLat2 = self::getRadian($lat2);
-        $a = $radLat1 - $radLat2;
-        $b = self::getRadian($lng1) - self::getRadian($lng2);
-        $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
-        $s1 = $s * self::EARTH_RADIUS;
-        $s2 = round($s1 * 10000) / 10000;
-        return $s2;
-    }
-
-    /**
      * 根据给定的用户坐标，对包含坐标数据的数据集信息进行排序
      * @param float $userLat 用户纬度
      * @param float $userLng 用户经度
@@ -50,16 +27,16 @@ class GeoHelper
     {
         if (!empty($userLat) && !empty($userLng)) {
             foreach ($dataList as $row) {
-                $latArray= explode(".",$dataItemLatFormat);
-                $itemLat= $row;
-                foreach ($latArray as $item){
-                    $itemLat= $itemLat[$item];
+                $latArray = explode(".", $dataItemLatFormat);
+                $itemLat = $row;
+                foreach ($latArray as $item) {
+                    $itemLat = $itemLat[$item];
                 }
 
-                $lngArray= explode(".",$dataItemLngFormat);
-                $itemLng= $row;
-                foreach ($lngArray as $item){
-                    $itemLng= $itemLng[$item];
+                $lngArray = explode(".", $dataItemLngFormat);
+                $itemLng = $row;
+                foreach ($lngArray as $item) {
+                    $itemLng = $itemLng[$item];
                 }
 
                 $row['km'] = self::getDistance($userLat, $userLng, $itemLat, $itemLng);
@@ -84,5 +61,29 @@ class GeoHelper
         } else {
             return false;
         }
+    }
+
+    //计算经纬度两点之间的距离
+
+    public static function getDistance($lat1, $lng1, $lat2, $lng2)
+    {
+        $radLat1 = self::getRadian($lat1);
+        $radLat2 = self::getRadian($lat2);
+        $a = $radLat1 - $radLat2;
+        $b = self::getRadian($lng1) - self::getRadian($lng2);
+        $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
+        $s1 = $s * self::EARTH_RADIUS;
+        $s2 = round($s1 * 10000) / 10000;
+        return $s2;
+    }
+
+    /**
+     * 由角度计算弧度
+     * @param float $angle 角度
+     * @return float 弧度
+     */
+    public static function getRadian($angle)
+    {
+        return $angle * 3.1415926535898 / 180.0;
     }
 }

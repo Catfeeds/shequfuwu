@@ -171,26 +171,26 @@ class ArrayHelper
      * @example
      * 原二维数组为
      * {
-            ["id"] => "82"
-            ["remark"] => 'hello',
-            ["time"] => "2016-06-15 15:23:21",
-            ["contact"] =>
-                {
-                    ["id"] => "182",
-                    ["name"] => "解然",
-                    ["phone"] => "18888888888",
-                }
-        }
-     经过转换后为
+     * ["id"] => "82"
+     * ["remark"] => 'hello',
+     * ["time"] => "2016-06-15 15:23:21",
+     * ["contact"] =>
+     * {
+     * ["id"] => "182",
+     * ["name"] => "解然",
+     * ["phone"] => "18888888888",
+     * }
+     * }
+     * 经过转换后为
      *
-    {
-        ["id"] => "82"
-        ["remark"] => 'hello',
-        ["time"] => "2016-06-15 15:23:21",
-        ["contact__id"] => "182",
-        ["contact__name"] => "解然",
-        ["contact__phone"] =>"18888888888",
-    }
+     * {
+     * ["id"] => "82"
+     * ["remark"] => 'hello',
+     * ["time"] => "2016-06-15 15:23:21",
+     * ["contact__id"] => "182",
+     * ["contact__name"] => "解然",
+     * ["contact__phone"] =>"18888888888",
+     * }
      *
      */
     public static function convert2DTo1D(&$originalArray, $convertNodeName = '')
@@ -220,9 +220,9 @@ class ArrayHelper
                 if (empty($k)) {
                     break;
                 } else {
-                    $newKey= $nodeName . "__" . $k;
-                    if(array_key_exists($newKey,$array)){
-                        $newKey= $newKey."__";
+                    $newKey = $nodeName . "__" . $k;
+                    if (array_key_exists($newKey, $array)) {
+                        $newKey = $newKey . "__";
                     }
                     $array[$newKey] = $v;
                 }

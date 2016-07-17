@@ -17,20 +17,6 @@ class FontHelper
     }
 
     /**
-     * 获取字符串设置为某种字体后的高度信息
-     * @param int|string $font 字体
-     * @param int $fontSize 字号大小
-     * @param string $string 要测量的字符串
-     * @return int
-     */
-    public static function getHeight($font, $fontSize, $string)
-    {
-        $array = self::getSize($font, $fontSize, $string);
-        return $array[1];
-    }
-
-
-    /**
      * 获取字符串设置为某种字体后的size信息
      * @param int|string $font 字体
      * @param int $fontSize 字号大小
@@ -57,6 +43,19 @@ class FontHelper
             $wholeWidth,
             $wholeHeight
         );
+    }
+
+    /**
+     * 获取字符串设置为某种字体后的高度信息
+     * @param int|string $font 字体
+     * @param int $fontSize 字号大小
+     * @param string $string 要测量的字符串
+     * @return int
+     */
+    public static function getHeight($font, $fontSize, $string)
+    {
+        $array = self::getSize($font, $fontSize, $string);
+        return $array[1];
     }
 }
 

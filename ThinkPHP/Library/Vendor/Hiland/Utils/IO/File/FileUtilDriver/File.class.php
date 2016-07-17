@@ -2,30 +2,6 @@
 namespace Vendor\Hiland\Utils\IO\File\FileUtilDriver;
 class File
 {
-    private function createDir($aimUrl)
-    {
-        $aimDir = '';
-        $arr = explode('/', $aimUrl);
-        $result = true;
-        foreach ($arr as $str) {
-            $aimDir .= $str . '/';
-            if (!is_dir($aimDir)) {
-                $result = mkdir($aimDir);
-            }
-        }
-        return $result;
-    }
-
-    public function unlinkFile($aimUrl)
-    {
-        if (is_file($aimUrl)) {
-            unlink($aimUrl);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function moveFile($fileUrl, $aimUrl, $overWrite = true)
     {
         if (!is_file($fileUrl)) {
@@ -40,6 +16,47 @@ class File
         $this->createDir($aimDir);
         rename($fileUrl, $aimUrl);
         return true;
+    }
+
+    public function unlinkFile($aimUrl)
+    {
+        if (is_file($aimUrl)) {
+            unlink($aimUrl);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function createDir($aimUrl)
+    {
+        $aimDir = '';
+        $arr = explode('/', $aimUrl);
+        $result = true;
+        foreach ($arr as $str) {
+            $aimDir .= $str . '/';
+            if (!is_dir($aimDir)) {
+                $result = mkdir($aimDir);
+            }
+        }
+        return $result;
+    }
+
+    public function clearDir($dirUrl)
+    {
+        $dirUrl = rtrim($dirUrl, '/');
+        if (!is_dir($dirUrl)) {
+            return false;
+        }
+        $infos = $this->getList($dirUrl);
+        $result = true;
+        foreach ($infos['files'] as $file) {
+            $result = $this->unlinkFile($file['fullName']);
+        }
+        foreach ($infos['dirs'] as $dir) {
+            $result = $this->unlinkDir($dir['fullName']);
+        }
+        return $result;
     }
 
     public function getList($dirUrl)
@@ -82,23 +99,6 @@ class File
             $this->unlinkDir($dir['fullName']);
         }
         return rmdir($dirUrl);
-    }
-
-    public function clearDir($dirUrl)
-    {
-        $dirUrl = rtrim($dirUrl, '/');
-        if (!is_dir($dirUrl)) {
-            return false;
-        }
-        $infos = $this->getList($dirUrl);
-        $result = true;
-        foreach ($infos['files'] as $file) {
-            $result = $this->unlinkFile($file['fullName']);
-        }
-        foreach ($infos['dirs'] as $dir) {
-            $result = $this->unlinkDir($dir['fullName']);
-        }
-        return $result;
     }
 
     public function readFile($fileUrl)

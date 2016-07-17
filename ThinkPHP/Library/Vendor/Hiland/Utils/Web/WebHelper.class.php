@@ -32,7 +32,6 @@ class WebHelper
      */
     public static function getHostName()
     {
-        //return $_SERVER['HTTP_HOST'];
         return EnvironmentHelper::getServerHostName();
     }
 

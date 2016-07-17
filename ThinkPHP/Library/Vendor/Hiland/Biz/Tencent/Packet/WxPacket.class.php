@@ -13,60 +13,38 @@ class WxPacket
 
     var $parameters;
 
-    public function setParameter($parameterName, $parameterValue)
-    {
-        $this->parameters[$parameterName] = $parameterValue;
-    }
-
     public function getParameter($parameter)
     {
         return $this->parameters[$parameter];
     }
 
     /**
-     * 检查是否满足可以设置签名的条件
+     * 发送红包
      *
-     * @return boolean
+     * @param array $paraArray
+     * @return \SimpleXMLElement[]
      */
-    private function checkSignParameters()
+    public function send($paraArray)
     {
-        if ($this->parameters["nonce_str"] == null || $this->parameters["mch_billno"] == null || $this->parameters["mch_id"] == null || $this->parameters["wxappid"] == null || $this->parameters["nick_name"] == null || $this->parameters["send_name"] == null || $this->parameters["re_openid"] == null || $this->parameters["total_amount"] == null || $this->parameters["max_value"] == null || $this->parameters["total_num"] == null || $this->parameters["wishing"] == null || $this->parameters["client_ip"] == null || $this->parameters["act_name"] == null || $this->parameters["remark"] == null || $this->parameters["min_value"] == null) {
-            return false;
-        } else {
-            return true;
+        foreach ($paraArray as $k => $v) {
+            $this->parameters[$k] = $v;
         }
-    }
 
-    /**
-     * 例如：
-     * appid： wxd111665abv58f4f
-     * mch_id： 10000100
-     * device_info： 1000
-     * Body： test
-     * nonce_str： ibuaiVcKdpRxkhJA
-     * 第一步：对参数按照 key=value 的格式，并按照参数名 ASCII 字典序排序如下：
-     * stringA="appid=wxd930ea5d5a258f4f&body=test&device_info=1000&mch_i
-     * d=10000100&nonce_str=ibuaiVcKdpRxkhJA";
-     * 第二步：拼接支付密钥：
-     * stringSignTemp="stringA&key=192006250b4c09247ec02edce69f6a2d"
-     * sign=MD5(stringSignTemp).toUpperCase()="9A0A8659F005D6984697E2CA0A
-     * 9CF3B7"
-     */
-    protected function getSign()
-    {
-        $key = WechatConfig::MCHKEY;
-        try {
-            if ($this->checkSignParameters() == false) { // 检查生成签名参数
-                throw new WechatException("生成签名参数缺失！" . "<br>");
-            }
+        $postXml = $this->generatePacketXml();
+        $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack';
 
-            $unSignParaString = WebHelper::formatArrayAsUrlParameter($this->parameters);
-            $result = CipherHelper::signature($unSignParaString, $key);
+        $path = WechatConfig::CERTABSOLUTELYPATH(true);
 
-            return $result;
-        } catch (WechatException $e) {
-            die($e->errorMessage());
-        }
+        $certfilearray = array(
+            $path . 'apiclient_cert.pem',
+            $path . 'apiclient_key.pem',
+            $path . 'rootca.pem'
+        );
+        $responseXml = NetHelper::request($url, $postXml, 30, false, array(), $certfilearray);
+
+        // return $responseXml;
+        $responseObj = simplexml_load_string($responseXml, 'SimpleXMLElement', LIBXML_NOCDATA);
+        return $responseObj->return_code;
     }
 
     /**
@@ -103,33 +81,55 @@ class WxPacket
         return $xml;
     }
 
-    /**
-     * 发送红包
-     *
-     * @param array $paraArray
-     * @return \SimpleXMLElement[]
-     */
-    public function send($paraArray)
+    public function setParameter($parameterName, $parameterValue)
     {
-        foreach ($paraArray as $k => $v) {
-            $this->parameters[$k] = $v;
+        $this->parameters[$parameterName] = $parameterValue;
+    }
+
+    /**
+     * 例如：
+     * appid： wxd111665abv58f4f
+     * mch_id： 10000100
+     * device_info： 1000
+     * Body： test
+     * nonce_str： ibuaiVcKdpRxkhJA
+     * 第一步：对参数按照 key=value 的格式，并按照参数名 ASCII 字典序排序如下：
+     * stringA="appid=wxd930ea5d5a258f4f&body=test&device_info=1000&mch_i
+     * d=10000100&nonce_str=ibuaiVcKdpRxkhJA";
+     * 第二步：拼接支付密钥：
+     * stringSignTemp="stringA&key=192006250b4c09247ec02edce69f6a2d"
+     * sign=MD5(stringSignTemp).toUpperCase()="9A0A8659F005D6984697E2CA0A
+     * 9CF3B7"
+     */
+    protected function getSign()
+    {
+        $key = WechatConfig::MCHKEY;
+        try {
+            if ($this->checkSignParameters() == false) { // 检查生成签名参数
+                throw new WechatException("生成签名参数缺失！" . "<br>");
+            }
+
+            $unSignParaString = WebHelper::formatArrayAsUrlParameter($this->parameters);
+            $result = CipherHelper::signature($unSignParaString, $key);
+
+            return $result;
+        } catch (WechatException $e) {
+            die($e->errorMessage());
         }
+    }
 
-        $postXml = $this->generatePacketXml();
-        $url = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack';
-
-        $path = WechatConfig::CERTABSOLUTELYPATH(true);
-
-        $certfilearray = array(
-            $path . 'apiclient_cert.pem',
-            $path . 'apiclient_key.pem',
-            $path . 'rootca.pem'
-        );
-        $responseXml = NetHelper::request($url, $postXml, 30, false, array(), $certfilearray);
-
-        // return $responseXml;
-        $responseObj = simplexml_load_string($responseXml, 'SimpleXMLElement', LIBXML_NOCDATA);
-        return $responseObj->return_code;
+    /**
+     * 检查是否满足可以设置签名的条件
+     *
+     * @return boolean
+     */
+    private function checkSignParameters()
+    {
+        if ($this->parameters["nonce_str"] == null || $this->parameters["mch_billno"] == null || $this->parameters["mch_id"] == null || $this->parameters["wxappid"] == null || $this->parameters["nick_name"] == null || $this->parameters["send_name"] == null || $this->parameters["re_openid"] == null || $this->parameters["total_amount"] == null || $this->parameters["max_value"] == null || $this->parameters["total_num"] == null || $this->parameters["wishing"] == null || $this->parameters["client_ip"] == null || $this->parameters["act_name"] == null || $this->parameters["remark"] == null || $this->parameters["min_value"] == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

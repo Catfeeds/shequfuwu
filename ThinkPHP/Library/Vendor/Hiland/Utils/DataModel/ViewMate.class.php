@@ -10,7 +10,6 @@ namespace Vendor\Hiland\Utils\DataModel;
 
 
 use Think\Model\RelationModel;
-use Vendor\Hiland\Utils\Data\StringHelper;
 
 /**
  * Class ViewMate
@@ -61,10 +60,6 @@ class ViewMate extends ModelMate
         }
 
         $this->model->setLink($link);
-    }
-
-    protected function getClassName(){
-        return __CLASS__;
     }
 
     /**
@@ -135,5 +130,10 @@ class ViewMate extends ModelMate
         }
 
         return $model->select();
+    }
+
+    protected function getClassName()
+    {
+        return __CLASS__;
     }
 }

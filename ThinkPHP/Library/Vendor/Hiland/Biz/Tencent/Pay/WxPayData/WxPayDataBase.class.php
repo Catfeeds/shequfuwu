@@ -30,6 +30,41 @@ class WxPayDataBase
     }
 
     /**
+     * 生成签名
+     *
+     * @return string 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
+     */
+    public function MakeSign()
+    {
+        // 签名步骤一：按字典序排序参数
+        ksort($this->values);
+        $string = $this->ToUrlParams();
+        // 签名步骤二：在string后加入KEY
+        $string = $string . "&key=" . WechatConfig::MCHKEY;
+        // 签名步骤三：MD5加密
+        $string = md5($string);
+        // 签名步骤四：所有字符转为大写
+        $result = strtoupper($string);
+        return $result;
+    }
+
+    /**
+     * 格式化参数格式化成url参数
+     */
+    public function ToUrlParams()
+    {
+        $buff = "";
+        foreach ($this->values as $k => $v) {
+            if ($k != "sign" && $v != "" && !is_array($v)) {
+                $buff .= $k . "=" . $v . "&";
+            }
+        }
+
+        $buff = trim($buff, "&");
+        return $buff;
+    }
+
+    /**
      * 获取签名，详见签名生成算法的值
      *
      * @return string 值
@@ -92,41 +127,6 @@ class WxPayDataBase
         libxml_disable_entity_loader(true);
         $this->values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
         return $this->values;
-    }
-
-    /**
-     * 格式化参数格式化成url参数
-     */
-    public function ToUrlParams()
-    {
-        $buff = "";
-        foreach ($this->values as $k => $v) {
-            if ($k != "sign" && $v != "" && !is_array($v)) {
-                $buff .= $k . "=" . $v . "&";
-            }
-        }
-
-        $buff = trim($buff, "&");
-        return $buff;
-    }
-
-    /**
-     * 生成签名
-     *
-     * @return string 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
-     */
-    public function MakeSign()
-    {
-        // 签名步骤一：按字典序排序参数
-        ksort($this->values);
-        $string = $this->ToUrlParams();
-        // 签名步骤二：在string后加入KEY
-        $string = $string . "&key=" . WechatConfig::MCHKEY;
-        // 签名步骤三：MD5加密
-        $string = md5($string);
-        // 签名步骤四：所有字符转为大写
-        $result = strtoupper($string);
-        return $result;
     }
 
     /**

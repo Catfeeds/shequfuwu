@@ -72,36 +72,7 @@ class DAO
     }
 
     /* 数据库执行语句，可执行查询添加修改删除等任何sql语句 */
-    public function query($sql)
-    {
-        if (empty($sql)) {
-            $this->showError("SQL语句错误：", "SQL查询语句为空");
-            return false;
-        } else {
-            $this->sql = $sql;
-        }
 
-        $result = $this->queryInner();
-
-        if ($result) {
-            $this->result = $result;
-            return $result;
-        } else {
-            // 调试中使用，sql语句出错时会自动打印出来
-            if ($this->showError) {
-                $this->showError("错误SQL语句：", $this->sql);
-            }
-
-            return false;
-        }
-    }
-
-    protected function queryInner()
-    {
-        //
-    }
-
-    /* 查询数据库下所有的表 */
     public function showTableNames($dataBaseName = '')
     {
         if (empty($dataBaseName)) {
@@ -141,6 +112,8 @@ class DAO
         return $result;
     }
 
+    /* 查询数据库下所有的表 */
+
     /**
      * 获取数据库下所有的表名称
      *
@@ -164,223 +137,30 @@ class DAO
         return $result;
     }
 
-    // 查询字段数量
-    public function showFieldNames($tableName)
+    public function query($sql)
     {
-        $result = $this->getFieldNames($tableName);
-        echo "<br />";
-        echo "字段数：" . $total = count($result);
-        echo "<pre>";
-        for ($i = 0; $i < $total; $i++) {
-            echo($result[$i] . '<br/>');
-        }
-        echo "</pre>";
-        echo "<br />";
-    }
-
-    public function getFieldNames($tableName)
-    {
-        $queryResult = $this->getFields($tableName);
-        $total = count($queryResult);
-
-        $result = '';
-        for ($i = 0; $i < $total; $i++) {
-            $result[$i] = $queryResult[$i]->name;
-        }
-        return $result;
-    }
-
-    /**
-     * @param $tableName
-     * @return array
-     */
-    public function getFields($tableName)
-    {
-        $queryResult = $this->query("select * from $tableName LIMIT 1");
-        return $this->getFieldsInner($queryResult);
-    }
-
-    protected function getFieldsInner($queryResult)
-    {
-        //
-    }
-
-    /*
-     * mysql_fetch_row() array $row[0],$row[1],$row[2]
-     * mysql_fetch_array() array $row[0] 或 $row[id]
-     * mysql_fetch_assoc() array 用$row->content 字段大小写敏感
-     * mysql_fetch_object() object 用$row[id],$row[content] 字段大小写敏感
-     */
-
-    /* 取得记录集,获取数组-索引和关联,使用$row['content'] */
-    /**
-     *
-     * @param array $result
-     * @param int $fetchType
-     *            取值为：
-     *            1 或者MYSQL_ASSOC、MYSQLI_ASSOC - 关联数组，用字段名称表示Key的数组
-     *            2 或者MYSQL_NUM、MYSQLI_NUM - 数字数组，用数字表示Key的数组
-     *            3 或者MYSQL_BOTH、MYSQLI_BOTH - 同时产生关联和数字数组
-     */
-    public function fetchArray($result = null, $fetchType = 3)
-    {
-        if (empty($result)) {
-            $result = $this->result;
-        }
-
-        return $this->fetchArrayInner($result, $fetchType);
-    }
-
-    protected function fetchArrayInner($result, $fetchType = 3)
-    {
-        // return mysql_fetch_array($result);
-    }
-
-    // 获取关联数组,使用$row['字段名']
-    public function fetchAssoc($result = null)
-    {
-        if (empty($result)) {
-            $result = $this->result;
-        }
-        return $this->fetchAssocInner($result);
-    }
-
-    protected function fetchAssocInner($result)
-    {
-        // return mysql_fetch_assoc($result);
-    }
-
-    // 获取数字索引数组,使用$row[0],$row[1],$row[2]
-    public function fetchRow($result = null)
-    {
-        if (empty($result)) {
-            $result = $this->result;
-        }
-
-        return $this->fetchRowInner($result); // mysql_fetch_row($result);
-    }
-
-    protected function fetchRowInner($result = null)
-    {
-        // return mysql_fetch_row($result);
-    }
-
-    // 获取对象数组,使用$row->content
-    public function fetchObject($result = null)
-    {
-        if (empty($result)) {
-            $result = $this->result;
-        }
-        return $this->fetchObjectInner($result);
-    }
-
-    protected function fetchObjectInner($result)
-    {
-        // return mysql_fetch_object($result);
-    }
-
-    // 简化查询select
-    public function findAll($table)
-    {
-        $this->query("SELECT * FROM $table");
-    }
-
-    // 简化查询select
-    public function select($table, $columnName = "*", $condition = '', $debug = '')
-    {
-        $condition = $condition ? ' Where ' . $condition : NULL;
-        if ($debug) {
-            echo "SELECT $columnName FROM $table $condition";
+        if (empty($sql)) {
+            $this->showError("SQL语句错误：", "SQL查询语句为空");
+            return false;
         } else {
-            $this->query("SELECT $columnName FROM $table $condition");
-        }
-    }
-
-    // 简化删除del
-    public function delete($table, $condition, $url = '')
-    {
-        if ($this->query("DELETE FROM $table WHERE $condition")) {
-            if (!empty($url))
-                $this->Get_admin_msg($url, '删除成功！');
-        }
-    }
-
-    // 简化插入insert
-    public function insert($table, $columnName, $value, $url = '')
-    {
-        if ($this->query("INSERT INTO $table ($columnName) VALUES ($value)")) {
-            if (!empty($url))
-                $this->Get_admin_msg($url, '添加成功！');
-        }
-    }
-
-    // 简化修改update
-    public function update($table, $mod_content, $condition, $url = '')
-    {
-        // echo "UPDATE $table SET $mod_content WHERE $condition"; exit();
-        if ($this->query("UPDATE $table SET $mod_content WHERE $condition")) {
-            if (!empty($url))
-                $this->Get_admin_msg($url);
-        }
-    }
-
-    /* 取得上一步 INSERT 操作产生的 ID */
-    public function getLastInsertedID()
-    {
-        return $this->getLastInsertedIDInner();
-    }
-
-    protected function getLastInsertedIDInner()
-    {
-        // return mysql_insert_id();
-    }
-
-    // 根据select查询结果计算结果集条数
-    public function getResultRowCount($result = null)
-    {
-        if (empty($result)) {
-            $result = $this->result;
+            $this->sql = $sql;
         }
 
-        if ($result == null) {
+        $result = $this->queryInner();
+
+        if ($result) {
+            $this->result = $result;
+            return $result;
+        } else {
+            // 调试中使用，sql语句出错时会自动打印出来
             if ($this->showError) {
-                $this->showError("SQL语句错误", "暂时为空，没有任何内容！");
+                $this->showError("错误SQL语句：", $this->sql);
             }
-        } else {
-            return $this->getResultRowCountInner($result);
+
+            return false;
         }
     }
 
-    protected function getResultRowCountInner($result)
-    {
-        //
-    }
-
-    // 根据insert,update,delete执行结果取得影响行数
-    public function getAffectedRowCount()
-    {
-        return $this->getAffectedRowCountInner(); // mysql_affected_rows();
-    }
-
-    protected function getAffectedRowCountInner()
-    {
-        // return mysql_affected_rows();
-    }
-
-    /**
-     * 获取mysql服务器内部错误
-     */
-    public function getMysqlInnerError()
-    {
-        return $this->getMysqlInnerErrorInner();
-    }
-
-    protected function getMysqlInnerErrorInner()
-    {
-        //
-    }
-
-    // 输出显示sql语句
     public function showError($message = "", $sql = "")
     {
         if (!$sql) {
@@ -483,7 +263,244 @@ class DAO
         echo "<br />";
     }
 
+    // 查询字段数量
+
+    /**
+     * 获取mysql服务器内部错误
+     */
+    public function getMysqlInnerError()
+    {
+        return $this->getMysqlInnerErrorInner();
+    }
+
+    protected function getMysqlInnerErrorInner()
+    {
+        //
+    }
+
+    protected function queryInner()
+    {
+        //
+    }
+
+    /**
+     *
+     * @param array $result
+     * @param int $fetchType
+     *            取值为：
+     *            1 或者MYSQL_ASSOC、MYSQLI_ASSOC - 关联数组，用字段名称表示Key的数组
+     *            2 或者MYSQL_NUM、MYSQLI_NUM - 数字数组，用数字表示Key的数组
+     *            3 或者MYSQL_BOTH、MYSQLI_BOTH - 同时产生关联和数字数组
+     */
+    public function fetchArray($result = null, $fetchType = 3)
+    {
+        if (empty($result)) {
+            $result = $this->result;
+        }
+
+        return $this->fetchArrayInner($result, $fetchType);
+    }
+
+    /*
+     * mysql_fetch_row() array $row[0],$row[1],$row[2]
+     * mysql_fetch_array() array $row[0] 或 $row[id]
+     * mysql_fetch_assoc() array 用$row->content 字段大小写敏感
+     * mysql_fetch_object() object 用$row[id],$row[content] 字段大小写敏感
+     */
+
+    /* 取得记录集,获取数组-索引和关联,使用$row['content'] */
+
+    protected function fetchArrayInner($result, $fetchType = 3)
+    {
+        // return mysql_fetch_array($result);
+    }
+
+    public function showFieldNames($tableName)
+    {
+        $result = $this->getFieldNames($tableName);
+        echo "<br />";
+        echo "字段数：" . $total = count($result);
+        echo "<pre>";
+        for ($i = 0; $i < $total; $i++) {
+            echo($result[$i] . '<br/>');
+        }
+        echo "</pre>";
+        echo "<br />";
+    }
+
+    // 获取关联数组,使用$row['字段名']
+
+    public function getFieldNames($tableName)
+    {
+        $queryResult = $this->getFields($tableName);
+        $total = count($queryResult);
+
+        $result = '';
+        for ($i = 0; $i < $total; $i++) {
+            $result[$i] = $queryResult[$i]->name;
+        }
+        return $result;
+    }
+
+    /**
+     * @param $tableName
+     * @return array
+     */
+    public function getFields($tableName)
+    {
+        $queryResult = $this->query("select * from $tableName LIMIT 1");
+        return $this->getFieldsInner($queryResult);
+    }
+
+    // 获取数字索引数组,使用$row[0],$row[1],$row[2]
+
+    protected function getFieldsInner($queryResult)
+    {
+        //
+    }
+
+    public function fetchAssoc($result = null)
+    {
+        if (empty($result)) {
+            $result = $this->result;
+        }
+        return $this->fetchAssocInner($result);
+    }
+
+    // 获取对象数组,使用$row->content
+
+    protected function fetchAssocInner($result)
+    {
+        // return mysql_fetch_assoc($result);
+    }
+
+    public function fetchRow($result = null)
+    {
+        if (empty($result)) {
+            $result = $this->result;
+        }
+
+        return $this->fetchRowInner($result); // mysql_fetch_row($result);
+    }
+
+    // 简化查询select
+
+    protected function fetchRowInner($result = null)
+    {
+        // return mysql_fetch_row($result);
+    }
+
+    // 简化查询select
+
+    public function fetchObject($result = null)
+    {
+        if (empty($result)) {
+            $result = $this->result;
+        }
+        return $this->fetchObjectInner($result);
+    }
+
+    // 简化删除del
+
+    protected function fetchObjectInner($result)
+    {
+        // return mysql_fetch_object($result);
+    }
+
+    // 简化插入insert
+
+    public function findAll($table)
+    {
+        $this->query("SELECT * FROM $table");
+    }
+
+    // 简化修改update
+
+    public function select($table, $columnName = "*", $condition = '', $debug = '')
+    {
+        $condition = $condition ? ' Where ' . $condition : NULL;
+        if ($debug) {
+            echo "SELECT $columnName FROM $table $condition";
+        } else {
+            $this->query("SELECT $columnName FROM $table $condition");
+        }
+    }
+
+    /* 取得上一步 INSERT 操作产生的 ID */
+
+    public function delete($table, $condition, $url = '')
+    {
+        if ($this->query("DELETE FROM $table WHERE $condition")) {
+            if (!empty($url))
+                $this->Get_admin_msg($url, '删除成功！');
+        }
+    }
+
+    public function insert($table, $columnName, $value, $url = '')
+    {
+        if ($this->query("INSERT INTO $table ($columnName) VALUES ($value)")) {
+            if (!empty($url))
+                $this->Get_admin_msg($url, '添加成功！');
+        }
+    }
+
+    // 根据select查询结果计算结果集条数
+
+    public function update($table, $mod_content, $condition, $url = '')
+    {
+        // echo "UPDATE $table SET $mod_content WHERE $condition"; exit();
+        if ($this->query("UPDATE $table SET $mod_content WHERE $condition")) {
+            if (!empty($url))
+                $this->Get_admin_msg($url);
+        }
+    }
+
+    public function getLastInsertedID()
+    {
+        return $this->getLastInsertedIDInner();
+    }
+
+    // 根据insert,update,delete执行结果取得影响行数
+
+    protected function getLastInsertedIDInner()
+    {
+        // return mysql_insert_id();
+    }
+
+    public function getResultRowCount($result = null)
+    {
+        if (empty($result)) {
+            $result = $this->result;
+        }
+
+        if ($result == null) {
+            if ($this->showError) {
+                $this->showError("SQL语句错误", "暂时为空，没有任何内容！");
+            }
+        } else {
+            return $this->getResultRowCountInner($result);
+        }
+    }
+
+    protected function getResultRowCountInner($result)
+    {
+        //
+    }
+
+    public function getAffectedRowCount()
+    {
+        return $this->getAffectedRowCountInner(); // mysql_affected_rows();
+    }
+
+    // 输出显示sql语句
+
+    protected function getAffectedRowCountInner()
+    {
+        // return mysql_affected_rows();
+    }
+
     // 析构函数，自动关闭数据库,垃圾回收机制
+
     public function __destruct()
     {
         $this->destructInner();

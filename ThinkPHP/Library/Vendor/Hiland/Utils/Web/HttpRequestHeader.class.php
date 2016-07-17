@@ -3,6 +3,24 @@ namespace Vendor\Hiland\Utils\Web;
 
 class HttpRequestHeader
 {
+    public static function getUserAgent()
+    {
+        return self::get('USER-AGENT');
+    }
+
+    public static function get($key)
+    {
+        $key = strtoupper($key);
+        $headers = self::getAll();
+        foreach ($headers as $k => $v) {
+            if ($k == $key) {
+                return $v;
+            }
+        }
+
+        return false;
+    }
+
     public static function getAll()
     {
         $headers = array();
@@ -28,26 +46,6 @@ class HttpRequestHeader
         return $headers;
     }
 
-    public static function get($key)
-    {
-        $key = strtoupper($key);
-        $headers = self::getAll();
-        foreach ($headers as $k => $v) {
-            if ($k == $key) {
-                return $v;
-            }
-        }
-
-        return false;
-    }
-
-    
-
-    public static function getUserAgent()
-    {
-        return self::get('USER-AGENT');
-    }
-
     /*
      * public static function set($key,$value){
      * $key= strtoupper($key);
@@ -55,6 +53,13 @@ class HttpRequestHeader
      * }
      */
 
+    /**
+     * 页面正常状态 200 ok
+     */
+    public static function setPage202()
+    {
+        self::set('HTTP/1.1 200 OK');
+    }
 
     /**
      * 设置http头信息
@@ -63,14 +68,6 @@ class HttpRequestHeader
     public static function set($value)
     {
         header($value);
-    }
-
-    /**
-     * 页面正常状态 200 ok
-     */
-    public static function setPage202()
-    {
-        self::set('HTTP/1.1 200 OK');
     }
 
     /**

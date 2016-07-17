@@ -7,28 +7,6 @@ class MimeHelper
 {
 
     /**
-     * 根据文件名称获取文件的mime类型
-     *
-     * @param string $filename
-     * @return string
-     */
-    public static function getMime($filename)
-    {
-        if (version_compare(PHP_VERSION, '5.3', '>=')) {
-            // 方法1、自己根据扩张名称查找文件mime类型
-            $fileextensionname = FileHelper::getFileExtensionName($filename);
-            if (in_array($fileextensionname, array_keys(self::$MIMEARRAY)) == true) {
-                return self::$MIMEARRAY[$fileextensionname];
-            } else {
-                return false;
-            }
-        } else {
-            // 方法2、使用php提供的方法查找文件mime类型（此方法在>=5.3后废弃了）
-            return mime_content_type($filename);
-        }
-    }
-
-    /**
      * 文件mime类型数组
      *
      * @var array
@@ -457,6 +435,28 @@ class MimeHelper
         '.x_t' => 'application/x-x_t',
         '.myz' => 'application/myz'
     );
+
+    /**
+     * 根据文件名称获取文件的mime类型
+     *
+     * @param string $filename
+     * @return string
+     */
+    public static function getMime($filename)
+    {
+        if (version_compare(PHP_VERSION, '5.3', '>=')) {
+            // 方法1、自己根据扩张名称查找文件mime类型
+            $fileextensionname = FileHelper::getFileExtensionName($filename);
+            if (in_array($fileextensionname, array_keys(self::$MIMEARRAY)) == true) {
+                return self::$MIMEARRAY[$fileextensionname];
+            } else {
+                return false;
+            }
+        } else {
+            // 方法2、使用php提供的方法查找文件mime类型（此方法在>=5.3后废弃了）
+            return mime_content_type($filename);
+        }
+    }
 }
 
 ?>

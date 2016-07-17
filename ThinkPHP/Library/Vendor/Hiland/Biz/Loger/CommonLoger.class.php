@@ -1,6 +1,6 @@
 <?php
 namespace Vendor\Hiland\Biz\Loger;
-use Vendor\Hiland\Biz\Loger\DBLoger\Loger;
+
 use Vendor\Hiland\Utils\Data\ReflectionHelper;
 
 /**
@@ -8,27 +8,10 @@ use Vendor\Hiland\Utils\Data\ReflectionHelper;
  * User: xiedalie
  * Date: 2016/6/30
  * Time: 7:31
+ * 说明： 如果启用第三方的loger，请在配置文件中设置LogProviderName
  */
 class CommonLoger
 {
-    private static function getLoger(){
-        $cacheKey= "system-provider-loger";
-        if(S($cacheKey)){
-            return S($cacheKey);
-        }else{
-            $providerName= C("LogProviderName");
-            if(empty($providerName)){
-                $providerName= "DBLoger";
-            }
-
-            $className= "Vendor\\Hiland\\Biz\\Loger\\$providerName\\Loger";
-            $loger= ReflectionHelper::createInstance($className);
-
-            S($cacheKey,$loger);
-            return $loger;
-        }
-    }
-
     /**
      * 进行日志记录
      *
@@ -49,5 +32,24 @@ class CommonLoger
     public static function log($title, $content = '', $status = '', $categoryname = 'develop', $other = '', $misc1 = 0)
     {
         self::getLoger()->log($title, $content, $status, $categoryname, $other, $misc1);
+    }
+
+    private static function getLoger()
+    {
+        $cacheKey = "system-provider-loger";
+        if (S($cacheKey)) {
+            return S($cacheKey);
+        } else {
+            $providerName = C("LogProviderName");
+            if (empty($providerName)) {
+                $providerName = "DBLoger";
+            }
+
+            $className = "Vendor\\Hiland\\Biz\\Loger\\$providerName\\Loger";
+            $loger = ReflectionHelper::createInstance($className);
+
+            S($cacheKey, $loger);
+            return $loger;
+        }
     }
 }

@@ -83,8 +83,9 @@ class VerifyHelper
 
     /**
      * 验证中文
-     * @param:string $str 要匹配的字符串
-     * @param:$charset 编码（默认utf-8,支持gb2312）
+     * @param string $str 要匹配的字符串
+     * @param string $charset 编码（默认utf-8,支持gb2312）
+     * @return bool
      */
     public static function isChinese($str, $charset = 'utf-8')
     {
@@ -108,10 +109,12 @@ class VerifyHelper
 
     /**
      * 验证长度
-     * @param: string $str
-     * @param: int $type(方式，默认min <= $str <= max)
-     * @param: int $min,最小值;$max,最大值;
-     * @param: string $charset 字符
+     * @param $str
+     * @param int $type 方式(默认min <= $str <= max)
+     * @param int $min 最小值;
+     * @param int $max 最大值;
+     * @param string $charset 字符集
+     * @return bool
      */
     public static function length($str, $type = 3, $min = 0, $max = 0, $charset = 'utf-8')
     {
@@ -132,7 +135,8 @@ class VerifyHelper
     /**
      * 验证密码
      * @param string $value
-     * @param int $length
+     * @param int $minLen
+     * @param int $maxLen
      * @return boolean
      */
     public static function isPWD($value, $minLen = 6, $maxLen = 16)
@@ -147,7 +151,8 @@ class VerifyHelper
     /**
      * 验证用户名
      * @param string $value
-     * @param int $length
+     * @param int $minLen
+     * @param int $maxLen
      * @return boolean
      */
     public static function isNames($value, $minLen = 2, $maxLen = 16, $charset = 'ALL')
@@ -169,14 +174,15 @@ class VerifyHelper
 
     /**
      * 验证邮政编码
-     * @param string $value
+     * @param string $value 待检测字符串
+     * @return bool
      */
-    public static function checkZip($str)
+    public static function checkZip($value)
     {
-        if (strlen($str) != 6) {
+        if (strlen($value) != 6) {
             return false;
         }
-        if (substr($str, 0, 1) == 0) {
+        if (substr($value, 0, 1) == 0) {
             return false;
         }
         return true;
@@ -184,11 +190,12 @@ class VerifyHelper
 
     /**
      * 匹配日期
-     * @param string $value
+     * @param string $value 待检测字符串
+     * @return bool
      */
-    public static function checkDate($str)
+    public static function checkDate($value)
     {
-        $dateArr = explode("-", $str);
+        $dateArr = explode("-", $value);
         if (is_numeric($dateArr[0]) && is_numeric($dateArr[1]) && is_numeric($dateArr[2])) {
             if (($dateArr[0] >= 1000 && $dateArr[0] <= 10000) && ($dateArr[1] >= 0 && $dateArr[1] <= 12) && ($dateArr[2] >= 0 && $dateArr[2] <= 31))
                 return true;
@@ -200,11 +207,12 @@ class VerifyHelper
 
     /**
      * 匹配时间
-     * @param string $value
+     * @param string $value 待检测字符串
+     * @return bool
      */
-    public static function checkTime($str)
+    public static function checkTime($value)
     {
-        $timeArr = explode(":", $str);
+        $timeArr = explode(":", $value);
         if (is_numeric($timeArr[0]) && is_numeric($timeArr[1]) && is_numeric($timeArr[2])) {
             if (($timeArr[0] >= 0 && $timeArr[0] <= 23) && ($timeArr[1] >= 0 && $timeArr[1] <= 59) && ($timeArr[2] >= 0 && $timeArr[2] <= 59))
                 return true;

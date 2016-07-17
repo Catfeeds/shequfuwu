@@ -19,10 +19,10 @@ class Thread
      * @param string $host 域名主机信息
      * @param int $port 端口
      */
-    public static function asynExec($url,$host='',$port=80)
+    public static function asynExec($url, $host = '', $port = 80)
     {
-        if(empty($host)){
-            $host= WebHelper::getHostName();
+        if (empty($host)) {
+            $host = WebHelper::getHostName();
         }
 
         $fp = fsockopen($host, $port, $errno, $errstr, 30);

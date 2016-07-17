@@ -29,6 +29,20 @@ class ModelMate
     }
 
     /**
+     * 按照主键获取信息
+     *
+     * @param int|string $key
+     *            查询信息的主键值
+     * @param string $keyName
+     *            查询信息的主键名称
+     * @return array 模型实体数据
+     */
+    public function get($key, $keyName = 'id')
+    {
+        return self::getModel_Get()->find($key, $keyName);
+    }
+
+    /**
      * 获取get数据时候需要的model
      * @param $key
      * @param string $keyName
@@ -48,21 +62,6 @@ class ModelMate
     protected function getModel_Where($condition = array())
     {
         return $this->model->where($condition);
-    }
-
-
-    /**
-     * 按照主键获取信息
-     *
-     * @param int|string $key
-     *            查询信息的主键值
-     * @param string $keyName
-     *            查询信息的主键名称
-     * @return array 模型实体数据
-     */
-    public function get($key, $keyName = 'id')
-    {
-        return self::getModel_Get()->find($key, $keyName);
     }
 
     /**

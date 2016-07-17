@@ -265,18 +265,6 @@ class Images
     }
 
     /**
-     * 设置字体颜色
-     *
-     * @param string $mainColor 正面字体颜色
-     * @param string $sideColor 侧面字体颜色
-     */
-    public function setMaskFontColor($mainColor = "#ffffff", $sideColor = "#888888")
-    {
-        $this->maskFontMainColor = $mainColor;
-        $this->maskFontSideColor = $sideColor;
-    }
-
-    /**
      * 设置水印字体
      *
      * @param string|integer $font
@@ -298,6 +286,18 @@ class Images
     public function setMaskFontSize($size = "12")
     {
         $this->mastFontSize = $size;
+    }
+
+    /**
+     * 设置字体颜色
+     *
+     * @param string $mainColor 正面字体颜色
+     * @param string $sideColor 侧面字体颜色
+     */
+    public function setMaskFontColor($mainColor = "#ffffff", $sideColor = "#888888")
+    {
+        $this->maskFontMainColor = $mainColor;
+        $this->maskFontSideColor = $sideColor;
     }
 
     /**
@@ -413,31 +413,6 @@ class Images
     }
 
     /**
-     * 设置图片剪切
-     *
-     * @param int $width
-     *            矩形剪切的宽度
-     * @param int $height 矩形剪切的高度
-     */
-    public function setCutRectangle($width, $height)
-    {
-        $this->filledImageWidth = (int)$width;
-        $this->filledImageHeight = (int)$height;
-    }
-
-    /**
-     * 设置源图剪切起始坐标点(仅在裁切模式cuteType为2手工裁切模式下有效)
-     *
-     * @param $x
-     * @param $y
-     */
-    public function setCutPositionOnSourceImage($x, $y)
-    {
-        $this->sourceImagePaintX = (int)$x;
-        $this->sourceImagePaintY = (int)$y;
-    }
-
-    /**
      * 图片输出
      */
     public function output()
@@ -491,180 +466,6 @@ class Images
             imagedestroy($this->sourceImage);
         }
         return $this->destImage;
-    }
-
-    /**
-     * 生成水印,调用了生成水印文字和水印图片两个方法
-     */
-    private function createMask()
-    {
-        $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-
-        if ($this->maskWord) {
-            // 获取水印文本所占用的高宽信息
-            $maskImageSize = FontHelper::getSize($this->maskFont, $this->mastFontSize, $this->maskWord);
-            $this->maskImageWidth = $maskImageSize[0];
-            $this->maskImageHeight = $maskImageSize[1];
-
-            if ($this->isMaskBiggerThanBackground()) {
-                die("水印文字过大");
-            } else {
-                // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
-                imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
-
-                $this->drawImageBorder();
-
-                imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
-                $this->createMaskWord($this->destImage);
-            }
-        }
-
-        if ($this->maskImageFileName) {
-            if ($this->isMaskBiggerThanBackground()) {
-                // 将水印生成在原图上再拷
-                $this->createMaskImage($this->sourceImage);
-                // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
-                imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
-                $this->drawImageBorder();
-                imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->destImagePaintY, $this->copyedImageWidth, $this->copyedImageHeight);
-            } else {
-                // 创建新图并拷贝
-                // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
-                imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
-                $this->drawImageBorder();
-                imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
-                $this->createMaskImage($this->destImage);
-            }
-        }
-
-        if (empty($this->maskWord) && empty($this->maskImageFileName)) {
-            // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
-            $white = ImageColorAllocate($this->destImage, 255, 255, 255);
-            imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
-            $this->drawImageBorder();
-
-            imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
-        }
-    }
-
-    /**
-     * 画边框
-     */
-    private function drawImageBorder()
-    {
-        if (!empty($this->imageBorderSize)) {
-            $c = ColorHelper::Hex2RGB($this->imageBorderColor);
-            $color = ImageColorAllocate($this->sourceImage, $c[0], $c[1], $c[2]);
-            imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $color); // 填充背景色
-        }
-    }
-
-
-    /**
-     * 生成水印文字
-     * @param $backGroundImage
-     */
-    private function createMaskWord($backGroundImage)
-    {
-        $this->calcMaskPosition();
-        $this->checkMaskValid();
-
-        $mainColorArray = ColorHelper::Hex2RGB($this->maskFontMainColor);
-        $mainColor = imagecolorallocatealpha($backGroundImage, $mainColorArray[0], $mainColorArray[1], $mainColorArray[2], $this->maskTxtPct);
-
-        $sideColorArray = ColorHelper::Hex2RGB($this->maskFontSideColor);
-        $sideColor = imagecolorallocatealpha($backGroundImage, $sideColorArray[0], $sideColorArray[1], $sideColorArray[2], $this->maskTxtPct);
-
-        // dump('text'.$this->maskPositionY);
-        if (is_numeric($this->maskFont)) {
-            imagestring($backGroundImage, $this->maskFont, $this->maskPositionX + 1, $this->maskPositionY + 1, $this->maskWord, $sideColor);
-            imagestring($backGroundImage, $this->maskFont, $this->maskPositionX, $this->maskPositionY, $this->maskWord, $mainColor);
-        } else {
-            imagettftext($backGroundImage, $this->mastFontSize, 0, $this->maskPositionX + 1, $this->maskPositionY + 1, $sideColor, $this->maskFont, $this->maskWord);
-            imagettftext($backGroundImage, $this->mastFontSize, 0, $this->maskPositionX, $this->maskPositionY, $mainColor, $this->maskFont, $this->maskWord);
-        }
-    }
-
-    /**
-     * 生成水印图
-     * @param $backGroundImage
-     */
-    private function createMaskImage($backGroundImage)
-    {
-        $this->calcMaskPosition();
-        $this->checkMaskValid();
-
-        // dump('image'.$this->maskPositionY);
-        imagecopymerge($backGroundImage, $this->maskImage, $this->maskPositionX, $this->maskPositionY, 0, 0, $this->maskImageWidth, $this->maskImageHeight, $this->maskImagePct);
-
-        imagedestroy($this->maskImage);
-    }
-
-    /**
-     * 计算水印的位置坐标
-     */
-    private function calcMaskPosition()
-    {
-        if ($this->isMaskBiggerThanBackground()) {
-            switch ($this->maskPosition) {
-                case 1:
-                    // 左上
-                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
-                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
-                    break;
-
-                case 2:
-                    // 左下
-                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
-                    $this->maskPositionY = $this->sourceImageHeight - $this->maskImageHeight - $this->maskOffsetY;
-                    break;
-
-                case 3:
-                    // 右上
-                    $this->maskPositionX = $this->sourceImageWidth - $this->maskImageWidth - $this->maskOffsetX;
-                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
-                    break;
-
-                case 4:
-                    // 右下
-                default:
-                    // 默认将水印放到右下,偏移指定像素
-                    $this->maskPositionX = $this->sourceImageWidth - $this->maskImageWidth - $this->maskOffsetX;
-                    $this->maskPositionY = $this->sourceImageHeight - $this->maskImageHeight - $this->maskOffsetY;
-                    break;
-            }
-        } else {
-            switch ($this->maskPosition) {
-                case 1:
-                    // 左上
-                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
-                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
-                    break;
-
-                case 2:
-                    // 左下
-                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
-                    $this->maskPositionY = $this->destImageHeight - $this->maskImageHeight - $this->maskOffsetY - $this->imageBorderSize;
-                    break;
-
-                case 3:
-                    // 右上
-                    $this->maskPositionX = $this->destImageWidth - $this->maskImageWidth - $this->maskOffsetX - $this->imageBorderSize;
-                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
-                    break;
-
-                case 4:
-                    // 右下
-                default:
-                    // 默认将水印放到右下,偏移指定像素
-                    $this->maskPositionX = $this->destImageWidth - $this->maskImageWidth - $this->maskOffsetX - $this->imageBorderSize;
-                    $this->maskPositionY = $this->destImageHeight - $this->maskImageHeight - $this->maskOffsetY - $this->imageBorderSize;
-                    break;
-            }
-        }
     }
 
     /**
@@ -793,21 +594,46 @@ class Images
     }
 
     /**
-     * 检查水印图是否大于生成后的图片宽高
+     * 设置源图剪切起始坐标点(仅在裁切模式cuteType为2手工裁切模式下有效)
+     *
+     * @param $x
+     * @param $y
      */
-    private function isMaskBiggerThanBackground()
+    public function setCutPositionOnSourceImage($x, $y)
     {
-        Return ($this->maskImageWidth + $this->maskOffsetX > $this->filledImageWidth || $this->maskImageHeight + $this->maskOffsetY > $this->filledImageHeight) ? true : false;
+        $this->sourceImagePaintX = (int)$x;
+        $this->sourceImagePaintY = (int)$y;
     }
 
     /**
-     * 检查水印图是否超过原图
+     * 设置图片剪切
+     *
+     * @param int $width
+     *            矩形剪切的宽度
+     * @param int $height 矩形剪切的高度
      */
-    private function checkMaskValid()
+    public function setCutRectangle($width, $height)
     {
-        if ($this->maskImageWidth + $this->maskOffsetX > $this->sourceImageWidth || $this->maskImageHeight + $this->maskOffsetY > $this->sourceImageHeight) {
-            die("水印图片尺寸大于原图，请缩小水印图");
+        $this->filledImageWidth = (int)$width;
+        $this->filledImageHeight = (int)$height;
+    }
+
+    /**
+     * 水平翻转
+     *
+     * @param resource $src
+     *            图片源
+     */
+    private function _flipX($src)
+    {
+        $src_x = $this->getImageWidth($src);
+        $src_y = $this->getImageHeight($src);
+
+        $new_im = imagecreatetruecolor($src_x, $src_y);
+        for ($x = 0; $x < $src_x; $x++) {
+            imagecopy($new_im, $src, $src_x - $x - 1, 0, $x, 0, 1, $src_y);
         }
+        $this->sourceImage = $new_im;
     }
 
     /**
@@ -829,21 +655,194 @@ class Images
     }
 
     /**
-     * 水平翻转
-     *
-     * @param resource $src
-     *            图片源
+     * 生成水印,调用了生成水印文字和水印图片两个方法
      */
-    private function _flipX($src)
+    private function createMask()
     {
-        $src_x = $this->getImageWidth($src);
-        $src_y = $this->getImageHeight($src);
+        $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
 
-        $new_im = imagecreatetruecolor($src_x, $src_y);
-        for ($x = 0; $x < $src_x; $x++) {
-            imagecopy($new_im, $src, $src_x - $x - 1, 0, $x, 0, 1, $src_y);
+        if ($this->maskWord) {
+            // 获取水印文本所占用的高宽信息
+            $maskImageSize = FontHelper::getSize($this->maskFont, $this->mastFontSize, $this->maskWord);
+            $this->maskImageWidth = $maskImageSize[0];
+            $this->maskImageHeight = $maskImageSize[1];
+
+            if ($this->isMaskBiggerThanBackground()) {
+                die("水印文字过大");
+            } else {
+                // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
+                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+                imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
+
+                $this->drawImageBorder();
+
+                imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
+                $this->createMaskWord($this->destImage);
+            }
         }
-        $this->sourceImage = $new_im;
+
+        if ($this->maskImageFileName) {
+            if ($this->isMaskBiggerThanBackground()) {
+                // 将水印生成在原图上再拷
+                $this->createMaskImage($this->sourceImage);
+                // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
+                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+                imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
+                $this->drawImageBorder();
+                imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->destImagePaintY, $this->copyedImageWidth, $this->copyedImageHeight);
+            } else {
+                // 创建新图并拷贝
+                // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
+                $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+                imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
+                $this->drawImageBorder();
+                imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
+                $this->createMaskImage($this->destImage);
+            }
+        }
+
+        if (empty($this->maskWord) && empty($this->maskImageFileName)) {
+            // $this->destImage = imagecreatetruecolor($this->destImageWidth, $this->destImageHeight);
+            $white = ImageColorAllocate($this->destImage, 255, 255, 255);
+            imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $white); // 填充背景色
+            $this->drawImageBorder();
+
+            imagecopyresampled($this->destImage, $this->sourceImage, $this->destImagePaintX, $this->destImagePaintY, $this->sourceImagePaintX, $this->sourceImagePaintY, $this->filledImageWidth, $this->filledImageHeight, $this->copyedImageWidth, $this->copyedImageHeight);
+        }
+    }
+
+    /**
+     * 检查水印图是否大于生成后的图片宽高
+     */
+    private function isMaskBiggerThanBackground()
+    {
+        Return ($this->maskImageWidth + $this->maskOffsetX > $this->filledImageWidth || $this->maskImageHeight + $this->maskOffsetY > $this->filledImageHeight) ? true : false;
+    }
+
+    /**
+     * 画边框
+     */
+    private function drawImageBorder()
+    {
+        if (!empty($this->imageBorderSize)) {
+            $c = ColorHelper::Hex2RGB($this->imageBorderColor);
+            $color = ImageColorAllocate($this->sourceImage, $c[0], $c[1], $c[2]);
+            imagefilledrectangle($this->destImage, 0, 0, $this->destImageWidth, $this->destImageHeight, $color); // 填充背景色
+        }
+    }
+
+    /**
+     * 生成水印文字
+     * @param $backGroundImage
+     */
+    private function createMaskWord($backGroundImage)
+    {
+        $this->calcMaskPosition();
+        $this->checkMaskValid();
+
+        $mainColorArray = ColorHelper::Hex2RGB($this->maskFontMainColor);
+        $mainColor = imagecolorallocatealpha($backGroundImage, $mainColorArray[0], $mainColorArray[1], $mainColorArray[2], $this->maskTxtPct);
+
+        $sideColorArray = ColorHelper::Hex2RGB($this->maskFontSideColor);
+        $sideColor = imagecolorallocatealpha($backGroundImage, $sideColorArray[0], $sideColorArray[1], $sideColorArray[2], $this->maskTxtPct);
+
+        // dump('text'.$this->maskPositionY);
+        if (is_numeric($this->maskFont)) {
+            imagestring($backGroundImage, $this->maskFont, $this->maskPositionX + 1, $this->maskPositionY + 1, $this->maskWord, $sideColor);
+            imagestring($backGroundImage, $this->maskFont, $this->maskPositionX, $this->maskPositionY, $this->maskWord, $mainColor);
+        } else {
+            imagettftext($backGroundImage, $this->mastFontSize, 0, $this->maskPositionX + 1, $this->maskPositionY + 1, $sideColor, $this->maskFont, $this->maskWord);
+            imagettftext($backGroundImage, $this->mastFontSize, 0, $this->maskPositionX, $this->maskPositionY, $mainColor, $this->maskFont, $this->maskWord);
+        }
+    }
+
+    /**
+     * 计算水印的位置坐标
+     */
+    private function calcMaskPosition()
+    {
+        if ($this->isMaskBiggerThanBackground()) {
+            switch ($this->maskPosition) {
+                case 1:
+                    // 左上
+                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
+                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
+                    break;
+
+                case 2:
+                    // 左下
+                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
+                    $this->maskPositionY = $this->sourceImageHeight - $this->maskImageHeight - $this->maskOffsetY;
+                    break;
+
+                case 3:
+                    // 右上
+                    $this->maskPositionX = $this->sourceImageWidth - $this->maskImageWidth - $this->maskOffsetX;
+                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
+                    break;
+
+                case 4:
+                    // 右下
+                default:
+                    // 默认将水印放到右下,偏移指定像素
+                    $this->maskPositionX = $this->sourceImageWidth - $this->maskImageWidth - $this->maskOffsetX;
+                    $this->maskPositionY = $this->sourceImageHeight - $this->maskImageHeight - $this->maskOffsetY;
+                    break;
+            }
+        } else {
+            switch ($this->maskPosition) {
+                case 1:
+                    // 左上
+                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
+                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
+                    break;
+
+                case 2:
+                    // 左下
+                    $this->maskPositionX = $this->maskOffsetX + $this->imageBorderSize;
+                    $this->maskPositionY = $this->destImageHeight - $this->maskImageHeight - $this->maskOffsetY - $this->imageBorderSize;
+                    break;
+
+                case 3:
+                    // 右上
+                    $this->maskPositionX = $this->destImageWidth - $this->maskImageWidth - $this->maskOffsetX - $this->imageBorderSize;
+                    $this->maskPositionY = $this->maskOffsetY + $this->imageBorderSize + $this->maskImageHeight;
+                    break;
+
+                case 4:
+                    // 右下
+                default:
+                    // 默认将水印放到右下,偏移指定像素
+                    $this->maskPositionX = $this->destImageWidth - $this->maskImageWidth - $this->maskOffsetX - $this->imageBorderSize;
+                    $this->maskPositionY = $this->destImageHeight - $this->maskImageHeight - $this->maskOffsetY - $this->imageBorderSize;
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 检查水印图是否超过原图
+     */
+    private function checkMaskValid()
+    {
+        if ($this->maskImageWidth + $this->maskOffsetX > $this->sourceImageWidth || $this->maskImageHeight + $this->maskOffsetY > $this->sourceImageHeight) {
+            die("水印图片尺寸大于原图，请缩小水印图");
+        }
+    }
+
+    /**
+     * 生成水印图
+     * @param $backGroundImage
+     */
+    private function createMaskImage($backGroundImage)
+    {
+        $this->calcMaskPosition();
+        $this->checkMaskValid();
+
+        // dump('image'.$this->maskPositionY);
+        imagecopymerge($backGroundImage, $this->maskImage, $this->maskPositionX, $this->maskPositionY, 0, 0, $this->maskImageWidth, $this->maskImageHeight, $this->maskImagePct);
+
+        imagedestroy($this->maskImage);
     }
 }
 

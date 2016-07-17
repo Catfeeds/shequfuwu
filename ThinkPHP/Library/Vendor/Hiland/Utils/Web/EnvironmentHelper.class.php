@@ -62,16 +62,6 @@ class EnvironmentHelper
     }
 
     /**
-     * 判断是否为内网ip地址，ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
-     * @param $ip string ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
-     * @return bool
-     */
-    public static function isPrivateIP($ip)
-    {
-        return !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
-    }
-
-    /**
      * 判断是否为本地服务器
      * @param $domainNameOrIP string 域名或ip地址
      * @return bool
@@ -98,7 +88,17 @@ class EnvironmentHelper
     }
 
     /**
-     * 获取服务器域名
+     * 判断是否为内网ip地址，ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
+     * @param $ip string ip格式必须为 ***.***.***.***,否则为其他格式则此方法返回true
+     * @return bool
+     */
+    public static function isPrivateIP($ip)
+    {
+        return !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+    }
+
+    /**
+     * 获取服务器域名 （例如app.rainytop.com）
      * @return string
      */
     public static function getServerHostName()
@@ -109,7 +109,7 @@ class EnvironmentHelper
 
     public static function getServerCompressType($url)
     {
-        $result= HttpResponseHeader::get($url,"Content-Encoding");
+        $result = HttpResponseHeader::get($url, "Content-Encoding");
 
         return $result;
     }

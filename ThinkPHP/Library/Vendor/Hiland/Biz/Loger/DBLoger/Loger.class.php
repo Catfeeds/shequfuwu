@@ -1,14 +1,14 @@
 <?php
 namespace Vendor\Hiland\Biz\Loger\DBLoger;
+
 use Vendor\Hiland\Utils\Data\GuidHelper;
 
-    /**
-     * Created by PhpStorm.
-     * User: xiedalie
-     * Date: 2016/6/30
-     * Time: 7:29
-     */
-
+/**
+ * Created by PhpStorm.
+ * User: xiedalie
+ * Date: 2016/6/30
+ * Time: 7:29
+ */
 /*
  *在数据库中保存的日志信息
  *
@@ -34,6 +34,7 @@ CREATE TABLE `【前缀】_system_infolog` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
  */
+
 class Loger
 {
     /**

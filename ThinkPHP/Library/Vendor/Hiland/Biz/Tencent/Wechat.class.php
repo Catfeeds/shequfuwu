@@ -17,25 +17,23 @@ class Wechat
 {
 
     /**
+     * 从微信服务器发送过来的原始的请求数据
+     *
+     * @var string
+     */
+    protected $originalRequestData;
+    /**
      * 调试模式，将错误通过文本消息回复显示
      *
      * @var boolean
      */
     private $debug;
-
     /**
      * 以数组的形式保存微信服务器每次发来的请求
      *
      * @var array
      */
     private $request;
-
-    /**
-     * 从微信服务器发送过来的原始的请求数据
-     *
-     * @var string
-     */
-    protected $originalRequestData;
 
     /**
      * 初始化，判断此次请求是否为验证请求，并以数组形式保存
@@ -103,6 +101,14 @@ class Wechat
     }
 
     /**
+     * 获取当前跟公众平台交互用户的Openid
+     */
+    public function getRequestOpenid()
+    {
+        return $this->getRequest('fromusername');
+    }
+
+    /**
      * 获取本次请求中的参数，不区分大小
      *
      * @param bool $param
@@ -125,6 +131,55 @@ class Wechat
     }
 
     /**
+     * 分析消息类型，并分发给对应的函数
+     *
+     * @return void
+     */
+    public function run()
+    {
+        switch ($this->getRequest('msgtype')) {
+
+            case 'event':
+                switch (strtolower($this->getRequest('event'))) {
+                    case 'subscribe':
+                        $this->onSubscribe();
+                        break;
+                    case 'unsubscribe':
+                        $this->onUnsubscribe();
+                        break;
+                    case 'click':
+                        $this->onClick();
+                        break;
+                    case 'scan':
+                        $this->onScan();
+                        break;
+                }
+
+                break;
+
+            case 'text':
+                $this->onText();
+                break;
+
+            case 'image':
+                $this->onImage();
+                break;
+
+            case 'location':
+                $this->onLocation();
+                break;
+
+            case 'link':
+                $this->onLink();
+                break;
+
+            default:
+                $this->onUnknown();
+                break;
+        }
+    }
+
+    /**
      * 用户关注时触发，用于子类重写
      *
      * @return void
@@ -139,6 +194,13 @@ class Wechat
      * @return void
      */
     protected function onUnsubscribe()
+    {
+    }
+
+    /**
+     * 收到菜单的点击事件
+     */
+    protected function onClick()
     {
     }
 
@@ -187,13 +249,6 @@ class Wechat
     }
 
     /**
-     * 收到菜单的点击事件
-     */
-    protected function onClick()
-    {
-    }
-
-    /**
      * 收到未知类型消息时触发，用于子类重写
      *
      * @return void
@@ -203,11 +258,51 @@ class Wechat
     }
 
     /**
-     * 获取当前跟公众平台交互用户的Openid
+     * 自定义的错误处理函数，将 PHP 错误通过文本消息回复显示
+     *
+     * @param int $level
+     *            错误代码
+     * @param string $msg
+     *            错误内容
+     * @param string $file
+     *            产生错误的文件
+     * @param int $line
+     *            产生错误的行数
+     * @return void
      */
-    public function getRequestOpenid()
+    public function errorHandler($level, $msg, $file, $line)
     {
-        return $this->getRequest('fromusername');
+        if (!$this->debug) {
+            return;
+        }
+
+        $error_type = array(
+            // E_ERROR => 'Error',
+            E_WARNING => 'Warning',
+            // E_PARSE => 'Parse Error',
+            E_NOTICE => 'Notice',
+            // E_CORE_ERROR => 'Core Error',
+            // E_CORE_WARNING => 'Core Warning',
+            // E_COMPILE_ERROR => 'Compile Error',
+            // E_COMPILE_WARNING => 'Compile Warning',
+            E_USER_ERROR => 'User Error',
+            E_USER_WARNING => 'User Warning',
+            E_USER_NOTICE => 'User Notice',
+            E_STRICT => 'Strict',
+            E_RECOVERABLE_ERROR => 'Recoverable Error',
+            E_DEPRECATED => 'Deprecated',
+            E_USER_DEPRECATED => 'User Deprecated'
+        );
+
+        $template = <<<ERR
+PHP 报错啦！
+
+%s: %s
+File: %s
+Line: %s
+ERR;
+
+        $this->responseText(sprintf($template, $error_type[$level], $msg, $file, $line));
     }
 
     /**
@@ -268,103 +363,6 @@ class Wechat
     protected function responseNews($items, $funcFlag = 0)
     {
         exit(new NewsResponse($this->getRequest('fromusername'), $this->getRequest('tousername'), $items, $funcFlag));
-    }
-
-    /**
-     * 分析消息类型，并分发给对应的函数
-     *
-     * @return void
-     */
-    public function run()
-    {
-        switch ($this->getRequest('msgtype')) {
-
-            case 'event':
-                switch (strtolower($this->getRequest('event'))) {
-                    case 'subscribe':
-                        $this->onSubscribe();
-                        break;
-                    case 'unsubscribe':
-                        $this->onUnsubscribe();
-                        break;
-                    case 'click':
-                        $this->onClick();
-                        break;
-                    case 'scan':
-                        $this->onScan();
-                        break;
-                }
-
-                break;
-
-            case 'text':
-                $this->onText();
-                break;
-
-            case 'image':
-                $this->onImage();
-                break;
-
-            case 'location':
-                $this->onLocation();
-                break;
-
-            case 'link':
-                $this->onLink();
-                break;
-
-            default:
-                $this->onUnknown();
-                break;
-        }
-    }
-
-    /**
-     * 自定义的错误处理函数，将 PHP 错误通过文本消息回复显示
-     *
-     * @param int $level
-     *            错误代码
-     * @param string $msg
-     *            错误内容
-     * @param string $file
-     *            产生错误的文件
-     * @param int $line
-     *            产生错误的行数
-     * @return void
-     */
-    public function errorHandler($level, $msg, $file, $line)
-    {
-        if (!$this->debug) {
-            return;
-        }
-
-        $error_type = array(
-            // E_ERROR => 'Error',
-            E_WARNING => 'Warning',
-            // E_PARSE => 'Parse Error',
-            E_NOTICE => 'Notice',
-            // E_CORE_ERROR => 'Core Error',
-            // E_CORE_WARNING => 'Core Warning',
-            // E_COMPILE_ERROR => 'Compile Error',
-            // E_COMPILE_WARNING => 'Compile Warning',
-            E_USER_ERROR => 'User Error',
-            E_USER_WARNING => 'User Warning',
-            E_USER_NOTICE => 'User Notice',
-            E_STRICT => 'Strict',
-            E_RECOVERABLE_ERROR => 'Recoverable Error',
-            E_DEPRECATED => 'Deprecated',
-            E_USER_DEPRECATED => 'User Deprecated'
-        );
-
-        $template = <<<ERR
-PHP 报错啦！
-
-%s: %s
-File: %s
-Line: %s
-ERR;
-
-        $this->responseText(sprintf($template, $error_type[$level], $msg, $file, $line));
     }
 }
 

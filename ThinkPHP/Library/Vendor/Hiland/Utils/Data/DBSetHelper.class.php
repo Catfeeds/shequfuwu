@@ -11,6 +11,24 @@ class DBSetHelper
 {
 
     /**
+     * 获取数据集中第0行中的某个字段值
+     *
+     * @param array $dbSet
+     * @param string $feildName
+     * @return mixed
+     */
+    public static function getFirstValueFromDBSet($dbSet, $feildName)
+    {
+        $feildValue = null;
+        $rowData = self::getRowFromDBSet($dbSet, 0);
+        if ($rowData != null) {
+            $feildValue = $rowData[$feildName];
+        }
+
+        return $feildValue;
+    }
+
+    /**
      * 获取数据集中第某行的信息
      *
      * @param array $dbSet
@@ -27,24 +45,6 @@ class DBSetHelper
         }
 
         return $rowData;
-    }
-
-    /**
-     * 获取数据集中第0行中的某个字段值
-     *
-     * @param array $dbSet
-     * @param string $feildName
-     * @return mixed
-     */
-    public static function getFirstValueFromDBSet($dbSet, $feildName)
-    {
-        $feildValue = null;
-        $rowData = self::getRowFromDBSet($dbSet, 0);
-        if ($rowData != null) {
-            $feildValue = $rowData[$feildName];
-        }
-
-        return $feildValue;
     }
 
     /**

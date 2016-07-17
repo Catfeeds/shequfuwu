@@ -646,6 +646,25 @@ class WechatHelper
         return $result;
     }
 
+    private static function responseCustomerService($data, $accessToken = '')
+    {
+        if (empty($accessToken)) {
+            $accessToken = self::getAccessToken();
+        }
+
+        $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=$accessToken";
+        $result = NetHelper::request($url, $data);
+
+        $result = json_decode($result);
+        $errorCode = $result->errcode;
+        $errorMessage = $result->errmsg;
+
+        if ($errorCode == 0) {
+            return true;
+        } else {
+            return '错误代码:[' . $errorCode . '].错误信息为:' . $errorMessage;
+        }
+    }
 
     /**
      * 发送文本型内容的客服消息
@@ -671,27 +690,6 @@ class WechatHelper
 
         $result = self::responseCustomerService($data, $accessToken);
         return $result;
-    }
-
-
-    private static function responseCustomerService($data, $accessToken = '')
-    {
-        if (empty($accessToken)) {
-            $accessToken = self::getAccessToken();
-        }
-
-        $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=$accessToken";
-        $result = NetHelper::request($url, $data);
-
-        $result = json_decode($result);
-        $errorCode = $result->errcode;
-        $errorMessage = $result->errmsg;
-
-        if ($errorCode == 0) {
-            return true;
-        } else {
-            return '错误代码:[' . $errorCode . '].错误信息为:' . $errorMessage;
-        }
     }
 
     /**

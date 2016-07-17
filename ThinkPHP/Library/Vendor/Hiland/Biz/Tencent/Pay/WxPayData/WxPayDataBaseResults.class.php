@@ -14,34 +14,6 @@ class WxPayDataBaseResults extends WxPayDataBase
 {
 
     /**
-     * 检测签名
-     */
-    public function CheckSign()
-    {
-        // fix异常
-        if (!$this->IsSignSet()) {
-            throw new WechatException("签名错误！");
-        }
-
-        $sign = $this->MakeSign();
-        if ($this->GetSign() == $sign) {
-            return true;
-        }
-        throw new WechatException("签名错误！");
-    }
-
-    /**
-     *
-     * 使用数组初始化
-     *
-     * @param array $array
-     */
-    public function FromArray($array)
-    {
-        $this->values = $array;
-    }
-
-    /**
      *
      * 使用数组初始化对象
      *
@@ -62,14 +34,30 @@ class WxPayDataBaseResults extends WxPayDataBase
 
     /**
      *
-     * 设置参数
+     * 使用数组初始化
      *
-     * @param string $key
-     * @param string $value
+     * @param array $array
      */
-    public function SetData($key, $value)
+    public function FromArray($array)
     {
-        $this->values[$key] = $value;
+        $this->values = $array;
+    }
+
+    /**
+     * 检测签名
+     */
+    public function CheckSign()
+    {
+        // fix异常
+        if (!$this->IsSignSet()) {
+            throw new WechatException("签名错误！");
+        }
+
+        $sign = $this->MakeSign();
+        if ($this->GetSign() == $sign) {
+            return true;
+        }
+        throw new WechatException("签名错误！");
     }
 
     /**
@@ -89,6 +77,18 @@ class WxPayDataBaseResults extends WxPayDataBase
         }
         $obj->CheckSign();
         return $obj->GetValues();
+    }
+
+    /**
+     *
+     * 设置参数
+     *
+     * @param string $key
+     * @param string $value
+     */
+    public function SetData($key, $value)
+    {
+        $this->values[$key] = $value;
     }
 }
 

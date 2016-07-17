@@ -141,16 +141,6 @@ class ClientHelper
     // }
 
     /**
-     * 获得本地真实IP
-     */
-    public static function getOnlineIP()
-    {
-        $ip_json = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=myip");
-        $ip_arr = json_decode(stripslashes($ip_json), 1);
-        return $ip_arr['code'] == 0 ? $ip_arr['data']['ip'] : '';
-    }
-
-    /**
      * 根据ip获得访客所在地地名信息
      *
      * @param string $ip
@@ -168,6 +158,16 @@ class ClientHelper
         } else {
             return false;
         }
+    }
+
+    /**
+     * 获得本地真实IP
+     */
+    public static function getOnlineIP()
+    {
+        $ip_json = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=myip");
+        $ip_arr = json_decode(stripslashes($ip_json), 1);
+        return $ip_arr['code'] == 0 ? $ip_arr['data']['ip'] : '';
     }
 }
 

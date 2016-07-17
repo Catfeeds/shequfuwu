@@ -147,6 +147,15 @@ class SimplePDO
         }
     }
 
+    public function select($table, $join, $columns = null, $where = null)
+    {
+        $query = $this->query($this->select_context($table, $join, $columns, $where));
+
+        return $query ? $query->fetchAll(
+            (is_string($columns) && $columns != '*') ? PDO::FETCH_COLUMN : PDO::FETCH_ASSOC
+        ) : false;
+    }
+
     public function query($query)
     {
         if ($this->debug_mode) {
@@ -162,29 +171,104 @@ class SimplePDO
         return $this->pdo->query($query);
     }
 
-    public function exec($query)
+    protected function select_context($table, $join, &$columns = null, $where = null, $column_fn = null)
     {
-        if ($this->debug_mode) {
-            echo $query;
+        $table = '"' . $this->prefix . $table . '"';
+        $join_key = is_array($join) ? array_keys($join) : null;
 
-            $this->debug_mode = false;
+        if (
+            isset($join_key[0]) &&
+            strpos($join_key[0], '[') === 0
+        ) {
+            $table_join = array();
 
-            return false;
+            $join_array = array(
+                '>' => 'LEFT',
+                '<' => 'RIGHT',
+                '<>' => 'FULL',
+                '><' => 'INNER'
+            );
+
+            foreach ($join as $sub_table => $relation) {
+                preg_match('/(\[(\<|\>|\>\<|\<\>)\])?([a-zA-Z0-9_\-]*)\s?(\(([a-zA-Z0-9_\-]*)\))?/', $sub_table, $match);
+
+                if ($match[2] != '' && $match[3] != '') {
+                    if (is_string($relation)) {
+                        $relation = 'USING ("' . $relation . '")';
+                    }
+
+                    if (is_array($relation)) {
+                        // For ['column1', 'column2']
+                        if (isset($relation[0])) {
+                            $relation = 'USING ("' . implode($relation, '", "') . '")';
+                        } else {
+                            $joins = array();
+
+                            foreach ($relation as $key => $value) {
+                                $joins[] = $this->prefix . (
+                                    strpos($key, '.') > 0 ?
+                                        // For ['tableB.column' => 'column']
+                                        '"' . str_replace('.', '"."', $key) . '"' :
+
+                                        // For ['column1' => 'column2']
+                                        $table . '."' . $key . '"'
+                                    ) .
+                                    ' = ' .
+                                    '"' . (isset($match[5]) ? $match[5] : $match[3]) . '"."' . $value . '"';
+                            }
+
+                            $relation = 'ON ' . implode($joins, ' AND ');
+                        }
+                    }
+
+                    $table_join[] = $join_array[$match[2]] . ' JOIN "' . $this->prefix . $match[3] . '" ' . (isset($match[5]) ? 'AS "' . $match[5] . '" ' : '') . $relation;
+                }
+            }
+
+            $table .= ' ' . implode($table_join, ' ');
+        } else {
+            if (is_null($columns)) {
+                if (is_null($where)) {
+                    if (
+                        is_array($join) &&
+                        isset($column_fn)
+                    ) {
+                        $where = $join;
+                        $columns = null;
+                    } else {
+                        $where = null;
+                        $columns = $join;
+                    }
+                } else {
+                    $where = $join;
+                    $columns = null;
+                }
+            } else {
+                $where = $columns;
+                $columns = $join;
+            }
         }
 
-        array_push($this->logs, $query);
+        if (isset($column_fn)) {
+            if ($column_fn == 1) {
+                $column = '1';
 
-        return $this->pdo->exec($query);
-    }
+                if (is_null($where)) {
+                    $where = $columns;
+                }
+            } else {
+                if (empty($columns)) {
+                    $columns = '*';
+                    $where = $join;
+                }
 
-    public function quote($string)
-    {
-        return $this->pdo->quote($string);
-    }
+                $column = $column_fn . '(' . $this->column_push($columns) . ')';
+            }
+        } else {
+            $column = $this->column_push($columns);
+        }
 
-    protected function column_quote($string)
-    {
-        return '"' . str_replace('.', '"."', preg_replace('/(^#|\(JSON\)\s*)/', '', $string)) . '"';
+        return 'SELECT ' . $column . ' FROM ' . $table . $this->where_clause($where);
     }
 
     protected function column_push($columns)
@@ -210,161 +294,6 @@ class SimplePDO
         }
 
         return implode($stack, ',');
-    }
-
-    protected function array_quote($array)
-    {
-        $temp = array();
-
-        foreach ($array as $value) {
-            $temp[] = is_int($value) ? $value : $this->pdo->quote($value);
-        }
-
-        return implode($temp, ',');
-    }
-
-    protected function inner_conjunct($data, $conjunctor, $outer_conjunctor)
-    {
-        $haystack = array();
-
-        foreach ($data as $value) {
-            $haystack[] = '(' . $this->data_implode($value, $conjunctor) . ')';
-        }
-
-        return implode($outer_conjunctor . ' ', $haystack);
-    }
-
-    protected function fn_quote($column, $string)
-    {
-        return (strpos($column, '#') === 0 && preg_match('/^[A-Z0-9\_]*\([^)]*\)$/', $string)) ?
-
-            $string :
-
-            $this->quote($string);
-    }
-
-    protected function data_implode($data, $conjunctor, $outer_conjunctor = null)
-    {
-        $wheres = array();
-
-        foreach ($data as $key => $value) {
-            $type = gettype($value);
-
-            if (
-                preg_match("/^(AND|OR)(\s+#.*)?$/i", $key, $relation_match) &&
-                $type == 'array'
-            ) {
-                $wheres[] = 0 !== count(array_diff_key($value, array_keys(array_keys($value)))) ?
-                    '(' . $this->data_implode($value, ' ' . $relation_match[1]) . ')' :
-                    '(' . $this->inner_conjunct($value, ' ' . $relation_match[1], $conjunctor) . ')';
-            } else {
-                preg_match('/(#?)([\w\.\-]+)(\[(\>|\>\=|\<|\<\=|\!|\<\>|\>\<|\!?~)\])?/i', $key, $match);
-                $column = $this->column_quote($match[2]);
-
-                if (isset($match[4])) {
-                    $operator = $match[4];
-
-                    if ($operator == '!') {
-                        switch ($type) {
-                            case 'NULL':
-                                $wheres[] = $column . ' IS NOT NULL';
-                                break;
-
-                            case 'array':
-                                $wheres[] = $column . ' NOT IN (' . $this->array_quote($value) . ')';
-                                break;
-
-                            case 'integer':
-                            case 'double':
-                                $wheres[] = $column . ' != ' . $value;
-                                break;
-
-                            case 'boolean':
-                                $wheres[] = $column . ' != ' . ($value ? '1' : '0');
-                                break;
-
-                            case 'string':
-                                $wheres[] = $column . ' != ' . $this->fn_quote($key, $value);
-                                break;
-                        }
-                    }
-
-                    if ($operator == '<>' || $operator == '><') {
-                        if ($type == 'array') {
-                            if ($operator == '><') {
-                                $column .= ' NOT';
-                            }
-
-                            if (is_numeric($value[0]) && is_numeric($value[1])) {
-                                $wheres[] = '(' . $column . ' BETWEEN ' . $value[0] . ' AND ' . $value[1] . ')';
-                            } else {
-                                $wheres[] = '(' . $column . ' BETWEEN ' . $this->quote($value[0]) . ' AND ' . $this->quote($value[1]) . ')';
-                            }
-                        }
-                    }
-
-                    if ($operator == '~' || $operator == '!~') {
-                        if ($type != 'array') {
-                            $value = array($value);
-                        }
-
-                        $like_clauses = array();
-
-                        foreach ($value as $item) {
-                            $item = strval($item);
-                            $suffix = mb_substr($item, -1, 1);
-
-                            if ($suffix === '_') {
-                                $item = substr_replace($item, '%', -1);
-                            } elseif ($suffix === '%') {
-                                $item = '%' . substr_replace($item, '', -1, 1);
-                            } elseif (preg_match('/^(?!%).+(?<!%)$/', $item)) {
-                                $item = '%' . $item . '%';
-                            }
-
-                            $like_clauses[] = $column . ($operator === '!~' ? ' NOT' : '') . ' LIKE ' . $this->fn_quote($key, $item);
-                        }
-
-                        $wheres[] = implode(' OR ', $like_clauses);
-                    }
-
-                    if (in_array($operator, array('>', '>=', '<', '<='))) {
-                        if (is_numeric($value)) {
-                            $wheres[] = $column . ' ' . $operator . ' ' . $value;
-                        } elseif (strpos($key, '#') === 0) {
-                            $wheres[] = $column . ' ' . $operator . ' ' . $this->fn_quote($key, $value);
-                        } else {
-                            $wheres[] = $column . ' ' . $operator . ' ' . $this->quote($value);
-                        }
-                    }
-                } else {
-                    switch ($type) {
-                        case 'NULL':
-                            $wheres[] = $column . ' IS NULL';
-                            break;
-
-                        case 'array':
-                            $wheres[] = $column . ' IN (' . $this->array_quote($value) . ')';
-                            break;
-
-                        case 'integer':
-                        case 'double':
-                            $wheres[] = $column . ' = ' . $value;
-                            break;
-
-                        case 'boolean':
-                            $wheres[] = $column . ' = ' . ($value ? '1' : '0');
-                            break;
-
-                        case 'string':
-                            $wheres[] = $column . ' = ' . $this->fn_quote($key, $value);
-                            break;
-                    }
-                }
-            }
-        }
-
-        return implode($conjunctor . ' ', $wheres);
     }
 
     protected function where_clause($where)
@@ -470,115 +399,6 @@ class SimplePDO
         return $where_clause;
     }
 
-    protected function select_context($table, $join, &$columns = null, $where = null, $column_fn = null)
-    {
-        $table = '"' . $this->prefix . $table . '"';
-        $join_key = is_array($join) ? array_keys($join) : null;
-
-        if (
-            isset($join_key[0]) &&
-            strpos($join_key[0], '[') === 0
-        ) {
-            $table_join = array();
-
-            $join_array = array(
-                '>' => 'LEFT',
-                '<' => 'RIGHT',
-                '<>' => 'FULL',
-                '><' => 'INNER'
-            );
-
-            foreach ($join as $sub_table => $relation) {
-                preg_match('/(\[(\<|\>|\>\<|\<\>)\])?([a-zA-Z0-9_\-]*)\s?(\(([a-zA-Z0-9_\-]*)\))?/', $sub_table, $match);
-
-                if ($match[2] != '' && $match[3] != '') {
-                    if (is_string($relation)) {
-                        $relation = 'USING ("' . $relation . '")';
-                    }
-
-                    if (is_array($relation)) {
-                        // For ['column1', 'column2']
-                        if (isset($relation[0])) {
-                            $relation = 'USING ("' . implode($relation, '", "') . '")';
-                        } else {
-                            $joins = array();
-
-                            foreach ($relation as $key => $value) {
-                                $joins[] = $this->prefix . (
-                                    strpos($key, '.') > 0 ?
-                                        // For ['tableB.column' => 'column']
-                                        '"' . str_replace('.', '"."', $key) . '"' :
-
-                                        // For ['column1' => 'column2']
-                                        $table . '."' . $key . '"'
-                                    ) .
-                                    ' = ' .
-                                    '"' . (isset($match[5]) ? $match[5] : $match[3]) . '"."' . $value . '"';
-                            }
-
-                            $relation = 'ON ' . implode($joins, ' AND ');
-                        }
-                    }
-
-                    $table_join[] = $join_array[$match[2]] . ' JOIN "' . $this->prefix . $match[3] . '" ' . (isset($match[5]) ? 'AS "' . $match[5] . '" ' : '') . $relation;
-                }
-            }
-
-            $table .= ' ' . implode($table_join, ' ');
-        } else {
-            if (is_null($columns)) {
-                if (is_null($where)) {
-                    if (
-                        is_array($join) &&
-                        isset($column_fn)
-                    ) {
-                        $where = $join;
-                        $columns = null;
-                    } else {
-                        $where = null;
-                        $columns = $join;
-                    }
-                } else {
-                    $where = $join;
-                    $columns = null;
-                }
-            } else {
-                $where = $columns;
-                $columns = $join;
-            }
-        }
-
-        if (isset($column_fn)) {
-            if ($column_fn == 1) {
-                $column = '1';
-
-                if (is_null($where)) {
-                    $where = $columns;
-                }
-            } else {
-                if (empty($columns)) {
-                    $columns = '*';
-                    $where = $join;
-                }
-
-                $column = $column_fn . '(' . $this->column_push($columns) . ')';
-            }
-        } else {
-            $column = $this->column_push($columns);
-        }
-
-        return 'SELECT ' . $column . ' FROM ' . $table . $this->where_clause($where);
-    }
-
-    public function select($table, $join, $columns = null, $where = null)
-    {
-        $query = $this->query($this->select_context($table, $join, $columns, $where));
-
-        return $query ? $query->fetchAll(
-            (is_string($columns) && $columns != '*') ? PDO::FETCH_COLUMN : PDO::FETCH_ASSOC
-        ) : false;
-    }
-
     public function insert($table, $datas)
     {
         $lastId = array();
@@ -626,6 +446,21 @@ class SimplePDO
         }
 
         return count($lastId) > 1 ? $lastId : $lastId[0];
+    }
+
+    public function exec($query)
+    {
+        if ($this->debug_mode) {
+            echo $query;
+
+            $this->debug_mode = false;
+
+            return false;
+        }
+
+        array_push($this->logs, $query);
+
+        return $this->pdo->exec($query);
     }
 
     public function update($table, $data, $where = null)
@@ -844,5 +679,170 @@ class SimplePDO
         }
 
         return $output;
+    }
+
+    protected function inner_conjunct($data, $conjunctor, $outer_conjunctor)
+    {
+        $haystack = array();
+
+        foreach ($data as $value) {
+            $haystack[] = '(' . $this->data_implode($value, $conjunctor) . ')';
+        }
+
+        return implode($outer_conjunctor . ' ', $haystack);
+    }
+
+    protected function data_implode($data, $conjunctor, $outer_conjunctor = null)
+    {
+        $wheres = array();
+
+        foreach ($data as $key => $value) {
+            $type = gettype($value);
+
+            if (
+                preg_match("/^(AND|OR)(\s+#.*)?$/i", $key, $relation_match) &&
+                $type == 'array'
+            ) {
+                $wheres[] = 0 !== count(array_diff_key($value, array_keys(array_keys($value)))) ?
+                    '(' . $this->data_implode($value, ' ' . $relation_match[1]) . ')' :
+                    '(' . $this->inner_conjunct($value, ' ' . $relation_match[1], $conjunctor) . ')';
+            } else {
+                preg_match('/(#?)([\w\.\-]+)(\[(\>|\>\=|\<|\<\=|\!|\<\>|\>\<|\!?~)\])?/i', $key, $match);
+                $column = $this->column_quote($match[2]);
+
+                if (isset($match[4])) {
+                    $operator = $match[4];
+
+                    if ($operator == '!') {
+                        switch ($type) {
+                            case 'NULL':
+                                $wheres[] = $column . ' IS NOT NULL';
+                                break;
+
+                            case 'array':
+                                $wheres[] = $column . ' NOT IN (' . $this->array_quote($value) . ')';
+                                break;
+
+                            case 'integer':
+                            case 'double':
+                                $wheres[] = $column . ' != ' . $value;
+                                break;
+
+                            case 'boolean':
+                                $wheres[] = $column . ' != ' . ($value ? '1' : '0');
+                                break;
+
+                            case 'string':
+                                $wheres[] = $column . ' != ' . $this->fn_quote($key, $value);
+                                break;
+                        }
+                    }
+
+                    if ($operator == '<>' || $operator == '><') {
+                        if ($type == 'array') {
+                            if ($operator == '><') {
+                                $column .= ' NOT';
+                            }
+
+                            if (is_numeric($value[0]) && is_numeric($value[1])) {
+                                $wheres[] = '(' . $column . ' BETWEEN ' . $value[0] . ' AND ' . $value[1] . ')';
+                            } else {
+                                $wheres[] = '(' . $column . ' BETWEEN ' . $this->quote($value[0]) . ' AND ' . $this->quote($value[1]) . ')';
+                            }
+                        }
+                    }
+
+                    if ($operator == '~' || $operator == '!~') {
+                        if ($type != 'array') {
+                            $value = array($value);
+                        }
+
+                        $like_clauses = array();
+
+                        foreach ($value as $item) {
+                            $item = strval($item);
+                            $suffix = mb_substr($item, -1, 1);
+
+                            if ($suffix === '_') {
+                                $item = substr_replace($item, '%', -1);
+                            } elseif ($suffix === '%') {
+                                $item = '%' . substr_replace($item, '', -1, 1);
+                            } elseif (preg_match('/^(?!%).+(?<!%)$/', $item)) {
+                                $item = '%' . $item . '%';
+                            }
+
+                            $like_clauses[] = $column . ($operator === '!~' ? ' NOT' : '') . ' LIKE ' . $this->fn_quote($key, $item);
+                        }
+
+                        $wheres[] = implode(' OR ', $like_clauses);
+                    }
+
+                    if (in_array($operator, array('>', '>=', '<', '<='))) {
+                        if (is_numeric($value)) {
+                            $wheres[] = $column . ' ' . $operator . ' ' . $value;
+                        } elseif (strpos($key, '#') === 0) {
+                            $wheres[] = $column . ' ' . $operator . ' ' . $this->fn_quote($key, $value);
+                        } else {
+                            $wheres[] = $column . ' ' . $operator . ' ' . $this->quote($value);
+                        }
+                    }
+                } else {
+                    switch ($type) {
+                        case 'NULL':
+                            $wheres[] = $column . ' IS NULL';
+                            break;
+
+                        case 'array':
+                            $wheres[] = $column . ' IN (' . $this->array_quote($value) . ')';
+                            break;
+
+                        case 'integer':
+                        case 'double':
+                            $wheres[] = $column . ' = ' . $value;
+                            break;
+
+                        case 'boolean':
+                            $wheres[] = $column . ' = ' . ($value ? '1' : '0');
+                            break;
+
+                        case 'string':
+                            $wheres[] = $column . ' = ' . $this->fn_quote($key, $value);
+                            break;
+                    }
+                }
+            }
+        }
+
+        return implode($conjunctor . ' ', $wheres);
+    }
+
+    protected function column_quote($string)
+    {
+        return '"' . str_replace('.', '"."', preg_replace('/(^#|\(JSON\)\s*)/', '', $string)) . '"';
+    }
+
+    protected function array_quote($array)
+    {
+        $temp = array();
+
+        foreach ($array as $value) {
+            $temp[] = is_int($value) ? $value : $this->pdo->quote($value);
+        }
+
+        return implode($temp, ',');
+    }
+
+    protected function fn_quote($column, $string)
+    {
+        return (strpos($column, '#') === 0 && preg_match('/^[A-Z0-9\_]*\([^)]*\)$/', $string)) ?
+
+            $string :
+
+            $this->quote($string);
+    }
+
+    public function quote($string)
+    {
+        return $this->pdo->quote($string);
     }
 }

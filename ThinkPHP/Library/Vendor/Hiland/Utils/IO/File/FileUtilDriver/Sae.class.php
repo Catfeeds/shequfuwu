@@ -9,6 +9,34 @@ class Sae
         $this->sae = new \SaeStorage();
     }
 
+    public function moveFile($fileUrl, $aimUrl, $overWrite = true)
+    {
+        $domain = $this->getDomain($fileUrl);
+        $path = $this->getPath($fileUrl);
+        if (!$this->sae->fileExists($domain, $path)) {
+            return false;
+        }
+        $content = $this->sae->read($domain, $path);
+        if (!$content) {
+            return false;
+        }
+        $this->sae->delete($domain, $path);
+
+        $domain = $this->getDomain($aimUrl);
+        $path = $this->getPath($aimUrl);
+        if ($path == '') {
+            return false;
+        }
+        if ($this->sae->fileExists($domain, $path) && $overWrite == false) {
+            return false;
+        }
+        if ($this->sae->fileExists($domain, $path) && $overWrite == true) {
+            $this->sae->delete($domain, $path);
+        }
+        $result = $this->sae->write($domain, $path, $content);
+        return $result != false ? true : false;
+    }
+
     private function getDomain($url)
     {
         $url = trim($url, './');
@@ -43,42 +71,41 @@ class Sae
         return $path;
     }
 
-    public function unlinkFile($aimUrl)
+    public function clearDir($dirUrl)
     {
-        $domain = $this->getDomain($aimUrl);
-        $path = $this->getPath($aimUrl);
-        if (!$this->sae->fileExists($domain, $path)) {
-            return false;
+        $placeholderUrl = trim($dirUrl, '/') . '/placeholder.txt';
+        if (!$this->fileExists($placeholderUrl)) {
+            $this->writeFile($placeholderUrl, 'This is a placeholder.');
         }
-        return $this->sae->delete($domain, $path);
+        $infos = $this->getList($dirUrl);
+        $result = true;
+        foreach ($infos['dirs'] as $dir) {
+            $result = $this->unlinkDir($dir['fullName']);
+        }
+        foreach ($infos['files'] as $file) {
+            if ($file['Name'] == 'placeholder.txt') {
+                continue;
+            }
+            $result = $this->unlinkFile($file['fullName']);
+        }
+        return $result;
     }
 
-    public function moveFile($fileUrl, $aimUrl, $overWrite = true)
+    public function fileExists($fileUrl)
     {
         $domain = $this->getDomain($fileUrl);
         $path = $this->getPath($fileUrl);
-        if (!$this->sae->fileExists($domain, $path)) {
-            return false;
-        }
-        $content = $this->sae->read($domain, $path);
-        if (!$content) {
-            return false;
-        }
-        $this->sae->delete($domain, $path);
+        return $this->sae->fileExists($domain, $path);
+    }
 
-        $domain = $this->getDomain($aimUrl);
-        $path = $this->getPath($aimUrl);
-        if ($path == '') {
-            return false;
-        }
-        if ($this->sae->fileExists($domain, $path) && $overWrite == false) {
-            return false;
-        }
-        if ($this->sae->fileExists($domain, $path) && $overWrite == true) {
+    public function writeFile($fileUrl, $content)
+    {
+        $domain = $this->getDomain($fileUrl);
+        $path = $this->getPath($fileUrl);
+        if ($this->sae->fileExists($domain, $path)) {
             $this->sae->delete($domain, $path);
         }
-        $result = $this->sae->write($domain, $path, $content);
-        return $result != false ? true : false;
+        return $this->sae->write($domain, $path, $content);
     }
 
     public function getList($dirUrl)
@@ -114,24 +141,14 @@ class Sae
         return $result;
     }
 
-    public function clearDir($dirUrl)
+    public function unlinkFile($aimUrl)
     {
-        $placeholderUrl = trim($dirUrl, '/') . '/placeholder.txt';
-        if (!$this->fileExists($placeholderUrl)) {
-            $this->writeFile($placeholderUrl, 'This is a placeholder.');
+        $domain = $this->getDomain($aimUrl);
+        $path = $this->getPath($aimUrl);
+        if (!$this->sae->fileExists($domain, $path)) {
+            return false;
         }
-        $infos = $this->getList($dirUrl);
-        $result = true;
-        foreach ($infos['dirs'] as $dir) {
-            $result = $this->unlinkDir($dir['fullName']);
-        }
-        foreach ($infos['files'] as $file) {
-            if ($file['Name'] == 'placeholder.txt') {
-                continue;
-            }
-            $result = $this->unlinkFile($file['fullName']);
-        }
-        return $result;
+        return $this->sae->delete($domain, $path);
     }
 
     public function readFile($fileUrl)
@@ -142,16 +159,6 @@ class Sae
             return false;
         }
         return $this->sae->read($domain, $path);
-    }
-
-    public function writeFile($fileUrl, $content)
-    {
-        $domain = $this->getDomain($fileUrl);
-        $path = $this->getPath($fileUrl);
-        if ($this->sae->fileExists($domain, $path)) {
-            $this->sae->delete($domain, $path);
-        }
-        return $this->sae->write($domain, $path, $content);
     }
 
     public function encodeUrl($url)
@@ -166,12 +173,5 @@ class Sae
         $domain = $this->getDomain($url);
         $path = $this->getPath($url);
         return $domain . '/' . $path;
-    }
-
-    public function fileExists($fileUrl)
-    {
-        $domain = $this->getDomain($fileUrl);
-        $path = $this->getPath($fileUrl);
-        return $this->sae->fileExists($domain, $path);
     }
 }

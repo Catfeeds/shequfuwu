@@ -3,19 +3,18 @@ namespace Vendor\Hiland\Biz\Tencent\Pay;
 
 use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
 use Vendor\Hiland\Biz\Tencent\Common\WechatException;
+use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseBizPayUrl;
 use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseCloseOrder;
+use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseDownloadBill;
+use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseMicroPay;
 use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseOrderQuery;
+use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseRefund;
+use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseRefundQuery;
 use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseReport;
 use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseResults;
 use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseReverse;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseUnifiedOrder;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseRefund;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseRefundQuery;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseDownloadBill;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseMicroPay;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData;
-use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseBizPayUrl;
 use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseShortUrl;
+use Vendor\Hiland\Biz\Tencent\Pay\WxPayData\WxPayDataBaseUnifiedOrder;
 use Vendor\Hiland\Utils\Web\NetHelper;
 
 /**
@@ -88,6 +87,141 @@ class WxPayApi
         self::reportCostTime($url, $startTimeStamp, $result); // 上报请求花费时间
 
         return $result;
+    }
+
+    /**
+     *
+     * 产生随机字符串，不长于32位
+     *
+     * @param int $length
+     * @return string 产生的随机字符串
+     */
+    public static function getNonceStr($length = 32)
+    {
+        $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        $str = "";
+        for ($i = 0; $i < $length; $i++) {
+            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        }
+        return $str;
+    }
+
+    /**
+     * 获取毫秒级别的时间戳
+     */
+    private static function getMillisecond()
+    {
+        // 获取毫秒的时间戳
+        $time = explode(" ", microtime());
+        $time = $time[1] . ($time[0] * 1000);
+        $time2 = explode(".", $time);
+        $time = $time2[0];
+        return $time;
+    }
+
+    /**
+     *
+     * 上报数据， 上报的时候将屏蔽所有异常流程
+     *
+     * @param string $url
+     * @param int $startTimeStamp
+     * @param array $data
+     */
+    private static function reportCostTime($url, $startTimeStamp, $data)
+    {
+        // 如果不需要上报数据
+        if (WechatConfig::REPORT_LEVENL == 0) {
+            return;
+        }
+        // 如果仅失败上报
+        if (WechatConfig::REPORT_LEVENL == 1 && array_key_exists("return_code", $data) && $data["return_code"] == "SUCCESS" && array_key_exists("result_code", $data) && $data["result_code"] == "SUCCESS") {
+            return;
+        }
+
+        // 上报逻辑
+        $endTimeStamp = self::getMillisecond();
+        $objInput = new WxPayDataBaseReport();
+        $objInput->SetInterface_url($url);
+        $objInput->SetExecute_time_($endTimeStamp - $startTimeStamp);
+        // 返回状态码
+        if (array_key_exists("return_code", $data)) {
+            $objInput->SetReturn_code($data["return_code"]);
+        }
+        // 返回信息
+        if (array_key_exists("return_msg", $data)) {
+            $objInput->SetReturn_msg($data["return_msg"]);
+        }
+        // 业务结果
+        if (array_key_exists("result_code", $data)) {
+            $objInput->SetResult_code($data["result_code"]);
+        }
+        // 错误代码
+        if (array_key_exists("err_code", $data)) {
+            $objInput->SetErr_code($data["err_code"]);
+        }
+        // 错误代码描述
+        if (array_key_exists("err_code_des", $data)) {
+            $objInput->SetErr_code_des($data["err_code_des"]);
+        }
+        // 商户订单号
+        if (array_key_exists("out_trade_no", $data)) {
+            $objInput->SetOut_trade_no($data["out_trade_no"]);
+        }
+        // 设备号
+        if (array_key_exists("device_info", $data)) {
+            $objInput->SetDevice_info($data["device_info"]);
+        }
+
+        try {
+            self::report($objInput);
+        } catch (WechatException $e) {
+            // 不做任何处理
+        }
+    }
+
+    /**
+     *
+     * 测速上报，该方法内部封装在report中，使用时请注意异常流程
+     * WxPayReport中interface_url、return_code、result_code、user_ip、execute_time_必填
+     * appid、mchid、spbill_create_ip、nonce_str不需要填入
+     *
+     * @param WxPayDataBaseReport $inputObj
+     * @param int $timeOut
+     * @throws WechatException
+     * @return bool 成功时返回，其他抛异常
+     */
+    public static function report($inputObj, $timeOut = 1)
+    {
+        $url = "https://api.mch.weixin.qq.com/payitil/report";
+        // 检测必填参数
+        if (!$inputObj->IsInterface_urlSet()) {
+            throw new WechatException("接口URL，缺少必填参数interface_url！");
+        }
+        if (!$inputObj->IsReturn_codeSet()) {
+            throw new WechatException("返回状态码，缺少必填参数return_code！");
+        }
+        if (!$inputObj->IsResult_codeSet()) {
+            throw new WechatException("业务结果，缺少必填参数result_code！");
+        }
+        if (!$inputObj->IsUser_ipSet()) {
+            throw new WechatException("访问接口IP，缺少必填参数user_ip！");
+        }
+        if (!$inputObj->IsExecute_time_Set()) {
+            throw new WechatException("接口耗时，缺少必填参数execute_time_！");
+        }
+        $inputObj->SetAppid(WechatConfig::APPID); // 公众账号ID
+        $inputObj->SetMch_id(WechatConfig::MCHID); // 商户号
+        $inputObj->SetUser_ip($_SERVER['REMOTE_ADDR']); // 终端ip
+        $inputObj->SetTime(date("YmdHis")); // 商户上报时间
+        $inputObj->SetNonce_str(self::getNonceStr()); // 随机字符串
+
+        $inputObj->SetSign(); // 签名
+        $xml = $inputObj->ToXml();
+
+        $startTimeStamp = self::getMillisecond(); // 请求开始时间
+        //$response = self::postXmlCurl($xml, $url, false, $timeOut);
+        $response = NetHelper::request($url, $xml, $timeOut);
+        return $response;
     }
 
     /**
@@ -366,51 +500,6 @@ class WxPayApi
 
     /**
      *
-     * 测速上报，该方法内部封装在report中，使用时请注意异常流程
-     * WxPayReport中interface_url、return_code、result_code、user_ip、execute_time_必填
-     * appid、mchid、spbill_create_ip、nonce_str不需要填入
-     *
-     * @param WxPayDataBaseReport $inputObj
-     * @param int $timeOut
-     * @throws WechatException
-     * @return bool 成功时返回，其他抛异常
-     */
-    public static function report($inputObj, $timeOut = 1)
-    {
-        $url = "https://api.mch.weixin.qq.com/payitil/report";
-        // 检测必填参数
-        if (!$inputObj->IsInterface_urlSet()) {
-            throw new WechatException("接口URL，缺少必填参数interface_url！");
-        }
-        if (!$inputObj->IsReturn_codeSet()) {
-            throw new WechatException("返回状态码，缺少必填参数return_code！");
-        }
-        if (!$inputObj->IsResult_codeSet()) {
-            throw new WechatException("业务结果，缺少必填参数result_code！");
-        }
-        if (!$inputObj->IsUser_ipSet()) {
-            throw new WechatException("访问接口IP，缺少必填参数user_ip！");
-        }
-        if (!$inputObj->IsExecute_time_Set()) {
-            throw new WechatException("接口耗时，缺少必填参数execute_time_！");
-        }
-        $inputObj->SetAppid(WechatConfig::APPID); // 公众账号ID
-        $inputObj->SetMch_id(WechatConfig::MCHID); // 商户号
-        $inputObj->SetUser_ip($_SERVER['REMOTE_ADDR']); // 终端ip
-        $inputObj->SetTime(date("YmdHis")); // 商户上报时间
-        $inputObj->SetNonce_str(self::getNonceStr()); // 随机字符串
-
-        $inputObj->SetSign(); // 签名
-        $xml = $inputObj->ToXml();
-
-        $startTimeStamp = self::getMillisecond(); // 请求开始时间
-        //$response = self::postXmlCurl($xml, $url, false, $timeOut);
-        $response = NetHelper::request($url, $xml, $timeOut);
-        return $response;
-    }
-
-    /**
-     *
      * 生成二维码规则,模式一生成支付二维码
      * appid、mchid、spbill_create_ip、nonce_str不需要填入
      *
@@ -497,23 +586,6 @@ class WxPayApi
     }
 
     /**
-     *
-     * 产生随机字符串，不长于32位
-     *
-     * @param int $length
-     * @return string 产生的随机字符串
-     */
-    public static function getNonceStr($length = 32)
-    {
-        $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-        $str = "";
-        for ($i = 0; $i < $length; $i++) {
-            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
-        }
-        return $str;
-    }
-
-    /**
      * 直接输出xml
      *
      * @param string $xml
@@ -521,79 +593,6 @@ class WxPayApi
     public static function replyNotify($xml)
     {
         echo $xml;
-    }
-
-    /**
-     *
-     * 上报数据， 上报的时候将屏蔽所有异常流程
-     *
-     * @param string $url
-     * @param int $startTimeStamp
-     * @param array $data
-     */
-    private static function reportCostTime($url, $startTimeStamp, $data)
-    {
-        // 如果不需要上报数据
-        if (WechatConfig::REPORT_LEVENL == 0) {
-            return;
-        }
-        // 如果仅失败上报
-        if (WechatConfig::REPORT_LEVENL == 1 && array_key_exists("return_code", $data) && $data["return_code"] == "SUCCESS" && array_key_exists("result_code", $data) && $data["result_code"] == "SUCCESS") {
-            return;
-        }
-
-        // 上报逻辑
-        $endTimeStamp = self::getMillisecond();
-        $objInput = new WxPayDataBaseReport();
-        $objInput->SetInterface_url($url);
-        $objInput->SetExecute_time_($endTimeStamp - $startTimeStamp);
-        // 返回状态码
-        if (array_key_exists("return_code", $data)) {
-            $objInput->SetReturn_code($data["return_code"]);
-        }
-        // 返回信息
-        if (array_key_exists("return_msg", $data)) {
-            $objInput->SetReturn_msg($data["return_msg"]);
-        }
-        // 业务结果
-        if (array_key_exists("result_code", $data)) {
-            $objInput->SetResult_code($data["result_code"]);
-        }
-        // 错误代码
-        if (array_key_exists("err_code", $data)) {
-            $objInput->SetErr_code($data["err_code"]);
-        }
-        // 错误代码描述
-        if (array_key_exists("err_code_des", $data)) {
-            $objInput->SetErr_code_des($data["err_code_des"]);
-        }
-        // 商户订单号
-        if (array_key_exists("out_trade_no", $data)) {
-            $objInput->SetOut_trade_no($data["out_trade_no"]);
-        }
-        // 设备号
-        if (array_key_exists("device_info", $data)) {
-            $objInput->SetDevice_info($data["device_info"]);
-        }
-
-        try {
-            self::report($objInput);
-        } catch (WechatException $e) {
-            // 不做任何处理
-        }
-    }
-
-    /**
-     * 获取毫秒级别的时间戳
-     */
-    private static function getMillisecond()
-    {
-        // 获取毫秒的时间戳
-        $time = explode(" ", microtime());
-        $time = $time[1] . ($time[0] * 1000);
-        $time2 = explode(".", $time);
-        $time = $time2[0];
-        return $time;
     }
 }
 

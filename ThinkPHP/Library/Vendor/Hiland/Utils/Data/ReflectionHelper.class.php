@@ -24,28 +24,6 @@ class ReflectionHelper
     }
 
     /**
-     * 执行某个类里面的方法
-     * @param string $className 类名称（如果有命名空间，请携带命名空间，如：'Tencent\Model\Bar'）
-     * @param string $methodName 类内部的方法名称（可用是实例方法也可以是静态方法）
-     * @param array $constructArgs 类构造器参数数组
-     * @param array $methodArgs 待调用方法的参数数组
-     * @return mixed 调用方法的返回值
-     */
-    public static function executeMethod($className, $methodName, array $constructArgs = null, array $methodArgs = null)
-    {
-        $class = self::getClassReflectionInfo($className, $constructArgs);
-        $instance = $class->newInstanceArgs((array)$constructArgs);
-
-        $method = $class->getmethod($methodName);
-        if (empty($methodArgs)) {
-            $result = $method->invoke($instance);
-        } else {
-            $result = $method->invokeArgs($instance, $methodArgs);
-        }
-        return $result;
-    }
-
-    /**
      * 获取类型的反射信息
      * @param string $className 类名称（如果有命名空间，请携带命名空间，如：'Tencent\Model\Bar'）
      * @param array $args 类构造器参数数组
@@ -67,6 +45,28 @@ class ReflectionHelper
         }
 
         return $refClass;
+    }
+
+    /**
+     * 执行某个类里面的方法
+     * @param string $className 类名称（如果有命名空间，请携带命名空间，如：'Tencent\Model\Bar'）
+     * @param string $methodName 类内部的方法名称（可用是实例方法也可以是静态方法）
+     * @param array $constructArgs 类构造器参数数组
+     * @param array $methodArgs 待调用方法的参数数组
+     * @return mixed 调用方法的返回值
+     */
+    public static function executeMethod($className, $methodName, array $constructArgs = null, array $methodArgs = null)
+    {
+        $class = self::getClassReflectionInfo($className, $constructArgs);
+        $instance = $class->newInstanceArgs((array)$constructArgs);
+
+        $method = $class->getmethod($methodName);
+        if (empty($methodArgs)) {
+            $result = $method->invoke($instance);
+        } else {
+            $result = $method->invokeArgs($instance, $methodArgs);
+        }
+        return $result;
     }
 }
 

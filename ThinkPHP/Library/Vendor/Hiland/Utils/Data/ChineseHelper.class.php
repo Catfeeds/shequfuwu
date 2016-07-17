@@ -75,22 +75,6 @@ class ChineseHelper
         return preg_replace("/[^a-z0-9]*/", '', $_Res);
     }
 
-    private static function getCharPinyin($_Num, $_Data)
-    {
-        if ($_Num > 0 && $_Num < 160) {
-            return chr($_Num);
-        } elseif ($_Num < -20319 || $_Num > -10247) {
-            return '';
-        } else {
-            foreach ($_Data as $k => $v) {
-                if ($v <= $_Num) break;
-            }
-            /** @noinspection PhpUndefinedVariableInspection */
-            return $k;
-        }
-    }
-
-
     /**
      * 将gb2312编码的字符串转成utf8编码的字符串
      * @param string $chineseStringInGB2312Coding
@@ -115,6 +99,21 @@ class ChineseHelper
             $_String .= chr(0x80 | $chineseStringInGB2312Coding & 0x3F);
         }
         return iconv('UTF-8', 'GB2312', $_String);
+    }
+
+    private static function getCharPinyin($_Num, $_Data)
+    {
+        if ($_Num > 0 && $_Num < 160) {
+            return chr($_Num);
+        } elseif ($_Num < -20319 || $_Num > -10247) {
+            return '';
+        } else {
+            foreach ($_Data as $k => $v) {
+                if ($v <= $_Num) break;
+            }
+            /** @noinspection PhpUndefinedVariableInspection */
+            return $k;
+        }
     }
 
     /**

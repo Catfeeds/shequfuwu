@@ -12,12 +12,26 @@ namespace Vendor\Hiland\Utils\Web;
 use Vendor\Hiland\Utils\Data\StringHelper;
 
 /**
- * 
+ *
  * Class HttpResponseHeader
  * @package Vendor\Hiland\Utils\Web
  */
 class HttpResponseHeader
 {
+    public static function get($url, $key)
+    {
+        $key = strtoupper($key);
+        $headers = self::getAll($url);
+        foreach ($headers as $k => $v) {
+            $k = strtoupper($k);
+            if ($k == $key) {
+                return $v;
+            }
+        }
+
+        return false;
+    }
+
     public static function getAll($url)
     {
         $cacheKey = "HttpResponseHeader20160709-url-$url";
@@ -51,19 +65,5 @@ class HttpResponseHeader
         S($cacheKey, $data);
 
         return $data;
-    }
-
-    public static function get($url,$key)
-    {
-        $key = strtoupper($key);
-        $headers = self::getAll($url);
-        foreach ($headers as $k => $v) {
-            $k = strtoupper($k);
-            if ($k == $key) {
-                return $v;
-            }
-        }
-
-        return false;
     }
 }
