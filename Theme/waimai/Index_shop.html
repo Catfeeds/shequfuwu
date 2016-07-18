@@ -85,31 +85,28 @@
         timestamp: data.wxConfig.timestamp, // 必填，生成签名的时间戳
         nonceStr: data.wxConfig.nonceStr, // 必填，生成签名的随机串
         signature: data.wxConfig.signature,// 必填，签名，见附录1
-        jsApiList: ['checkJsApi','getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        jsApiList: ['checkJsApi', 'getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
     wx.ready(function () {
-        var lastReadyTime= get('wx-geo-lastReadyTime');
-        //alert(new Date().getTime());
-        if(lastReadyTime){
-            var currentTime= new Date().getTime()/1000;
-            if(currentTime-lastReadyTime <3){
-                return;
-            }
-            set('wx-geo-lastReadyTime',currentTime);
+        //为了防止同一个时间多次发起请求，这个地方限定两次请求之间必须多于3秒钟
+        var lastReadyTime = get('wx-geo-lastReadyTime');
+        var currentTime = new Date().getTime() / 1000;
+        if (!lastReadyTime || currentTime - lastReadyTime >= 3) {
+            set('wx-geo-lastReadyTime', currentTime);
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    lng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+                    locationmy(lat, lng);
+                    shopList(lat, lng);
+                }
+            });
         }
-        alert(55555555555);
-        wx.getLocation({
-            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-            success: function (res) {
-                lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                lng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                var speed = res.speed; // 速度，以米/每秒计
-                var accuracy = res.accuracy; // 位置精度
-                locationmy(lat, lng);
-                shopList(lat, lng);
-            }
-        });
     });
+
     function locationmy(lat, lng) {
         // lng = 113.650035;//用户经度
         // lat = 34.7854;//用户纬度
