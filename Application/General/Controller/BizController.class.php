@@ -38,7 +38,7 @@ class BizController
             $lat = '34.8177';
         }
 
-        CommonLoger::log('weixin坐标',"lng:$lng-- lat:$lat");
+        CommonLoger::log('weixin坐标', "lng:$lng-- lat:$lat");
         $searchContentType = I('searchContentType');
         if (empty($searchContentType)) {
             $searchContentType = 'shop';
@@ -54,11 +54,11 @@ class BizController
         WebHelper::serverReturn($result);
     }
 
-    public function getOrders($userId = 802, $reorgnize = false)
+    public function getOrders($userId = 802, $reOrgnize = false)
     {
         $mate = new OrderViewMate();
         $result = $mate->select(array("user_id" => $userId, "status" => array("gt", -1)));
-        if ($reorgnize) {
+        if ($reOrgnize) {
             $orderCount = sizeof($result);
             for ($i = 0; $i < $orderCount; $i++) {
                 $result[$i] = ArrayHelper::convert2DTo1D($result[$i]);

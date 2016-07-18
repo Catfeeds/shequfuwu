@@ -75,8 +75,6 @@
 </if>
 
 <script src='{:U("Home/Min/Index","g=appJs")}'></script>
-
-<!--<script src="__TPL_PUBLIC__/build/template.js?v=<?php echo getResourceVersion(); ?>"></script>-->
 <script src="__JS__/wemall.js?v=<?php echo getResourceVersion(); ?>"></script>
 
 <script>
@@ -101,7 +99,7 @@
                 shopList(lat, lng);
             }
         });
-    })
+    });
     function locationmy(lat, lng) {
         // lng = 113.650035;//用户经度
         // lat = 34.7854;//用户纬度

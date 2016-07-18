@@ -11,6 +11,20 @@ use Vendor\Hiland\Utils\Web\MimeHelper;
 class ImageHelper
 {
     /**
+     * 判断给定的文件是否为图片
+     * @param $fileName
+     * @return bool
+     */
+    public static function isImage($fileName){
+        $result= getimagesize($fileName);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * 实现等比例不失真缩放图片缩放
      * (在本函数调用的地方，使用完成后请使用imagedestroy($newimage)对新资源进行销毁)
      *
@@ -73,46 +87,46 @@ class ImageHelper
     /**
      * 裁剪图片
      *
-     * @param resource $sourceimage
+     * @param resource $sourceImage
      *            待操作的图片资源
-     * @param int $topremovevalue
+     * @param int $topRemoveValue
      *            图片上部清除的数值（像素）
-     * @param int $buttomremovevalue
+     * @param int $buttomRemoveValue
      *            图片下部清除的数值（像素）
-     * @param int $leftremovevalue
+     * @param int $leftRemoveValue
      *            图片左部清除的数值（像素）
-     * @param int $rightremovevalue
+     * @param int $rightRemoveValue
      *            图片右部清除的数值（像素）
      * @return resource
      */
-    public static function cropImage($sourceimage, $topremovevalue, $buttomremovevalue = 0, $leftremovevalue = 0, $rightremovevalue = 0)
+    public static function cropImage($sourceImage, $topRemoveValue, $buttomRemoveValue = 0, $leftRemoveValue = 0, $rightRemoveValue = 0)
     {
-        $sourcewidth = imagesx($sourceimage);
-        $sourceheight = imagesy($sourceimage);
+        $sourceWidth = imagesx($sourceImage);
+        $sourceHeight = imagesy($sourceImage);
 
-        if ($topremovevalue >= $sourceheight) {
-            $topremovevalue = 0;
+        if ($topRemoveValue >= $sourceHeight) {
+            $topRemoveValue = 0;
         }
 
-        if ($leftremovevalue >= $sourcewidth) {
-            $leftremovevalue = 0;
+        if ($leftRemoveValue >= $sourceWidth) {
+            $leftRemoveValue = 0;
         }
 
-        if ($buttomremovevalue >= $sourceheight - $topremovevalue) {
-            $buttomremovevalue = 0;
+        if ($buttomRemoveValue >= $sourceHeight - $topRemoveValue) {
+            $buttomRemoveValue = 0;
         }
 
-        if ($rightremovevalue >= $sourcewidth - $leftremovevalue) {
-            $rightremovevalue = 0;
+        if ($rightRemoveValue >= $sourceWidth - $leftRemoveValue) {
+            $rightRemoveValue = 0;
         }
 
-        $newwidth = $sourcewidth - $leftremovevalue - $rightremovevalue;
-        $newheight = $sourceheight - $topremovevalue - $buttomremovevalue;
-        $croppedimage = imagecreatetruecolor($newwidth, $newheight);
+        $newWidth = $sourceWidth - $leftRemoveValue - $rightRemoveValue;
+        $newHeight = $sourceHeight - $topRemoveValue - $buttomRemoveValue;
+        $croppedImage = imagecreatetruecolor($newWidth, $newHeight);
 
-        imagecopy($croppedimage, $sourceimage, 0, 0, $leftremovevalue, $topremovevalue, $newwidth, $newheight);
+        imagecopy($croppedImage, $sourceImage, 0, 0, $leftRemoveValue, $topRemoveValue, $newWidth, $newHeight);
 
-        return $croppedimage;
+        return $croppedImage;
     }
 
     /**
@@ -311,13 +325,14 @@ class ImageHelper
     /**
      * 加载bmb格式的图片进入内存成为资源
      * 此方法谨慎使用，有bug容易内存溢出
-     * @param $filename
+     * @param $fileName
      * @return bool|resource
      */
-    public static function imageCreateFromBMP($filename)
+    public static function imageCreateFromBMP($fileName)
     {
-        if (!$f1 = fopen($filename, "rb"))
+        if (!$f1 = fopen($fileName, "rb")){
             return FALSE;
+        }
 
         $FILE = unpack("vfile_type/Vfile_size/Vreserved/Vbitmap_offset", fread($f1, 14));
         if ($FILE['file_type'] != 19778)

@@ -11,7 +11,7 @@ class JavaScriptHelper
      * @param string $url
      * @return string js
      */
-    static public function alertLocation($message, $url)
+    static public function alertNavigate($message, $url)
     {
         echo "<script type='text/javascript'>alert('$message');location.href='$url';</script>";
         exit();
@@ -35,7 +35,7 @@ class JavaScriptHelper
      * @param string $url
      * @return  string js
      */
-    static public function headerUrl($url)
+    static public function navigate($url)
     {
         echo "<script type='text/javascript'>location.href='{$url}';</script>";
         exit();

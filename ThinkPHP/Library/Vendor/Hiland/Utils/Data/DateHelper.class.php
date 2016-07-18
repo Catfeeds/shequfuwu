@@ -107,8 +107,6 @@ class DateHelper
      */
     public static function getTimestamp($date)
     {
-        $datePart = '';
-        $timePart = '';
         if (StringHelper::isContains($date, ' ')) {
             $datePart = StringHelper::getSeperatorBeforeString($date, ' ');
             $timePart = StringHelper::getSeperatorAfterString($date, ' ');

@@ -50,8 +50,6 @@ class Console
         }
         return $result;
     }
-
-
 }
 
 ?>

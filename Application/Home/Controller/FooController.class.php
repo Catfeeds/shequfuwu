@@ -21,6 +21,7 @@ use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\IO\Drawing\CircleSeal;
+use Vendor\Hiland\Utils\IO\ImageHelper;
 use Vendor\Hiland\Utils\IO\Thread;
 use Vendor\Hiland\Utils\Web\AsynHandle;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
@@ -28,8 +29,6 @@ use Vendor\Hiland\Utils\Web\HttpHeader;
 use Vendor\Hiland\Utils\Web\HttpRequestHeader;
 use Vendor\Hiland\Utils\Web\HttpRequstHeader;
 use Vendor\Hiland\Utils\Web\HttpResponseHeader;
-use Vendor\Hiland\Utils\Web\NetHelper;
-use Vendor\Hiland\Utils\Web\WebHelper;
 
 class FooController extends Controller
 {
@@ -101,14 +100,14 @@ class FooController extends Controller
         dump($menu);
     }
 
-    public function paraUsed($order = array('id' => 'desc'))
-    {
-        dump($order);
-    }
-
     public function paraop()
     {
         $this->paraUsed("rank desc,id");
+    }
+
+    public function paraUsed($order = array('id' => 'desc'))
+    {
+        dump($order);
     }
 
     public function skulistop()
@@ -354,7 +353,8 @@ class FooController extends Controller
         dump($result);
     }
 
-    public function classkeyop(){
+    public function classkeyop()
+    {
         dump(__NAMESPACE__);
         dump(__CLASS__);
 
@@ -369,15 +369,24 @@ class FooController extends Controller
 //        $postFixPostion= strpos($cn,'Controller');
 //        $cn= substr($cn,0,$postFixPostion);
 
-        $ns= __NAMESPACE__;
-        $cn= __CLASS__;
-        $cn= StringHelper::getSeperatorAfterString($cn,$ns);
-        $cn= StringHelper::getSeperatorBeforeString($cn,'Controller');
-        $cn= StringHelper::getSeperatorAfterString($cn,"\\");
+        $ns = __NAMESPACE__;
+        $cn = __CLASS__;
+        $cn = StringHelper::getSeperatorAfterString($cn, $ns);
+        $cn = StringHelper::getSeperatorBeforeString($cn, 'Controller');
+        $cn = StringHelper::getSeperatorAfterString($cn, "\\");
         dump($cn);
     }
 
-    public function templateop(){
+    public function templateop()
+    {
         $this->display();
+    }
+
+    public function imageop($fileName='http://ww4.sinaimg.cn/mw1024/5efbc0fajw1f5xsthllblj21hc1hckjn.jpg'){
+        dump(ImageHelper::isImage($fileName));
+    }
+
+    public function timespanop($span=1468740651){
+     dump(date('Y-m-d H:i:s',$span));
     }
 }

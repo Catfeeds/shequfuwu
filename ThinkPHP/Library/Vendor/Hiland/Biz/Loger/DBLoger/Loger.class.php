@@ -68,7 +68,7 @@ class Loger
             $data['other'] = $other;
             $data['misc1'] = $misc1;
             $data['status'] = $status;
-            $data['createtime'] = time();
+            $data['createtime'] = date('Y-m-d H:i:s',time());
 
             if ($model->add($data)) {
                 $result = true;
