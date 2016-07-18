@@ -127,6 +127,8 @@ class IndexController extends BaseController
 //        $config["cool_payment"] = $configs["cool_payment"];
 //        $this->assign("config", json_encode($config));
 
+        CommonLoger::log('附近店铺加载');
+
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
 
