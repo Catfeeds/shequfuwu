@@ -109,9 +109,9 @@ class IndexController extends BaseController
      */
     public function shop()
     {
-        $user = R("App/Public/oauthLogin");
-        $user = json_encode($user);
-        $this->assign("user", $user);
+//        $user = R("App/Public/oauthLogin");
+//        $user = json_encode($user);
+//        $this->assign("user", $user);
 
 //        if (I("get.shopid")) {
 //            $shopId = I("get.shopid");
