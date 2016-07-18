@@ -151,12 +151,12 @@ class BizHelper
     {
         $name = $dataName;
 
-        if (empty($lng)) {
-            $lng = '117.359';
+        if (empty($shopLng)) {
+            $shopLng = '117.359';
         }
 
-        if (empty($lat)) {
-            $lat = '34.8177';
+        if (empty($shopLat)) {
+            $shopLat = '34.8177';
         }
 
         if (empty($searchContentType)) {
@@ -168,11 +168,11 @@ class BizHelper
         }
 
         $range = 180 / pi() * $distanceKM / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km
-        $lngR = $range / cos($lat * pi() / 180);
-        $maxLat = $lat + $range;//最大纬度
-        $minLat = $lat - $range;//最小纬度
-        $maxLng = $lng + $lngR;//最大经度
-        $minLng = $lng - $lngR;//最小经度
+        $lngR = $range / cos($shopLat * pi() / 180);
+        $maxLat = $shopLat + $range;//最大纬度
+        $minLat = $shopLat - $range;//最小纬度
+        $maxLng = $shopLng + $lngR;//最大经度
+        $minLng = $shopLng - $lngR;//最小经度
 
         $map['lng'] = array('between', array($minLng, $maxLng)); //经度值
         $map['lat'] = array('between', array($minLat, $maxLat)); //纬度值
@@ -192,7 +192,7 @@ class BizHelper
 
 
         if ($searchContentType == 'shop') {
-            $shopes = GeoHelper::rankDistance($lat, $lng, $shoplist);
+            $shopes = GeoHelper::rankDistance($shopLat, $shopLng, $shoplist);
             return $shopes;
         } else {
             $link = array(
@@ -230,7 +230,7 @@ class BizHelper
 
                 $map['shop_id'] = array('in', $shopIDs);
                 $productList = $mate->select($map);
-                $productList = GeoHelper::rankDistance($lat, $lng, $productList, "asc", "shop.lat", "shop.lng");
+                $productList = GeoHelper::rankDistance($shopLat, $shopLng, $productList, "asc", "shop.lat", "shop.lng");
                 return $productList;
             }
         }
