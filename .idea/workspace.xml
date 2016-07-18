@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,8 +53,8 @@
       <file leaf-file-name="Index_shop.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-860">
-              <caret line="32" column="68" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+            <state relative-caret-position="160">
+              <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
               <folding>
                 <element signature="e#1720#1728#1" expanded="true" />
               </folding>
@@ -61,26 +62,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
+            <state relative-caret-position="200">
               <caret line="129" column="35" selection-start-line="129" selection-start-column="35" selection-end-line="129" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="157" column="44" selection-start-line="157" selection-start-column="44" selection-end-line="157" selection-end-column="44" />
+            <state relative-caret-position="206">
+              <caret line="147" column="21" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
               <folding>
-                <marker date="1468563458062" expanded="true" signature="16999:17026" ph="..." />
-                <marker date="1468563458062" expanded="true" signature="17040:17053" ph="..." />
-                <marker date="1468563458062" expanded="true" signature="19243:19255" ph="..." />
-                <marker date="1468563458062" expanded="true" signature="50565:50577" ph="..." />
+                <marker date="1468829827295" expanded="true" signature="17023:17050" ph="..." />
+                <marker date="1468829827295" expanded="true" signature="17064:17077" ph="..." />
+                <marker date="1468829827295" expanded="true" signature="19267:19279" ph="..." />
+                <marker date="1468829827295" expanded="true" signature="50589:50601" ph="..." />
               </folding>
             </state>
           </provider>
@@ -112,7 +113,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/CipherHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DBSetHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/Enum.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/FontHelper.class.php" />
@@ -163,6 +163,7 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/DBLoger/Loger.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       </list>
     </option>
   </component>
@@ -680,28 +681,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="App" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -845,7 +824,7 @@
       <workItem from="1468403261984" duration="41818000" />
       <workItem from="1468530804086" duration="8847000" />
       <workItem from="1468545729049" duration="17383000" />
-      <workItem from="1468754362337" duration="15707000" />
+      <workItem from="1468754362337" duration="15899000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -858,7 +837,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="276956000" />
+    <option name="totallyTimeSpent" value="277148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1295,19 +1274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="157" column="44" selection-start-line="157" selection-start-column="44" selection-end-line="157" selection-end-column="44" />
-          <folding>
-            <marker date="1468563458062" expanded="true" signature="16999:17026" ph="..." />
-            <marker date="1468563458062" expanded="true" signature="17040:17053" ph="..." />
-            <marker date="1468563458062" expanded="true" signature="19243:19255" ph="..." />
-            <marker date="1468563458062" expanded="true" signature="50565:50577" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -1358,21 +1324,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="129" column="35" selection-start-line="129" selection-start-column="35" selection-end-line="129" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-860">
-          <caret line="32" column="68" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+        <state relative-caret-position="160">
+          <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
           <folding>
             <element signature="e#1720#1728#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="129" column="35" selection-start-line="129" selection-start-column="35" selection-end-line="129" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="206">
+          <caret line="147" column="21" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
+          <folding>
+            <marker date="1468829827295" expanded="true" signature="17023:17050" ph="..." />
+            <marker date="1468829827295" expanded="true" signature="17064:17077" ph="..." />
+            <marker date="1468829827295" expanded="true" signature="19267:19279" ph="..." />
+            <marker date="1468829827295" expanded="true" signature="50589:50601" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

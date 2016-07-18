@@ -145,6 +145,7 @@ function showShopInfo() {
  * 根据定位获取附近的店铺
  */
 function shopList() {
+    alert(11111111111);
     $.ajax({
         type: "post",
         url: data.baseUrl + "/General/Biz/getShopList",
