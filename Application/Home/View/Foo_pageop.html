@@ -6,6 +6,7 @@
 </head>
 <body>
 <button type="button" id="btnSearchShop">查询店铺</button>
+<button type="button" id="btnCurrentTime">当前时间</button>
 <p class="dataContainer" id="dataContainer">
     显示内容
 </p>
@@ -48,6 +49,9 @@
             });
         });
 
+        $("#btnCurrentTime").on("click",function () {
+            alert(new Date().getTime());
+        });
     });
 </script>
 </body>
