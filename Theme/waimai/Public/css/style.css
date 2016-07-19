@@ -1472,9 +1472,8 @@ select {
 }
 
 .order-info .number > span {
-    display: block;
+    display: inline-block;
     color: #2c2c2c;
-    font-size: 16px;
 }
 
 .order-info .date {

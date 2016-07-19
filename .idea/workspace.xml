@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/orderItems.html" afterPath="$PROJECT_DIR$/Theme/waimai/orderItems.html" />
     </list>
     <ignored path="src.iws" />
@@ -90,8 +89,20 @@
       <file leaf-file-name="orderItems.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="160">
+              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#span#1;n#div#0;n#li#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="1474" column="25" selection-start-line="1474" selection-start-column="25" selection-end-line="1474" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -168,7 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/StringHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataModel/ModelMate.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/IO/Drawing/CircleSeal.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/IO/File/FileUtilDriver/File.class.php" />
@@ -218,6 +228,7 @@
         <option value="$PROJECT_DIR$/Application/Home/View/Foo_pageop.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Resource/带边框的标题.html" />
         <option value="$PROJECT_DIR$/Application/App/Controller/UserController.class.php" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
         <option value="$PROJECT_DIR$/Theme/waimai/orderItems.html" />
       </list>
     </option>
@@ -668,6 +679,32 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -985,7 +1022,7 @@
       <workItem from="1468403261984" duration="41818000" />
       <workItem from="1468530804086" duration="8847000" />
       <workItem from="1468545729049" duration="17383000" />
-      <workItem from="1468754362337" duration="26695000" />
+      <workItem from="1468754362337" duration="27598000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -998,7 +1035,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287944000" />
+    <option name="totallyTimeSpent" value="288847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1062,14 +1099,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/Enum.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/GuidHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1512,11 +1541,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="1474" column="25" selection-start-line="1474" selection-start-column="25" selection-end-line="1474" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="160">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#div#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
