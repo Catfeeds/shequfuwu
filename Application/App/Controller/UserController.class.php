@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use Common\Model\BizHelper;
+use Common\Model\OrderViewMate;
+use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
@@ -22,7 +24,17 @@ class UserController extends BaseController
         $user = D("User")->get(array("id" => session("userId")), true);
 
         if (I("get.getOrder")) {
-            $user["order"] = D("Order")->getList(array("user_id" => session("userId"), "status" => array("gt", -1)), true);
+            //$orders= D("Order")->getList(array("user_id" => session("userId"), "status" => array("gt", -1)), true);
+
+            $mate = new OrderViewMate();
+            $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)));
+            if ($result) {
+                $orderCount = sizeof($result);
+                for ($i = 0; $i < $orderCount; $i++) {
+                    $result[$i] = ArrayHelper::convert2DTo1D($result[$i]);
+                }
+            }
+            $user["order"] = $result;
         }
 
         if (I("get.getProvince")) {
