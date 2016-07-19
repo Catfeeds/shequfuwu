@@ -1344,7 +1344,7 @@ function loadOrder(pageIndex) {
                         };
 
                         var html = template("orderItems", dataSending);
-                        $("#items-order-result-list>ul").html(html);
+                        $("#items-order-result-list>ul").append(html);
                     }
                 }
             }
