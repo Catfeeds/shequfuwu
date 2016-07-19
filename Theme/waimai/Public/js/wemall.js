@@ -1336,6 +1336,7 @@ function openUser(o) {
                         var dataSending = {
                             orders: json,
                             jsData: data,
+                            systemConfig:eval(res.systemConfig),
                         };
 
                         var html = template("orderItems", dataSending);

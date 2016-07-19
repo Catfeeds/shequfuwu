@@ -41,6 +41,10 @@ class UserController extends BaseController
             $user["province"] = D("LocProvince")->getList(array("shop_id" => session("shop_id")), true);
         }
 
+        $configMate= new ModelMate('config');
+        $systeConfig= $configMate->get(1);
+        $user['systeConfig']= $systeConfig;
+
         $this->ajaxReturn($user);
     }
 

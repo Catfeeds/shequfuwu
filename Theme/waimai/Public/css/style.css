@@ -1754,7 +1754,7 @@ select {
 }
 
 .order-status {
-    float: left;
+    float: right;
     font-size: 12px;
     color: #FF4146;
     height: 32px;
