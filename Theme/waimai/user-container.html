@@ -104,39 +104,7 @@
         var lazyNum = 1;
         $(".history-loader").on("click", function () {
             lazyNum++;
-            $.ajax({
-                type: "get",
-                url: data.baseUrl + "/App/User/getUser",
-                data: {
-                    getOrder: true,
-                    pageIndex: lazyNum,
-                },
-                success: function (res) {
-                    if (res) {
-                        if (res.order != undefined) {
-                            var json = eval(res.order);
-
-                            if (json.length != 0) {
-                                $('.myOrderList').show();
-                                var dataSending = {
-                                    orders: json,
-                                    jsData: data,
-                                    systemConfig: eval(res.systemConfig),
-                                };
-
-                                var html = template("orderItems", dataSending);
-                                $("#items-order-result-list>ul").append(html);
-                            }
-                        }
-                    }
-                },
-                beforeSend: function () {
-                    $('#page_tag_load').show();
-                },
-                complete: function () {
-                    $('#page_tag_load').hide();
-                }
-            });
+            loadOrder(lazyNum);
         });
     });
 </script>

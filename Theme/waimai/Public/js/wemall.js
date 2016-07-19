@@ -1312,11 +1312,16 @@ function openUser(o) {
 
     tabTmpl("user-container");
 
+    loadOrder(1);
+}
+
+function loadOrder(pageIndex) {
     $.ajax({
         type: "get",
         url: data.baseUrl + "/App/User/getUser",
         data: {
-            getOrder: true
+            getOrder: true,
+            pageIndex:pageIndex,
         },
         success: function (res) {
             $('#balance').html("");
@@ -1326,7 +1331,6 @@ function openUser(o) {
                 }
                 $('#balance').html(res.money + '元');
                 $('#score').html(res.score + '分');
-                $('#items-order-result-list ul').html("");
 
                 if (res.order != undefined) {
                     var json = eval(res.order);
@@ -1340,7 +1344,7 @@ function openUser(o) {
                         };
 
                         var html = template("orderItems", dataSending);
-                        $("#items-order-result-list ul").html(html);
+                        $("#items-order-result-list>ul").html(html);
                     }
                 }
             }
@@ -1352,6 +1356,7 @@ function openUser(o) {
             $('#page_tag_load').hide();
         }
     });
+    
 }
 
 function backToSale() {
