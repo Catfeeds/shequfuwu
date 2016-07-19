@@ -1326,10 +1326,7 @@ function openUser(o) {
                 $('#balance').html(res.money + '元');
                 $('#score').html(res.score + '分');
                 $('#items-order-result-list ul').html("");
-                $('.myOrderList').hide();
 
-                alert(res.systemConfig);
-                
                 if (res.order != undefined) {
                     var json = eval(res.order);
 
