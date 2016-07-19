@@ -121,22 +121,6 @@
         document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
     }
 </script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        //下拉刷新懒加载店铺
-         var lazyNum = 1;
-         $(window).scroll(function () {
-             var doc = document;
-             var win = window;
-             var scrollBottom = $(doc).height() - $(win).height() - $(win).scrollTop();
-             alert(scrollBottom);
-             if(scrollBottom<30){
-                 lazyNum++;
-                 //lazyShop(lazyNum);
-                 alert(lazyNum);
-             }
-         });
-    });
-</script>
+
 </body>
 </html>
