@@ -4,6 +4,7 @@ namespace Common\Model;
 use Think\Model;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -270,6 +271,10 @@ class BizHelper
         $pictureUrl = str_replace("\\", "/", $pictureUrl);
 
         return $pictureUrl;
+    }
+
+    public static function generateOrderNo($shopId=0){
+        return date("Ymdhis")."-$shopId-" . RandHelper::rand(3,'NUMBER');
     }
 }
 

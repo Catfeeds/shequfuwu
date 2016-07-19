@@ -1000,9 +1000,10 @@ function cancelOrder(id) {
     $('#yesOrder').one('click', function () {
         $.ajax({
             type: "get",
-            url: data.baseUrl + "/App/Order/updateOrder",
+            url: data.baseUrl + "/App/Order/setOrderStatus",
             data: {
-                id: id
+                id: id,
+                status:-1,
             },
             success: function (data) {
                 $('#nav-user').click();

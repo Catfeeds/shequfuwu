@@ -8,6 +8,8 @@
 
 namespace Addons\Sign\Controller;
 
+use Common\Model\BizHelper;
+
 class IndexController extends InitController
 {
     public $appUrl = "";
@@ -80,7 +82,7 @@ class IndexController extends InitController
 
         $data ["user_id"] = session("userId");
         $data ["contact_id"] = $contact_id;
-        $data ["orderid"] = date("ymdhis") . mt_rand(1, 9);
+        $data ["orderid"] = BizHelper::generateOrderNo(); //date("ymdhis") . mt_rand(1, 9);
         $data ["totalscore"] = $_POST["score"];
         $data ["status"] = 0;
         $data ["note"] = $_POST ["note"];

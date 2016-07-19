@@ -152,7 +152,7 @@ class OrderModel extends RelationModel
         $order ["user_id"] = $userId;
         $order ["contact_id"] = $contact_id;
         $order ["shop_id"] = $shopId;
-        $order ["orderid"] = date("ymdhis") . mt_rand(1, 9);
+        $order ["orderid"] = BizHelper::generateOrderNo($shopId); //date("ymdhis") . mt_rand(1, 9);
         $order ["totalprice"] = $data["totalPrice"];
         $order ["payment"] = $data["payment"];
         if ($payFlag || $order ["totalprice"] == 0) {

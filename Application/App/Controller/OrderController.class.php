@@ -1,6 +1,9 @@
 <?php
 namespace App\Controller;
 
+use Common\Model\BizHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
+
 class OrderController extends BaseController
 {
     public function _initialize()
@@ -76,7 +79,7 @@ class OrderController extends BaseController
         }
         //add order
         $order ["user_id"] = session("userId");
-        $order ["orderid"] = date("ymdhis") . mt_rand(1, 9);
+        $order ["orderid"] = BizHelper::generateOrderNo($order['shop_id']); //date("ymdhis") . mt_rand(1, 9);
         if ($payFlag) {
             $order ["pay_status"] = 1;
         } else {
@@ -156,6 +159,11 @@ class OrderController extends BaseController
     public function updateOrder()
     {
         D("Order")->save(I("get."));
+    }
+
+    public function setOrderStatus($id,$status){
+        $mate= new ModelMate('order');
+        return $mate->setValue($id,'status',$status);
     }
 
     public function commentOrder()

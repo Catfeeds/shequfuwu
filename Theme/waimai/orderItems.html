@@ -9,7 +9,9 @@
                 {{else}}
                     未付款
             {{/if}}
-            {{if value.status== 1}}
+            {{if value.status== -1}}
+                    已取消
+                {{else if value.status== 1}}
                     正在配送
                 {{else if value.status== 2}}
                     已完成
@@ -34,15 +36,17 @@
         {{if value.pay_status== 0 }}
             {{if value.status== 0}}
                 {{if systemConfig.wechat_payment == 1}}
-                    <span class="payOrder" onclick="payOrder(1,value.id )">微信付款</span>
+                    <span class="payOrder" onclick="payOrder(1,{{value.id}})">微信付款</span>
                 {{/if}}
                 {{if systemConfig.alipay_payment == 1}}
-                    <span class="payOrder" onclick="payOrder(2, value.id)">支付宝</span>
+                    <span class="payOrder" onclick="payOrder(2, {{value.id}})">支付宝</span>
                 {{/if}}
-                <span class="cancelOrder" onclick="cancelOrder({{ value.id}})">取消</span>
+                <span class="cancelOrder" onclick="cancelOrder({{value.id}})">取消</span>
             {{/if}}
         {{/if}}
-
+        {{if value.pay_status== 1 }}
+            <span class="commitOrder" onclick="commentOrder({{value.id}})">评论</span>
+        {{/if}}
         cancel_status,comment_status
         <a class="dail-small" href="tel:' + jsData.config.tel + '">
             <span class="dail-ico"><i class="ico ico-phone"></i></span>
