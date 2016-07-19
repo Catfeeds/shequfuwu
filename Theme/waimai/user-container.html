@@ -124,7 +124,11 @@
                         },
                         success: function (res) {
                             if (res) {
-                                //$('#items-order-result-list ul').html("");
+                                if (res.identity == 1) {
+                                    $('#identity').html('管理员');
+                                }
+                                $('#balance').html(res.money + '元');
+                                $('#score').html(res.score + '分');
 
                                 if (res.order != undefined) {
                                     var json = eval(res.order);
