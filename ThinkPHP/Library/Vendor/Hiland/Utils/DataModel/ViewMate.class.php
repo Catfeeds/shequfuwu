@@ -123,6 +123,13 @@ class ViewMate extends ModelMate
      */
     public function select($condition = array(), $useRelation = true, $orderBy = "id desc", $pageIndex = 0, $itemCountPerPage = 0, $limit = 0)
     {
+        if(empty($useRelation)){
+            $useRelation= false;
+        }
+        if(empty($orderBy)){
+            $orderBy = "id desc";
+        }
+
         $model = $this->getModel_Select($condition, $orderBy, $pageIndex, $itemCountPerPage, $limit);
 
         if ($useRelation) {

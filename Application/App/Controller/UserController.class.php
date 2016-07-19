@@ -24,10 +24,21 @@ class UserController extends BaseController
         $user = D("User")->get(array("id" => session("userId")), true);
 
         if (I("get.getOrder")) {
+            //"id desc", $p, $num
+            $pageIndex= I("get.pageIndex");
+            if(empty($pageIndex)){
+                $pageIndex=1;
+            }
+
+            $countPerPage= I("get.countPerPage");
+            if(empty($countPerPage)){
+                $countPerPage= 5;
+            }
+
             //$orders= D("Order")->getList(array("user_id" => session("userId"), "status" => array("gt", -1)), true);
 
             $mate = new OrderViewMate();
-            $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)));
+            $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)),true,'',$pageIndex,$countPerPage);
             if ($result) {
                 $orderCount = sizeof($result);
                 for ($i = 0; $i < $orderCount; $i++) {
