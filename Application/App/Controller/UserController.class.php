@@ -42,8 +42,8 @@ class UserController extends BaseController
         }
 
         $configMate= new ModelMate('config');
-        $systeConfig= $configMate->get(1);
-        $user['systeConfig']= $systeConfig;
+        $systemConfig= $configMate->get(1);
+        $user['systemConfig']= $systemConfig;
 
         $this->ajaxReturn($user);
     }
