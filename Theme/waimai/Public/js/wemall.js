@@ -1328,6 +1328,8 @@ function openUser(o) {
                 $('#items-order-result-list ul').html("");
                 $('.myOrderList').hide();
 
+                alert(res.systemConfig);
+                
                 if (res.order != undefined) {
                     var json = eval(res.order);
 
@@ -1336,7 +1338,7 @@ function openUser(o) {
                         var dataSending = {
                             orders: json,
                             jsData: data,
-                            systemConfig:(res.systemConfig),
+                            systemConfig:eval(res.systemConfig),
                         };
 
                         var html = template("orderItems", dataSending);
