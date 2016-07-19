@@ -1,8 +1,21 @@
 {{each orders as value index}}
 <li><span style="color:#16aad8;">{{value.shop__name}}</span>
     <div class="order-info"><span class="number">订单号：<span id="order-no">{{value.orderid}}</span></span><span
-            class="date" style="float: right">{{value.time}}</span><span
-            class="order-status">pay_status,order_status</span>
+            class="date" style="float: right">{{value.time}}</span>
+        <span class="order-status">
+        {{if value.pay_status== 1}}
+                已付款
+            {{else}}
+                未付款
+        {{/if}}
+        {{if value.status== 1}}
+                正在配送
+            {{else if value.status== 2}}
+                已完成
+            {{else}}
+                未处理
+        {{/if}}
+        </span>
     </div>
     <div class="order-list" id="item-order-list">
         <ul>
