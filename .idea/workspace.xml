@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/orderItems.html" afterPath="$PROJECT_DIR$/Theme/waimai/orderItems.html" />
     </list>
     <ignored path="src.iws" />
@@ -90,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="41" column="79" selection-start-line="41" selection-start-column="79" selection-end-line="41" selection-end-column="79" />
+              <caret line="41" column="76" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#div#0;n#li#0;n#!!top" expanded="true" />
               </folding>
@@ -1042,7 +1040,7 @@
       <workItem from="1468403261984" duration="41818000" />
       <workItem from="1468530804086" duration="8847000" />
       <workItem from="1468545729049" duration="17383000" />
-      <workItem from="1468754362337" duration="32539000" />
+      <workItem from="1468754362337" duration="32634000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1055,7 +1053,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="293788000" />
+    <option name="totallyTimeSpent" value="293883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1572,7 +1570,7 @@
     <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="41" column="79" selection-start-line="41" selection-start-column="79" selection-end-line="41" selection-end-column="79" />
+          <caret line="41" column="76" selection-start-line="41" selection-start-column="76" selection-end-line="41" selection-end-column="76" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#li#0;n#!!top" expanded="true" />
           </folding>
