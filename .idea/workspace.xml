@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_shop.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/CommonLoger.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/CommonLoger.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/DBLoger/Loger.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/DBLoger/Loger.class.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,8 +86,8 @@
       <file leaf-file-name="CommonLoger.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/CommonLoger.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+            <state relative-caret-position="79">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -745,7 +738,7 @@
       <workItem from="1468754362337" duration="37920000" />
       <workItem from="1468912872791" duration="9594000" />
       <workItem from="1468925426224" duration="1488000" />
-      <workItem from="1468977272638" duration="4131000" />
+      <workItem from="1468977272638" duration="5062000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -758,7 +751,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="314382000" />
+    <option name="totallyTimeSpent" value="315313000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
@@ -1216,8 +1209,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Loger/CommonLoger.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+        <state relative-caret-position="79">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding />
         </state>
       </provider>
