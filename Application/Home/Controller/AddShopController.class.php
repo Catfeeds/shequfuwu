@@ -42,10 +42,10 @@ class AddShopController extends Controller
             $this->success("保存成功", U("Home/AddShop/shop"));
 
         } else {
-            $categoryMate= new ModelMate('shopCategory');
-            $categoryList= $categoryMate->select(array('usable'=>1));
-            $this->assign('categoryList',$categoryList);
-            
+            $categoryMate = new ModelMate('shopCategory');
+            $categoryList = $categoryMate->select(array('usable' => 1));
+            $this->assign('categoryList', $categoryList);
+
             $this->display();
         }
     }

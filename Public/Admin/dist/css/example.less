@@ -1,0 +1,13 @@
+@the-border: 1px;
+@base-color: #111;
+@red:        #842210;
+
+#header {
+    color: (@base-color * 4);
+    border-left: @the-border;
+    border-right: (@the-border * 2);
+}
+#footer {
+    background-color: (@base-color + #ff3300);
+    border-color: desaturate(@red, 10%);
+}

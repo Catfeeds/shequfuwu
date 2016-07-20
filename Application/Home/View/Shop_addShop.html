@@ -28,7 +28,7 @@
 
 <section class="content-header">
     <h1>
-        商城管理
+        店铺管理
         <small></small>
     </h1>
 </section>
@@ -48,7 +48,7 @@
                         <input class="form-control" name="id" placeholder="" value="{$shop['id']?$shop['id']:0}"
                                type="hidden">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">商城名称</label>
+                            <label class="col-sm-2 control-label">商铺名称</label>
 
                             <div class="col-sm-6">
                                 <input class="form-control" name="name" placeholder="" value="{$shop.name}"
@@ -229,9 +229,18 @@
                             <label class="col-sm-2 control-label">地址</label>
 
                             <div class="col-sm-10">
-                                <input class="form-control" placeholder="" id="address" readonly name="address"
+                                <input class="form-control" placeholder="" id="addr_address" readonly name="address"
                                        value="{$shop.address}"
                                        type="text">
+                                <input class="form-control" placeholder="" id="addr_province" readonly name="province"
+                                       value="{$shop.province}"
+                                       type="hidden"/>
+                                <input class="form-control" placeholder="" id="addr_city" readonly name="city"
+                                       value="{$shop.city}"
+                                       type="hidden"/>
+                                <input class="form-control" placeholder="" id="addr_district" readonly name="district"
+                                       value="{$shop.district}"
+                                       type="hidden"/>
                                 <div id='message'></div>
                             </div>
                         </div>
@@ -319,7 +328,11 @@
                 map: map,
                 bubble: true
             })
-            var address = document.getElementById('address');
+            var address = document.getElementById('addr_address');
+            var addr_province = document.getElementById('addr_province');
+            var addr_city = document.getElementById('addr_city');
+            var addr_district = document.getElementById('addr_district');
+
             var lng = document.getElementById('lng');
             var lat = document.getElementById('lat');
             var message = document.getElementById('message');
@@ -327,9 +340,10 @@
                 marker.setPosition(e.lnglat);
                 geocoder.getAddress(e.lnglat, function (status, result) {
                     if (status == 'complete') {
-                        // console.log(result);
-                        var address1 = result.regeocode.formattedAddress;
-                        address.value = address1;
+                        address.value = result.regeocode.formattedAddress;
+                        addr_province.value= result.regeocode.addressComponent.province;
+                        addr_city.value= result.regeocode.addressComponent.city;
+                        addr_district.value= result.regeocode.addressComponent.district;
                         message.innerHTML = ''
                     } else {
                         message.innerHTML = '无法获取地址'
@@ -452,6 +466,4 @@
         this.search('district', districtAdcode, 'biz_area');
     }
     amapAdcode.createProvince();
-
 </script>
-

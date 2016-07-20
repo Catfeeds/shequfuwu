@@ -13,6 +13,7 @@ use Common\Model\BizHelper;
 use Common\Model\OrderViewMate;
 use Common\Model\WechatBiz;
 use Think\Controller;
+use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
@@ -396,7 +397,12 @@ class FooController extends Controller
      dump(date('Y-m-d H:i:s',$span));
     }
 
-//    public function logop(){
-//
-//    }
+    public function geoop($lat=34.8177,$lng=117.359){
+        $result= GeoHelper::getGeoInformation($lat,$lng,'amap');
+        dump($result);
+    }
+
+    public function lessop(){
+        $this->display();
+    }
 }

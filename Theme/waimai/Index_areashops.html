@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=100%, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title id="oti">{:C('PROJECT_NAME')}</title>
+    <link rel="stylesheet" href='{:U("Home/Min/Index","g=appCss")}'>
+    <!--<link rel="stylesheet" href="__CSS__/shop.css?v=<?php echo getResourceVersion(); ?>">-->
+
+    <link rel="stylesheet" href="__CSS__/icon/iconfont.css">
+
+    <if condition="APP_DEBUG eq true">
+        <link rel="stylesheet" href="__CSS__/weui.min.css">
+        <else/>
+        <link href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css" rel="stylesheet">
+    </if>
+
+</head>
+<body>
+<div id="main">
+    <div class="pi_sousuo1" style="">
+        <div class="weui_cells" style="margin-top:0px;">
+            <div class="weui_cell weui_cell_select weui_select_before">
+                <div class="weui_cell_hd">
+                    <select class="weui_select" style="width:85px;padding-left:10px;" name="searchContentType"
+                            id="searchContentType">
+                        <option value="shop">店铺</option>
+                        <option value="product">产品</option>
+                    </select>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="pi_input" placeholder="请输入店铺或产品名称" style="">
+                    <span class="pi_sousuo2" style="" onclick="searchShop();">搜索</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="padding:5px 14px;background-color: #f5f5f5;">
+        <i class="iconfont" style="color:A9A9A9;">&#xe600;</i>
+        <span id="pi_address" style=""></span>
+    </div>
+
+    <div class="shop-list" id="mod-desc">
+
+
+    </div>
+</div>
+<div id="page_tag_load"><img src="__IMG__/ajax-loader.gif" alt="loader"></div>
+
+<script>
+    var data = {
+        'wxConfig': {$wxConfig? $wxConfig : '[]'},
+        'config': {$config? $config : '[]'},
+        'user': {$user? $user : '[]'},
+        'ads': {$ads? $ads : '[]'},
+        'menu': {$menu? $menu : '[]'},
+        'product': {$product? $product : '[]'},
+        'baseUrl': '__APP__',
+        'uploadsUrl': '__PUBLIC__/Uploads/',
+        'imageUrl': '__IMG__',
+        'shopId': '',
+    }
+    console.log(data);
+</script>
+
+<if condition="APP_DEBUG eq true">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/swiper.min.js"></script>
+    <script src="__JS__/jweixin-1.0.0.js"></script>
+    <else/>
+    <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/Swiper/3.0.4/js/swiper.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</if>
+
+<script src='{:U("Home/Min/Index","g=appJs")}'></script>
+<script src="__JS__/wemall.js?v=<?php echo getResourceVersion(); ?>"></script>
+
+<script>
+    $('#page_tag_load').show();
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: data.wxConfig.appId, // 必填，公众号的唯一标识
+        timestamp: data.wxConfig.timestamp, // 必填，生成签名的时间戳
+        nonceStr: data.wxConfig.nonceStr, // 必填，生成签名的随机串
+        signature: data.wxConfig.signature,// 必填，签名，见附录1
+        jsApiList: ['checkJsApi', 'getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    wx.ready(function () {
+        //为了防止同一个时间多次发起请求，这个地方限定两次请求之间必须多于3秒钟
+        var lastReadyTime = get('wx-geo-lastReadyTime');
+        var currentTime = new Date().getTime() / 1000;
+        if (!lastReadyTime || currentTime - lastReadyTime >= 3) {
+            set('wx-geo-lastReadyTime', currentTime);
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    lng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+                    locationmy(lat, lng);
+                    shopList(lat, lng);
+                }
+            });
+        }
+    });
+
+    function locationmy(lat, lng) {
+        // lng = 113.650035;//用户经度
+        // lat = 34.7854;//用户纬度
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://restapi.amap.com/v3/geocode/regeo?output=json&location=' + lng + ',' + lat + '&key=22f9022b217b7d764f5befb4aa74456f&radius=1000&extensions=all&callback=renderOption';
+        document.head.appendChild(script);
+    }
+    function renderOption(response) {
+        document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
+    }
+</script>
+
+</body>
+</html>

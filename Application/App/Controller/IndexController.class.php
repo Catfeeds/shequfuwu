@@ -55,7 +55,7 @@ class IndexController extends BaseController
         $menu = list_to_tree($menu, 'id', 'pid', 'sub');
         $this->assign("menu", json_encode($menu));
 
-        $hostName= EnvironmentHelper::getServerHostName();
+        $hostName = EnvironmentHelper::getServerHostName();
         $this->assign("hostName", $hostName);
 
 //        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
@@ -155,5 +155,16 @@ class IndexController extends BaseController
 
         $products = D("Product")->getList($condition, true, "rank desc", 0, 0, 0);
         $this->ajaxReturn($products);
+    }
+
+    /**
+     * 获取某个地区的店铺
+     */
+    public function AreaShops()
+    {
+        $wxConfig = D("WxConfig")->getJsSign();
+        $this->assign("wxConfig", json_encode($wxConfig));
+
+        $this->display();
     }
 }
