@@ -109,24 +109,6 @@ class IndexController extends BaseController
      */
     public function shop()
     {
-//        $user = R("App/Public/oauthLogin");
-//        $user = json_encode($user);
-//        $this->assign("user", $user);
-
-//        if (I("get.shopid")) {
-//            $shopId = I("get.shopid");
-//            session("shop_id", $shopId);
-//        }
-//
-//        $configs = D("Config")->get();
-//        $config = D("Shop")->getShop(array('id' => $shopId));
-//        $config["delivery_time"] = explode(",", $config["delivery_time"]);
-//        $config["balance_payment"] = $configs["balance_payment"];
-//        $config["wechat_payment"] = $configs["wechat_payment"];
-//        $config["alipay_payment"] = $configs["alipay_payment"];
-//        $config["cool_payment"] = $configs["cool_payment"];
-//        $this->assign("config", json_encode($config));
-
         CommonLoger::log('附近店铺加载');
 
         $wxConfig = D("WxConfig")->getJsSign();

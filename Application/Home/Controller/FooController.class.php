@@ -190,9 +190,15 @@ class FooController extends Controller
         dump($resultSku);
     }
 
-    public function logop()
+    public function logop($level=30)
     {
-        CommonLoger::log('logtest', time());
+        $option= array(
+            'status'=>'sssssssssssssss',
+            'category'=>'ok',
+            'other'=>'88888',
+            'misc'=>9,
+        );
+        CommonLoger::log('logtest', time(),$level,$option);
     }
 
     public function asynop()
@@ -389,4 +395,8 @@ class FooController extends Controller
     public function timespanop($span=1468740651){
      dump(date('Y-m-d H:i:s',$span));
     }
+
+//    public function logop(){
+//
+//    }
 }
