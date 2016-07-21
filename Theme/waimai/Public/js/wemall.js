@@ -144,8 +144,9 @@ function showShopInfo() {
 
 function areaShops(pageIndex) {
     var name = $('.pi_input').val();
-    var city = $('#citySelector').val();
     var category = ''; //TODO
+
+    var city = $('#citySelector').val();
 
     if (!pageIndex) {
         pageIndex = 1;
