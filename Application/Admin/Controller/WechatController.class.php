@@ -5,6 +5,7 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class WechatController extends Controller
@@ -17,20 +18,6 @@ class WechatController extends Controller
     public function _initialize()
     {
         self::$appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
-    }
-
-    public function init()
-    {
-        Vendor("Wechat.wechat#class");
-        $config = D("WxConfig")->get();
-
-        $options = array(
-            'token' => $config ["token"], //填写你设定的key
-            'encodingaeskey' => $config ["encodingaeskey"], //填写加密用的EncodingAESKey
-            'appid' => $config ["appid"], //填写高级调用功能的app id
-            'appsecret' => $config ["appsecret"] //填写高级调用功能的密钥
-        );
-        self::$weObj = new \Wechat ($options);
     }
 
     public function index()
@@ -52,6 +39,20 @@ class WechatController extends Controller
         $this->check($type);
     }
 
+    public function init()
+    {
+        Vendor("Wechat.wechat#class");
+        $config = D("WxConfig")->get();
+
+        $options = array(
+            'token' => $config ["token"], //填写你设定的key
+            'encodingaeskey' => $config ["encodingaeskey"], //填写加密用的EncodingAESKey
+            'appid' => $config ["appid"], //填写高级调用功能的app id
+            'appsecret' => $config ["appsecret"] //填写高级调用功能的密钥
+        );
+        self::$weObj = new \Wechat ($options);
+    }
+
     public function check($type)
     {
         switch ($type) {
@@ -69,105 +70,6 @@ class WechatController extends Controller
         }
     }
 
-    public function checkEvents($event)
-    {
-        $event = strtolower($event);
-        $openId = self::$revData['FromUserName'];
-        $messageContent = '';
-
-        switch ($event) {
-            case 'subscribe':
-                $userID = $this->checkUser($openId);
-
-                $projectName = C('PROJECT_NAME');
-                $messageContent = "恭喜加入[$projectName],您是第[$userID]位会员,在家即可享受货品配送服务！";
-
-                $eventkey = self::$revData['EventKey'];
-
-                $merchantScanedID = 0;
-                $merchantScanedName = '';
-                if (!empty($eventkey)) {
-                    $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
-                }
-
-                if (!empty($merchantScanedName)) {
-                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
-                }
-
-                //self::$weObj->text($messageContent)->reply();
-                $newsArray= self::generateWecomeNewsInformation($messageContent,$merchantScanedID);
-                self::$weObj->news($newsArray)->reply();
-                break;
-            case 'unsubscribe':
-                $this->updateUser($openId);
-                break;
-            case 'click':
-                $this->checkKeyWords(self::$revData['EventKey']);
-                break;
-            case 'scan':
-                $projectName = C('PROJECT_NAME');
-                $messageContent = "欢迎再次回到[$projectName]，我们将持续为你提供更优质的服务！";
-
-                $eventkey = self::$revData['EventKey'];
-                $merchantScanedID = 0;
-                $merchantScanedName = '';
-                if (!empty($eventkey)) {
-                    $merchantScanedID = $eventkey;//self::$revData['EventKey'];
-                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
-                }
-
-                if (!empty($merchantScanedName)) {
-                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
-                }
-
-                $newsArray= self::generateWecomeNewsInformation($messageContent,$merchantScanedID);
-                self::$weObj->news($newsArray)->reply();
-                break;
-        }
-    }
-
-    public function generateWecomeNewsInformation($title='',$shopID = 0)
-    {
-        //__APP__
-        $title = '';
-        $description = '';
-        $picUrl = '';
-        $url = '';
-
-        if (empty($shopID)) {
-            if(empty($title)){
-                $projectName = C('PROJECT_NAME');
-                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
-            }
-            $description = C("PROJECT_DESCRIPTION");
-            $picUrl = BizHelper::getFileImageUrl(0,"wechat_news_cover.jpg");
-            $url = WebHelper::getHostName().U('App/Index/shop');
-        }else{
-            $shopMate= new ModelMate('shop');
-            $shopData= $shopMate->get($shopID);
-
-            if(empty($title)){
-                $title = $shopData['name'];
-            }
-
-            $description = $shopData['remark'];
-            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'],"wechat_news_cover.jpg");
-            $url = WebHelper::getHostName().U('App/Index/index','shopId='.$shopID);
-        }
-
-        $newsArray = array(
-            array(
-                'Title' => $title,
-                'Description' => $description,
-                'PicUrl' => $picUrl,
-                'Url' => $url,
-            )
-        );
-
-        return $newsArray;
-    }
-
     public function checkKeyWords($key)
     {
         $key = $key ? $key : self::$weObj->getRev()->getRevContent();
@@ -180,10 +82,15 @@ class WechatController extends Controller
                 self::$weObj->text($str)->reply();
                 break;
             case 'csgw':
-            case 'menu_wdgz':
+            case 'menu_wdgz': //我的关注
                 //超市购物，弹出其当初扫描的超市
                 $openId = self::$revData['FromUserName'];
-                $newsArray = self::getMyScanedShopeResponse($openId);
+                $newsArray = self::generateMyScanedShopsResponse($openId);
+                self::$weObj->news($newsArray)->reply();
+                break;
+            case 'menu_hdyzx'://活动与资讯
+                $openId = self::$revData['FromUserName'];
+                $newsArray = self::generateArticlesResponse($openId);
                 self::$weObj->news($newsArray)->reply();
                 break;
             default:
@@ -208,7 +115,7 @@ class WechatController extends Controller
         }
     }
 
-    private function getMyScanedShopeResponse($openId)
+    private function generateMyScanedShopsResponse($openId)
     {
         //超市购物，弹出其当初扫描的超市
         //$openId = self::$revData['FromUserName'];
@@ -218,7 +125,6 @@ class WechatController extends Controller
         $shopscaned = $usershopscanedMate->select($where);
 
         $shopMate = new ModelMate('shop');
-        $fileMate = new ModelMate('file');
 
         $newsArray = array();
         $newsCover = array(
@@ -254,6 +160,100 @@ class WechatController extends Controller
         return $newsArray;
     }
 
+    private function generateArticlesResponse($openId)
+    {
+        $articleMate = new ViewMate('artical');
+        $where = array();
+        $where['shop_id'] = 0; //仅展现平台发布的信息
+        $articles = $articleMate->select($where, true, "", 0, 0, 10);
+
+        $newsArray = array();
+        $newsCover = array(
+            'Title' => "欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
+            'Description' => "以下是为你精心准备的资讯信息，请点击阅读！",
+            'PicUrl' => self::$appUrl . '/Public/Uploads/platform_article.jpg',
+            'Url' => '',
+        );
+        $newsArray[] = $newsCover;
+
+        if ($articles) {
+            foreach ($articles as $article) {
+                $fileId = $article['file_id'];
+                $articleId = $article['id'];
+                $pictureUrl = BizHelper::getFileImageUrl($fileId);
+
+                $news = array(
+                    'Title' => $article["title"],
+                    'Description' => $article["content"],
+                    'PicUrl' => $pictureUrl,
+                    'Url' => self::$appUrl . "/index.php?s=/App/Artical/index/id/$articleId",
+                );
+
+                $newsArray[] = $news;
+            }
+        }
+
+        return $newsArray;
+    }
+
+    public function checkEvents($event)
+    {
+        $event = strtolower($event);
+        $openId = self::$revData['FromUserName'];
+        $messageContent = '';
+
+        switch ($event) {
+            case 'subscribe':
+                $userID = $this->checkUser($openId);
+
+                $projectName = C('PROJECT_NAME');
+                $messageContent = "恭喜加入[$projectName],您是第[$userID]位会员,在家即可享受货品配送服务！";
+
+                $eventkey = self::$revData['EventKey'];
+
+                $merchantScanedID = 0;
+                $merchantScanedName = '';
+                if (!empty($eventkey)) {
+                    $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
+                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
+                }
+
+                if (!empty($merchantScanedName)) {
+                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
+                }
+
+                //self::$weObj->text($messageContent)->reply();
+                $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
+                self::$weObj->news($newsArray)->reply();
+                break;
+            case 'unsubscribe':
+                $this->updateUser($openId);
+                break;
+            case 'click':
+                $this->checkKeyWords(self::$revData['EventKey']);
+                break;
+            case 'scan':
+                $projectName = C('PROJECT_NAME');
+                $messageContent = "欢迎再次回到[$projectName]，我们将持续为你提供更优质的服务！";
+
+                $eventkey = self::$revData['EventKey'];
+                $merchantScanedID = 0;
+                $merchantScanedName = '';
+                if (!empty($eventkey)) {
+                    $merchantScanedID = $eventkey;//self::$revData['EventKey'];
+                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
+                }
+
+                if (!empty($merchantScanedName)) {
+                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
+                }
+
+                $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
+                self::$weObj->news($newsArray)->reply();
+                break;
+        }
+    }
+
     public function checkUser($openId)
     {
         $userID = 0;
@@ -280,20 +280,52 @@ class WechatController extends Controller
         return $userID;
     }
 
+    private function generateWecomeNewsResponse($title = '', $shopID = 0)
+    {
+        $title = '';
+        $description = '';
+        $picUrl = '';
+        $url = '';
+
+        if (empty($shopID)) {
+            if (empty($title)) {
+                $projectName = C('PROJECT_NAME');
+                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
+            }
+            $description = C("PROJECT_DESCRIPTION");
+            $picUrl = BizHelper::getFileImageUrl(0, "platform_mission.jpg");
+            $url = WebHelper::getHostName() . U('App/Index/shop');
+        } else {
+            $shopMate = new ModelMate('shop');
+            $shopData = $shopMate->get($shopID);
+
+            if (empty($title)) {
+                $title = $shopData['name'];
+            }
+
+            $description = $shopData['remark'];
+            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg");
+            $url = WebHelper::getHostName() . U('App/Index/index', 'shopId=' . $shopID);
+        }
+
+        $newsArray = array(
+            array(
+                'Title' => $title,
+                'Description' => $description,
+                'PicUrl' => $picUrl,
+                'Url' => $url,
+            )
+        );
+
+        return $newsArray;
+    }
+
     public function updateUser($openId)
     {
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
             D("User")->save(array("id" => $user["id"], "subscribe" => C("USER_COMEFROM_COMMONWEIXINUSER")));
         }
-    }
-
-    public function generateQRCode($key = "0")
-    {
-        $this->init();
-        $ticket = self::$weObj->getQRCode($key, 1);
-        $qrcode = self::$weObj->getQRUrl($ticket["ticket"]);
-        return $qrcode;
     }
 
     public function getQRCode()
@@ -307,17 +339,25 @@ class WechatController extends Controller
         }
     }
 
+    public function generateQRCode($key = "0")
+    {
+        $this->init();
+        $ticket = self::$weObj->getQRCode($key, 1);
+        $qrcode = self::$weObj->getQRUrl($ticket["ticket"]);
+        return $qrcode;
+    }
+
     public function getMenu()
     {
         $this->init();
 
-        $result= self::$weObj->getMenu();
+        $result = self::$weObj->getMenu();
         dump($result);
     }
 
     public function createWxMenu()
     {
-        $newMenu= self::prepareMenu();
+        $newMenu = self::prepareMenu();
 
         $this->init();
         $json = self::$weObj->createMenu($newMenu);
@@ -330,7 +370,8 @@ class WechatController extends Controller
         }
     }
 
-    public function prepareMenu(){
+    public function prepareMenu()
+    {
         $m = D("WxMenu");
         $menu = $m->getList(array("pid" => 0), false, array('rank' => 'desc', 'id' => 'desc'), 0, 0, 3);
 
@@ -338,8 +379,8 @@ class WechatController extends Controller
         $menuCount = count($menu);
         for ($i = 0; $i < $menuCount; $i++) {
 
-            $menuItem= $this->builderMenuItems($menu[$i],$m);
-            array_push($newMenu["button"],$menuItem);
+            $menuItem = $this->builderMenuItems($menu[$i], $m);
+            array_push($newMenu["button"], $menuItem);
         }
 
         dump($newMenu);
@@ -368,23 +409,6 @@ class WechatController extends Controller
                 return array('type' => 'click', 'name' => $menuItemData["name"], 'key' => $menuItemData["key"]);
             }
         }
-    }
-
-    public function addTplMessageId($id)
-    {
-        $this->init();
-
-        $tempMsg = D("WxTplmsg")->get(array("template_id_short" => $id));
-        if ($tempMsg) {
-            $template_id = $tempMsg["template_id"];
-        } else {
-            $template_id = self::$weObj->addTemplateMessage($id);
-            if ($template_id) {
-                D("WxTplmsg")->addWxTplmsg(array("template_id_short" => $id, "template_id" => $template_id));
-            }
-        }
-
-        return $template_id;
     }
 
     public function sendTplMsgOrder($user_id, $order_id)
@@ -458,6 +482,23 @@ class WechatController extends Controller
         self::$weObj->sendTemplateMessage($msg);
 
         $this->sendTplMessageOrderAdmin($order_id);
+    }
+
+    public function addTplMessageId($id)
+    {
+        $this->init();
+
+        $tempMsg = D("WxTplmsg")->get(array("template_id_short" => $id));
+        if ($tempMsg) {
+            $template_id = $tempMsg["template_id"];
+        } else {
+            $template_id = self::$weObj->addTemplateMessage($id);
+            if ($template_id) {
+                D("WxTplmsg")->addWxTplmsg(array("template_id_short" => $id, "template_id" => $template_id));
+            }
+        }
+
+        return $template_id;
     }
 
     public function sendTplMessageOrderAdmin($order_id)
@@ -620,6 +661,4 @@ class WechatController extends Controller
         $data = json_decode($data, true);
         self::$weObj->sendTemplateMessage($data);
     }
-
-
 }
