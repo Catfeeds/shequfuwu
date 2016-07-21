@@ -4,7 +4,10 @@
                                                                   alt="{{value.name}}"
                                                                   src="{{uploadsUrl + value.savepath+ value.savename}}">
     <div class="grst-detail">
-        <div class="grst-name"><span class="ng-binding">{{value.name}}</span><span class="grst-misc ng-binding">&nbsp;&nbsp;{{value.km}}km</span>
+        <div class="grst-name"><span class="ng-binding">{{value.name}}</span>
+            {{if value.km }}
+            <span class="grst-misc ng-binding">&nbsp;&nbsp;{{value.km}}km</span>
+            {{/if}}
         </div>
         <span class="grst-misc ng-binding">{{value.subname}}</span>
         <div class="grst-misc"><span class="ng-binding">{{value.address}}</span></div>
