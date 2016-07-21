@@ -22,14 +22,15 @@
         <div class="weui_cells" style="margin-top:0px;">
             <div class="weui_cell weui_cell_select weui_select_before">
                 <div class="weui_cell_hd">
-                    <select class="weui_select" style="width:85px;padding-left:10px;" name="searchContentType"
-                            id="searchContentType">
-                        <option value="shop">店铺</option>
-                        <option value="product">产品</option>
+                    <select class="weui_select" style="width:85px;padding-left:10px;" name="citySelector"
+                            id="citySelector">
+                        <option value="">请选择</option>
+                        <option value="枣庄市">枣庄</option>
+                        <option value="济南市">济南</option>
                     </select>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="pi_input" placeholder="请输入店铺或产品名称" style="">
+                    <input class="pi_input" placeholder="请输入店铺名称" style="">
                     <span class="pi_sousuo2" style="" onclick="searchShop();">搜索</span>
                 </div>
             </div>
@@ -101,7 +102,7 @@
                     var speed = res.speed; // 速度，以米/每秒计
                     var accuracy = res.accuracy; // 位置精度
                     locationmy(lat, lng);
-                    shopList(lat, lng);
+                    //shopList(lat, lng);
                 }
             });
         }
@@ -117,6 +118,10 @@
     }
     function renderOption(response) {
         document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
+        var cityName= response.regeocode.addressComponent.city;
+        if(cityName){
+            $("#citySelector").val(cityName);
+        }
     }
 </script>
 

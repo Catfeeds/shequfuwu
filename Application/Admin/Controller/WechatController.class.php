@@ -579,8 +579,6 @@ class WechatController extends Controller
             $data = json_decode($data, true);
             self::$weObj->sendTemplateMessage($data);
         }
-
-
     }
 
 

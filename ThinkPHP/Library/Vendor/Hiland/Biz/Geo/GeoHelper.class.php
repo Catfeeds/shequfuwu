@@ -127,7 +127,6 @@ class GeoHelper
             $appKey = 'a75530497ceebeecb56e9dc2b933440c';
         }
 
-        $url = "http://api.map.baidu.com/geocoder/v2/?ak=$appKey&location=$lat,$lng&output=json&pois=0";
         $url= "http://restapi.amap.com/v3/geocode/regeo?key=$appKey&location=$lng,$lat";
 
         $jsonString = NetHelper::request($url);
