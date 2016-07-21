@@ -30,6 +30,9 @@ class BizController
             $itemCountPerPage= 10;
         }
 
+        $data= "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage";
+        CommonLoger::log('地区商城参数',$data);
+
         $result = BizHelper::getAreaShops($cityName,$shopName, $shopCategory, $pageIndex, $itemCountPerPage);
         //CommonLoger::log('getproducts',json_encode($result));
         WebHelper::serverReturn($result);
