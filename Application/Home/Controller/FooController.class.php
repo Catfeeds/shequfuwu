@@ -191,15 +191,15 @@ class FooController extends Controller
         dump($resultSku);
     }
 
-    public function logop($level=30)
+    public function logop($level = 30)
     {
-        $option= array(
-            'status'=>'sssssssssssssss',
-            'category'=>'ok',
-            'other'=>'88888',
-            'misc'=>9,
+        $option = array(
+            'status' => 'sssssssssssssss',
+            'category' => 'ok',
+            'other' => '88888',
+            'misc' => 9,
         );
-        CommonLoger::log('logtest', time(),$level,$option);
+        CommonLoger::log('logtest', time(), $level, $option);
     }
 
     public function asynop()
@@ -389,20 +389,29 @@ class FooController extends Controller
         $this->display();
     }
 
-    public function imageop($fileName='http://ww4.sinaimg.cn/mw1024/5efbc0fajw1f5xsthllblj21hc1hckjn.jpg'){
+    public function imageop($fileName = 'http://ww4.sinaimg.cn/mw1024/5efbc0fajw1f5xsthllblj21hc1hckjn.jpg')
+    {
         dump(ImageHelper::isImage($fileName));
     }
 
-    public function timespanop($span=1468740651){
-     dump(date('Y-m-d H:i:s',$span));
+    public function timespanop($span = 1468740651)
+    {
+        dump(date('Y-m-d H:i:s', $span));
     }
 
-    public function geoop($lat=34.8177,$lng=117.359){
-        $result= GeoHelper::getGeoInformation($lat,$lng,'amap');
+    public function geoop($lat = 34.8177, $lng = 117.359)
+    {
+        $result = GeoHelper::getGeoInformation($lat, $lng, 'amap');
         dump($result);
     }
 
-    public function lessop(){
+    public function lessop()
+    {
         $this->display();
+    }
+
+    public function getAreaShopsop($city = '枣庄市')
+    {
+        dump(BizHelper::getAreaShops($city, '', 0, 1, 3));
     }
 }

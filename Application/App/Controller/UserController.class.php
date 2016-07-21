@@ -25,20 +25,19 @@ class UserController extends BaseController
 
         if (I("get.getOrder")) {
             //"id desc", $p, $num
-            $pageIndex= I("get.pageIndex");
-            if(empty($pageIndex)){
-                $pageIndex=1;
+            $pageIndex = I("get.pageIndex");
+            if (empty($pageIndex)) {
+                $pageIndex = 1;
             }
 
-            $countPerPage= I("get.countPerPage");
-            if(empty($countPerPage)){
-                $countPerPage= 5;
-            }
 
-            //$orders= D("Order")->getList(array("user_id" => session("userId"), "status" => array("gt", -1)), true);
+            $itemCountPerPage = C('APP_ITEM_COUNT_PER_PAGE');
+            if (empty($itemCountPerPage)) {
+                $itemCountPerPage = 10;
+            }
 
             $mate = new OrderViewMate();
-            $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)),true,'',$pageIndex,$countPerPage);
+            $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)), true, '', $pageIndex, $itemCountPerPage);
             if ($result) {
                 $orderCount = sizeof($result);
                 for ($i = 0; $i < $orderCount; $i++) {
@@ -52,9 +51,9 @@ class UserController extends BaseController
             $user["province"] = D("LocProvince")->getList(array("shop_id" => session("shop_id")), true);
         }
 
-        $configMate= new ModelMate('config');
-        $systemConfig= $configMate->get(1);
-        $user['systemConfig']= $systemConfig;
+        $configMate = new ModelMate('config');
+        $systemConfig = $configMate->get(1);
+        $user['systemConfig'] = $systemConfig;
 
         $this->ajaxReturn($user);
     }

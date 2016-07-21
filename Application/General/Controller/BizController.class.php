@@ -20,6 +20,21 @@ class BizController
         dump('welcome');
     }
 
+    public function getAreaShops(){
+        $shopName = I('name');
+        $cityName = I('city');
+        $shopCategory= I('category');
+        $pageIndex= I('pageIndex');
+        $itemCountPerPage= C('APP_ITEM_COUNT_PER_PAGE');
+        if(empty($itemCountPerPage)){
+            $itemCountPerPage= 10;
+        }
+
+        $result = BizHelper::getAreaShops($cityName,$shopName, $shopCategory, $pageIndex, $itemCountPerPage);
+        //CommonLoger::log('getproducts',json_encode($result));
+        WebHelper::serverReturn($result);
+    }
+
     /**
      * 获取店铺或产品列表
      */
@@ -38,7 +53,7 @@ class BizController
             $lat = '34.8177';
         }
 
-        CommonLoger::log('weixin坐标', "lng:$lng-- lat:$lat");
+        //CommonLoger::log('weixin坐标', "lng:$lng-- lat:$lat");
         $searchContentType = I('searchContentType');
         if (empty($searchContentType)) {
             $searchContentType = 'shop';

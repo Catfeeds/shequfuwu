@@ -14,6 +14,9 @@ return array(
     'BROWSE_MUST_SUBSCRIBE' => true, //用户订阅公众号之后才能浏览购物
 
 
+    'APP_ITEM_COUNT_PER_PAGE'=>10, //在手机app中每页显示信息的条目数
+
+
     'USER_DEFAULT_STATUS' => 1, //用户注册后默认启用
 
     'USER_COMEFROM_NOWEIXINUSER'=>0,// 后台注册用户，非微信用户

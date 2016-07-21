@@ -1,7 +1,6 @@
 <?php
 namespace Common\Model;
 
-use Think\Model;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
@@ -139,6 +138,34 @@ class BizHelper
     }
 
     /**
+     * @param $cityName
+     * @param string $shopName
+     * @param int $shopCategory
+     * @param int $pageIndex
+     * @param int $itemCountPerPage
+     * @return array
+     */
+    public static function getAreaShops($cityName = '', $shopName = '', $shopCategory = 0, $pageIndex = 0, $itemCountPerPage = 10)
+    {
+        if ($shopCategory) {
+            $map['category_id'] = $shopCategory;
+        }
+
+        if ($cityName) {
+            $map['city'] = array('like', "$cityName");//按城市搜索
+        }
+
+        if ($shopName) {
+            $map['name'] = array('like', "%$shopName%");//按店铺名称搜索
+        }
+
+        $map['status'] = 2;//2表示审核通过的店铺
+
+        $shopMate = new ViewMate('shop', ViewLink::getCommon_File());
+        return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);
+    }
+
+    /**
      * 获取店铺或产品列表
      * @param string $dataName 店铺或商品名称
      * @param int $shopCategory 店铺类别
@@ -273,8 +300,9 @@ class BizHelper
         return $pictureUrl;
     }
 
-    public static function generateOrderNo($shopId=0){
-        return date("Ymdhis")."-$shopId-" . RandHelper::rand(3,'NUMBER');
+    public static function generateOrderNo($shopId = 0)
+    {
+        return date("Ymdhis") . "-$shopId-" . RandHelper::rand(3, 'NUMBER');
     }
 }
 

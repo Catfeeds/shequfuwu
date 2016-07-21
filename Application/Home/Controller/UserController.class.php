@@ -246,6 +246,4 @@ class UserController extends BaseController
 
         $this->display("User:addAdmin");
     }
-
-
 }

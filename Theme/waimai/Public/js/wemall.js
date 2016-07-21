@@ -141,6 +141,45 @@ function showShopInfo() {
     tabTmpl("show-shopinfo");
 }
 
+
+function areaShops(pageIndex) {
+    var name = $('.pi_input').val();
+    var city = $('#citySelector').val();
+    var category = ''; //TODO
+
+    if (!pageIndex) {
+        pageIndex = 1;
+    }
+
+    $.ajax({
+        type: "post",
+        url: data.baseUrl + "/General/Biz/getAreaShops",
+        data: {
+            name: name,
+            city: city,
+            category: category,
+            pageIndex: pageIndex,
+        },
+        success: function (res) {
+            var dataSending = {
+                shopes: res,
+                jsData: data,
+                uploadsUrl: data.uploadsUrl,
+                imageUrl: data.imageUrl
+            };
+
+            var html = template("shopItems", dataSending);
+            $('#mod-desc').html(html);
+        },
+        beforeSend: function () {
+            $('#page_tag_load').show();
+        },
+        complete: function () {
+            $('#page_tag_load').hide();
+        }
+    });
+}
+
 /**
  * 根据定位获取附近的店铺
  */
@@ -1003,7 +1042,7 @@ function cancelOrder(id) {
             url: data.baseUrl + "/App/Order/setOrderStatus",
             data: {
                 id: id,
-                status:-1,
+                status: -1,
             },
             success: function (data) {
                 $('#nav-user').click();
@@ -1321,7 +1360,7 @@ function loadOrder(pageIndex) {
         url: data.baseUrl + "/App/User/getUser",
         data: {
             getOrder: true,
-            pageIndex:pageIndex,
+            pageIndex: pageIndex,
         },
         success: function (res) {
             $('#balance').html("");
@@ -1340,7 +1379,7 @@ function loadOrder(pageIndex) {
                         var dataSending = {
                             orders: json,
                             jsData: data,
-                            systemConfig:eval(res.systemConfig),
+                            systemConfig: eval(res.systemConfig),
                         };
 
                         var html = template("orderItems", dataSending);
@@ -1356,7 +1395,7 @@ function loadOrder(pageIndex) {
             $('#page_tag_load').hide();
         }
     });
-    
+
 }
 
 function backToSale() {

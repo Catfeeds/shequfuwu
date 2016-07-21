@@ -31,7 +31,7 @@
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
                     <input class="pi_input" placeholder="请输入店铺名称" style="">
-                    <span class="pi_sousuo2" style="" onclick="searchShop();">搜索</span>
+                    <span class="pi_sousuo2" style="" onclick="areaShops(1);">搜索</span>
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@
                     var speed = res.speed; // 速度，以米/每秒计
                     var accuracy = res.accuracy; // 位置精度
                     locationmy(lat, lng);
-                    //shopList(lat, lng);
+                    areaShops(1);
                 }
             });
         }
