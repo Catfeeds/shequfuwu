@@ -161,6 +161,12 @@ class OrderController extends BaseController
         D("Order")->save(I("get."));
     }
 
+    /**
+     * 设置订单处理状态
+     * @param $id
+     * @param $status
+     * @return bool|int
+     */
     public function setOrderStatus($id,$status){
         $mate= new ModelMate('order');
         return $mate->setValue($id,'status',$status);
