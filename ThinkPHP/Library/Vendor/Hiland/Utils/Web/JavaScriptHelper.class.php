@@ -59,10 +59,12 @@ class JavaScriptHelper
      * @param string $message
      * @return string js
      */
-    static public function alert($message)
+    static public function alert($message,$isExit= true)
     {
         echo "<script type='text/javascript'>alert('$message');</script>";
-        exit();
+        if($isExit){
+            exit();
+        }
     }
 }
 

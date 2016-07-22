@@ -2,6 +2,7 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use Vendor\Hiland\Utils\Web\JavaScriptHelper;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class PublicController extends Controller
@@ -9,7 +10,6 @@ class PublicController extends Controller
     // 发送邮箱验证码
     public function emailsms()
     {
-
         Vendor('Swift.swift_required');
 
         $emailCode = rand_code(6);
@@ -92,6 +92,7 @@ class PublicController extends Controller
                 // $this->redirect("Home/Shop/shop");
                 $this->redirect("Home/AddShop/shop");
             } else {
+                //JavaScriptHelper::alert('登录失败',false);
                 $this->error("登录失败", U("Home/Public/login"));
             }
         } else {

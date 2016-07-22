@@ -3,6 +3,7 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_areashops.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wgs2mars.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_earashops.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/select-shop.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Shop_bindShop.min.js" />
@@ -22,11 +23,12 @@
         <item url="file://$PROJECT_DIR$/Theme/waimai/.debug.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/iscroll.min.js" />
-        <item url="file://$PROJECT_DIR$/Public/Admin/dist/js/less.min.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/Public/Admin/dist/js/less.min.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_areashops.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wgs2mars.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_earashops.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/select-shop.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Shop_bindShop.min.js" />
@@ -46,7 +48,6 @@
       <root url="file://$PROJECT_DIR$/Theme/waimai/.debug.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/iscroll.min.js" />
-      <root url="file://$PROJECT_DIR$/Public/Admin/dist/js/less.min.min.js" />
     </CLASSES>
     <SOURCES />
   </library>
