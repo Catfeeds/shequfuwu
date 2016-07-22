@@ -1510,6 +1510,12 @@ select {
     font-size: 12px;
 }
 
+/*对订单的产品进行评价*/
+.order-list .commentedOrder {
+    font-size: 12px;
+    color: #9FAFD1;
+}
+
 .order-list .order-item-price {
     width: 10%
 }
