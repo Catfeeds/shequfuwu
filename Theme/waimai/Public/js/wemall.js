@@ -170,7 +170,7 @@ function areaShops(pageIndex) {
                     uploadsUrl: data.uploadsUrl,
                     imageUrl: data.imageUrl
                 };
-
+                alert(res);
                 html = template("shopItems", dataSending);
             }else{
                 html='已经没有更多信息了:)';
