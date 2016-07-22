@@ -1,8 +1,15 @@
 {{each shopes as value index}}
-<a class="grst-block" onclick="openTHisShop('{{value.id}}')"><img class="grst-logo"
-                                                                  style="opacity: 1; transition: opacity 0.5s;"
-                                                                  alt="{{value.name}}"
-                                                                  src="{{uploadsUrl + value.savepath+ value.savename}}">
+<a class="grst-block" onclick="openTHisShop('{{value.id}}')">
+    <img class="grst-logo"
+         style="opacity: 1; transition: opacity 0.5s;"
+         alt="{{value.name}}"
+
+         {{if value.savepath && value.savename }}
+            src="{{uploadsUrl + value.savepath+ value.savename}}"
+         {{else}}
+            src="{{uploadsUrl}}defaultshopimage.png"
+         {{/if}}
+    >
     <div class="grst-detail">
         <div class="grst-name"><span class="ng-binding">{{value.name}}</span>
             {{if value.km }}
