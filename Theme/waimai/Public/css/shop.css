@@ -356,30 +356,3 @@ span.icon-pay {
 .icon-hit {
     background-color: #16aad8;
 }
-
-.moreinfo-loader {
-    width: 80%;
-    margin: 0px auto;
-    padding: 0 0 15px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.moreinfo-loader span {
-    display: inline-block;
-    margin-left: 8px;
-    font-size: 12px;
-    line-height: 16px;
-    color: #2c2c2c;
-    text-decoration: underline
-}
-
-.ico-shop {
-    background-repeat: no-repeat;
-    display: inline-block;
-    background-image: url('../image/icons-sa1abdf490c.png');
-    background-size: 45px 230.5px;
-    background-position: 0 0;
-    height: 15px;
-    width: 15px
-}
