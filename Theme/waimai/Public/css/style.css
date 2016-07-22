@@ -1762,7 +1762,7 @@ select {
     margin-left: 20px;
 }
 
-.history-loader {
+.moreinfo-loader {
     width: 80%;
     margin: 0px auto;
     padding: 0 0 15px;
@@ -1770,7 +1770,7 @@ select {
     text-align: center;
 }
 
-.history-loader span {
+.moreinfo-loader span {
     display: inline-block;
     margin-left: 8px;
     font-size: 12px;

@@ -29,7 +29,7 @@
                         <option value="济南市">济南</option>
                     </select>
                 </div>
-                <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_cell_bd weui_cell_primary" style="padding-left: 0;">
                     <input class="pi_input" placeholder="请输入店铺名称" style="">
                     <span class="pi_sousuo2" style="" onclick="areaShops(1);">搜索</span>
                 </div>
@@ -41,10 +41,11 @@
         <i class="iconfont" style="color:A9A9A9;">&#xe600;</i>
         <span id="pi_address" style=""></span>
     </div>
-
     <div class="shop-list" id="mod-desc">
-
-
+    </div>
+    <div class="moreinfo-loader">
+        <i class="ico ico-shop"></i>
+        <span>点击查看更多</span>
     </div>
 </div>
 <div id="page_tag_load"><img src="__IMG__/ajax-loader.gif" alt="loader"></div>
@@ -124,6 +125,15 @@
 
         areaShops(1);
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var lazyNum = 1;
+        $(".moreinfo-loader").on("click", function () {
+            lazyNum++;
+            areaShops(lazyNum);
+        });
+    });
 </script>
 
 </body>

@@ -162,15 +162,21 @@ function areaShops(pageIndex) {
             pageIndex: pageIndex,
         },
         success: function (res) {
-            var dataSending = {
-                shopes: res,
-                jsData: data,
-                uploadsUrl: data.uploadsUrl,
-                imageUrl: data.imageUrl
-            };
+            var html='';
+            if(res){
+                var dataSending = {
+                    shopes: res,
+                    jsData: data,
+                    uploadsUrl: data.uploadsUrl,
+                    imageUrl: data.imageUrl
+                };
 
-            var html = template("shopItems", dataSending);
-            $('#mod-desc').html(html);
+                html = template("shopItems", dataSending);
+            }else{
+                html='已经没有更多信息了:)';
+            }
+
+            $('#mod-desc').append(html);
         },
         beforeSend: function () {
             $('#page_tag_load').show();
