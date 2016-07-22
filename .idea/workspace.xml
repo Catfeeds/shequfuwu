@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/orderItems.html" afterPath="$PROJECT_DIR$/Theme/waimai/orderItems.html" />
     </list>
     <ignored path="src.iws" />
@@ -295,8 +291,8 @@
       <file leaf-file-name="orderItems.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+            <state relative-caret-position="260">
+              <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#li#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#!!top" expanded="true" />
@@ -1304,7 +1300,7 @@
       <workItem from="1468977272638" duration="6148000" />
       <workItem from="1468997072533" duration="23013000" />
       <workItem from="1469077164882" duration="20000" />
-      <workItem from="1469085327764" duration="24242000" />
+      <workItem from="1469085327764" duration="24434000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1317,7 +1313,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="363674000" />
+    <option name="totallyTimeSpent" value="363866000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -1809,8 +1805,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        <state relative-caret-position="260">
+          <caret line="31" column="45" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#li#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#!!top" expanded="true" />
