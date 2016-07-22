@@ -27,7 +27,7 @@ class BizController
         $pageIndex= I('pageIndex');
         $itemCountPerPage= C('APP_ITEM_COUNT_PER_PAGE');
         if(empty($itemCountPerPage)){
-            $itemCountPerPage= 5;
+            $itemCountPerPage= 10;
         }
 
         $data= "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage";
