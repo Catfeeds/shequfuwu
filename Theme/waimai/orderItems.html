@@ -27,12 +27,12 @@
     <div class="order-list" id="item-order-list">
         <ul>
             {{each value.detail as skuItem index}}
-            <li><span class="order-item-name">{{skuItem.name}} {{sku}}</span>
+            <li><span class="order-item-name">{{skuItem.name}} </span>
                 {{if value.pay_status== 1 }}
                 {{if skuItem.commented== 1 }}
-                <span class="commentOrder" onclick="commentOrder({{skuItem.id}})">评价</span>
-                {{else}}
                 <span class="commentedOrder">已评价</span>
+                {{else}}
+                <span class="commentOrder" onclick="commentOrder({{skuItem.id}})">评价</span>
                 {{/if}}
                 {{/if}}
                 <span class="order-item-price">￥{{skuItem.price}}</span>
