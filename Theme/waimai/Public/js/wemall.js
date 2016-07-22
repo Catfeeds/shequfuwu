@@ -141,7 +141,10 @@ function showShopInfo() {
     tabTmpl("show-shopinfo");
 }
 
-
+/**
+ * 本地商城
+ * @param pageIndex
+ */
 function areaShops(pageIndex) {
     var name = $('.pi_input').val();
     var category = ''; //TODO
