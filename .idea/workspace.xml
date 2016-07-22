@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/shopItems.html" afterPath="$PROJECT_DIR$/Theme/waimai/shopItems.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" afterPath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BizController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BizController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+            <state relative-caret-position="253">
+              <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -58,7 +57,7 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-207">
+            <state relative-caret-position="33">
               <caret line="145" column="36" selection-start-line="145" selection-start-column="36" selection-end-line="145" selection-end-column="36" />
               <folding>
                 <marker date="1469103814285" expanded="true" signature="17966:17993" ph="..." />
@@ -70,7 +69,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shopItems.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shopItems.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItems.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -252,10 +251,10 @@
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/ViewLink.class.php" />
-        <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_areashops.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
         <option value="$PROJECT_DIR$/Theme/waimai/shopItems.html" />
+        <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
       </list>
     </option>
   </component>
@@ -275,10 +274,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-7" />
     <option name="width" value="1378" />
-    <option name="height" value="744" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -1166,7 +1164,7 @@
       <workItem from="1468977272638" duration="6148000" />
       <workItem from="1468997072533" duration="23013000" />
       <workItem from="1469077164882" duration="20000" />
-      <workItem from="1469085327764" duration="9482000" />
+      <workItem from="1469085327764" duration="10784000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1179,10 +1177,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="348914000" />
+    <option name="totallyTimeSpent" value="350216000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18181819" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1610,14 +1608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_areashops.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1626,9 +1616,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItems.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207">
+        <state relative-caret-position="33">
           <caret line="145" column="36" selection-start-line="145" selection-start-column="36" selection-end-line="145" selection-end-column="36" />
           <folding>
             <marker date="1469103814285" expanded="true" signature="17966:17993" ph="..." />
@@ -1639,10 +1637,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItems.html">
+    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="253">
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
           <folding />
         </state>
       </provider>
