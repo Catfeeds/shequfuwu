@@ -165,18 +165,17 @@ function areaShops(pageIndex) {
             pageIndex: pageIndex,
         },
         success: function (res) {
-            var html='';
-            if(res){
+            var html = '';
+            if (res == null || res == "") {
+                html = '已经没有更多信息了:)';
+            } else {
                 var dataSending = {
                     shopes: res,
                     jsData: data,
                     uploadsUrl: data.uploadsUrl,
                     imageUrl: data.imageUrl
                 };
-                alert(res);
                 html = template("shopItems", dataSending);
-            }else{
-                html='已经没有更多信息了:)';
             }
 
             $('#mod-desc').append(html);
