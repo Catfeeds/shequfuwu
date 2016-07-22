@@ -2,9 +2,10 @@
 namespace General\Controller;
 
 use Common\Model\BizHelper;
-use Common\Model\OrderViewMate;
+use Common\Model\ViewLink;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 /**
@@ -20,20 +21,21 @@ class BizController
         dump('welcome');
     }
 
-    public function getAreaShops(){
+    public function getAreaShops()
+    {
         $shopName = I('name');
         $cityName = I('city');
-        $shopCategory= I('category');
-        $pageIndex= I('pageIndex');
-        $itemCountPerPage= C('APP_ITEM_COUNT_PER_PAGE');
-        if(empty($itemCountPerPage)){
-            $itemCountPerPage= 10;
+        $shopCategory = I('category');
+        $pageIndex = I('pageIndex');
+        $itemCountPerPage = C('APP_ITEM_COUNT_PER_PAGE');
+        if (empty($itemCountPerPage)) {
+            $itemCountPerPage = 10;
         }
 
-        $data= "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage";
-        CommonLoger::log('地区商城参数',$data);
+        $data = "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage";
+        CommonLoger::log('地区商城参数', $data);
 
-        $result = BizHelper::getAreaShops($cityName,$shopName, $shopCategory, $pageIndex, $itemCountPerPage);
+        $result = BizHelper::getAreaShops($cityName, $shopName, $shopCategory, $pageIndex, $itemCountPerPage);
         WebHelper::serverReturn($result);
     }
 
@@ -73,7 +75,7 @@ class BizController
 
     public function getOrders($userId = 802, $reOrgnize = false)
     {
-        $mate = new OrderViewMate();
+        $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
         $result = $mate->select(array("user_id" => $userId, "status" => array("gt", -1)));
         if ($reOrgnize) {
             $orderCount = sizeof($result);

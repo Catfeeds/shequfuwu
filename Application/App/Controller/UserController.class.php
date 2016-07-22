@@ -2,9 +2,10 @@
 namespace App\Controller;
 
 use Common\Model\BizHelper;
-use Common\Model\OrderViewMate;
+use Common\Model\ViewLink;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class UserController extends BaseController
@@ -30,13 +31,12 @@ class UserController extends BaseController
                 $pageIndex = 1;
             }
 
-
             $itemCountPerPage = C('APP_ITEM_COUNT_PER_PAGE');
             if (empty($itemCountPerPage)) {
                 $itemCountPerPage = 10;
             }
 
-            $mate = new OrderViewMate();
+            $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
             $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)), true, '', $pageIndex, $itemCountPerPage);
             if ($result) {
                 $orderCount = sizeof($result);

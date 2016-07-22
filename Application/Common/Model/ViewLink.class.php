@@ -30,6 +30,27 @@ class ViewLink
         );
     }
 
+    public static function getOrder_OrderContact_OrderDetail_Shop()
+    {
+        return array(
+            'OrderContact' => array(
+                'mapping_type' => ViewMate::HAS_ONE,
+                'mapping_name' => 'contact',
+                'foreign_key' => 'order_id',//关联id
+            ),
+            'OrderDetail' => array(
+                'mapping_type' => ViewMate::HAS_MANY,
+                'mapping_name' => 'detail',
+                'foreign_key' => 'order_id',
+            ),
+            'Shop' => array(
+                'mapping_type' => ViewMate::BELONGS_TO,
+                'mapping_name' => 'shop',
+                'foreign_key' => 'shop_id',//关联id
+            ),
+        );
+    }
+
 
 //    public static function getShop_File(){
 //        return array(

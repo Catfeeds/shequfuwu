@@ -11,6 +11,7 @@ namespace Home\Controller;
 
 use Common\Model\BizHelper;
 use Common\Model\OrderViewMate;
+use Common\Model\ViewLink;
 use Common\Model\WechatBiz;
 use Think\Controller;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
@@ -353,7 +354,7 @@ class FooController extends Controller
         //dump($result);
 
 
-        $mate = new OrderViewMate();
+        $mate = new ViewMate('order',ViewLink::getOrder_OrderContact_OrderDetail_Shop());
         //$result= $mate->get(82);
         $result = $mate->select(array("user_id" => $userID, "status" => array("gt", -1)));
 

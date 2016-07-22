@@ -167,7 +167,7 @@ function areaShops(pageIndex) {
         success: function (res) {
             var html = '';
             if (res == null || res == "") {
-                html = '已经没有更多信息了:)';
+                html = '已经没有更多信息了:)<br/>';
             } else {
                 var dataSending = {
                     shopes: res,
@@ -1382,6 +1382,7 @@ function loadOrder(pageIndex) {
 
                 if (res.order != undefined) {
                     var json = eval(res.order);
+                    var html = '';
 
                     if (json.length != 0) {
                         $('.myOrderList').show();
@@ -1390,10 +1391,12 @@ function loadOrder(pageIndex) {
                             jsData: data,
                             systemConfig: eval(res.systemConfig),
                         };
-
-                        var html = template("orderItems", dataSending);
-                        $("#items-order-result-list>ul").append(html);
+                        html = template("orderItems", dataSending);
+                    } else {
+                        html = "已经没有更多信息了:)<br/>";
                     }
+
+                    $("#items-order-result-list>ul").append(html);
                 }
             }
         },
