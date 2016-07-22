@@ -34,7 +34,6 @@ class BizController
         CommonLoger::log('地区商城参数',$data);
 
         $result = BizHelper::getAreaShops($cityName,$shopName, $shopCategory, $pageIndex, $itemCountPerPage);
-        //CommonLoger::log('getproducts',json_encode($result));
         WebHelper::serverReturn($result);
     }
 
