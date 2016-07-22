@@ -1374,7 +1374,7 @@
       <workItem from="1468977272638" duration="6148000" />
       <workItem from="1468997072533" duration="23013000" />
       <workItem from="1469077164882" duration="20000" />
-      <workItem from="1469085327764" duration="17047000" />
+      <workItem from="1469085327764" duration="17212000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1387,7 +1387,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="356479000" />
+    <option name="totallyTimeSpent" value="356644000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
