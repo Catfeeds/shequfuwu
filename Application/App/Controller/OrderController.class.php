@@ -177,12 +177,12 @@ class OrderController extends BaseController
         $orderDetail = D("OrderDetail")->get(array("id" => I("post.id")));
         $user = D("User")->get(array("id" => session("userId")), true);
 
-        if ($orderDetail["remark"] == 1) {
+        if ($orderDetail["commented"] == 1) {
             $data["msg"] = "您已经评价过了";
         } else {
             $condition = array();
             $condition["id"] = I("post.id");
-            $condition["remark"] = 1;
+            $condition["commented"] = 1;
             D("OrderDetail")->save($condition);
 
             $data1 = array();
