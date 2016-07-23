@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Controller;
 
+use Common\Model\ViewLink;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 
@@ -8,15 +9,7 @@ class ShopController extends BaseController
 {
     private function getCategoryViewMate()
     {
-        $link = array(
-            'File' => array(
-                'mapping_type' => ViewMate::BELONGS_TO,
-                'mapping_name' => 'file',
-                'foreign_key' => 'file_id',//关联id
-                'as_fields' => 'savename:savename,savepath:savepath',
-            ),
-        );
-        $categoryMate = new ViewMate('shopCategory', $link);
+        $categoryMate = new ViewMate('shopCategory', ViewLink::getCommon_File());
         return $categoryMate;
     }
 

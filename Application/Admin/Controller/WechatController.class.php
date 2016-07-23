@@ -5,7 +5,6 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
-use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class WechatController extends Controller
@@ -89,8 +88,7 @@ class WechatController extends Controller
                 self::$weObj->news($newsArray)->reply();
                 break;
             case 'menu_hdyzx'://活动与资讯
-                $openId = self::$revData['FromUserName'];
-                $newsArray = self::generateArticlesResponse($openId);
+                $newsArray = self::generateArticlesResponse();
                 self::$weObj->news($newsArray)->reply();
                 break;
             default:
@@ -160,12 +158,12 @@ class WechatController extends Controller
         return $newsArray;
     }
 
-    private function generateArticlesResponse($openId)
+    private function generateArticlesResponse()
     {
-        $articleMate = new ViewMate('artical');
+        $articleMate = new ModelMate('artical');
         $where = array();
         $where['shop_id'] = 0; //仅展现平台发布的信息
-        $articles = $articleMate->select($where, true, "", 0, 0, 10);
+        $articles = $articleMate->select($where, "", 0, 0, 10);
 
         $newsArray = array();
         $newsCover = array(

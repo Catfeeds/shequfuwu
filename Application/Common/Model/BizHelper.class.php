@@ -223,22 +223,7 @@ class BizHelper
             $shopes = GeoHelper::rankDistance($shopLat, $shopLng, $shoplist);
             return $shopes;
         } else {
-            $link = array(
-                'Shop' => array(
-                    'mapping_type' => ViewMate::BELONGS_TO,
-                    'mapping_name' => 'shop',
-                    'foreign_key' => 'shop_id',//关联id
-                    //'as_fields' => 'name:shopname',
-                ),
-                'File' => array(
-                    'mapping_type' => ViewMate::BELONGS_TO,
-                    'mapping_name' => 'file',
-                    'foreign_key' => 'file_id',//关联id
-                    'as_fields' => 'savename:savename,savepath:savepath',
-                ),
-            );
-
-            $mate = new ViewMate('product', $link);
+            $mate = new ViewMate('product', ViewLink::getProduct_Shop_File());
 
             $map['status'] = 1;
             $map['name'] = array('like', "%$name%");//搜索

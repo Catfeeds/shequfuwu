@@ -243,15 +243,7 @@ class FooController extends Controller
 
     public function viewmodelop()
     {
-        $link = array(
-            'File' => array(
-                'mapping_type' => ViewMate::BELONGS_TO,
-                'mapping_name' => 'file',
-                'foreign_key' => 'file_id',//关联id
-                'as_fields' => 'savename:savename,savepath:savepath',
-            ),
-        );
-        $viewMate = new ViewMate('menu', $link);
+        $viewMate = new ViewMate('menu', ViewLink::getCommon_File());
 
         $viewData = $viewMate->get(100, 'id', true);
         dump($viewData);

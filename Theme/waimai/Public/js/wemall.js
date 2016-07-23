@@ -917,8 +917,15 @@ function submitOrder() {
     var note = $('#note').val();
     var deliveryTime = $('#deliveryTime').val();
     var shopId = get("shopId");
-    //alert('shopId'+get("shopId"));
-    // alert('shopid'+get("shopid"));
+
+    if (payment == -1) {
+        alert("请选择支付方式!");
+        return;
+    }
+    if (name.length == 0 || phone.length == 0 || address.length == 0) {
+        alert("请核对输入的信息!");
+        return;
+    }
 
     var freights = data.config.freight;
     var contact = {
@@ -946,14 +953,6 @@ function submitOrder() {
         discount: discount,
     }
 
-    if (payment == -1) {
-        alert("请选择支付方式!");
-        return;
-    }
-    if (name.length == 0 || phone.length == 0 || address.length == 0) {
-        alert("请核对输入的信息!");
-        return;
-    }
     submitFlag = false;
     $.ajax({
         type: "post",

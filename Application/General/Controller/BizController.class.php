@@ -86,4 +86,13 @@ class BizController
 
         WebHelper::serverReturn($result);
     }
+
+    public function getOrder($orderId=84){
+        $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
+        $order =$mate->get($orderId);//
+        //$order = D("Order")->get(array("id" => $orderId), true);
+        WebHelper::serverReturn($order,'',JSON_UNESCAPED_UNICODE);
+    }
+
+
 }
