@@ -9,6 +9,7 @@
 namespace Home\Controller;
 
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\OrderViewMate;
 use Common\Model\ViewLink;
@@ -19,6 +20,7 @@ use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
+use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -406,5 +408,10 @@ class FooController extends Controller
     public function getAreaShopsop($city = '枣庄市')
     {
         dump(BizHelper::getAreaShops($city, '', 0, 1, 3));
+    }
+
+    public function constop(){
+        $consts= BizConst::getConsts();
+        dump($consts);
     }
 }

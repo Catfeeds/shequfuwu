@@ -79,7 +79,7 @@ class OrderController extends BaseController
         }
         //add order
         $order ["user_id"] = session("userId");
-        $order ["orderid"] = BizHelper::generateOrderNo($order['shop_id']); //date("ymdhis") . mt_rand(1, 9);
+        $order ["orderid"] = BizHelper::generateOrderNo($order['shop_id']);
         if ($payFlag) {
             $order ["pay_status"] = 1;
         } else {

@@ -7,16 +7,10 @@ use Vendor\Hiland\Utils\DataModel\ViewMate;
 
 class ShopController extends BaseController
 {
-    private function getCategoryViewMate()
-    {
-        $categoryMate = new ViewMate('shopCategory', ViewLink::getCommon_File());
-        return $categoryMate;
-    }
-
     public function categoryList()
     {
         cookie("prevUrl", U("Admin/Shop/categoryList"));
-        $categoryMate = self::getCategoryViewMate();
+        $categoryMate = new ViewMate('shopCategory', ViewLink::getCommon_File());
         $categoryList = $categoryMate->select();
         $this->assign("categoryList", $categoryList);
         $this->display();
@@ -24,7 +18,7 @@ class ShopController extends BaseController
 
     public function category($id = 0)
     {
-        $categoryMate = self::getCategoryViewMate();
+        $categoryMate = new ViewMate('shopCategory', ViewLink::getCommon_File());
         
         if (IS_POST) {
             $data = I("post.");
