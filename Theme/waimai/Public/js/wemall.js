@@ -1385,13 +1385,9 @@ function loadOrder(pageIndex) {
 
                     if (json.length != 0) {
                         $('.myOrderList').show();
-                        var dataSending = {
-                            orders: json,
-                            jsData: data,
-                            systemConfig: eval(res.systemConfig),
-                        };
 
-                        template.helper("orderStatusFormat",function(status){
+
+                        template.helper("orderStatusFormat",function(status,mixed){
                             var result= '';
                             if(status==-1){
                                 result= '已取消';
@@ -1401,6 +1397,13 @@ function loadOrder(pageIndex) {
 
                              return result;
                         });
+
+                        var dataSending = {
+                            orders: json,
+                            jsData: data,
+                            systemConfig: eval(res.systemConfig),
+                        };
+
                         html = template("orderItems", dataSending);
                     } else {
                         html = "已经没有更多信息了:)<br/>";
