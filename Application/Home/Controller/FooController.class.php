@@ -20,7 +20,6 @@ use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
-use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -348,7 +347,7 @@ class FooController extends Controller
         //dump($result);
 
 
-        $mate = new ViewMate('order',ViewLink::getOrder_OrderContact_OrderDetail_Shop());
+        $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
         //$result= $mate->get(82);
         $result = $mate->select(array("user_id" => $userID, "status" => array("gt", -1)));
 
@@ -410,8 +409,17 @@ class FooController extends Controller
         dump(BizHelper::getAreaShops($city, '', 0, 1, 3));
     }
 
-    public function constop(){
-        $consts= BizConst::getConsts();
+    public function constop($prefix = '', $withText = false)
+    {
+        $consts = BizConst::getConsts($prefix, $withText);
         dump($consts);
+
+        $constName = BizConst::getConstName('ORDER_STATUS_', 1);
+        dump($constName);
+        $constText = BizConst::getConstText('ORDER_STATUS_', 1);
+        dump($constText);
+
+        $constArray= BizConst::getConstArray('ORDER_STATUS_');
+        dump($constArray);
     }
 }
