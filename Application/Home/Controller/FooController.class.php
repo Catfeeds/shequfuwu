@@ -18,6 +18,7 @@ use Think\Controller;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
@@ -419,7 +420,26 @@ class FooController extends Controller
         $constText = BizConst::getConstText('ORDER_STATUS_', 1);
         dump($constText);
 
-        $constArray= BizConst::getConstArray('ORDER_STATUS_');
+        $constArray = BizConst::getConstArray('ORDER_STATUS_');
         dump($constArray);
     }
+
+    public function enumop()
+    {
+        //dump('ssssss');
+        dump(BizConst::ORDER_PAYSTATUS_PAID);
+        dump(MyEnum::HI);
+        dump(new MyEnum(MyEnum::HI));
+        dump(new MyEnum("Hi"));
+    }
 }
+
+
+class MyEnum extends Enum
+{
+    const HI = "Hi";
+    const BY = "By";
+    const NUMBER = 1;
+    const __default = self::BY;
+}
+

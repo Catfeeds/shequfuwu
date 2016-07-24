@@ -1390,6 +1390,17 @@ function loadOrder(pageIndex) {
                             jsData: data,
                             systemConfig: eval(res.systemConfig),
                         };
+
+                        template.helper("orderStatusFormat",function(status){
+                            var result= '';
+                            if(status==-1){
+                                result= '已取消';
+                            }else{
+                                result= '未设置';
+                            }
+
+                             return result;
+                        });
                         html = template("orderItems", dataSending);
                     } else {
                         html = "已经没有更多信息了:)<br/>";

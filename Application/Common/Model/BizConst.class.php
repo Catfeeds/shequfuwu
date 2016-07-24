@@ -37,6 +37,4 @@ class BizConst extends ConstMate
     const ORDER_PAYSTATUS_UNPAY_TEXT = "未付款";
     const ORDER_PAYSTATUS_PAID = 1;
     const ORDER_PAYSTATUS_PAID_TEXT = "已付款";
-
-
 }
