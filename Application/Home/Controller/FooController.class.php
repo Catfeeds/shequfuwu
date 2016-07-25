@@ -437,6 +437,11 @@ class FooController extends Controller
         dump($constArray);
     }
 
+    public function appop(){
+        dump(__APP__);
+        dump(_PHP_FILE_);
+    }
+
     public function enumop()
     {
         //dump('ssssss');

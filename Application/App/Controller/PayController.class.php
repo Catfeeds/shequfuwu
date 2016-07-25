@@ -70,7 +70,8 @@ class PayController extends BaseController
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
         $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
 
-        $notifyUrl= $this->appUrl . "/mm/index.php/App/Pay/wxNotify";//$this->appUrl . U("App/Pay/wxNotify");
+        //$notifyUrl= $this->appUrl . U("App/Pay/wxNotify");
+        $notifyUrl= $this->appUrl . _PHP_FILE_."/App/Pay/wxNotify";
         CommonLoger::log('notify_url',$notifyUrl);
         $unifiedOrder->setParameter("notify_url", $notifyUrl);//通知地址
         $unifiedOrder->setParameter("trade_type", "JSAPI");//交易类型
@@ -123,7 +124,9 @@ class PayController extends BaseController
 
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
         $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
-        $unifiedOrder->setParameter("notify_url", $this->appUrl . U("App/Pay/wxNotify"));//通知地址
+
+        $notifyUrl= $this->appUrl . _PHP_FILE_."/App/Pay/wxNotify";
+        $unifiedOrder->setParameter("notify_url", $notifyUrl);//通知地址
         $unifiedOrder->setParameter("trade_type", "NATIVE");//交易类型
         //非必填参数，商户可根据实际情况选填
         //$unifiedOrder->setParameter("sub_mch_id","XXXX");//子商户号  
@@ -167,7 +170,7 @@ class PayController extends BaseController
      */
     public function wxNotify()
     {
-        CommonLoger::log('notifing','ssssssssssss');
+        //CommonLoger::log('notifing','ssssssssssss');
         Vendor("WxPayPubHelper.WxPayPubHelper");
         Vendor("WxPayPubHelper.log_");
 
@@ -179,7 +182,7 @@ class PayController extends BaseController
         $xml = file_get_contents("php://input");//$GLOBALS['HTTP_RAW_POST_DATA'];
         $notify->saveData($xml);
 
-        CommonLoger::log('notifyData',$xml);
+        //CommonLoger::log('notifyData',$xml);
 
         //验证签名，并回应微信。
         //对后台通知交互时，如果微信收到商户的应答不是成功或超时，微信认为通知失败，
