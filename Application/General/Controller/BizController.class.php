@@ -1,6 +1,7 @@
 <?php
 namespace General\Controller;
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
@@ -73,6 +74,11 @@ class BizController
         WebHelper::serverReturn($result);
     }
 
+    public function getConstText($prefix, $constValue)
+    {
+        WebHelper::serverReturn(BizConst::getConstText($prefix, $constValue));
+    }
+
     public function getOrders($userId = 802, $reOrgnize = false)
     {
         $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
@@ -87,11 +93,12 @@ class BizController
         WebHelper::serverReturn($result);
     }
 
-    public function getOrder($orderId=84){
+    public function getOrder($orderId = 84)
+    {
         $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
-        $order =$mate->get($orderId);//
+        $order = $mate->get($orderId);//
         //$order = D("Order")->get(array("id" => $orderId), true);
-        WebHelper::serverReturn($order,'',JSON_UNESCAPED_UNICODE);
+        WebHelper::serverReturn($order, '', JSON_UNESCAPED_UNICODE);
     }
 
 

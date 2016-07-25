@@ -1362,6 +1362,20 @@ function openUser(o) {
     loadOrder(1);
 }
 
+function getBizConstText(prefix, constValue) {
+    $.ajax({
+        type: "get",
+        url: data.baseUrl + "/General/Biz/getConstText",
+        data: {
+            prefix: prefix,
+            constValue: constValue,
+        },
+        success: function (res) {
+            return res;
+        }
+    });
+}
+
 function loadOrder(pageIndex) {
     $.ajax({
         type: "get",
@@ -1386,16 +1400,16 @@ function loadOrder(pageIndex) {
                     if (json.length != 0) {
                         $('.myOrderList').show();
 
+                        template.helper("orderStatusFormat", function (status, mixed) {
+                            // var result = '';
+                            // if (status == -1) {
+                            //     result = '已取消';
+                            // } else {
+                            //     result = '未设置';
+                            // }
+                            // return result;
 
-                        template.helper("orderStatusFormat",function(status,mixed){
-                            var result= '';
-                            if(status==-1){
-                                result= '已取消';
-                            }else{
-                                result= '未设置';
-                            }
-
-                             return result;
+                            return getBizConstText("ORDER_STATUS_",status);
                         });
 
                         var dataSending = {
