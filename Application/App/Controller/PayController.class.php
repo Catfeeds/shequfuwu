@@ -176,7 +176,7 @@ class PayController extends BaseController
         $notify = new \Notify_pub($wxConfig["appid"], $wxConfig["appsecret"], $wxConfig["mchid"], $wxConfig["key"]);
 
         //存储微信的回调
-        $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
+        $xml = file_get_contents("php://input");//$GLOBALS['HTTP_RAW_POST_DATA'];
         $notify->saveData($xml);
 
         CommonLoger::log('notifyData',$xml);
