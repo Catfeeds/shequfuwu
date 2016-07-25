@@ -88,7 +88,9 @@ class PayController extends BaseController
         $jsApiParameters = $jsApi->getParameters();
         // echo $jsApiParameters;
         $this->assign("jsApiParameters", $jsApiParameters);
-        $this->assign("url", U("App/Index/index#/order/") . I("get.id"));
+
+        $shopId= $order['shop_id'];
+        $this->assign("url", U("App/Index/index/shopId/$shopId#/order/") . I("get.id"));
         $this->display();
     }
 
@@ -247,37 +249,6 @@ class PayController extends BaseController
     }
 
     /**
-     * @return array
-     */
-    public function alipayInit()
-    {
-        $alipay_config = D("Alipay")->get();
-        $config = array(
-            // 即时到账方式
-            'payment_type' => '1',
-            // 传输协议
-            'transport' => 'http',
-            // 编码方式
-            'input_charset' => strtolower('utf-8'),
-            // 签名方法
-            'sign_type' => strtoupper('MD5'),
-            // 支付完成异步通知调用地址
-            'notify_url' => $this->appUrl . U('App/Pay/alipayNotifyUrl'),
-            // 支付完成同步返回地址
-            'return_url' => $this->appUrl . U('App/Pay/alipayReturnUrl', array("id" => I("get.id"), "shop_id" => I("get.shop_id"))),
-            // 证书路径
-            'cacert' => DATA_PATH . 'cacert.pem',
-            // 支付宝商家 ID
-            'partner' => $alipay_config['partner'],
-            // 支付宝商家 KEY
-            'key' => $alipay_config['key'],
-            // 支付宝商家注册邮箱
-            'seller_email' => $alipay_config['alipayname']
-        );
-        return $config;
-    }
-
-    /**
      * @method get
      * id
      */
@@ -341,6 +312,37 @@ class PayController extends BaseController
         }
 
         $this->display();
+    }
+
+    /**
+     * @return array
+     */
+    public function alipayInit()
+    {
+        $alipay_config = D("Alipay")->get();
+        $config = array(
+            // 即时到账方式
+            'payment_type' => '1',
+            // 传输协议
+            'transport' => 'http',
+            // 编码方式
+            'input_charset' => strtolower('utf-8'),
+            // 签名方法
+            'sign_type' => strtoupper('MD5'),
+            // 支付完成异步通知调用地址
+            'notify_url' => $this->appUrl . U('App/Pay/alipayNotifyUrl'),
+            // 支付完成同步返回地址
+            'return_url' => $this->appUrl . U('App/Pay/alipayReturnUrl', array("id" => I("get.id"), "shop_id" => I("get.shop_id"))),
+            // 证书路径
+            'cacert' => DATA_PATH . 'cacert.pem',
+            // 支付宝商家 ID
+            'partner' => $alipay_config['partner'],
+            // 支付宝商家 KEY
+            'key' => $alipay_config['key'],
+            // 支付宝商家注册邮箱
+            'seller_email' => $alipay_config['alipayname']
+        );
+        return $config;
     }
 
     /**
