@@ -1362,12 +1362,14 @@ function openUser(o) {
 }
 
 function getBizConstText(prefix, constValue) {
-    console.log(data.bizConsts);
     var allConsts = eval(data.bizConsts);
     for(var item in allConsts){
-        console.log(item);
-        console.log(allConsts[item]);
+        if(item.indexOf(prefix)==0 && allConsts[item]== constValue){
+            return allConsts[item+"_TEXT"];
+        }
     }
+
+    return "";
 }
 
 function loadOrder(pageIndex) {
