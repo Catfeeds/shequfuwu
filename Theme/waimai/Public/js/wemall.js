@@ -1365,6 +1365,7 @@ function openUser(o) {
 function getBizConstText(prefix, constValue) {
     $.ajax({
         type: "get",
+        async:false,
         url: data.baseUrl + "/General/Biz/getConstText",
         data: {
             prefix: prefix,
