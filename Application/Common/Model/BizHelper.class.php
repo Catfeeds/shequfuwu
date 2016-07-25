@@ -289,6 +289,20 @@ class BizHelper
     {
         return date("Ymdhis") . "-$shopId-" . RandHelper::rand(3, 'NUMBER');
     }
+
+    public static function getPayTypeText($paymentValue)
+    {
+        $resultArray = BizConst::getConstArray("ORDER_PAYTYPE_");
+        $resultText = $resultArray[$paymentValue];
+        return $resultText;
+    }
+
+    public static function getPayStatusText($payStatusValue)
+    {
+        $resultArray = BizConst::getConstArray("ORDER_PAYSTATUS_");
+        $resultText = $resultArray[$payStatusValue];
+        return $resultText;
+    }
 }
 
 ?>

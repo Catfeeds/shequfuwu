@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 
@@ -28,36 +29,6 @@ class OrderController extends BaseController
         $this->ajaxReturn($order);
     }
 
-    private function updateUserMoney($userId, $money)
-    {
-        $user = D("User")->get(array("id" => $userId));
-        $balance = floatval($user["money"]) + floatval($money);
-        if ($balance >= 0) {
-            D("User")->save(array("id" => $userId, "money" => $balance));
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private function checkStore($cartdata)
-    {
-        $product = D("Product");
-        foreach ($cartdata as $key => $value) {
-            $result = $product->get(array("id" => $value["id"]));
-            if ($result["status"] == 0 || $result["status"] == -1) {
-                return false;
-            }
-
-            if ($result["store"] > 0) {
-                if (floatval($result["store"]) < floatval($value["num"])) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public function addOrder()
     {
         if (!$this->checkStore(I("post.cartData"))) {
@@ -81,11 +52,11 @@ class OrderController extends BaseController
         $order ["user_id"] = session("userId");
         $order ["orderid"] = BizHelper::generateOrderNo($order['shop_id']);
         if ($payFlag) {
-            $order ["pay_status"] = 1;
+            $order ["pay_status"] = BizConst::ORDER_PAYSTATUS_PAID;
         } else {
-            $order ["pay_status"] = 0;
+            $order ["pay_status"] = BizConst::ORDER_PAYSTATUS_UNPAY;
         }
-        $order ["status"] = 0;
+        $order ["status"] = BizConst::ORDER_STATUS_ORIGINAL;
 
         // $config = D("Config")->get();
         // $order ["freight"] = $config["freight"];
@@ -111,7 +82,7 @@ class OrderController extends BaseController
             $getProduct = $product->get(array("id" => $value["id"]));
             $detail["file_id"] = $getProduct["file_id"];
             //---添加内容---------------------------------------------
-            $detail["product_unit"]= $getProduct["unit"];
+            $detail["product_unit"] = $getProduct["unit"];
             //-------------------------------------------------------
             $scoreInc += floatval($getProduct["score"]);
 
@@ -141,19 +112,49 @@ class OrderController extends BaseController
         $order = D("Order")->get(array("id" => $order_id), true);
         request_by_fsockopen($this->appUrl . U("Admin/Wechat/sendTplMsgOrder"), array("user_id" => session("userId"), "order_id" => $order_id));
 
-        if ($order["payment"] == 1) {
+        if ($order["payment"] == BizConst::ORDER_PAYTYPE_WEIXIN) {
             $wxConfig = D("WxConfig")->get();
             if ($wxConfig["switch"] == 0) {
                 $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
             } else {
                 $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
-                $order["payUrlMent"] = 1;
+                $order["qrCodePay"] = 1;
             }
-        } elseif ($order["payment"] == 2) {
+        } elseif ($order["payment"] == BizConst::ORDER_PAYTYPE_ZHIFUBAO) {
             $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
         }
 
         $this->ajaxReturn($order);
+    }
+
+    private function checkStore($cartdata)
+    {
+        $product = D("Product");
+        foreach ($cartdata as $key => $value) {
+            $result = $product->get(array("id" => $value["id"]));
+            if ($result["status"] == 0 || $result["status"] == -1) {
+                return false;
+            }
+
+            if ($result["store"] > 0) {
+                if (floatval($result["store"]) < floatval($value["num"])) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private function updateUserMoney($userId, $money)
+    {
+        $user = D("User")->get(array("id" => $userId));
+        $balance = floatval($user["money"]) + floatval($money);
+        if ($balance >= 0) {
+            D("User")->save(array("id" => $userId, "money" => $balance));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function updateOrder()
@@ -167,9 +168,10 @@ class OrderController extends BaseController
      * @param $status
      * @return bool|int
      */
-    public function setOrderStatus($id,$status){
-        $mate= new ModelMate('order');
-        return $mate->setValue($id,'status',$status);
+    public function setOrderStatus($id, $status)
+    {
+        $mate = new ModelMate('order');
+        return $mate->setValue($id, 'status', $status);
     }
 
     public function commentOrder()

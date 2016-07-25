@@ -48,26 +48,12 @@ class BizController
         $name = I('name');
         $shopCategory = I('shopCategory');
 
-        $lng = I("lng");
-        if (empty($lng)) {
-            $lng = '117.359';
-        }
-
-        $lat = I("lat");
-        if (empty($lat)) {
-            $lat = '34.8177';
-        }
+        $lng = I("lng",'117.359');
+        $lat = I("lat",'34.8177');
 
         //CommonLoger::log('weixin坐标', "lng:$lng-- lat:$lat");
-        $searchContentType = I('searchContentType');
-        if (empty($searchContentType)) {
-            $searchContentType = 'shop';
-        }
-
-        $distanceKM = I('distanceKM');
-        if (empty($distanceKM)) {
-            $distanceKM = 15;
-        }
+        $searchContentType = I('searchContentType','shop');
+        $distanceKM = I('distanceKM',15);
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
         //CommonLoger::log('getproducts',json_encode($result));

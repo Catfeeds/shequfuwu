@@ -420,10 +420,20 @@ class FooController extends Controller
         $constText = BizConst::getConstText('ORDER_STATUS_', 1);
         dump($constText);
 
+        dump("ORDER_STATUS_ - true---------------------------------");
         $constArray = BizConst::getConstArray('ORDER_STATUS_');
         dump($constArray);
 
+        dump("ORDER_STATUS_ - false---------------------------------");
         $constArray = BizConst::getConstArray('ORDER_STATUS_',false);
+        dump($constArray);
+
+        dump("all - true---------------------------------");
+        $constArray = BizConst::getConstArray('',true);
+        dump($constArray);
+
+        dump("all - false---------------------------------");
+        $constArray = BizConst::getConstArray('',false);
         dump($constArray);
     }
 

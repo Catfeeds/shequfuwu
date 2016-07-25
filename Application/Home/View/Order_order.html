@@ -50,10 +50,9 @@
                             <div class="col-sm-3">
                                 <select name="payment" class="form-control">
                                     <option value="-10">不选择支付方式</option>
-                                    <option value="0">账户支付</option>
-                                    <option value="1">微信支付</option>
-                                    <option value="2">支付宝支付</option>
-                                    <option value="3">货到付款</option>
+                                    <volist name="orderPayTypes" id="opt">
+                                        <option value="{$opt.value}">{$opt.text}</option>
+                                    </volist>
                                 </select>
                             </div>
 
@@ -142,12 +141,9 @@
                                 <th>店铺名称</th>
                                 <th>订单编号</th>
                                 <th>联系人</th>
-
-                                <th>价格</th>
-                                <th>优惠</th>
+                                <th>金额</th>
                                 <th>支付方式</th>
-                                <th>支付状态</th>
-                                <th>订单状态</th>
+                                <th>状态信息</th>
                                 <th>配送时间</th>
                                 <th>订单详情</th>
                                 <th>备注</th>
@@ -176,9 +172,11 @@
                                     <td class="hidden-xs">
                                         <span style="background-color: #dd4b39;"
                                               class="badge">{$order.totalprice}元</span>
-                                    </td>
-                                    <td class="hidden-xs">
-                                        {$order.discount}
+                                        <div>
+                                            <if condition="$order['discount'] GT 0">
+                                                已优惠{$order.discount}
+                                            </if>
+                                        </div>
                                     </td>
                                     <td class="hidden-xs">
                                         <volist name="orderPayTypes" id="opt">
@@ -188,26 +186,28 @@
                                         </volist>
                                     </td>
                                     <td class="hidden-xs">
-                                        <volist name="orderPayStatuses" id="ops">
-                                            <if condition="$order['pay_status'] EQ $ops['value']">
-                                                <if condition="$order['pay_status'] eq 0">
-                                                    <span style="color: red;">{$ops.text}</span>
-                                                    <else/>
-                                                    {$ops.text}
+                                        <div>
+                                            <volist name="orderPayStatuses" id="ops">
+                                                <if condition="$order['pay_status'] EQ $ops['value']">
+                                                    <if condition="$order['pay_status'] eq 0">
+                                                        <span style="color: red;">{$ops.text}</span>
+                                                        <else/>
+                                                        {$ops.text}
+                                                    </if>
                                                 </if>
-                                            </if>
-                                        </volist>
-                                    </td>
-                                    <td class="hidden-xs">
-                                        <volist name="orderStatuses" id="os">
-                                            <if condition="$order['status'] EQ $os['value']">
-                                                <if condition="$order['status'] eq 0">
-                                                    <span style="color: red;">{$os.text}</span>
-                                                    <else/>
-                                                    {$os.text}
+                                            </volist>
+                                        </div>
+                                        <div>
+                                            <volist name="orderStatuses" id="os">
+                                                <if condition="$order['status'] EQ $os['value']">
+                                                    <if condition="$order['status'] eq 0">
+                                                        <span style="color: red;">{$os.text}</span>
+                                                        <else/>
+                                                        {$os.text}
+                                                    </if>
                                                 </if>
-                                            </if>
-                                        </volist>
+                                            </volist>
+                                        </div>
                                     </td>
                                     <td class="hidden-xs">
                                         {$order.delivery_time}

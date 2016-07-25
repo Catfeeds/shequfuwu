@@ -1,42 +1,21 @@
 <div class="btn-group">
     <button type="button" class="btn btn-danger "
+            onclick="batchUrl('{:U(\'Home/Order/export\',array(\'status\'=>I(\'get.status\') , \'pay_status\'=>I(\'get.pay_status\') ,\'day\'=>I(\'get.day\')))}',false)">
+        导出选定订单
+    </button>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-danger "
             onclick="batchUrl('{:U(\'Home/Order/wxPrint\')}')">打印
     </button>
 </div>
-<div class="btn-group">
-    <button type="button" class="btn btn-danger "
-            onclick="batchUrl('{:U(\'Home/Order/update\',array(\'status\'=>1))}')">发货
-    </button>
-</div>
-<!--<div class="btn-group">-->
-<!--<button type="button" class="btn btn-danger "-->
-<!--onclick="batchUrl('{:U(\'Home/Order/update\',array(\'pay_status\'=>1))}')">-->
-<!--已支付-->
-<!--</button>-->
-<!--</div>-->
-<div class="btn-group">
-    <button type="button" class="btn btn-danger "
-            onclick="batchUrl('{:U(\'Home/Order/update\',array(\'status\'=>-1))}')">取消
-    </button>
-</div>
-<div class="btn-group">
-    <button type="button" class="btn btn-danger "
-            onclick="batchUrl('{:U(\'Home/Order/update\',array(\'status\'=>2))}')">已完成
-    </button>
-</div>
-<div class="btn-group">
-    <button type="button" class="btn btn-danger "
-            onclick="batchUrl('{:U(\'Home/Order/update\',array(\'status\'=>-2))}')">退货中
-    </button>
-</div>
-<div class="btn-group">
-    <button type="button" class="btn btn-danger "
-            onclick="batchUrl('{:U(\'Home/Order/update\',array(\'status\'=>-3))}')">已退货
-    </button>
-</div>
-<div class="btn-group">
-    <button type="button" class="btn btn-danger "
-            onclick="batchUrl('{:U(\'Home/Order/export\',array(\'status\'=>I(\'get.status\') , \'pay_status\'=>I(\'get.pay_status\') ,\'day\'=>I(\'get.day\')))}',false)">
-        导出订单
-    </button>
-</div>
+
+<volist name="orderStatuses" id="vo4os">
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger "
+                onclick="batchUrl('{:U(\'Home/Order/update\',array(\'status\'=>$vo4os[value]))}')">{$vo4os[text]}
+        </button>
+    </div>&nbsp;
+</volist>
+
+

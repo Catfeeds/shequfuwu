@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Controller;
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
@@ -413,10 +414,14 @@ class WechatController extends Controller
     {
         $this->init();
 
-        $template_id = $this->addTplMessageId("OPENTM201785396");
+        $template_id = $this->getTplMessageId("OPENTM201785396");
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
+        //TODO
+//        $paymentArray= BizConst::getConstArray("ORDER_PAYTYPE_");
+//        $paymentTEXT=$paymentArray[$order["payment"]];
+//        $order["payment"]= $paymentTEXT;
         switch ($order["payment"]) {
             case 0:
                 $order["payment"] = "账户支付";
@@ -482,17 +487,22 @@ class WechatController extends Controller
         $this->sendTplMessageOrderAdmin($order_id);
     }
 
-    public function addTplMessageId($id)
+    /**
+     * 获取微信模板消息的id
+     * @param $shortId
+     * @return mixed
+     */
+    public function getTplMessageId($shortId)
     {
         $this->init();
 
-        $tempMsg = D("WxTplmsg")->get(array("template_id_short" => $id));
+        $tempMsg = D("WxTplmsg")->get(array("template_id_short" => $shortId));
         if ($tempMsg) {
             $template_id = $tempMsg["template_id"];
         } else {
-            $template_id = self::$weObj->addTemplateMessage($id);
+            $template_id = self::$weObj->addTemplateMessage($shortId);
             if ($template_id) {
-                D("WxTplmsg")->addWxTplmsg(array("template_id_short" => $id, "template_id" => $template_id));
+                D("WxTplmsg")->addWxTplmsg(array("template_id_short" => $shortId, "template_id" => $template_id));
             }
         }
 
@@ -504,7 +514,7 @@ class WechatController extends Controller
         $this->init();
 
         $order = D("Order")->getOrder(array("id" => $order_id), true);
-        $template_id = $this->addTplMessageId("OPENTM201785396");
+        $template_id = $this->getTplMessageId("OPENTM201785396");
 
         switch ($order["payment"]) {
             case 0:
@@ -584,7 +594,7 @@ class WechatController extends Controller
     {
         $this->init();
 
-        $template_id = $this->addTplMessageId("OPENTM207791277");
+        $template_id = $this->getTplMessageId("OPENTM207791277");
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
@@ -620,7 +630,7 @@ class WechatController extends Controller
         $this->init();
 
         $order = D("Order")->get(array("id" => $order_id), true);
-        $template_id = $this->addTplMessageId("OPENTM207763419");
+        $template_id = $this->getTplMessageId("OPENTM207763419");
 
         $detail = "";
         foreach ($order["detail"] as $key => $value) {

@@ -902,9 +902,12 @@ function cartNext() {
 
     });
 }
-var submitFlag = true;
+
+/*订单可提交标志*/
+var submitEnableFlag = true;
+
 function submitOrder() {
-    if (submitFlag == false) {
+    if (submitEnableFlag == false) {
         alert("请不要重复操作!");
         return;
     }
@@ -953,7 +956,7 @@ function submitOrder() {
         discount: discount,
     }
 
-    submitFlag = false;
+    submitEnableFlag = false;
     $.ajax({
         type: "post",
         url: data.baseUrl + "/App/Order/addOrder",
@@ -999,17 +1002,17 @@ function submitOrder() {
                 payment = -1;
                 initProduct();
 
-                if (typeof res.payUrl != "undefined") {
-                    if (res.payUrlMent != 1) {
+                if (res.payUrl) {
+                    if (res.qrCodePay) {
+                        var html = template("qrcodePay-container", {qrcode: res.payUrl});
+                        $("#orderResult").append(html);
+                    } else {
                         layer.open({
                             content: '请稍后,正在打开在线支付...',
                             //shade: false,
                             style: 'border-radius: 3px;text-align: center;border:0;',
                         });
                         window.location.href = res.payUrl;
-                    } else {
-                        var html = template("qrcodePay-container", {qrcode: res.payUrl});
-                        $("#orderResult").append(html);
                     }
                 }
             } else {
@@ -1022,7 +1025,7 @@ function submitOrder() {
         },
         complete: function () {
             $('#page_tag_load').hide();
-            submitFlag = true;
+            submitEnableFlag = true;
         }
     });
 }
@@ -1363,9 +1366,9 @@ function openUser(o) {
 
 function getBizConstText(prefix, constValue) {
     var allConsts = eval(data.bizConsts);
-    for(var item in allConsts){
-        if(item.indexOf(prefix)==0 && allConsts[item]== constValue){
-            return allConsts[item+"_TEXT"];
+    for (var item in allConsts) {
+        if (item.indexOf(prefix) == 0 && allConsts[item] == constValue) {
+            return allConsts[item + "_TEXT"];
         }
     }
 

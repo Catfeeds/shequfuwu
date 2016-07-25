@@ -116,6 +116,16 @@ class OrderController extends BaseController
 
         $this->assign("orderPost", I("post."));
         $this->assign("orderList", $orderList);
+
+        $orderPayTypes= BizConst::getConstArray("ORDER_PAYTYPE_",false);
+        $this->assign('orderPayTypes', $orderPayTypes);
+
+        $orderStatuses= BizConst::getConstArray("ORDER_STATUS_",false);
+        $this->assign('orderStatuses', $orderStatuses);
+
+        $orderPayStatuses= BizConst::getConstArray("ORDER_PAYSTATUS_",false);
+        $this->assign('orderPayStatuses', $orderPayStatuses);
+
         $this->display("order");
     }
 
