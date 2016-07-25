@@ -1366,6 +1366,7 @@ function getBizConstText(prefix, constValue) {
     var allConsts = eval(data.bizConsts);
     for(var item in allConsts){
         console.log(item);
+        console.log(allConsts[item]);
     }
 }
 
