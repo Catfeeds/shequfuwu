@@ -70,7 +70,7 @@ class PayController extends BaseController
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
         $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
 
-        $notifyUrl= $this->appUrl . "/index.php/App/Pay/wxNotify";//$this->appUrl . U("App/Pay/wxNotify");
+        $notifyUrl= $this->appUrl . "/mm/index.php/App/Pay/wxNotify";//$this->appUrl . U("App/Pay/wxNotify");
         CommonLoger::log('notify_url',$notifyUrl);
         $unifiedOrder->setParameter("notify_url", $notifyUrl);//通知地址
         $unifiedOrder->setParameter("trade_type", "JSAPI");//交易类型
