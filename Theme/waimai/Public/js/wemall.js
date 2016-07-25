@@ -1362,18 +1362,11 @@ function openUser(o) {
 }
 
 function getBizConstText(prefix, constValue) {
-    $.ajax({
-        type: "get",
-        async:false,
-        url: data.baseUrl + "/General/Biz/getConstText",
-        data: {
-            prefix: prefix,
-            constValue: constValue,
-        },
-        success: function (res) {
-            return res;
-        }
-    });
+    console.log(data.bizConsts);
+    var allConsts = eval(data.bizConsts);
+    for(var item in allConsts){
+        console.log(item);
+    }
 }
 
 function loadOrder(pageIndex) {
@@ -1409,7 +1402,7 @@ function loadOrder(pageIndex) {
                             // }
                             // return result;
 
-                            return getBizConstText("ORDER_STATUS_",status);
+                            return getBizConstText("ORDER_STATUS_", status);
                         });
 
                         var dataSending = {

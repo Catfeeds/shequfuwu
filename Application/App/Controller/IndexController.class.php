@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 
+use Common\Model\BizConst;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
@@ -67,6 +68,9 @@ class IndexController extends BaseController
         //暂时先在base基类中实现
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
+
+        $bizConsts= BizConst::getConsts();
+        $this->assign("bizConsts",json_encode($bizConsts,JSON_UNESCAPED_SLASHES));
 
         if (APP_DEBUG) {
             $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');
