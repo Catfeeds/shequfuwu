@@ -32,9 +32,25 @@ class BizConst extends ConstMate
     const ORDER_STATUS_SENDING_TEXT = "正在配送";
     const ORDER_STATUS_DONE = 2;
     const ORDER_STATUS_DONE_TEXT = "已完成";
+    const ORDER_STATUS_BACKING = -2;
+    const ORDER_STATUS_BACKING_TEXT = "退货中";
+    const ORDER_STATUS_BACKED = -3;
+    const ORDER_STATUS_BACKED_TEXT = "已退货";
+    const ORDER_STATUS_ASKBACK = -4;
+    const ORDER_STATUS_ASKBACK_TEXT = "申请退货";
 
+    //----------------------------------------------------
     const ORDER_PAYSTATUS_UNPAY = 0;
     const ORDER_PAYSTATUS_UNPAY_TEXT = "未付款";
     const ORDER_PAYSTATUS_PAID = 1;
     const ORDER_PAYSTATUS_PAID_TEXT = "已付款";
+    //-----------------------------------------------------
+    const ORDER_PAYTYPE_LOCAL= 0;
+    const ORDER_PAYTYPE_LOCAL_TEXT= "账户支付";
+    const ORDER_PAYTYPE_WEIXIN= 1;
+    const ORDER_PAYTYPE_WEIXIN_TEXT= "微信支付";
+    const ORDER_PAYTYPE_ZHIFUBAO= 2;
+    const ORDER_PAYTYPE_ZHIFUBAO_TEXT= "支付宝支付";
+    const ORDER_PAYTYPE_FACE2FACE= 3;
+    const ORDER_PAYTYPE_FACE2FACE_TEXT= "货到付款";
 }

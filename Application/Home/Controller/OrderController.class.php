@@ -1,11 +1,13 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\BizConst;
+
 class OrderController extends BaseController
 {
     public function order()
     {
-        $num = 25;
+        $num = C('SYSTEM_ITEM_COUNT_PER_PAGE', null, 10);
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Order/order/page/$p"));
 
@@ -47,6 +49,15 @@ class OrderController extends BaseController
 
         $productList = D("Product")->getProductList(array("shop_id" => session("homeShopId")), true);
         $this->assign('productList', $productList);// 赋值分页输出
+
+        $orderPayTypes= BizConst::getConstArray("ORDER_PAYTYPE_",false);
+        $this->assign('orderPayTypes', $orderPayTypes);
+
+        $orderStatuses= BizConst::getConstArray("ORDER_STATUS_",false);
+        $this->assign('orderStatuses', $orderStatuses);
+
+        $orderPayStatuses= BizConst::getConstArray("ORDER_PAYSTATUS_",false);
+        $this->assign('orderPayStatuses', $orderPayStatuses);
 
         $this->display();
     }

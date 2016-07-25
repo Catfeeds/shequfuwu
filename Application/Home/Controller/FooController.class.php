@@ -422,6 +422,9 @@ class FooController extends Controller
 
         $constArray = BizConst::getConstArray('ORDER_STATUS_');
         dump($constArray);
+
+        $constArray = BizConst::getConstArray('ORDER_STATUS_',false);
+        dump($constArray);
     }
 
     public function enumop()
