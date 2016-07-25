@@ -1358,7 +1358,6 @@ function openUser(o) {
     }
 
     tabTmpl("user-container");
-
     loadOrder(1);
 }
 
