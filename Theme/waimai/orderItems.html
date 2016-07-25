@@ -7,21 +7,8 @@
         </div>
         <div style="clear:both;">
             <span class="order-status">
-                {{if value.pay_status== 1}}
-                        已付款
-                    {{else}}
-                        未付款
-                {{/if}}
+                {{value.pay_status | orderPayStatusFormat}}
                 {{value.status | orderStatusFormat}}
-                {{if value.status== -1}}
-                        已取消
-                    {{else if value.status== 1}}
-                        正在配送
-                    {{else if value.status== 2}}
-                        已完成
-                    {{else}}
-                        未处理
-                {{/if}}
             </span>
         </div>
     </div>

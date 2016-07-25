@@ -1396,15 +1396,11 @@ function loadOrder(pageIndex) {
                     if (json.length != 0) {
                         $('.myOrderList').show();
 
-                        template.helper("orderStatusFormat", function (status, mixed) {
-                            // var result = '';
-                            // if (status == -1) {
-                            //     result = '已取消';
-                            // } else {
-                            //     result = '未设置';
-                            // }
-                            // return result;
+                        template.helper("orderPayStatusFormat", function (status) {
+                            return getBizConstText("ORDER_PAYSTATUS_", status);
+                        });
 
+                        template.helper("orderStatusFormat", function (status) {
                             return getBizConstText("ORDER_STATUS_", status);
                         });
 
