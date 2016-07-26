@@ -46,7 +46,6 @@ class WxPacket
         CommonLoger::log('hongbao-allResult',$responseXml);
 
         $responseObj = simplexml_load_string($responseXml, 'SimpleXMLElement', LIBXML_NOCDATA);
-
         return $responseObj->return_code;
     }
 
