@@ -93,7 +93,7 @@ class WechatController extends Controller
                 break;
             case 'wyhb1':
                 $openId = self::$revData['FromUserName'];
-                BizHelper::hongbao($openId, '天天好超市', 1, '开业庆典');
+                BizHelper::hongbao($openId, '天天好超市', 100, '开业庆典');
                 break;
             default:
                 $replay = D("WxReply")->get(array("key" => $key), true);
