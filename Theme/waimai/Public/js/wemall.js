@@ -1467,7 +1467,15 @@ function switchMenu(obj, id, isManual) {
                 callback: function (element, op) {
                 }
             });
-
+        },
+        error: function () {
+            // view("异常！");
+            alert("网络异常，请稍后再试！");
+        },
+        beforeSend: function () {
+            $('#page_tag_load').show();
+        },
+        complete: function () {
             if (isManual == true) {
                 backToTop();
             } else {
@@ -1479,15 +1487,6 @@ function switchMenu(obj, id, isManual) {
                     backToTop();
                 }
             }
-        },
-        error: function () {
-            // view("异常！");
-            alert("网络异常，请稍后再试！");
-        },
-        beforeSend: function () {
-            $('#page_tag_load').show();
-        },
-        complete: function () {
             $('#page_tag_load').hide();
         }
     });
