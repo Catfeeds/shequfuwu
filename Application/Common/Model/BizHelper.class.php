@@ -2,6 +2,8 @@
 namespace Common\Model;
 
 use Vendor\Hiland\Biz\Geo\GeoHelper;
+use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
+use Vendor\Hiland\Biz\Tencent\Packet\WxPacket;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
@@ -302,6 +304,39 @@ class BizHelper
         $resultArray = BizConst::getConstArray("ORDER_PAYSTATUS_");
         $resultText = $resultArray[$payStatusValue];
         return $resultText;
+    }
+
+
+    public static function hongbao($openID,$merchantName='',$amount=1,$actionName='',$wishing='恭喜发财',$remark='快来参加活动吧！')
+    {
+        if(empty($openID)){
+            $openID= $_GET['oauth2openid'];
+        }
+
+        if(empty($merchantName)){
+            $merchantName= WechatConfig::MCHNAME;
+        }
+
+        $data = array(
+            'nonce_str' => RandHelper::rand(30), // 随机字符串
+            'mch_billno' => date('YmdHis') . RandHelper::rand(10), // 订单号
+            'mch_id' => WechatConfig::MCHID, // 商户号
+            'wxappid' => WechatConfig::APPID, // 微信的appid
+            'nick_name' => $merchantName, // 提供方名称
+            'send_name' => $merchantName, // 红包发送者名称
+            're_openid' => $openID, // 接收人的openid
+            'total_amount' => $amount, // 付款金额，单位分
+            'min_value' => $amount, // 最小红包金额，单位分
+            'max_value' => $amount, // 最大红包金额，单位分
+            'total_num' => 1, // 红包収放总人数
+            'wishing' => $wishing, // 红包祝福语
+            'client_ip' => '127.0.0.1', // 调用接口的机器 Ip 地址
+            'act_name' => $actionName, // 活动名称
+            'remark' => $remark,
+        ); // 备注信息
+
+        $packet = new WxPacket();
+        $result = $packet->send($data);
     }
 }
 

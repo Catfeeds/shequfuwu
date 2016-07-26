@@ -163,26 +163,6 @@ class WechatHelper
         return $row->media_id;
     }
 
-    /*
-     * // 发送客服消息
-     * public function sendcustommessage($touser, $type, $data)
-     * {
-     * $msg = array(
-     * 'touser' => $touser
-     * );
-     * switch ($type) {
-     * case 'text':
-     * $msg['msgtype'] = 'text';
-     * $msg['text'] = array(
-     * 'content' => urlencode($data)
-     * );
-     * break;
-     * }
-     * $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" . $this->access_token;
-     * return $this->https_request($url, urldecode(json_encode($msg)));
-     * }
-     */
-
     /**
      * 创建菜单
      *

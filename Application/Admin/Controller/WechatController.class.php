@@ -91,6 +91,9 @@ class WechatController extends Controller
                 $newsArray = self::generateArticlesResponse();
                 self::$weObj->news($newsArray)->reply();
                 break;
+            case 'wyhb1':
+                BizHelper::hongbao(self::$revFrom, '天天好超市', 1, '开业庆典');
+                break;
             default:
                 $replay = D("WxReply")->get(array("key" => $key), true);
                 if ($replay) {
@@ -201,7 +204,7 @@ class WechatController extends Controller
         $messageContent = '';
 
         switch ($event) {
-            case 'subscribe':
+            case 'subscribe': {
                 $userID = $this->checkUser($openId);
 
                 $projectName = C('PROJECT_NAME');
@@ -220,17 +223,19 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
-                //self::$weObj->text($messageContent)->reply();
                 $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
                 break;
-            case 'unsubscribe':
+            }
+            case 'unsubscribe': {
                 $this->updateUser($openId);
                 break;
-            case 'click':
+            }
+            case 'click': {
                 $this->checkKeyWords(self::$revData['EventKey']);
                 break;
-            case 'scan':
+            }
+            case 'scan': {
                 $projectName = C('PROJECT_NAME');
                 $messageContent = "欢迎再次回到[$projectName]，我们将持续为你提供更优质的服务！";
 
@@ -249,6 +254,7 @@ class WechatController extends Controller
                 $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
                 break;
+            }
         }
     }
 
