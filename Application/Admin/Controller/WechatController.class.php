@@ -206,7 +206,7 @@ class WechatController extends Controller
 
         switch ($event) {
             case 'subscribe': {
-                $userID = $this->checkUser($openId);
+                $userID = $this->confirmUserAtLocal($openId);
 
                 $projectName = C('PROJECT_NAME');
                 $messageContent = "恭喜加入[$projectName],您是第[$userID]位会员,在家即可享受货品配送服务！";
@@ -259,7 +259,12 @@ class WechatController extends Controller
         }
     }
 
-    public function checkUser($openId)
+    /**
+     * 确保微信用户信息已经在本地记录
+     * @param $openId
+     * @return int|mixed
+     */
+    public function confirmUserAtLocal($openId)
     {
         $userID = 0;
         $user = D("User")->get(array("openid" => $openId));
