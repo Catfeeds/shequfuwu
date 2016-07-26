@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/delivery-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/delivery-container.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="delivery-container.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/delivery-container.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="74" column="147" selection-start-line="74" selection-start-column="147" selection-end-line="74" selection-end-column="147" />
+            <state relative-caret-position="340">
+              <caret line="74" column="152" selection-start-line="74" selection-start-column="152" selection-end-line="74" selection-end-column="152" />
               <folding />
             </state>
           </provider>
@@ -68,7 +65,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
@@ -78,16 +75,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PayController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PayController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/PayController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-              <folding>
-                <marker date="1469492620280" expanded="true" signature="175:15270" ph="{...}" />
-                <marker date="1469492620280" expanded="true" signature="524:3316" ph="{...}" />
-                <marker date="1469492620280" expanded="true" signature="5930:8146" ph="{...}" />
-              </folding>
+            <state relative-caret-position="220">
+              <caret line="297" column="49" selection-start-line="297" selection-start-column="49" selection-end-line="297" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,8 +193,8 @@
       <file leaf-file-name="hiland_config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Common/Conf/hiland_config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="29" column="35" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="35" />
+            <state relative-caret-position="373">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -342,15 +335,15 @@
         <option value="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/OrderController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
-        <option value="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/MathHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
-        <option value="$PROJECT_DIR$/Theme/waimai/delivery-container.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/delivery-container.html" />
+        <option value="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" />
       </list>
     </option>
   </component>
@@ -1117,7 +1110,7 @@
       <workItem from="1468997072533" duration="23013000" />
       <workItem from="1469077164882" duration="20000" />
       <workItem from="1469085327764" duration="64429000" />
-      <workItem from="1469420857193" duration="19878000" />
+      <workItem from="1469420857193" duration="20329000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1130,7 +1123,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="423739000" />
+    <option name="totallyTimeSpent" value="424190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1494,18 +1487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/PayController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-          <folding>
-            <marker date="1469492620280" expanded="true" signature="175:15270" ph="{...}" />
-            <marker date="1469492620280" expanded="true" signature="524:3316" ph="{...}" />
-            <marker date="1469492620280" expanded="true" signature="5930:8146" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/View/Pay_wxPay.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1538,14 +1519,6 @@
             <element signature="e#33#59#0#PHP" expanded="true" />
             <marker date="1469440617684" expanded="true" signature="178:6809" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/hiland_config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="29" column="35" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1603,18 +1576,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/delivery-container.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="74" column="147" selection-start-line="74" selection-start-column="147" selection-end-line="74" selection-end-column="147" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/delivery-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="74" column="152" selection-start-line="74" selection-start-column="152" selection-end-line="74" selection-end-column="152" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/hiland_config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/PayController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="297" column="49" selection-start-line="297" selection-start-column="49" selection-end-line="297" selection-end-column="49" />
           <folding />
         </state>
       </provider>

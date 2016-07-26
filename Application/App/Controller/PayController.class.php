@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
+
+use Vendor\Hiland\Utils\Data\MathHelper;
 
 
 /**
@@ -68,7 +69,13 @@ class PayController extends BaseController
         $unifiedOrder->setParameter("body", $order["orderid"]);//商品描述
         //自定义订单号，此处仅作举例
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
-        $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
+
+        $weixinCommision = MathHelper::percent2Float(C("SYSTEM_PAY_WEIXIN_COMMISSION", null, 0));
+        $payAllPercent = 1;
+        if ($weixinCommision > 0) {
+            $payAllPercent += $weixinCommision;
+        }
+        $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100 * $payAllPercent);//总金额
 
         //$notifyUrl= $this->appUrl . U("App/Pay/wxNotify");
         $notifyUrl = $this->appUrl . _PHP_FILE_ . "/App/Pay/wxNotify";
@@ -122,7 +129,13 @@ class PayController extends BaseController
         $unifiedOrder->setParameter("body", $order["orderid"]);//商品描述
 
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
-        $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
+
+        $weixinCommision = MathHelper::percent2Float(C("SYSTEM_PAY_WEIXIN_COMMISSION", null, 0));
+        $payAllPercent = 1;
+        if ($weixinCommision > 0) {
+            $payAllPercent += $weixinCommision;
+        }
+        $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100 * $payAllPercent);//总金额
 
         $notifyUrl = $this->appUrl . _PHP_FILE_ . "/App/Pay/wxNotify";
         $unifiedOrder->setParameter("notify_url", $notifyUrl);//通知地址
@@ -278,7 +291,13 @@ class PayController extends BaseController
 
         $out_trade_no = $order["orderid"];
         $subject = $order["orderid"];
-        $total_fee = floatval($order["totalprice"]);
+
+        $zhifubaoCommision = MathHelper::percent2Float(C("SYSTEM_PAY_ZHIFUBAO_COMMISSION", null, 0));
+        $payAllPercent = 1;
+        if ($zhifubaoCommision > 0) {
+            $payAllPercent += $zhifubaoCommision;
+        }
+        $total_fee = floatval($order["totalprice"]) * $payAllPercent;
         $body = $order["orderid"];
         $show_url = $this->appUrl;
         $anti_phishing_key = "";
