@@ -64,7 +64,8 @@
     var data = {
         'wxConfig': {$wxConfig? $wxConfig : '[]'},
         'config': {$config? $config : '[]'},
-        'bizConsts':{$bizConsts? $bizConsts : '[]'},
+        'bizConsts': {$bizConsts? $bizConsts : '[]'},
+        'bizConfig': {$bizConfig? $bizConfig : '[]'},
         'user': {$user? $user : '[]'},
         'ads': {$ads? $ads : '[]'},
         'menu': {$menu? $menu : '[]'},
@@ -72,7 +73,7 @@
         'baseUrl': '__APP__',
         'uploadsUrl': '__PUBLIC__/Uploads/',
         'imageUrl': '__IMG__',
-        'jsUrl':'__JS__',
+        'jsUrl': '__JS__',
         'shopId': {$shopId},
     }
     console.log(data);
@@ -96,7 +97,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var html= "<script src=\"__JS__/wechatShare.js\" />";
+        var html = "<script src=\"__JS__/wechatShare.js\" />";
         $("#wechatShareJS").html(html);
     });
 </script>

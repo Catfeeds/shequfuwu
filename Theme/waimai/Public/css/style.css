@@ -1250,7 +1250,7 @@ pre {
 .confirmation-item .item-info,
 .confirmation-item .tuan-info {
     float: left;
-    width: 25%;
+    width: 50%;
     height: 46px;
     margin-top: 22px;
     font-size: 12px;
@@ -1274,7 +1274,7 @@ pre {
 .confirmation-item .select-box {
     float: left;
     /*width: 120px;*/
-    width: 75%;
+    width: 50%;
 }
 
 .confirmation-item .delete {

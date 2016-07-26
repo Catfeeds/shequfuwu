@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/MathHelper.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/delivery-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/delivery-container.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,21 +48,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delivery-container.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="delivery-container.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/delivery-container.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="460">
               <caret line="74" column="147" selection-start-line="74" selection-start-column="147" selection-end-line="74" selection-end-column="147" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="1252" column="13" selection-start-line="1252" selection-start-column="13" selection-end-line="1252" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="66" column="18" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="18" />
+            <state relative-caret-position="280">
+              <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -75,7 +83,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
               <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-              <folding />
+              <folding>
+                <marker date="1469492620280" expanded="true" signature="175:15270" ph="{...}" />
+                <marker date="1469492620280" expanded="true" signature="524:3316" ph="{...}" />
+                <marker date="1469492620280" expanded="true" signature="5930:8146" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,6 +101,10 @@
                 <marker date="1469440806362" expanded="true" signature="18176:18203" ph="..." />
                 <marker date="1469440806362" expanded="true" signature="18217:18230" ph="..." />
                 <marker date="1469440806362" expanded="true" signature="20420:20432" ph="..." />
+                <marker date="1469440806362" expanded="true" signature="30118:33943" ph="{...}" />
+                <marker date="1469440806362" expanded="true" signature="31341:33939" ph="{...}" />
+                <marker date="1469440806362" expanded="true" signature="31562:33703" ph="{...}" />
+                <marker date="1469440806362" expanded="true" signature="31585:33622" ph="{...}" />
                 <marker date="1469440806362" expanded="true" signature="48756:48768" ph="..." />
               </folding>
             </state>
@@ -102,6 +118,7 @@
               <caret line="114" column="66" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
               <folding>
                 <element signature="e#33#59#0#PHP" expanded="true" />
+                <marker date="1469440617684" expanded="true" signature="178:6809" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -114,12 +131,14 @@
               <caret line="447" column="36" selection-start-line="447" selection-start-column="36" selection-end-line="447" selection-end-column="36" />
               <folding>
                 <element signature="e#120#146#0#PHP" expanded="true" />
+                <marker date="1469496682426" expanded="true" signature="1125:13381" ph="{...}" />
                 <marker date="1469496682426" expanded="true" signature="4767:4806" ph="select * fro... " />
                 <marker date="1469496682426" expanded="true" signature="5024:5193" ph="INSERT INTO " />
                 <marker date="1469496682426" expanded="true" signature="5361:5716" ph="INSERT INTO " />
                 <marker date="1469496682426" expanded="true" signature="5891:6150" ph="INSERT INTO " />
                 <marker date="1469496682426" expanded="true" signature="8448:8493" ph="..." />
                 <marker date="1469496682426" expanded="true" signature="8456:8484" ph="{...}" />
+                <marker date="1469496682426" expanded="true" signature="13007:13168" ph="..." />
               </folding>
             </state>
           </provider>
@@ -171,6 +190,8 @@
               <caret line="76" column="54" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="54" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
+                <marker date="1469497588406" expanded="true" signature="280:5731" ph="{...}" />
+                <marker date="1469497588406" expanded="true" signature="310:3455" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -215,6 +236,8 @@
               <caret line="301" column="67" selection-start-line="301" selection-start-column="67" selection-end-line="301" selection-end-column="67" />
               <folding>
                 <element signature="e#31#67#0#PHP" expanded="true" />
+                <marker date="1469439590493" expanded="true" signature="301:9253" ph="{...}" />
+                <marker date="1469439590493" expanded="true" signature="8871:9028" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -299,7 +322,6 @@
         <option value="$PROJECT_DIR$/Theme/waimai/Index_areashops.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_shop.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/user-container.html" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/WebHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/JavaScriptHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/ViewLink.class.php" />
@@ -309,7 +331,6 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/ClassHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DBSetHelper.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/Enum.class.php" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/orderItems.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/template/orderButtons.html" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizConst.class.php" />
@@ -328,6 +349,8 @@
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Theme/waimai/delivery-container.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
       </list>
     </option>
   </component>
@@ -630,6 +653,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -1046,7 +1117,7 @@
       <workItem from="1468997072533" duration="23013000" />
       <workItem from="1469077164882" duration="20000" />
       <workItem from="1469085327764" duration="64429000" />
-      <workItem from="1469420857193" duration="19015000" />
+      <workItem from="1469420857193" duration="19878000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1059,7 +1130,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="422876000" />
+    <option name="totallyTimeSpent" value="423739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1124,14 +1195,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="1513" column="27" selection-start-line="1513" selection-start-column="13" selection-end-line="1513" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -1323,6 +1386,8 @@
           <caret line="301" column="67" selection-start-line="301" selection-start-column="67" selection-end-line="301" selection-end-column="67" />
           <folding>
             <element signature="e#31#67#0#PHP" expanded="true" />
+            <marker date="1469439590493" expanded="true" signature="301:9253" ph="{...}" />
+            <marker date="1469439590493" expanded="true" signature="8871:9028" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1343,6 +1408,10 @@
             <marker date="1469440806362" expanded="true" signature="18176:18203" ph="..." />
             <marker date="1469440806362" expanded="true" signature="18217:18230" ph="..." />
             <marker date="1469440806362" expanded="true" signature="20420:20432" ph="..." />
+            <marker date="1469440806362" expanded="true" signature="30118:33943" ph="{...}" />
+            <marker date="1469440806362" expanded="true" signature="31341:33939" ph="{...}" />
+            <marker date="1469440806362" expanded="true" signature="31562:33703" ph="{...}" />
+            <marker date="1469440806362" expanded="true" signature="31585:33622" ph="{...}" />
             <marker date="1469440806362" expanded="true" signature="48756:48768" ph="..." />
           </folding>
         </state>
@@ -1429,15 +1498,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="66" column="18" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="18" />
-          <folding />
+          <folding>
+            <marker date="1469492620280" expanded="true" signature="175:15270" ph="{...}" />
+            <marker date="1469492620280" expanded="true" signature="524:3316" ph="{...}" />
+            <marker date="1469492620280" expanded="true" signature="5930:8146" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1471,6 +1536,7 @@
           <caret line="114" column="66" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
           <folding>
             <element signature="e#33#59#0#PHP" expanded="true" />
+            <marker date="1469440617684" expanded="true" signature="178:6809" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1505,12 +1571,14 @@
           <caret line="447" column="36" selection-start-line="447" selection-start-column="36" selection-end-line="447" selection-end-column="36" />
           <folding>
             <element signature="e#120#146#0#PHP" expanded="true" />
+            <marker date="1469496682426" expanded="true" signature="1125:13381" ph="{...}" />
             <marker date="1469496682426" expanded="true" signature="4767:4806" ph="select * fro... " />
             <marker date="1469496682426" expanded="true" signature="5024:5193" ph="INSERT INTO " />
             <marker date="1469496682426" expanded="true" signature="5361:5716" ph="INSERT INTO " />
             <marker date="1469496682426" expanded="true" signature="5891:6150" ph="INSERT INTO " />
             <marker date="1469496682426" expanded="true" signature="8448:8493" ph="..." />
             <marker date="1469496682426" expanded="true" signature="8456:8484" ph="{...}" />
+            <marker date="1469496682426" expanded="true" signature="13007:13168" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1521,14 +1589,32 @@
           <caret line="76" column="54" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="54" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
+            <marker date="1469497588406" expanded="true" signature="280:5731" ph="{...}" />
+            <marker date="1469497588406" expanded="true" signature="310:3455" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="1252" column="13" selection-start-line="1252" selection-start-column="13" selection-end-line="1252" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/delivery-container.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="460">
           <caret line="74" column="147" selection-start-line="74" selection-start-column="147" selection-end-line="74" selection-end-column="147" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
           <folding />
         </state>
       </provider>
