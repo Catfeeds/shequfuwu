@@ -79,11 +79,6 @@ $(document).ready(function () {
     //     }
     // });
 });
-// var firstCome=0;
-// if(firstCome==0){
-
-//     firstCome = 1;
-// }
 
 var lng = '';//用户经度
 var lat = '';//用户纬度
@@ -257,34 +252,6 @@ function searchShop() {
         }
     });
 }
-//pidong  懒加载店铺列表
-
-// function lazyShop(lazyNum){
-//     $.ajax({
-//         type: "post",
-//         url: data.baseUrl + "/App/User/getShopList",
-//         data: {
-//             status: 2,
-//             lazyNum: lazyNum,
-//             // lat:,
-//         },
-//         success: function (res) {
-//             var html = '';
-//             $.each(res, function (index, value) {
-//                 html += '<a class="grst-block" onclick="openTHisShop('+value.id+')"><img class="grst-logo" style="opacity: 1; transition: opacity 0.5s;" alt="'+value.name+'" src="'+data.uploadsUrl+value.savepath+value.savename+'"><div class="grst-detail"><div class="grst-name"><span class="ng-binding">'+value.name+'</span></div><span class="grst-misc ng-binding">'+value.subname+'</span><div class="grst-misc"><span class="ng-binding">'+value.address+'</span></div><div class="grst-activity "><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(240, 115, 115);">减</span> <span class="ng-binding">满减优惠</span><span class="activity-offline"> (满'+value.full+'减'+value.discount+')</span></p><p class="grst-activity-detail "><span class="rst-badge ng-binding" style="background: rgb(255, 78, 0);">付</span> <span class="ng-binding">在线支付</span></p></div></div></a>';
-//             });
-//             $('#mod-desc').append(html);
-//         },
-//         beforeSend: function () {
-//             $('#page_tag_load').show();
-//         },
-//         complete: function () {
-//             $('#page_tag_load').hide();
-//         }
-
-//     });
-
-// }
 
 //pidong 打开当前店铺
 function openTHisShop(id) {
@@ -363,42 +330,6 @@ function displayOrderResult(id) {
             $('#page_tag_load').hide();
         }
     });
-}
-
-var menuId = 0;
-function changeMenu(obj, id, toggle) {
-    $('.menuItem').removeClass("active");
-    $(obj).addClass("active");
-
-    menuId = id;
-    if (toggle == 'toggle') {
-        $('#types-dropdown').toggle();
-        var ex = $(obj).html();
-        var exClick = $(obj).attr("onclick");
-        var more = $('#more-types').html();
-        var moreClick = $('#more-types').attr("onclick");
-
-        $('#more-types').html(ex);
-        $('#more-types').attr("onclick", exClick);
-        $(obj).html(more);
-        $(obj).attr("onclick", moreClick);
-
-        $('#more-types').addClass("active");
-    }
-
-    $.each($('#items').children(), function (index, value) {
-        if ($(this).attr("label-cate") == id) {
-            $(this).show();
-        } else {
-            $(this).hide();
-        }
-    });
-
-    if ($('#notification').length) {
-        $('#notification').show();
-    }
-
-    backToTop();
 }
 
 
@@ -968,9 +899,6 @@ function submitOrder() {
         success: function (res) {
             if (res) {
                 tabTmpl('orderResult-container');
-                // console.log(res.freight);
-                // console.log(res.discount);
-                //console.log(eval(res));
                 $('#result-order-no').html(res.orderid);
                 $('#items-order-result').find('.date').html(res.time);
                 $('#items-order-result').find('.total').children().html(res.totalprice);
@@ -1303,7 +1231,7 @@ function openProduct(o) {
 
     var lastSelectedMenuID = get('lastSelectedMenuID');
     var lastSelectedOfShopID = get('lastSelectedOfShopID');
-    //alert(lastSelectedMenuID);
+
     if (lastSelectedMenuID && lastSelectedOfShopID == data.shopId) {
         switchMenu(null, lastSelectedMenuID, false);
     } else {
@@ -1432,10 +1360,6 @@ function loadOrder(pageIndex) {
 
 }
 
-function backToSale() {
-    window.location.reload();
-}
-
 jQuery.fn.shake = function (times, offset, delay) {//次数,偏移,间隔
     this.stop().each(function () {
         var Obj = $(this);
@@ -1508,7 +1432,6 @@ function headerBack() {
 // }
 
 
-//new js
 //左侧菜单切换
 var menuId = 0;
 function switchMenu(obj, id, isManual) {
@@ -1561,11 +1484,10 @@ function switchMenu(obj, id, isManual) {
             alert("网络异常，请稍后再试！");
         },
         beforeSend: function () {
-            //$('#page_tag_load').show();
+            $('#page_tag_load').show();
         },
         complete: function () {
-
-            //$('#page_tag_load').hide();
+            $('#page_tag_load').hide();
         }
     });
 
@@ -1633,11 +1555,10 @@ function openSearch() {
                 alert("网络异常，请稍后再试！");
             },
             beforeSend: function () {
-                //$('#page_tag_load').show();
+                $('#page_tag_load').show();
             },
             complete: function () {
-
-                //$('#page_tag_load').hide();
+                $('#page_tag_load').hide();
             }
         });
     }
