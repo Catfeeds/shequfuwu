@@ -45,7 +45,6 @@ class WxPacket
         $responseXml = NetHelper::request($url, $postXml, 30, false, array(), $certfilearray);
         CommonLoger::log('hongbao-allResult',$responseXml);
 
-        // return $responseXml;
         $responseObj = simplexml_load_string($responseXml, 'SimpleXMLElement', LIBXML_NOCDATA);
 
         return $responseObj->return_code;
