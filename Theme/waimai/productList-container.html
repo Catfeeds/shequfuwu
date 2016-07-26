@@ -21,14 +21,15 @@
     {{/each}}
     <div style="height: 200px;"></div>
 </ul>
-<div class="shop-product">
+<div class="shop-product" id="shop-product-Wrapper">
     <!-- <div class="menu-name"><span></span></div> -->
     <ul class="mui-table-view mui-table-viewa" id="productInfoItems">
 
     </ul>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(document).on("scroll", function () {
+            myScroll = new IScroll('#shop-product-Wrapper');
+            myScroll.on('scrollEnd', function () {
                 var scrollPositionOfProductPage = $(document).scrollTop();
                 window.localStorage.setItem('scrollPositionOfProductPage', scrollPositionOfProductPage);
             });

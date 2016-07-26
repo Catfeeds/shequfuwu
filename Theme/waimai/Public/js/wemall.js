@@ -970,7 +970,7 @@ function submitOrder() {
                 tabTmpl('orderResult-container');
                 // console.log(res.freight);
                 // console.log(res.discount);
-                console.log(eval(res));
+                //console.log(eval(res));
                 $('#result-order-no').html(res.orderid);
                 $('#items-order-result').find('.date').html(res.time);
                 $('#items-order-result').find('.total').children().html(res.totalprice);

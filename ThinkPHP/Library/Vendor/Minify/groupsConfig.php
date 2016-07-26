@@ -23,6 +23,7 @@ return array(
         '//Theme/waimai/Public/js/echo.min.js',
         '//Theme/waimai/Public/js/layer.m.js',
         '//Theme/waimai/Public/build/template.js',
+        '//Theme/waimai/Public/js/iscroll.min.js'
         //'//Theme/waimai/Public/js/wemall.min.js',
     ),
 
