@@ -308,14 +308,14 @@ class BizHelper
     }
 
 
-    public static function hongbao($openID,$merchantName='',$amount=1,$actionName='',$wishing='恭喜发财',$remark='快来参加活动吧！')
+    public static function hongbao($openID, $merchantName = '', $amount = 1, $actionName = '', $wishing = '恭喜发财', $remark = '快来参加活动吧！')
     {
-        if(empty($openID)){
-            $openID= $_GET['oauth2openid'];
+        if (empty($openID)) {
+            $openID = $_GET['oauth2openid'];
         }
 
-        if(empty($merchantName)){
-            $merchantName= WechatConfig::MCHNAME;
+        if (empty($merchantName)) {
+            $merchantName = WechatConfig::MCHNAME;
         }
 
         $data = array(
@@ -336,11 +336,11 @@ class BizHelper
             'remark' => $remark,
         ); // 备注信息
 
-        CommonLoger::log('hongbo',json_encode($data,JSON_UNESCAPED_UNICODE));
+        CommonLoger::log('hongbo', json_encode($data, JSON_UNESCAPED_UNICODE));
 
         $packet = new WxPacket();
         $result = $packet->send($data);
-        CommonLoger::log('hongbao-result',$result);
+        CommonLoger::log('hongbao-result', $result);
     }
 }
 

@@ -12,11 +12,6 @@ class IndexController extends BaseController
 {
     public function index()
     {
-        if (APP_DEBUG) {
-            G('weixin_mainPageBegin');
-            G('weixin_oauthBegin');
-        }
-
         $oauth2Url = "App/Public/oauthLogin";
         $user = R($oauth2Url);
 
@@ -32,10 +27,6 @@ class IndexController extends BaseController
             }
         }
 
-        if (APP_DEBUG) {
-            $oautTimeUsed = G('weixin_oauthBegin', 'weixin_oauthEnd');
-            CommonLoger::log('微信认证加载耗时', $oautTimeUsed);
-        }
 
         $user = json_encode($user);
         $this->assign("user", $user);
@@ -78,11 +69,6 @@ class IndexController extends BaseController
         $bizConfig['SYSTEM_PAY_ZHIFUBAO_COMMISSION'] = C("SYSTEM_PAY_ZHIFUBAO_COMMISSION", null, 0);
         $bizConfig['SYSTEM_PAY_ZHIFUBAO_COMMISSION_VALUE'] = MathHelper::percent2Float($bizConfig['SYSTEM_PAY_ZHIFUBAO_COMMISSION']);
         $this->assign("bizConfig", json_encode($bizConfig));
-
-        if (APP_DEBUG) {
-            $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');
-            CommonLoger::log('微信首页加载耗时', $timeUsed);
-        }
 
         //self::calcTime('html-main-page-begin');
 
