@@ -1482,7 +1482,7 @@ function switchMenu(obj, id, isManual) {
                 var scrollPosition = get("scrollPositionOfProductPage");
                 if (scrollPosition) {
                     //$(".shop-product").animate({scrollTop: scrollPosition}, 200);
-                    $(".shop-product").scrollTop(scrollPosition);
+                    $("#productInfoItems").scrollTop(scrollPosition);
                 } else {
                     backToTop();
                 }
