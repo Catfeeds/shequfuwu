@@ -20,6 +20,7 @@ use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
+use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -440,6 +441,14 @@ class FooController extends Controller
     public function appop(){
         dump(__APP__);
         dump(_PHP_FILE_);
+    }
+
+    public function mathop(){
+        $float= 0.456789;
+        $percent= MathHelper::float2Percent($float,3);
+
+        dump($percent);
+       dump(MathHelper::percent2Float($percent));
     }
 
     public function enumop()

@@ -71,11 +71,10 @@ class PayController extends BaseController
         $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
 
         //$notifyUrl= $this->appUrl . U("App/Pay/wxNotify");
-        $notifyUrl= $this->appUrl . _PHP_FILE_."/App/Pay/wxNotify";
-        CommonLoger::log('notify_url',$notifyUrl);
+        $notifyUrl = $this->appUrl . _PHP_FILE_ . "/App/Pay/wxNotify";
+        //CommonLoger::log('notify_url', $notifyUrl);
         $unifiedOrder->setParameter("notify_url", $notifyUrl);//通知地址
         $unifiedOrder->setParameter("trade_type", "JSAPI");//交易类型
-
 
 
         //非必填参数，商户可根据实际情况选填
@@ -96,7 +95,7 @@ class PayController extends BaseController
         // echo $jsApiParameters;
         $this->assign("jsApiParameters", $jsApiParameters);
 
-        $shopId= $order['shop_id'];
+        $shopId = $order['shop_id'];
         $this->assign("url", U("App/Index/index/shopId/$shopId#/order/") . I("get.id"));
         $this->display();
     }
@@ -125,7 +124,7 @@ class PayController extends BaseController
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
         $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100);//总金额
 
-        $notifyUrl= $this->appUrl . _PHP_FILE_."/App/Pay/wxNotify";
+        $notifyUrl = $this->appUrl . _PHP_FILE_ . "/App/Pay/wxNotify";
         $unifiedOrder->setParameter("notify_url", $notifyUrl);//通知地址
         $unifiedOrder->setParameter("trade_type", "NATIVE");//交易类型
         //非必填参数，商户可根据实际情况选填

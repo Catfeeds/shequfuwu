@@ -25,4 +25,7 @@ return array(
     'USER_COMEFROM_NOWEIXINUSER' => 0,// 后台注册用户，非微信用户
     'USER_COMEFROM_COMMONWEIXINUSER' => 1,// 微信用户，尚未关注公众号
     'USER_COMEFROM_SUBSCRIBEDWEIXINUSER' => 2,// 微信用户，已经关注公众号
+
+    'SYSTEM_PAY_WEIXIN_COMMISSION'=> "1%", //需要客户承担的微信支付手续费
+    'SYSTEM_PAY_ZHIFUBAO_COMMISSION'=> "1%",//需要客户承担的支付宝支付手续费
 );

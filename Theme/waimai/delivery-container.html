@@ -66,13 +66,13 @@
             {{if config.wechat_payment=='1'}}
                 <span class="line" id="wechat-payment">
                     <span class="radio"></span>
-                    <span class="label">微信支付</span>
+                    <span class="label">微信支付{{if bizConfig.SYSTEM_PAY_WEIXIN_COMMISSION_VALUE >0}}(另加{{bizConfig.SYSTEM_PAY_WEIXIN_COMMISSION}},土豪随意){{/if}}</span>
                 </span>
             {{/if}}
             {{if config.alipay_payment=='1'}}
                 <span class="line" id="alipay-payment">
                     <span class="radio"></span>
-                    <span class="label">支付宝支付</span>
+                    <span class="label">支付宝支付 {{if bizConfig.SYSTEM_PAY_ZHIFUBAO_COMMISSION_VALUE >0}}(另加{{bizConfig.SYSTEM_PAY_ZHIFUBAO_COMMISSION}},土豪随意){{/if}}</span>
                 </span>
             {{/if}}
             {{if config.cool_payment=='1'}}

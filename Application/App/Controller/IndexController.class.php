@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Common\Model\BizConst;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
 
@@ -69,8 +70,14 @@ class IndexController extends BaseController
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
 
-        $bizConsts= BizConst::getConsts();
-        $this->assign("bizConsts",json_encode($bizConsts,JSON_UNESCAPED_SLASHES));
+        $bizConsts = BizConst::getConsts();
+        $this->assign("bizConsts", json_encode($bizConsts, JSON_UNESCAPED_SLASHES));
+
+        $bizConfig['SYSTEM_PAY_WEIXIN_COMMISSION'] = C("SYSTEM_PAY_WEIXIN_COMMISSION", null, 0);
+        $bizConfig['SYSTEM_PAY_WEIXIN_COMMISSION_VALUE'] = MathHelper::percent2Float($bizConfig['SYSTEM_PAY_WEIXIN_COMMISSION']);
+        $bizConfig['SYSTEM_PAY_ZHIFUBAO_COMMISSION'] = C("SYSTEM_PAY_ZHIFUBAO_COMMISSION", null, 0);
+        $bizConfig['SYSTEM_PAY_ZHIFUBAO_COMMISSION_VALUE'] = MathHelper::percent2Float($bizConfig['SYSTEM_PAY_ZHIFUBAO_COMMISSION']);
+        $this->assign("bizConfig", json_encode($bizConfig));
 
         if (APP_DEBUG) {
             $timeUsed = G('weixin_mainPageBegin', 'weixin_mainPageEnd');

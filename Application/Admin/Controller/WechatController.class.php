@@ -1,7 +1,6 @@
 <?php
 namespace Admin\Controller;
 
-use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Utils\Data\StringHelper;
@@ -418,34 +417,6 @@ class WechatController extends Controller
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
-        //TODO
-//        $paymentArray= BizConst::getConstArray("ORDER_PAYTYPE_");
-//        $paymentTEXT=$paymentArray[$order["payment"]];
-//        $order["payment"]= $paymentTEXT;
-        switch ($order["payment"]) {
-            case 0:
-                $order["payment"] = "账户支付";
-                break;
-            case 1:
-                $order["payment"] = "微信支付";
-                break;
-            case 2:
-                $order["payment"] = "支付宝支付";
-                break;
-            case 3:
-                $order["payment"] = "货到付款";
-                break;
-        }
-
-        switch ($order["pay_status"]) {
-            case 0:
-                $order["pay_status"] = "未支付";
-                break;
-            case 1:
-                $order["pay_status"] = "支付成功";
-                break;
-        }
-
         $msg = array();
         $msg["touser"] = $user["openid"];
         $msg["template_id"] = $template_id;
@@ -461,7 +432,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword2" => array(
-                "value" => $order["payment"] . "," . $order["pay_status"],
+                "value" => BizHelper::getPayTypeText($order["payment"]) . "," . BizHelper::getPayStatusText($order["pay_status"]),
                 "color" => "black"
             ),
             "keyword3" => array(
@@ -516,29 +487,6 @@ class WechatController extends Controller
         $order = D("Order")->getOrder(array("id" => $order_id), true);
         $template_id = $this->getTplMessageId("OPENTM201785396");
 
-        switch ($order["payment"]) {
-            case 0:
-                $order["payment"] = "账户支付";
-                break;
-            case 1:
-                $order["payment"] = "微信支付";
-                break;
-            case 2:
-                $order["payment"] = "支付宝支付";
-                break;
-            case 3:
-                $order["payment"] = "货到付款";
-                break;
-        }
-
-        switch ($order["pay_status"]) {
-            case 0:
-                $order["pay_status"] = "未支付";
-                break;
-            case 1:
-                $order["pay_status"] = "支付成功";
-                break;
-        }
         // file_put_contents("2.txt",$order["shop_id"]);
         $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
         $employee = explode(',', $shop["employee"]);
@@ -554,7 +502,7 @@ class WechatController extends Controller
                 "topcolor":"#FF0000",
                 "data":{
                     "first": {
-                        "value":"客户新订单提醒。---' . $order["pay_status"] . '",
+                        "value":"客户新订单提醒。---' . BizHelper::getPayStatusText($order["pay_status"]) . '",
                         "color":"#FF0000"
                         },
                     "keyword1":{
@@ -562,7 +510,7 @@ class WechatController extends Controller
                         "color":"#0000ff"
                         },
                     "keyword2":{
-                        "value":"' . $order["payment"] . '",
+                        "value":"' . BizHelper::getPayTypeText($order["payment"]) . '",
                         "color":"#0000ff"
                         },
                     "keyword3":{
