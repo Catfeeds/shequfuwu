@@ -2,6 +2,7 @@
 namespace Common\Model;
 
 use Vendor\Hiland\Biz\Geo\GeoHelper;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
 use Vendor\Hiland\Biz\Tencent\Packet\WxPacket;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
@@ -334,6 +335,8 @@ class BizHelper
             'act_name' => $actionName, // 活动名称
             'remark' => $remark,
         ); // 备注信息
+
+        CommonLoger::log('hongbo',json_encode($data,JSON_UNESCAPED_UNICODE));
 
         $packet = new WxPacket();
         $result = $packet->send($data);
