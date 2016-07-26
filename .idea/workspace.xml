@@ -46,8 +46,8 @@
       <file leaf-file-name="WxPacket.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/Packet/WxPacket.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+            <state relative-caret-position="380">
+              <caret line="135" column="1" selection-start-line="135" selection-start-column="1" selection-end-line="135" selection-end-column="1" />
               <folding>
                 <element signature="e#51#91#0#PHP" expanded="true" />
               </folding>
@@ -948,7 +948,7 @@
       <workItem from="1469077164882" duration="20000" />
       <workItem from="1469085327764" duration="64429000" />
       <workItem from="1469420857193" duration="36187000" />
-      <workItem from="1469575397872" duration="216000" />
+      <workItem from="1469575397872" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -961,7 +961,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440264000" />
+    <option name="totallyTimeSpent" value="440422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1392,8 +1392,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/Packet/WxPacket.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+        <state relative-caret-position="380">
+          <caret line="135" column="1" selection-start-line="135" selection-start-column="1" selection-end-line="135" selection-end-column="1" />
           <folding>
             <element signature="e#51#91#0#PHP" expanded="true" />
           </folding>
