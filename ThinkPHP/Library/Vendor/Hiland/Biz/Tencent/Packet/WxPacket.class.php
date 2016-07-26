@@ -41,9 +41,10 @@ class WxPacket
             $path . 'apiclient_key.pem',
             $path . 'rootca.pem'
         );
+        
         $responseXml = NetHelper::request($url, $postXml, 30, false, array(), $certfilearray);
         CommonLoger::log('hongbao-allResult',$responseXml);
-        
+
         // return $responseXml;
         $responseObj = simplexml_load_string($responseXml, 'SimpleXMLElement', LIBXML_NOCDATA);
 
