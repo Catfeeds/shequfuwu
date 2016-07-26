@@ -229,7 +229,7 @@ class WechatController extends Controller
                 break;
             }
             case 'unsubscribe': {
-                $this->updateUser($openId);
+                $this->updateUserSubscribeStatus($openId,C("USER_COMEFROM_COMMONWEIXINUSER"));
                 break;
             }
             case 'click': {
@@ -325,11 +325,11 @@ class WechatController extends Controller
         return $newsArray;
     }
 
-    public function updateUser($openId)
+    public function updateUserSubscribeStatus($openId,$newSubscribeStatus)
     {
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
-            D("User")->save(array("id" => $user["id"], "subscribe" => C("USER_COMEFROM_COMMONWEIXINUSER")));
+            D("User")->save(array("id" => $user["id"], "subscribe" => $newSubscribeStatus));
         }
     }
 
