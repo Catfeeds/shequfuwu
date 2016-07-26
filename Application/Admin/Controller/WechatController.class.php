@@ -92,7 +92,8 @@ class WechatController extends Controller
                 self::$weObj->news($newsArray)->reply();
                 break;
             case 'wyhb1':
-                BizHelper::hongbao(self::$revFrom, '天天好超市', 1, '开业庆典');
+                $openId = self::$revData['FromUserName'];
+                BizHelper::hongbao($openId, '天天好超市', 1, '开业庆典');
                 break;
             default:
                 $replay = D("WxReply")->get(array("key" => $key), true);
