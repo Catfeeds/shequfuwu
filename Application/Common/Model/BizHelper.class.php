@@ -340,6 +340,7 @@ class BizHelper
 
         $packet = new WxPacket();
         $result = $packet->send($data);
+        CommonLoger::log('hongbao-result',$result);
     }
 }
 
