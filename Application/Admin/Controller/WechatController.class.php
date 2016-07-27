@@ -349,6 +349,10 @@ class WechatController extends Controller
         }
     }
 
+    /**
+     * @param string $key
+     * @return mixed
+     */
     public function generateQRCode($key = "0")
     {
         $this->init();
