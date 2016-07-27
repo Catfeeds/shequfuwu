@@ -35,8 +35,10 @@ class WechatController extends Controller
         self::$revData = self::$weObj->getRevData();
         self::$revFrom = self::$weObj->getRevFrom();
 
-        $this->checkWxDuplication();
-        $this->check($type);
+        $needResponse = $this->checkWXNeedResponse();
+        if ($needResponse) {
+            $this->check($type);
+        }
     }
 
     public function init()
@@ -53,17 +55,38 @@ class WechatController extends Controller
         self::$weObj = new \Wechat ($options);
     }
 
-    public function checkWxDuplication()
+    /**
+     * 检测此微信消息是否需要处理（进行微信消息排重）
+     * @return bool|number
+     */
+    private function checkWXNeedResponse()
     {
         $msgId = self::$weObj->getRevID();
         $rawData = self::$weObj->getRevRawData();
+        $openId = self::$weObj->getRevData()['FromUserName'];
+        $createTime = self::$weObj->getRevCtime();
+
         $mate = new ModelMate('weixinInformation');
 
-        $data = array();
-        $data['msgid'] = $msgId;
-        $data['remark'] = $rawData;
+        if ($msgId) {
+            $dataGotten = $mate->find(array('msgid' => $msgId));
+        } else {
+            $dataGotten = $mate->find(array('openid' => $openId, 'createtime' => $createTime));
+        }
 
-        $mate->interact($data);
+        if ($dataGotten) {
+            return false;
+        } else {
+            $data = array();
+            $data['msgid'] = $msgId;
+            $data['openid'] = $openId;
+            $data['createtime'] = $createTime;
+            $data['remark'] = $rawData;
+
+            $result = $mate->interact($data);
+
+            return $result;
+        }
     }
 
     public function check($type)
@@ -106,7 +129,7 @@ class WechatController extends Controller
                 self::$weObj->news($newsArray)->reply();
                 break;
             case 'wyhb': //红包发送测试
-                $openId = 'oqfK9vsaghlVPWev6l6Nuz1TZd9M';//self::$revData['FromUserName'];
+                $openId = self::$revData['FromUserName'];
                 BizHelper::hongbao($openId, '天天好超市', 100, '开业庆典');
                 break;
             default:
