@@ -35,7 +35,7 @@ class WechatController extends Controller
         self::$revData = self::$weObj->getRevData();
         self::$revFrom = self::$weObj->getRevFrom();
 
-        $needResponse = $this->checkWXNeedResponse();
+        $needResponse = true;//$this->checkWXNeedResponse();
         if ($needResponse) {
             $this->check($type);
         }
