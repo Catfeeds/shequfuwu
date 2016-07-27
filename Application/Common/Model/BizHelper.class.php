@@ -320,7 +320,7 @@ class BizHelper
 
         $data = array(
             'nonce_str' => RandHelper::rand(30), // 随机字符串
-            'mch_billno' => date('YmdHis') . RandHelper::rand(10), // 订单号
+            'mch_billno' => date('YmdHis') . RandHelper::rand(10,""), // 订单号
             'mch_id' => WechatConfig::MCHID, // 商户号
             'wxappid' => WechatConfig::APPID, // 微信的appid
             'nick_name' => $merchantName, // 提供方名称
