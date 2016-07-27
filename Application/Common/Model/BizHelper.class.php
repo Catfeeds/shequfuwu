@@ -329,7 +329,7 @@ class BizHelper
             'total_amount' => $amount, // 付款金额，单位分
             'min_value' => $amount, // 最小红包金额，单位分
             'max_value' => $amount, // 最大红包金额，单位分
-            'total_num' => 1, // 红包収放总人数
+            'total_num' => 3, // 红包収放总人数
             'wishing' => $wishing, // 红包祝福语
             'client_ip' => '127.0.0.1', // 调用接口的机器 Ip 地址
             'act_name' => $actionName, // 活动名称
