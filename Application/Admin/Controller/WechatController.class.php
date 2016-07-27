@@ -3,6 +3,7 @@ namespace Admin\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
@@ -35,8 +36,9 @@ class WechatController extends Controller
         self::$revData = self::$weObj->getRevData();
         self::$revFrom = self::$weObj->getRevFrom();
 
-        $needResponse = true;//$this->checkWXNeedResponse();
-        if ($needResponse) {
+        $needResponse = $this->checkWXNeedResponse();
+        //if ($needResponse)
+        {
             $this->check($type);
         }
     }
@@ -65,6 +67,8 @@ class WechatController extends Controller
         $rawData = self::$weObj->getRevRawData();
         $openId = self::$weObj->getRevData()['FromUserName'];
         $createTime = self::$weObj->getRevCtime();
+
+        CommonLoger::log('wxneedResponse', "$msgId--$openId--$createTime");
 
         $mate = new ModelMate('weixinInformation');
 
