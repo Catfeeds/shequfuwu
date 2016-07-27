@@ -3,7 +3,7 @@ namespace Admin\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\WebHelper;
@@ -36,9 +36,8 @@ class WechatController extends Controller
         self::$revData = self::$weObj->getRevData();
         self::$revFrom = self::$weObj->getRevFrom();
 
-        $needResponse = $this->checkWXNeedResponse();
-        if ($needResponse)
-        {
+        $needResponse = WechatHelper:: checkNeedResponse(self::$weObj->getRevRawData());
+        if ($needResponse) {
             $this->check($type);
         }
     }
@@ -55,42 +54,6 @@ class WechatController extends Controller
             'appsecret' => $config ["appsecret"] //填写高级调用功能的密钥
         );
         self::$weObj = new \Wechat ($options);
-    }
-
-    /**
-     * 检测此微信消息是否需要处理（进行微信消息排重）
-     * @return bool|number
-     */
-    private function checkWXNeedResponse()
-    {
-        $msgId = self::$weObj->getRevID();
-        $rawData = self::$weObj->getRevRawData();
-        $openId = self::$weObj->getRevData()['FromUserName'];
-        $createTime = self::$weObj->getRevCtime();
-
-        //CommonLoger::log('wxneedResponse', "$msgId--$openId--$createTime");
-
-        $mate = new ModelMate('weixinInformation');
-
-        if ($msgId) {
-            $dataGotten = $mate->find(array('msgid' => $msgId));
-        } else {
-            $dataGotten = $mate->find(array('openid' => $openId, 'createtime' => $createTime));
-        }
-
-        if ($dataGotten) {
-            return false;
-        } else {
-            $data = array();
-            $data['msgid'] = $msgId;
-            $data['openid'] = $openId;
-            $data['createtime'] = $createTime;
-            $data['remark'] = $rawData;
-
-            $result = $mate->interact($data);
-
-            return $result;
-        }
     }
 
     public function check($type)

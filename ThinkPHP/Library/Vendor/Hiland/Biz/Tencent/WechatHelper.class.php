@@ -3,6 +3,7 @@ namespace Vendor\Hiland\Biz\Tencent;
 
 use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
 use Vendor\Hiland\Utils\Data\RandHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Web\NetHelper;
 
 class WechatHelper
@@ -661,6 +662,45 @@ class WechatHelper
             return $result['short_url'];
         } else {
             return false;
+        }
+    }
+
+    /**
+     * 进行微信消息排重时，检测此微信消息是否需要处理
+     * @param string $wxMessageRawData 微信服务器发送过来的原始数据
+     * @return bool|number
+     */
+    public static function checkNeedResponse($wxMessageRawData)
+    {
+        $receivedArray = (array)simplexml_load_string($wxMessageRawData, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+        $msgId = $receivedArray['MsgId'];
+        $openId = $receivedArray['FromUserName'];
+        $createTime = $receivedArray['CreateTime'];
+        $rawData = $wxMessageRawData;
+
+        //CommonLoger::log('wxneedResponse', "$msgId--$openId--$createTime");
+
+        $mate = new ModelMate('weixinInformation');
+
+        if ($msgId) {
+            $dataGotten = $mate->find(array('msgid' => $msgId));
+        } else {
+            $dataGotten = $mate->find(array('openid' => $openId, 'createtime' => $createTime));
+        }
+
+        if ($dataGotten) {
+            return false;
+        } else {
+            $data = array();
+            $data['msgid'] = $msgId;
+            $data['openid'] = $openId;
+            $data['createtime'] = $createTime;
+            $data['remark'] = $rawData;
+
+            $result = $mate->interact($data);
+
+            return $result;
         }
     }
 }
