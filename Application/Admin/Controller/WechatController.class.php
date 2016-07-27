@@ -37,7 +37,7 @@ class WechatController extends Controller
         self::$revFrom = self::$weObj->getRevFrom();
 
         $needResponse = $this->checkWXNeedResponse();
-        //if ($needResponse)
+        if ($needResponse)
         {
             $this->check($type);
         }
@@ -68,7 +68,7 @@ class WechatController extends Controller
         $openId = self::$weObj->getRevData()['FromUserName'];
         $createTime = self::$weObj->getRevCtime();
 
-        CommonLoger::log('wxneedResponse', "$msgId--$openId--$createTime");
+        //CommonLoger::log('wxneedResponse', "$msgId--$openId--$createTime");
 
         $mate = new ModelMate('weixinInformation');
 
