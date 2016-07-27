@@ -35,6 +35,7 @@ class WechatController extends Controller
         self::$revData = self::$weObj->getRevData();
         self::$revFrom = self::$weObj->getRevFrom();
 
+        $this->checkWxDuplication();
         $this->check($type);
     }
 
@@ -50,6 +51,19 @@ class WechatController extends Controller
             'appsecret' => $config ["appsecret"] //填写高级调用功能的密钥
         );
         self::$weObj = new \Wechat ($options);
+    }
+
+    public function checkWxDuplication()
+    {
+        $msgId = self::$weObj->getRevID();
+        $rawData = self::$weObj->getRevRawData();
+        $mate = new ModelMate('weixinInformation');
+
+        $data = array();
+        $data['msgid'] = $msgId;
+        $data['remark'] = $rawData;
+
+        $mate->interact($data);
     }
 
     public function check($type)
@@ -229,7 +243,7 @@ class WechatController extends Controller
                 break;
             }
             case 'unsubscribe': {
-                $this->updateUserSubscribeStatus($openId,C("USER_COMEFROM_COMMONWEIXINUSER"));
+                $this->updateUserSubscribeStatus($openId, C("USER_COMEFROM_COMMONWEIXINUSER"));
                 break;
             }
             case 'click': {
@@ -330,7 +344,7 @@ class WechatController extends Controller
         return $newsArray;
     }
 
-    public function updateUserSubscribeStatus($openId,$newSubscribeStatus)
+    public function updateUserSubscribeStatus($openId, $newSubscribeStatus)
     {
         $user = D("User")->get(array("openid" => $openId));
         if ($user) {
