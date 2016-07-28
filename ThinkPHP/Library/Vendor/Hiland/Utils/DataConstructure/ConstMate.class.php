@@ -6,7 +6,7 @@
  * Time: 10:21
  */
 
-namespace Vendor\Hiland\Utils\Data;
+namespace Vendor\Hiland\Utils\DataConstructure;
 
 /**
  * Class ConstMate

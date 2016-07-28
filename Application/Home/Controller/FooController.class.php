@@ -441,6 +441,7 @@ class FooController extends Controller
     public function appop(){
         dump(__APP__);
         dump(_PHP_FILE_);
+        dump(__ACTION__);
     }
 
     public function mathop(){

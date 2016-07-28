@@ -8,11 +8,13 @@
 
 namespace Addons\Coupon\Controller;
 
+use Vendor\Hiland\Utils\Datas\SystemConst;
+
 class AdminController extends InitController
 {
     public function index()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
 
         $couponModel = D('Addons://Coupon/AddonCouponMenu');

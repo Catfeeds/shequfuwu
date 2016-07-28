@@ -1,6 +1,8 @@
 <?php
 namespace Home\Controller;
 
+use Vendor\Hiland\Utils\Datas\SystemConst;
+
 class CouponController extends BaseController
 {
     public function config()
@@ -12,7 +14,7 @@ class CouponController extends BaseController
             D("Shop")->addShop($data);
             $this->success("保存成功", cookie("prevUrl"));
         } else {
-            $num = 25;
+            $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
             $p = I("get.page") ? I("get.page") : 1;
             cookie("prevUrl", U("Home/Coupon/config/page/$p"));
 
@@ -21,10 +23,7 @@ class CouponController extends BaseController
             $this->assign("coupons", $coupon);
 
             $count = D("CouponCategory")->getMethod($condition, "count");// 查询满足要求的总记录数
-            $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-            $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-            $show = $Page->show();// 分页显示输出
-            $this->assign('page', $show);// 赋值分页输出
+            $this->assignPaging($count, $num);
 
             $config = D("Shop")->getShop(array("id" => session("homeShopId")));
             $this->assign("coupon", $config["coupon"]);

@@ -1,22 +1,20 @@
 <?php
 namespace Admin\Controller;
 
+use Vendor\Hiland\Utils\Datas\SystemConst;
+
 class TradeController extends BaseController
 {
     public function trade()
     {
         //      每页显示的记录数
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         $tradeList = D("Trade")->getList(array(), false, "id desc", $p, $num);
         $this->assign('tradeList', $tradeList);// 赋值数据集
 
         $count = D("Trade")->getMethod(array(), "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -56,17 +54,14 @@ class TradeController extends BaseController
             array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
         }
 
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
 
         $txList = D("Tx")->getTxList($condition, true, "id desc", $p, $num);
         $this->assign('txList', $txList);// 赋值数据集
 
         $count = D("Tx")->getTxListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
 
         $config = D("Config")->getConfig();
         $this->assign("config", $config);
@@ -111,7 +106,7 @@ class TradeController extends BaseController
 
     public function cardLog()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
 
         $condition = array();
@@ -140,26 +135,20 @@ class TradeController extends BaseController
         $this->assign('tradeList', $tradeList);// 赋值数据集
 
         $count = D("CardPay")->getMethod($condition, "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
 
         $this->display();
     }
 
     public function memberLog()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         $tradeList = D("UserMemberPay")->getList(array(), true, "id desc", $p, $num);
         $this->assign('tradeList', $tradeList);// 赋值数据集
 
         $count = D("UserMemberPay")->getMethod(array(), "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
 
         $this->display();
     }

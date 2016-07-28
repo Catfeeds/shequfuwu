@@ -4,6 +4,7 @@ namespace Admin\Controller;
 use Common\Model\ViewLink;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class ShopController extends BaseController
 {
@@ -19,7 +20,7 @@ class ShopController extends BaseController
     public function category($id = 0)
     {
         $categoryMate = new ViewMate('shopCategory', ViewLink::getCommon_File());
-        
+
         if (IS_POST) {
             $data = I("post.");
             $categoryMate->interact($data);
@@ -42,8 +43,8 @@ class ShopController extends BaseController
 
     public function product()
     {
-//      每页显示的记录数
-        $num = 25;
+        //每页显示的记录数
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Admin/Shop/product/page/$p"));
 
@@ -51,11 +52,8 @@ class ShopController extends BaseController
         $this->assign('productList', $productList);// 赋值数据集
 
         $count = D("Product")->getMethod(array(), "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
+        $this->assignPaging($count, $num);
 
-        $this->assign('page', $show);// 赋值分页输出
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
         $this->display();
     }
@@ -151,7 +149,7 @@ class ShopController extends BaseController
 
     public function ads()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Admin/Shop/ads/page/$p"));
 
@@ -159,11 +157,7 @@ class ShopController extends BaseController
         $this->assign('ads', $adsList);// 赋值数据集
 
         $count = D("Ads")->getMethod(array(), "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -195,7 +189,7 @@ class ShopController extends BaseController
 
     public function comment()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Admin/Shop/comment/page/$p"));
 
@@ -203,11 +197,7 @@ class ShopController extends BaseController
         $this->assign("comment", $comment);
 
         $count = D("Comment")->getMethod(array(), "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -258,7 +248,7 @@ class ShopController extends BaseController
 
     public function feedback()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Admin/Shop/feedback/page/$p"));
 
@@ -266,11 +256,7 @@ class ShopController extends BaseController
         $this->assign('feedback', $feedbackList);// 赋值数据集
 
         $count = D("Feedback")->getMethod(array(), "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -364,7 +350,7 @@ class ShopController extends BaseController
     // }
     public function shop()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Admin/Shop/shop/page/$p"));
 
@@ -389,11 +375,7 @@ class ShopController extends BaseController
         $this->assign('shopList', $shopList);// 赋值数据集
 
         $count = D("Shop")->getShopListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
         $this->display();
     }
@@ -484,6 +466,20 @@ class ShopController extends BaseController
         $this->ajaxReturn('success');
     }
 
+    private function getMenus($shopId, $returnAjax = true)
+    {
+        $mate = new ModelMate('menu');
+        $condition = array();
+        $condition['shop_id'] = $shopId;
+        $result = $mate->select($condition);
+
+        if ($returnAjax) {
+            $this->ajaxReturn($result);
+        } else {
+            return $result;
+        }
+    }
+
     public function reorganizeSku($sourceShopId = 0, $targetShopId = 0)
     {
         $products = $this->getProducts($targetShopId, false);
@@ -496,6 +492,20 @@ class ShopController extends BaseController
         }
 
         $this->ajaxReturn('success');
+    }
+
+    private function getProducts($shopId, $returnAjax = true)
+    {
+        $mate = new ModelMate('product');
+        $condition = array();
+        $condition['shop_id'] = $shopId;
+        $result = $mate->select($condition);
+
+        if ($returnAjax) {
+            $this->ajaxReturn($result);
+        } else {
+            return $result;
+        }
     }
 
     public function copyData($sourceShopId = 0, $targetShopId = 0)
@@ -533,34 +543,6 @@ class ShopController extends BaseController
         $resultMenu = $mateProductSku->delete($condition);
 
         $this->ajaxReturn('success');
-    }
-
-    private function getMenus($shopId, $returnAjax = true)
-    {
-        $mate = new ModelMate('menu');
-        $condition = array();
-        $condition['shop_id'] = $shopId;
-        $result = $mate->select($condition);
-
-        if ($returnAjax) {
-            $this->ajaxReturn($result);
-        } else {
-            return $result;
-        }
-    }
-
-    private function getProducts($shopId, $returnAjax = true)
-    {
-        $mate = new ModelMate('product');
-        $condition = array();
-        $condition['shop_id'] = $shopId;
-        $result = $mate->select($condition);
-
-        if ($returnAjax) {
-            $this->ajaxReturn($result);
-        } else {
-            return $result;
-        }
     }
 
 

@@ -7,6 +7,7 @@ use Common\Model\ViewLink;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 /**
@@ -28,7 +29,7 @@ class BizController
         $cityName = I('city');
         $shopCategory = I('category');
         $pageIndex = I('pageIndex');
-        $itemCountPerPage = C('APP_ITEM_COUNT_PER_PAGE');
+        $itemCountPerPage = SystemConst::APP_ITEM_COUNT_PERPAGE;
         if (empty($itemCountPerPage)) {
             $itemCountPerPage = 10;
         }
@@ -48,12 +49,12 @@ class BizController
         $name = I('name');
         $shopCategory = I('shopCategory');
 
-        $lng = I("lng",'117.359');
-        $lat = I("lat",'34.8177');
+        $lng = I("lng", '117.359');
+        $lat = I("lat", '34.8177');
 
         //CommonLoger::log('weixin坐标', "lng:$lng-- lat:$lat");
-        $searchContentType = I('searchContentType','shop');
-        $distanceKM = I('distanceKM',15);
+        $searchContentType = I('searchContentType', 'shop');
+        $distanceKM = I('distanceKM', 15);
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
         //CommonLoger::log('getproducts',json_encode($result));

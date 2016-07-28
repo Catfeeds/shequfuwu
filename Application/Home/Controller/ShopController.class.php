@@ -1,9 +1,9 @@
 <?php
 namespace Home\Controller;
 
-use Common\Model\BizHelper;
 use Common\Model\WechatBiz;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class ShopController extends BaseController
 {
@@ -26,10 +26,10 @@ class ShopController extends BaseController
                 $this->success("创建成功", U("Home/AddShop/shop"));
             }
         } else {
-            $categoryMate= new ModelMate('shopCategory');
-            $categoryList= $categoryMate->select(array('usable'=>1));
-            $this->assign('categoryList',$categoryList);
-            
+            $categoryMate = new ModelMate('shopCategory');
+            $categoryList = $categoryMate->select(array('usable' => 1));
+            $this->assign('categoryList', $categoryList);
+
             $this->display();
         }
     }
@@ -64,9 +64,9 @@ class ShopController extends BaseController
             $shop["employeeName"] = implode(",", $username);
             $this->assign("shop", $shop);
 
-            $categoryMate= new ModelMate('shopCategory');
-            $categoryList= $categoryMate->select(array('usable'=>1));
-            $this->assign('categoryList',$categoryList);
+            $categoryMate = new ModelMate('shopCategory');
+            $categoryList = $categoryMate->select(array('usable' => 1));
+            $this->assign('categoryList', $categoryList);
             $this->display("Shop:addShop");
         } else {
             $this->error("请先选择店铺", "Home/Shop/shop");
@@ -189,11 +189,8 @@ class ShopController extends BaseController
 
         // dump($productList);
         $count = D("Product")->getProductListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
+        $this->assignPaging($count, $num);
 
-        $this->assign('page', $show);// 赋值分页输出
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
 
         $this->assign("productPost", I("post."));
@@ -246,7 +243,7 @@ class ShopController extends BaseController
 
     public function shop()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Shop/shop/page/$p"));
 
@@ -255,11 +252,7 @@ class ShopController extends BaseController
         $this->assign('shopList', $shopList);// 赋值数据集
 
         $count = D("Shop")->getShopListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->assign('url', "http://" . I("server.HTTP_HOST"));
         $this->display();
     }
@@ -372,7 +365,7 @@ class ShopController extends BaseController
             "shop_id" => session("homeShopId")
         );
 
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Shop/ads/page/$p"));
 
@@ -380,11 +373,7 @@ class ShopController extends BaseController
         $this->assign('ads', $adsList);// 赋值数据集
 
         $count = D("Ads")->getAdsListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -426,7 +415,7 @@ class ShopController extends BaseController
             "shop_id" => session("homeShopId")
         );
 
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Shop/comment/page/$p"));
 
@@ -434,11 +423,7 @@ class ShopController extends BaseController
         $this->assign("comment", $comment);
 
         $count = D("Comment")->getCommentListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -470,7 +455,7 @@ class ShopController extends BaseController
             "shop_id" => session("homeShopId")
         );
 
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Shop/feedback/page/$p"));
 
@@ -478,11 +463,7 @@ class ShopController extends BaseController
         $this->assign('feedback', $feedbackList);// 赋值数据集
 
         $count = D("Feedback")->getFeedbackListCount();// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
         $this->display();
     }
 
@@ -597,7 +578,7 @@ class ShopController extends BaseController
 
             //dump($id);
             //$qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
-            $qrUrl= WechatBiz::getQRCodeUrl($id);
+            $qrUrl = WechatBiz::getQRCodeUrl($id);
             $this->assign('qrUrl', $qrUrl);
             $this->display();
         } else {

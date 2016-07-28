@@ -1,0 +1,129 @@
+<section class="content-header">
+    <h1>
+        红包活动管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="callout callout-danger">
+                <p>设置完红包派发活动后，请联系平台服务人员进行缴费。否则红包活动无法生效。</p>
+                <p>联系方式：QQ 9727005；TEL 13001597878</p>
+            </div>
+        </div>
+        <!--/.col (right) -->
+    </div>
+
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">红包活动管理</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="{:U('Home/Trade/redPacket')}" class="btn btn-danger ">
+                                新增活动
+                            </a>
+                        </div>
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>流水号</th>
+                                <th>店铺名称</th>
+                                <th>活动名称</th>
+                                <th>总包情形</th>
+                                <th>单包情形</th>
+                                <th>活动时间</th>
+                                <th>活动状态</th>
+                                <th>审核状态</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                            <volist name="dataList" id="item">
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox"
+                                                      value="{$item.id}"></label>
+                                    </td>
+                                    <td>
+                                        {$item.id}
+                                    </td>
+
+                                    <td>
+                                        {$item.shop.name}
+                                    </td>
+                                    <td>
+                                        {$item.actionname}
+                                    </td>
+                                    <td>
+                                        总金额：{$item.totalamount}元<br/>
+                                        总包数：{$item.count}
+                                    </td>
+                                    <td>
+                                        单包最小额：{$item.minamountperunit}元<br/>
+                                        单包最大额：{$item.maxamountperunit}元
+                                    </td>
+                                    <td>
+                                        开始：{$item.begintime}<br/>
+                                        结束：{$item.endtime}
+                                    </td>
+                                    <td>
+                                        {$item.status}
+                                    </td>
+                                    <td>
+                                        <if condition="$item.adminstasus eq 1">审核通过</if>
+                                        <if condition="$item.adminstasus eq -1">拒绝/取消</if>
+                                        <if condition="$item.adminstasus eq 0"><span style="color: red">未审核</span></if>
+                                    </td>
+                                    <td>
+                                        {$tx.createtime}
+                                    </td>
+
+                                    <td class="table-action">
+                                        <if condition="$tx.status eq 0">
+                                            <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id'],'status' => 0))}">停止</a>
+                                            <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id'],'status' => 1))}">开启</a>
+                                            <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id']))}">修改</a>
+                                        </if>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger "
+                                            onclick="batchUrl('{:U(\'Home/Trade/export\')}',false)">导出
+                                    </button>
+                                </div>
+                                <!-- /.btn-group -->
+                                <div class="pull-right">
+                                    {$page}
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>

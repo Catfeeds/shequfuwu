@@ -94,8 +94,12 @@ class ModelMate
      * $where['openid'] = $openId;
      * $relation = $buyerShopMate->select($where);
      */
-    public function select($condition = array(), $orderBy = "id desc", $pageIndex = 0, $itemCountPerPage = 0, $limit = 0)
+    public function select($condition = array(), $orderBy = "", $pageIndex = 0, $itemCountPerPage = 0, $limit = 0)
     {
+        if (empty($orderBy)) {
+            $orderBy = "id desc";
+        }
+
         $model = $this->getModel_Select($condition, $orderBy, $pageIndex, $itemCountPerPage, $limit);
 
         return $model->select();
@@ -127,6 +131,17 @@ class ModelMate
         }
 
         return $model;
+    }
+
+    /**
+     * 获取满足条件的记录数
+     * @param array $condition
+     * @return mixed
+     */
+    public function getCount($condition = array())
+    {
+        $model = $this->getModel_Where($condition);
+        return $model->count();
     }
 
     /**

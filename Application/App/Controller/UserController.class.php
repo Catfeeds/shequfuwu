@@ -6,6 +6,7 @@ use Common\Model\ViewLink;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class UserController extends BaseController
@@ -31,7 +32,7 @@ class UserController extends BaseController
                 $pageIndex = 1;
             }
 
-            $itemCountPerPage = C('APP_ITEM_COUNT_PER_PAGE');
+            $itemCountPerPage = SystemConst::APP_ITEM_COUNT_PERPAGE;
             if (empty($itemCountPerPage)) {
                 $itemCountPerPage = 10;
             }

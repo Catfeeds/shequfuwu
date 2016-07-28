@@ -1,6 +1,9 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\ViewLink;
+use Vendor\Hiland\Utils\Datas\SystemConst;
+
 class TradeController extends BaseController
 {
     public function trade()
@@ -9,16 +12,13 @@ class TradeController extends BaseController
             "shop_id" => session("homeShopId")
         );
 
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         $tradeList = D("Trade")->getTradeList($condition, true, "id desc", $p, $num);
         $this->assign('tradeList', $tradeList);// 赋值数据集
 
         $count = D("Trade")->getTradeListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
 
         $shop = D("Shop")->getShop(array("id" => session("homeShopId")));
         $this->assign("money", $shop["money"]);
@@ -43,17 +43,14 @@ class TradeController extends BaseController
         $txConfig = D("Tx")->getTx($condition);
         $this->assign('txConfig', $txConfig);
 
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
 
         $txList = D("Tx")->getTxList($condition, true, "id desc", $p, $num);
         $this->assign('txList', $txList);// 赋值数据集
 
         $count = D("Tx")->getTxListCount($condition);// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
 
         if (session("homeShopId")) {
             $shop = D("Shop")->getShop(array("id" => session("homeShopId")));
@@ -144,6 +141,32 @@ class TradeController extends BaseController
 
         Vendor("PHPExcel.Excel#class");
         \Excel::export($trade, array('提现ID', '提现流水', '用户ID', '店铺ID', '账户', '申请人', '金额', '状态', '时间'));
+    }
+
+    public function redPacketList()
+    {
+        $condition = array(
+            "shop_id" => session("homeShopId")
+        );
+
+        $this->itemList('weixinRedpacket', $condition, 0, 0, '', ViewLink::getCommon_Shop());
+    }
+
+    public function redPacket($id = 0)
+    {
+        //TODO
+        //1\判断不能修改别店铺的红包
+        //2\已经审核的不能修改
+
+        $savingData = I("post.");
+        $savingData['shop_id'] = session("homeShopId");
+
+        $findingCondition = array(
+            "shop_id" => session("homeShopId"),
+            "id" => $id,
+        );
+
+        $this->item('weixinRedpacket', $id, '', $savingData, $findingCondition);
     }
 
 }

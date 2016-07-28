@@ -2,12 +2,14 @@
 namespace Admin\Controller;
 
 use Think\Controller;
+use Think\Page;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class BaseController extends Controller
 {
     public function _initialize()
     {
-//      url中的pjax参数影响数据分页
+        //url中的pjax参数影响数据分页
         if (I("get._pjax")) {
             unset($_GET["_pjax"]);
         }
@@ -24,11 +26,20 @@ class BaseController extends Controller
         }
     }
 
-    public function is_pjax()
+    public function is_login()
     {
-        return array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX'];
+        if (session("adminName") && session("adminId")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+
+    /**
+     * @param string $templateFile
+     * @param bool $toggle
+     */
     public function display($templateFile = '', $toggle = true)
     {
         if ($toggle) {
@@ -48,13 +59,9 @@ class BaseController extends Controller
         return parent::display($templateFile);
     }
 
-    public function is_login()
+    public function is_pjax()
     {
-        if (session("adminName") && session("adminId")) {
-            return true;
-        } else {
-            return false;
-        }
+        return array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX'];
     }
 
     public function getNotify()
@@ -66,6 +73,7 @@ class BaseController extends Controller
     /**
      * GET 请求
      * @param string $url
+     * @return bool|mixed
      */
     private function http_get($url)
     {
@@ -85,5 +93,22 @@ class BaseController extends Controller
         } else {
             return false;
         }
+    }
+
+    /**
+     * 进行分页的逻辑处理，请在需要分页的子类方法中调用
+     * @param $totalCount
+     * @param int $countPerPage
+     */
+    protected function assignPaging($totalCount, $countPerPage = 0)
+    {
+        if (empty($countPerPage)) {
+            $countPerPage = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
+        }
+
+        $Page = new Page($totalCount, $countPerPage);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
+        $show = $Page->show();// 分页显示输出
+        $this->assign('page', $show);// 赋值分页输出
     }
 }

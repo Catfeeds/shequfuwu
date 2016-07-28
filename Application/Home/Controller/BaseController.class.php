@@ -1,9 +1,9 @@
 <?php
 namespace Home\Controller;
 
-use Think\Controller;
+use Vendor\Hiland\Utils\Controller\HibaseController;
 
-class BaseController extends Controller
+class BaseController extends HibaseController
 {
     public function _initialize()
     {
@@ -23,9 +23,13 @@ class BaseController extends Controller
         // }
     }
 
-    public function is_pjax()
+    public function is_login()
     {
-        return array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX'];
+        if (session("homeId")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function display($templateFile = '', $toggle = true)
@@ -57,36 +61,10 @@ class BaseController extends Controller
         return parent::display($templateFile);
     }
 
-    public function is_login()
+    public function is_pjax()
     {
-        if (session("homeId")) {
-            return true;
-        } else {
-            return false;
-        }
+        return array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX'];
     }
 
-    /**
-     * GET 请求
-     * @param string $url
-     */
-    private function http_get($url)
-    {
-        $oCurl = curl_init();
-        if (stripos($url, "https://") !== FALSE) {
-            curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
-            curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
-            curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
-        }
-        curl_setopt($oCurl, CURLOPT_URL, $url);
-        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
-        $sContent = curl_exec($oCurl);
-        $aStatus = curl_getinfo($oCurl);
-        curl_close($oCurl);
-        if (intval($aStatus["http_code"]) == 200) {
-            return $sContent;
-        } else {
-            return false;
-        }
-    }
+
 }

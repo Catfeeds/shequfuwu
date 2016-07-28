@@ -8,7 +8,7 @@
 
 namespace Common\Model;
 
-use Vendor\Hiland\Utils\Data\ConstMate;
+use Vendor\Hiland\Utils\DataConstructure\ConstMate;
 
 /**
  * 常量命名有3部分（或4部分组成）

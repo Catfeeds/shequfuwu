@@ -3,12 +3,13 @@ namespace Home\Controller;
 
 use Think\Controller;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class AddShopController extends Controller
 {
     public function shop()
     {
-        $num = 25;
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/AddShop/shop/page/$p"));
 

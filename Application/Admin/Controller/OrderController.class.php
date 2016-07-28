@@ -1,12 +1,14 @@
 <?php
 namespace Admin\Controller;
 
+use Vendor\Hiland\Utils\Datas\SystemConst;
+
 class OrderController extends BaseController
 {
     public function order()
     {
-//        每页显示的记录数
-        $num = 25;
+        //每页显示的记录数
+        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Admin/Order/order/page/$p"));
 
@@ -31,10 +33,7 @@ class OrderController extends BaseController
         $this->assign("orderList", $orderList);
 
         $count = D("Order")->getMethod($condition, "count");// 查询满足要求的总记录数
-        $Page = new \Think\Page($count, $num);// 实例化分页类 传入总记录数和每页显示的记录数
-        $Page->setConfig('theme', "<ul class='pagination no-margin pull-right'></li><li>%FIRST%</li><li>%UP_PAGE%</li><li>%LINK_PAGE%</li><li>%DOWN_PAGE%</li><li>%END%</li><li><a> %HEADER%  %NOW_PAGE%/%TOTAL_PAGE% 页</a></ul>");
-        $show = $Page->show();// 分页显示输出
-        $this->assign('page', $show);// 赋值分页输出
+        $this->assignPaging($count, $num);
 
         $productList = D("Product")->getList(array(), true);
         $this->assign('productList', $productList);// 赋值分页输出
