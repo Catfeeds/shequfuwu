@@ -2,6 +2,8 @@
 namespace Home\Controller;
 
 use Common\Model\ViewLink;
+use Vendor\Hiland\Biz\Misc\RedPacketHelper;
+use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class TradeController extends BaseController
@@ -158,15 +160,117 @@ class TradeController extends BaseController
         //1\判断不能修改别店铺的红包
         //2\已经审核的不能修改
 
-        $savingData = I("post.");
-        $savingData['shop_id'] = session("homeShopId");
+        $mate = new ModelMate('weixinRedpacket');
 
-        $findingCondition = array(
-            "shop_id" => session("homeShopId"),
-            "id" => $id,
-        );
+        if (IS_POST) {
+            $savingData = I("post.");
+            $savingData['shop_id'] = session("homeShopId");
 
-        $this->item('weixinRedpacket', $id, '', $savingData, $findingCondition);
+            if (I("post.id")) {
+                //如果已经被管理员审核过的活动，就不能修改除开始结束时间之外的其他信息了
+                $dataFromDB = $mate->get(I("post.id"));
+                if ($dataFromDB['adminstasus'] == SystemConst::COMMON_REVIEW_STATUS_PASSED) {
+                    $dataFromDB['begintime'] = $savingData['begintime'];
+                    $dataFromDB['endtime'] = $savingData['endtime'];
+
+                    $savingData = $dataFromDB;
+                } else {
+
+                }
+            }
+
+            $result = $mate->interact($savingData);
+            if ($result) {
+                if($savingData['adminstasus'] != SystemConst::COMMON_REVIEW_STATUS_PASSED){
+                    //生成红包派发明细，等待用户申领
+                    self::cleanRedPacketDetail($result);
+                    self::generateRedPacketDetail($savingData);
+                }
+                $this->success("保存成功", cookie("prevUrl"));
+            } else {
+                $this->error("保存失败", cookie("prevUrl"));
+            }
+        } else {
+            $findingCondition = array(
+                "shop_id" => session("homeShopId"),
+                "id" => $id,
+            );
+
+            $data = $mate->find($findingCondition);
+            $this->assign("data", $data);
+
+            $this->display();
+        }
+    }
+
+    private function cleanRedPacketDetail($packetId){
+        $detailMate = new ModelMate("weixinRedpacketDetail");
+        $detailMate->delete(array("packet_id"=>$packetId));
+    }
+
+    private function generateRedPacketDetail($redPacket)
+    {
+        $ruleStatus = true;
+
+        //1.先验证平均值
+        $average = $redPacket['totalamount'] / $redPacket['countreal'];
+        $ruleStatus = self::redPacketRuleValidate($average, $redPacket);
+
+        if ($ruleStatus == true) {
+            //2.生成单个包
+            $bonus = RedPacketHelper::getBonus($redPacket['totalamount'] * 100, $redPacket['countreal'], $redPacket['maxamountperunit'] * 100, $redPacket['minamountperunit'] * 100);
+            //array_values($bonus);
+            for ($i = 0; $i < $redPacket['countempty']; $i++) {
+                $bonus[] = 0;
+            }
+
+            shuffle($bonus);
+
+            $detailMate = new ModelMate("weixinRedpacketDetail");
+            foreach ($bonus as $k => $v) {
+                $detailData = array(
+                    "packet_id" => $redPacket['id'],
+                    "amount" => $v/100,
+                    "shop_id" => $redPacket['shop_id'],
+                    "status" => 0,
+                );
+
+                $detailMate->interact($detailData);
+            }
+        } else {
+            $this->error($ruleStatus);
+        }
+    }
+
+    private function redPacketRuleValidate($unitAmount, $redPacket)
+    {
+        $ruleOK = true;
+        $ruleFailDetail = "";
+
+        if ($unitAmount > $redPacket['maxamountperunit']) {
+            $ruleOK = false;
+            $ruleFailDetail = "单个红包的额度已经大于设定的单包最多值！";
+        }
+
+        if ($ruleOK) {
+            if ($unitAmount < $redPacket['minamountperunit']) {
+                $ruleOK = false;
+                $ruleFailDetail = "单个红包的额度已经小于设定的单包最小值！";
+            }
+        }
+
+        if ($ruleOK) {
+            if ($unitAmount < 1) {
+                $ruleOK = false;
+                $ruleFailDetail = "单个红包的额度不能小于1元！";
+            }
+        }
+
+        if ($ruleOK) {
+            return true;
+        } else {
+            return $ruleFailDetail;
+        }
     }
 
 }

@@ -33,5 +33,11 @@ class SystemConst extends ConstMate
     const PC_ITEM_COUNT_PERPAGE_NORMAL_TEXT = "在电脑中每页显示信息的条目数";
     const PC_ITEM_COUNT_PERPAGE_LARGE = 20;
     const PC_ITEM_COUNT_PERPAGE_LARGE_TEXT = "在电脑中每页显示信息的条目数";
-
+    //----------------------------------------------------------------------
+    const COMMON_REVIEW_STATUS_ORIGINAL = 0;
+    const COMMON_REVIEW_STATUS_ORIGINAL_TEXT = "未审核";
+    const COMMON_REVIEW_STATUS_REFUSED = -1;
+    const COMMON_REVIEW_STATUS_REFUSED_TEXT = "审核失败";
+    const COMMON_REVIEW_STATUS_PASSED = 1;
+    const COMMON_REVIEW_STATUS_PASSED_TEXT = "审核通过";
 }

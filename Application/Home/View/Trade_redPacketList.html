@@ -42,8 +42,8 @@
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
                                 <th>流水号</th>
-                                <th>店铺名称</th>
-                                <th>活动名称</th>
+                                <th>店铺与活动</th>
+                                <th>总金额</th>
                                 <th>总包情形</th>
                                 <th>单包情形</th>
                                 <th>活动时间</th>
@@ -61,16 +61,16 @@
                                     <td>
                                         {$item.id}
                                     </td>
-
                                     <td>
-                                        {$item.shop.name}
-                                    </td>
-                                    <td>
+                                        {$item.shop.name}<br/>
                                         {$item.actionname}
                                     </td>
                                     <td>
-                                        总金额：{$item.totalamount}元<br/>
-                                        总包数：{$item.count}
+                                        {$item.totalamount}元
+                                    </td>
+                                    <td>
+                                        实包数：{$item.countreal}<br/>
+                                        空包数：{$item.countempty}
                                     </td>
                                     <td>
                                         单包最小额：{$item.minamountperunit}元<br/>
@@ -91,7 +91,6 @@
                                     <td>
                                         {$tx.createtime}
                                     </td>
-
                                     <td class="table-action">
                                         <if condition="$tx.status eq 0">
                                             <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id'],'status' => 0))}">停止</a>

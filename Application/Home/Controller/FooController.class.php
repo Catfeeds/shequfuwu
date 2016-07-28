@@ -17,6 +17,7 @@ use Common\Model\WechatBiz;
 use Think\Controller;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Biz\Misc\RedPacketHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
@@ -426,30 +427,89 @@ class FooController extends Controller
         dump($constArray);
 
         dump("ORDER_STATUS_ - false---------------------------------");
-        $constArray = BizConst::getConstArray('ORDER_STATUS_',false);
+        $constArray = BizConst::getConstArray('ORDER_STATUS_', false);
         dump($constArray);
 
         dump("all - true---------------------------------");
-        $constArray = BizConst::getConstArray('',true);
+        $constArray = BizConst::getConstArray('', true);
         dump($constArray);
 
         dump("all - false---------------------------------");
-        $constArray = BizConst::getConstArray('',false);
+        $constArray = BizConst::getConstArray('', false);
         dump($constArray);
     }
 
-    public function appop(){
+    public function appop()
+    {
         dump(__APP__);
         dump(_PHP_FILE_);
         dump(__ACTION__);
     }
 
-    public function mathop(){
-        $float= 0.456789;
-        $percent= MathHelper::float2Percent($float,3);
+    public function mathop()
+    {
+        $float = 0.456789;
+        $percent = MathHelper::float2Percent($float, 3);
 
         dump($percent);
-       dump(MathHelper::percent2Float($percent));
+        dump(MathHelper::percent2Float($percent));
+
+        dump(8 / 3);
+    }
+
+    public function arrayrandop(){
+        $arr= array();
+        for($i=0;$i<10;$i++){
+            $arr[$i]=0;
+        }
+
+        $rand= array_rand($arr,5);
+
+        $index=1;
+        foreach ($rand as $k=>$v){
+            $arr[$k]= $index;
+            $index++;
+        }
+        //$arr= array_values($arr);
+        shuffle ($arr);
+        dump($arr);
+    }
+
+
+    public function redpacketop()
+    {
+        $bonus_total = 200;
+        $bonus_count = 50;
+        $bonus_max = 10;//此算法要求设置的最大值要大于平均值
+        $bonus_min = 1;
+        $result_bonus = RedPacketHelper:: getBonus($bonus_total, $bonus_count, $bonus_max, $bonus_min);
+        $total_money = 0;
+        $arr = array();
+        foreach ($result_bonus as $key => $value) {
+            $total_money += $value;
+            if (isset($arr[$value])) {
+                $arr[$value] += 1;
+            } else {
+                $arr[$value] = 1;
+            }
+
+        }
+
+        //输出总钱数，查看是否与设置的总数相同
+        echo $total_money;
+        //输出所有随机红包值
+        dump($result_bonus);
+        //统计每个钱数的红包数量，检查是否接近正态分布
+        ksort($arr);
+        dump($arr);
+
+        dump("------------------------------------------");
+        for ($i=0;$i<10;$i++){
+            $result_bonus[]= 0;
+        }
+
+        shuffle ($result_bonus);
+        dump($result_bonus);
     }
 
     public function enumop()
