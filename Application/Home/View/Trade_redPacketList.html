@@ -81,20 +81,22 @@
                                         结束：{$item.endtime}
                                     </td>
                                     <td>
+                                        <if condition="$item.status eq 1">已启动</if>
+                                        <if condition="$item.status eq 0">已停止</if>
                                         {$item.status}
                                     </td>
                                     <td>
-                                        <if condition="$item.adminstasus eq 1">审核通过</if>
-                                        <if condition="$item.adminstasus eq -1">拒绝/取消</if>
-                                        <if condition="$item.adminstasus eq 0"><span style="color: red">未审核</span></if>
+                                        <if condition="$item.adminstatus eq 1">审核通过</if>
+                                        <if condition="$item.adminstatus eq -1">拒绝/取消</if>
+                                        <if condition="$item.adminstatus eq 0"><span style="color: red">未审核</span></if>
                                     </td>
                                     <td>
                                         {$tx.createtime}
                                     </td>
                                     <td class="table-action">
                                         <if condition="$tx.status eq 0">
-                                            <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id'],'status' => 0))}">停止</a>
-                                            <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id'],'status' => 1))}">开启</a>
+                                            <a href="{:U('Home/Trade/redPacketUpdate',array('id'=>$item['id'],'status' => 0))}">停止</a>
+                                            <a href="{:U('Home/Trade/redPacketUpdate',array('id'=>$item['id'],'status' => 1))}">开启</a>
                                             <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id']))}">修改</a>
                                         </if>
                                     </td>

@@ -2,7 +2,9 @@
 namespace Home\Controller;
 
 use Common\Model\ViewLink;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
+use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
@@ -166,22 +168,25 @@ class TradeController extends BaseController
             $savingData = I("post.");
             $savingData['shop_id'] = session("homeShopId");
 
+            $actiontime = $savingData['actiontime'];
+            $savingData['begintime'] = StringHelper::getSeperatorBeforeString($actiontime, " --- ");
+            $savingData['endtime'] = StringHelper::getSeperatorAfterString($actiontime, " --- ");
+
             if (I("post.id")) {
                 //如果已经被管理员审核过的活动，就不能修改除开始结束时间之外的其他信息了
                 $dataFromDB = $mate->get(I("post.id"));
-                if ($dataFromDB['adminstasus'] == SystemConst::COMMON_REVIEW_STATUS_PASSED) {
+
+                if ($dataFromDB['adminstatus'] == SystemConst::COMMON_REVIEW_STATUS_PASSED) {
                     $dataFromDB['begintime'] = $savingData['begintime'];
                     $dataFromDB['endtime'] = $savingData['endtime'];
 
                     $savingData = $dataFromDB;
-                } else {
-
                 }
             }
 
             $result = $mate->interact($savingData);
             if ($result) {
-                if($savingData['adminstasus'] != SystemConst::COMMON_REVIEW_STATUS_PASSED){
+                if ($savingData['adminstatus'] != SystemConst::COMMON_REVIEW_STATUS_PASSED) {
                     //生成红包派发明细，等待用户申领
                     self::cleanRedPacketDetail($result);
                     self::generateRedPacketDetail($savingData);
@@ -197,15 +202,19 @@ class TradeController extends BaseController
             );
 
             $data = $mate->find($findingCondition);
+
+            $data['actiontime'] = $data['begintime'] . " --- " . $data['endtime'];
+
             $this->assign("data", $data);
 
             $this->display();
         }
     }
 
-    private function cleanRedPacketDetail($packetId){
+    private function cleanRedPacketDetail($packetId)
+    {
         $detailMate = new ModelMate("weixinRedpacketDetail");
-        $detailMate->delete(array("packet_id"=>$packetId));
+        $detailMate->delete(array("packet_id" => $packetId));
     }
 
     private function generateRedPacketDetail($redPacket)
@@ -230,7 +239,7 @@ class TradeController extends BaseController
             foreach ($bonus as $k => $v) {
                 $detailData = array(
                     "packet_id" => $redPacket['id'],
-                    "amount" => $v/100,
+                    "amount" => $v / 100,
                     "shop_id" => $redPacket['shop_id'],
                     "status" => 0,
                 );
@@ -271,6 +280,12 @@ class TradeController extends BaseController
         } else {
             return $ruleFailDetail;
         }
+    }
+
+    public function redPacketUpdate()
+    {
+        $modle = 'weixinRedpacket';
+        $this->itemsUpdate($modle);
     }
 
 }

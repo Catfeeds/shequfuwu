@@ -12,6 +12,7 @@ use Vendor\Hiland\Utils\Datas\SystemConst;
  * User: xiedalie
  * Date: 2016/7/27
  * Time: 21:15
+ * 本类型内主要是为（列表等）页面提供了常用了方法
  */
 class HibaseController extends Controller
 {
@@ -134,5 +135,19 @@ class HibaseController extends Controller
     protected function recordBackingCookie()
     {
         cookie("prevUrl", $_SERVER['REQUEST_URI']);
+    }
+
+    /**
+     * 更新项目记录并跳转到前一个页面
+     * @param $modle
+     * @param string $keys
+     * @param null $data
+     * @param string $keyName
+     */
+    protected function itemsUpdate($modle, $keys = "", $data = null, $keyName = 'id'){
+        $mate = new ModelMate($modle);
+        $mate->updateByKeys($keys, $data, $keyName);
+
+        $this->success("保存成功", cookie("prevUrl"));
     }
 }
