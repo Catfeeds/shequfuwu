@@ -77,7 +77,7 @@ class PayController extends BaseController
             $payAllPercent += $weixinCommision;
         }
 
-        $totalFee= round($order["totalprice"]) * 100 * $payAllPercent;
+        $totalFee= round($order["totalprice"] * 100 * $payAllPercent);
         CommonLoger::log('fee',$order["totalprice"]."---$payAllPercent---".$totalFee);
         $unifiedOrder->setParameter("total_fee", $totalFee);//总金额
 
