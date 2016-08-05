@@ -78,7 +78,7 @@ class PayController extends BaseController
         }
 
         $totalFee= round($order["totalprice"]) * 100 * $payAllPercent;
-        CommonLoger::log('fee',$order["totalprice"].'---'.$totalFee);
+        CommonLoger::log('fee',$order["totalprice"].'---$payAllPercent---'.$totalFee);
         $unifiedOrder->setParameter("total_fee", $totalFee);//总金额
 
         //$notifyUrl= $this->appUrl . U("App/Pay/wxNotify");
