@@ -24,6 +24,11 @@ class IndexController extends BaseController
             $userFound = $userMate->find($condition);
 
             if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
+                $currentUrl= $_SERVER("REQUEST_URI");
+                $shopId= I("shopId");
+
+                $this->assign("url",$currentUrl);
+                $this->assign("shopid",$shopId);
                 $this->display('mustsubscribe');
                 exit;
             }
@@ -56,7 +61,7 @@ class IndexController extends BaseController
 //        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
 //        $this->assign("product", json_encode($product));
 
-        
+
         //$ads = D("Ads")->getList(array("shop_id" => $shopId), true,"rank desc");
 
         $mate = new ViewMate("ads",ViewLink::getCommon_File());
