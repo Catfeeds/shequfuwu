@@ -2,11 +2,12 @@
 namespace Home\Controller;
 
 use Common\Model\ViewLink;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
+use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
+use Vendor\Hiland\Utils\Web\JavaScriptHelper;
 
 class TradeController extends BaseController
 {
@@ -184,12 +185,24 @@ class TradeController extends BaseController
                 }
             }
 
+            if(empty( $savingData['createtime'])){
+                $savingData['createtime']= DateHelper::format();
+            }
+
             $result = $mate->interact($savingData);
             if ($result) {
+                if (empty($savingData['id'])) {
+                    $savingData['id'] = $result;
+                }
+
                 if ($savingData['adminstatus'] != SystemConst::COMMON_REVIEW_STATUS_PASSED) {
                     //生成红包派发明细，等待用户申领
                     self::cleanRedPacketDetail($result);
-                    self::generateRedPacketDetail($savingData);
+                    $resultSub = self::generateRedPacketDetail($savingData);
+                    if ($resultSub != true) {
+                        JavaScriptHelper::alertBack($resultSub,true);
+                        //$this->error("保存失败", cookie("prevUrl"));
+                    }
                 }
                 $this->success("保存成功", cookie("prevUrl"));
             } else {
@@ -236,6 +249,7 @@ class TradeController extends BaseController
             shuffle($bonus);
 
             $detailMate = new ModelMate("weixinRedpacketDetail");
+
             foreach ($bonus as $k => $v) {
                 $detailData = array(
                     "packet_id" => $redPacket['id'],
@@ -246,8 +260,11 @@ class TradeController extends BaseController
 
                 $detailMate->interact($detailData);
             }
+
+            return true;
         } else {
-            $this->error($ruleStatus);
+            return $ruleStatus;
+            //$this->error($ruleStatus);
         }
     }
 

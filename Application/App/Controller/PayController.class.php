@@ -75,7 +75,7 @@ class PayController extends BaseController
         if ($weixinCommision > 0) {
             $payAllPercent += $weixinCommision;
         }
-        $unifiedOrder->setParameter("total_fee", floatval($order["totalprice"]) * 100 * $payAllPercent);//总金额
+        $unifiedOrder->setParameter("total_fee", round($order["totalprice"]) * 100 * $payAllPercent,0);//总金额
 
         //$notifyUrl= $this->appUrl . U("App/Pay/wxNotify");
         $notifyUrl = $this->appUrl . _PHP_FILE_ . "/App/Pay/wxNotify";
