@@ -24,11 +24,11 @@ class IndexController extends BaseController
             $userFound = $userMate->find($condition);
 
             if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
-                $currentUrl= $_SERVER("REQUEST_URI");
-                $shopId= I("shopId");
+                $currentUrl= $_SERVER['REQUEST_URI'];
+                $shopId = I("shopId");
 
                 $this->assign("url",$currentUrl);
-                $this->assign("shopid",$shopId);
+                $this->assign("shopid", $shopId);
                 $this->display('mustsubscribe');
                 exit;
             }
@@ -64,8 +64,8 @@ class IndexController extends BaseController
 
         //$ads = D("Ads")->getList(array("shop_id" => $shopId), true,"rank desc");
 
-        $mate = new ViewMate("ads",ViewLink::getCommon_File());
-        $ads = $mate->select(array("shop_id" => $shopId),true, "rank desc");
+        $mate = new ViewMate("ads", ViewLink::getCommon_File());
+        $ads = $mate->select(array("shop_id" => $shopId), true, "rank desc");
         $this->assign("ads", json_encode($ads));
 
         //暂时先在base基类中实现
