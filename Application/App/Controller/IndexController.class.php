@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Common\Model\BizConst;
 use Common\Model\ViewLink;
+use Common\Model\WechatBiz;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -24,11 +25,23 @@ class IndexController extends BaseController
             $userFound = $userMate->find($condition);
 
             if ($userFound['subscribe'] != C("USER_COMEFROM_SUBSCRIBEDWEIXINUSER")) {
-                $currentUrl= $_SERVER['REQUEST_URI'];
+                //$currentUrl= $_SERVER['REQUEST_URI'];
+                //$this->assign("url",$currentUrl);
                 $shopId = I("shopId");
 
-                $this->assign("url",$currentUrl);
+                $shop = array();
+                $shopName = '福轮网络';
+                $qrUrl = "__PUBLIC__/Uploads/qrcode_430.jpg";
+                if ($shopId) {
+                    $shopMate = new ModelMate('shop');
+                    $shop = $shopMate->get($shopId);
+                    $shopName = $shop['name'];
+                    $qrUrl = WechatBiz::getQRCodeUrl($shopId);
+                }
+
                 $this->assign("shopid", $shopId);
+                $this->assign("shopName", $shopName);
+                $this->assign('qrUrl', $qrUrl);
                 $this->display('mustsubscribe');
                 exit;
             }
