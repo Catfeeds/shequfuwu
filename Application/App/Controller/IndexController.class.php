@@ -3,9 +3,11 @@ namespace App\Controller;
 
 
 use Common\Model\BizConst;
+use Common\Model\ViewLink;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
 
 class IndexController extends BaseController
@@ -54,10 +56,10 @@ class IndexController extends BaseController
 //        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
 //        $this->assign("product", json_encode($product));
 
-        $ads = D("Ads")->getList(array("shop_id" => $shopId), true,"rank desc");
+        //$ads = D("Ads")->getList(array("shop_id" => $shopId), true,"rank desc");
 
-//        $mate = new ModelMate("ads");
-//        $ads = $mate->select(array("shop_id" => $shopId), "rank desc");
+        $mate = new ViewMate("ads",ViewLink::getCommon_File());
+        $ads = $mate->select(array("shop_id" => $shopId),true, "rank desc");
         $this->assign("ads", json_encode($ads));
 
         //暂时先在base基类中实现
