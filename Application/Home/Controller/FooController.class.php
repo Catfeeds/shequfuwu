@@ -512,6 +512,11 @@ class FooController extends Controller
         dump($result_bonus);
     }
 
+    public function adsop($shopid=146){
+        $ads = D("Ads")->getList(array("shop_id" => $shopid), true);
+        dump($ads);
+    }
+
     public function enumop()
     {
         //dump('ssssss');
