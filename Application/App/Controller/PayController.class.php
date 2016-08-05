@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\MathHelper;
 
 
@@ -75,7 +76,10 @@ class PayController extends BaseController
         if ($weixinCommision > 0) {
             $payAllPercent += $weixinCommision;
         }
-        $unifiedOrder->setParameter("total_fee", round($order["totalprice"]) * 100 * $payAllPercent,0);//总金额
+
+        $totalFee= round($order["totalprice"]) * 100 * $payAllPercent;
+        CommonLoger::log('fee',$totalFee);
+        $unifiedOrder->setParameter("total_fee", $totalFee);//总金额
 
         //$notifyUrl= $this->appUrl . U("App/Pay/wxNotify");
         $notifyUrl = $this->appUrl . _PHP_FILE_ . "/App/Pay/wxNotify";
