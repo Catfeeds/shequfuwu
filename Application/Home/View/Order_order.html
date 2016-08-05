@@ -147,7 +147,7 @@
                                 <th>配送时间</th>
                                 <th>订单详情</th>
                                 <th>备注</th>
-                                <th>时间</th>
+                                <th>操作</th>
                             </tr>
                             <volist name="orderList" id="order">
                                 <tr>
@@ -159,7 +159,8 @@
                                         {$order.shop.name}
                                     </td>
                                     <td>
-                                        {$order.orderid}
+                                        {$order.orderid}<br/>
+                                        {$order.time}
                                     </td>
                                     <td>
                                         <div>联系人:<span class="badge">{$order.contact.name}</span></div>
@@ -231,7 +232,7 @@
                                         {$order.remark}
                                     </td>
                                     <td class="hidden-xs">
-                                        {$order.time}
+                                        订单详情
                                     </td>
                                 </tr>
                             </volist>
