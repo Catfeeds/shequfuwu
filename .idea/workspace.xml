@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_mustsubscribe.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_mustsubscribe.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,8 +54,8 @@
       <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
               </folding>
@@ -1046,7 +1045,7 @@
       <workItem from="1469575397872" duration="1776000" />
       <workItem from="1469580880905" duration="121000" />
       <workItem from="1469581605323" duration="51274000" />
-      <workItem from="1470308327355" duration="24998000" />
+      <workItem from="1470308327355" duration="25063000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1059,7 +1058,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="518217000" />
+    <option name="totallyTimeSpent" value="518282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1547,8 +1546,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+        <state relative-caret-position="340">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
           </folding>

@@ -47,7 +47,6 @@ class IndexController extends BaseController
             }
         }
 
-
         $user = json_encode($user);
         $this->assign("user", $user);
         $shopId = I("get.shopId");
