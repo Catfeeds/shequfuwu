@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Trade_redPacketList.html" afterPath="$PROJECT_DIR$/Application/Home/View/Trade_redPacketList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DateHelper.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DateHelper.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,12 +98,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PayController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PayController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/PayController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="257">
               <caret line="77" column="101" selection-start-line="77" selection-start-column="101" selection-end-line="77" selection-end-column="101" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConstMate.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1880">
+              <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+              <folding>
+                <element signature="e#140#186#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -219,7 +228,6 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Const/ConstMate.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Constant/ConstMate.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Types/ConstMate.class.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizConst.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/BaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/OrderController.class.php" />
@@ -251,6 +259,7 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DateHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/PayController.class.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php" />
       </list>
     </option>
   </component>
@@ -614,7 +623,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
+              <option name="myItemId" value="DataConstructure" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -969,7 +978,7 @@
       <workItem from="1469575397872" duration="1776000" />
       <workItem from="1469580880905" duration="121000" />
       <workItem from="1469581605323" duration="51274000" />
-      <workItem from="1470308327355" duration="7577000" />
+      <workItem from="1470308327355" duration="7971000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -982,7 +991,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="500796000" />
+    <option name="totallyTimeSpent" value="501190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1094,13 +1103,6 @@
         <state relative-caret-position="380">
           <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1440,6 +1442,16 @@
         <state relative-caret-position="257">
           <caret line="77" column="101" selection-start-line="77" selection-start-column="101" selection-end-line="77" selection-end-column="101" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataConstructure/ConstMate.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1880">
+          <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+          <folding>
+            <element signature="e#140#186#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
