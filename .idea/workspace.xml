@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
     </list>
     <ignored path="src.iws" />
@@ -51,12 +52,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="56" column="68" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="68" />
-              <folding />
+            <state relative-caret-position="320">
+              <caret line="59" column="71" selection-start-line="59" selection-start-column="71" selection-end-line="59" selection-end-column="71" />
+              <folding>
+                <element signature="e#34#60#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,25 +68,25 @@
         <entry file="file://$PROJECT_DIR$/Application/Common/Model/AdsModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="33" column="72" selection-start-line="33" selection-start-column="72" selection-end-line="33" selection-end-column="72" />
+              <caret line="33" column="81" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="521" column="43" selection-start-line="521" selection-start-column="43" selection-end-line="521" selection-end-column="43" />
+            <state relative-caret-position="279">
+              <caret line="520" column="10" selection-start-line="517" selection-start-column="8" selection-end-line="520" selection-end-column="10" />
               <folding>
                 <element signature="e#120#146#0#PHP" expanded="true" />
-                <marker date="1470392704223" expanded="true" signature="4811:4850" ph="select * fro... " />
-                <marker date="1470392704223" expanded="true" signature="5068:5237" ph="INSERT INTO " />
-                <marker date="1470392704223" expanded="true" signature="5405:5760" ph="INSERT INTO " />
-                <marker date="1470392704223" expanded="true" signature="5935:6194" ph="INSERT INTO " />
-                <marker date="1470392704223" expanded="true" signature="8492:8537" ph="..." />
-                <marker date="1470392704223" expanded="true" signature="8500:8528" ph="{...}" />
+                <marker date="1470392973449" expanded="true" signature="4811:4850" ph="select * fro... " />
+                <marker date="1470392973449" expanded="true" signature="5068:5237" ph="INSERT INTO " />
+                <marker date="1470392973449" expanded="true" signature="5405:5760" ph="INSERT INTO " />
+                <marker date="1470392973449" expanded="true" signature="5935:6194" ph="INSERT INTO " />
+                <marker date="1470392973449" expanded="true" signature="8492:8537" ph="..." />
+                <marker date="1470392973449" expanded="true" signature="8500:8528" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -156,7 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Biz/Tencent/WechatHelper.class.php" />
@@ -207,6 +209,7 @@
         <option value="$PROJECT_DIR$/Application/Home/Controller/OrderController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/Shop_addProduct.html" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
+        <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
       </list>
     </option>
   </component>
@@ -1049,7 +1052,7 @@
       <workItem from="1469575397872" duration="1776000" />
       <workItem from="1469580880905" duration="121000" />
       <workItem from="1469581605323" duration="51274000" />
-      <workItem from="1470308327355" duration="19715000" />
+      <workItem from="1470308327355" duration="20097000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1062,7 +1065,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="512934000" />
+    <option name="totallyTimeSpent" value="513316000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1507,22 +1510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Model/AdsModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="33" column="72" selection-start-line="33" selection-start-column="72" selection-end-line="33" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="56" column="68" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2061">
@@ -1539,18 +1526,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Model/AdsModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="33" column="81" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="521" column="43" selection-start-line="521" selection-start-column="43" selection-end-line="521" selection-end-column="43" />
+        <state relative-caret-position="279">
+          <caret line="520" column="10" selection-start-line="517" selection-start-column="8" selection-end-line="520" selection-end-column="10" />
           <folding>
             <element signature="e#120#146#0#PHP" expanded="true" />
-            <marker date="1470392704223" expanded="true" signature="4811:4850" ph="select * fro... " />
-            <marker date="1470392704223" expanded="true" signature="5068:5237" ph="INSERT INTO " />
-            <marker date="1470392704223" expanded="true" signature="5405:5760" ph="INSERT INTO " />
-            <marker date="1470392704223" expanded="true" signature="5935:6194" ph="INSERT INTO " />
-            <marker date="1470392704223" expanded="true" signature="8492:8537" ph="..." />
-            <marker date="1470392704223" expanded="true" signature="8500:8528" ph="{...}" />
+            <marker date="1470392973449" expanded="true" signature="4811:4850" ph="select * fro... " />
+            <marker date="1470392973449" expanded="true" signature="5068:5237" ph="INSERT INTO " />
+            <marker date="1470392973449" expanded="true" signature="5405:5760" ph="INSERT INTO " />
+            <marker date="1470392973449" expanded="true" signature="5935:6194" ph="INSERT INTO " />
+            <marker date="1470392973449" expanded="true" signature="8492:8537" ph="..." />
+            <marker date="1470392973449" expanded="true" signature="8500:8528" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="59" column="71" selection-start-line="59" selection-start-column="71" selection-end-line="59" selection-end-column="71" />
+          <folding>
+            <element signature="e#34#60#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -54,7 +54,10 @@ class IndexController extends BaseController
 //        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
 //        $this->assign("product", json_encode($product));
 
-        $ads = D("Ads")->getList(array("shop_id" => $shopId), true);
+        //$ads = D("Ads")->getList(array("shop_id" => $shopId), true);
+
+        $mate = new ModelMate("ads");
+        $ads = $mate->select(array("shop_id" => $shopId), "rank desc");
         $this->assign("ads", json_encode($ads));
 
         //暂时先在base基类中实现

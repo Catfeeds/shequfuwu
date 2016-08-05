@@ -519,7 +519,8 @@ class FooController extends Controller
             "shop_id" => $shopid,
             "adsname" => 3,
         );
-        $ads = D("Ads")->getList($condition, true);
+        $mate= new ModelMate("ads");
+        $ads = $mate->select($condition,"rank desc");//D("Ads")->getList($condition, true);
         dump($ads);
     }
 
