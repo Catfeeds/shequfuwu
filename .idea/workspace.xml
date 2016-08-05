@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Shop_addProduct.html" afterPath="$PROJECT_DIR$/Application/Home/View/Shop_addProduct.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,17 +74,37 @@
       <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="514" column="25" selection-start-line="514" selection-start-column="20" selection-end-line="514" selection-end-column="25" />
+            <state relative-caret-position="299">
+              <caret line="521" column="43" selection-start-line="521" selection-start-column="43" selection-end-line="521" selection-end-column="43" />
               <folding>
                 <element signature="e#120#146#0#PHP" expanded="true" />
-                <marker date="1470392441984" expanded="true" signature="4811:4850" ph="select * fro... " />
-                <marker date="1470392441984" expanded="true" signature="5068:5237" ph="INSERT INTO " />
-                <marker date="1470392441984" expanded="true" signature="5405:5760" ph="INSERT INTO " />
-                <marker date="1470392441984" expanded="true" signature="5935:6194" ph="INSERT INTO " />
-                <marker date="1470392441984" expanded="true" signature="8492:8537" ph="..." />
-                <marker date="1470392441984" expanded="true" signature="8500:8528" ph="{...}" />
+                <marker date="1470392704223" expanded="true" signature="4811:4850" ph="select * fro... " />
+                <marker date="1470392704223" expanded="true" signature="5068:5237" ph="INSERT INTO " />
+                <marker date="1470392704223" expanded="true" signature="5405:5760" ph="INSERT INTO " />
+                <marker date="1470392704223" expanded="true" signature="5935:6194" ph="INSERT INTO " />
+                <marker date="1470392704223" expanded="true" signature="8492:8537" ph="..." />
+                <marker date="1470392704223" expanded="true" signature="8500:8528" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index_shop.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2061">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ads-container.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-841">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1030,7 +1049,7 @@
       <workItem from="1469575397872" duration="1776000" />
       <workItem from="1469580880905" duration="121000" />
       <workItem from="1469581605323" duration="51274000" />
-      <workItem from="1470308327355" duration="19462000" />
+      <workItem from="1470308327355" duration="19715000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1043,7 +1062,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="512681000" />
+    <option name="totallyTimeSpent" value="512934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1108,20 +1127,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/OrderController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/BaseController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1518,18 +1523,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_shop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2061">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-841">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="514" column="25" selection-start-line="514" selection-start-column="20" selection-end-line="514" selection-end-column="25" />
+        <state relative-caret-position="299">
+          <caret line="521" column="43" selection-start-line="521" selection-start-column="43" selection-end-line="521" selection-end-column="43" />
           <folding>
             <element signature="e#120#146#0#PHP" expanded="true" />
-            <marker date="1470392441984" expanded="true" signature="4811:4850" ph="select * fro... " />
-            <marker date="1470392441984" expanded="true" signature="5068:5237" ph="INSERT INTO " />
-            <marker date="1470392441984" expanded="true" signature="5405:5760" ph="INSERT INTO " />
-            <marker date="1470392441984" expanded="true" signature="5935:6194" ph="INSERT INTO " />
-            <marker date="1470392441984" expanded="true" signature="8492:8537" ph="..." />
-            <marker date="1470392441984" expanded="true" signature="8500:8528" ph="{...}" />
+            <marker date="1470392704223" expanded="true" signature="4811:4850" ph="select * fro... " />
+            <marker date="1470392704223" expanded="true" signature="5068:5237" ph="INSERT INTO " />
+            <marker date="1470392704223" expanded="true" signature="5405:5760" ph="INSERT INTO " />
+            <marker date="1470392704223" expanded="true" signature="5935:6194" ph="INSERT INTO " />
+            <marker date="1470392704223" expanded="true" signature="8492:8537" ph="..." />
+            <marker date="1470392704223" expanded="true" signature="8500:8528" ph="{...}" />
           </folding>
         </state>
       </provider>

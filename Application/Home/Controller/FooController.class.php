@@ -457,21 +457,22 @@ class FooController extends Controller
         dump(8 / 3);
     }
 
-    public function arrayrandop(){
-        $arr= array();
-        for($i=0;$i<10;$i++){
-            $arr[$i]=0;
+    public function arrayrandop()
+    {
+        $arr = array();
+        for ($i = 0; $i < 10; $i++) {
+            $arr[$i] = 0;
         }
 
-        $rand= array_rand($arr,5);
+        $rand = array_rand($arr, 5);
 
-        $index=1;
-        foreach ($rand as $k=>$v){
-            $arr[$k]= $index;
+        $index = 1;
+        foreach ($rand as $k => $v) {
+            $arr[$k] = $index;
             $index++;
         }
         //$arr= array_values($arr);
-        shuffle ($arr);
+        shuffle($arr);
         dump($arr);
     }
 
@@ -504,16 +505,21 @@ class FooController extends Controller
         dump($arr);
 
         dump("------------------------------------------");
-        for ($i=0;$i<10;$i++){
-            $result_bonus[]= 0;
+        for ($i = 0; $i < 10; $i++) {
+            $result_bonus[] = 0;
         }
 
-        shuffle ($result_bonus);
+        shuffle($result_bonus);
         dump($result_bonus);
     }
 
-    public function adsop($shopid=146){
-        $ads = D("Ads")->getList(array("shop_id" => $shopid), true);
+    public function adsop($shopid = 146)
+    {
+        $condition = array(
+            "shop_id" => $shopid,
+            "adsname" => 3,
+        );
+        $ads = D("Ads")->getList($condition, true);
         dump($ads);
     }
 
