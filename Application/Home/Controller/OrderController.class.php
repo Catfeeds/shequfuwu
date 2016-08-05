@@ -3,6 +3,7 @@ namespace Home\Controller;
 
 use Common\Model\BizConst;
 use Common\Model\ViewLink;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class OrderController extends BaseController
@@ -54,6 +55,62 @@ class OrderController extends BaseController
         $orderPayStatuses = BizConst::getConstArray("ORDER_PAYSTATUS_", false);
         $this->assign('orderPayStatuses', $orderPayStatuses);
 
+        $this->display();
+    }
+
+    public function commonPrint($id)
+    {
+        self::orderCommonPrint($id);
+    }
+
+    public function orderCommonPrint($id)
+    {
+        $mate = new ViewMate("order", ViewLink::getOrder_OrderContact_OrderDetail_Shop()); //D("Order")->getOrder(array("id" => $id), true);
+        $result= $mate->get($id);
+
+        if ($result["pay_status"] == 0) {
+            $pay_status = "未付款";
+        } else {
+            $pay_status = "已付款";
+        }
+
+        $config = D("Shop")->getShop(array("id" => $result["shop_id"]));
+
+        $msg = '';
+        $msgtitle = $config['name'] . '欢迎您订购<br/>
+
+订单编号：' . $result["orderid"] . '<br/>
+
+条目        单价（元）      数量<br/>
+------------------------------<br/>
+';
+        $detail = '';
+        for ($j = 0; $j < count($result["detail"]); $j++) {
+            $row = $result["detail"][$j];
+            $title = $row['name'];
+            $price = $row['price'];
+            $num = $row['num'];
+
+            $detail .= $title . "\n" . number_format($price, 2) . "           " . $num . "\n<br/>";
+        }
+        $msgcontent = $detail;
+
+        $msgfooter = '
+备注：' . $result["remark"] . '<br/>
+------------------------------<br/>
+合计：' . $result["totalprice"] . '元<br/>
+付款状态：' . $pay_status . '<br/>
+
+联系用户：' . $result["contact"]["name"] . '<br/>
+送货地址：' . $result["contact"]["province"] . $result["contact"]["city"] . $result["contact"]["district"] . $result["contact"]["address"] . '<br/>
+联系电话：' . $result["contact"]["phone"] . '<br/>
+订购时间：' . $result["time"] . '<br/>
+
+';//自由输出
+
+        $msg .= $msgtitle . $msgcontent . $msgfooter;
+
+        $this->assign('message',$msg);
         $this->display();
     }
 

@@ -1,0 +1,79 @@
+<section class="content-header">
+    <h1>
+        订单详情
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <script type="application/javascript">
+            function commonPrint() {
+                $("#printMessage").focus();
+                var bdhtml = $("#printMessage").html();
+                window.document.body.innerHTML = bdhtml;
+                window.print();
+            }
+        </script>
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">订单详情</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <input onclick="commonPrint();"
+                                   target="_blank" class="btn btn-danger" value="打印" type="button">
+                            </input>
+                        </div>
+                        <!-- /.btn-group -->
+                    </div>
+
+
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <div id="printMessage">
+                            {$message}
+                        </div>
+
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <!-- /.btn-group -->
+                                <div class="pull-right">
+                                    {$page}
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+<script type="text/javascript">
+    $(function () {
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'YYYY-MM-DD h:mm:ss',
+            separator: ' --- ',
+        });
+        if ('{$orderPost}') {
+            $('select[name="payment"]').val('{$orderPost.payment}');
+            $('select[name="pay_status"]').val('{$orderPost.pay_status}');
+            $('select[name="status"]').val('{$orderPost.status}');
+            $('select[name="product_id"]').val('{$orderPost.product_id}');
+        }
+    });
+</script>
+
+

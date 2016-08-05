@@ -110,6 +110,17 @@
 
     <div class="row">
         <!-- /.col -->
+        <script type="application/javascript">
+            function commonPrint(id) {
+                var url= "{:U('Home/Order/commonPrint')}"+ "/id/"+id;
+                var tmp=window.open(url,"","fullscreen=1");
+                tmp.moveTo(0,0);
+                tmp.resizeTo(screen.width+20,screen.height);
+                tmp.focus();
+
+                tmp.print();
+            }
+        </script>
         <div class="col-md-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
@@ -139,7 +150,7 @@
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
                                 <th>店铺名称</th>
-                                <th>订单编号</th>
+                                <th>编号与时间</th>
                                 <th>联系人</th>
                                 <th>金额</th>
                                 <th>支付方式</th>
@@ -232,7 +243,10 @@
                                         {$order.remark}
                                     </td>
                                     <td class="hidden-xs">
-                                        订单详情
+                                        <!--<input onclick="commonPrint({$order['id']});"-->
+                                               <!--target="_blank" class="btn btn-danger" value="打印" type="button">-->
+                                        <!--</input>-->
+                                        <a target="_blank" href="{:U('Home/Order/orderCommonPrint',array('id'=>$order['id']))}">订单详情</a>
                                     </td>
                                 </tr>
                             </volist>
