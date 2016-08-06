@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\ViewLink;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class UserController extends BaseController
@@ -8,26 +9,8 @@ class UserController extends BaseController
 
     public function user()
     {
-        $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
-        $p = I("get.page") ? I("get.page") : 1;
-        cookie("prevUrl", U("Home/User/user/page/$p"));
-
-        $condition = array();
-        $userList = array();
-        $count = 0;
-        $condition["shop_id"] = session("homeShopId");
-
-        $_userList = D("UserShop")->getList($condition, true, "id desc", $p, $num);
-        foreach ($_userList as $key => $value) {
-            array_push($userList, $value["user"]);
-        }
-
-        $count = D("UserShop")->getMethod($condition, "count");// 查询满足要求的总记录数
-        $this->assignPaging($count, $num);
-
-        $this->assign("userList", $userList);// 赋值数据集
-
-        $this->display();
+        $condition= array("shopid"=>$this->getCurrentShopId());
+        $this->itemList("usershopscaned",$condition,0,0,"userList",ViewLink::getCommon_User());
     }
 
     public function employee()
