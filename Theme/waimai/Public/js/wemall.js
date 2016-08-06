@@ -765,7 +765,8 @@ function cartNext() {
         type: "get",
         url: data.baseUrl + "/App/User/getContactList",
         data: {
-            getProvince: true
+            getProvince: true,
+            shopId:data.shopId,
         },
         success: function (res) {
             // console.log(res);
@@ -821,7 +822,6 @@ function cartNext() {
 
                     $('#hat_area').val(res[0].city);
                 }
-
             }
         },
         beforeSend: function () {

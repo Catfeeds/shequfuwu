@@ -2,6 +2,8 @@
 namespace Home\Controller;
 
 
+use Vendor\Hiland\Utils\DataModel\ModelMate;
+
 class IndexController extends BaseController
 {
     public function index()
@@ -23,7 +25,9 @@ class IndexController extends BaseController
         $order = D("Order")->getOrderListCount();
         $this->assign("order", $order);
 
-        $artical = D("Artical")->getArticalList(array("type" => 1), false, "id desc", 0, 0, 10);
+        //$artical = D("Artical")->getArticalList(array("type" => 1), false, "id desc", 0, 0, 10);
+        $articalMate= new ModelMate("artical");
+        $artical = $articalMate->select(array("shop_id" => 0),"",0,0,10);
         $this->assign("artical", $artical);
         $this->display();
     }

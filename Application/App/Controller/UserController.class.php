@@ -59,11 +59,14 @@ class UserController extends BaseController
         $this->ajaxReturn($user);
     }
 
+    /**
+     * 获取历史订单联系人信息
+     */
     public function getContactList()
     {
         $contact = D("Contact")->getList(array("user_id" => session("userId")));
         if (I("get.getProvince")) {
-            $contact["province"] = D("LocProvince")->getList(array(), true);
+            $contact["province"] = D("LocProvince")->getList(array("shop_id"=>I("get.shopId")), true);
         }
 
         $this->ajaxReturn($contact);
