@@ -6,11 +6,10 @@ use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class UserController extends BaseController
 {
-
     public function user()
     {
-        $condition= array("shopid"=>$this->getCurrentShopId());
-        $this->itemList("usershopscaned",$condition,0,0,"userList",ViewLink::getCommon_User());
+        $condition = array("shopid" => $this->getCurrentShopId());
+        $this->itemList("usershopscaned", $condition, 0, 0, "userList", ViewLink::getCommon_User());
     }
 
     public function employee()
@@ -26,7 +25,7 @@ class UserController extends BaseController
         $size = 8;
 
 
-        $fileName= "Uploads/ShopBindUserQRCode/" . session("homeShopId") . ".png";
+        $fileName = "Uploads/ShopBindUserQRCode/" . session("homeShopId") . ".png";
         $filePhysicalName = PUBLIC_PATH . $fileName;
         // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
 
