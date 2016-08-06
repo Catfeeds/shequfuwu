@@ -55,7 +55,14 @@ class IndexController extends BaseController
 
         $configs = D("Config")->get();
         $config = D("Shop")->getShop(array('id' => $shopId), true);
-        $config["delivery_time"] = explode(",", $config["delivery_time"]);
+        //$config["delivery_time"] = explode(",", $config["delivery_time"]);
+        //--[将换行分隔的，逗号分隔的都转换成数组元素]--------------------------------------
+        $deliveryTime= $config["delivery_time"];
+        $deliveryTime=  str_replace("\r\n",",",$deliveryTime);
+        $deliveryTime=explode(",", $deliveryTime);
+        $deliveryTime= array_filter($deliveryTime);
+        $config["delivery_time"]= $deliveryTime;
+
         $config["balance_payment"] = $configs["balance_payment"];
         $config["wechat_payment"] = $configs["wechat_payment"];
         $config["alipay_payment"] = $configs["alipay_payment"];

@@ -533,6 +533,18 @@ class FooController extends Controller
         BizHelper::updateUserScore(802,144,-1,'购买商品');
     }
 
+    public function deliverytimeop(){
+        $mate= new ModelMate("shop");
+        $data= $mate->get(144);
+        $deliveryTime= $data['delivery_time'];
+        dump($deliveryTime);
+        dump("------------------------");
+        $deliveryTime=  str_replace("\r\n",",",$deliveryTime);
+        $deliveryTime=explode(",", $deliveryTime);
+        $deliveryTime= array_filter($deliveryTime);
+        dump($deliveryTime);
+    }
+
     public function enumop()
     {
         //dump('ssssss');
