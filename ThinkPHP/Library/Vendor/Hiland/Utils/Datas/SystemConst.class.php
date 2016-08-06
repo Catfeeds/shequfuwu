@@ -40,4 +40,10 @@ class SystemConst extends ConstMate
     const COMMON_REVIEW_STATUS_REFUSED_TEXT = "审核失败";
     const COMMON_REVIEW_STATUS_PASSED = 1;
     const COMMON_REVIEW_STATUS_PASSED_TEXT = "审核通过";
+    //-----------------------------------------------------------------------
+    const COMMON_FINANCE_FOUNDDIRECTION_PAY = 0;
+    const COMMON_FINANCE_FOUNDDIRECTION_PAY_TEXT = "支出";
+    const COMMON_FINANCE_FOUNDDIRECTION_INCOME = 1;
+    const COMMON_FINANCE_FOUNDDIRECTION_INCOME_TEXT = "收入";
+
 }

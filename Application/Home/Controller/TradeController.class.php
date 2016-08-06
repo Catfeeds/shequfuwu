@@ -305,4 +305,77 @@ class TradeController extends BaseController
         $this->itemsUpdate($modle);
     }
 
+    public function scoreList(){
+        $code_url = "http://" . I("server.HTTP_HOST") . U("App/Shop/bindShop", array("shopId" => session("homeShopId")));
+
+        //商户自行增加处理流程
+        //......
+        vendor("phpqrcode.phpqrcode");
+        // 纠错级别：L、M、Q、H
+        $level = 'L';
+        // 点的大小：1到10,用于手机端4就可以了
+        $size = 8;
+
+
+        $fileName= "Uploads/ShopBindUserQRCode/" . session("homeShopId") . ".png";
+        $filePhysicalName = PUBLIC_PATH . $fileName;
+        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
+
+        if (!is_file($fileName)) {
+            \QRcode::png($code_url, $filePhysicalName, $level, $size);
+        }
+
+        $this->assign("qrcode", "http://" . I("server.HTTP_HOST") . __ROOT__ . "/Public/$fileName");
+
+
+        $condition = array(
+            "shop_id" => $this->getCurrentShopId(),
+        );
+
+        $shopId = session("homeShopId");
+        $cookiePrefix = "shop$shopId";
+
+        if (IS_POST) {
+            cookie("$cookiePrefix-category", I("post.category"));
+        }
+
+        $cookieCategory = cookie("$cookiePrefix-category");
+        if ($cookieCategory && $cookieCategory != -10) {
+            array_push($condition, array("menu_id" => $cookieCategory));
+        }
+
+
+        if (IS_POST) {
+            if (I("post.productName") == "") {
+                cookie("$cookiePrefix-productName", null);
+            } else {
+                cookie("$cookiePrefix-productName", I("productName"));
+            }
+        }
+
+        $cookieProductName = cookie("$cookiePrefix-productName");
+        if ($cookieProductName) {
+            array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
+        }
+
+        if (IS_POST) {
+            cookie("$cookiePrefix-status", I("post.productStatus"));
+        }
+
+        $cookieStatus = cookie("$cookiePrefix-status");
+        if ($cookieStatus != null && $cookieStatus != -10) {
+            array_push($condition, array("status" => $cookieStatus));
+        }
+
+        $this->itemList('userScore', $condition, 0, 0, '', ViewLink::getCommon_User());
+    }
+
+    public function scoreDetailList(){
+        $condition = array(
+            "shop_id" => $this->getCurrentShopId(),
+        );
+
+        $this->itemList('userScoreDetail', $condition, 0, 0, '');
+    }
+
 }

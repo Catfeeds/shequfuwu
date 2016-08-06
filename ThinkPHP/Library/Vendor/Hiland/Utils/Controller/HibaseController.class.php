@@ -76,6 +76,10 @@ class HibaseController extends Controller
             $countPerPage = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         }
 
+        if (empty($dataListName)) {
+            $dataListName = "dataList";
+        }
+
         $this->assignListAndPaging($modle, $condition, $pageIndex, $countPerPage, $dataListName, $link);
 
         $this->recordBackingCookie();

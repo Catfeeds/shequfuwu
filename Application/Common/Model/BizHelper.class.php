@@ -2,14 +2,15 @@
 namespace Common\Model;
 
 use Vendor\Hiland\Biz\Geo\GeoHelper;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
 use Vendor\Hiland\Biz\Tencent\Packet\WxPacket;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class BizHelper
 {
@@ -320,7 +321,7 @@ class BizHelper
 
         $data = array(
             'nonce_str' => RandHelper::rand(30), // 随机字符串
-            'mch_billno' => date('YmdHis') . RandHelper::rand(10,""), // 订单号
+            'mch_billno' => date('YmdHis') . RandHelper::rand(10, ""), // 订单号
             'mch_id' => WechatConfig::MCHID, // 商户号
             'wxappid' => WechatConfig::APPID, // 微信的appid
             'nick_name' => $merchantName, // 提供方名称
@@ -341,6 +342,53 @@ class BizHelper
         $packet = new WxPacket();
         $result = $packet->send($data);
         //CommonLoger::log('hongbao-result', $result);
+    }
+
+    /**
+     * 更新用户积分
+     * @param $userId
+     * @param $shopId
+     * @param $score
+     * @param string $reason
+     */
+    public static function updateUserScore($userId, $shopId, $score, $reason = '')
+    {
+        //1 更新用户的总积分情况
+        $userMate = new ModelMate('user');
+        $userCondition = array("id" => $userId);
+        $userMate->setInc($userCondition, "score", $score);
+
+        //2更新用户在某个商户的积分情况
+        $scoreMate = new ModelMate('userScore');
+        $scoreCondition = array("userid" => $userId, "shop_id" => $shopId);
+        $scoreData = $scoreMate->find($scoreCondition);
+        if ($scoreData) {
+            $scoreData['scores'] = $scoreData['scores'] + $score;
+        } else {
+            $scoreData['userid'] = $userId;
+            $scoreData['shop_id'] = $shopId;
+            $scoreData['scores'] = $score;
+        }
+
+        $scoreID= $scoreMate->interact($scoreData);
+
+        //3更新积分明细
+        $detailMate = new ModelMate('userScoreDetail');
+        $direction= SystemConst::COMMON_FINANCE_FOUNDDIRECTION_INCOME;
+
+        if($score<0){
+            $direction= SystemConst::COMMON_FINANCE_FOUNDDIRECTION_PAY;
+        }
+
+        $detailData= array(
+            "scoreid"=>$scoreID,
+            "score"=>$score,
+            "direction"=>$direction,
+            "reason"=>$reason,
+            "createtime"=> DateHelper::format()
+        );
+
+        $detailMate->interact($detailData);
     }
 }
 

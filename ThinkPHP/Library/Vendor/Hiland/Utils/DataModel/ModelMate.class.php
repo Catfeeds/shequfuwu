@@ -318,9 +318,33 @@ class ModelMate
             unset($data["$keyName"]);
         }
 
-        CommonLoger::log("$keyName-$keys", json_encode($data));
+        //CommonLoger::log("$keyName-$keys", json_encode($data));
         $condition = array("$keyName" => array("in", $keys));
 
         return $this->model->where($condition)->data($data)->save();
+    }
+
+    /**
+     * @param $condition
+     * @param $field
+     * @param int $step
+     * @param int $lazyTime
+     * @return bool
+     */
+    public function setInc($condition, $field, $step = 1, $lazyTime = 0)
+    {
+        return $this->model->where($condition)->setInc($field, $step, $lazyTime);
+    }
+
+    /**
+     * @param $condition
+     * @param $field
+     * @param int $step
+     * @param int $lazyTime
+     * @return bool
+     */
+    public function setDec($condition, $field, $step = 1, $lazyTime = 0)
+    {
+        return $this->model->where($condition)->setDec($field, $step, $lazyTime);
     }
 }

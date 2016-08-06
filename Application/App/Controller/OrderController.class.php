@@ -84,7 +84,9 @@ class OrderController extends BaseController
             //---添加内容---------------------------------------------
             $detail["product_unit"] = $getProduct["unit"];
             //-------------------------------------------------------
-            $scoreInc += floatval($getProduct["score"]);
+            $productScore = $getProduct["score"];
+            $scoreInc += floatval($productScore);
+
 
             array_push($detailAll, $detail);
         }
@@ -93,7 +95,9 @@ class OrderController extends BaseController
         //update user
         $user = D("User");
         $user->where(array("id" => session("userId")))->setInc("buy_num");
-        $user->where(array("id" => session("userId")))->setInc("score", $scoreInc);
+        //$user->where(array("id" => session("userId")))->setInc("score", $scoreInc);
+        BizHelper::updateUserScore(session("userId"), $order['shop_id'], $scoreInc, "购物积分");
+
 
         //统计
         $newBuyUser = 0;

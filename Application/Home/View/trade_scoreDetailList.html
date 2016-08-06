@@ -1,0 +1,123 @@
+<section class="content-header">
+    <h1>
+        积分管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">商品管理</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="{:U('Home/Trade/scoreDetail')}" class="btn btn-danger ">
+                                新增
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="{:U('Home/Trade/scoreList')}" class="btn btn-danger ">
+                                返回列表
+                            </a>
+                        </div>
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>流水号</th>
+                                <th>收支状态</th>
+                                <th>积分</th>
+                                <th>说明</th>
+                                <th>时间</th>
+                                <th>操作</th>
+                            </tr>
+                            <volist name="dataList" id="item">
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox"
+                                                      value="{$item.id}"></label>
+                                    </td>
+                                    <td>
+                                        {$item.id}
+                                    </td>
+                                    <td>
+                                        {$item.direction}
+                                    </td>
+                                    <td>
+                                        {$item.score}
+                                    </td>
+                                    <td>
+                                        {$item.reason}
+                                    </td>
+                                    <td>
+                                        {$item.createtime}
+                                    </td>
+                                    <td class="table-action">
+
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+
+                                </div>
+                                <!-- /.btn-group -->
+                                <div class="pull-right">
+                                    {$page}
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.mail-box-messages -->
+            </div>
+        </div>
+        <!-- /. box -->
+    </div>
+    <!-- /.col -->
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
+
+                } else {
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
+</section>
+<script type="text/javascript">
+    $(function () {
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'YYYY-MM-DD h:mm:ss',
+            separator: ' --- ',
+        });
+        if ('{$productPost}') {
+            $('select[name="recommend"]').val('{$productPost.recommend}');
+            $('select[name="status"]').val('{$productPost.status}');
+        }
+    });
+</script>

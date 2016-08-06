@@ -444,6 +444,11 @@ class FooController extends Controller
         dump(__APP__);
         dump(_PHP_FILE_);
         dump(__ACTION__);
+
+        dump(__ROOT__);
+
+        $webFullRoot= "http://" . I("server.HTTP_HOST") . __ROOT__ ;
+        dump($webFullRoot);
     }
 
     public function mathop()
@@ -522,6 +527,10 @@ class FooController extends Controller
         $mate= new ModelMate("ads");
         $ads = $mate->select($condition,"rank desc");//D("Ads")->getList($condition, true);
         dump($ads);
+    }
+
+    public function userscoreop(){
+        BizHelper::updateUserScore(802,144,-1,'购买商品');
     }
 
     public function enumop()

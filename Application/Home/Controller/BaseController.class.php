@@ -66,5 +66,7 @@ class BaseController extends HibaseController
         return array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX'];
     }
 
-
+    public function getCurrentShopId(){
+        return session("homeShopId");
+    }
 }

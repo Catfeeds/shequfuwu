@@ -205,7 +205,8 @@ class OrderModel extends RelationModel
 
         $user = D("User");
         $user->where(array("id" => $userId))->setInc("buy_num");
-        $user->where(array("id" => $userId))->setInc("score", $scoreInc);
+        //$user->where(array("id" => $userId))->setInc("score", $scoreInc);
+        BizHelper::updateUserScore($userId,$shopId,$scoreInc,"购物积分");
 
         //统计
         $newBuyUser = 0;

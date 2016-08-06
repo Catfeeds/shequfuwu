@@ -75,4 +75,12 @@ class ShopController extends BaseController
         D("Shop")->saveShop(array("id" => I("get.shopId"), "employee" => implode(",", $employee)));
         $this->display();
     }
+
+    public function getUserIdByWeixin()
+    {
+        R("App/Public/oauthLogin");
+        $userID= session("userId");
+
+        $this->ajaxReturn($userID);
+    }
 }
