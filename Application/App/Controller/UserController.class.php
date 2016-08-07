@@ -38,7 +38,12 @@ class UserController extends BaseController
             }
 
             $mate = new ViewMate('order', ViewLink::getOrder_OrderContact_OrderDetail_Shop());
-            $result = $mate->select(array("user_id" => session("userId"), "status" => array("gt", -1)), true, '', $pageIndex, $itemCountPerPage);
+            $condition = array(
+                "user_id" => session("userId"),
+                "status" => array("gt", -1),
+                "shop_id" => I("get.shopId"),
+            );
+            $result = $mate->select($condition, true, '', $pageIndex, $itemCountPerPage);
             if ($result) {
                 $orderCount = sizeof($result);
                 for ($i = 0; $i < $orderCount; $i++) {
@@ -66,7 +71,7 @@ class UserController extends BaseController
     {
         $contact = D("Contact")->getList(array("user_id" => session("userId")));
         if (I("get.getProvince")) {
-            $contact["province"] = D("LocProvince")->getList(array("shop_id"=>I("get.shopId")), true);
+            $contact["province"] = D("LocProvince")->getList(array("shop_id" => I("get.shopId")), true);
         }
 
         $this->ajaxReturn($contact);

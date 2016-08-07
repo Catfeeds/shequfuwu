@@ -1310,6 +1310,7 @@ function loadOrder(pageIndex) {
         data: {
             getOrder: true,
             pageIndex: pageIndex,
+            shopId:data.shopId,
         },
         success: function (res) {
             $('#balance').html("");
