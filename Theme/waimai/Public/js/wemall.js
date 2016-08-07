@@ -1259,7 +1259,6 @@ function openCart(o) {
     if (totalNum == 0) {
         $('#shopcart-tip').hide();
     }
-
     // console.log(cartData);
 
     var html = '';
