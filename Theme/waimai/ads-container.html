@@ -61,3 +61,28 @@
         {{/if}} {{/each}}
     </ul>
 </div>
+<div id="lazyProductsContainer">
+
+</div>
+<script type="application/javascript">
+    $("document").ready(function () {
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/General/Biz/getProductsOfShopHotLabels",
+            data: {
+                shopId: data.shopId,
+            },
+            success: function (res) {
+                if (res) {
+                    $("#lazyProductsContainer").html("sssssssssssssss");
+                }
+            },
+            beforeSend: function () {
+                $('#page_tag_load').show();
+            },
+            complete: function () {
+                $('#page_tag_load').hide();
+            }
+        });
+    });
+</script>
