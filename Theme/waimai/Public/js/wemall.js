@@ -1318,7 +1318,12 @@ function loadOrder(pageIndex) {
                     $('#identity').html('管理员');
                 }
                 $('#balance').html(res.money + '元');
-                $('#score').html(res.scoreInShop + '分');
+
+                var scoreInShop= 0;
+                if(res.scoreInShop){
+                    scoreInShop= res.scoreInShop;
+                }
+                $('#score').html(scoreInShop + '分');
 
                 if (res.order != undefined) {
                     var json = eval(res.order);
