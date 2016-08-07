@@ -1358,7 +1358,6 @@ function loadOrder(pageIndex) {
             $('#page_tag_load').hide();
         }
     });
-
 }
 
 jQuery.fn.shake = function (times, offset, delay) {//次数,偏移,间隔
