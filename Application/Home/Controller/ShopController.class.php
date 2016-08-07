@@ -125,7 +125,6 @@ class ShopController extends BaseController
 
     public function product()
     {
-
         $shopId = session("homeShopId");
         $cookiePrefix = "shop$shopId";
         $condition = array(
@@ -307,39 +306,28 @@ class ShopController extends BaseController
 
             $this->success("保存成功", cookie("prevUrl"));
         } else {
+            if (I("get.id")) {
+                $product = D("Product")->get(array("id" => I("get.id")), array('menu', 'file'));
+                $product["label"] = explode(",", $product["label"]);
+
+                $albums = explode(",", $product["albums"]);
+                $product["albums"] = $albums ? D("File")->getList(array("id" => array("in", $albums))) : "";
+                $this->assign("product", $product);
+            }
+
             $menuList = D("Menu")->getList($condition);
             $this->assign("menuList", $menuList);
 
-            $labelList = D("ProductLabel")->getList();
+            $labelCondition = array();
+            $labelCondition['shop_id'] = array(array('eq', 0), array('eq', $this->getCurrentShopId()), 'or');
+            $labelMate = new ModelMate("productLabel");
+            $labelList = $labelMate->select($labelCondition); //D("ProductLabel")->getList($labelCondition);
             $this->assign("labelList", $labelList);
 
             $this->display();
         }
     }
 
-    public function modifyProduct()
-    {
-        $condition = array(
-            "shop_id" => session("homeShopId")
-        );
-
-        $product = D("Product")->get(array("id" => I("get.id")), array('menu', 'file'));
-        $product["label"] = explode(",", $product["label"]);
-
-        $albums = explode(",", $product["albums"]);
-        $product["albums"] = $albums ? D("File")->getList(array("id" => array("in", $albums))) : "";
-        $this->assign("product", $product);
-
-        $menuList = D("Menu")->getList($condition);
-        $this->assign("menuList", $menuList);
-
-        $labelList = D("ProductLabel")->getList();
-        $this->assign("labelList", $labelList);
-
-        // dump($product);
-
-        $this->display("Shop:addProduct");
-    }
 
     public function updateProduct()
     {
@@ -486,12 +474,13 @@ class ShopController extends BaseController
 //崔
     public function label()
     {
-        $condition = array(
-            "shop_id" => session("homeShopId")
-        );
+        $labelCondition = array();
+        $labelCondition['shop_id'] = array('eq', $this->getCurrentShopId());
+        $labelMate = new ModelMate("productLabel");
+        $labelList = $labelMate->select($labelCondition);
 
-        $label = D("ProductLabel")->getList($condition, false);
-        $this->assign("label", $label);
+        //$label = D("ProductLabel")->getList($condition, false);
+        $this->assign("label", $labelList);
         $this->display();
     }
 

@@ -458,7 +458,7 @@ function clickItemDetail(id) {
             var json = eval(res);
             $('#itemsDetail .single-name').html(json.name);
             $('#itemsDetail .new-price').children().html(json.price);
-            $('#itemsDetail .detail-label').html(json.label);
+            $('#itemsDetail .detail-label').children().html(json.label);
             $('#itemsDetail .detail-title').next().html(json.detail);
             $('#itemsDetail .detail-score').children().html(json.score);
             $('#itemsDetail #sale-unit').html(json.unit);
@@ -1379,7 +1379,7 @@ jQuery.fn.shake = function (times, offset, delay) {//次数,偏移,间隔
 
     });
     return this;
-}
+};
 
 var backContainer = '';
 function headerBack() {
