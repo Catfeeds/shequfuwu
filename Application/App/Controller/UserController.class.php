@@ -25,6 +25,14 @@ class UserController extends BaseController
     {
         $user = D("User")->get(array("id" => session("userId")), true);
 
+        $scoreMate = new ModelMate("userScore");
+        $scoreCodition = array(
+            "userid" => session("userId"),
+            "shop_id" => I("get.shopId"),
+        );
+        $scoreData = $scoreMate->find($scoreCodition);
+        $user['scoreInShop']= $scoreData['scores'];
+
         if (I("get.getOrder")) {
             //"id desc", $p, $num
             $pageIndex = I("get.pageIndex");
