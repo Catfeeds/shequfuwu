@@ -61,9 +61,6 @@
         {{/if}} {{/each}}
     </ul>
 </div>
-<div id="lazyProductsContainer">
-
-</div>
 <script type="application/javascript">
     $("document").ready(function () {
         $.ajax({
@@ -81,7 +78,7 @@
                         imageUrl: data.imageUrl
                     };
                     var html = template('productsOfLabels-container', dataSending);
-                    $('#lazyProductsContainer').html(html);
+                    $('#main').append(html);
                 }
             },
             beforeSend: function () {
