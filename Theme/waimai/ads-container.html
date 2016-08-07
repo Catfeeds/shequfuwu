@@ -77,6 +77,8 @@
                     var json = eval(res);
                     var dataSending = {
                         labels: json,
+                        uploadsUrl: data.uploadsUrl,
+                        imageUrl: data.imageUrl
                     };
                     var html = template('productsOfLabels-container', dataSending);
                     $('#lazyProductsContainer').html(html);
