@@ -3,7 +3,6 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_areashops.min.js" />
-        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wgs2mars.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_earashops.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/select-shop.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Shop_bindShop.min.js" />
@@ -18,13 +17,17 @@
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/show-shopinfo.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_shop.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
-        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/delivery-container.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/user-container.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/orderItems.min.js" />
-        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_mustsubscribe.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/.debug.min.js" />
-        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/iscroll.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wgs2mars.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/productsOfLabels-container.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/ads-container.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/itemsDetail-container.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/delivery-container.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_mustsubscribe.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -32,7 +35,6 @@
       <root url="file://$PROJECT_DIR$/Application/Home/View/template/build/template.min.js" />
       <root url="file://$PROJECT_DIR$/Application/Home/View/template/build/.cache/orderButtons.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_areashops.min.js" />
-      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wgs2mars.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_earashops.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/select-shop.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Shop_bindShop.min.js" />
@@ -47,13 +49,17 @@
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/show-shopinfo.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_shop.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
-      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/delivery-container.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/user-container.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/orderItems.min.js" />
-      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_mustsubscribe.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/.debug.min.js" />
-      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/iscroll.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wgs2mars.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/productsOfLabels-container.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/ads-container.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/itemsDetail-container.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/delivery-container.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_mustsubscribe.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
     </CLASSES>
     <SOURCES />
   </library>

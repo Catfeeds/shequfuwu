@@ -8,6 +8,7 @@
 
 namespace Vendor\Hiland\Utils\DataConstructure;
 
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 

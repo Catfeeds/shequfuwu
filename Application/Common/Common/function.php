@@ -363,79 +363,6 @@ function sendSmsVerify($user, $pass, $phone)
     sendSms($user, $pass, $content, $phone);
 }
 
-
-/**
- * @param $id
- *
- * 易联云微信打印机
- */
-// function wxPrint($id)
-// {
-//     $result = D("Order")->get(array("id" => $id));
-//     if ($result["pay_status"] == 0) {
-//         $pay_status = "未付款";
-//     } else {
-//         $pay_status = "已付款";
-//     }
-
-//     $config = D("Config")->get();
-
-//     $msg = '';
-//     $msgtitle = $config['name'] . '欢迎您订购
-
-// 订单编号：' . $result["orderid"] . '
-
-// 条目      单价（元）    数量
-// --------------------------------------------
-// ';
-//     $detail = '';
-//     for ($j = 0; $j < count($result["detail"]); $j++) {
-//         $row = $result["detail"][$j];
-//         $title = $row['name'];
-//         $price = $row['price'];
-//         $num = $row['num'];
-
-//         $detail .=
-//             $title . '      ' . $price . '      ' . $num . '
-// ';
-//     }
-//     $msgcontent = $detail;
-
-//     $msgfooter = '
-// 备注：' . $result["note"] . '
-// --------------------------------------------
-// 合计：' . $result["totalprice"] . '元
-// 付款状态：' . $pay_status . '
-
-// 联系用户：' . $result["contact"]["name"] . '
-// 送货地址：' . $result["contact"]["province"] . $result["contact"]["city"] . $result["contact"]["district"] . $result["contact"]["address"] . '
-// 联系电话：' . $result["contact"]["phone"] . '
-// 订购时间：' . $result["time"] . '
-
-
-// ';//自由输出
-
-//     $msg .= $msgtitle . $msgcontent . $msgfooter;
-
-//     $wxPrint = D("WxPrint")->get();
-//     $apiKey = $wxPrint["apiKey"];//apiKey
-//     $mKey = $wxPrint["mKey"];//秘钥
-//     $partner = $wxPrint["partner"];//用户id
-//     $machine_code = $wxPrint["machine_code"];//机器码
-
-//     $params = array(
-//         'partner' => $partner,
-//         'machine_code' => $machine_code,
-//         'content' => $msg,
-//     );
-
-//     Vendor("Wechat.wechat#class");
-//     $wxPrint = new \WxPrint();
-//     $sign = $wxPrint->generateSign($params, $apiKey, $mKey);
-//     $params['sign'] = $sign;
-//     $wxPrint->httppost1($params);
-// }
-
 /**
  * @param $id
  *
@@ -564,10 +491,10 @@ function deleteDir($dir)
  * @static
  * @access public
  * @param string $str 需要转换的字符串
- * @param string $start 开始位置
+ * @param int $start 开始位置
  * @param string $length 截取长度
  * @param string $charset 编码格式
- * @param string $suffix 截断显示字符
+ * @param bool $suffix 截断显示字符
  * @return string
  */
 function msubstr($str, $start = 0, $length, $charset = "utf-8", $suffix = true)
@@ -700,6 +627,10 @@ function getResourceVersion()
     } else {
         return 1;
     }
+}
+
+function getSystemConstText($constPrefix,$value){
+    return \Vendor\Hiland\Utils\Datas\SystemConst::getConstText($constPrefix,$value);
 }
 
 ?>

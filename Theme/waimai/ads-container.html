@@ -32,8 +32,9 @@
         <li class="item item_third">
             <a href="{{value.url}}" title="{{value.name}}">
                 <div class="item-image item-image_third"><img src="{{imageUrl}}/blank.gif"
-                                             data-echo="{{uploadsUrl+value.savepath+value.savename}}" class="lazy"
-                                             style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
+                                                              data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                                                              class="lazy"
+                                                              style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
                     <div class="select-shadow">
                         <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span>
                         </div>
@@ -47,7 +48,6 @@
         {{/if}} {{/each}}
     </ul>
 </div>
-
 <div class="m-component-promotion" id="list-section">
     <ul class="list-unstyled" id="list-sale">
         {{each ads as value i}} {{if value.adsname == 3}}
@@ -61,3 +61,46 @@
         {{/if}} {{/each}}
     </ul>
 </div>
+<div id="lazyProductsContainer">
+
+</div>
+<script type="application/javascript">
+    $("document").ready(function () {
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/General/Biz/getProductsOfShopHotLabels",
+            data: {
+                shopId: data.shopId,
+            },
+            success: function (res) {
+                if (res) {
+
+                    var json = eval(res);
+                    var html = '';
+//                    template.helper("orderPayStatusFormat", function (status) {
+//                        return getBizConstText("ORDER_PAYSTATUS_", status);
+//                    });
+//
+//                    template.helper("orderStatusFormat", function (status) {
+//                        return getBizConstText("ORDER_STATUS_", status);
+//                    });
+
+                    var dataSending = {
+                        labels: json,
+                        jsData: data,
+                    };
+
+                    html = template("productsOfLabels-container", dataSending);
+                    $("#lazyProductsContainer").append(html);
+
+                }
+            },
+            beforeSend: function () {
+                $('#page_tag_load').show();
+            },
+            complete: function () {
+                $('#page_tag_load').hide();
+            }
+        });
+    });
+</script> 

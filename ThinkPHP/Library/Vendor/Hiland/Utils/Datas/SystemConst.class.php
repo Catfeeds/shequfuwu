@@ -45,5 +45,9 @@ class SystemConst extends ConstMate
     const COMMON_FINANCE_FOUNDDIRECTION_PAY_TEXT = "支出";
     const COMMON_FINANCE_FOUNDDIRECTION_INCOME = 1;
     const COMMON_FINANCE_FOUNDDIRECTION_INCOME_TEXT = "收入";
-
+    //------------------------------------------------------------------------
+    const COMMON_STATUS_YN_NO = 0;
+    const COMMON_STATUS_YN_NO_TEXT = "否";
+    const COMMON_STATUS_YN_YES = 1;
+    const COMMON_STATUS_YN_YES_TEXT = "是";
 }

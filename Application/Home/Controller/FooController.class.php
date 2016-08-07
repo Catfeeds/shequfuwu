@@ -14,6 +14,7 @@ use Common\Model\BizHelper;
 use Common\Model\OrderViewMate;
 use Common\Model\ViewLink;
 use Common\Model\WechatBiz;
+use General\Controller\BizController;
 use Think\Controller;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;

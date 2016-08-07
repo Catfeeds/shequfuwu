@@ -6,6 +6,7 @@
 </head>
 <body>
 <button type="button" id="btnSearchShop">加载</button>
+<button type="button" id="btnLoadKeyValueArray">加载K/V数组</button>
 <p class="dataContainer" id="dataContainer">
     显示内容
 </p>
@@ -39,6 +40,15 @@
     </li>
     {{/each}}
 
+</script>
+
+<script id="kvArray" type="text/html">
+    {{each result as value index}}
+    {{index}}
+    {{each value as item}}
+    {{item}}
+    {{/each}}<br/>
+    {{/each}}
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -74,6 +84,32 @@
             });
         });
 
+        $("#btnLoadKeyValueArray").on("click", function () {
+            $.ajax({
+                type: "get",
+                url: "__APP__/General/Biz/getKeyValueArrayTest",
+                data: {},
+                success: function (res) {
+                    //alert(res);
+                    json = eval(res);
+                    var dataSending = {
+                        result: json,
+                    };
+
+                    var html = template('kvArray', dataSending);
+                    $('#dataContainer').html(html);
+                },
+                error: function () {
+                    $('#dataContainer').html('错误');
+                },
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                }
+            });
+        });
     });
 </script>
 </body>

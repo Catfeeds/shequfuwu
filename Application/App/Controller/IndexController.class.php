@@ -81,6 +81,8 @@ class IndexController extends BaseController
 //        $this->assign("product", json_encode($product));
 
 
+
+
         //$ads = D("Ads")->getList(array("shop_id" => $shopId), true,"rank desc");
 
         $mate = new ViewMate("ads", ViewLink::getCommon_File());

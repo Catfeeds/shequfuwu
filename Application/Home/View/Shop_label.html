@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        商城管理
+        标签管理
         <small></small>
     </h1>
 </section>
@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">标签管理</h3>
+                    <h3 class="box-title">标签列表</h3>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
@@ -34,6 +34,7 @@
                                 </th>
                                 <th>ID</th>
                                 <th>名称</th>
+                                <th>首页展示</th>
                                 <th>介绍</th>
                                 <th>备注</th>
                                 <th>操作</th>
@@ -46,6 +47,12 @@
                                     </td>
                                     <td>{$label.id}</td>
                                     <td>{$label.name}</td>
+                                    <td>
+                                        <?php
+                                            $constPrefix= 'COMMON_STATUS_YN_';
+                                            echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText($constPrefix,$label['isshowmainpage']);
+                                        ?>
+                                    </td>
                                     <td>{$label.subname}</td>
                                     <td>{$label.remark}</td>
                                     <td class="table-action"><a
