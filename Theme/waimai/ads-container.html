@@ -74,7 +74,12 @@
             },
             success: function (res) {
                 if (res) {
-                    $("#lazyProductsContainer").html(res);
+                    var json = eval(res);
+                    var dataSending = {
+                        labels: json,
+                    };
+                    var html = template('productsOfLabels-container', dataSending);
+                    $('#lazyProductsContainer').html(html);
                 }
             },
             beforeSend: function () {
