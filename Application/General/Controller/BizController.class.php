@@ -118,7 +118,7 @@ class BizController
 
         //2 分组获取产品
         $result = array();
-        $productMate = new ModelMate("product");
+        $productMate = new ViewMate("product",ViewLink::getCommon_File());
         foreach ($labelDatas as $lable) {
             $labelName = $lable["name"];
             $condition = array();

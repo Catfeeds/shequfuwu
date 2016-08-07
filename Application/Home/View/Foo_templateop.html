@@ -7,6 +7,7 @@
 <body>
 <button type="button" id="btnSearchShop">加载</button>
 <button type="button" id="btnLoadKeyValueArray">加载K/V数组</button>
+<button type="button" id="btnLoadShopLabels">加载店铺标签产品</button>
 <p class="dataContainer" id="dataContainer">
     显示内容
 </p>
@@ -50,6 +51,34 @@
     {{/each}}<br/>
     {{/each}}
 </script>
+
+<script id="shopLabels" type="text/html">
+    {{each labels as labelItem index}}
+    <div class="product-hot">
+        <div class="mod-title">{{index}}</div>
+        <ul>
+            {{each labelItem as value i}}
+            <li class="item item_third">
+                <a href="{{value.url}}" title="{{value.name}}">
+                    <div class="item-image item-image_third"><img src="{{imageUrl}}/blank.gif"
+                                                                  data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                                                                  class="lazy"
+                                                                  style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
+                        <div class="select-shadow">
+                            <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="single-item-info">
+                    <div class="item-title contentCenter">{{value.name}}</div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/each}}
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnSearchShop").on("click", function () {
@@ -65,8 +94,6 @@
                     json = eval(res);
                     var dataSending = {
                         orders: json,
-
-                        //jsData: data,
                     };
                     //var html= template('test');
                     var html = template('test', dataSending);
@@ -97,6 +124,33 @@
                     };
 
                     var html = template('kvArray', dataSending);
+                    $('#dataContainer').html(html);
+                },
+                error: function () {
+                    $('#dataContainer').html('错误');
+                },
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                }
+            });
+        });
+
+        $("#btnLoadShopLabels").on("click", function () {
+            $.ajax({
+                type: "get",
+                url: "__APP__/General/Biz/getProductsOfShopHotLabels",
+                data: {shopId: 144,},
+                success: function (res) {
+                    //alert(res);
+                    json = eval(res);
+                    var dataSending = {
+                        labels: json,
+                    };
+
+                    var html = template('shopLabels', dataSending);
                     $('#dataContainer').html(html);
                 },
                 error: function () {
