@@ -1191,7 +1191,13 @@ function openAds(o) {
     tabTmpl("ads-container");
     initProduct();
     // $(".header-title").show();
-    $(".header-title").html(data.config.name + " " + data.config.tel);
+
+    var headerTitle= data.config.name;
+    var shopTelephone= data.config.tel;
+    if(shopTelephone){
+        headerTitle+= " " +shopTelephone;
+    }
+    $(".header-title").html(headerTitle);
 }
 
 function tabTmpl(id) {
