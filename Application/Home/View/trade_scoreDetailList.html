@@ -13,15 +13,15 @@
         <div class="col-md-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">商品管理</h3>
+                    <h3 class="box-title">积分明细</h3>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                     <div class="mailbox-controls">
                         <div class="btn-group">
-                            <a href="{:U('Home/Trade/scoreDetail')}" class="btn btn-danger ">
-                                新增
+                            <a href="{:U('Home/Trade/scoreDetail',array('scoreId'=>encrypt($scoreData['id'])))}" class="btn btn-danger ">
+                            新增
                             </a>
                         </div>
                         <div class="btn-group">
@@ -54,7 +54,10 @@
                                         {$item.id}
                                     </td>
                                     <td>
-                                        {$item.direction}
+                                        <?php
+                                            $constPrefix= 'COMMON_FINANCE_FOUNDDIRECTION_';
+                                            echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText($constPrefix,$item['direction']);
+                                        ?>
                                     </td>
                                     <td>
                                         {$item.score}

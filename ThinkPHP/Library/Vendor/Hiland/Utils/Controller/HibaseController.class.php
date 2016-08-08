@@ -3,6 +3,7 @@ namespace Vendor\Hiland\Utils\Controller;
 
 use Think\Controller;
 use Think\Page;
+use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -45,6 +46,10 @@ class HibaseController extends Controller
 
         } else {
             if (empty($findingCondition)) {
+                if (empty($key)) {
+                    $key = I("$keyName");
+                }
+
                 $findingCondition = array(
                     "$keyName" => $key,
                 );
@@ -148,10 +153,35 @@ class HibaseController extends Controller
      * @param null $data
      * @param string $keyName
      */
-    protected function itemsUpdate($modle, $keys = "", $data = null, $keyName = 'id'){
+    protected function itemsUpdate($modle, $keys = "", $data = null, $keyName = 'id')
+    {
         $mate = new ModelMate($modle);
         $mate->updateByKeys($keys, $data, $keyName);
 
         $this->success("保存成功", cookie("prevUrl"));
+    }
+
+    /**
+     * @param string $paraName
+     * @param string $actionType
+     * @return int|null|string
+     */
+    protected function getDecryptParameter($paraName = "id", $actionType = "get")
+    {
+        $paraValue = I("$actionType.$paraName");
+
+        $result = null;
+        if ($paraValue) {
+            if (is_numeric($paraValue)) {
+                $result = $paraValue;
+            } else {
+                $result = CipherHelper::decrypt($paraValue);
+                if(empty($result)){
+                    $result= $paraValue;
+                }
+            }
+        }
+
+        return $result;
     }
 }

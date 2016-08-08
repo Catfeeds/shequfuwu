@@ -84,13 +84,20 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
-                    <!--                     <div class="mailbox-controls">
-                                            <div class="btn-group">
-                                                <a href="{:U('Admin/Shop/addShop')}" class="btn btn-danger ">
-                                                    新增店铺
-                                                </a>
-                                            </div>
-                                        </div> -->
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a class="btn btn-danger deleteConfirm"
+                               href="javascript:batchUrl('{:U(\'Admin/Shop/delShop\')}')">全部删除
+                            </a>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger"
+                                    onclick="batchUrl('{:U(\'Admin/Shop/updateShop\' , array(\'status\' => 2))}')">
+                                全部审核
+                            </button>
+                        </div>
+                    </div>
                     <div class="table-responsive" style="overflow-x: visible;">
                         <table class="table table-bordered table-hover">
                             <tbody>
@@ -163,6 +170,9 @@
                                         </if>
                                         <if condition="$shop.status eq -1">
                                             <a href="{:U('Admin/Shop/openShop',array('id'=>$shop['id'],'status' => 2))}">开启</a>
+                                        </if>
+                                        <if condition="$shop.status eq 0">
+                                            <a href="{:U('Admin/Shop/openShop',array('id'=>$shop['id'],'status' => 2))}">审核</a>
                                         </if>
                                     </td>
                                 </tr>

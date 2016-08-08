@@ -112,10 +112,10 @@
         <!-- /.col -->
         <script type="application/javascript">
             function commonPrint(id) {
-                var url= "{:U('Home/Order/commonPrint')}"+ "/id/"+id;
-                var tmp=window.open(url,"","fullscreen=1");
-                tmp.moveTo(0,0);
-                tmp.resizeTo(screen.width+20,screen.height);
+                var url = "{:U('Home/Order/commonPrint')}" + "/id/" + id;
+                var tmp = window.open(url, "", "fullscreen=1");
+                tmp.moveTo(0, 0);
+                tmp.resizeTo(screen.width + 20, screen.height);
                 tmp.focus();
 
                 tmp.print();
@@ -149,12 +149,11 @@
                                 <th class="hidden-xs">
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
-                                <th>店铺名称</th>
+                                <!--<th>店铺名称</th>-->
                                 <th>编号与时间</th>
                                 <th>联系人</th>
                                 <th>金额</th>
-                                <th>支付方式</th>
-                                <th>状态信息</th>
+                                <th>支付与状态</th>
                                 <th>配送时间</th>
                                 <th>订单详情</th>
                                 <th>备注</th>
@@ -166,9 +165,9 @@
                                         <label><input name="checkbox" class="check" type="checkbox"
                                                       value="{$order.id}"></label>
                                     </td>
-                                    <td>
-                                        {$order.shop.name}
-                                    </td>
+                                    <!--<td>-->
+                                        <!--{$order.shop.name}-->
+                                    <!--</td>-->
                                     <td>
                                         {$order.orderid}<br/>
                                         {$order.time}
@@ -191,13 +190,13 @@
                                         </div>
                                     </td>
                                     <td class="hidden-xs">
-                                        <volist name="orderPayTypes" id="opt">
-                                            <if condition="$order['payment'] EQ $opt['value']">
-                                                {$opt.text}
-                                            </if>
-                                        </volist>
-                                    </td>
-                                    <td class="hidden-xs">
+                                        <div>
+                                            <volist name="orderPayTypes" id="opt">
+                                                <if condition="$order['payment'] EQ $opt['value']">
+                                                    {$opt.text}
+                                                </if>
+                                            </volist>
+                                        </div>
                                         <div>
                                             <volist name="orderPayStatuses" id="ops">
                                                 <if condition="$order['pay_status'] EQ $ops['value']">
@@ -244,9 +243,10 @@
                                     </td>
                                     <td class="hidden-xs">
                                         <!--<input onclick="commonPrint({$order['id']});"-->
-                                               <!--target="_blank" class="btn btn-danger" value="打印" type="button">-->
+                                        <!--target="_blank" class="btn btn-danger" value="打印" type="button">-->
                                         <!--</input>-->
-                                        <a target="_blank" href="{:U('Home/Order/orderCommonPrint',array('id'=>$order['id']))}">订单详情</a>
+                                        <a target="_blank"
+                                           href="{:U('Home/Order/orderCommonPrint',array('id'=>$order['id']))}">详单打印</a>
                                     </td>
                                 </tr>
                             </volist>

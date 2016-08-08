@@ -633,4 +633,11 @@ function getSystemConstText($constPrefix,$value){
     return \Vendor\Hiland\Utils\Datas\SystemConst::getConstText($constPrefix,$value);
 }
 
+function encrypt($value){
+    return \Vendor\Hiland\Utils\Data\CipherHelper::encrypt($value);
+}
+
+function decrypt($value){
+    return \Vendor\Hiland\Utils\Data\CipherHelper::decrypt($value);
+}
 ?>

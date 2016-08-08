@@ -20,6 +20,7 @@ use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\MathHelper;
@@ -530,8 +531,8 @@ class FooController extends Controller
         dump($ads);
     }
 
-    public function userscoreop(){
-        BizHelper::updateUserScore(802,144,-1,'购买商品');
+    public function userscoreop($userid= 802){
+        BizHelper::updateUserScore($userid,144,1,'购买商品');
     }
 
     public function deliverytimeop(){
@@ -544,6 +545,33 @@ class FooController extends Controller
         $deliveryTime=explode(",", $deliveryTime);
         $deliveryTime= array_filter($deliveryTime);
         dump($deliveryTime);
+    }
+
+    public function converterop(){
+        $string= "ab12cd4";
+        dump((int)$string);
+        dump(intval($string));
+        dump(is_int("23"));
+        dump(is_numeric("23"));
+        dump(is_numeric("23a"));
+
+        $original= "w12345abcdefg";
+        $encrpted= CipherHelper::encrypt($original);
+        $encrptedChaged= $encrpted."rx";
+        $decrypted= CipherHelper::decrypt($encrpted);
+        dump('---------------------------------------');
+        dump(CipherHelper::decrypt($encrptedChaged));
+
+        dump($encrpted);
+        dump(encrypt($original));
+        dump($decrypted);
+        dump(decrypt($encrpted));
+
+        $base64= base64_encode(RandHelper::rand(20));
+        dump($base64);
+        dump(base64_decode($base64));
+
+
     }
 
     public function enumop()

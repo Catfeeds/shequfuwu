@@ -68,4 +68,8 @@ class BaseController extends Controller
         }
         return false;
     }
+
+    function getCurrentUserID(){
+        return session("userId");
+    }
 }

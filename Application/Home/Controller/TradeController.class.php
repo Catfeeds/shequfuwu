@@ -1,8 +1,10 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\BizHelper;
 use Common\Model\ViewLink;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
+use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -185,8 +187,8 @@ class TradeController extends BaseController
                 }
             }
 
-            if(empty( $savingData['createtime'])){
-                $savingData['createtime']= DateHelper::format();
+            if (empty($savingData['createtime'])) {
+                $savingData['createtime'] = DateHelper::format();
             }
 
             $result = $mate->interact($savingData);
@@ -200,7 +202,7 @@ class TradeController extends BaseController
                     self::cleanRedPacketDetail($result);
                     $resultSub = self::generateRedPacketDetail($savingData);
                     if ($resultSub != true) {
-                        JavaScriptHelper::alertBack($resultSub,true);
+                        JavaScriptHelper::alertBack($resultSub, true);
                         //$this->error("保存失败", cookie("prevUrl"));
                     }
                 }
@@ -305,8 +307,9 @@ class TradeController extends BaseController
         $this->itemsUpdate($modle);
     }
 
-    public function scoreList(){
-        $code_url = "http://" . I("server.HTTP_HOST") . U("App/Shop/bindShop", array("shopId" => session("homeShopId")));
+    public function scoreList()
+    {
+        $code_url = "http://" . I("server.HTTP_HOST") . U("App/Shop/getUserIdByWeixin", array("shopId" => session("homeShopId")));
 
         //商户自行增加处理流程
         //......
@@ -317,7 +320,7 @@ class TradeController extends BaseController
         $size = 8;
 
 
-        $fileName= "Uploads/ShopBindUserQRCode/" . session("homeShopId") . ".png";
+        $fileName = "Uploads/SearchWeixinUserQRCode/" . session("homeShopId") . ".png";
         $filePhysicalName = PUBLIC_PATH . $fileName;
         // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
 
@@ -332,50 +335,92 @@ class TradeController extends BaseController
             "shop_id" => $this->getCurrentShopId(),
         );
 
-        $shopId = session("homeShopId");
-        $cookiePrefix = "shop$shopId";
+        $shopId = $this->getCurrentShopId();
+        $cookiePrefix = "score$shopId";
 
         if (IS_POST) {
-            cookie("$cookiePrefix-category", I("post.category"));
-        }
-
-        $cookieCategory = cookie("$cookiePrefix-category");
-        if ($cookieCategory && $cookieCategory != -10) {
-            array_push($condition, array("menu_id" => $cookieCategory));
-        }
-
-
-        if (IS_POST) {
-            if (I("post.productName") == "") {
-                cookie("$cookiePrefix-productName", null);
+            if (I("post.userID")) {
+                cookie("$cookiePrefix-userID", I("post.userID"));
             } else {
-                cookie("$cookiePrefix-productName", I("productName"));
+                cookie("$cookiePrefix-userID", null);
             }
         }
 
-        $cookieProductName = cookie("$cookiePrefix-productName");
-        if ($cookieProductName) {
-            array_push($condition, array("name" => array("like", array("%" . $cookieProductName . "%", "%" . $cookieProductName, $cookieProductName . "%"), 'OR')));
+        $cookieUserID = cookie("$cookiePrefix-userID");
+        if ($cookieUserID) {
+            array_push($condition, array("userid" => $cookieUserID));
         }
+
 
         if (IS_POST) {
-            cookie("$cookiePrefix-status", I("post.productStatus"));
+            cookie("$cookiePrefix-scoreStatus", I("post.scoreStatus"));
         }
 
-        $cookieStatus = cookie("$cookiePrefix-status");
-        if ($cookieStatus != null && $cookieStatus != -10) {
-            array_push($condition, array("status" => $cookieStatus));
+        $cookieStatus = cookie("$cookiePrefix-scoreStatus");
+
+
+        if (IS_POST) {
+            if (I("post.scoreValue") || I("post.scoreValue") == 0) {
+                cookie("$cookiePrefix-scoreValue", I("post.scoreValue"));
+            } else {
+                cookie("$cookiePrefix-scoreValue", null);
+            }
+        }
+        $cookieScoreValue = cookie("$cookiePrefix-scoreValue");
+        if ($cookieStatus && $cookieScoreValue) {
+            array_push($condition, array("scores" => array("$cookieStatus", $cookieScoreValue)));
         }
 
         $this->itemList('userScore', $condition, 0, 0, '', ViewLink::getCommon_User());
     }
 
-    public function scoreDetailList(){
+    public function scoreDetailList()
+    {
+        $scoreID = 0;
+        $scoreIDRaw = I("get.id");
+
+        if ($scoreIDRaw) {
+            if (is_numeric($scoreIDRaw)) {
+                $scoreID = $scoreIDRaw;
+            } else {
+                $scoreID = CipherHelper::decrypt($scoreIDRaw);
+            }
+        }
+
+        $scoreMate = new ModelMate("userScore");
+        $scoreData = $scoreMate->get($scoreID);
+        $this->assign("scoreData", $scoreData);
+
         $condition = array(
-            "shop_id" => $this->getCurrentShopId(),
+            "scoreid" => $scoreID,
         );
 
         $this->itemList('userScoreDetail', $condition, 0, 0, '');
     }
 
+    public function scoreDetail()
+    {
+        $scoreId = $this->getDecryptParameter("scoreId");
+        $this->assign("scoreId", $scoreId);
+
+        if (IS_POST) {
+            if(empty($scoreId)){
+                $scoreId= I("post.scoreid");
+            }
+            $scoreMate = new ModelMate("userScore");
+            $scoreData = $scoreMate->get($scoreId);
+
+            $result = BizHelper::updateUserScore($scoreData["userid"], $scoreData["shop_id"],
+                I("post.score"), I("post.reason"), I("post.remark"));
+
+            if ($result) {
+                $this->success("保存成功", cookie("prevUrl"));
+            } else {
+                $this->error("保存失败", cookie("prevUrl"));
+            }
+
+        } else {
+            $this->display();
+        }
+    }
 }

@@ -349,9 +349,11 @@ class BizHelper
      * @param $userId
      * @param $shopId
      * @param $score
+     * @param $remark string
      * @param string $reason
+     * @return bool|number
      */
-    public static function updateUserScore($userId, $shopId, $score, $reason = '')
+    public static function updateUserScore($userId, $shopId, $score, $reason = '',$remark='')
     {
         //1 更新用户的总积分情况
         $userMate = new ModelMate('user');
@@ -385,10 +387,11 @@ class BizHelper
             "score"=>$score,
             "direction"=>$direction,
             "reason"=>$reason,
+            "remark"=>$remark,
             "createtime"=> DateHelper::format()
         );
 
-        $detailMate->interact($detailData);
+        return $detailMate->interact($detailData);
     }
 }
 
