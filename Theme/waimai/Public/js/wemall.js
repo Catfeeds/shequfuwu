@@ -766,7 +766,7 @@ function cartNext() {
         url: data.baseUrl + "/App/User/getContactList",
         data: {
             getProvince: true,
-            shopId:data.shopId,
+            shopId: data.shopId,
         },
         success: function (res) {
             // console.log(res);
@@ -1191,7 +1191,7 @@ function openAds(o) {
     tabTmpl("ads-container");
     initProduct();
     // $(".header-title").show();
-    $(".header-title").html(data.config.name);
+    $(".header-title").html(data.config.name + " " + data.config.tel);
 }
 
 function tabTmpl(id) {
@@ -1309,7 +1309,7 @@ function loadOrder(pageIndex) {
         data: {
             getOrder: true,
             pageIndex: pageIndex,
-            shopId:data.shopId,
+            shopId: data.shopId,
         },
         success: function (res) {
             $('#balance').html("");
@@ -1319,9 +1319,9 @@ function loadOrder(pageIndex) {
                 }
                 $('#balance').html(res.money + '元');
 
-                var scoreInShop= 0;
-                if(res.scoreInShop){
-                    scoreInShop= res.scoreInShop;
+                var scoreInShop = 0;
+                if (res.scoreInShop) {
+                    scoreInShop = res.scoreInShop;
                 }
                 $('#score').html(scoreInShop + '分');
 
