@@ -7,9 +7,6 @@
 
 <!-- Main content -->
 <section class="content">
-    <?php
-
-    ?>
     <div class="row">
         <div class="col-md-12">
             <!-- general form elements -->
@@ -72,15 +69,15 @@
                                 </select>
                             </div>
 
-                            <!--<label class="col-sm-1 control-label">推荐状态</label>-->
-                            <!--<div class="col-sm-3">-->
-                                <!--<?php $cookieValue= cookie($cookiePrefix.'-recommend'); ?>-->
-                                <!--<select name="productRecommend" class="form-control">-->
-                                    <!--<option value="-10">请选择推荐状态</option>-->
-                                    <!--<option value="0" <?php if($cookieValue=="0") echo " selected=selected "; ?>>正常</option>-->
-                                    <!--<option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>推荐</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
+                            <label class="col-sm-1 control-label">商品标签</label>
+                            <div class="col-sm-3">
+                                <?php $cookieValue= cookie($cookiePrefix.'-label'); ?>
+                                <select name="productLabel" class="form-control">
+                                    <option value="-10">请选择商品标签</option>
+                                    <option value="0" <?php if($cookieValue=="0") echo " selected=selected "; ?>>正常</option>
+                                    <option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>推荐</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -102,7 +99,7 @@
         <div class="col-md-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">商品管理</h3>
+                    <h3 class="box-title">商品列表</h3>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->

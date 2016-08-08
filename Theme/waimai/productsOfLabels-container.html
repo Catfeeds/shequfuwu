@@ -4,7 +4,7 @@
     <ul>
         {{each labelItem as value i}}
         <li class="item item_third">
-            <a href="{{value.url}}" title="{{value.name}}">
+            <a href="#/product/{{value.id}}" title="{{value.name}}">
                 <div class="item-image item-image_third"><img src="{{imageUrl}}/blank.gif"
                                                               data-echo="{{uploadsUrl+value.savepath+value.savename}}"
                                                               class="lazy"

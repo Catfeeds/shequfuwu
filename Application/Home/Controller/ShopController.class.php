@@ -156,14 +156,14 @@ class ShopController extends BaseController
         }
 
 
-//        if(IS_POST){
-//            cookie("$cookiePrefix-recommend", I("post.productRecommend"));
-//        }
-//
-//        $cookieRecommend= cookie("$cookiePrefix-recommend");
-//        if ($cookieRecommend!=null && $cookieRecommend != -10) {
-//            array_push($condition, array("recommend" => $cookieRecommend));
-//        }
+        if (IS_POST) {
+            cookie("$cookiePrefix-label", I("post.productLabel"));
+        }
+
+        $cookieLabel = cookie("$cookiePrefix-label");
+        if ($cookieLabel != null && $cookieLabel != -10) {
+            array_push($condition, array("label" => array("like", array("%" . $cookieLabel . "%", "%" . $cookieLabel, $cookieLabel . "%"), 'OR')));
+        }
 
 
         if (IS_POST) {
@@ -196,49 +196,49 @@ class ShopController extends BaseController
         $this->display();
     }
 
-    public function productSearch()
-    {
-        $condition = array(
-            "shop_id" => session("homeShopId")
-        );
-
-        if (I("post.id")) {
-            array_push($condition, array("id" => I("post.id")));
-        }
-
-        $shopId = 0;
-        if (I("post.shop_id") || session("homeShopId")) {
-            $shopId = I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
-            array_push($condition, array("shop_id" => $shopId));
-        }
-
-
-        if (I("post.category") != -10) {
-            array_push($condition, array("menu_id" => I("post.category")));
-        }
-
-        if (I("post.name")) {
-            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
-        }
-        if (I("post.recommend") != -10) {
-            array_push($condition, array("recommend" => I("post.recommend")));
-        }
-        if (I("post.status") != -10) {
-            array_push($condition, array("status" => I("post.status")));
-        }
-        if (I("post.timeRange")) {
-            $timeRange = I("post.timeRange");
-            $timeRange = explode(" --- ", $timeRange);
-            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
-        }
-
-        $productList = D("Product")->getProductList($condition, true);
-
-        $this->assign("productPost", I("post."));
-        $this->assign("productList", $productList);
-
-        $this->display("product");
-    }
+//    public function productSearch()
+//    {
+//        $condition = array(
+//            "shop_id" => session("homeShopId")
+//        );
+//
+//        if (I("post.id")) {
+//            array_push($condition, array("id" => I("post.id")));
+//        }
+//
+//        $shopId = 0;
+//        if (I("post.shop_id") || session("homeShopId")) {
+//            $shopId = I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
+//            array_push($condition, array("shop_id" => $shopId));
+//        }
+//
+//
+//        if (I("post.category") != -10) {
+//            array_push($condition, array("menu_id" => I("post.category")));
+//        }
+//
+//        if (I("post.name")) {
+//            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
+//        }
+//        if (I("post.recommend") != -10) {
+//            array_push($condition, array("recommend" => I("post.recommend")));
+//        }
+//        if (I("post.status") != -10) {
+//            array_push($condition, array("status" => I("post.status")));
+//        }
+//        if (I("post.timeRange")) {
+//            $timeRange = I("post.timeRange");
+//            $timeRange = explode(" --- ", $timeRange);
+//            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
+//        }
+//
+//        $productList = D("Product")->getProductList($condition, true);
+//
+//        $this->assign("productPost", I("post."));
+//        $this->assign("productList", $productList);
+//
+//        $this->display("product");
+//    }
 
     public function shop()
     {
@@ -471,7 +471,6 @@ class ShopController extends BaseController
         \Excel::export($feedback);
     }
 
-//崔
     public function label()
     {
         $labelCondition = array();
@@ -479,7 +478,6 @@ class ShopController extends BaseController
         $labelMate = new ModelMate("productLabel");
         $labelList = $labelMate->select($labelCondition);
 
-        //$label = D("ProductLabel")->getList($condition, false);
         $this->assign("label", $labelList);
         $this->display();
     }
