@@ -294,6 +294,13 @@ class BizHelper
         return date("Ymdhis") . "-$shopId-" . RandHelper::rand(3, 'NUMBER');
     }
 
+    public static function getBizConstText($prefix, $value)
+    {
+        $resultArray = BizConst::getConstArray($prefix);
+        $resultText = $resultArray[$value];
+        return $resultText;
+    }
+
     public static function getPayTypeText($paymentValue)
     {
         $resultArray = BizConst::getConstArray("ORDER_PAYTYPE_");
@@ -353,7 +360,7 @@ class BizHelper
      * @param string $reason
      * @return bool|number
      */
-    public static function updateUserScore($userId, $shopId, $score, $reason = '',$remark='')
+    public static function updateUserScore($userId, $shopId, $score, $reason = '', $remark = '')
     {
         //1 更新用户的总积分情况
         $userMate = new ModelMate('user');
@@ -372,26 +379,47 @@ class BizHelper
             $scoreData['scores'] = $score;
         }
 
-        $scoreID= $scoreMate->interact($scoreData);
+        $scoreID = $scoreMate->interact($scoreData);
 
         //3更新积分明细
         $detailMate = new ModelMate('userScoreDetail');
-        $direction= SystemConst::COMMON_FINANCE_FOUNDDIRECTION_INCOME;
+        $direction = SystemConst::COMMON_FINANCE_FOUNDDIRECTION_INCOME;
 
-        if($score<0){
-            $direction= SystemConst::COMMON_FINANCE_FOUNDDIRECTION_PAY;
+        if ($score < 0) {
+            $direction = SystemConst::COMMON_FINANCE_FOUNDDIRECTION_PAY;
         }
 
-        $detailData= array(
-            "scoreid"=>$scoreID,
-            "score"=>$score,
-            "direction"=>$direction,
-            "reason"=>$reason,
-            "remark"=>$remark,
-            "createtime"=> DateHelper::format()
+        $detailData = array(
+            "scoreid" => $scoreID,
+            "score" => $score,
+            "direction" => $direction,
+            "reason" => $reason,
+            "remark" => $remark,
+            "createtime" => DateHelper::format()
         );
 
         return $detailMate->interact($detailData);
+    }
+
+    /**
+     * 获取某店铺的标签
+     * @param int $shopId 店铺id
+     * @param bool $includeDefault 是否包含系统默认的标签
+     * @return array
+     */
+    public static function getShopLabels($shopId, $includeDefault = true)
+    {
+        $labelCondition = array();
+        if ($includeDefault) {
+            $labelCondition['shop_id'] = array(array('eq', 0), array('eq', $shopId), 'or');
+        } else {
+            $labelCondition['shop_id'] = $shopId;
+        }
+
+        $labelMate = new ModelMate("productLabel");
+        $labelList = $labelMate->select($labelCondition,"id asc");
+
+        return $labelList;
     }
 }
 

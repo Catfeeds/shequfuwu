@@ -74,8 +74,14 @@
                                 <?php $cookieValue= cookie($cookiePrefix.'-label'); ?>
                                 <select name="productLabel" class="form-control">
                                     <option value="-10">请选择商品标签</option>
-                                    <option value="0" <?php if($cookieValue=="0") echo " selected=selected "; ?>>正常</option>
-                                    <option value="1" <?php if($cookieValue=="1") echo " selected=selected "; ?>>推荐</option>
+
+                                    <volist name="labelList" id="vo">
+                                        <if condition="$cookieValue eq $vo['name']">
+                                            <option value="{$vo.name}" selected="selected">{$vo.name}</option>
+                                            <else/>
+                                            <option value="{$vo.name}">{$vo.name}</option>
+                                        </if>
+                                    </volist>
                                 </select>
                             </div>
                         </div>

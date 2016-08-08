@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\BizHelper;
 use Common\Model\WechatBiz;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -186,6 +187,9 @@ class ShopController extends BaseController
         $menuList = D('Menu')->getList(array("shop_id" => session("homeShopId")), false);
         $this->assign("menuList", $menuList);
 
+        $labelList= BizHelper::getShopLabels($this->getCurrentShopId());
+        $this->assign("labelList", $labelList);
+
         // dump($productList);
         $count = D("Product")->getProductListCount($condition);// 查询满足要求的总记录数
         $this->assignPaging($count, $num);
@@ -195,50 +199,6 @@ class ShopController extends BaseController
         $this->assign("productPost", I("post."));
         $this->display();
     }
-
-//    public function productSearch()
-//    {
-//        $condition = array(
-//            "shop_id" => session("homeShopId")
-//        );
-//
-//        if (I("post.id")) {
-//            array_push($condition, array("id" => I("post.id")));
-//        }
-//
-//        $shopId = 0;
-//        if (I("post.shop_id") || session("homeShopId")) {
-//            $shopId = I("post.shop_id") ? I("post.shop_id") : session("homeShopId");
-//            array_push($condition, array("shop_id" => $shopId));
-//        }
-//
-//
-//        if (I("post.category") != -10) {
-//            array_push($condition, array("menu_id" => I("post.category")));
-//        }
-//
-//        if (I("post.name")) {
-//            array_push($condition, array("name" => array("like", array("%" . I("post.name") . "%", "%" . I("post.name"), I("post.name") . "%"), 'OR')));
-//        }
-//        if (I("post.recommend") != -10) {
-//            array_push($condition, array("recommend" => I("post.recommend")));
-//        }
-//        if (I("post.status") != -10) {
-//            array_push($condition, array("status" => I("post.status")));
-//        }
-//        if (I("post.timeRange")) {
-//            $timeRange = I("post.timeRange");
-//            $timeRange = explode(" --- ", $timeRange);
-//            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
-//        }
-//
-//        $productList = D("Product")->getProductList($condition, true);
-//
-//        $this->assign("productPost", I("post."));
-//        $this->assign("productList", $productList);
-//
-//        $this->display("product");
-//    }
 
     public function shop()
     {
@@ -318,10 +278,7 @@ class ShopController extends BaseController
             $menuList = D("Menu")->getList($condition);
             $this->assign("menuList", $menuList);
 
-            $labelCondition = array();
-            $labelCondition['shop_id'] = array(array('eq', 0), array('eq', $this->getCurrentShopId()), 'or');
-            $labelMate = new ModelMate("productLabel");
-            $labelList = $labelMate->select($labelCondition); //D("ProductLabel")->getList($labelCondition);
+            $labelList= BizHelper::getShopLabels($this->getCurrentShopId());
             $this->assign("labelList", $labelList);
 
             $this->display();
