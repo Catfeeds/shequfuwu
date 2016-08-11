@@ -61,39 +61,34 @@
         {{/if}} {{/each}}
     </ul>
 </div>
-<input id="lablesLoadedFlag" value="" type="hidden">
+<div id="productsOflabels"></div>
 <script type="application/javascript">
     $("document").ready(function () {
-        var labelsLoadedFlag = $("#lablesLoadedFlag").val();
-        alert(labelsLoadedFlag);
-        if (labelsLoadedFlag != "loaded") {
-            $.ajax({
-                type: "get",
-                url: data.baseUrl + "/General/Biz/getProductsOfShopHotLabels",
-                data: {
-                    shopId: data.shopId,
-                },
-                success: function (res) {
-                    if (res) {
-                        var json = eval(res);
-                        var dataSending = {
-                            labels: json,
-                            uploadsUrl: data.uploadsUrl,
-                            imageUrl: data.imageUrl
-                        };
-                        var html = template('productsOfLabels-container', dataSending);
-                        $('#main').append(html);
-                    }
-                },
-                beforeSend: function () {
-                    $('#page_tag_load').show();
-                },
-                complete: function () {
-                    $("#lablesLoadedFlag").val("loaded");
-                    $('#page_tag_load').hide();
-                }
-            });
 
-        }
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/General/Biz/getProductsOfShopHotLabels",
+            data: {
+                shopId: data.shopId,
+            },
+            success: function (res) {
+                if (res) {
+                    var json = eval(res);
+                    var dataSending = {
+                        labels: json,
+                        uploadsUrl: data.uploadsUrl,
+                        imageUrl: data.imageUrl
+                    };
+                    var html = template('productsOfLabels-container', dataSending);
+                    $('#productsOflabels').html(html);
+                }
+            },
+            beforeSend: function () {
+                $('#page_tag_load').show();
+            },
+            complete: function () {
+                $('#page_tag_load').hide();
+            }
+        });
     });
 </script>
