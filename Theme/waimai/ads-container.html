@@ -61,10 +61,11 @@
         {{/if}} {{/each}}
     </ul>
 </div>
-<input id="lablesLoadedFlag" value="">
+<input id="lablesLoadedFlag" value="" type="hidden">
 <script type="application/javascript">
     $("document").ready(function () {
         var labelsLoadedFlag = $("#lablesLoadedFlag").val();
+        alert(labelsLoadedFlag);
         if (labelsLoadedFlag != "loaded") {
             $.ajax({
                 type: "get",
