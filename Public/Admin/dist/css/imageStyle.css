@@ -1,0 +1,9 @@
+#dialog-content .cover {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    background-size: cover;
+    background: url('../img/choosed.png') no-repeat center center;
+    display: none;
+    margin-top: -120px;
+}
