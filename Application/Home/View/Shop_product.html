@@ -22,8 +22,9 @@
                                 $cookiePrefix= 'shop'.$shopId; ?>
                             <label class="col-sm-1 control-label">商品名称</label>
                             <div class="col-sm-3">
-                                <input class="form-control" name="productName" placeholder="" value="<?php $cookieValue=cookie($cookiePrefix.'-productName'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
-                                type="text">
+                                <input class="form-control" name="productName" placeholder=""
+                                       value="<?php $cookieValue=cookie($cookiePrefix.'-productName'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
+                                       type="text">
                             </div>
 
                             <label class="col-sm-1 control-label">商品类别</label>
@@ -52,19 +53,19 @@
                                     <if condition="$cookieValue=='1'">
                                         <option value="1" selected="selected">出售</option>
                                         <else/>
-                                        <option value="1" >出售</option>
+                                        <option value="1">出售</option>
                                     </if>
 
                                     <if condition="$cookieValue=='-1'">
                                         <option value="-1" selected="selected">下架</option>
                                         <else/>
-                                        <option value="-1" >下架</option>
+                                        <option value="-1">下架</option>
                                     </if>
 
                                     <if condition="$cookieValue=='0'">
                                         <option value="0" selected="selected">售罄</option>
                                         <else/>
-                                        <option value="0" >售罄</option>
+                                        <option value="0">售罄</option>
                                     </if>
                                 </select>
                             </div>
@@ -130,16 +131,15 @@
                                 <th class="hidden-xs">
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
-                                <th>菜单</th>
+                                <th>类别</th>
                                 <th>商品名称</th>
                                 <th>图片</th>
                                 <th>链接</th>
-                                <th>价格</th>
-                                <th>积分</th>
+                                <th>价格与积分</th>
                                 <th>标签</th>
                                 <th>出售状态</th>
                                 <th>排序</th>
-                                <th>表识属性</th>
+                                <th>标识属性</th>
                                 <th>备注</th>
                                 <th>操作</th>
                             </tr>
@@ -167,12 +167,12 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><span style="background-color: #dd4b39;" class="badge">{$product.price}元</span>
-                                    </td>
-                                    <td><span style="background-color: #dd4b39;" class="badge">{$product.score}</span>
+                                    <td>
+                                        <span style="background-color: #dd4b39;"
+                                              class="badge">{$product.price}</span>元<br/>
+                                        <span style="background-color: #dd4b39;" class="badge">{$product.score}</span>积分
                                     </td>
                                     <td>{$product.label}</td>
-
                                     <td>
                                         <if condition="$product.status eq 1">
                                             <span class="label label-success">出售</span>

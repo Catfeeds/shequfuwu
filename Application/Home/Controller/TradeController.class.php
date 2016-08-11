@@ -3,6 +3,7 @@ namespace Home\Controller;
 
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
 use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\DateHelper;
@@ -201,9 +202,8 @@ class TradeController extends BaseController
                     //生成红包派发明细，等待用户申领
                     self::cleanRedPacketDetail($result);
                     $resultSub = self::generateRedPacketDetail($savingData);
-                    if ($resultSub != true) {
-                        JavaScriptHelper::alertBack($resultSub, true);
-                        //$this->error("保存失败", cookie("prevUrl"));
+                    if (is_string($resultSub)) {
+                        JavaScriptHelper::alertBack($resultSub,true);
                     }
                 }
                 $this->success("保存成功", cookie("prevUrl"));
@@ -240,7 +240,7 @@ class TradeController extends BaseController
         $average = $redPacket['totalamount'] / $redPacket['countreal'];
         $ruleStatus = self::redPacketRuleValidate($average, $redPacket);
 
-        if ($ruleStatus == true) {
+        if (is_bool($ruleStatus) && $ruleStatus == true) {
             //2.生成单个包
             $bonus = RedPacketHelper::getBonus($redPacket['totalamount'] * 100, $redPacket['countreal'], $redPacket['maxamountperunit'] * 100, $redPacket['minamountperunit'] * 100);
             //array_values($bonus);
@@ -266,7 +266,6 @@ class TradeController extends BaseController
             return true;
         } else {
             return $ruleStatus;
-            //$this->error($ruleStatus);
         }
     }
 
@@ -404,8 +403,8 @@ class TradeController extends BaseController
         $this->assign("scoreId", $scoreId);
 
         if (IS_POST) {
-            if(empty($scoreId)){
-                $scoreId= I("post.scoreid");
+            if (empty($scoreId)) {
+                $scoreId = I("post.scoreid");
             }
             $scoreMate = new ModelMate("userScore");
             $scoreData = $scoreMate->get($scoreId);

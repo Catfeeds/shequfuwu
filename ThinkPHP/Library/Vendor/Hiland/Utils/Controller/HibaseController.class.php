@@ -176,8 +176,8 @@ class HibaseController extends Controller
                 $result = $paraValue;
             } else {
                 $result = CipherHelper::decrypt($paraValue);
-                if(empty($result)){
-                    $result= $paraValue;
+                if (empty($result)) {
+                    $result = $paraValue;
                 }
             }
         }
