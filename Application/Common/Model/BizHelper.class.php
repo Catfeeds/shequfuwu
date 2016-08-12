@@ -352,11 +352,8 @@ class BizHelper
             'remark' => $remark,
         ); // 备注信息
 
-        //CommonLoger::log('hongbo', json_encode($data, JSON_UNESCAPED_UNICODE));
-
         $packet = new WxPacket();
         $result = $packet->send($data);
-        //CommonLoger::log('hongbao-result', $result);
     }
 
     /**

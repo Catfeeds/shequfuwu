@@ -48,6 +48,16 @@
                                                          value=""/><label
                                     for="ckbCleanTargetShop">复制前，先清空目标店铺内的商品等信息</label>
                             </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-7"><input type="checkbox" checked="checked" id="ckbIsOffSaleAll"
+                                                         name="ckbIsOffSaleAll"
+                                                         value=""/><label
+                                    for="ckbIsOffSaleAll">复制后，是否将所有商品下架</label>
+                            </div>
                         </div>
                         <!-- /.box-body -->
 
@@ -169,12 +179,18 @@
             }
 
             function reorganizeProduct(sourceShopId, targetShopId) {
+                var isOffSaleAll = false;
+                if ($("#ckbIsOffSaleAll").is(':checked')) {
+                    isOffSaleAll = true;
+                }
+
                 $.ajax({
                     type: "get",
                     url: "__APP__/Admin/Shop/reorganizeProduct",
                     data: {
                         sourceShopId: sourceShopId,
-                        targetShopId: targetShopId
+                        targetShopId: targetShopId,
+                        isOffSaleAll: isOffSaleAll,
                     },
                     success: function (res) {
                         if (res) {
@@ -206,7 +222,7 @@
                     },
                     success: function (res) {
                         if (res) {
-                            var newContent = "目标店铺内的SKU信息整理完毕。<br/>";
+                            var newContent = "目标店铺内的SKU信息整理完毕。<br/>店铺内的产品信息复制成功！！！";
                             appendDisplayInfo(newContent);
                         } else {
                             //alert('提交失败!余额不足或者商品已下架,请重新选购!');

@@ -26,6 +26,20 @@
     </div>
     <div class="swiper-pagination"></div>
 </div>
+<div id="productsOflabels"></div>
+<div class="m-component-promotion" id="list-section">
+    <ul class="list-unstyled" id="list-sale">
+        {{each ads as value i}} {{if value.adsname == 3}}
+        <li>
+            <a href="{{value.url}}">
+                <img class="lazy" src="{{imageUrl}}/blank.gif"
+                     data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                     style="display: inline; height: 137px;">
+            </a>
+        </li>
+        {{/if}} {{/each}}
+    </ul>
+</div>
 <div class="mod-desc">
     <ul>
         {{each ads as value i}} {{if value.adsname == 2}}
@@ -48,20 +62,8 @@
         {{/if}} {{/each}}
     </ul>
 </div>
-<div class="m-component-promotion" id="list-section">
-    <ul class="list-unstyled" id="list-sale">
-        {{each ads as value i}} {{if value.adsname == 3}}
-        <li>
-            <a href="{{value.url}}">
-                <img class="lazy" src="{{imageUrl}}/blank.gif"
-                     data-echo="{{uploadsUrl+value.savepath+value.savename}}"
-                     style="display: inline; height: 137px;">
-            </a>
-        </li>
-        {{/if}} {{/each}}
-    </ul>
-</div>
-<div id="productsOflabels"></div>
+
+
 <script type="application/javascript">
     $("document").ready(function () {
 
@@ -81,6 +83,14 @@
                     };
                     var html = template('productsOfLabels-container', dataSending);
                     $('#productsOflabels').html(html);
+
+                    echo.init({
+                        offset: 100,
+                        throttle: 250,
+                        unload: false,
+                        callback: function (element, op) {
+                        }
+                    });
                 }
             },
             beforeSend: function () {

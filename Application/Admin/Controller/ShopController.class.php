@@ -446,15 +446,27 @@ class ShopController extends BaseController
         }
     }
 
-    public function reorganizeProduct($sourceShopId = 0, $targetShopId = 0)
+    /**
+     *
+     * @param int $sourceShopId
+     * @param int $targetShopId
+     * @param bool $isOffSaleAll 是否下架所有商品
+     */
+    public function reorganizeProduct($sourceShopId = 0, $targetShopId = 0, $isOffSaleAll = false)
     {
         $menus = $this->getMenus($targetShopId, false);
+        $mateProduct = new ModelMate('product');
         foreach ($menus as $menu) {
             $menuIDNew = $menu['id'];
             $menuIDOld = $menu['copysourceid'];
-            $sql = "Update __TABLE__ set menu_id=$menuIDNew where shop_id=$targetShopId and  menu_id=$menuIDOld";
-            $mateProduct = new ModelMate('product');
-            $mateProduct->execute($sql);
+
+            $sqlOfChangeMenu = "Update __TABLE__ set menu_id=$menuIDNew where shop_id=$targetShopId and  menu_id=$menuIDOld";
+            $mateProduct->execute($sqlOfChangeMenu);
+        }
+
+        if (is_bool($isOffSaleAll) && $isOffSaleAll == true) {
+            $sqlOfOffSaleAll = "Update __TABLE__ set status=-1 where shop_id=$targetShopId";
+            $mateProduct->execute($sqlOfOffSaleAll);
         }
 
         $this->ajaxReturn('success');

@@ -57,7 +57,6 @@ class BizController
         $distanceKM = I('distanceKM', 15);
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
-        //CommonLoger::log('getproducts',json_encode($result));
         WebHelper::serverReturn($result);
     }
 
