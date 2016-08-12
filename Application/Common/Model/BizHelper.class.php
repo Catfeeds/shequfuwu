@@ -168,6 +168,7 @@ class BizHelper
         $map['saletype'] = $saleType;
 
         $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
+        $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES; //BizConst::SHOP_REVIEW_STATUS_PASSED;
 
         $shopMate = new ViewMate('shop', ViewLink::getCommon_File());
         return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);

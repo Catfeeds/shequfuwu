@@ -341,13 +341,7 @@ class ShopController extends BaseController
 
         $this->success("删除成功", cookie("prevUrl"));
     }
-    //pidong 店铺管理页面
-    // public function shop()
-    // {
-    //     $shop = D("Shop")->select();  
-    //     $this->assign("shop",$shop);
-    //     $this->display();
-    // }
+
     public function shop()
     {
         $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
