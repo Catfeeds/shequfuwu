@@ -57,6 +57,8 @@ class BizConst extends ConstMate
     const MARKETING_SALETYPE_RETAIL_TEXT = "零售";
     const MARKETING_SALETYPE_WHOLE = 1;
     const MARKETING_SALETYPE_WHOLE_TEXT = "批发";
+    const MARKETING_SALETYPE_WHOLERETAIL = 2;
+    const MARKETING_SALETYPE_WHOLERETAIL_TEXT = "批发兼零售";
     //----------------------------------------------------------------------
     const SHOP_REVIEW_STATUS_ORIGINAL = 0;
     const SHOP_REVIEW_STATUS_ORIGINAL_TEXT = "未审核";

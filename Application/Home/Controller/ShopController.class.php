@@ -4,12 +4,18 @@ namespace Home\Controller;
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\WechatBiz;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class ShopController extends BaseController
 {
     public function addShop()
+    {
+        self::operateShop();
+    }
+
+    private function operateShop()
     {
         if (IS_POST) {
             $data = I("post.");
@@ -20,6 +26,7 @@ class ShopController extends BaseController
 
             unset($data["wd"]);
 
+            CommonLoger::log('shopSaleType', $data[saletype]);
             D("Shop")->addShop($data);
 
             if (session("homeShopId")) {
@@ -28,20 +35,38 @@ class ShopController extends BaseController
                 $this->success("创建成功", U("Home/AddShop/shop"));
             }
         } else {
+            if (session("homeShopId")) {
+                $id = session("homeShopId");
+                $shop = D("Shop")->getShop(array("id" => $id), true);
+
+                $username = array();
+                $employee = explode(',', $shop["employee"]);
+                foreach ($employee as $key => $value) {
+                    $user = D("User")->get(array("id" => $value));
+                    array_push($username, $user["username"]);
+                }
+                $shop["employeeName"] = implode(",", $username);
+                $this->assign("shop", $shop);
+            }
+
             $categoryMate = new ModelMate('shopCategory');
             $categoryList = $categoryMate->select(array('usable' => 1));
             $this->assign('categoryList', $categoryList);
 
-            $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_", false);
+            $saleTypeList = BizConst::getConstArray("MARKETING_SALETYPE_", false);
             $this->assign('saleTypeList', $saleTypeList);
 
-            $this->display();
+            $this->display("Shop:addShop");
         }
+    }
+
+    public function modifyShop()
+    {
+        self::operateShop();
     }
 
     public function updateShop()
     {
-//        $data = I("get.");
         M("Shop")->where(array("id" => array("in", I("get.id"))))->save(array("status" => I("get.status")));
 
         $this->success("审核成功", cookie("prevUrl"));
@@ -54,31 +79,6 @@ class ShopController extends BaseController
         $this->success("删除成功", cookie("prevUrl"));
     }
 
-    public function modifyShop()
-    {
-        if (session("homeShopId")) {
-            $id = session("homeShopId");
-            $shop = D("Shop")->getShop(array("id" => $id), true);
-
-            $username = array();
-            $employee = explode(',', $shop["employee"]);
-            foreach ($employee as $key => $value) {
-                $user = D("User")->get(array("id" => $value));
-                array_push($username, $user["username"]);
-            }
-            $shop["employeeName"] = implode(",", $username);
-            $this->assign("shop", $shop);
-
-            $categoryMate = new ModelMate('shopCategory');
-            $categoryList = $categoryMate->select(array('usable' => 1));
-            $this->assign('categoryList', $categoryList);
-            $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_", false);
-            $this->assign('saleTypeList', $saleTypeList);
-            $this->display("Shop:addShop");
-        } else {
-            $this->error("请先选择店铺", "Home/Shop/shop");
-        }
-    }
 
     public function switchShop()
     {
@@ -193,7 +193,7 @@ class ShopController extends BaseController
         $menuList = D('Menu')->getList(array("shop_id" => session("homeShopId")), false);
         $this->assign("menuList", $menuList);
 
-        $labelList= BizHelper::getShopLabels($this->getCurrentShopId());
+        $labelList = BizHelper::getShopLabels($this->getCurrentShopId());
         $this->assign("labelList", $labelList);
 
         // dump($productList);
@@ -284,7 +284,7 @@ class ShopController extends BaseController
             $menuList = D("Menu")->getList($condition);
             $this->assign("menuList", $menuList);
 
-            $labelList= BizHelper::getShopLabels($this->getCurrentShopId());
+            $labelList = BizHelper::getShopLabels($this->getCurrentShopId());
             $this->assign("labelList", $labelList);
 
             $this->display();
