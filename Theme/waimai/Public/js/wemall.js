@@ -830,10 +830,10 @@ function cartNext() {
             }
         },
         beforeSend: function () {
-            $('#page_tag_load').show();
+            //$('#page_tag_load').show();
         },
         complete: function () {
-            $('#page_tag_load').hide();
+            //$('#page_tag_load').hide();
         }
 
     });
