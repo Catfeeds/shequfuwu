@@ -128,7 +128,7 @@ class WechatController extends Controller
         $usershopscanedMate = new ModelMate('usershopscaned');
         $where = array();
         $where['openid'] = $openId;
-        $shopscaned = $usershopscanedMate->select($where);
+        $shopscaned = $usershopscanedMate->select($where,"",0,0,10);
 
         $shopMate = new ModelMate('shop');
 
