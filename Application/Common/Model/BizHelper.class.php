@@ -168,7 +168,7 @@ class BizHelper
         $map['saletype'] = $saleType;
 
         $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
-        $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES; //BizConst::SHOP_REVIEW_STATUS_PASSED;
+        $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES;
 
         $shopMate = new ViewMate('shop', ViewLink::getCommon_File());
         return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);
@@ -223,7 +223,10 @@ class BizHelper
             $map['name'] = array('like', "%$name%");//搜索
         }
 
-        $map['status'] = 2;//2表示审核通过的店铺
+
+        $map['saletype'] = BizConst::MARKETING_SALETYPE_RETAIL;
+        $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
+        $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES;
 
         $shoplist = D("Shop")->getShopList($map, true);
 
