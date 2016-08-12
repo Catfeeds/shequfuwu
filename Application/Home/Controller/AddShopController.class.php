@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\BizConst;
 use Think\Controller;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -46,6 +47,9 @@ class AddShopController extends Controller
             $categoryMate = new ModelMate('shopCategory');
             $categoryList = $categoryMate->select(array('usable' => 1));
             $this->assign('categoryList', $categoryList);
+
+            $saleTypeList = BizConst::getConstArray("MARKETING_SALETYPE_", false);
+            $this->assign('saleTypeList', $saleTypeList);
 
             $this->display();
         }

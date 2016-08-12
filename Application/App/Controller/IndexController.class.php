@@ -187,9 +187,20 @@ class IndexController extends BaseController
     }
 
     /**
-     * 获取某个地区的店铺
+     * 获取某个地区的零售店铺
      */
     public function AreaShops()
+    {
+        $wxConfig = D("WxConfig")->getJsSign();
+        $this->assign("wxConfig", json_encode($wxConfig));
+
+        $this->display();
+    }
+
+    /**
+     * 获取某个地区的渠道店铺
+     */
+    public function ChannelShops()
     {
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));

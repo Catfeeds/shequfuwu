@@ -4,7 +4,6 @@ namespace General\Controller;
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -30,15 +29,15 @@ class BizController
         $cityName = I('city');
         $shopCategory = I('category');
         $pageIndex = I('pageIndex');
+        $saletype = I("saletype", 0);
         $itemCountPerPage = SystemConst::APP_ITEM_COUNT_PERPAGE;
         if (empty($itemCountPerPage)) {
             $itemCountPerPage = 10;
         }
 
-        $data = "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage";
-        CommonLoger::log('地区商城参数', $data);
+        $data = "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage;saletype-- $saletype";
 
-        $result = BizHelper::getAreaShops($cityName, $shopName, $shopCategory, $pageIndex, $itemCountPerPage);
+        $result = BizHelper::getAreaShops($cityName, $shopName, $shopCategory, $saletype, $pageIndex, $itemCountPerPage);
         WebHelper::serverReturn($result);
     }
 
@@ -118,7 +117,7 @@ class BizController
 
         //2 分组获取产品
         $result = array();
-        $productMate = new ViewMate("product",ViewLink::getCommon_File());
+        $productMate = new ViewMate("product", ViewLink::getCommon_File());
         foreach ($labelDatas as $lable) {
             $labelName = $lable["name"];
             $condition = array();

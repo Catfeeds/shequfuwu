@@ -31,7 +31,7 @@
                 </div>
                 <div class="weui_cell_bd weui_cell_primary" style="padding-left: 0;">
                     <input class="pi_input" placeholder="请输入店铺名称" style="">
-                    <span class="pi_sousuo2" style="" onclick="areaShops(0,1);">搜索</span>
+                    <span class="pi_sousuo2" style="" onclick="areaShops(1,1);">搜索</span>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
             $("#citySelector").val(cityName);
         }
 
-        areaShops(0,1);
+        areaShops(1,1);
     }
 </script>
 <script type="text/javascript">
@@ -131,7 +131,7 @@
         var lazyNum = 1;
         $(".moreinfo-loader").on("click", function () {
             lazyNum++;
-            areaShops(0,lazyNum);
+            areaShops(1,lazyNum);
         });
     });
 </script>

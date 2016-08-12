@@ -142,14 +142,16 @@ class BizHelper
     }
 
     /**
-     * @param $cityName
+     * 获取地区商品
+     * @param string $cityName
      * @param string $shopName
      * @param int $shopCategory
+     * @param int $saleType 经营方式
      * @param int $pageIndex
      * @param int $itemCountPerPage
      * @return array
      */
-    public static function getAreaShops($cityName = '', $shopName = '', $shopCategory = 0, $pageIndex = 0, $itemCountPerPage = 10)
+    public static function getAreaShops($cityName = '', $shopName = '', $shopCategory = 0, $saleType = 0, $pageIndex = 0, $itemCountPerPage = 10)
     {
         if ($shopCategory) {
             $map['category_id'] = $shopCategory;
@@ -163,7 +165,9 @@ class BizHelper
             $map['name'] = array('like', "%$shopName%");//按店铺名称搜索
         }
 
-        $map['status'] = 2;//2表示审核通过的店铺
+        $map['saletype'] = $saleType;
+
+        $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
 
         $shopMate = new ViewMate('shop', ViewLink::getCommon_File());
         return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);
@@ -417,7 +421,7 @@ class BizHelper
         }
 
         $labelMate = new ModelMate("productLabel");
-        $labelList = $labelMate->select($labelCondition,"id asc");
+        $labelList = $labelMate->select($labelCondition, "id asc");
 
         return $labelList;
     }

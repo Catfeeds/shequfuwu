@@ -14,7 +14,6 @@ use Common\Model\BizHelper;
 use Common\Model\OrderViewMate;
 use Common\Model\ViewLink;
 use Common\Model\WechatBiz;
-use General\Controller\BizController;
 use Think\Controller;
 use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
@@ -411,7 +410,7 @@ class FooController extends Controller
 
     public function getAreaShopsop($city = '枣庄市')
     {
-        dump(BizHelper::getAreaShops($city, '', 0, 1, 3));
+        dump(BizHelper::getAreaShops($city, '',0, 1, 1, 3));
     }
 
     public function constop($prefix = '', $withText = false)
@@ -437,8 +436,16 @@ class FooController extends Controller
         dump($constArray);
 
         dump("all - false---------------------------------");
-        $constArray = BizConst::getConstArray('', false);
+        $constArray = BizConst::getConstArray('', false,"_S_TEXT");
         dump($constArray);
+
+        dump("MARKETING_SALETYPE_  KV mode---------------------------------");
+        $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_");
+        dump($saleTypeList);
+
+        dump("MARKETING_SALETYPE_  common mode---------------------------------");
+        $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_",false);
+        dump($saleTypeList);
     }
 
     public function appop()
@@ -582,6 +589,8 @@ class FooController extends Controller
         dump(new MyEnum(MyEnum::HI));
         dump(new MyEnum("Hi"));
     }
+
+
 }
 
 

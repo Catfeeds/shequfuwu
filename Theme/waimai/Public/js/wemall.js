@@ -140,7 +140,7 @@ function showShopInfo() {
  * 本地商城
  * @param pageIndex
  */
-function areaShops(pageIndex) {
+function areaShops(saletype, pageIndex) {
     var name = $('.pi_input').val();
     var category = ''; //TODO
 
@@ -158,6 +158,7 @@ function areaShops(pageIndex) {
             city: city,
             category: category,
             pageIndex: pageIndex,
+            saletype: saletype,
         },
         success: function (res) {
             var html = '';
@@ -1192,10 +1193,10 @@ function openAds(o) {
     initProduct();
     // $(".header-title").show();
 
-    var headerTitle= data.config.name;
-    var shopTelephone= data.config.tel;
-    if(shopTelephone){
-        headerTitle+= " " +shopTelephone;
+    var headerTitle = data.config.name;
+    var shopTelephone = data.config.tel;
+    if (shopTelephone) {
+        headerTitle += " " + shopTelephone;
     }
     $(".header-title").html(headerTitle);
 }

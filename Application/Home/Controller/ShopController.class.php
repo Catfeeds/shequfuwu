@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\WechatBiz;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -30,6 +31,9 @@ class ShopController extends BaseController
             $categoryMate = new ModelMate('shopCategory');
             $categoryList = $categoryMate->select(array('usable' => 1));
             $this->assign('categoryList', $categoryList);
+
+            $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_", false);
+            $this->assign('saleTypeList', $saleTypeList);
 
             $this->display();
         }
@@ -68,6 +72,8 @@ class ShopController extends BaseController
             $categoryMate = new ModelMate('shopCategory');
             $categoryList = $categoryMate->select(array('usable' => 1));
             $this->assign('categoryList', $categoryList);
+            $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_", false);
+            $this->assign('saleTypeList', $saleTypeList);
             $this->display("Shop:addShop");
         } else {
             $this->error("请先选择店铺", "Home/Shop/shop");

@@ -8,7 +8,6 @@
 
 namespace Vendor\Hiland\Utils\DataConstructure;
 
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 
@@ -51,13 +50,14 @@ class ConstMate
      * 根据给定的前缀和值获取常量的显示信息
      * @param $prefix
      * @param $value
+     * @param string $textPostFix 文本后缀
      * @return mixed
      */
-    public static function getConstText($prefix, $value)
+    public static function getConstText($prefix, $value, $textPostFix = "_TEXT")
     {
         $all = self::getConsts($prefix);
         $constKey = self::getConstName($prefix, $value);
-        return $all[$constKey . "_TEXT"];
+        return $all[$constKey . $textPostFix];
     }
 
     /**
@@ -130,6 +130,7 @@ class ConstMate
     /**
      * 获取某前缀构成的数组，Key为不带_TEXT常量的值，Value为带_TEXT常量的值
      * @param string $prefix
+     * @param string $textPostFix 文本后缀
      * @param bool $keyValueModeForElement 组成数组的元素是否使用KeyValue模式，默认为true
      *      如果为true，返回的结果类似如下
      * array(7) {
@@ -175,18 +176,18 @@ class ConstMate
      *
      * @return array
      */
-    public static function getConstArray($prefix, $keyValueModeForElement = true)
+    public static function getConstArray($prefix, $keyValueModeForElement = true, $textPostFix = "_TEXT")
     {
         $all = self::getConsts($prefix, true);
         $result = array();
         foreach ($all as $key => $value) {
             if (!StringHelper::isEndWith($key, "_TEXT")) {
                 if ($keyValueModeForElement) {
-                    $result[$value] = $all[$key . "_TEXT"];
+                    $result[$value] = $all[$key . $textPostFix];
                 } else {
                     $result[] = array(
                         "value" => $value,
-                        "text" => $all[$key . "_TEXT"],
+                        "text" => $all[$key . $textPostFix],
                     );
                 }
             }

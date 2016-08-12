@@ -105,9 +105,7 @@
                                 <th class="hidden-xs">
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
-
                                 <th>ID</th>
-
                                 <th>名称</th>
                                 <th>类别</th>
                                 <th>图片</th>
@@ -150,10 +148,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <if condition="$shop.status eq -1"><span style="color: red">已关闭</span></if>
-                                        <if condition="$shop.status eq 0"><span style="color: red">未审核</span></if>
-                                        <if condition="$shop.status eq 1"><span style="color: blue">休息中</span></if>
-                                        <if condition="$shop.status eq 2">营业中</if>
+                                        <?php echo \Common\Model\BizConst::getConstText("SHOP_REVIEW_STATUS_",$shop['status'],"_S_TEXT"); ?>
                                     </td>
                                     <td>
                                         {$shop.rank}
