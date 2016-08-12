@@ -174,7 +174,11 @@ function areaShops(saletype, pageIndex) {
                 html = template("shopItems", dataSending);
             }
 
-            $('#mod-desc').append(html);
+            if(pageIndex==1){
+                $('#mod-desc').html(html);
+            }else{
+                $('#mod-desc').append(html);
+            }
         },
         beforeSend: function () {
             $('#page_tag_load').show();
