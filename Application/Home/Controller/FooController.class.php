@@ -19,6 +19,7 @@ use Vendor\Hiland\Biz\Geo\GeoHelper;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\BoolHelper;
 use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
@@ -410,7 +411,7 @@ class FooController extends Controller
 
     public function getAreaShopsop($city = '枣庄市')
     {
-        dump(BizHelper::getAreaShops($city, '',0, 1, 1, 3));
+        dump(BizHelper::getAreaShops($city, '', 0, 1, 1, 3));
     }
 
     public function constop($prefix = '', $withText = false)
@@ -436,15 +437,15 @@ class FooController extends Controller
         dump($constArray);
 
         dump("all - false---------------------------------");
-        $constArray = BizConst::getConstArray('', false,"_S_TEXT");
+        $constArray = BizConst::getConstArray('', false, "_S_TEXT");
         dump($constArray);
 
         dump("MARKETING_SALETYPE_  KV mode---------------------------------");
-        $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_");
+        $saleTypeList = BizConst::getConstArray("MARKETING_SALETYPE_");
         dump($saleTypeList);
 
         dump("MARKETING_SALETYPE_  common mode---------------------------------");
-        $saleTypeList= BizConst::getConstArray("MARKETING_SALETYPE_",false);
+        $saleTypeList = BizConst::getConstArray("MARKETING_SALETYPE_", false);
         dump($saleTypeList);
     }
 
@@ -456,7 +457,7 @@ class FooController extends Controller
 
         dump(__ROOT__);
 
-        $webFullRoot= "http://" . I("server.HTTP_HOST") . __ROOT__ ;
+        $webFullRoot = "http://" . I("server.HTTP_HOST") . __ROOT__;
         dump($webFullRoot);
     }
 
@@ -533,39 +534,42 @@ class FooController extends Controller
             "shop_id" => $shopid,
             "adsname" => 3,
         );
-        $mate= new ModelMate("ads");
-        $ads = $mate->select($condition,"rank desc");//D("Ads")->getList($condition, true);
+        $mate = new ModelMate("ads");
+        $ads = $mate->select($condition, "rank desc");//D("Ads")->getList($condition, true);
         dump($ads);
     }
 
-    public function userscoreop($userid= 802){
-        BizHelper::updateUserScore($userid,144,1,'购买商品');
+    public function userscoreop($userid = 802)
+    {
+        BizHelper::updateUserScore($userid, 144, 1, '购买商品');
     }
 
-    public function deliverytimeop(){
-        $mate= new ModelMate("shop");
-        $data= $mate->get(144);
-        $deliveryTime= $data['delivery_time'];
+    public function deliverytimeop()
+    {
+        $mate = new ModelMate("shop");
+        $data = $mate->get(144);
+        $deliveryTime = $data['delivery_time'];
         dump($deliveryTime);
         dump("------------------------");
-        $deliveryTime=  str_replace("\r\n",",",$deliveryTime);
-        $deliveryTime=explode(",", $deliveryTime);
-        $deliveryTime= array_filter($deliveryTime);
+        $deliveryTime = str_replace("\r\n", ",", $deliveryTime);
+        $deliveryTime = explode(",", $deliveryTime);
+        $deliveryTime = array_filter($deliveryTime);
         dump($deliveryTime);
     }
 
-    public function converterop(){
-        $string= "ab12cd4";
+    public function converterop()
+    {
+        $string = "ab12cd4";
         dump((int)$string);
         dump(intval($string));
         dump(is_int("23"));
         dump(is_numeric("23"));
         dump(is_numeric("23a"));
 
-        $original= "w12345abcdefg";
-        $encrpted= CipherHelper::encrypt($original);
-        $encrptedChaged= $encrpted."rx";
-        $decrypted= CipherHelper::decrypt($encrpted);
+        $original = "w12345abcdefg";
+        $encrpted = CipherHelper::encrypt($original);
+        $encrptedChaged = $encrpted . "rx";
+        $decrypted = CipherHelper::decrypt($encrpted);
         dump('---------------------------------------');
         dump(CipherHelper::decrypt($encrptedChaged));
 
@@ -574,11 +578,49 @@ class FooController extends Controller
         dump($decrypted);
         dump(decrypt($encrpted));
 
-        $base64= base64_encode(RandHelper::rand(20));
+        $base64 = base64_encode(RandHelper::rand(20));
         dump($base64);
         dump(base64_decode($base64));
+    }
+
+    public function boolop()
+    {
+        $data = array(
+            v1 => 0,
+            v2 => "",
+            v3 => "false",
+            v4 => false,
+            v5 => true,
+            v6 => "hello"
+        );
 
 
+        dump("传统判法--------------------------------");
+        foreach ($data as $k => $v) {
+            if ($v) {
+                dump("$v YYYYYYYYYYYY");
+            } else {
+                dump("$v NNNNNNNNNNNN");
+            }
+        }
+
+
+        dump("独立判法isRealFalse--------------------------------");
+        foreach ($data as $k => $v) {
+            if (BoolHelper::isRealFalse($v)) {
+                dump("$v 是真实的false");
+            } else {
+                dump("$v 不是真实的false");
+            }
+        }
+        dump("独立判法isRealTrue--------------------------------");
+        foreach ($data as $k => $v) {
+            if (BoolHelper::isRealTrue($v)) {
+                dump("$v 是真实的true");
+            } else {
+                dump("$v 不是真实的true");
+            }
+        }
     }
 
     public function enumop()

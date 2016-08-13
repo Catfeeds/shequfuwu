@@ -165,7 +165,11 @@ class BizHelper
             $map['name'] = array('like', "%$shopName%");//按店铺名称搜索
         }
 
-        $map['saletype'] = $saleType;
+        $map['saletype'] = array(
+            array('EQ', $saleType),
+            array('EQ', BizConst::MARKETING_SALETYPE_WHOLERETAIL),
+            'OR'
+        );
 
         $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
         $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES;
@@ -224,7 +228,11 @@ class BizHelper
         }
 
 
-        $map['saletype'] = BizConst::MARKETING_SALETYPE_RETAIL;
+        $map['saletype'] = array(
+            array('EQ', BizConst::MARKETING_SALETYPE_RETAIL),
+            array('EQ', BizConst::MARKETING_SALETYPE_WHOLERETAIL),
+            'OR'
+        );
         $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
         $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES;
 
