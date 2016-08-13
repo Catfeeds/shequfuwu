@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use Common\Model\ViewLink;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -471,7 +472,9 @@ class ShopController extends BaseController
             $mateProduct->execute($sqlOfChangeMenu);
         }
 
-        if (is_bool($isOffSaleAll) && $isOffSaleAll == true) {
+        CommonLoger::log('$isOffSaleAll',"$isOffSaleAll");
+
+        if ((is_bool($isOffSaleAll) && $isOffSaleAll == true) || $isOffSaleAll=="true") {
             $sqlOfOffSaleAll = "Update __TABLE__ set status=-1 where shop_id=$targetShopId";
             $mateProduct->execute($sqlOfOffSaleAll);
         }
@@ -537,12 +540,15 @@ class ShopController extends BaseController
         $sqlSku = "INSERT INTO __TABLE__(shop_id,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,copysourceid) SELECT $targetShopId,product_id,`name`,path,price,freight,store,sales,remark,time,rank,file_id,albums,id FROM __TABLE__ where shop_id=$sourceShopId";
         $resultSku = $mateSku->execute($sqlSku);
 
+        $mateLabel = new ModelMate('productLabel');
+        $sqlLabel = "INSERT INTO __TABLE__(shop_id,`name`,subname,remark,isshowmainpage,time,onlyforshop) SELECT $targetShopId,`name`,subname,remark,isshowmainpage,time,onlyforshop FROM __TABLE__ where shop_id=$sourceShopId";
+        $resultLabel = $mateLabel->execute($sqlLabel);
+
         $this->ajaxReturn('success');
     }
 
     public function cleanShop($shopId)
     {
-
         $condition = array();
         $condition['shop_id'] = $shopId;
 
