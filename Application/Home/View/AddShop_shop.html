@@ -138,7 +138,9 @@
                             <tbody>
                             <tr>
                                 <th>名称</th>
-                                <th>类别</th>
+                                <th>店铺类别</th>
+                                <th>经营形式</th>
+                                <th>列表显示</th>
                                 <th>图片</th>
                                 <th>链接</th>
                                 <th>状态</th>
@@ -154,6 +156,12 @@
                                     </td>
                                     <td>
                                         {$shop.categoryname}
+                                    </td>
+                                    <td>
+                                        <?php echo \Common\Model\BizConst::getConstText("MARKETING_SALETYPE_",$shop['saletype']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_YN_",$shop['shoplist']); ?>
                                     </td>
                                     <td>
                                         <if condition="$shop.savepath && $shop.savename">
