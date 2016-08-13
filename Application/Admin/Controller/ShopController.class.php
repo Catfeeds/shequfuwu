@@ -403,6 +403,13 @@ class ShopController extends BaseController
         $this->success("审核成功", cookie("prevUrl"));
     }
 
+    public function excellentShop()
+    {
+        M("Shop")->where(array("id" => array("in", I("get.id"))))->save(array("is_excellent" => I("get.excellent")));
+
+        $this->success("成功", cookie("prevUrl"));
+    }
+
     //pidong 店铺删除
     public function delShop()
     {

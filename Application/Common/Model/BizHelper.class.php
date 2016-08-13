@@ -178,6 +178,35 @@ class BizHelper
         return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);
     }
 
+    public static function getExcellentShops($cityName = '', $shopName = '', $shopCategory = 0,  $pageIndex = 0, $itemCountPerPage = 10)
+    {
+        if ($shopCategory) {
+            $map['category_id'] = $shopCategory;
+        }
+
+        if ($cityName) {
+            $map['city'] = array('like', "$cityName");//按城市搜索
+        }
+
+        if ($shopName) {
+            $map['name'] = array('like', "%$shopName%");//按店铺名称搜索
+        }
+
+//        $map['saletype'] = array(
+//            array('EQ', $saleType),
+//            array('EQ', BizConst::MARKETING_SALETYPE_WHOLERETAIL),
+//            'OR'
+//        );
+
+        $map['is_excellent'] = SystemConst::COMMON_STATUS_YN_YES;
+
+        $map['status'] = BizConst::SHOP_REVIEW_STATUS_PASSED;
+        $map['shoplist'] = SystemConst::COMMON_STATUS_YN_YES;
+
+        $shopMate = new ViewMate('shop', ViewLink::getCommon_File());
+        return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);
+    }
+
     /**
      * 获取店铺或产品列表
      * @param string $dataName 店铺或商品名称

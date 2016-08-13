@@ -105,8 +105,8 @@
                                 </th>
                                 <th>ID</th>
                                 <th>名称</th>
-                                <th>店铺类别</th>
-                                <th>经营方式</th>
+                                <th>类别</th>
+                                <th>优质店铺</th>
                                 <th>列表显示</th>
                                 <th>图片</th>
                                 <th>链接</th>
@@ -130,10 +130,11 @@
                                         {$shop.name}
                                     </td>
                                     <td>
-                                        {$shop.categoryname}
+                                        {$shop.categoryname}<br/>
+                                        <?php echo \Common\Model\BizConst::getConstText("MARKETING_SALETYPE_",$shop['saletype']); ?>
                                     </td>
                                     <td>
-                                        <?php echo \Common\Model\BizConst::getConstText("MARKETING_SALETYPE_",$shop['saletype']); ?>
+                                        <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_YN_",$shop['is_excellent']); ?>
                                     </td>
                                     <td>
                                         <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_YN_",$shop['shoplist']); ?>
@@ -174,6 +175,12 @@
                                         </if>
                                         <if condition="$shop.status eq 0">
                                             <a href="{:U('Admin/Shop/openShop',array('id'=>$shop['id'],'status' => 2))}">审核</a>
+                                        </if>
+
+                                        <if condition="$shop.is_excellent eq 1">
+                                            <a href="{:U('Admin/Shop/excellentShop',array('id'=>$shop['id'],'excellent' => 0))}">取消优质店铺</a>
+                                            <else/>
+                                            <a href="{:U('Admin/Shop/excellentShop',array('id'=>$shop['id'],'excellent' => 1))}">设为优质店铺</a>
                                         </if>
                                     </td>
                                 </tr>

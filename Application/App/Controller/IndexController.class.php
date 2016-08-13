@@ -207,4 +207,15 @@ class IndexController extends BaseController
 
         $this->display();
     }
+
+    /**
+     * 获取某个地区的渠道店铺
+     */
+    public function ExcellentShops()
+    {
+        $wxConfig = D("WxConfig")->getJsSign();
+        $this->assign("wxConfig", json_encode($wxConfig));
+
+        $this->display();
+    }
 }

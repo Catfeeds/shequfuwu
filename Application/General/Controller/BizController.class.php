@@ -41,6 +41,24 @@ class BizController
         WebHelper::serverReturn($result);
     }
 
+    public function getExcellentShops()
+    {
+        $shopName = I('name');
+        $cityName = I('city');
+        $shopCategory = I('category');
+        $pageIndex = I('pageIndex');
+
+        $itemCountPerPage = SystemConst::APP_ITEM_COUNT_PERPAGE;
+        if (empty($itemCountPerPage)) {
+            $itemCountPerPage = 10;
+        }
+
+        $data = "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage;";
+
+        $result = BizHelper::getExcellentShops($cityName, $shopName, $shopCategory, $pageIndex, $itemCountPerPage);
+        WebHelper::serverReturn($result);
+    }
+
     /**
      * 获取店铺或产品列表
      */

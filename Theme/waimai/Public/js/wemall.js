@@ -189,6 +189,53 @@ function areaShops(saletype, pageIndex) {
     });
 }
 
+function excellentShops(pageIndex) {
+    var name = $('.pi_input').val();
+    var category = ''; //TODO
+
+    var city = $('#citySelector').val();
+
+    if (!pageIndex) {
+        pageIndex = 1;
+    }
+
+    $.ajax({
+        type: "post",
+        url: data.baseUrl + "/General/Biz/getExcellentShops",
+        data: {
+            name: name,
+            city: city,
+            category: category,
+        },
+        success: function (res) {
+            var html = '';
+            if (res == null || res == "") {
+                html = '已经没有更多信息了:)<br/>';
+            } else {
+                var dataSending = {
+                    shopes: res,
+                    jsData: data,
+                    uploadsUrl: data.uploadsUrl,
+                    imageUrl: data.imageUrl
+                };
+                html = template("shopItems", dataSending);
+            }
+
+            if(pageIndex==1){
+                $('#mod-desc').html(html);
+            }else{
+                $('#mod-desc').append(html);
+            }
+        },
+        beforeSend: function () {
+            $('#page_tag_load').show();
+        },
+        complete: function () {
+            $('#page_tag_load').hide();
+        }
+    });
+}
+
 /**
  * 根据定位获取附近的店铺
  */
