@@ -35,6 +35,7 @@
                                 <th>ID</th>
                                 <th>名称</th>
                                 <th>首页展示</th>
+                                <th>仅用于商家管理</th>
                                 <th>介绍</th>
                                 <th>备注</th>
                                 <th>操作</th>
@@ -51,6 +52,12 @@
                                         <?php
                                             $constPrefix= 'COMMON_STATUS_YN_';
                                             echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText($constPrefix,$label['isshowmainpage']);
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $constPrefix= 'COMMON_STATUS_YN_';
+                                            echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText($constPrefix,$label['onlyforshop']);
                                         ?>
                                     </td>
                                     <td>{$label.subname}</td>

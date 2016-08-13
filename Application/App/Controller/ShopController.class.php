@@ -1,11 +1,33 @@
 <?php
 namespace App\Controller;
 
+use Vendor\Hiland\Utils\DataModel\ModelMate;
+
 class ShopController extends BaseController
 {
     public function getProduct()
     {
         $product = D("Product")->get(array("id" => I("get.id")), true, true);
+        $shopId = $product['shop_id'];
+
+        $labelMate = new ModelMate("productLabel");
+        $labelsOfShop = $labelMate->select(array("shop_id" => $shopId));
+        $labelsOfProduct = explode(",", $product['label']);
+        $labelsResult = "";
+        foreach ($labelsOfProduct as $ov) {
+            foreach ($labelsOfShop as $iv) {
+                if ($iv["name"] == $ov) {
+                    if ($iv["onlyforshop"] == 1) {
+                        //
+                    } else {
+                        $labelsResult .= $ov . ",";
+                    }
+                }
+            }
+        }
+
+        $product["label"]= $labelsResult;
+
         $albums = explode(",", $product["albums"]);
         $product["albums"] = $albums ? D("File")->getList(array("id" => array("in", $albums))) : "";
         $this->ajaxReturn($product);
@@ -79,7 +101,7 @@ class ShopController extends BaseController
     public function getUserIdByWeixin()
     {
         R("App/Public/oauthLogin");
-        $userID= session("userId");
+        $userID = session("userId");
 
         $this->ajaxReturn($userID);
     }
