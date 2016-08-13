@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/AddShop_shop.html" afterPath="$PROJECT_DIR$/Application/Home/View/AddShop_shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Shop_addShop.html" afterPath="$PROJECT_DIR$/Application/Home/View/Shop_addShop.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/shopItems.html" afterPath="$PROJECT_DIR$/Theme/waimai/shopItems.html" />
@@ -176,8 +174,8 @@
       <file leaf-file-name="shopItems.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItems.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+            <state relative-caret-position="413">
+              <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -187,7 +185,7 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItemsWithProduct.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="89" />
+              <caret line="28" column="86" selection-start-line="28" selection-start-column="86" selection-end-line="28" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -269,8 +267,8 @@
         <option value="$PROJECT_DIR$/Application/App/Controller/UserController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/Shop_addShop.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/AddShop_shop.html" />
-        <option value="$PROJECT_DIR$/Theme/waimai/shopItemsWithProduct.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/shopItems.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/shopItemsWithProduct.html" />
       </list>
     </option>
   </component>
@@ -954,7 +952,7 @@
       <workItem from="1470308327355" duration="42214000" />
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
-      <workItem from="1470956238314" duration="30692000" />
+      <workItem from="1470956238314" duration="30867000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -967,7 +965,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="627925000" />
+    <option name="totallyTimeSpent" value="628100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1447,8 +1445,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItems.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+        <state relative-caret-position="413">
+          <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
           <folding />
         </state>
       </provider>
@@ -1456,7 +1454,7 @@
     <entry file="file://$PROJECT_DIR$/Theme/waimai/shopItemsWithProduct.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="89" />
+          <caret line="28" column="86" selection-start-line="28" selection-start-column="86" selection-end-line="28" selection-end-column="86" />
           <folding />
         </state>
       </provider>
