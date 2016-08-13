@@ -203,7 +203,7 @@ class UserController extends BaseController
 
         $distanceKM = I('distanceKM');
         if (empty($distanceKM)) {
-            $distanceKM = 15;
+            $distanceKM = 5;
         }
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);

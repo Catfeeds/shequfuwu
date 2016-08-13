@@ -54,7 +54,7 @@ class BizController
 
         //CommonLoger::log('weixin坐标', "lng:$lng-- lat:$lat");
         $searchContentType = I('searchContentType', 'shop');
-        $distanceKM = I('distanceKM', 15);
+        $distanceKM = I('distanceKM', 5);
 
         $result = BizHelper::getShopList($name, $shopCategory, $searchContentType, $lng, $lat, $distanceKM);
         WebHelper::serverReturn($result);

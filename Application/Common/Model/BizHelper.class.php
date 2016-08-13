@@ -205,7 +205,7 @@ class BizHelper
         }
 
         if (empty($distanceKM)) {
-            $distanceKM = 15;
+            $distanceKM = 5;
         }
 
         $range = 180 / pi() * $distanceKM / 6372.797; //里面的 5 就代表搜索 5km 之内，单位km
