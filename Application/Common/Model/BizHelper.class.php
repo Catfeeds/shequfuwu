@@ -487,7 +487,7 @@ class BizHelper
 
     public static function generateMyScanedShopsResponse($openId)
     {
-        $webRoot= WebHelper::getHostName(). WebHelper::getWebRoot();
+        $webRoot= WebHelper::getWebRootFull();
         //超市购物，弹出其当初扫描的超市
         $usershopscanedMate = new ModelMate('usershopscaned');
         $where = array();
@@ -532,7 +532,7 @@ class BizHelper
 
     public static function generateArticlesResponse()
     {
-        $webRoot= WebHelper::getHostName(). WebHelper::getWebRoot();
+        $webRoot= WebHelper::getWebRootFull();
 
         $articleMate = new ModelMate('artical');
         $where = array();
