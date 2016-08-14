@@ -11,6 +11,7 @@ use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizHelper
 {
@@ -482,6 +483,89 @@ class BizHelper
 
         $data= $mate->find($condition,"id desc");
         return $data;
+    }
+
+    public static function generateMyScanedShopsResponse($openId)
+    {
+        $webRoot= WebHelper::getHostName(). WebHelper::getWebRoot();
+        //超市购物，弹出其当初扫描的超市
+        $usershopscanedMate = new ModelMate('usershopscaned');
+        $where = array();
+        $where['openid'] = $openId;
+        $shopscaned = $usershopscanedMate->select($where, "", 0, 0, 10);
+
+        $shopMate = new ModelMate('shop');
+
+        $newsArray = array();
+        $newsCover = array(
+            'Title' => "欢迎使用" . C('PROJECT_NAME'),
+            'Description' => "请选择以下列表中你关注过的店铺进行采购吧！",
+            'PicUrl' => $webRoot . '/Public/Uploads/wechat_news_cover.jpg',
+            'Url' => '',
+        );
+        $newsArray[] = $newsCover;
+
+        if ($shopscaned) {
+            foreach ($shopscaned as $shopScaned) {
+                $shopId = $shopScaned['shopid'];
+                $shopWhere = array();
+                $shopWhere['id'] = $shopId;
+                $shop = $shopMate->find($shopWhere);
+                if ($shop) {
+                    $fileId = $shop['file_id'];
+                    $pictureUrl = BizHelper::getFileImageUrl($fileId);
+
+                    $news = array(
+                        'Title' => $shop["name"],
+                        'Description' => $shop["notification"],
+                        'PicUrl' => $pictureUrl,
+                        'Url' => $webRoot . "/index.php?s=/App/Index/index/shopId/$shopId",
+                    );
+
+                    $newsArray[] = $news;
+                }
+            }
+        }
+
+        return $newsArray;
+    }
+
+    public static function generateArticlesResponse()
+    {
+        $webRoot= WebHelper::getHostName(). WebHelper::getWebRoot();
+
+        $articleMate = new ModelMate('artical');
+        $where = array();
+        $where['shop_id'] = 0; //仅展现平台发布的信息
+        $articles = $articleMate->select($where, "", 0, 0, 10);
+
+        $newsArray = array();
+        $newsCover = array(
+            'Title' => "欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
+            'Description' => "以下是为你精心准备的资讯信息，请点击阅读！",
+            'PicUrl' => $webRoot . '/Public/Uploads/platform_article.jpg',
+            'Url' => '',
+        );
+        $newsArray[] = $newsCover;
+
+        if ($articles) {
+            foreach ($articles as $article) {
+                $fileId = $article['file_id'];
+                $articleId = $article['id'];
+                $pictureUrl = BizHelper::getFileImageUrl($fileId);
+
+                $news = array(
+                    'Title' => $article["title"],
+                    'Description' => $article["content"],
+                    'PicUrl' => $pictureUrl,
+                    'Url' => $webRoot . "/index.php?s=/App/Artical/index/id/$articleId",
+                );
+
+                $newsArray[] = $news;
+            }
+        }
+
+        return $newsArray;
     }
 }
 
