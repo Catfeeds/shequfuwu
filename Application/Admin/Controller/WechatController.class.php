@@ -183,7 +183,7 @@ class WechatController extends Controller
                 }
 
                 if($merchantScanedID){
-                    $messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
+                    //$messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
                 }
 
                 WechatHelper::responseCustomerServiceText($openId, $messageContent);
