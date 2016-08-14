@@ -182,6 +182,10 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
+                if($merchantScanedID){
+                    $messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
+                }
+
                 WechatHelper::responseCustomerServiceText($openId, $messageContent);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);

@@ -58,11 +58,11 @@ class IndexController extends BaseController
         $config = D("Shop")->getShop(array('id' => $shopId), true);
         //$config["delivery_time"] = explode(",", $config["delivery_time"]);
         //--[将换行分隔的，逗号分隔的都转换成数组元素]--------------------------------------
-        $deliveryTime= $config["delivery_time"];
-        $deliveryTime=  str_replace("\r\n",",",$deliveryTime);
-        $deliveryTime=explode(",", $deliveryTime);
-        $deliveryTime= array_filter($deliveryTime);
-        $config["delivery_time"]= $deliveryTime;
+        $deliveryTime = $config["delivery_time"];
+        $deliveryTime = str_replace("\r\n", ",", $deliveryTime);
+        $deliveryTime = explode(",", $deliveryTime);
+        $deliveryTime = array_filter($deliveryTime);
+        $config["delivery_time"] = $deliveryTime;
 
         $config["balance_payment"] = $configs["balance_payment"];
         $config["wechat_payment"] = $configs["wechat_payment"];
@@ -80,8 +80,6 @@ class IndexController extends BaseController
 
 //        $product = D("Product")->getList(array("status" => array("neq", -1), "shop_id" => $shopId), true, "rank desc", 0, 0, 0);
 //        $this->assign("product", json_encode($product));
-
-
 
 
         //$ads = D("Ads")->getList(array("shop_id" => $shopId), true,"rank desc");
@@ -192,10 +190,10 @@ class IndexController extends BaseController
      */
     public function AreaShops()
     {
-        $categoryMate= new ViewMate("shopCategory",ViewLink::getCommon_File());
-        $condition= array("usable"=> SystemConst::COMMON_STATUS_YN_YES);
-        $categories= $categoryMate->select($condition,true,"rank desc");
-        $this->assign("categories",$categories);
+        $categoryMate = new ViewMate("shopCategory", ViewLink::getCommon_File());
+        $condition = array("usable" => SystemConst::COMMON_STATUS_YN_YES);
+        $categories = $categoryMate->select($condition, true, "rank desc");
+        $this->assign("categories", $categories);
 
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
@@ -221,6 +219,58 @@ class IndexController extends BaseController
     {
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
+
+        $this->display();
+    }
+
+    public function sendRedpacket($packetId, $openId = "")
+    {
+        $userMate = new ModelMate('user');
+
+        if (empty($openId)) {
+            $userId = $this->getCurrentUserID();
+            $userData = $userMate->get($userId);
+            $openId = $userData['openid'];
+        }
+
+        if (empty($userData)) {
+            $userData = $userMate->find(array("openid" => $openId));
+        }
+
+        $redPacketMate = new ViewMate("weixinRedpacket", ViewLink::getCommon_Shop());
+        $detailMate = new ModelMate("weixinRedpacketDetail");
+
+        $redPacketData = $redPacketMate->get($packetId);
+
+        $uniqeCondition = array("openid" => $openId, "packet_id" => $packetId);
+        $currentUserJoinTiems = $detailMate->getCount($uniqeCondition);
+
+        if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
+            $this->assign("redPacketSendStatus", false);
+            $this->assign("redPacketSendInfo", "本次活动" . $redPacketData['actionname'] . "你已经参加过了，下次再来吧:)");
+
+        } else {
+            $unDrawedPackets = $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO), "id asc");
+            if (count($unDrawedPackets) <= 1) {
+                $redPacketMate->setValue($packetId, "status", BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
+            }
+
+            $lastRecord = $unDrawedPackets[0];
+            $lastRecord['username'] = $userData['username'];
+            $lastRecord['openid'] = $openId;
+            $lastRecord['drawtime'] = DateHelper::format();
+            $lastRecord['openid'] = BizConst::REDPACKET_DRAW_STATUS_YES;
+            $detailMate->interact($lastRecord);
+
+            if ($lastRecord['amount']) {
+                self::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
+                $this->assign("redPacketSendStatus", true);
+                $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
+            } else {
+                $this->assign("redPacketSendStatus", true);
+                $this->assign("redPacketSendInfo", "真难以置信，" . $redPacketData['shop']['name'] . "使出了洪荒之力给你推送红包，你居然只得到一个空包，这运气真是\"好到爆\"了。");
+            }
+        }
 
         $this->display();
     }
