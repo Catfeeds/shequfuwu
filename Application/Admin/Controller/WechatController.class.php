@@ -3,6 +3,7 @@ namespace Admin\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -183,9 +184,10 @@ class WechatController extends Controller
                 }
 
                 if($merchantScanedID){
-                    //$messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
+                    $messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
                 }
 
+                CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
                 WechatHelper::responseCustomerServiceText($openId, $messageContent);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
