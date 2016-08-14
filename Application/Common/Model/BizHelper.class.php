@@ -465,10 +465,11 @@ class BizHelper
     {
         $redPacket = self::getLastEffectRedPacketAction($shopId);
         if ($redPacket) {
-            $content= "本店活动$redPacket[actionname]进展中，有大批量红包派送，点击这里领取！";
+            $content= "本店活动[$redPacket[actionname]]进展中，有大批量红包派送，点击这里领取！";
             $packetId= $redPacket['id'];
             $url= WebHelper::getWebAppFull().U("App/Index/sendRedpacket","packetId=$packetId&openId=$openId");
             $result= "<a href='$url'>$content</a>";
+            $result= $url;
             return  $result;
         } else {
             return "";
