@@ -1273,7 +1273,8 @@ class Wechat
         }
 
         //暂时先使用hiland库中获取AccessToken的方法
-        return \Vendor\Hiland\Biz\Tencent\WechatHelper::getAccessToken();
+        $this->access_token= \Vendor\Hiland\Biz\Tencent\WechatHelper::getAccessToken();
+        return $this->access_token;
 
 //        $authname = 'wechat_access_token' . $appid;
 //        if ($rs = $this->getCache($authname)) {
