@@ -3,7 +3,6 @@ namespace Admin\Controller;
 
 use Common\Model\BizHelper;
 use Think\Controller;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -183,13 +182,25 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
-                if($merchantScanedID){
-                    $messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
+                if ($merchantScanedID) {
+                    $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
                 }
 
-                //CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
-                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
-                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
+//                //CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
+//                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
+//                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
+
+
+                $messageData = '{
+                    "touser":"' . $openId . '",
+                    "msgtype":"text",
+                    "text":
+                    {
+                         "content":"' . $messageContent . '"
+                    }
+                }';
+                
+                self::$weObj->sendCustomMessage($messageData);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
