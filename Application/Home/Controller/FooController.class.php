@@ -491,8 +491,9 @@ class FooController extends Controller
         dump($arr);
     }
 
-    public function getLastRedPacketAction($shopId=144){
-        $result= BizHelper::getLastEffectRedPacketAction($shopId);
+    public function getLastRedPacketAction($shopId = 144)
+    {
+        $result = BizHelper::getLastEffectRedPacketAction($shopId);
         dump($result);
     }
 
@@ -592,6 +593,12 @@ class FooController extends Controller
         $base64 = base64_encode(RandHelper::rand(20));
         dump($base64);
         dump(base64_decode($base64));
+    }
+
+    public function wxcustomermsgop()
+    {
+        $result = WechatHelper::responseCustomerServiceText("oqfK9vsaghlVPWev6l6Nuz1TZd9M", "hello world!");
+        dump($result);
     }
 
     public function boolop()

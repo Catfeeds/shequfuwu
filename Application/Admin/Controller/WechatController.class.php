@@ -187,8 +187,9 @@ class WechatController extends Controller
                     $messageContent.= BizHelper::generateRedPacketResponse($merchantScanedID,$openId);
                 }
 
-                CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
-                WechatHelper::responseCustomerServiceText($openId, $messageContent);
+                //CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
+                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
+                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
