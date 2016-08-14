@@ -199,8 +199,9 @@ class WechatController extends Controller
                          "content":"' . $messageContent . '"
                     }
                 }';
-                
-                self::$weObj->sendCustomMessage($messageData);
+
+                $customerMsgStatus= self::$weObj->sendCustomMessage($messageData);
+                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
