@@ -187,8 +187,8 @@ class WechatController extends Controller
                 }
 
 //                //CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
-                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
-                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
+//                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
+//                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
 
 
 //                $messageData = '{
