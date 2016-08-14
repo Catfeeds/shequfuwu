@@ -469,7 +469,6 @@ class BizHelper
             $packetId= $redPacket['id'];
             $url= WebHelper::getHostNameFull().U("App/Index/sendRedpacket","packetId=$packetId&openId=$openId");
             $result= "<a href='$url'>$content</a>";
-            $result= $url;
             return  $result;
         } else {
             return "";

@@ -3,9 +3,11 @@ namespace App\Controller;
 
 
 use Common\Model\BizConst;
+use Common\Model\BizHelper;
 use Common\Model\ViewLink;
 use Common\Model\WechatBiz;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -263,7 +265,7 @@ class IndexController extends BaseController
             $detailMate->interact($lastRecord);
 
             if ($lastRecord['amount']) {
-                self::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
+                BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
                 $this->assign("redPacketSendStatus", true);
                 $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
             } else {
