@@ -37,38 +37,16 @@
         </div>
         <div class="listIcon">
             <ul class="gridlistIcon">
-                <li>
-                    <a href="/wap/wypx.html">
-                        <div class="InfoPicture">
-                            <img src="http://2088.wangzhan31.com/Upload/icon/curriculum_03_62eh.png">
-                        </div>
-                        <div class="InfoTitle">外语培训</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/wap/dnpx.html">
-                        <div class="InfoPicture">
-                            <img src="http://2088.wangzhan31.com/Upload/icon/curriculum_05_4cso.png">
-                        </div>
-                        <div class="InfoTitle">电脑培训</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/wap/zgrz.html">
-                        <div class="InfoPicture">
-                            <img src="http://2088.wangzhan31.com/Upload/icon/curriculum_07_wg2t.png">
-                        </div>
-                        <div class="InfoTitle">资格认证</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/wap/xljy.html">
-                        <div class="InfoPicture">
-                            <img src="http://2088.wangzhan31.com/Upload/icon/curriculum_09_poat.png">
-                        </div>
-                        <div class="InfoTitle">学历教育</div>
-                    </a>
-                </li>
+                <volist name="categories" id="vo">
+                    <li>
+                        <a href="/wap/wypx.html">
+                            <div class="InfoPicture">
+                                <img src="__PUBLIC__/Uploads/{$vo.savepath}{$vo.savename}">
+                            </div>
+                            <div class="InfoTitle">{$vo.name}</div>
+                        </a>
+                    </li>
+                </volist>
             </ul>
         </div>
     </div>
@@ -153,12 +131,12 @@
     }
     function renderOption(response) {
         document.getElementById('pi_address').innerHTML = response.regeocode.formatted_address;
-        var cityName= response.regeocode.addressComponent.city;
-        if(cityName){
+        var cityName = response.regeocode.addressComponent.city;
+        if (cityName) {
             $("#citySelector").val(cityName);
         }
 
-        areaShops(0,1);
+        areaShops(0, 1);
     }
 </script>
 <script type="text/javascript">
@@ -166,7 +144,7 @@
         var lazyNum = 1;
         $(".moreinfo-loader").on("click", function () {
             lazyNum++;
-            areaShops(0,lazyNum);
+            areaShops(0, lazyNum);
         });
     });
 </script>

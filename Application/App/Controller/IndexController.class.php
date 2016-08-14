@@ -9,6 +9,7 @@ use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
+use Vendor\Hiland\Utils\Datas\SystemConst;
 use Vendor\Hiland\Utils\Web\EnvironmentHelper;
 
 class IndexController extends BaseController
@@ -191,6 +192,11 @@ class IndexController extends BaseController
      */
     public function AreaShops()
     {
+        $categoryMate= new ViewMate("shopCategory",ViewLink::getCommon_File());
+        $condition= array("usable"=> SystemConst::COMMON_STATUS_YN_YES);
+        $categories= $categoryMate->select($condition,true,"rank desc");
+        $this->assign("categories",$categories);
+
         $wxConfig = D("WxConfig")->getJsSign();
         $this->assign("wxConfig", json_encode($wxConfig));
 
