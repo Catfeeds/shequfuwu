@@ -428,39 +428,6 @@ class BizHelper
         return $labelList;
     }
 
-//    public static function drawRedPacket($openId, $packetId)
-//    {
-//        $userMate = new ModelMate('user');
-//        $userData = $userMate->find(array("openid" => $openId));
-//
-//        $detailMate = new ModelMate("weixinRedpacketDetail");
-//        $redPacketMate= new ViewMate("weixinRedpacket",ViewLink::getCommon_Shop());
-//
-//        //$unDrawCount= $detailMate->getCount(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO));
-//        $unDrawedPackets= $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO),"id asc");
-//
-//
-//        if(count($unDrawedPackets)<=1){
-//            $redPacketMate->setValue($packetId,"status",BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
-//        }
-//
-//        $lastRecord= $unDrawedPackets[0];
-//        $lastRecord['username']= $userData['username'];
-//        $lastRecord['openid']= $openId;
-//        $lastRecord['drawtime']= DateHelper::format();
-//        $lastRecord['openid']= BizConst::REDPACKET_DRAW_STATUS_YES;
-//        $detailMate->interact($lastRecord);
-//
-//        return $lastRecord;
-//
-////        if($lastRecord['amount']){
-////            $redPacketData= $redPacketMate->get($packetId);
-////            self::hongbao($openId,$redPacketData['shop']['name'],$lastRecord['amount']*100,$redPacketData['actionname'],"祝你购物愉快！");
-////        }else{
-////
-////        }
-//    }
-
     public static function generateRedPacketResponse($shopId,$openId)
     {
         $redPacket = self::getLastEffectRedPacketAction($shopId);
