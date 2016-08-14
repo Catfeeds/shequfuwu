@@ -81,32 +81,44 @@ class WechatHelper
             $appSecret = WechatConfig::APPSECRET;
         }
 
-        $result = false;
-        $cachekey = sprintf("apptoken20140224-appid:%s-secret:%s", $appID, $appSecret);
-        if ($useCache == true) {
-            $result = S($cachekey);
-            if ($result != false && $result != "") {
-                return $result;
-            }
-        }
+        Vendor("Wechat.wechat#class");
 
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appID&secret=$appSecret";
 
-        $output = NetHelper::request($url);
-        // 检查错误、你可以加一段检查错误的语句（虽然这并不是必需的）
-        if ($output === FALSE) {
-            // 不解析返回的json信息
-        } else {
-            // $result = $output;
-            $result = json_decode($output, true);
-            $result = $result["access_token"];
+        $options = array(
+            'token' => WechatConfig::GATETOKEN,
+            'encodingaeskey' => WechatConfig::AESKEY, //填写加密用的EncodingAESKey
+            'appid' => $appID, //填写高级调用功能的app id
+            'appsecret' => $appSecret, //填写高级调用功能的密钥
+        );
+        $weObj = new \Wechat ($options);
+        $weObj->checkAuth();
 
-            if ($useCache == true) {
-                S($cachekey, $result, $cacheSeconds);
-            }
-        }
-
-        return $result;
+//        $result = false;
+//        $cachekey = sprintf("apptoken20140224-appid:%s-secret:%s", $appID, $appSecret);
+//        if ($useCache == true) {
+//            $result = S($cachekey);
+//            if ($result != false && $result != "") {
+//                return $result;
+//            }
+//        }
+//
+//        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appID&secret=$appSecret";
+//
+//        $output = NetHelper::request($url);
+//        // 检查错误、你可以加一段检查错误的语句（虽然这并不是必需的）
+//        if ($output === FALSE) {
+//            // 不解析返回的json信息
+//        } else {
+//            // $result = $output;
+//            $result = json_decode($output, true);
+//            $result = $result["access_token"];
+//
+//            if ($useCache == true) {
+//                S($cachekey, $result, $cacheSeconds);
+//            }
+//        }
+//
+//        return $result;
     }
 
     /**
