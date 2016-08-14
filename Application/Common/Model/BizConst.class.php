@@ -72,4 +72,22 @@ class BizConst extends ConstMate
     const SHOP_REVIEW_STATUS_PASSED = 2;
     const SHOP_REVIEW_STATUS_PASSED_TEXT = "营业";
     const SHOP_REVIEW_STATUS_PASSED_S_TEXT = "营业中";
+    //----------------------------------------------------------------------
+    const REDPACKET_ACTION_STATUS_RUN = 1;
+    const REDPACKET_ACTION_STATUS_RUN_TEXT = "启动";
+    const REDPACKET_ACTION_STATUS_RUN_S_TEXT = "运行中";
+    const REDPACKET_ACTION_STATUS_STOPBYSHOP = 0;
+    const REDPACKET_ACTION_STATUS_STOPBYSHOP_TEXT = "暂停";
+    const REDPACKET_ACTION_STATUS_STOPBYSHOP_S_TEXT = "店铺暂停";
+    const REDPACKET_ACTION_STATUS_STOPBYBIZ = -5;
+    const REDPACKET_ACTION_STATUS_STOPBYBIZ_TEXT = "领讫终止";
+    const REDPACKET_ACTION_STATUS_STOPBYBIZ_S_TEXT = "领讫终止";
+    const REDPACKET_ACTION_STATUS_STOPBYRULE = -10;
+    const REDPACKET_ACTION_STATUS_STOPBYRULE_TEXT = "系统终止";
+    const REDPACKET_ACTION_STATUS_STOPBYRULE_S_TEXT = "规则终止";
+    //-------------------------------------------------------------------
+    const REDPACKET_DRAW_STATUS_NO = 0;
+    const REDPACKET_DRAW_STATUS_NO_TEXT = "尚未领取";
+    const REDPACKET_DRAW_STATUS_YES = 1;
+    const REDPACKET_DRAW_STATUS_YES_TEXT = "已领取";
 }

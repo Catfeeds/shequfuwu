@@ -2,7 +2,6 @@
 namespace Admin\Controller;
 
 use Common\Model\ViewLink;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -472,9 +471,9 @@ class ShopController extends BaseController
             $mateProduct->execute($sqlOfChangeMenu);
         }
 
-        CommonLoger::log('$isOffSaleAll',"$isOffSaleAll");
+        //CommonLoger::log('$isOffSaleAll',"$isOffSaleAll");
 
-        if ((is_bool($isOffSaleAll) && $isOffSaleAll == true) || $isOffSaleAll=="true") {
+        if ((is_bool($isOffSaleAll) && $isOffSaleAll == true) || $isOffSaleAll == "true") {
             $sqlOfOffSaleAll = "Update __TABLE__ set status=-1 where shop_id=$targetShopId";
             $mateProduct->execute($sqlOfOffSaleAll);
         }

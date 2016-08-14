@@ -1,14 +1,16 @@
 <?php
 namespace Home\Controller;
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Think\Model;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
 use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
+use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 use Vendor\Hiland\Utils\Web\JavaScriptHelper;
 
@@ -160,6 +162,12 @@ class TradeController extends BaseController
         $this->itemList('weixinRedpacket', $condition, 0, 0, '', ViewLink::getCommon_Shop());
     }
 
+    public function redPacketDetailList($id)
+    {
+        $condition= array("shop_id"=>$this->getCurrentShopId(),"packet_id"=>$id);
+        $this-> itemList("weixinRedpacketDetail",$condition);
+    }
+
     public function redPacket($id = 0)
     {
         //TODO
@@ -203,7 +211,9 @@ class TradeController extends BaseController
                     self::cleanRedPacketDetail($result);
                     $resultSub = self::generateRedPacketDetail($savingData);
                     if (is_string($resultSub)) {
-                        JavaScriptHelper::alertBack($resultSub,true);
+                        $keys = "$result";
+                        $mate->maintenanceData($keys, array("status" => BizConst::REDPACKET_ACTION_STATUS_STOPBYRULE));
+                        JavaScriptHelper::alertBack($resultSub, true);
                     }
                 }
                 $this->success("保存成功", cookie("prevUrl"));
@@ -303,7 +313,7 @@ class TradeController extends BaseController
     public function redPacketUpdate()
     {
         $modle = 'weixinRedpacket';
-        $this->itemsUpdate($modle);
+        $this->itemsMaintenance($modle);
     }
 
     public function scoreList()

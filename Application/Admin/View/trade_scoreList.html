@@ -1,0 +1,196 @@
+<section class="content-header">
+    <h1>
+        积分管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <?php
+
+    ?>
+    <div class="row">
+
+        <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">积分搜索</h3>
+                </div>
+                <!-- form start -->
+                <form class="form-horizontal" action="{:U('Home/Trade/scoreList')}" method="post">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <?php $shopId= session('homeShopId');
+                                $cookiePrefix= 'score'.$shopId; ?>
+                            <label class="col-sm-2 control-label">用户ID</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" name="userID"
+                                       placeholder="如果不能确定用户的id，请让用户使用微信扫描右侧二维码，系统会自动获取"
+                                       value="<?php $cookieValue=cookie($cookiePrefix.'-userID'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
+                                       type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">积分</label>
+                            <div class="col-sm-2">
+                                <?php $cookieValue= cookie($cookiePrefix.'-scoreStatus');?>
+
+                                <select name="scoreStatus" class="form-control">
+                                    <option value="-10">请选择状态</option>
+                                    <if condition="$cookieValue=='GT'">
+                                        <option value="GT" selected="selected">大于</option>
+                                        <else/>
+                                        <option value="GT">大于</option>
+                                    </if>
+
+                                    <if condition="$cookieValue=='LT'">
+                                        <option value="LT" selected="selected">小于</option>
+                                        <else/>
+                                        <option value="LT">小于</option>
+                                    </if>
+
+                                    <if condition="$cookieValue=='EQ'">
+                                        <option value="EQ" selected="selected">等于</option>
+                                        <else/>
+                                        <option value="EQ">等于</option>
+                                    </if>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <?php $cookieValue= cookie($cookiePrefix.'-scoreValue'); ?>
+                                <input class="form-control" name="scoreValue"
+                                       placeholder=""
+                                       value="<?php $cookieValue=cookie($cookiePrefix.'-scoreValue'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-block btn-danger">开始搜索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red" >
+                <div class="inner">
+                    <img src="{$qrcode}" style="width:200px;"/>
+                </div>
+            </div>
+        </div>
+        <!--/.col (right) -->
+    </div>
+
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">积分列表</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>流水号</th>
+                                <th>店铺ID</th>
+                                <th>会员ID</th>
+                                <th>会员名称</th>
+                                <th>总积分</th>
+                                <th>操作</th>
+                            </tr>
+                            <volist name="dataList" id="item">
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox"
+                                                      value="{$item.id}"></label>
+                                    </td>
+                                    <td>
+                                        {$item.id}
+                                    </td>
+                                    <td>
+                                        {$item.shop_id}
+                                    </td>
+                                    <td>
+                                        {$item.userid}
+                                    </td>
+                                    <td>
+                                        {$item.user.username}
+                                    </td>
+                                    <td>
+                                        {$item.scores}
+                                    </td>
+                                    <td class="table-action">
+                                        <a href="{:U('Home/Trade/scoreDetailList',array('id'=> encrypt($item['id'])))}">详情</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+
+                                </div>
+                                <!-- /.btn-group -->
+                                <div class="pull-right">
+                                    {$page}
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.mail-box-messages -->
+            </div>
+        </div>
+        <!-- /. box -->
+    </div>
+    <!-- /.col -->
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
+
+                } else {
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
+</section>
+<script type="text/javascript">
+    $(function () {
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'YYYY-MM-DD h:mm:ss',
+            separator: ' --- ',
+        });
+        if ('{$productPost}') {
+            $('select[name="recommend"]').val('{$productPost.recommend}');
+            $('select[name="status"]').val('{$productPost.status}');
+        }
+    });
+</script>

@@ -1,11 +1,11 @@
 <?php
 namespace Admin\Controller;
 
-use Think\Controller;
 use Think\Page;
+use Vendor\Hiland\Utils\Controller\HibaseController;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
-class BaseController extends Controller
+class BaseController extends HibaseController
 {
     public function _initialize()
     {

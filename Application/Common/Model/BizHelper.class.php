@@ -463,6 +463,26 @@ class BizHelper
 
         return $labelList;
     }
+
+    /**
+     * 获取店铺最新的可用的红包活动
+     * @param $shopId
+     * @return array
+     */
+    public static function getLastEffectRedPacketAction($shopId){
+        $mate= new ModelMate("weixinRedpacket");
+        $condition= array(
+            "shop_id"=>$shopId,
+            "status"=> BizConst::REDPACKET_ACTION_STATUS_RUN,
+            "adminstatus"=> SystemConst::COMMON_REVIEW_STATUS_PASSED,
+        );
+
+        $condition['begintime']= array('lt',DateHelper::format());
+        $condition['endtime']= array('gt',DateHelper::format());
+
+        $data= $mate->find($condition,"id desc");
+        return $data;
+    }
 }
 
 ?>

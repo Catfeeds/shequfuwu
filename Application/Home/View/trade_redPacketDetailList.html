@@ -1,0 +1,92 @@
+<section class="content-header">
+    <h1>
+        红包管理
+        <small></small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">红包领取明细</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="{:U('Home/Trade/redPacketList')}" class="btn btn-danger ">
+                                返回列表
+                            </a>
+                        </div>
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>流水号</th>
+                                <th>用户</th>
+                                <th>数额</th>
+                                <th>领取时间</th>
+                                <th>领取状态</th>
+                            </tr>
+                            <volist name="dataList" id="item">
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox"
+                                                      value="{$item.id}"></label>
+                                    </td>
+                                    <td>
+                                        {$item.id}
+                                    </td>
+                                    <td>
+                                        {$item.username}
+                                    </td>
+                                    <td>
+                                        {$item.amount}
+                                    </td>
+                                    <td>
+                                        {$item.drawtime}
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $constPrefix= 'REDPACKET_DRAW_STATUS_';
+                                            echo \Common\Model\BizConst::getConstText($constPrefix,$item['status']);
+                                        ?>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+
+                                </div>
+                                <!-- /.btn-group -->
+                                <div class="pull-right">
+                                    {$page}
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.mail-box-messages -->
+            </div>
+        </div>
+        <!-- /. box -->
+    </div>
+    <!-- /.col -->
+    </div>
+</section>

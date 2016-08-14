@@ -491,6 +491,17 @@ class FooController extends Controller
         dump($arr);
     }
 
+    public function getLastRedPacketAction($shopId=144){
+        $result= BizHelper::getLastEffectRedPacketAction($shopId);
+        dump($result);
+    }
+
+    public function redpacket2op($id = 7)
+    {
+        $keys = "$id";
+        $mate = new ModelMate('weixinRedpacket');
+        $mate->maintenanceData($keys, array("status" => -10));
+    }
 
     public function redpacketop()
     {

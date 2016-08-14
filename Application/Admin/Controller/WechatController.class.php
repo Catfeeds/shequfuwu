@@ -258,6 +258,7 @@ class WechatController extends Controller
 
                 $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
+                WechatHelper::responseCustomerServiceText($openId,"热烈欢迎您");
                 break;
             }
         }

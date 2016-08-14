@@ -153,12 +153,15 @@ class HibaseController extends Controller
      * @param null $data
      * @param string $keyName
      */
-    protected function itemsUpdate($modle, $keys = "", $data = null, $keyName = 'id')
+    protected function itemsMaintenance($modle, $keys = "", $data = null, $keyName = 'id')
     {
         $mate = new ModelMate($modle);
-        $mate->updateByKeys($keys, $data, $keyName);
-
-        $this->success("保存成功", cookie("prevUrl"));
+        $result = $mate->maintenanceData($keys, $data, $keyName);
+        if ($result) {
+            $this->success("保存成功", cookie("prevUrl"));
+        } else {
+            $this->error("保存失败", cookie("prevUrl"));
+        }
     }
 
     /**

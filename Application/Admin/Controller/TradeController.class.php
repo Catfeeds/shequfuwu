@@ -1,13 +1,14 @@
 <?php
 namespace Admin\Controller;
 
+use Common\Model\ViewLink;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class TradeController extends BaseController
 {
     public function trade()
     {
-        //      每页显示的记录数
+        //每页显示的记录数
         $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
         $tradeList = D("Trade")->getList(array(), false, "id desc", $p, $num);
@@ -151,5 +152,89 @@ class TradeController extends BaseController
         $this->assignPaging($count, $num);
 
         $this->display();
+    }
+
+    public function redPacketList()
+    {
+        $condition = array();
+
+        $this->itemList('weixinRedpacket', $condition, 0, 0, '', ViewLink::getCommon_Shop());
+    }
+
+    public function redPacketDetailList($id)
+    {
+        $condition= array("packet_id"=>$id);
+        $this-> itemList("weixinRedpacketDetail",$condition);
+    }
+
+    public function  redPacketMaintenance(){
+        $this->itemsMaintenance("weixinRedpacket");
+    }
+
+    public function scoreList()
+    {
+        $code_url = "http://" . I("server.HTTP_HOST") . U("App/Shop/getUserIdByWeixin", array("shopId" => session("homeShopId")));
+
+        //商户自行增加处理流程
+        //......
+        vendor("phpqrcode.phpqrcode");
+        // 纠错级别：L、M、Q、H
+        $level = 'L';
+        // 点的大小：1到10,用于手机端4就可以了
+        $size = 8;
+
+
+        $fileName = "Uploads/SearchWeixinUserQRCode/" . session("homeShopId") . ".png";
+        $filePhysicalName = PUBLIC_PATH . $fileName;
+        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
+
+        if (!is_file($fileName)) {
+            \QRcode::png($code_url, $filePhysicalName, $level, $size);
+        }
+
+        $this->assign("qrcode", "http://" . I("server.HTTP_HOST") . __ROOT__ . "/Public/$fileName");
+
+
+        $condition = array(
+            "shop_id" => $this->getCurrentShopId(),
+        );
+
+        $shopId = $this->getCurrentShopId();
+        $cookiePrefix = "score$shopId";
+
+        if (IS_POST) {
+            if (I("post.userID")) {
+                cookie("$cookiePrefix-userID", I("post.userID"));
+            } else {
+                cookie("$cookiePrefix-userID", null);
+            }
+        }
+
+        $cookieUserID = cookie("$cookiePrefix-userID");
+        if ($cookieUserID) {
+            array_push($condition, array("userid" => $cookieUserID));
+        }
+
+
+        if (IS_POST) {
+            cookie("$cookiePrefix-scoreStatus", I("post.scoreStatus"));
+        }
+
+        $cookieStatus = cookie("$cookiePrefix-scoreStatus");
+
+
+        if (IS_POST) {
+            if (I("post.scoreValue") || I("post.scoreValue") == 0) {
+                cookie("$cookiePrefix-scoreValue", I("post.scoreValue"));
+            } else {
+                cookie("$cookiePrefix-scoreValue", null);
+            }
+        }
+        $cookieScoreValue = cookie("$cookiePrefix-scoreValue");
+        if ($cookieStatus && $cookieScoreValue) {
+            array_push($condition, array("scores" => array("$cookieStatus", $cookieScoreValue)));
+        }
+
+        $this->itemList('userScore', $condition, 0, 0, '', ViewLink::getCommon_User());
     }
 }

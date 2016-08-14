@@ -28,11 +28,7 @@
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                     <div class="mailbox-controls">
-                        <div class="btn-group">
-                            <a href="{:U('Home/Trade/redPacket')}" class="btn btn-danger ">
-                                新增活动
-                            </a>
-                        </div>
+
                     </div>
                     <div class="table-responsive" style="overflow-x: visible;">
                         <table class="table table-bordered table-hover">
@@ -88,14 +84,14 @@
                                         {$item.createtime}
                                     </td>
                                     <td class="table-action">
-                                        <if condition="$item.status eq 1"><a
-                                                href="{:U('Home/Trade/redPacketUpdate',array('id'=>$item['id'],'status' => 0))}">停止</a>
+                                        <if condition="$item['adminstatus'] neq 1">
+                                            <a href="{:U('Admin/Trade/redPacketMaintenance',array('id'=>$item['id'],'adminstatus'=>1))}">审核通过</a>
                                         </if>
-                                        <if condition="$item.status eq 0"><a
-                                                href="{:U('Home/Trade/redPacketUpdate',array('id'=>$item['id'],'status' => 1))}">开启</a>
+                                        <if condition="$item['adminstatus'] neq -1">
+                                            <a href="{:U('Admin/Trade/redPacketMaintenance',array('id'=>$item['id'],'adminstatus'=>-1))}">审核拒绝</a>
                                         </if>
-                                        <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id']))}">修改</a>
-                                        <a href="{:U('Home/Trade/redPacketDetailList',array('id'=>$item['id']))}">详情</a>
+
+                                        <a href="{:U('Admin/Trade/redPacketDetailList',array('id'=>$item['id']))}">详情</a>
                                     </td>
                                 </tr>
                             </volist>
