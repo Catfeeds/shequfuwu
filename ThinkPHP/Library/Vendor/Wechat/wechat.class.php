@@ -1272,26 +1272,29 @@ class Wechat
             return $this->access_token;
         }
 
-        $authname = 'wechat_access_token' . $appid;
-        if ($rs = $this->getCache($authname)) {
-            $this->access_token = $rs;
-            return $rs;
-        }
+        //暂时先使用hiland库中获取AccessToken的方法
+        return \Vendor\Hiland\Biz\Tencent\WechatHelper::getAccessToken();
 
-        $result = $this->http_get(self::API_URL_PREFIX . self::AUTH_URL . 'appid=' . $appid . '&secret=' . $appsecret);
-        if ($result) {
-            $json = json_decode($result, true);
-            if (!$json || isset($json['errcode'])) {
-                $this->errCode = $json['errcode'];
-                $this->errMsg = $json['errmsg'];
-                return false;
-            }
-            $this->access_token = $json['access_token'];
-            $expire = $json['expires_in'] ? intval($json['expires_in']) - 100 : 3600;
-            $this->setCache($authname, $this->access_token, $expire);
-            return $this->access_token;
-        }
-        return false;
+//        $authname = 'wechat_access_token' . $appid;
+//        if ($rs = $this->getCache($authname)) {
+//            $this->access_token = $rs;
+//            return $rs;
+//        }
+//
+//        $result = $this->http_get(self::API_URL_PREFIX . self::AUTH_URL . 'appid=' . $appid . '&secret=' . $appsecret);
+//        if ($result) {
+//            $json = json_decode($result, true);
+//            if (!$json || isset($json['errcode'])) {
+//                $this->errCode = $json['errcode'];
+//                $this->errMsg = $json['errmsg'];
+//                return false;
+//            }
+//            $this->access_token = $json['access_token'];
+//            $expire = $json['expires_in'] ? intval($json['expires_in']) - 100 : 3600;
+//            $this->setCache($authname, $this->access_token, $expire);
+//            return $this->access_token;
+//        }
+//        return false;
     }
 
     /**
