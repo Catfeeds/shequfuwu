@@ -541,7 +541,7 @@ class BizHelper
 
         $newsArray = array();
         $newsCover = array(
-            'Title' =>  $webRoot . '/Public/Uploads/platform_article.jpg',//"欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
+            'Title' =>  "欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
             'Description' => "以下是为你精心准备的资讯信息，请点击阅读！",
             'PicUrl' => $webRoot . '/Public/Uploads/platform_article.jpg',
             'Url' => '',
