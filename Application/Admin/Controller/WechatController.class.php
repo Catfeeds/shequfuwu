@@ -228,7 +228,9 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
-                $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
+                WechatHelper::responseCustomerServiceText($openId,$messageContent);
+
+                $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
                 break;
             }
@@ -256,9 +258,11 @@ class WechatController extends Controller
                     $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
                 }
 
-                $newsArray = self::generateWecomeNewsResponse($messageContent, $merchantScanedID);
+                WechatHelper::responseCustomerServiceText($openId,$messageContent);
+
+                $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
-                WechatHelper::responseCustomerServiceText($openId,"热烈欢迎您");
+
                 break;
             }
         }
@@ -295,7 +299,7 @@ class WechatController extends Controller
         return $userID;
     }
 
-    private function generateWecomeNewsResponse($title = '', $shopID = 0)
+    private function generateWecomeNewsResponse($shopID = 0)
     {
         $title = '';
         $description = '';
