@@ -179,7 +179,7 @@ class BizHelper
         return $shopMate->select($map, true, "", $pageIndex, $itemCountPerPage);
     }
 
-    public static function getExcellentShops($cityName = '', $shopName = '', $shopCategory = 0,  $pageIndex = 0, $itemCountPerPage = 10)
+    public static function getExcellentShops($cityName = '', $shopName = '', $shopCategory = 0, $pageIndex = 0, $itemCountPerPage = 10)
     {
         if ($shopCategory) {
             $map['category_id'] = $shopCategory;
@@ -299,42 +299,6 @@ class BizHelper
         }
     }
 
-    /**
-     * @param $fileId
-     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
-     * @return string 图片对应的url完整地址
-     */
-    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg')
-    {
-        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
-        $fileMate = new ModelMate('file');
-        $pictureUrl = '';
-        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
-        if ($fileId) {
-            $file = $fileMate->get($fileId);
-            $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-
-            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
-            $filePathLocal = str_replace("/", "\\", $filePathLocal);
-
-            if (is_file($filePathLocal)) {
-                $pictureUrl = $appUrl . $filePath;
-            }
-        }
-
-        if (empty($pictureUrl)) {
-            if (empty($defaultImage)) {
-                $pictureUrl = '';
-            } else {
-                $pictureUrl = $appUrl . $defaultFilePath;
-            }
-        }
-
-        $pictureUrl = str_replace("\\", "/", $pictureUrl);
-
-        return $pictureUrl;
-    }
-
     public static function generateOrderNo($shopId = 0)
     {
         return date("Ymdhis") . "-$shopId-" . RandHelper::rand(3, 'NUMBER');
@@ -360,7 +324,6 @@ class BizHelper
         $resultText = $resultArray[$payStatusValue];
         return $resultText;
     }
-
 
     public static function hongbao($openID, $merchantName = '', $amount = 1, $actionName = '', $wishing = '恭喜发财', $remark = '快来参加活动吧！')
     {
@@ -465,29 +428,73 @@ class BizHelper
         return $labelList;
     }
 
+    public static function drawRedPacket($openId, $packetId)
+    {
+        $userMate = new ModelMate('user');
+        $userData = $userMate->find(array("openid" => $openId));
+
+        $detailMate = new ModelMate("weixinRedpacketDetail");
+        $redPacketMate= new ViewMate("weixinRedpacket",ViewLink::getCommon_Shop());
+
+        //$unDrawCount= $detailMate->getCount(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO));
+        $unDrawedPackets= $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO),"id asc");
+
+
+        if(count($unDrawedPackets)<=1){
+            $redPacketMate->setValue($packetId,"status",BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
+        }
+
+        $lastRecord= $unDrawedPackets[0];
+        $lastRecord['username']= $userData['username'];
+        $lastRecord['openid']= $openId;
+        $lastRecord['drawtime']= DateHelper::format();
+        $lastRecord['openid']= BizConst::REDPACKET_DRAW_STATUS_YES;
+        $detailMate->interact($lastRecord);
+
+        return $lastRecord;
+
+//        if($lastRecord['amount']){
+//            $redPacketData= $redPacketMate->get($packetId);
+//            self::hongbao($openId,$redPacketData['shop']['name'],$lastRecord['amount']*100,$redPacketData['actionname'],"祝你购物愉快！");
+//        }else{
+//
+//        }
+    }
+
+    public static function generateRedPacketResponse($shopId)
+    {
+        $redPacket = self::getLastEffectRedPacketAction($shopId);
+        if ($redPacket) {
+            return "本店有红包派送，点击这里领取！";
+        } else {
+            return "";
+        }
+    }
+
     /**
      * 获取店铺最新的可用的红包活动
      * @param $shopId
      * @return array
      */
-    public static function getLastEffectRedPacketAction($shopId){
-        $mate= new ModelMate("weixinRedpacket");
-        $condition= array(
-            "shop_id"=>$shopId,
-            "status"=> BizConst::REDPACKET_ACTION_STATUS_RUN,
-            "adminstatus"=> SystemConst::COMMON_REVIEW_STATUS_PASSED,
+    public static function getLastEffectRedPacketAction($shopId)
+    {
+        $mate = new ModelMate("weixinRedpacket");
+        $condition = array(
+            "shop_id" => $shopId,
+            "status" => BizConst::REDPACKET_ACTION_STATUS_RUN,
+            "adminstatus" => SystemConst::COMMON_REVIEW_STATUS_PASSED,
         );
 
-        $condition['begintime']= array('lt',DateHelper::format());
-        $condition['endtime']= array('gt',DateHelper::format());
+        $condition['begintime'] = array('lt', DateHelper::format());
+        $condition['endtime'] = array('gt', DateHelper::format());
 
-        $data= $mate->find($condition,"id desc");
+        $data = $mate->find($condition, "id desc");
         return $data;
     }
 
     public static function generateMyScanedShopsResponse($openId)
     {
-        $webRoot= WebHelper::getWebRootFull();
+        $webRoot = WebHelper::getWebRootFull();
         //超市购物，弹出其当初扫描的超市
         $usershopscanedMate = new ModelMate('usershopscaned');
         $where = array();
@@ -530,9 +537,45 @@ class BizHelper
         return $newsArray;
     }
 
+    /**
+     * @param $fileId
+     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
+     * @return string 图片对应的url完整地址
+     */
+    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg')
+    {
+        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
+        $fileMate = new ModelMate('file');
+        $pictureUrl = '';
+        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
+        if ($fileId) {
+            $file = $fileMate->get($fileId);
+            $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+
+            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
+            $filePathLocal = str_replace("/", "\\", $filePathLocal);
+
+            if (is_file($filePathLocal)) {
+                $pictureUrl = $appUrl . $filePath;
+            }
+        }
+
+        if (empty($pictureUrl)) {
+            if (empty($defaultImage)) {
+                $pictureUrl = '';
+            } else {
+                $pictureUrl = $appUrl . $defaultFilePath;
+            }
+        }
+
+        $pictureUrl = str_replace("\\", "/", $pictureUrl);
+
+        return $pictureUrl;
+    }
+
     public static function generateArticlesResponse()
     {
-        $webRoot= WebHelper::getWebRootFull();
+        $webRoot = WebHelper::getWebRootFull();
 
         $articleMate = new ModelMate('artical');
         $where = array();
@@ -541,7 +584,7 @@ class BizHelper
 
         $newsArray = array();
         $newsCover = array(
-            'Title' =>  "欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
+            'Title' => "欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
             'Description' => "以下是为你精心准备的资讯信息，请点击阅读！",
             'PicUrl' => $webRoot . '/Public/Uploads/platform_article.jpg',
             'Url' => '',

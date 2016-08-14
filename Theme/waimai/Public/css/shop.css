@@ -356,3 +356,30 @@ span.icon-pay {
 .icon-hit {
     background-color: #16aad8;
 }
+
+/*以下是app首页商店类别的样式*/
+.gridlistIcon li {
+    float: left;
+    overflow: hidden;
+    width: 25%;
+    list-style: outside none none;
+}
+
+.gridlistIcon .InfoPicture{
+    text-align: center;
+}
+
+.gridlistIcon .InfoTitle {
+    font-size: 14px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: center;
+}
+.gridlistIcon .InfoTitle{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5em;
+    vertical-align: middle;
+}
