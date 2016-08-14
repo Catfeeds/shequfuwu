@@ -78,28 +78,32 @@ class WechatController extends Controller
         $key = $key ? $key : self::$weObj->getRev()->getRevContent();
 
         switch ($key) {
-            case 'qqkf': //QQ客服
+            case 'qqkf': {//QQ客服
                 $replay = D("WxReply")->get(array("key" => $key), true);
                 $qq = $replay["remark"];
                 $str = "<a href='http://wpa.qq.com/msgrd?v=3&uin=" . $qq . "&site=qq&menu=yes&from=singlemessage'>" . htmlspecialchars_decode('点击联系QQ客服') . "</a>";
                 self::$weObj->text($str)->reply();
                 break;
+            }
             case 'csgw':
-            case 'menu_wdgz': //我的关注
+            case 'menu_wdgz': {//我的关注
                 //超市购物，弹出其当初扫描的超市
                 $openId = self::$revData['FromUserName'];
                 $newsArray = BizHelper::generateMyScanedShopsResponse($openId);//self::generateMyScanedShopsResponse($openId);
                 self::$weObj->news($newsArray)->reply();
                 break;
-            case 'menu_hdyzx'://活动与资讯
+            }
+            case 'menu_hdyzx': {//活动与资讯
                 $newsArray = BizHelper::generateArticlesResponse(); //self::generateArticlesResponse();
                 self::$weObj->news($newsArray)->reply();
                 break;
-            case 'wyhb': //红包发送测试
+            }
+            case 'wyhb': {//红包发送测试
                 $openId = self::$revData['FromUserName'];
                 BizHelper::hongbao($openId, '天天好超市', 100, '开业庆典');
                 break;
-            default:
+            }
+            default: {
                 $replay = D("WxReply")->get(array("key" => $key), true);
                 if ($replay) {
                     if ($replay["type"] == "news") {
@@ -118,89 +122,9 @@ class WechatController extends Controller
                 } else {
                     self::$weObj->text("请核对关键词!")->reply();
                 }
+            }
         }
     }
-
-//    private function generateMyScanedShopsResponse($openId)
-//    {
-//        //超市购物，弹出其当初扫描的超市
-//        //$openId = self::$revData['FromUserName'];
-//        $usershopscanedMate = new ModelMate('usershopscaned');
-//        $where = array();
-//        $where['openid'] = $openId;
-//        $shopscaned = $usershopscanedMate->select($where, "", 0, 0, 10);
-//
-//        $shopMate = new ModelMate('shop');
-//
-//        $newsArray = array();
-//        $newsCover = array(
-//            'Title' => "欢迎使用" . C('PROJECT_NAME'),
-//            'Description' => "请选择以下列表中你关注过的店铺进行采购吧！",
-//            'PicUrl' => self::$appUrl . '/Public/Uploads/wechat_news_cover.jpg',
-//            'Url' => '',
-//        );
-//        $newsArray[] = $newsCover;
-//
-//        if ($shopscaned) {
-//            foreach ($shopscaned as $shopScaned) {
-//                $shopId = $shopScaned['shopid'];
-//                $shopWhere = array();
-//                $shopWhere['id'] = $shopId;
-//                $shop = $shopMate->find($shopWhere);
-//                if ($shop) {
-//                    $fileId = $shop['file_id'];
-//                    $pictureUrl = BizHelper::getFileImageUrl($fileId);
-//
-//                    $news = array(
-//                        'Title' => $shop["name"],
-//                        'Description' => $shop["notification"],
-//                        'PicUrl' => $pictureUrl,
-//                        'Url' => self::$appUrl . "/index.php?s=/App/Index/index/shopId/$shopId",
-//                    );
-//
-//                    $newsArray[] = $news;
-//                }
-//            }
-//        }
-//
-//        return $newsArray;
-//    }
-//
-//    private function generateArticlesResponse()
-//    {
-//        $articleMate = new ModelMate('artical');
-//        $where = array();
-//        $where['shop_id'] = 0; //仅展现平台发布的信息
-//        $articles = $articleMate->select($where, "", 0, 0, 10);
-//
-//        $newsArray = array();
-//        $newsCover = array(
-//            'Title' => "欢迎访问" . C('PROJECT_NAME') . "最新资讯与活动",
-//            'Description' => "以下是为你精心准备的资讯信息，请点击阅读！",
-//            'PicUrl' => self::$appUrl . '/Public/Uploads/platform_article.jpg',
-//            'Url' => '',
-//        );
-//        $newsArray[] = $newsCover;
-//
-//        if ($articles) {
-//            foreach ($articles as $article) {
-//                $fileId = $article['file_id'];
-//                $articleId = $article['id'];
-//                $pictureUrl = BizHelper::getFileImageUrl($fileId);
-//
-//                $news = array(
-//                    'Title' => $article["title"],
-//                    'Description' => $article["content"],
-//                    'PicUrl' => $pictureUrl,
-//                    'Url' => self::$appUrl . "/index.php?s=/App/Artical/index/id/$articleId",
-//                );
-//
-//                $newsArray[] = $news;
-//            }
-//        }
-//
-//        return $newsArray;
-//    }
 
     public function checkEvents($event)
     {
