@@ -187,21 +187,21 @@ class WechatController extends Controller
                 }
 
 //                //CommonLoger::log("hongbaorizhi",$openId.'----'.$messageContent);
-                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
-                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
-
-
-//                $messageData = '{
-//                    "touser":"' . $openId . '",
-//                    "msgtype":"text",
-//                    "text":
-//                    {
-//                         "content":"' . $messageContent . '"
-//                    }
-//                }';
-//
-//                $customerMsgStatus= self::$weObj->sendCustomMessage($messageData);
+//                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
 //                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
+
+
+                $messageData = '{
+                    "touser":"' . $openId . '",
+                    "msgtype":"text",
+                    "text":
+                    {
+                         "content":"' . $messageContent . '"
+                    }
+                }';
+
+                $customerMsgStatus= self::$weObj->sendCustomMessage($messageData);
+                CommonLoger::log("hongbaorizhiStatus",$customerMsgStatus);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
                 self::$weObj->news($newsArray)->reply();
