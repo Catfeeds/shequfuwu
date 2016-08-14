@@ -372,13 +372,9 @@ span.icon-pay {
 .gridlistIcon .InfoTitle {
     font-size: 14px;
     height: 25px;
-    line-height: 25px;
     overflow: hidden;
     padding: 0 5px;
     text-align: center;
-}
-.gridlistIcon .InfoTitle{
-    font-size: 18px;
     font-weight: bold;
     line-height: 1.5em;
     vertical-align: middle;
