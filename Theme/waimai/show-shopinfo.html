@@ -61,6 +61,16 @@
                         <div class="select-box" id="shop-details-reminder">{{config.reminder}}</div>
                     </div>
                 </li>
+                <li>
+                    <div class="confirmation-item">
+                        <div class="item-image1">
+                            <?php
+                                $qrUrl= \Common\Model\WechatBiz::getQRCodeUrl({{config.id}});
+                                echo "<img  src=\"$qrUrl\"/>";
+                            ?>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

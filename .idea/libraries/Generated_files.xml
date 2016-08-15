@@ -30,6 +30,7 @@
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/delivery-container.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_mustsubscribe.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
+        <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/orderResult-container.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_sendRedpacket.min.js" />
       </sourceFilesUrls>
     </properties>
@@ -65,6 +66,7 @@
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/delivery-container.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_mustsubscribe.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
+      <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/orderResult-container.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_sendRedpacket.min.js" />
     </CLASSES>
     <SOURCES />
