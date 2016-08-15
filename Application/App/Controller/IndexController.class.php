@@ -3,11 +3,9 @@ namespace App\Controller;
 
 
 use Common\Model\BizConst;
-use Common\Model\BizHelper;
 use Common\Model\ViewLink;
 use Common\Model\WechatBiz;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
-use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -247,7 +245,7 @@ class IndexController extends BaseController
         $uniqeCondition = array("openid" => $openId, "packet_id" => $packetId);
         $currentUserJoinTiems = $detailMate->getCount($uniqeCondition);
 
-        $this->assign('message',$currentUserJoinTiems);
+        $this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
 
 //        if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
 //            $this->assign("redPacketSendStatus", false);
