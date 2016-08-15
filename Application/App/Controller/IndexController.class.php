@@ -249,6 +249,7 @@ class IndexController extends BaseController
         $nextDay = DateHelper::addInterval(time(), "d", 1);
         $todayUniqeCondition['drawtime'] = array("between", DateHelper::format(null, "Y-m-d"), DateHelper::format($nextDay, "Y-m-d"));
         $todayUniqeCondition = array_merge($uniqeCondition, $todayUniqeCondition);
+        dump($todayUniqeCondition);
         //dump($todayUniqeCondition['drawtime']);
         //$this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
         $todayjoinTimes = $detailMate->getCount($todayUniqeCondition);
