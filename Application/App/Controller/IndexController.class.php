@@ -245,34 +245,34 @@ class IndexController extends BaseController
         $uniqeCondition = array("openid" => $openId, "packet_id" => $packetId);
         $currentUserJoinTiems = $detailMate->getCount($uniqeCondition);
 
-        $this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
+        //$this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
 
-//        if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
-//            $this->assign("redPacketSendStatus", false);
-//            $this->assign("redPacketSendInfo", "本次活动" . $redPacketData['actionname'] . "你已经参加过了，下次再来吧:)");
-//
-//        } else {
-//            $unDrawedPackets = $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO), "id asc");
-//            if (count($unDrawedPackets) <= 1) {
-//                $redPacketMate->setValue($packetId, "status", BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
-//            }
-//
-//            $lastRecord = $unDrawedPackets[0];
-//            $lastRecord['username'] = $userData['username'];
-//            $lastRecord['openid'] = $openId;
-//            $lastRecord['drawtime'] = DateHelper::format();
-//            $lastRecord['openid'] = BizConst::REDPACKET_DRAW_STATUS_YES;
-//            $detailMate->interact($lastRecord);
-//
-//            if ($lastRecord['amount']) {
-//                BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
-//                $this->assign("redPacketSendStatus", true);
-//                $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
-//            } else {
-//                $this->assign("redPacketSendStatus", true);
-//                $this->assign("redPacketSendInfo", "真难以置信，" . $redPacketData['shop']['name'] . "使出了洪荒之力给你推送红包，你居然只得到一个空包，这运气真是\"好到爆\"了。");
-//            }
-//        }
+        if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
+            $this->assign("redPacketSendStatus", false);
+            $this->assign("redPacketSendInfo", "本次活动" . $redPacketData['actionname'] . "你已经参加过了，下次再来吧:)");
+
+        } else {
+            $unDrawedPackets = $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO), "id asc");
+            if (count($unDrawedPackets) <= 1) {
+                $redPacketMate->setValue($packetId, "status", BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
+            }
+
+            $lastRecord = $unDrawedPackets[0];
+            $lastRecord['username'] = $userData['username'];
+            $lastRecord['openid'] = $openId;
+            $lastRecord['drawtime'] = DateHelper::format();
+            $lastRecord['openid'] = BizConst::REDPACKET_DRAW_STATUS_YES;
+            $detailMate->interact($lastRecord);
+
+            if ($lastRecord['amount']) {
+                //BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
+                $this->assign("redPacketSendStatus", true);
+                $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
+            } else {
+                $this->assign("redPacketSendStatus", true);
+                $this->assign("redPacketSendInfo", "真难以置信，" . $redPacketData['shop']['name'] . "使出了洪荒之力给你推送红包，你居然只得到一个空包，这运气真是\"好到爆\"了。");
+            }
+        }
 
         $this->display();
     }
