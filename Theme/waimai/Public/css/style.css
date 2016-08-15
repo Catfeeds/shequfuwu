@@ -2913,3 +2913,8 @@ img, fieldset {
     text-align: center;
 }
 
+.footPadding{
+    min-height: 60px;
+    _height: 60px;
+    clear: both;
+}

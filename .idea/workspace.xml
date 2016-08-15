@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_index.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" afterPath="$PROJECT_DIR$/Theme/waimai/Public/css/style.min.css" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,7 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="159">
@@ -95,6 +97,26 @@
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index_index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="2917" column="18" selection-start-line="2917" selection-start-column="18" selection-end-line="2917" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Public/Admin/dist/css/AdminLTE.min.css" />
         <option value="$PROJECT_DIR$/Public/Admin/dist/css/AdminLTE.css" />
         <option value="$PROJECT_DIR$/Public/Admin/dist/css/imageStyle.css" />
         <option value="$PROJECT_DIR$/Application/Home/View/Public_header.html" />
@@ -193,7 +214,6 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Controller/HibaseController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataModel/ModelMate.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/WebHelper.class.php" />
-        <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_areashops.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/css/shop.css" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
@@ -205,6 +225,8 @@
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DateHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/Application/App/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
       </list>
     </option>
   </component>
@@ -695,6 +717,54 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -955,7 +1025,7 @@
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
-      <workItem from="1471087502985" duration="39225000" />
+      <workItem from="1471087502985" duration="40418000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -968,13 +1038,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="674831000" />
+    <option name="totallyTimeSpent" value="676024000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15256798" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26359516" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1036,14 +1106,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_channelshops.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2500">
-          <caret line="125" column="17" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_excellentshops.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2660">
@@ -1346,14 +1408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="2915" column="0" selection-start-line="2915" selection-start-column="0" selection-end-line="2915" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/shop.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1486,6 +1540,22 @@
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="2917" column="18" selection-start-line="2917" selection-start-column="18" selection-end-line="2917" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
