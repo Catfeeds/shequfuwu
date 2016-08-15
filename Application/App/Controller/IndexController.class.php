@@ -265,6 +265,7 @@ class IndexController extends BaseController
             $lastRecord['status'] = BizConst::REDPACKET_DRAW_STATUS_YES;
             $detailMate->interact($lastRecord);
 
+            dump($lastRecord['amount']);
             if ($lastRecord['amount']) {
                 //BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
                 $this->assign("redPacketSendStatus", true);
