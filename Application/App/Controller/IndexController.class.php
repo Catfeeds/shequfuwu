@@ -253,6 +253,7 @@ class IndexController extends BaseController
         //dump($todayUniqeCondition['drawtime']);
         //$this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
         $todayjoinTimes = $detailMate->getCount($todayUniqeCondition);
+        dump($todayjoinTimes);
 
         if ($todayjoinTimes > 0) {
             $this->assign("redPacketSendStatus", false);
