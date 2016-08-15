@@ -246,37 +246,42 @@ class IndexController extends BaseController
         $uniqeCondition = array("openid" => $openId, "packet_id" => $packetId);
         $currentUserJoinTiems = $detailMate->getCount($uniqeCondition);
 
-        $nextDay= DateHelper::addInterval(time(),"d",1);
-        $todayUniqeCondition['drawtime']= array("between",DateHelper::format(null,"Y-m-d"),DateHelper::format($nextDay,"Y-m-d"));
+        $nextDay = DateHelper::addInterval(time(), "d", 1);
+        $todayUniqeCondition['drawtime'] = array("between", DateHelper::format(null, "Y-m-d"), DateHelper::format($nextDay, "Y-m-d"));
+        $todayUniqeCondition = array_merge($uniqeCondition, $todayUniqeCondition);
+        //dump($todayUniqeCondition['drawtime']);
+        //$this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
+        $todayjoinTimes = $detailMate->getCount($todayUniqeCondition);
 
-        dump($todayUniqeCondition['drawtime']);
-
-        $this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
-
-        if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
+        if ($todayjoinTimes > 0) {
             $this->assign("redPacketSendStatus", false);
-            $this->assign("redPacketSendInfo", "本次活动" . $redPacketData['actionname'] . "你已经参加过了，下次再来吧:)");
-
+            $this->assign("redPacketSendInfo", "今日你已经参加过过本次活动" . $redPacketData['actionname'] . "了，明天再来吧:)");
         } else {
-            $unDrawedPackets = $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO), "id asc");
-            if (count($unDrawedPackets) <= 1) {
-                $redPacketMate->setValue($packetId, "status", BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
-            }
+            if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
+                $this->assign("redPacketSendStatus", false);
+                $this->assign("redPacketSendInfo", "本次活动" . $redPacketData['actionname'] . "你已经参加过了，下次再来吧:)");
 
-            $lastRecord = $unDrawedPackets[0];
-            $lastRecord['username'] = $userData['username'];
-            $lastRecord['openid'] = $openId;
-            $lastRecord['drawtime'] = DateHelper::format();
-            $lastRecord['status'] = BizConst::REDPACKET_DRAW_STATUS_YES;
-            $detailMate->interact($lastRecord);
-
-            if (floatval($lastRecord['amount'])) {
-                //BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
-                $this->assign("redPacketSendStatus", true);
-                $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
             } else {
-                $this->assign("redPacketSendStatus", true);
-                $this->assign("redPacketSendInfo", "真难以置信，" . $redPacketData['shop']['name'] . "使出了洪荒之力给你推送红包，你居然只得到一个空包，这运气真是\"好到爆\"了。");
+                $unDrawedPackets = $detailMate->select(array("packet_id" => $packetId, "status" => BizConst::REDPACKET_DRAW_STATUS_NO), "id asc");
+                if (count($unDrawedPackets) <= 1) {
+                    $redPacketMate->setValue($packetId, "status", BizConst::REDPACKET_ACTION_STATUS_STOPBYBIZ);
+                }
+
+                $lastRecord = $unDrawedPackets[0];
+                $lastRecord['username'] = $userData['username'];
+                $lastRecord['openid'] = $openId;
+                $lastRecord['drawtime'] = DateHelper::format();
+                $lastRecord['status'] = BizConst::REDPACKET_DRAW_STATUS_YES;
+                $detailMate->interact($lastRecord);
+
+                if (floatval($lastRecord['amount'])) {
+                    //BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
+                    $this->assign("redPacketSendStatus", true);
+                    $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
+                } else {
+                    $this->assign("redPacketSendStatus", true);
+                    $this->assign("redPacketSendInfo", "真难以置信，" . $redPacketData['shop']['name'] . "使出了洪荒之力给你推送红包，你居然只得到一个空包，这运气真是\"好到爆\"了。");
+                }
             }
         }
 
