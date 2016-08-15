@@ -3,6 +3,7 @@ namespace App\Controller;
 
 
 use Common\Model\BizConst;
+use Common\Model\BizHelper;
 use Common\Model\ViewLink;
 use Common\Model\WechatBiz;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
