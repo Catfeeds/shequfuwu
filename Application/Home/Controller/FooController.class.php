@@ -21,6 +21,7 @@ use Vendor\Hiland\Biz\Misc\RedPacketHelper;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\BoolHelper;
 use Vendor\Hiland\Utils\Data\CipherHelper;
+use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\MathHelper;
@@ -599,6 +600,24 @@ class FooController extends Controller
     {
         $result = WechatHelper::responseCustomerServiceText("oqfK9vsaghlVPWev6l6Nuz1TZd9M", "hello world!");
         dump($result);
+    }
+
+    public function betweenop($openId = 'oqfK9vsaghlVPWev6l6Nuz1TZd9M', $packetId = 3)
+    {
+        $detailMate = new ModelMate("weixinRedpacketDetail");
+
+        $nextDay = DateHelper::addInterval(time(), "d", 1);
+        $todayUniqeCondition = array(
+            "openid" => $openId,
+            "packet_id" => $packetId,
+            //"drawtime"=>array("between", DateHelper::format(null, "Y-m-d"), DateHelper::format($nextDay, "Y-m-d")),
+            "drawtime" => array(array('gt',DateHelper::format(null, "Y-m-d")),array('lt',DateHelper::format($nextDay, "Y-m-d")), 'and'),
+        );
+
+        dump($todayUniqeCondition);
+
+        $todayjoinTimes = $detailMate->getCount($todayUniqeCondition);
+        dump($todayjoinTimes);
     }
 
     public function boolop()

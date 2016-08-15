@@ -247,13 +247,13 @@ class IndexController extends BaseController
         $currentUserJoinTiems = $detailMate->getCount($uniqeCondition);
 
         $nextDay = DateHelper::addInterval(time(), "d", 1);
-        $todayUniqeCondition['drawtime'] = array("between", DateHelper::format(null, "Y-m-d"), DateHelper::format($nextDay, "Y-m-d"));
+        $todayUniqeCondition['drawtime'] = array(array('gt',DateHelper::format(null, "Y-m-d")),array('lt',DateHelper::format($nextDay, "Y-m-d")), 'and');
         $todayUniqeCondition = array_merge($uniqeCondition, $todayUniqeCondition);
-        dump($todayUniqeCondition);
+        //dump($todayUniqeCondition);
         //dump($todayUniqeCondition['drawtime']);
         //$this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
         $todayjoinTimes = $detailMate->getCount($todayUniqeCondition);
-        dump($todayjoinTimes);
+        //dump($todayjoinTimes);
 
         if ($todayjoinTimes > 0) {
             $this->assign("redPacketSendStatus", false);
