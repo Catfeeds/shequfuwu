@@ -262,7 +262,7 @@ class IndexController extends BaseController
             $lastRecord['username'] = $userData['username'];
             $lastRecord['openid'] = $openId;
             $lastRecord['drawtime'] = DateHelper::format();
-            $lastRecord['openid'] = BizConst::REDPACKET_DRAW_STATUS_YES;
+            $lastRecord['status'] = BizConst::REDPACKET_DRAW_STATUS_YES;
             $detailMate->interact($lastRecord);
 
             if ($lastRecord['amount']) {
