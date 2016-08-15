@@ -90,8 +90,8 @@
       <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="261" column="39" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+            <state relative-caret-position="413">
+              <caret line="263" column="48" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="48" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
               </folding>
@@ -841,7 +841,7 @@
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
-      <workItem from="1471087502985" duration="35430000" />
+      <workItem from="1471087502985" duration="35513000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -854,7 +854,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="671036000" />
+    <option name="totallyTimeSpent" value="671119000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1367,8 +1367,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/App/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="261" column="39" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+        <state relative-caret-position="413">
+          <caret line="263" column="48" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="48" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
           </folding>
