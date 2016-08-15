@@ -266,7 +266,7 @@ class IndexController extends BaseController
             $detailMate->interact($lastRecord);
 
             dump($lastRecord['amount']);
-            if ($lastRecord['amount']) {
+            if (floatval($lastRecord['amount'])) {
                 //BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
                 $this->assign("redPacketSendStatus", true);
                 $this->assign("redPacketSendInfo", "红包发送成功，请关闭本页回到微信对话框点击领取！");
