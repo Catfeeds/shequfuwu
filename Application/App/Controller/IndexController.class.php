@@ -246,7 +246,12 @@ class IndexController extends BaseController
         $uniqeCondition = array("openid" => $openId, "packet_id" => $packetId);
         $currentUserJoinTiems = $detailMate->getCount($uniqeCondition);
 
-        //$this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
+        $nextDay= DateHelper::addInterval(time(),"d",1);
+        $todayUniqeCondition['drawtime']= array("between",DateHelper::format(null,"Y-m-d"),DateHelper::format($nextDay,"Y-m-d"));
+
+        dump($todayUniqeCondition['drawtime']);
+
+        $this->assign('message', $currentUserJoinTiems . '--' . $openId . '--' . $packetId);
 
         if ($redPacketData['openidplayonce'] == SystemConst::COMMON_STATUS_YN_YES && $currentUserJoinTiems > 0) {
             $this->assign("redPacketSendStatus", false);
@@ -265,7 +270,6 @@ class IndexController extends BaseController
             $lastRecord['status'] = BizConst::REDPACKET_DRAW_STATUS_YES;
             $detailMate->interact($lastRecord);
 
-            dump($lastRecord['amount']);
             if (floatval($lastRecord['amount'])) {
                 //BizHelper::hongbao($openId, $redPacketData['shop']['name'], $lastRecord['amount'] * 100, $redPacketData['actionname'], "祝你购物愉快！");
                 $this->assign("redPacketSendStatus", true);
