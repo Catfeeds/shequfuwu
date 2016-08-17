@@ -127,7 +127,8 @@ function selectShop() {
             var speed = res.speed; // 速度，以米/每秒计
             var accuracy = res.accuracy; // 位置精度
             locationmy();
-            shopList();
+            //shopList();
+            searchShop();
         }
     });
 }
