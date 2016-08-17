@@ -791,6 +791,7 @@ function cartNext() {
     });
 
     $('.shopCategoryIcon').click(function () {
+        alert("sssssssssss");
         $('.shopCategoryIcon').find('.InfoTitle').removeClass('selected');
         $(this).find('.InfoTitle').addClass('selected');
     });
