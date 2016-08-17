@@ -25,3 +25,13 @@
     height: 15px;
     width: 15px
 }
+
+.ico-history {
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-image: url('../image/icons-sa1abdf490c.png');
+    background-size: 45px 230.5px;
+    background-position: -29px 0;
+    height: 16px;
+    width: 16px
+}
