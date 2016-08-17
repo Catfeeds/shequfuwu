@@ -2920,7 +2920,7 @@ img, fieldset {
     clear: both;
 }
 
-.shopCategoryIcon .InfoTitle.selected {
+.shopCategoryIcon .selected {
     border: 1px solid #bbb;
     border-radius: 4px;
     font-size: 16px;
