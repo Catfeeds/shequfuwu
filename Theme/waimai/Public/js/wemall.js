@@ -161,7 +161,7 @@ function areaShops(saletype, pageIndex) {
         saletype: saletype,
     };
 
-    ajaxRenderShops("/General/Biz/getAreaShops", postData);
+    ajaxRenderShops("/General/Biz/getAreaShops", postData, pageIndex);
 
     // $.ajax({
     //     type: "post",
@@ -219,7 +219,7 @@ function excellentShops(pageIndex) {
         pageIndex: pageIndex,
     };
 
-    ajaxRenderShops("/General/Biz/getExcellentShops", postData);
+    ajaxRenderShops("/General/Biz/getExcellentShops", postData, pageIndex);
 
     // $.ajax({
     //     type: "post",
@@ -259,7 +259,7 @@ function excellentShops(pageIndex) {
     // });
 }
 
-function ajaxRenderShops($postAction, $postData) {
+function ajaxRenderShops($postAction, $postData, pageIndex) {
     $.ajax({
         type: "post",
         url: data.baseUrl + $postAction,
