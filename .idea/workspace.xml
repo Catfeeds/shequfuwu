@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/orderResult-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/orderResult-container.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,13 +71,13 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="358" column="77" selection-start-line="358" selection-start-column="77" selection-end-line="358" selection-end-column="77" />
+            <state relative-caret-position="-903">
+              <caret line="956" column="82" selection-start-line="956" selection-start-column="82" selection-end-line="956" selection-end-column="82" />
               <folding>
-                <marker date="1471399498724" expanded="true" signature="17080:17107" ph="..." />
-                <marker date="1471399498724" expanded="true" signature="17121:17134" ph="..." />
-                <marker date="1471399498724" expanded="true" signature="19324:19336" ph="..." />
-                <marker date="1471399498724" expanded="true" signature="47873:47885" ph="..." />
+                <marker date="1471400113358" expanded="true" signature="17082:17109" ph="..." />
+                <marker date="1471400113358" expanded="true" signature="17123:17136" ph="..." />
+                <marker date="1471400113358" expanded="true" signature="19326:19338" ph="..." />
+                <marker date="1471400113358" expanded="true" signature="47958:47970" ph="..." />
               </folding>
             </state>
           </provider>
@@ -82,11 +86,12 @@
       <file leaf-file-name="orderResult-container.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/orderResult-container.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="25" column="116" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
+            <state relative-caret-position="380">
+              <caret line="25" column="98" selection-start-line="25" selection-start-column="88" selection-end-line="25" selection-end-column="98" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#2;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -1287,7 +1292,7 @@
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
-      <workItem from="1471087502985" duration="49774000" />
+      <workItem from="1471087502985" duration="50403000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1300,7 +1305,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="685380000" />
+    <option name="totallyTimeSpent" value="686009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1385,7 +1390,7 @@
         <state relative-caret-position="326">
           <caret line="162" column="30" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
           <folding>
-            <element signature="e#49#70#0#PHP" expanded="true" />
+            <element signature="e#49#70#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1395,7 +1400,7 @@
         <state relative-caret-position="100">
           <caret line="170" column="51" selection-start-line="170" selection-start-column="51" selection-end-line="170" selection-end-column="51" />
           <folding>
-            <element signature="e#35#61#0#PHP" expanded="true" />
+            <element signature="e#35#61#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1639,8 +1644,8 @@
         <state relative-caret-position="100">
           <caret line="5" column="53" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1690,7 +1695,7 @@
         <state relative-caret-position="257">
           <caret line="420" column="34" selection-start-line="420" selection-start-column="34" selection-end-line="420" selection-end-column="34" />
           <folding>
-            <element signature="e#34#60#0#PHP" expanded="true" />
+            <element signature="e#34#60#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1708,9 +1713,9 @@
         <state relative-caret-position="400">
           <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#div#0;n#div#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#li#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#2;n#div#0;n#div#0;n#li#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1746,7 +1751,7 @@
         <state relative-caret-position="217">
           <caret line="374" column="65" selection-start-line="374" selection-start-column="65" selection-end-line="374" selection-end-column="65" />
           <folding>
-            <element signature="e#31#67#0#PHP" expanded="true" />
+            <element signature="e#31#67#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1791,11 +1796,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/orderResult-container.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="25" column="116" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
+        <state relative-caret-position="380">
+          <caret line="25" column="98" selection-start-line="25" selection-start-column="88" selection-end-line="25" selection-end-column="98" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#2;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -1803,13 +1809,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="358" column="77" selection-start-line="358" selection-start-column="77" selection-end-line="358" selection-end-column="77" />
+        <state relative-caret-position="-903">
+          <caret line="956" column="82" selection-start-line="956" selection-start-column="82" selection-end-line="956" selection-end-column="82" />
           <folding>
-            <marker date="1471399498724" expanded="true" signature="17080:17107" ph="..." />
-            <marker date="1471399498724" expanded="true" signature="17121:17134" ph="..." />
-            <marker date="1471399498724" expanded="true" signature="19324:19336" ph="..." />
-            <marker date="1471399498724" expanded="true" signature="47873:47885" ph="..." />
+            <marker date="1471400113358" expanded="true" signature="17082:17109" ph="..." />
+            <marker date="1471400113358" expanded="true" signature="17123:17136" ph="..." />
+            <marker date="1471400113358" expanded="true" signature="19326:19338" ph="..." />
+            <marker date="1471400113358" expanded="true" signature="47958:47970" ph="..." />
           </folding>
         </state>
       </provider>

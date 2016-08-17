@@ -356,7 +356,7 @@ function displayOrderResult(id) {
             if (data.totalprice >= data.full) {
                 $('#items-order-result').find('.discount').html(data.discount);
             }
-            $('#items-order-result').find('.totalscore').html(data.totalscore);
+            //$('#items-order-result').find('.totalscore').html(data.totalscore);
             $('#items-order-result').find('.total').children().html(data.totalprice);
 
             if (data.pay_status == 1) {
@@ -954,6 +954,7 @@ function submitOrder() {
                 tabTmpl('orderResult-container');
                 $('#result-order-no').html(res.orderid);
                 $('#items-order-result').find('.date').html(res.time);
+                $('#items-order-result').find('.totalscore').html(res.totalscore);
                 $('#items-order-result').find('.total').children().html(res.totalprice);
 
                 $('.freight').html(res.freight);
