@@ -2920,7 +2920,7 @@ img, fieldset {
     clear: both;
 }
 
-.shopCategoryIcon .InfoTitle.selected + .label:after {
+.shopCategoryIcon .radio.selected + .label:after {
     content: "";
     position: absolute;
     right: 13px;
