@@ -68,12 +68,12 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="217">
-              <caret line="358" column="73" selection-start-line="358" selection-start-column="73" selection-end-line="358" selection-end-column="73" />
+              <caret line="358" column="77" selection-start-line="358" selection-start-column="77" selection-end-line="358" selection-end-column="77" />
               <folding>
-                <marker date="1471399194001" expanded="true" signature="17077:17104" ph="..." />
-                <marker date="1471399194001" expanded="true" signature="17118:17131" ph="..." />
-                <marker date="1471399194001" expanded="true" signature="19321:19333" ph="..." />
-                <marker date="1471399194001" expanded="true" signature="47870:47882" ph="..." />
+                <marker date="1471399498724" expanded="true" signature="17080:17107" ph="..." />
+                <marker date="1471399498724" expanded="true" signature="17121:17134" ph="..." />
+                <marker date="1471399498724" expanded="true" signature="19324:19336" ph="..." />
+                <marker date="1471399498724" expanded="true" signature="47873:47885" ph="..." />
               </folding>
             </state>
           </provider>
@@ -83,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/orderResult-container.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="200">
-              <caret line="25" column="98" selection-start-line="25" selection-start-column="88" selection-end-line="25" selection-end-column="98" />
+              <caret line="25" column="116" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1287,7 +1287,7 @@
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
-      <workItem from="1471087502985" duration="49473000" />
+      <workItem from="1471087502985" duration="49774000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1300,7 +1300,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="685079000" />
+    <option name="totallyTimeSpent" value="685380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1310,7 +1310,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13217522" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.036253776" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5689949" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12084592" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1792,7 +1792,7 @@
     <entry file="file://$PROJECT_DIR$/Theme/waimai/orderResult-container.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="25" column="98" selection-start-line="25" selection-start-column="88" selection-end-line="25" selection-end-column="98" />
+          <caret line="25" column="116" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
           <folding>
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1804,12 +1804,12 @@
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
-          <caret line="358" column="73" selection-start-line="358" selection-start-column="73" selection-end-line="358" selection-end-column="73" />
+          <caret line="358" column="77" selection-start-line="358" selection-start-column="77" selection-end-line="358" selection-end-column="77" />
           <folding>
-            <marker date="1471399194001" expanded="true" signature="17077:17104" ph="..." />
-            <marker date="1471399194001" expanded="true" signature="17118:17131" ph="..." />
-            <marker date="1471399194001" expanded="true" signature="19321:19333" ph="..." />
-            <marker date="1471399194001" expanded="true" signature="47870:47882" ph="..." />
+            <marker date="1471399498724" expanded="true" signature="17080:17107" ph="..." />
+            <marker date="1471399498724" expanded="true" signature="17121:17134" ph="..." />
+            <marker date="1471399498724" expanded="true" signature="19324:19336" ph="..." />
+            <marker date="1471399498724" expanded="true" signature="47873:47885" ph="..." />
           </folding>
         </state>
       </provider>
