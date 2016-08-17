@@ -356,6 +356,7 @@ function displayOrderResult(id) {
             if (data.totalprice >= data.full) {
                 $('#items-order-result').find('.discount').html(data.discount);
             }
+            $('#items-order-result').find('.score').children().html(data.totalscore);
             $('#items-order-result').find('.total').children().html(data.totalprice);
 
             if (data.pay_status == 1) {
