@@ -790,13 +790,6 @@ function cartNext() {
         payment = 3;
     });
 
-    $('.shopCategoryIcon').click(function () {
-        alert("sssssssssss");
-        $('.shopCategoryIcon').find('.InfoTitle').removeClass('selected');
-        $(this).find('.InfoTitle').addClass('selected');
-    });
-
-
     $.ajax({
         type: "get",
         url: data.baseUrl + "/App/User/getContactList",

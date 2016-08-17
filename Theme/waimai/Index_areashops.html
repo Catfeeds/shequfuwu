@@ -147,6 +147,13 @@
             lazyNum++;
             areaShops(0, lazyNum);
         });
+
+
+        $('.shopCategoryIcon').click(function () {
+            alert("sssssssssss");
+            $('.shopCategoryIcon').find('.InfoTitle').removeClass('selected');
+            $(this).find('.InfoTitle').addClass('selected');
+        });
     });
 </script>
 
