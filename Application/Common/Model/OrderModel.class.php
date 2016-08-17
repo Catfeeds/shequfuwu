@@ -79,42 +79,14 @@ class OrderModel extends RelationModel
         return $data;
     }
 
-    public function add($data)
-    {
-        if ($data["id"] == 0 || !isset($data["id"])) {
-            $id = parent::add($data);
-            return $id;
-        } else {
-            $this->save($data);
-            return $data["id"];
-        }
-    }
-
     public function addAll($data)
     {
         parent::addAll($data);
     }
 
-    public function save($data)
-    {
-        parent::save($data);
-    }
-
     public function del($condition = array())
     {
         $this->where($condition)->delete();
-    }
-
-    //崔  
-    public function getOrder($condition = array(), $relation = false)
-    {
-        $data = $this->where($condition);
-        if ($relation) {
-            $data = $data->relation(true);
-        }
-        $data = $data->find();
-
-        return $data;
     }
 
     public function getOrderList($condition = array(), $relation = false, $order = "id desc", $p = 0, $num = 0, $limit = 0)
@@ -140,6 +112,19 @@ class OrderModel extends RelationModel
         $order = $this->getOrder(array("id" => $id), true);
         $orderDetail = $order["detail"];
         return $orderDetail;
+    }
+
+    //崔  
+
+    public function getOrder($condition = array(), $relation = false)
+    {
+        $data = $this->where($condition);
+        if ($relation) {
+            $data = $data->relation(true);
+        }
+        $data = $data->find();
+
+        return $data;
     }
 
     public function cancelOrder($ids)
@@ -206,7 +191,7 @@ class OrderModel extends RelationModel
         $user = D("User");
         $user->where(array("id" => $userId))->setInc("buy_num");
         //$user->where(array("id" => $userId))->setInc("score", $scoreInc);
-        BizHelper::updateUserScore($userId,$shopId,$scoreInc,"购物积分");
+        BizHelper::updateUserScore($userId, $shopId, $scoreInc, $order_id, "购物积分");
 
         //统计
         $newBuyUser = 0;
@@ -217,6 +202,22 @@ class OrderModel extends RelationModel
         D("Analysis")->addAnalysis(1, floatval($order ["totalprice"]), 0, $newBuyUser, 0);
 
         return $order_id;
+    }
+
+    public function add($data)
+    {
+        if ($data["id"] == 0 || !isset($data["id"])) {
+            $id = parent::add($data);
+            return $id;
+        } else {
+            $this->save($data);
+            return $data["id"];
+        }
+    }
+
+    public function save($data)
+    {
+        parent::save($data);
     }
 
     public function updateAllOrder($ids, $data)

@@ -554,7 +554,7 @@ class FooController extends Controller
 
     public function userscoreop($userid = 802)
     {
-        BizHelper::updateUserScore($userid, 144, 1, '购买商品');
+        BizHelper::updateUserScore($userid, 144, 1,0, '购买商品');
     }
 
     public function deliverytimeop()

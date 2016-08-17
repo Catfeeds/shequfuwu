@@ -362,12 +362,19 @@ class BizHelper
      * @param $userId
      * @param $shopId
      * @param $score
-     * @param $remark string
+     * @param int $orderId
      * @param string $reason
+     * @param $remark string
      * @return bool|number
      */
-    public static function updateUserScore($userId, $shopId, $score, $reason = '', $remark = '')
+    public static function updateUserScore($userId, $shopId, $score, $orderId = 0, $reason = '', $remark = '')
     {
+        //0 更新某订单对应的积分
+        if ($orderId) {
+            $orderMate = new ModelMate("order");
+            $orderMate->setValue($orderId, "totalscore", $score);
+        }
+
         //1 更新用户的总积分情况
         $userMate = new ModelMate('user');
         $userCondition = array("id" => $userId);
@@ -428,15 +435,15 @@ class BizHelper
         return $labelList;
     }
 
-    public static function generateRedPacketResponse($shopId,$openId)
+    public static function generateRedPacketResponse($shopId, $openId)
     {
         $redPacket = self::getLastEffectRedPacketAction($shopId);
         if ($redPacket) {
-            $content= "本店活动[$redPacket[actionname]]进展中，有大批量红包派送，点击这里领取！";
-            $packetId= $redPacket['id'];
-            $url= WebHelper::getHostNameFull().U("App/Index/sendRedpacket","packetId=$packetId&openId=$openId");
-            $result= "<a href='$url'>$content</a>";
-            return  $result;
+            $content = "本店活动[$redPacket[actionname]]进展中，有大批量红包派送，点击这里领取！";
+            $packetId = $redPacket['id'];
+            $url = WebHelper::getHostNameFull() . U("App/Index/sendRedpacket", "packetId=$packetId&openId=$openId");
+            $result = "<a href='$url'>$content</a>";
+            return $result;
         } else {
             return "";
         }
