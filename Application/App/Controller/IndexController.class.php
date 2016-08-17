@@ -70,6 +70,9 @@ class IndexController extends BaseController
         $config["wechat_payment"] = $configs["wechat_payment"];
         $config["alipay_payment"] = $configs["alipay_payment"];
         $config["cool_payment"] = $configs["cool_payment"];
+
+        $config["qrUrl"]= WechatBiz::getQRCodeUrl($shopId);
+
         $this->assign("config", json_encode($config));
         $this->assign("shopData", $config);
 

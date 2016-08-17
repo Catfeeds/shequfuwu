@@ -64,11 +64,7 @@
                 <li>
                     <div class="confirmation-item">
                         <div class="item-image1">
-                            <?php
-                                $qrUrl= \Common\Model\WechatBiz::getQRCodeUrl({{config.id}});
-                                echo {{config.id}};
-                                echo $qrUrl;
-                            ?>
+                            <img src="{{config.qrUrl}}"/>
                         </div>
                     </div>
                 </li>
