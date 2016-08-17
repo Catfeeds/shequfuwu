@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/WechatBiz.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/WechatBiz.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/show-shopinfo.html" afterPath="$PROJECT_DIR$/Theme/waimai/show-shopinfo.html" />
@@ -43,23 +40,6 @@
               <caret line="189" column="18" selection-start-line="189" selection-start-column="18" selection-end-line="189" selection-end-column="18" />
               <folding>
                 <element signature="e#35#62#0#PHP" expanded="true" />
-                <marker date="1471219086816" expanded="true" signature="298:19654" ph="{...}" />
-                <marker date="1471219086816" expanded="true" signature="4416:7142" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wemall.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
-              <folding>
-                <marker date="1471054280874" expanded="true" signature="17000:17027" ph="..." />
-                <marker date="1471054280874" expanded="true" signature="17041:17054" ph="..." />
-                <marker date="1471054280874" expanded="true" signature="19244:19256" ph="..." />
-                <marker date="1471054280874" expanded="true" signature="47793:47805" ph="..." />
               </folding>
             </state>
           </provider>
@@ -103,8 +83,8 @@
       <file leaf-file-name="show-shopinfo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/show-shopinfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -1174,7 +1154,7 @@
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
-      <workItem from="1471087502985" duration="41727000" />
+      <workItem from="1471087502985" duration="42399000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1187,7 +1167,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="677333000" />
+    <option name="totallyTimeSpent" value="678005000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1561,18 +1541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="189" column="18" selection-start-line="189" selection-start-column="18" selection-end-line="189" selection-end-column="18" />
-          <folding>
-            <element signature="e#35#62#0#PHP" expanded="true" />
-            <marker date="1471219086816" expanded="true" signature="298:19654" ph="{...}" />
-            <marker date="1471219086816" expanded="true" signature="4416:7142" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/DateHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
@@ -1644,19 +1612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
-          <folding>
-            <marker date="1471054280874" expanded="true" signature="17000:17027" ph="..." />
-            <marker date="1471054280874" expanded="true" signature="17041:17054" ph="..." />
-            <marker date="1471054280874" expanded="true" signature="19244:19256" ph="..." />
-            <marker date="1471054280874" expanded="true" signature="47793:47805" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="53">
@@ -1703,10 +1658,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="1351" column="9" selection-start-line="1351" selection-start-column="9" selection-end-line="1351" selection-end-column="9" />
+          <folding>
+            <marker date="1471054280874" expanded="true" signature="17000:17027" ph="..." />
+            <marker date="1471054280874" expanded="true" signature="17041:17054" ph="..." />
+            <marker date="1471054280874" expanded="true" signature="19244:19256" ph="..." />
+            <marker date="1471054280874" expanded="true" signature="47793:47805" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="189" column="18" selection-start-line="189" selection-start-column="18" selection-end-line="189" selection-end-column="18" />
+          <folding>
+            <element signature="e#35#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/show-shopinfo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>

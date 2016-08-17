@@ -66,7 +66,8 @@
                         <div class="item-image1">
                             <?php
                                 $qrUrl= \Common\Model\WechatBiz::getQRCodeUrl({{config.id}});
-                                echo "<img  src=\"$qrUrl\"/>";
+                                echo {{config.id}};
+                                echo $qrUrl;
                             ?>
                         </div>
                     </div>
