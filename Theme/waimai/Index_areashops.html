@@ -43,6 +43,7 @@
                             <div class="InfoPicture">
                                 <img src="__PUBLIC__/Uploads/{$vo.savepath}{$vo.savename}">
                             </div>
+                            <span class="radio"></span>
                             <span class="InfoTitle">{$vo.name}</span>
                             <input type="hidden" class="shopCategoryId" value="{$vo.id}"/>
                         </div>
@@ -150,9 +151,9 @@
 
 
         $('.shopCategoryIcon').click(function () {
-            alert("sssssssssss");
-            $('.shopCategoryIcon').find('.InfoTitle').removeClass('selected');
-            $(this).find('.InfoTitle').addClass('selected');
+            //alert("sssssssssss");
+            $('.shopCategoryIcon').find('.radio').removeClass('selected');
+            $(this).find('.radio').addClass('selected');
         });
     });
 </script>
