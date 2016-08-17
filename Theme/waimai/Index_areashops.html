@@ -39,7 +39,7 @@
             <ul class="gridlistIcon">
                 <volist name="categories" id="vo">
                     <li>
-                        <div class="shopCategoryIcon" >
+                        <div class="shopCategoryIcon">
                             <div class="InfoPicture">
                                 <img src="__PUBLIC__/Uploads/{$vo.savepath}{$vo.savename}">
                             </div>
@@ -150,14 +150,16 @@
 
 
         $('.shopCategoryIcon').click(function () {
-            $selectedOriginal= false;
-            if($(this).find('.InfoTitle').hasClass('selected')){
-                $selectedOriginal= true;
+            $selectedOriginal = false;
+            if ($(this).find('.InfoTitle').hasClass('selected')) {
+                $selectedOriginal = true;
             }
             $('.shopCategoryIcon').find('.InfoTitle').removeClass('selected');
 
-            if($selectedOriginal== false){
-                $(this).find('.InfoTitle').addClass('selected')
+            if ($selectedOriginal == false) {
+                $(this).find('.InfoTitle').addClass('selected');
+                searchShopCategory = $(this).find(".shopCategoryId").val();
+                areaShops(0, 1);
             }
         });
     });

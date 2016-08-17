@@ -138,6 +138,7 @@ function showShopInfo() {
 }
 
 
+var searchShopCategory= 0;
 /**
  * 本地商城
  * @param pageIndex
@@ -145,7 +146,7 @@ function showShopInfo() {
  */
 function areaShops(saletype, pageIndex) {
     var name = $('.pi_input').val();
-    var category = ''; //TODO
+    var category = searchShopCategory; //TODO
 
     var city = $('#citySelector').val();
 
