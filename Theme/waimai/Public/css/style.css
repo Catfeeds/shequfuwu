@@ -2919,3 +2919,15 @@ img, fieldset {
     _height: 60px;
     clear: both;
 }
+
+.shopCategoryIcon .InfoTitle.selected + .label:after {
+    content: "";
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    background-image: url('../image/icons-sa1abdf490c.png');
+    background-size: 45px 230.5px;
+    background-position: 0 -16px;
+    height: 9px;
+    width: 13px
+}
