@@ -588,6 +588,8 @@ class BizHelper
 
         return $newsArray;
     }
+
+
 }
 
 ?>
