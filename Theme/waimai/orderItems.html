@@ -29,8 +29,14 @@
             </li>
             {{/each}}
         </ul>
-        <div class="mytotal-info"><span class="deliver">运费：{{value.freight}} 元</span><span class="deliver">优惠：{{value.discount}} 元</span><span
-                class="total">共 {{value.totalprice}} 元</span></div>
+        <div class="mytotal-info">
+            <span class="deliver">运费：{{value.freight}} 元</span>
+            <span class="deliver">优惠：{{value.discount}} 元</span>
+            {{if value.totalscore>0 }}
+            <span class="deliver">积分：{{value.totalscore}} 分</span>
+            {{/if}}
+            <span class="total">共 {{value.totalprice}} 元</span>
+        </div>
     </div>
     <div class="order-footer">
         {{if value.pay_status== 0 }}
