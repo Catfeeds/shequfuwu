@@ -154,13 +154,13 @@
                 $selectedOriginal = true;
             }
 
-            searchShopCategory =0;
+
             $('.shopCategoryIcon').find('.InfoTitle').removeClass('selected');
 
             if ($selectedOriginal == false) {
                 $(this).find('.InfoTitle').addClass('selected');
-                searchShopCategory = $(this).find(".shopCategoryId").val();
-                areaShops(0, 1);
+                var searchShopCategory = $(this).find(".shopCategoryId").val();
+                areaShops(0, 1,searchShopCategory);
             }
         });
     });

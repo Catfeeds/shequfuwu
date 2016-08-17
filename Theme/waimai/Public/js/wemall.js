@@ -138,13 +138,12 @@ function showShopInfo() {
 }
 
 
-var searchShopCategory= 0;
 /**
  * 本地商城
  * @param pageIndex
  * @param saletype int 销售类型零售还是批发
  */
-function areaShops(saletype, pageIndex) {
+function areaShops(saletype, pageIndex,searchShopCategory) {
     var name = $('.pi_input').val();
     var category = searchShopCategory; //TODO
 
