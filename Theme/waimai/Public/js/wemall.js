@@ -137,9 +137,11 @@ function showShopInfo() {
     tabTmpl("show-shopinfo");
 }
 
+
 /**
  * 本地商城
  * @param pageIndex
+ * @param saletype int 销售类型零售还是批发
  */
 function areaShops(saletype, pageIndex) {
     var name = $('.pi_input').val();
@@ -151,43 +153,53 @@ function areaShops(saletype, pageIndex) {
         pageIndex = 1;
     }
 
-    $.ajax({
-        type: "post",
-        url: data.baseUrl + "/General/Biz/getAreaShops",
-        data: {
-            name: name,
-            city: city,
-            category: category,
-            pageIndex: pageIndex,
-            saletype: saletype,
-        },
-        success: function (res) {
-            var html = '';
-            if (res == null || res == "") {
-                html = '已经没有更多信息了:)<br/>';
-            } else {
-                var dataSending = {
-                    shopes: res,
-                    jsData: data,
-                    uploadsUrl: data.uploadsUrl,
-                    imageUrl: data.imageUrl
-                };
-                html = template("shopItems", dataSending);
-            }
+    var postData = {
+        name: name,
+        city: city,
+        category: category,
+        pageIndex: pageIndex,
+        saletype: saletype,
+    };
 
-            if(pageIndex==1){
-                $('#mod-desc').html(html);
-            }else{
-                $('#mod-desc').append(html);
-            }
-        },
-        beforeSend: function () {
-            $('#page_tag_load').show();
-        },
-        complete: function () {
-            $('#page_tag_load').hide();
-        }
-    });
+    ajaxRenderShops("/General/Biz/getAreaShops", postData);
+
+    // $.ajax({
+    //     type: "post",
+    //     url: data.baseUrl + "/General/Biz/getAreaShops",
+    //     data: {
+    //         name: name,
+    //         city: city,
+    //         category: category,
+    //         pageIndex: pageIndex,
+    //         saletype: saletype,
+    //     },
+    //     success: function (res) {
+    //         var html = '';
+    //         if (res == null || res == "") {
+    //             html = '已经没有更多信息了:)<br/>';
+    //         } else {
+    //             var dataSending = {
+    //                 shopes: res,
+    //                 jsData: data,
+    //                 uploadsUrl: data.uploadsUrl,
+    //                 imageUrl: data.imageUrl
+    //             };
+    //             html = template("shopItems", dataSending);
+    //         }
+    //
+    //         if (pageIndex == 1) {
+    //             $('#mod-desc').html(html);
+    //         } else {
+    //             $('#mod-desc').append(html);
+    //         }
+    //     },
+    //     beforeSend: function () {
+    //         $('#page_tag_load').show();
+    //     },
+    //     complete: function () {
+    //         $('#page_tag_load').hide();
+    //     }
+    // });
 }
 
 function excellentShops(pageIndex) {
@@ -200,14 +212,58 @@ function excellentShops(pageIndex) {
         pageIndex = 1;
     }
 
+    var postData = {
+        name: name,
+        city: city,
+        category: category,
+        pageIndex: pageIndex,
+    };
+
+    ajaxRenderShops("/General/Biz/getExcellentShops", postData);
+
+    // $.ajax({
+    //     type: "post",
+    //     url: data.baseUrl + "/General/Biz/getExcellentShops",
+    //     data: {
+    //         name: name,
+    //         city: city,
+    //         category: category,
+    //         pageIndex: pageIndex,
+    //     },
+    //     success: function (res) {
+    //         var html = '';
+    //         if (res == null || res == "") {
+    //             html = '已经没有更多信息了:)<br/>';
+    //         } else {
+    //             var dataSending = {
+    //                 shopes: res,
+    //                 jsData: data,
+    //                 uploadsUrl: data.uploadsUrl,
+    //                 imageUrl: data.imageUrl
+    //             };
+    //             html = template("shopItems", dataSending);
+    //         }
+    //
+    //         if (pageIndex == 1) {
+    //             $('#mod-desc').html(html);
+    //         } else {
+    //             $('#mod-desc').append(html);
+    //         }
+    //     },
+    //     beforeSend: function () {
+    //         $('#page_tag_load').show();
+    //     },
+    //     complete: function () {
+    //         $('#page_tag_load').hide();
+    //     }
+    // });
+}
+
+function ajaxRenderShops($postAction, $postData) {
     $.ajax({
         type: "post",
-        url: data.baseUrl + "/General/Biz/getExcellentShops",
-        data: {
-            name: name,
-            city: city,
-            category: category,
-        },
+        url: data.baseUrl + $postAction,
+        data: $postData,
         success: function (res) {
             var html = '';
             if (res == null || res == "") {
@@ -222,9 +278,9 @@ function excellentShops(pageIndex) {
                 html = template("shopItems", dataSending);
             }
 
-            if(pageIndex==1){
+            if (pageIndex == 1) {
                 $('#mod-desc').html(html);
-            }else{
+            } else {
                 $('#mod-desc').append(html);
             }
         },
@@ -237,36 +293,39 @@ function excellentShops(pageIndex) {
     });
 }
 
+// /**
+//  * 根据定位获取附近的店铺
+//  */
+// function shopList() {
+//     //alert(11111111111);
+//     $.ajax({
+//         type: "post",
+//         url: data.baseUrl + "/General/Biz/getShopList",
+//         data: {
+//             lng: lng,
+//             lat: lat,
+//         },
+//         success: function (res) {
+//             var dataSending = {
+//                 shopes: res,
+//                 uploadsUrl: data.uploadsUrl,
+//                 imageUrl: data.imageUrl
+//             };
+//             var html = template("shopItems", dataSending);
+//             $('#mod-desc').html(html);
+//         },
+//         beforeSend: function () {
+//             $('#page_tag_load').show();
+//         },
+//         complete: function () {
+//             $('#page_tag_load').hide();
+//         }
+//     });
+// }
+
 /**
  * 根据定位获取附近的店铺
  */
-function shopList() {
-    //alert(11111111111);
-    $.ajax({
-        type: "post",
-        url: data.baseUrl + "/General/Biz/getShopList",
-        data: {
-            lng: lng,
-            lat: lat,
-        },
-        success: function (res) {
-            var dataSending = {
-                shopes: res,
-                uploadsUrl: data.uploadsUrl,
-                imageUrl: data.imageUrl
-            };
-            var html = template("shopItems", dataSending);
-            $('#mod-desc').html(html);
-        },
-        beforeSend: function () {
-            $('#page_tag_load').show();
-        },
-        complete: function () {
-            $('#page_tag_load').hide();
-        }
-    });
-}
-//pidong 搜索店铺
 function searchShop() {
     var name = $('.pi_input').val();
     var searchContentType = $('#searchContentType').val();
