@@ -39,12 +39,13 @@
             <ul class="gridlistIcon">
                 <volist name="categories" id="vo">
                     <li>
-                        <a href="/wap/wypx.html">
+                        <div class="shopCategoryIcon" >
                             <div class="InfoPicture">
                                 <img src="__PUBLIC__/Uploads/{$vo.savepath}{$vo.savename}">
                             </div>
-                            <div class="InfoTitle">{$vo.name}</div>
-                        </a>
+                            <span class="InfoTitle">{$vo.name}</span>
+                            <input type="hidden" class="shopCategoryId" value="{$vo.id}"/>
+                        </div>
                     </li>
                 </volist>
             </ul>
