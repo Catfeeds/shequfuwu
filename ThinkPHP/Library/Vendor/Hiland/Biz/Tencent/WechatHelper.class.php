@@ -1,6 +1,7 @@
 <?php
 namespace Vendor\Hiland\Biz\Tencent;
 
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\Common\WechatConfig;
 use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -108,6 +109,7 @@ class WechatHelper
             }
         }
 
+        CommonLoger::log("accessToken",$result);
         return $result;
     }
 
