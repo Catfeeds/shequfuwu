@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Index_areashops.html" afterPath="$PROJECT_DIR$/Theme/waimai/Index_areashops.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" afterPath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index_areashops.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index_areashops.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Index_areashops.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="179">
@@ -57,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BizController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BizController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+            <state relative-caret-position="320">
+              <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -156,7 +153,6 @@
         <option value="$PROJECT_DIR$/Application/Home/View/Shop_addLabel.html" />
         <option value="$PROJECT_DIR$/Application/App/Controller/ShopController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/View/Shop_shop.html" />
-        <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/View/Shop_copy.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/ShopController.class.php" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/BaseController.class.php" />
@@ -197,6 +193,7 @@
         <option value="$PROJECT_DIR$/Theme/waimai/Public/css/style.css" />
         <option value="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
         <option value="$PROJECT_DIR$/Theme/waimai/Index_areashops.html" />
+        <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
       </list>
     </option>
   </component>
@@ -1331,7 +1328,7 @@
       <workItem from="1470464512572" duration="11026000" />
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
-      <workItem from="1471087502985" duration="65897000" />
+      <workItem from="1471087502985" duration="66130000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1344,7 +1341,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="701503000" />
+    <option name="totallyTimeSpent" value="701736000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1817,14 +1814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-63">
@@ -1837,6 +1826,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="150" column="39" selection-start-line="150" selection-start-column="39" selection-end-line="150" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
           <folding />
         </state>
       </provider>

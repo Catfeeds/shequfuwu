@@ -4,6 +4,7 @@ namespace General\Controller;
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -36,6 +37,7 @@ class BizController
         }
 
         $data = "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage;saletype-- $saletype";
+        CommonLoger::log('getAreaShops',$data);
 
         $result = BizHelper::getAreaShops($cityName, $shopName, $shopCategory, $saletype, $pageIndex, $itemCountPerPage);
         WebHelper::serverReturn($result);
