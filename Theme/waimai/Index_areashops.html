@@ -146,9 +146,11 @@
         $(".moreinfo-loader").on("click", function () {
             lazyNum++;
 
-            var searchShopCategory =$('.shopCategoryIcon').find('.shopCategoryId.selected').val();
-            alert(searchShopCategory);
-            areaShops(0, lazyNum,searchShopCategory);
+            var searchShopCategory = $('.shopCategoryIcon').find('.shopCategoryId.selected').val();
+            if (typeof(searchShopCategory) == "undefined") {
+                searchShopCategory = 0;
+            }
+            areaShops(0, lazyNum, searchShopCategory);
         });
 
         $('.shopCategoryIcon').click(function () {
@@ -165,7 +167,7 @@
                 $(this).find('.InfoTitle').addClass('selected');
                 $(this).find('.shopCategoryId').addClass('selected');
                 var searchShopCategory = $(this).find(".shopCategoryId").val();
-                areaShops(0, 1,searchShopCategory);
+                areaShops(0, 1, searchShopCategory);
             }
         });
     });
