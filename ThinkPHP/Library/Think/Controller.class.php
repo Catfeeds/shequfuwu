@@ -281,7 +281,7 @@ abstract class Controller
      */
     private function dispatchJump($message, $status = 1, $jumpUrl = '', $ajax = false)
     {
-        dump($jumpUrl);
+        //dump($jumpUrl);
         //if (true === $ajax || IS_AJAX) {// AJAX提交
         if (true === $ajax) {// AJAX提交 暂时先去掉IS_AJAX的判断
             $data = is_array($ajax) ? $ajax : array();

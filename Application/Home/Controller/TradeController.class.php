@@ -4,9 +4,12 @@ namespace Home\Controller;
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
+use Vendor\Hiland\Utils\Data\ArrayHelper;
 use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\DateHelper;
+use Vendor\Hiland\Utils\Data\ObjectHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -326,7 +329,6 @@ class TradeController extends BaseController
         // 点的大小：1到10,用于手机端4就可以了
         $size = 8;
 
-
         $fileName = "Uploads/SearchWeixinUserQRCode/" . session("homeShopId") . ".png";
         $filePhysicalName = PUBLIC_PATH . $fileName;
         // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
@@ -336,7 +338,6 @@ class TradeController extends BaseController
         }
 
         $this->assign("qrcode", "http://" . I("server.HTTP_HOST") . __ROOT__ . "/Public/$fileName");
-
 
         $condition = array(
             "shop_id" => $this->getCurrentShopId(),
@@ -358,13 +359,11 @@ class TradeController extends BaseController
             array_push($condition, array("userid" => $cookieUserID));
         }
 
-
         if (IS_POST) {
             cookie("$cookiePrefix-scoreStatus", I("post.scoreStatus"));
         }
 
         $cookieStatus = cookie("$cookiePrefix-scoreStatus");
-
 
         if (IS_POST) {
             if (I("post.scoreValue") || I("post.scoreValue") == 0) {
@@ -374,10 +373,12 @@ class TradeController extends BaseController
             }
         }
         $cookieScoreValue = cookie("$cookiePrefix-scoreValue");
-        if ($cookieStatus && $cookieScoreValue) {
+        $invalidStats= ObjectHelper::equal($cookieStatus, -10);
+        if ($cookieStatus && $invalidStats == false && $cookieScoreValue) {
             array_push($condition, array("scores" => array("$cookieStatus", $cookieScoreValue)));
         }
 
+        CommonLoger::log("condition4userScore", ArrayHelper::Toxml($condition));
         $this->itemList('userScore', $condition, 0, 0, '', ViewLink::getCommon_User());
     }
 

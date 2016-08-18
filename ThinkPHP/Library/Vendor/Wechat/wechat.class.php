@@ -348,7 +348,8 @@ class Wechat
     }
 
 
-    public function getRevRawData(){
+    public function getRevRawData()
+    {
         $postStr = !empty($this->postxml) ? $this->postxml : file_get_contents("php://input");
         return $postStr;
     }
@@ -1273,7 +1274,7 @@ class Wechat
         }
 
 //        //暂时先使用hiland库中获取AccessToken的方法
-        $this->access_token= \Vendor\Hiland\Biz\Tencent\WechatHelper::getAccessToken();
+        $this->access_token = \Vendor\Hiland\Biz\Tencent\WechatHelper::getAccessToken();
         return $this->access_token;
 
 //        $authname = 'wechat_access_token' . $appid;

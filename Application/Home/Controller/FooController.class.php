@@ -25,6 +25,8 @@ use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\MathHelper;
+use Vendor\Hiland\Utils\Data\ObjectHelper;
+use Vendor\Hiland\Utils\Data\ObjectTypes;
 use Vendor\Hiland\Utils\Data\RandHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
@@ -658,6 +660,30 @@ class FooController extends Controller
                 dump("$v 不是真实的true");
             }
         }
+    }
+
+    public function objectop(){
+        $data = array(
+            v1 => 0,
+            v2 => "",
+            v3 => "false",
+            v4 => false,
+            v5 => true,
+            v6 => "hello",
+            v7=> -100,
+            v8=> "-100",
+        );
+
+        dump("判断数据类型--------------------------------");
+        foreach ($data as $k => $v) {
+            $t= ObjectHelper::getType($v);
+            dump("$k 的值为$v,类型为$t");
+        }
+
+        dump("--非严格比较-------------------------------");
+        dump(ObjectHelper::equal($data['v7'],$data['v8']));
+        dump("--**严格比较-------------------------------");
+        dump(ObjectHelper::equal($data['v7'],$data['v8'],true));
     }
 
     public function enumop()
