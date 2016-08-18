@@ -527,8 +527,8 @@ class ShopController extends BaseController
             $id = session("homeShopId");
 
             //dump($id);
-            //$qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
-            $qrUrl = WechatBiz::getQRCodeUrl($id);
+            $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
+            //$qrUrl = WechatBiz::getQRCodeUrl($id);
             $this->assign('qrUrl', $qrUrl);
             $this->display();
         } else {
