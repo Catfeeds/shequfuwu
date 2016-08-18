@@ -235,7 +235,6 @@ class WechatHelper
             $result = false;
         }
 
-
         return $result;
     }
 
