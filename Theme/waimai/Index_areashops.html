@@ -154,6 +154,8 @@
         });
 
         $('.shopCategoryIcon').click(function () {
+            lazyNum=1;
+
             $selectedOriginal = false;
             if ($(this).find('.InfoTitle').hasClass('selected')) {
                 $selectedOriginal = true;
@@ -166,6 +168,7 @@
             if ($selectedOriginal == false) {
                 $(this).find('.InfoTitle').addClass('selected');
                 $(this).find('.shopCategoryId').addClass('selected');
+
                 var searchShopCategory = $(this).find(".shopCategoryId").val();
                 areaShops(0, 1, searchShopCategory);
             }
