@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/ObjectTypes.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/ObjectHelper.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/ObjectHelper.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php" afterPath="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php" />
     </list>
     <ignored path="src.iws" />
@@ -67,55 +61,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wechat.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wechat.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="1270" column="33" selection-start-line="1270" selection-start-column="33" selection-end-line="1270" selection-end-column="33" />
+            <state relative-caret-position="128">
+              <caret line="1777" column="48" selection-start-line="1777" selection-start-column="48" selection-end-line="1777" selection-end-column="48" />
               <folding>
-                <marker date="1471511309715" expanded="true" signature="37738:37879" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/App/Controller/OrderController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-43">
-              <caret line="315" column="27" selection-start-line="315" selection-start-column="27" selection-end-line="315" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TradeController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1661">
-              <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-              <folding>
-                <element signature="e#34#60#0#PHP" expanded="true" />
+                <marker date="1471559286882" expanded="true" signature="37740:37881" ph="..." />
               </folding>
             </state>
           </provider>
@@ -255,13 +207,13 @@
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Conf/hiland_config.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/ObjectTypes.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/SimpleDataHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Data/ObjectHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php" />
       </list>
     </option>
   </component>
@@ -387,6 +339,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThinkPHP" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Library" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Wechat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -567,6 +545,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -795,7 +813,7 @@
       <workItem from="1470528962535" duration="50774000" />
       <workItem from="1470956238314" duration="38373000" />
       <workItem from="1471087502985" duration="71864000" />
-      <workItem from="1471503582586" duration="10030000" />
+      <workItem from="1471503582586" duration="11292000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -808,17 +826,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="717500000" />
+    <option name="totallyTimeSpent" value="718762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2900302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13293052" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08836858" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19335347" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5689949" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23716012" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -830,7 +849,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -856,13 +874,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Common/Model/OrderModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/orderItems.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -1057,13 +1068,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/qywechat.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17560">
-          <caret line="878" column="12" selection-start-line="878" selection-start-column="12" selection-end-line="878" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/WechatBiz.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -1148,44 +1152,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="1270" column="33" selection-start-line="1270" selection-start-column="33" selection-end-line="1270" selection-end-column="33" />
-          <folding>
-            <marker date="1471511309715" expanded="true" signature="37738:37879" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/OrderController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Web/WebHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="315" column="27" selection-start-line="315" selection-start-column="27" selection-end-line="315" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1243,17 +1213,72 @@
         <state relative-caret-position="-300">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#6#88#0#PHP" expanded="true" />
+            <element signature="e#6#88#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/TradeController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1661">
+        <state relative-caret-position="-641">
           <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="797">
+          <caret line="315" column="27" selection-start-line="315" selection-start-column="27" selection-end-line="315" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/BaseController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/App/Controller/OrderController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/qywechat.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="1466" column="44" selection-start-line="1466" selection-start-column="44" selection-end-line="1466" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="178">
+            <caret line="153" column="4" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="4" />
+            <folding>
+              <marker date="1466475011319" expanded="true" signature="15637:15787" ph="{...}" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Wechat/wechat.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="1777" column="48" selection-start-line="1777" selection-start-column="48" selection-end-line="1777" selection-end-column="48" />
+          <folding>
+            <marker date="1471559286882" expanded="true" signature="37740:37881" ph="..." />
           </folding>
         </state>
       </provider>
