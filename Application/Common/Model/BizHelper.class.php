@@ -136,6 +136,10 @@ class BizHelper
             //$data['time']= time();
             $data['isdefault'] = 0;
 
+            $userMate= new ModelMate("user");
+            $userData= $userMate->find(array("openid"=>$openId));
+            $data["userid"]= $userData["id"];
+
             $buyerShopMate->interact($data);
         }
 

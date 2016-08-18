@@ -398,7 +398,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword5" => array(
-                "value" => "姓名:" . $order["contact"]["name"] . ",电话:" . $order["contact"]["phone"] . ",地址: " . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"],
+                "value" => $order["contact"]["name"] . "," . $order["contact"]["phone"] . "," . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"],
                 "color" => "black"
             ),
             "remark" => array(
