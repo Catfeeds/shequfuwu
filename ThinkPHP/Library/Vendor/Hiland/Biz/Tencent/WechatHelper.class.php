@@ -109,7 +109,7 @@ class WechatHelper
             }
         }
 
-        CommonLoger::log("accessToken",$result);
+        CommonLoger::log("accessToken", $result);
         return $result;
     }
 
@@ -674,23 +674,23 @@ class WechatHelper
      * @return bool|number
      * 需要数据库支持，数据库的建表语句为
      *
-
-    SET FOREIGN_KEY_CHECKS=0;
-    -- ----------------------------
-    -- Table structure for `multi_weixin_information`
-    -- ----------------------------
-    DROP TABLE IF EXISTS `multi_weixin_information`;
-    CREATE TABLE `multi_weixin_information` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `msgid` varchar(50) DEFAULT NULL,
-    `openid` varchar(50) DEFAULT NULL,
-    `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-    `remark` text,
-    PRIMARY KEY (`id`),
-    KEY `index_msgid` (`msgid`),
-    KEY `index_openid` (`openid`),
-    KEY `index_createtime` (`createtime`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+     *
+     * SET FOREIGN_KEY_CHECKS=0;
+     * -- ----------------------------
+     * -- Table structure for `multi_weixin_information`
+     * -- ----------------------------
+     * DROP TABLE IF EXISTS `multi_weixin_information`;
+     * CREATE TABLE `multi_weixin_information` (
+     * `id` int(11) NOT NULL AUTO_INCREMENT,
+     * `msgid` varchar(50) DEFAULT NULL,
+     * `openid` varchar(50) DEFAULT NULL,
+     * `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+     * `remark` text,
+     * PRIMARY KEY (`id`),
+     * KEY `index_msgid` (`msgid`),
+     * KEY `index_openid` (`openid`),
+     * KEY `index_createtime` (`createtime`)
+     * ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
      */
     public static function checkNeedResponse($wxMessageRawData)
     {
@@ -726,4 +726,5 @@ class WechatHelper
         }
     }
 }
+
 ?>

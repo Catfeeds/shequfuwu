@@ -510,7 +510,6 @@ class ShopController extends BaseController
             $skuModel->save($old[$key]);
         }
 
-        //dump(cookie("prevUrl"));
         $this->success("操作成功", cookie("prevUrl"));
     }
 
@@ -526,7 +525,6 @@ class ShopController extends BaseController
         if (session("homeShopId")) {
             $id = session("homeShopId");
 
-            //dump($id);
             $qrUrl = BizHelper::getQRCodeUrl($id, 'LONG');
             //$qrUrl = WechatBiz::getQRCodeUrl($id);
             $this->assign('qrUrl', $qrUrl);
