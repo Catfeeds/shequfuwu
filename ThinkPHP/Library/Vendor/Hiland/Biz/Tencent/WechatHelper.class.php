@@ -85,7 +85,7 @@ class WechatHelper
         }
 
         $result = false;
-        $cachekey = sprintf("apptoken20140224-appid:%s-secret:%s", $appID, $appSecret);
+        $cachekey = sprintf("apptoken20140225-appid:%s-secret:%s", $appID, $appSecret);
         if ($useCache == true) {
             $result = S($cachekey);
             if ($result != false && $result != "") {
