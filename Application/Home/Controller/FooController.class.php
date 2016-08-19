@@ -345,9 +345,9 @@ class FooController extends Controller
         $this->display();
     }
 
-    public function getFileImageUrlop($fileid = 1029)
+    public function getFileImageUrlop($fileid = 1148)
     {
-        dump(BizHelper::getFileImageUrl($fileid));
+        dump(BizHelper::getFileImageUrl($fileid,"",true));
     }
 
     public function getorders($userID = 802)
@@ -702,12 +702,7 @@ class FooController extends Controller
         }
     }
 
-//    private function calcAndDump($data,$className,$methodName){
-//        foreach ($data as $k => $v) {
-//            $r= ReflectionHelper::executeMethod($className,$methodName,$v); //ObjectHelper::getType($v);
-//            dump("$k 的值为$v,运算后结果为$r");
-//        }
-//    }
+
 
     public function enumop()
     {

@@ -11,6 +11,8 @@ use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
+use Vendor\Hiland\Utils\IO\ImageHelper;
+use Vendor\Hiland\Utils\IO\Images;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizHelper
@@ -136,9 +138,9 @@ class BizHelper
             //$data['time']= time();
             $data['isdefault'] = 0;
 
-            $userMate= new ModelMate("user");
-            $userData= $userMate->find(array("openid"=>$openId));
-            $data["userid"]= $userData["id"];
+            $userMate = new ModelMate("user");
+            $userData = $userMate->find(array("openid" => $openId));
+            $data["userid"] = $userData["id"];
 
             $buyerShopMate->interact($data);
         }
@@ -453,46 +455,6 @@ class BizHelper
         }
     }
 
-    public function generateWecomeNewsResponse($shopID = 0)
-    {
-        $title = '';
-        $description = '';
-        $picUrl = '';
-        $url = '';
-
-        if (empty($shopID)) {
-            if (empty($title)) {
-                $projectName = C('PROJECT_NAME');
-                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
-            }
-            $description = C("PROJECT_DESCRIPTION");
-            $picUrl = BizHelper::getFileImageUrl(0, "platform_mission.jpg");
-            $url = WebHelper::getHostName() . U('App/Index/shop');
-        } else {
-            $shopMate = new ModelMate('shop');
-            $shopData = $shopMate->get($shopID);
-
-            if (empty($title)) {
-                $title = $shopData['name'];
-            }
-
-            $description = $shopData['remark'];
-            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg");
-            $url = WebHelper::getHostName() . U('App/Index/index', 'shopId=' . $shopID);
-        }
-
-        $newsArray = array(
-            array(
-                'Title' => $title,
-                'Description' => $description,
-                'PicUrl' => $picUrl,
-                'Url' => $url,
-            )
-        );
-
-        return $newsArray;
-    }
-
     /**
      * 获取店铺最新的可用的红包活动
      * @param $shopId
@@ -559,42 +521,6 @@ class BizHelper
         return $newsArray;
     }
 
-    /**
-     * @param $fileId
-     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
-     * @return string 图片对应的url完整地址
-     */
-    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg')
-    {
-        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
-        $fileMate = new ModelMate('file');
-        $pictureUrl = '';
-        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
-        if ($fileId) {
-            $file = $fileMate->get($fileId);
-            $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-
-            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
-            $filePathLocal = str_replace("/", "\\", $filePathLocal);
-
-            if (is_file($filePathLocal)) {
-                $pictureUrl = $appUrl . $filePath;
-            }
-        }
-
-        if (empty($pictureUrl)) {
-            if (empty($defaultImage)) {
-                $pictureUrl = '';
-            } else {
-                $pictureUrl = $appUrl . $defaultFilePath;
-            }
-        }
-
-        $pictureUrl = str_replace("\\", "/", $pictureUrl);
-
-        return $pictureUrl;
-    }
-
     public static function generateArticlesResponse()
     {
         $webRoot = WebHelper::getWebRootFull();
@@ -631,6 +557,122 @@ class BizHelper
         }
 
         return $newsArray;
+    }
+
+    public function generateWecomeNewsResponse($shopID = 0)
+    {
+        $title = '';
+        $description = '';
+        $picUrl = '';
+        $url = '';
+
+        if (empty($shopID)) {
+            if (empty($title)) {
+                $projectName = C('PROJECT_NAME');
+                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
+            }
+            $description = C("PROJECT_DESCRIPTION");
+            $picUrl = BizHelper::getFileImageUrl(0, "platform_mission.jpg");
+            $url = WebHelper::getHostName() . U('App/Index/shop');
+        } else {
+            $shopMate = new ModelMate('shop');
+            $shopData = $shopMate->get($shopID);
+
+            if (empty($title)) {
+                $title = $shopData['name'];
+            }
+
+            $description = $shopData['remark'];
+            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg",true);
+            $url = WebHelper::getHostName() . U('App/Index/index', 'shopId=' . $shopID);
+        }
+
+        $newsArray = array(
+            array(
+                'Title' => $title,
+                'Description' => $description,
+                'PicUrl' => $picUrl,
+                'Url' => $url,
+            )
+        );
+
+        return $newsArray;
+    }
+
+    /**
+     *
+     * @param $fileId
+     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
+     * @param bool $corp4WeixinCover 是否为微信生成消息封面图片（封面图片是宽高5:4，从上往下裁切）
+     * @return string 图片对应的url完整地址
+     */
+    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg', $corp4WeixinCover = false)
+    {
+        if(empty($defaultImage)){
+            $defaultImage= 'defaultshopimage.jpg';
+        }
+
+        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
+        $fileMate = new ModelMate('file');
+        $pictureUrl = '';
+        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
+        if ($fileId) {
+            $file = $fileMate->get($fileId);
+
+            $originalPath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+
+            if ($corp4WeixinCover) {
+                $filePath = '/Public/Uploads/' . $file["savepath"] . "cover_" . $file["savename"];
+            } else {
+                $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+            }
+
+            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
+            $filePathLocal = str_replace("/", "\\", $filePathLocal);
+            //dump($filePathLocal);
+
+            if ($corp4WeixinCover) {
+                if (is_file($filePathLocal)) {
+                    $pictureUrl = $appUrl . $filePath;
+                } else {
+                    $originalPathLocal = PHYSICAL_ROOT_PATH . $originalPath;
+                    $originalPathLocal = str_replace("/", "\\", $originalPathLocal);
+
+                    if (is_file($originalPathLocal)) {
+                        $originalIamge = ImageHelper::loadImage($originalPathLocal); //new Images($originalPathLocal);
+                        $originalWidth = imagesx($originalIamge);
+                        $originalHeight = imagesy($originalIamge);
+
+                        $newHeight = intval( $originalWidth * 4 / 9);
+
+                        if ($originalHeight > $newHeight) {
+                            $removedHeight = $originalHeight - $newHeight;
+                            $newImage = ImageHelper::cropImage($originalIamge, 0, $removedHeight, 0, 0);
+                            ImageHelper::save($newImage, $filePathLocal);
+                        } else {
+                            ImageHelper::save($originalIamge, $filePathLocal);
+                        }
+                        $pictureUrl = $appUrl . $filePath;
+                    }
+                }
+            } else {
+                if (is_file($filePathLocal)) {
+                    $pictureUrl = $appUrl . $filePath;
+                }
+            }
+        }
+
+        if (empty($pictureUrl)) {
+            if (empty($defaultImage)) {
+                $pictureUrl = '';
+            } else {
+                $pictureUrl = $appUrl . $defaultFilePath;
+            }
+        }
+
+        $pictureUrl = str_replace("\\", "/", $pictureUrl);
+
+        return $pictureUrl;
     }
 
 

@@ -25,6 +25,30 @@ class ImageHelper
     }
 
     /**
+     * 获取图片的宽度
+     * @param $image 图片路径或者图片资源
+     * @return int
+     */
+    public static function getWidth($image){
+        if(is_string($image)){
+            $image= self::loadImage($image);
+        }
+        return imagesx($image);
+    }
+
+    /**
+     * 获取图片的高度
+     * @param $image 图片路径或者图片资源
+     * @return int
+     */
+    public static function getHeight($image){
+        if(is_string($image)){
+            $image= self::loadImage($image);
+        }
+        return imagesy($image);
+    }
+
+    /**
      * 实现等比例不失真缩放图片缩放
      * (在本函数调用的地方，使用完成后请使用imagedestroy($newimage)对新资源进行销毁)
      *
@@ -36,7 +60,7 @@ class ImageHelper
      *            图片放缩后允许的最多高度
      * @return resource 按比例放缩后的图片
      */
-    public static function resizedImage($sourceimage, $targetmaxwidth, $targetmaxheight)
+    public static function resizeImage($sourceimage, $targetmaxwidth, $targetmaxheight)
     {
         $sourcewidth = imagesx($sourceimage);
         $sourceheight = imagesy($sourceimage);

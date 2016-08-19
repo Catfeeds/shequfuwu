@@ -164,6 +164,7 @@ class WechatController extends Controller
                 if ($eventkey) {
                     $merchantScanedID = $eventkey;//self::$revData['EventKey'];
                 }
+
                 self::responseUserAction($openId, $merchantScanedID, $messageContent);
                 break;
             }
