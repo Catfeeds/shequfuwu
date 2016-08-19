@@ -335,7 +335,7 @@ class WechatController extends Controller
             array_push($newMenu["button"], $menuItem);
         }
 
-        dump($newMenu);
+        //dump($newMenu);
         return $newMenu;
     }
 
@@ -526,8 +526,8 @@ class WechatController extends Controller
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
-        $customerTitle= "尊敬的客户,您的订单已成功支付。\n";
-        $this->sendTplMsgPayDetail($user['openid'],$order,$customerTitle);
+        $customerTitle = "尊敬的客户,您的订单已成功支付。\n";
+        $this->sendTplMsgPayDetail($user['openid'], $order, $customerTitle);
 
         $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
         $employee = explode(',', $shop["employee"]);
