@@ -443,7 +443,7 @@ class BizHelper
     {
         $redPacket = self::getLastEffectRedPacketAction($shopId);
         if ($redPacket) {
-            $content = "本店活动[$redPacket[actionname]]进展中，有大批量红包派送，点击这里领取！";
+            $content = "本店有活动[$redPacket[actionname]]正在进展中，有大批量红包派送，点击此处领取！";
             $packetId = $redPacket['id'];
             $url = WebHelper::getHostNameFull() . U("App/Index/sendRedpacket", "packetId=$packetId&openId=$openId");
             $result = "<a href='$url'>$content</a>";
@@ -451,6 +451,46 @@ class BizHelper
         } else {
             return "";
         }
+    }
+
+    public function generateWecomeNewsResponse($shopID = 0)
+    {
+        $title = '';
+        $description = '';
+        $picUrl = '';
+        $url = '';
+
+        if (empty($shopID)) {
+            if (empty($title)) {
+                $projectName = C('PROJECT_NAME');
+                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
+            }
+            $description = C("PROJECT_DESCRIPTION");
+            $picUrl = BizHelper::getFileImageUrl(0, "platform_mission.jpg");
+            $url = WebHelper::getHostName() . U('App/Index/shop');
+        } else {
+            $shopMate = new ModelMate('shop');
+            $shopData = $shopMate->get($shopID);
+
+            if (empty($title)) {
+                $title = $shopData['name'];
+            }
+
+            $description = $shopData['remark'];
+            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg");
+            $url = WebHelper::getHostName() . U('App/Index/index', 'shopId=' . $shopID);
+        }
+
+        $newsArray = array(
+            array(
+                'Title' => $title,
+                'Description' => $description,
+                'PicUrl' => $picUrl,
+                'Url' => $url,
+            )
+        );
+
+        return $newsArray;
     }
 
     /**

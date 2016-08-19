@@ -5,8 +5,6 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
-use Vendor\Hiland\Utils\DataModel\ModelMate;
-use Vendor\Hiland\Utils\Web\WebHelper;
 
 class WechatController extends Controller
 {
@@ -142,20 +140,26 @@ class WechatController extends Controller
                 $eventkey = self::$revData['EventKey'];
 
                 $merchantScanedID = 0;
-                $merchantScanedName = '';
-                if (!empty($eventkey)) {
+                //$merchantScanedName = '';
+                if ($eventkey) {
                     $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
+                    //$merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
                 }
 
-                if (!empty($merchantScanedName)) {
-                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
-                }
+                self::responseUserAction($openId, $merchantScanedID, $messageContent);
 
-                WechatHelper::responseCustomerServiceText($openId, $messageContent);
-
-                $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
-                self::$weObj->news($newsArray)->reply();
+//                if (!empty($merchantScanedName)) {
+//                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
+//                }
+//
+//                if ($merchantScanedID) {
+//                    $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
+//                }
+//
+//                WechatHelper::responseCustomerServiceText($openId, $messageContent);
+//
+//                $newsArray = BizHelper::generateWecomeNewsResponse($merchantScanedID);
+//                self::$weObj->news($newsArray)->reply();
                 break;
             }
             case 'unsubscribe': {
@@ -172,25 +176,26 @@ class WechatController extends Controller
 
                 $eventkey = self::$revData['EventKey'];
                 $merchantScanedID = 0;
-                $merchantScanedName = '';
-                if (!empty($eventkey)) {
+                //$merchantScanedName = '';
+                if ($eventkey) {
                     $merchantScanedID = $eventkey;//self::$revData['EventKey'];
-                    $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
+                    //$merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
                 }
 
-                if (!empty($merchantScanedName)) {
-                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
-                }
+                self::responseUserAction($openId, $merchantScanedID, $messageContent);
 
-                if ($merchantScanedID) {
-                    $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
-                }
-
-                $customerMsgStatus = WechatHelper::responseCustomerServiceText($openId, $messageContent);
-                //CommonLoger::log("fff",$customerMsgStatus);
-
-                $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
-                self::$weObj->news($newsArray)->reply();
+//                if (!empty($merchantScanedName)) {
+//                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
+//                }
+//
+//                if ($merchantScanedID) {
+//                    $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
+//                }
+//
+//                $customerMsgStatus = WechatHelper::responseCustomerServiceText($openId, $messageContent);
+//
+//                $newsArray = BizHelper::generateWecomeNewsResponse($merchantScanedID);
+//                self::$weObj->news($newsArray)->reply();
 
                 break;
             }
@@ -228,44 +233,28 @@ class WechatController extends Controller
         return $userID;
     }
 
-    private function generateWecomeNewsResponse($shopID = 0)
+    private function responseUserAction($openId, $merchantScanedID = 0, $messageContent = '')
     {
-        $title = '';
-        $description = '';
-        $picUrl = '';
-        $url = '';
+        //$merchantScanedID = 0;
+        //$merchantScanedName = '';
+        //$messageContent = '';
 
-        if (empty($shopID)) {
-            if (empty($title)) {
-                $projectName = C('PROJECT_NAME');
-                $title = "欢迎光临[$projectName]，我们将持续为你提供更优质的服务！";
-            }
-            $description = C("PROJECT_DESCRIPTION");
-            $picUrl = BizHelper::getFileImageUrl(0, "platform_mission.jpg");
-            $url = WebHelper::getHostName() . U('App/Index/shop');
-        } else {
-            $shopMate = new ModelMate('shop');
-            $shopData = $shopMate->get($shopID);
-
-            if (empty($title)) {
-                $title = $shopData['name'];
-            }
-
-            $description = $shopData['remark'];
-            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg");
-            $url = WebHelper::getHostName() . U('App/Index/index', 'shopId=' . $shopID);
+        if ($merchantScanedID) {
+            $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
         }
 
-        $newsArray = array(
-            array(
-                'Title' => $title,
-                'Description' => $description,
-                'PicUrl' => $picUrl,
-                'Url' => $url,
-            )
-        );
+        if (!empty($merchantScanedName)) {
+            $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
+        }
 
-        return $newsArray;
+        if ($merchantScanedID) {
+            $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
+        }
+
+        $customerMsgStatus = WechatHelper::responseCustomerServiceText($openId, $messageContent);
+
+        $newsArray = BizHelper::generateWecomeNewsResponse($merchantScanedID);
+        self::$weObj->news($newsArray)->reply();
     }
 
     public function updateUserSubscribeStatus($openId, $newSubscribeStatus)
@@ -275,6 +264,7 @@ class WechatController extends Controller
             D("User")->save(array("id" => $user["id"], "subscribe" => $newSubscribeStatus));
         }
     }
+
 
     public function getQRCode()
     {
@@ -335,7 +325,6 @@ class WechatController extends Controller
             array_push($newMenu["button"], $menuItem);
         }
 
-        //dump($newMenu);
         return $newMenu;
     }
 
@@ -458,65 +447,6 @@ class WechatController extends Controller
 
         return $template_id;
     }
-
-//    public function sendTplMessageOrder4Admin($order_id)
-//    {
-//        $order = D("Order")->getOrder(array("id" => $order_id), true);
-//        $template_id = $this->getTplMessageId("OPENTM201785396");
-//
-//        $orderScore = $order['totalscore'];
-//        $scoreString = "(积分:$orderScore)";
-//
-//        // file_put_contents("2.txt",$order["shop_id"]);
-//        $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
-//        $employee = explode(',', $shop["employee"]);
-//        foreach ($employee as $key => $value) {
-//            if (!$value) {
-//                continue;
-//            }
-//            $user = D("User")->get(array("id" => $value));
-//            $data = '{
-//                "touser":"' . $user["openid"] . '",
-//                "template_id":"' . $template_id . '",
-//                "url":"' . "http://" . I("server.HTTP_HOST") . U("App/Admin/order/shopId") . "/" . $order["shop_id"] . '",
-//                "topcolor":"#FF0000",
-//                "data":{
-//                    "first": {
-//                        "value":"客户新订单提醒。---' . BizHelper::getPayStatusText($order["pay_status"]) . '",
-//                        "color":"black"
-//                        },
-//                    "keyword1":{
-//                        "value":"' . $order["orderid"] . '",
-//                        "color":"black"
-//                        },
-//                    "keyword2":{
-//                        "value":"' . BizHelper::getPayTypeText($order["payment"]) . '",
-//                        "color":"black"
-//                        },
-//                    "keyword3":{
-//                        "value":"' . $order["totalprice"] . $scoreString . '",
-//                        "color":"black"
-//                        },
-//                    "keyword4":{
-//                        "value":"' . $order["time"] . '",
-//                        "color":"black"
-//                        },
-//                    "keyword5":{
-//                        "value":"' . $order["contact"]["name"] . ',' . $order["contact"]["phone"] . ',' . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"] . '",
-//                        "color":"black"
-//                        },
-//                    "remark":{
-//                        "value":"' . $order["remark"] . '",
-//                        "color":"black"
-//                        }
-//                }
-//            }';
-//
-//            $data = json_decode($data, true);
-//            self::$weObj->sendTemplateMessage($data);
-//        }
-//    }
-
 
     public function sendTplMsgPay($user_id, $order_id)
     {
