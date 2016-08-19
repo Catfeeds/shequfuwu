@@ -547,7 +547,11 @@ class ImageHelper
         $functionName = self::getImageOutputFunction($imageType);
 
         if (function_exists($functionName)) {
-            $functionName($image, $filePhysicalFullName, $imageDisplayQuality);
+            if($functionName== "imagepng"){
+                $functionName($image, $filePhysicalFullName);
+            }else{
+                $functionName($image, $filePhysicalFullName, $imageDisplayQuality);
+            }
         }
 
         return $filePhysicalFullName;

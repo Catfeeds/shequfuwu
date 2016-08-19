@@ -12,7 +12,6 @@ use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 use Vendor\Hiland\Utils\IO\ImageHelper;
-use Vendor\Hiland\Utils\IO\Images;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 class BizHelper
@@ -521,6 +520,84 @@ class BizHelper
         return $newsArray;
     }
 
+    /**
+     *
+     * @param $fileId
+     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
+     * @param bool $corp4WeixinCover 是否为微信生成消息封面图片（封面图片是宽高5:4，从上往下裁切）
+     * @return string 图片对应的url完整地址
+     */
+    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg', $corp4WeixinCover = false)
+    {
+        if (empty($defaultImage)) {
+            $defaultImage = 'defaultshopimage.jpg';
+        }
+
+        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
+        $fileMate = new ModelMate('file');
+        $pictureUrl = '';
+        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
+        if ($fileId) {
+            $file = $fileMate->get($fileId);
+
+            $originalPath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+
+            if ($corp4WeixinCover) {
+                $filePath = '/Public/Uploads/' . $file["savepath"] . "cover_" . $file["savename"];
+            } else {
+                $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
+            }
+
+            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
+            $filePathLocal = str_replace("/", "\\", $filePathLocal);
+
+            if ($corp4WeixinCover) {
+                if (is_file($filePathLocal)) {
+                    $pictureUrl = $appUrl . $filePath;
+                } else {
+                    $originalPathLocal = PHYSICAL_ROOT_PATH . $originalPath;
+                    $originalPathLocal = str_replace("/", "\\", $originalPathLocal);
+
+                    if (is_file($originalPathLocal)) {
+                        $originalIamge = ImageHelper::loadImage($originalPathLocal);
+                        $originalWidth = imagesx($originalIamge);
+                        $originalHeight = imagesy($originalIamge);
+
+                        $newHeight = intval($originalWidth * 4 / 9);
+                        //dump($originalHeight - $newHeight);
+
+                        if ($originalHeight - $newHeight > 0) {
+                            $removedHeight = $originalHeight - $newHeight;
+                            $newImage = ImageHelper::cropImage($originalIamge, 0, $removedHeight, 0, 0);
+                            //ImageHelper::display($newImage);
+                            //dump($newImage);
+                            ImageHelper::save($newImage, $filePathLocal);
+                        } else {
+                            ImageHelper::save($originalIamge, $filePathLocal);
+                        }
+                        $pictureUrl = $appUrl . $filePath;
+                    }
+                }
+            } else {
+                if (is_file($filePathLocal)) {
+                    $pictureUrl = $appUrl . $filePath;
+                }
+            }
+        }
+
+        if (empty($pictureUrl)) {
+            if (empty($defaultImage)) {
+                $pictureUrl = '';
+            } else {
+                $pictureUrl = $appUrl . $defaultFilePath;
+            }
+        }
+
+        $pictureUrl = str_replace("\\", "/", $pictureUrl);
+
+        return $pictureUrl;
+    }
+
     public static function generateArticlesResponse()
     {
         $webRoot = WebHelper::getWebRootFull();
@@ -583,7 +660,7 @@ class BizHelper
             }
 
             $description = $shopData['remark'];
-            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg",true);
+            $picUrl = BizHelper::getFileImageUrl($shopData['file_id'], "platform_mission.jpg", true);
             $url = WebHelper::getHostName() . U('App/Index/index', 'shopId=' . $shopID);
         }
 
@@ -597,82 +674,6 @@ class BizHelper
         );
 
         return $newsArray;
-    }
-
-    /**
-     *
-     * @param $fileId
-     * @param string $defaultImage 必须是/Public/Uploads/目录或子目录下存在的文件
-     * @param bool $corp4WeixinCover 是否为微信生成消息封面图片（封面图片是宽高5:4，从上往下裁切）
-     * @return string 图片对应的url完整地址
-     */
-    public static function getFileImageUrl($fileId, $defaultImage = 'defaultshopimage.jpg', $corp4WeixinCover = false)
-    {
-        if(empty($defaultImage)){
-            $defaultImage= 'defaultshopimage.jpg';
-        }
-
-        $appUrl = "http://" . I("server.HTTP_HOST") . __ROOT__;
-        $fileMate = new ModelMate('file');
-        $pictureUrl = '';
-        $defaultFilePath = '/Public/Uploads/' . $defaultImage;
-        if ($fileId) {
-            $file = $fileMate->get($fileId);
-
-            $originalPath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-
-            if ($corp4WeixinCover) {
-                $filePath = '/Public/Uploads/' . $file["savepath"] . "cover_" . $file["savename"];
-            } else {
-                $filePath = '/Public/Uploads/' . $file["savepath"] . $file["savename"];
-            }
-
-            $filePathLocal = PHYSICAL_ROOT_PATH . $filePath;
-            $filePathLocal = str_replace("/", "\\", $filePathLocal);
-            //dump($filePathLocal);
-
-            if ($corp4WeixinCover) {
-                if (is_file($filePathLocal)) {
-                    $pictureUrl = $appUrl . $filePath;
-                } else {
-                    $originalPathLocal = PHYSICAL_ROOT_PATH . $originalPath;
-                    $originalPathLocal = str_replace("/", "\\", $originalPathLocal);
-
-                    if (is_file($originalPathLocal)) {
-                        $originalIamge = ImageHelper::loadImage($originalPathLocal); //new Images($originalPathLocal);
-                        $originalWidth = imagesx($originalIamge);
-                        $originalHeight = imagesy($originalIamge);
-
-                        $newHeight = intval( $originalWidth * 4 / 9);
-
-                        if ($originalHeight > $newHeight) {
-                            $removedHeight = $originalHeight - $newHeight;
-                            $newImage = ImageHelper::cropImage($originalIamge, 0, $removedHeight, 0, 0);
-                            ImageHelper::save($newImage, $filePathLocal);
-                        } else {
-                            ImageHelper::save($originalIamge, $filePathLocal);
-                        }
-                        $pictureUrl = $appUrl . $filePath;
-                    }
-                }
-            } else {
-                if (is_file($filePathLocal)) {
-                    $pictureUrl = $appUrl . $filePath;
-                }
-            }
-        }
-
-        if (empty($pictureUrl)) {
-            if (empty($defaultImage)) {
-                $pictureUrl = '';
-            } else {
-                $pictureUrl = $appUrl . $defaultFilePath;
-            }
-        }
-
-        $pictureUrl = str_replace("\\", "/", $pictureUrl);
-
-        return $pictureUrl;
     }
 
 
