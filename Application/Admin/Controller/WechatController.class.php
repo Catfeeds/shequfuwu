@@ -186,7 +186,7 @@ class WechatController extends Controller
                     $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
                 }
 
-                $customerMsgStatus= WechatHelper::responseCustomerServiceText($openId, $messageContent);
+                $customerMsgStatus = WechatHelper::responseCustomerServiceText($openId, $messageContent);
                 //CommonLoger::log("fff",$customerMsgStatus);
 
                 $newsArray = self::generateWecomeNewsResponse($merchantScanedID);
@@ -363,22 +363,49 @@ class WechatController extends Controller
         }
     }
 
+    /**
+     * @param $user_id
+     * @param $order_id
+     */
     public function sendTplMsgOrder($user_id, $order_id)
     {
         $this->init();
 
-        $template_id = $this->getTplMessageId("OPENTM201785396");
         $order = D("Order")->get(array("id" => $order_id), true);
-        $user = D("User")->get(array("id" => $user_id));
+        $customer = D("User")->get(array("id" => $user_id));
+
+        $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
+        $employee = explode(',', $shop["employee"]);
+
+        $customerTitle = "尊敬的客户,您的订单已成功提交。\n";
+        $this->sendTplMessageOrderDetail($customer["openid"], $order, $customerTitle);
+
+        foreach ($employee as $key => $value) {
+            if (!$value) {
+                continue;
+            }
+            $admin = D("User")->get(array("id" => $value));
+            $detailUrl = "http://" . I("server.HTTP_HOST") . U("App/Admin/order/shopId") . "/" . $order["shop_id"];
+            $adminTitle = "客户新订单提醒。";
+            $this->sendTplMessageOrderDetail($admin["openid"], $order, $adminTitle, $detailUrl);
+        }
+    }
+
+    private function sendTplMessageOrderDetail($openId, $order, $title, $detailUrl = "")
+    {
+        $template_id = $this->getTplMessageId("OPENTM201785396");
+
+        $orderScore = $order['totalscore'];
+        $scoreString = "(积分:$orderScore)";
 
         $msg = array();
-        $msg["touser"] = $user["openid"];
+        $msg["touser"] = $openId;
         $msg["template_id"] = $template_id;
-        $msg["url"] = "";
+        $msg["url"] = $detailUrl;
         $msg["topcolor"] = "";
         $msg["data"] = array(
             "first" => array(
-                "value" => "尊敬的客户,您的订单已成功提交。\n",
+                "value" => $title,
                 "color" => "red"
             ),
             "keyword1" => array(
@@ -390,7 +417,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword3" => array(
-                "value" => $order["totalprice"],
+                "value" => $order["totalprice"] . $scoreString,
                 "color" => "black"
             ),
             "keyword4" => array(
@@ -408,8 +435,6 @@ class WechatController extends Controller
         );
 
         self::$weObj->sendTemplateMessage($msg);
-
-        $this->sendTplMessageOrderAdmin($order_id);
     }
 
     /**
@@ -434,62 +459,63 @@ class WechatController extends Controller
         return $template_id;
     }
 
-    public function sendTplMessageOrderAdmin($order_id)
-    {
-        $this->init();
-
-        $order = D("Order")->getOrder(array("id" => $order_id), true);
-        $template_id = $this->getTplMessageId("OPENTM201785396");
-
-        // file_put_contents("2.txt",$order["shop_id"]);
-        $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
-        $employee = explode(',', $shop["employee"]);
-        foreach ($employee as $key => $value) {
-            if (!$value) {
-                continue;
-            }
-            $user = D("User")->get(array("id" => $value));
-            $data = '{
-                "touser":"' . $user["openid"] . '",
-                "template_id":"' . $template_id . '",
-                "url":"' . "http://" . I("server.HTTP_HOST") . U("App/Admin/order/shopId") . "/" . $order["shop_id"] . '",
-                "topcolor":"#FF0000",
-                "data":{
-                    "first": {
-                        "value":"客户新订单提醒。---' . BizHelper::getPayStatusText($order["pay_status"]) . '",
-                        "color":"#FF0000"
-                        },
-                    "keyword1":{
-                        "value":"' . $order["orderid"] . '",
-                        "color":"#0000ff"
-                        },
-                    "keyword2":{
-                        "value":"' . BizHelper::getPayTypeText($order["payment"]) . '",
-                        "color":"#0000ff"
-                        },
-                    "keyword3":{
-                        "value":"' . $order["totalprice"] . '",
-                        "color":"#0000ff"
-                        },
-                    "keyword4":{
-                        "value":"' . $order["time"] . '",
-                        "color":"#0000ff"
-                        },
-                    "keyword5":{
-                        "value":"' . $order["contact"]["name"] . '-' . $order["contact"]["phone"] . '-' . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"] . '",
-                        "color":"#0000ff"
-                        },
-                    "remark":{
-                        "value":"' . $order["remark"] . '",
-                        "color":"#0000ff"
-                        }
-                }
-            }';
-
-            $data = json_decode($data, true);
-            self::$weObj->sendTemplateMessage($data);
-        }
-    }
+//    public function sendTplMessageOrder4Admin($order_id)
+//    {
+//        $order = D("Order")->getOrder(array("id" => $order_id), true);
+//        $template_id = $this->getTplMessageId("OPENTM201785396");
+//
+//        $orderScore = $order['totalscore'];
+//        $scoreString = "(积分:$orderScore)";
+//
+//        // file_put_contents("2.txt",$order["shop_id"]);
+//        $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
+//        $employee = explode(',', $shop["employee"]);
+//        foreach ($employee as $key => $value) {
+//            if (!$value) {
+//                continue;
+//            }
+//            $user = D("User")->get(array("id" => $value));
+//            $data = '{
+//                "touser":"' . $user["openid"] . '",
+//                "template_id":"' . $template_id . '",
+//                "url":"' . "http://" . I("server.HTTP_HOST") . U("App/Admin/order/shopId") . "/" . $order["shop_id"] . '",
+//                "topcolor":"#FF0000",
+//                "data":{
+//                    "first": {
+//                        "value":"客户新订单提醒。---' . BizHelper::getPayStatusText($order["pay_status"]) . '",
+//                        "color":"black"
+//                        },
+//                    "keyword1":{
+//                        "value":"' . $order["orderid"] . '",
+//                        "color":"black"
+//                        },
+//                    "keyword2":{
+//                        "value":"' . BizHelper::getPayTypeText($order["payment"]) . '",
+//                        "color":"black"
+//                        },
+//                    "keyword3":{
+//                        "value":"' . $order["totalprice"] . $scoreString . '",
+//                        "color":"black"
+//                        },
+//                    "keyword4":{
+//                        "value":"' . $order["time"] . '",
+//                        "color":"black"
+//                        },
+//                    "keyword5":{
+//                        "value":"' . $order["contact"]["name"] . ',' . $order["contact"]["phone"] . ',' . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"] . '",
+//                        "color":"black"
+//                        },
+//                    "remark":{
+//                        "value":"' . $order["remark"] . '",
+//                        "color":"black"
+//                        }
+//                }
+//            }';
+//
+//            $data = json_decode($data, true);
+//            self::$weObj->sendTemplateMessage($data);
+//        }
+//    }
 
 
     public function sendTplMsgPay($user_id, $order_id)
@@ -500,14 +526,32 @@ class WechatController extends Controller
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
+        $customerTitle= "尊敬的客户,您的订单已成功支付。\n";
+        $this->sendTplMsgPayDetail($user['openid'],$order,$customerTitle);
+
+        $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
+        $employee = explode(',', $shop["employee"]);
+        foreach ($employee as $key => $value) {
+            if (!$value) {
+                continue;
+            }
+            $admin = D("User")->get(array("id" => $value));
+            $adminTitle = "客户新订单已成功支付。";
+            $this->sendTplMsgPayDetail($admin["openid"], $order, $adminTitle);
+        }
+    }
+
+    private function sendTplMsgPayDetail($openId, $order, $title)
+    {
+        $template_id = $this->getTplMessageId("OPENTM207791277");
         $msg = array();
-        $msg["touser"] = $user["openid"];
+        $msg["touser"] = $openId;//$user["openid"];
         $msg["template_id"] = $template_id;
         $msg["url"] = "";
         $msg["topcolor"] = "";
         $msg["data"] = array(
             "first" => array(
-                "value" => "尊敬的客户,您的订单已成功支付。\n",
+                "value" => $title,
                 "color" => "red"
             ),
             "keyword1" => array(
