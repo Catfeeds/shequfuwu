@@ -63,9 +63,9 @@
                                     <td>{$label.subname}</td>
                                     <td>{$label.remark}</td>
                                     <td class="table-action"><a
-                                            href="{:U('Home/Shop/modLabel',array('id'=>$label['id']))}">修改</a><a
+                                            href="{:U('Home/Shop/modLabel',array('id'=>encrypt($label['id'])))}">修改</a><a
                                             class="deleteConfirm"
-                                            href="{:U('Home/Shop/delLabel',array('id'=>$label['id']))}">删除</a>
+                                            href="{:U('Home/Shop/delLabel',array('id'=>encrypt($label['id'])))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>

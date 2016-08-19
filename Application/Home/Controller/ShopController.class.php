@@ -3,8 +3,8 @@ namespace Home\Controller;
 
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
-use Common\Model\WechatBiz;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
@@ -74,7 +74,7 @@ class ShopController extends BaseController
 
     public function delShop()
     {
-        D("Shop")->delShop(I("get.id"));
+        D("Shop")->delShop($this->getDecryptParameter());
 
         $this->success("删除成功", cookie("prevUrl"));
     }
@@ -241,7 +241,7 @@ class ShopController extends BaseController
 
     public function modifyMenu()
     {
-        $menu = D("Menu")->getMenu(array("id" => I("get.id")), true);
+        $menu = D("Menu")->getMenu(array("id" => $this->getDecryptParameter()), true);
         $this->assign("menu", $menu);
 
         $menuList = D("Menu")->getMenuList(array("pid" => 0));
@@ -252,7 +252,7 @@ class ShopController extends BaseController
 
     public function delMenu()
     {
-        D("Menu")->delMenu(I("get.id"));
+        D("Menu")->delMenu($this->getDecryptParameter());
 
         $this->success("删除成功", U("Home/Shop/menu"));
     }
@@ -273,7 +273,7 @@ class ShopController extends BaseController
             $this->success("保存成功", cookie("prevUrl"));
         } else {
             if (I("get.id")) {
-                $product = D("Product")->get(array("id" => I("get.id")), array('menu', 'file'));
+                $product = D("Product")->get(array("id" => $this->getDecryptParameter()), array('menu', 'file'));
                 $product["label"] = explode(",", $product["label"]);
 
                 $albums = explode(",", $product["albums"]);
@@ -295,7 +295,7 @@ class ShopController extends BaseController
     public function updateProduct()
     {
         $data = I("get.");
-        $id = $data["id"];
+        $id = $this->getDecryptParameter();
         unset($data["id"]);
         D("Product")->updateProduct($id, $data);
 
@@ -305,7 +305,7 @@ class ShopController extends BaseController
 
     public function delProduct()
     {
-        D("Product")->delProduct(I("get.id"));
+        D("Product")->delProduct($this->getDecryptParameter());
 
         $this->success("删除成功", cookie("prevUrl"));
     }
@@ -347,7 +347,9 @@ class ShopController extends BaseController
 
     public function modifyAds()
     {
-        $ads = D("Ads")->getAds(array("id" => I("get.id")), true);
+        $itemID= $this->getDecryptParameter();
+
+        $ads = D("Ads")->getAds(array("id" => $itemID), true);
         $this->assign("ads", $ads);
 
         $this->display("Shop:addAds");
@@ -355,7 +357,7 @@ class ShopController extends BaseController
 
     public function delAds()
     {
-        D("Ads")->delAds(I("get.id"));
+        D("Ads")->delAds($this->getDecryptParameter());
 
         $this->success("删除成功", cookie("prevUrl"));
     }
@@ -380,7 +382,7 @@ class ShopController extends BaseController
 
     public function delComment()
     {
-        D("Comment")->delComment(I("get.id"));
+        D("Comment")->delComment($this->getDecryptParameter());
 
         $this->success("删除成功", cookie("prevUrl"));
     }
@@ -447,7 +449,7 @@ class ShopController extends BaseController
 
     public function modLabel()
     {
-        $label = D("ProductLabel")->get(array("id" => I("get.id")), false);
+        $label = D("ProductLabel")->get(array("id" => $this->getDecryptParameter()), false);
         $this->assign("label", $label);
 
         $this->display("Shop:addLabel");
@@ -471,7 +473,7 @@ class ShopController extends BaseController
 
     public function delLabel()
     {
-        D("ProductLabel")->del(array("id" => array("in", I("get.id"))));
+        D("ProductLabel")->del(array("id" => array("in", $this->getDecryptParameter())));
 
         $this->success("删除成功", U("Home/Shop/label"));
     }
@@ -515,7 +517,7 @@ class ShopController extends BaseController
 
     public function delSku()
     {
-        D("ProductSku")->del(array("id" => I("get.id")));
+        D("ProductSku")->del(array("id" => $this->getDecryptParameter()));
 
         $this->success("删除成功", cookie("prevUrl"));
     }

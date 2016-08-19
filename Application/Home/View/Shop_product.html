@@ -193,19 +193,19 @@
                                     <td>{$product.remark}</td>
                                     <td class="table-action">
                                         <if condition="$product.status eq -1">
-                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>1))}">出售</a>
-                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>0))}">售罄</a>
+                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>encrypt($product['id']) , 'status'=>1))}">出售</a>
+                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>encrypt($product['id']) , 'status'=>0))}">售罄</a>
                                             <elseif condition="$product.status eq 1"/>
-                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>-1))}">下架</a>
-                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>0))}">售罄</a>
+                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>encrypt($product['id']) , 'status'=>-1))}">下架</a>
+                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>encrypt($product['id']) , 'status'=>0))}">售罄</a>
                                             <else/>
-                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>1))}">出售</a>
-                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>$product['id'] , 'status'=>-1))}">下架</a>
+                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>encrypt($product['id']) , 'status'=>1))}">出售</a>
+                                            <a href="{:U('Home/Shop/updateProduct',array('id'=>encrypt($product['id']) , 'status'=>-1))}">下架</a>
                                         </if>
 
-                                        <a href="{:U('Home/Shop/addProduct',array('id'=>$product['id']))}">修改</a><a
+                                        <a href="{:U('Home/Shop/addProduct',array('id'=>encrypt($product['id'])))}">修改</a><a
                                             class="deleteConfirm"
-                                            href="{:U('Home/Shop/delProduct',array('id'=>$product['id']))}">删除</a></td>
+                                            href="{:U('Home/Shop/delProduct',array('id'=>encrypt($product['id'])))}">删除</a></td>
                                 </tr>
                             </volist>
                             </tbody>

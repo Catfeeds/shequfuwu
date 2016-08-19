@@ -28,6 +28,7 @@ use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\Data\ObjectHelper;
 use Vendor\Hiland\Utils\Data\ObjectTypes;
 use Vendor\Hiland\Utils\Data\RandHelper;
+use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -685,6 +686,28 @@ class FooController extends Controller
         dump("--**严格比较-------------------------------");
         dump(ObjectHelper::equal($data['v7'],$data['v8'],true));
     }
+
+    public function substringop(){
+        $data = array(
+            v1 => "abcdefg",
+            v2 => "**严格比较",
+            v3 => "ab严格比较",
+            v4 => "1234567890",
+            v5 => "运算后严格比较",
+        );
+
+        foreach ($data as $k => $v) {
+            $r= StringHelper::subString($v,0,3);
+            dump("$k 的值为$v,运算后结果为$r");
+        }
+    }
+
+//    private function calcAndDump($data,$className,$methodName){
+//        foreach ($data as $k => $v) {
+//            $r= ReflectionHelper::executeMethod($className,$methodName,$v); //ObjectHelper::getType($v);
+//            dump("$k 的值为$v,运算后结果为$r");
+//        }
+//    }
 
     public function enumop()
     {

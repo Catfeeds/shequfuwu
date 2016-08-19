@@ -26,14 +26,14 @@ class ArticalController extends BaseController
 
     public function modArtical()
     {
-        $artical = D("Artical")->get(array("id" => I("get.id")), true);
+        $artical = D("Artical")->get(array("id" => $this->getDecryptParameter()), true);
         $this->assign("artical", $artical);
         $this->display("Artical:addArtical");
     }
 
     public function delArtical()
     {
-        D("Artical")->del(array("id" => array("in", I("get.id"))));
+        D("Artical")->del(array("id" => array("in", $this->getDecryptParameter())));
         $this->success("删除成功", cookie("prevUrl"));
     }
 

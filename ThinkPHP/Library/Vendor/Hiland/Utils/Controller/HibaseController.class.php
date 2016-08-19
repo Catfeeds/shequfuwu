@@ -155,6 +155,15 @@ class HibaseController extends Controller
      */
     protected function itemsMaintenance($modle, $keys = "", $data = null, $keyName = 'id')
     {
+        if (empty($data)) {
+            $data = I("get.");
+        }
+
+        if (empty($keys) && array_key_exists($keyName, $data)) {
+            $keys = $data["$keyName"];
+            $keys = self::getDecryptParameter($keyName);
+        }
+
         $mate = new ModelMate($modle);
         $result = $mate->maintenanceData($keys, $data, $keyName);
         if ($result) {

@@ -89,13 +89,13 @@
                                     </td>
                                     <td class="table-action">
                                         <if condition="$item.status eq 1"><a
-                                                href="{:U('Home/Trade/redPacketUpdate',array('id'=>$item['id'],'status' => 0))}">停止</a>
+                                                href="{:U('Home/Trade/redPacketUpdate',array('id'=>encrypt($item['id']),'status' => 0))}">停止</a>
                                         </if>
                                         <if condition="$item.status eq 0"><a
-                                                href="{:U('Home/Trade/redPacketUpdate',array('id'=>$item['id'],'status' => 1))}">开启</a>
+                                                href="{:U('Home/Trade/redPacketUpdate',array('id'=>encrypt($item['id']),'status' => 1))}">开启</a>
                                         </if>
-                                        <a href="{:U('Home/Trade/redPacket',array('id'=>$item['id']))}">修改</a>
-                                        <a href="{:U('Home/Trade/redPacketDetailList',array('id'=>$item['id']))}">详情</a>
+                                        <a href="{:U('Home/Trade/redPacket',array('id'=>encrypt($item['id'])))}">修改</a>
+                                        <a href="{:U('Home/Trade/redPacketDetailList',array('id'=>encrypt($item['id'])))}">详情</a>
                                     </td>
                                 </tr>
                             </volist>

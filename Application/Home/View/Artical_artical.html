@@ -82,9 +82,9 @@
                                         {$artical.time}
                                     </td>
                                     <td class="table-action"><a
-                                            href="{:U('Home/Artical/modArtical',array('id'=>$artical['id']))}">修改</a><a
+                                            href="{:U('Home/Artical/modArtical',array('id'=>encrypt($artical['id'])))}">修改</a><a
                                             class="deleteConfirm"
-                                            href="{:U('Home/Artical/delArtical',array('id'=>$artical['id']))}">删除</a>
+                                            href="{:U('Home/Artical/delArtical',array('id'=>encrypt($artical['id'])))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>

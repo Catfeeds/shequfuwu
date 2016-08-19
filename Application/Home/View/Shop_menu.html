@@ -45,7 +45,6 @@
                                     <td class="hidden-xs">
                                         <label><input name="checkbox" class="check" type="checkbox" value="{$menu.id}"></label>
                                     </td>
-
                                     <td>
                                         {$menu.shop.name}
                                     </td>
@@ -58,11 +57,10 @@
                                     </td>
                                     <td>{$menu.rank}</td>
                                     <td>{$menu.remark}</td>
-                                    <td class="table-action"><a
-                                            href="{:U('Home/Shop/modifyMenu',array('id'=>$menu['id']))}">修改</a><a
-                                            class="deleteConfirm"
-                                            class="deleteConfirm"
-                                            href="{:U('Home/Shop/delMenu',array('id'=>$menu['id']))}">删除</a>
+                                    <td class="table-action">
+                                        <a href="{:U('Home/Shop/modifyMenu',array('id'=>encrypt($menu['id'])))}">修改</a>
+                                        <a class="deleteConfirm"
+                                           href="{:U('Home/Shop/delMenu',array('id'=>encrypt($menu['id'])))}">删除</a>
                                     </td>
                                 </tr>
                             </volist>

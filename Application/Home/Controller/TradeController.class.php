@@ -4,10 +4,7 @@ namespace Home\Controller;
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Common\Model\ViewLink;
-use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Misc\RedPacketHelper;
-use Vendor\Hiland\Utils\Data\ArrayHelper;
-use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\Data\DateHelper;
 use Vendor\Hiland\Utils\Data\ObjectHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
@@ -163,13 +160,14 @@ class TradeController extends BaseController
         $this->itemList('weixinRedpacket', $condition, 0, 0, '', ViewLink::getCommon_Shop());
     }
 
-    public function redPacketDetailList($id)
+    public function redPacketDetailList()
     {
+        $id = $this->getDecryptParameter();
         $condition = array("shop_id" => $this->getCurrentShopId(), "packet_id" => $id);
         $this->itemList("weixinRedpacketDetail", $condition);
     }
 
-    public function redPacket($id = 0)
+    public function redPacket()
     {
         //TODO
         //1\判断不能修改别店铺的红包
@@ -224,7 +222,7 @@ class TradeController extends BaseController
         } else {
             $findingCondition = array(
                 "shop_id" => session("homeShopId"),
-                "id" => $id,
+                "id" => $this->getDecryptParameter(),
             );
 
             $data = $mate->find($findingCondition);
@@ -373,27 +371,18 @@ class TradeController extends BaseController
             }
         }
         $cookieScoreValue = cookie("$cookiePrefix-scoreValue");
-        $invalidStats= ObjectHelper::equal($cookieStatus, -10);
+        $invalidStats = ObjectHelper::equal($cookieStatus, -10);
         if ($cookieStatus && $invalidStats == false && $cookieScoreValue) {
             array_push($condition, array("scores" => array("$cookieStatus", $cookieScoreValue)));
         }
 
-        CommonLoger::log("condition4userScore", ArrayHelper::Toxml($condition));
+        //CommonLoger::log("condition4userScore", ArrayHelper::Toxml($condition));
         $this->itemList('userScore', $condition, 0, 0, '', ViewLink::getCommon_User());
     }
 
     public function scoreDetailList()
     {
-        $scoreID = 0;
-        $scoreIDRaw = I("get.id");
-
-        if ($scoreIDRaw) {
-            if (is_numeric($scoreIDRaw)) {
-                $scoreID = $scoreIDRaw;
-            } else {
-                $scoreID = CipherHelper::decrypt($scoreIDRaw);
-            }
-        }
+        $scoreID = $this->getDecryptParameter();
 
         $scoreMate = new ModelMate("userScore");
         $scoreData = $scoreMate->get($scoreID);

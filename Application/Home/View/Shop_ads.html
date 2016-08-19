@@ -88,9 +88,9 @@
                                         {$ads.time}
                                     </td>
                                     <td class="table-action"><a
-                                            href="{:U('Home/Shop/modifyAds',array('id'=>$ads['id']))}">修改</a><a
+                                            href="{:U('Home/Shop/modifyAds',array('id'=>encrypt($ads['id'])))}">修改</a><a
                                             class="deleteConfirm"
-                                            href="{:U('Home/Shop/delAds',array('id'=>$ads['id']))}">删除</a></td>
+                                            href="{:U('Home/Shop/delAds',array('id'=>encrypt($ads['id'])))}">删除</a></td>
                                 </tr>
                             </volist>
                             </tbody>
