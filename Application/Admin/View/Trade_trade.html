@@ -32,6 +32,7 @@
                                     <label><input onchange="checkAll()" type="checkbox" value=""></label>
                                 </th>
                                 <th>ID</th>
+                                <th>店铺名称</th>
                                 <th>用户ID</th>
                                 <th>交易号</th>
                                 <th>交易方式</th>
@@ -46,6 +47,9 @@
                                     </td>
                                     <td>
                                         {$trade.id}
+                                    </td>
+                                    <td>
+                                        {$trade.shop.name}
                                     </td>
                                     <td>
                                         {$trade.user_id}

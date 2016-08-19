@@ -140,26 +140,11 @@ class WechatController extends Controller
                 $eventkey = self::$revData['EventKey'];
 
                 $merchantScanedID = 0;
-                //$merchantScanedName = '';
                 if ($eventkey) {
                     $merchantScanedID = StringHelper::getSeperatorAfterString($eventkey, 'qrscene_');
-                    //$merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
                 }
 
                 self::responseUserAction($openId, $merchantScanedID, $messageContent);
-
-//                if (!empty($merchantScanedName)) {
-//                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
-//                }
-//
-//                if ($merchantScanedID) {
-//                    $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
-//                }
-//
-//                WechatHelper::responseCustomerServiceText($openId, $messageContent);
-//
-//                $newsArray = BizHelper::generateWecomeNewsResponse($merchantScanedID);
-//                self::$weObj->news($newsArray)->reply();
                 break;
             }
             case 'unsubscribe': {
@@ -176,26 +161,9 @@ class WechatController extends Controller
 
                 $eventkey = self::$revData['EventKey'];
                 $merchantScanedID = 0;
-                //$merchantScanedName = '';
                 if ($eventkey) {
                     $merchantScanedID = $eventkey;//self::$revData['EventKey'];
-                    //$merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
                 }
-
-                self::responseUserAction($openId, $merchantScanedID, $messageContent);
-
-//                if (!empty($merchantScanedName)) {
-//                    $messageContent .= "您扫码的店铺为[$merchantScanedName]，您的购物活动将有本店铺为你提供服务。";
-//                }
-//
-//                if ($merchantScanedID) {
-//                    $messageContent .= BizHelper::generateRedPacketResponse($merchantScanedID, $openId);
-//                }
-//
-//                $customerMsgStatus = WechatHelper::responseCustomerServiceText($openId, $messageContent);
-//
-//                $newsArray = BizHelper::generateWecomeNewsResponse($merchantScanedID);
-//                self::$weObj->news($newsArray)->reply();
 
                 break;
             }
@@ -235,10 +203,6 @@ class WechatController extends Controller
 
     private function responseUserAction($openId, $merchantScanedID = 0, $messageContent = '')
     {
-        //$merchantScanedID = 0;
-        //$merchantScanedName = '';
-        //$messageContent = '';
-
         if ($merchantScanedID) {
             $merchantScanedName = BizHelper:: relateUserShopScaned($openId, $merchantScanedID);
         }
@@ -264,7 +228,6 @@ class WechatController extends Controller
             D("User")->save(array("id" => $user["id"], "subscribe" => $newSubscribeStatus));
         }
     }
-
 
     public function getQRCode()
     {

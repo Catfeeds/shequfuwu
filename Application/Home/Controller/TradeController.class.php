@@ -25,7 +25,7 @@ class TradeController extends BaseController
 
         $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
-        $tradeList = D("Trade")->getTradeList($condition, true, "id desc", $p, $num);
+        $tradeList = D("Trade")->getTradeList($condition, false, "id desc", $p, $num);
         $this->assign('tradeList', $tradeList);// 赋值数据集
 
         $count = D("Trade")->getTradeListCount($condition);// 查询满足要求的总记录数

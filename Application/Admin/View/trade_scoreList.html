@@ -19,11 +19,10 @@
                     <h3 class="box-title">积分搜索</h3>
                 </div>
                 <!-- form start -->
-                <form class="form-horizontal" action="{:U('Home/Trade/scoreList')}" method="post">
+                <form class="form-horizontal" action="{:U('scoreList')}" method="post">
                     <div class="box-body">
                         <div class="form-group">
-                            <?php $shopId= session('homeShopId');
-                                $cookiePrefix= 'score'.$shopId; ?>
+                            <?php $cookiePrefix= 'score4admin'; ?>
                             <label class="col-sm-2 control-label">用户ID</label>
                             <div class="col-sm-4">
                                 <input class="form-control" name="userID"
@@ -81,7 +80,7 @@
         </div>
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
-            <div class="small-box bg-red" >
+            <div class="small-box bg-red">
                 <div class="inner">
                     <img src="{$qrcode}" style="width:200px;"/>
                 </div>

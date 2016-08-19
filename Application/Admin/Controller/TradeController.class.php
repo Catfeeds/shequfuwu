@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use Common\Model\ViewLink;
+use Vendor\Hiland\Utils\Data\ObjectHelper;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
 class TradeController extends BaseController
@@ -11,7 +12,7 @@ class TradeController extends BaseController
         //每页显示的记录数
         $num = SystemConst::PC_ITEM_COUNT_PERPAGE_NORMAL;
         $p = I("get.page") ? I("get.page") : 1;
-        $tradeList = D("Trade")->getList(array(), false, "id desc", $p, $num);
+        $tradeList = D("Trade")->getList(array(), true, "id desc", $p, $num);
         $this->assign('tradeList', $tradeList);// 赋值数据集
 
         $count = D("Trade")->getMethod(array(), "count");// 查询满足要求的总记录数
@@ -196,11 +197,11 @@ class TradeController extends BaseController
 
 
         $condition = array(
-            "shop_id" => $this->getCurrentShopId(),
+            //"shop_id" => $this->getCurrentShopId(),
         );
 
-        $shopId = $this->getCurrentShopId();
-        $cookiePrefix = "score$shopId";
+        //$shopId = $this->getCurrentShopId();
+        $cookiePrefix = "score4admin";
 
         if (IS_POST) {
             if (I("post.userID")) {
@@ -231,7 +232,8 @@ class TradeController extends BaseController
             }
         }
         $cookieScoreValue = cookie("$cookiePrefix-scoreValue");
-        if ($cookieStatus && $cookieScoreValue) {
+        $invalidStats= ObjectHelper::equal($cookieStatus, -10);
+        if ($cookieStatus && $invalidStats == false && $cookieScoreValue) {
             array_push($condition, array("scores" => array("$cookieStatus", $cookieScoreValue)));
         }
 
