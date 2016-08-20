@@ -8,6 +8,55 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
+
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">用户搜索</h3>
+                </div>
+                <!-- form start -->
+                <form class="form-horizontal" action="{:U('')}" method="post">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <?php $shopId= session('homeShopId');
+                                $cookiePrefix= 'shopbuyer'.$shopId; ?>
+                            <label class="col-sm-2 control-label">用户ID</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" name="userID"
+                                       placeholder="用户的id在用户进入店铺后，“我的”中查询"
+                                       value="<?php $cookieValue=cookie($cookiePrefix.'-userID'); if($cookieValue!=null)  {echo $cookieValue;} ?>"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">关注时间</label>
+                            <div class="col-sm-10">
+                                <?php $cookieValue= cookie($cookiePrefix.'-timeRange');?>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" name="timeRange"
+                                           id="reservationtime" value="{$productPost.timeRange}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-block btn-danger">开始搜索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <div class="row">
         <!-- /.col -->
         <div class="col-md-12">
             <div class="box box-danger">
@@ -74,4 +123,19 @@
         </div>
         <!-- /.col -->
     </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePicker12Hour:false,
+                timePickerIncrement: 15,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                separator: ' --- ',
+            });
+            if ('{$productPost}') {
+                $('select[name="recommend"]').val('{$productPost.recommend}');
+                $('select[name="status"]').val('{$productPost.status}');
+            }
+        });
+    </script>
 </section>

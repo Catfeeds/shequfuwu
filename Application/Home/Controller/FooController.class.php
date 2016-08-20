@@ -395,6 +395,8 @@ class FooController extends Controller
     public function imageop($fileName = 'http://ww4.sinaimg.cn/mw1024/5efbc0fajw1f5xsthllblj21hc1hckjn.jpg')
     {
         dump(ImageHelper::isImage($fileName));
+        dump(ImageHelper::getImageOutputFunctionParamCount("png"));
+        dump(ImageHelper::getImageOutputFunctionParamCount("jpeg"));
     }
 
     public function timespanop($span = 1468740651)
@@ -701,8 +703,6 @@ class FooController extends Controller
             dump("$k 的值为$v,运算后结果为$r");
         }
     }
-
-
 
     public function enumop()
     {

@@ -15,11 +15,12 @@ class ImageHelper
      * @param $fileName
      * @return bool
      */
-    public static function isImage($fileName){
-        $result= getimagesize($fileName);
-        if($result){
+    public static function isImage($fileName)
+    {
+        $result = getimagesize($fileName);
+        if ($result) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -29,128 +30,12 @@ class ImageHelper
      * @param $image 图片路径或者图片资源
      * @return int
      */
-    public static function getWidth($image){
-        if(is_string($image)){
-            $image= self::loadImage($image);
+    public static function getWidth($image)
+    {
+        if (is_string($image)) {
+            $image = self::loadImage($image);
         }
         return imagesx($image);
-    }
-
-    /**
-     * 获取图片的高度
-     * @param $image 图片路径或者图片资源
-     * @return int
-     */
-    public static function getHeight($image){
-        if(is_string($image)){
-            $image= self::loadImage($image);
-        }
-        return imagesy($image);
-    }
-
-    /**
-     * 实现等比例不失真缩放图片缩放
-     * (在本函数调用的地方，使用完成后请使用imagedestroy($newimage)对新资源进行销毁)
-     *
-     * @param resource $sourceimage
-     *            原来的图片资源
-     * @param int $targetmaxwidth
-     *            图片放缩后允许的最多宽度
-     * @param int $targetmaxheight
-     *            图片放缩后允许的最多高度
-     * @return resource 按比例放缩后的图片
-     */
-    public static function resizeImage($sourceimage, $targetmaxwidth, $targetmaxheight)
-    {
-        $sourcewidth = imagesx($sourceimage);
-        $sourceheight = imagesy($sourceimage);
-
-        if (($targetmaxwidth && $sourcewidth > $targetmaxwidth) || ($targetmaxheight && $sourceheight > $targetmaxheight)) {
-
-            $resizeWidthTag = false;
-            $resizeHeightTag = false;
-
-            if ($targetmaxwidth && $sourcewidth > $targetmaxwidth) {
-                $widthratio = $targetmaxwidth / $sourcewidth;
-                $resizeWidthTag = true;
-            }
-
-            if ($targetmaxheight && $sourceheight > $targetmaxheight) {
-                $heightratio = $targetmaxheight / $sourceheight;
-                $resizeHeightTag = true;
-            }
-
-            if ($resizeWidthTag && $resizeHeightTag) {
-                if ($widthratio < $heightratio)
-                    $ratio = $widthratio;
-                else
-                    $ratio = $heightratio;
-            }
-
-            if ($resizeWidthTag && !$resizeHeightTag)
-                $ratio = $widthratio;
-            if ($resizeHeightTag && !$resizeWidthTag)
-                $ratio = $heightratio;
-
-            $newwidth = $sourcewidth * $ratio;
-            $newheight = $sourceheight * $ratio;
-
-            if (function_exists("imagecopyresampled")) {
-                $newimage = imagecreatetruecolor($newwidth, $newheight);
-                imagecopyresampled($newimage, $sourceimage, 0, 0, 0, 0, $newwidth, $newheight, $sourcewidth, $sourceheight);
-            } else {
-                $newimage = imagecreate($newwidth, $newheight);
-                imagecopyresized($newimage, $sourceimage, 0, 0, 0, 0, $newwidth, $newheight, $sourcewidth, $sourceheight);
-            }
-            return $newimage;
-        } else {
-            return $sourceimage;
-        }
-    }
-
-    /**
-     * 裁剪图片
-     *
-     * @param resource $sourceImage
-     *            待操作的图片资源
-     * @param int $topRemoveValue
-     *            图片上部清除的数值（像素）
-     * @param int $buttomRemoveValue
-     *            图片下部清除的数值（像素）
-     * @param int $leftRemoveValue
-     *            图片左部清除的数值（像素）
-     * @param int $rightRemoveValue
-     *            图片右部清除的数值（像素）
-     * @return resource
-     */
-    public static function cropImage($sourceImage, $topRemoveValue, $buttomRemoveValue = 0, $leftRemoveValue = 0, $rightRemoveValue = 0)
-    {
-        $sourceWidth = imagesx($sourceImage);
-        $sourceHeight = imagesy($sourceImage);
-
-        if ($topRemoveValue >= $sourceHeight) {
-            $topRemoveValue = 0;
-        }
-
-        if ($leftRemoveValue >= $sourceWidth) {
-            $leftRemoveValue = 0;
-        }
-
-        if ($buttomRemoveValue >= $sourceHeight - $topRemoveValue) {
-            $buttomRemoveValue = 0;
-        }
-
-        if ($rightRemoveValue >= $sourceWidth - $leftRemoveValue) {
-            $rightRemoveValue = 0;
-        }
-
-        $newWidth = $sourceWidth - $leftRemoveValue - $rightRemoveValue;
-        $newHeight = $sourceHeight - $topRemoveValue - $buttomRemoveValue;
-        $croppedImage = imagecreatetruecolor($newWidth, $newHeight);
-
-        imagecopy($croppedImage, $sourceImage, 0, 0, $leftRemoveValue, $topRemoveValue, $newWidth, $newHeight);
-
-        return $croppedImage;
     }
 
     /**
@@ -199,7 +84,7 @@ class ImageHelper
                 if (empty($srcData)) {
                     die("图片源为空");
                 }
-                $image = @imagecreatefromstring ($srcData);
+                $image = @imagecreatefromstring($srcData);
                 break;
         }
         return $image;
@@ -354,7 +239,7 @@ class ImageHelper
      */
     public static function imageCreateFromBMP($fileName)
     {
-        if (!$f1 = fopen($fileName, "rb")){
+        if (!$f1 = fopen($fileName, "rb")) {
             return FALSE;
         }
 
@@ -450,6 +335,124 @@ class ImageHelper
     }
 
     /**
+     * 获取图片的高度
+     * @param $image 图片路径或者图片资源
+     * @return int
+     */
+    public static function getHeight($image)
+    {
+        if (is_string($image)) {
+            $image = self::loadImage($image);
+        }
+        return imagesy($image);
+    }
+
+    /**
+     * 实现等比例不失真缩放图片缩放
+     * (在本函数调用的地方，使用完成后请使用imagedestroy($newimage)对新资源进行销毁)
+     *
+     * @param resource $sourceimage
+     *            原来的图片资源
+     * @param int $targetmaxwidth
+     *            图片放缩后允许的最多宽度
+     * @param int $targetmaxheight
+     *            图片放缩后允许的最多高度
+     * @return resource 按比例放缩后的图片
+     */
+    public static function resizeImage($sourceimage, $targetmaxwidth, $targetmaxheight)
+    {
+        $sourcewidth = imagesx($sourceimage);
+        $sourceheight = imagesy($sourceimage);
+
+        if (($targetmaxwidth && $sourcewidth > $targetmaxwidth) || ($targetmaxheight && $sourceheight > $targetmaxheight)) {
+
+            $resizeWidthTag = false;
+            $resizeHeightTag = false;
+
+            if ($targetmaxwidth && $sourcewidth > $targetmaxwidth) {
+                $widthratio = $targetmaxwidth / $sourcewidth;
+                $resizeWidthTag = true;
+            }
+
+            if ($targetmaxheight && $sourceheight > $targetmaxheight) {
+                $heightratio = $targetmaxheight / $sourceheight;
+                $resizeHeightTag = true;
+            }
+
+            if ($resizeWidthTag && $resizeHeightTag) {
+                if ($widthratio < $heightratio)
+                    $ratio = $widthratio;
+                else
+                    $ratio = $heightratio;
+            }
+
+            if ($resizeWidthTag && !$resizeHeightTag)
+                $ratio = $widthratio;
+            if ($resizeHeightTag && !$resizeWidthTag)
+                $ratio = $heightratio;
+
+            $newwidth = $sourcewidth * $ratio;
+            $newheight = $sourceheight * $ratio;
+
+            if (function_exists("imagecopyresampled")) {
+                $newimage = imagecreatetruecolor($newwidth, $newheight);
+                imagecopyresampled($newimage, $sourceimage, 0, 0, 0, 0, $newwidth, $newheight, $sourcewidth, $sourceheight);
+            } else {
+                $newimage = imagecreate($newwidth, $newheight);
+                imagecopyresized($newimage, $sourceimage, 0, 0, 0, 0, $newwidth, $newheight, $sourcewidth, $sourceheight);
+            }
+            return $newimage;
+        } else {
+            return $sourceimage;
+        }
+    }
+
+    /**
+     * 裁剪图片
+     *
+     * @param resource $sourceImage
+     *            待操作的图片资源
+     * @param int $topRemoveValue
+     *            图片上部清除的数值（像素）
+     * @param int $buttomRemoveValue
+     *            图片下部清除的数值（像素）
+     * @param int $leftRemoveValue
+     *            图片左部清除的数值（像素）
+     * @param int $rightRemoveValue
+     *            图片右部清除的数值（像素）
+     * @return resource
+     */
+    public static function cropImage($sourceImage, $topRemoveValue, $buttomRemoveValue = 0, $leftRemoveValue = 0, $rightRemoveValue = 0)
+    {
+        $sourceWidth = imagesx($sourceImage);
+        $sourceHeight = imagesy($sourceImage);
+
+        if ($topRemoveValue >= $sourceHeight) {
+            $topRemoveValue = 0;
+        }
+
+        if ($leftRemoveValue >= $sourceWidth) {
+            $leftRemoveValue = 0;
+        }
+
+        if ($buttomRemoveValue >= $sourceHeight - $topRemoveValue) {
+            $buttomRemoveValue = 0;
+        }
+
+        if ($rightRemoveValue >= $sourceWidth - $leftRemoveValue) {
+            $rightRemoveValue = 0;
+        }
+
+        $newWidth = $sourceWidth - $leftRemoveValue - $rightRemoveValue;
+        $newHeight = $sourceHeight - $topRemoveValue - $buttomRemoveValue;
+        $croppedImage = imagecreatetruecolor($newWidth, $newHeight);
+
+        imagecopy($croppedImage, $sourceImage, 0, 0, $leftRemoveValue, $topRemoveValue, $newWidth, $newHeight);
+
+        return $croppedImage;
+    }
+
+    /**
      * 在浏览器中显示图片
      *
      * @param resource $image
@@ -484,13 +487,13 @@ class ImageHelper
      */
     public static function getImageOutputFunction($imageExtensionFileNameWithoutDot)
     {
-        $result = self::getImageFunction($imageExtensionFileNameWithoutDot, 'output');
+        $result = self::getImageFunctionInfo($imageExtensionFileNameWithoutDot, 'output');
         return $result;
     }
 
-    private static function getImageFunction($imageExtensionFileNameWithoutDot, $functionType)
+    private static function getImageFunctionInfo($imageExtensionFileNameWithoutDot, $functionType)
     {
-        $arrayFunctions = self::ImageFunctions();
+        $arrayFunctions = self::ImageFunctionArray();
         $extFunctions = $arrayFunctions[$imageExtensionFileNameWithoutDot];
         $result = $extFunctions[$functionType];
         return $result;
@@ -500,36 +503,55 @@ class ImageHelper
      * 获取图片操作函数数组
      * @return array
      */
-    private static function ImageFunctions()
+    private static function ImageFunctionArray()
     {
         $array = array(
             'jpg' => array(
                 'output' => 'imagejpeg',
+                'outputParamCount' => 3,
                 'create' => 'imagecreatefromjpeg'
             ),
             'jpeg' => array(
                 'output' => 'imagejpeg',
+                'outputParamCount' => 3,
                 'create' => 'imagecreatefromjpeg'
             ),
             'png' => array(
                 'output' => 'imagepng',
+                'outputParamCount' => 2,
                 'create' => 'imagecreatefrompng'
             ),
             'gif' => array(
                 'output' => 'imagegif',
+                'outputParamCount' => 2,
                 'create' => 'imagecreatefromgif'
             ),
             'bmp' => array(
                 'output' => 'imagejpeg',
+                'outputParamCount' => 3,
                 'create' => 'imagecreatefromwbmp' //这个方法有问题
             ),
             'wbmp' => array(
                 'output' => 'image2wbmp',
+                'outputParamCount' => 2,
                 'create' => 'imagecreatefromwbmp'
             )
         );
 
         return $array;
+    }
+
+    /**
+     * 根据图片文件的扩展名称，确定图片的载入函数
+     *
+     * @param string $imageExtensionFileNameWithoutDot
+     *            不带小数点的图片扩展名称
+     * @return string
+     */
+    public static function getImageCreateFunction($imageExtensionFileNameWithoutDot)
+    {
+        $result = self::getImageFunctionInfo($imageExtensionFileNameWithoutDot, 'create');
+        return $result;
     }
 
     /**
@@ -545,12 +567,17 @@ class ImageHelper
         $imageType = strtolower(FileHelper::getFileExtensionName($filePhysicalFullName));
 
         $functionName = self::getImageOutputFunction($imageType);
+        $paramCount = self::getImageOutputFunctionParamCount($imageType);
 
         if (function_exists($functionName)) {
-            if($functionName== "imagepng"){
-                $functionName($image, $filePhysicalFullName);
-            }else{
-                $functionName($image, $filePhysicalFullName, $imageDisplayQuality);
+            switch ($paramCount) {
+                case 3: {
+                    $functionName($image, $filePhysicalFullName, $imageDisplayQuality);
+                    break;
+                }
+                default: {
+                    $functionName($image, $filePhysicalFullName);
+                }
             }
         }
 
@@ -558,15 +585,15 @@ class ImageHelper
     }
 
     /**
-     * 根据图片文件的扩展名称，确定图片的载入函数
+     * 根据图片文件的扩展名称，确定图片的输出函数
      *
      * @param string $imageExtensionFileNameWithoutDot
      *            不带小数点的图片扩展名称
      * @return string
      */
-    public static function getImageCreateFunction($imageExtensionFileNameWithoutDot)
+    public static function getImageOutputFunctionParamCount($imageExtensionFileNameWithoutDot)
     {
-        $result = self::getImageFunction($imageExtensionFileNameWithoutDot, 'create');
+        $result = self::getImageFunctionInfo($imageExtensionFileNameWithoutDot, 'outputParamCount');
         return $result;
     }
 

@@ -81,7 +81,7 @@
         </div>
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
-            <div class="small-box bg-red" >
+            <div class="small-box bg-red">
                 <div class="inner">
                     <img src="{$qrcode}" style="width:200px;"/>
                 </div>
@@ -184,8 +184,9 @@
     $(function () {
         $('#reservationtime').daterangepicker({
             timePicker: true,
-            timePickerIncrement: 30,
-            format: 'YYYY-MM-DD h:mm:ss',
+            timePicker12Hour: false,
+            timePickerIncrement: 15,
+            format: 'YYYY-MM-DD HH:mm:ss',
             separator: ' --- ',
         });
         if ('{$productPost}') {
