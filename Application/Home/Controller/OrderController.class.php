@@ -3,6 +3,7 @@ namespace Home\Controller;
 
 use Common\Model\BizConst;
 use Common\Model\ViewLink;
+use Vendor\Hiland\Utils\Data\ObjectHelper;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
 
@@ -23,28 +24,41 @@ class OrderController extends BaseController
          */
         D("Order")->updateNoticeStatus($condition);
 
+        $queryOrderId = I("post.orderid");
+        if ($queryOrderId) {
+            array_push($condition, array("orderid" => $queryOrderId));
+        }
 
-        $data = I("get.");
-        if ($data["status"] != "") {
-            array_push($condition, array(
-                "status" => $data["status"]
-            ));
+        $queryUserId = I("post.user_id");
+        if ($queryUserId) {
+            array_push($condition, array("user_id" => $queryUserId));
         }
-        if ($data["pay_status"] != "") {
-            array_push($condition, array(
-                "pay_status" => $data["pay_status"]
-            ));
+
+        $queryPayment = I("post.payment");
+        if ($queryPayment && !ObjectHelper::equal($queryPayment, -10)) {
+            array_push($condition, array("payment" => $queryPayment));
         }
-        if ($data["day"] != "") {
-            array_push($condition, array(
-                "time" => array("like", $data["day"] . "%")
-            ));
+
+        $queryPayStatus = I("post.pay_status");
+        if ($queryPayStatus && !ObjectHelper::equal($queryPayStatus, -10)) {
+            array_push($condition, array("pay_status" => $queryPayStatus));
         }
+
+        $queryStatus = I("post.status");
+        if ($queryStatus && !ObjectHelper::equal($queryStatus, -10)) {
+            array_push($condition, array("status" => $queryStatus));
+        }
+
+        $queryTimeRange= I("post.timeRange");
+        if ($queryTimeRange) {
+            $timeRange = $queryTimeRange;
+            $timeRange = explode(" --- ", $timeRange);
+            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
+        }
+
+        $this->assign("orderPost", I("post."));
 
         $this->assignListAndPaging("Order", $condition, $p, $num, "orderList", ViewLink::getOrder_OrderContact_OrderDetail_Shop());
-
-        $productList = D("Product")->getProductList(array("shop_id" => session("homeShopId")), true);
-        $this->assign('productList', $productList);
 
         $orderPayTypes = BizConst::getConstArray("ORDER_PAYTYPE_", false);
         $this->assign('orderPayTypes', $orderPayTypes);
@@ -66,7 +80,7 @@ class OrderController extends BaseController
     public function orderCommonPrint($id)
     {
         $mate = new ViewMate("order", ViewLink::getOrder_OrderContact_OrderDetail_Shop()); //D("Order")->getOrder(array("id" => $id), true);
-        $result= $mate->get($id);
+        $result = $mate->get($id);
 
         if ($result["pay_status"] == 0) {
             $pay_status = "未付款";
@@ -110,76 +124,76 @@ class OrderController extends BaseController
 
         $msg .= $msgtitle . $msgcontent . $msgfooter;
 
-        $this->assign('message',$msg);
+        $this->assign('message', $msg);
         $this->display();
     }
 
-    public function search()
-    {
-        $condition = array(
-            "shop_id" => session("homeShopId")
-        );
-
-        if (I("post.id")) {
-            array_push($condition, array("id" => I("post.id")));
-        }
-        if (I("post.orderid")) {
-            array_push($condition, array("orderid" => I("post.orderid")));
-        }
-        if (I("post.user_id")) {
-            array_push($condition, array("user_id" => I("post.user_id")));
-        }
-        if (I("post.payment") != -10) {
-            array_push($condition, array("payment" => I("post.payment")));
-        }
-        if (I("post.pay_status") != -10) {
-            array_push($condition, array("pay_status" => I("post.pay_status")));
-        }
-        if (I("post.status") != -10) {
-            array_push($condition, array("status" => I("post.status")));
-        }
-
-        if (I("post.timeRange")) {
-            $timeRange = I("post.timeRange");
-            $timeRange = explode(" --- ", $timeRange);
-            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
-        }
-
-        $orderList = D("Order")->getOrderList($condition, true, "id desc");
-
-        if (I("post.product_id") != -10) {
-            foreach ($orderList as $key => $value) {
-                $flag = true;
-                foreach ($value["detail"] as $k => $v) {
-                    if ($v["product_id"] == I("post.product_id")) {
-                        $flag = false;
-                        break;
-                    }
-                }
-
-                if ($flag) {
-                    unset($orderList[$key]);
-                }
-            }
-        }
-
-        $productList = D("Product")->getProductList(array(), true);
-        $this->assign('productList', $productList);// 赋值分页输出
-
-        $this->assign("orderPost", I("post."));
-        $this->assign("orderList", $orderList);
-
-        $orderPayTypes = BizConst::getConstArray("ORDER_PAYTYPE_", false);
-        $this->assign('orderPayTypes', $orderPayTypes);
-
-        $orderStatuses = BizConst::getConstArray("ORDER_STATUS_", false);
-        $this->assign('orderStatuses', $orderStatuses);
-
-        $orderPayStatuses = BizConst::getConstArray("ORDER_PAYSTATUS_", false);
-        $this->assign('orderPayStatuses', $orderPayStatuses);
-
-        $this->display("order");
-    }
+//    public function search()
+//    {
+//        $condition = array(
+//            "shop_id" => session("homeShopId")
+//        );
+//
+//        if (I("post.id")) {
+//            array_push($condition, array("id" => I("post.id")));
+//        }
+//        if (I("post.orderid")) {
+//            array_push($condition, array("orderid" => I("post.orderid")));
+//        }
+//        if (I("post.user_id")) {
+//            array_push($condition, array("user_id" => I("post.user_id")));
+//        }
+//        if (I("post.payment") != -10) {
+//            array_push($condition, array("payment" => I("post.payment")));
+//        }
+//        if (I("post.pay_status") != -10) {
+//            array_push($condition, array("pay_status" => I("post.pay_status")));
+//        }
+//        if (I("post.status") != -10) {
+//            array_push($condition, array("status" => I("post.status")));
+//        }
+//
+//        if (I("post.timeRange")) {
+//            $timeRange = I("post.timeRange");
+//            $timeRange = explode(" --- ", $timeRange);
+//            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
+//        }
+//
+//        $orderList = D("Order")->getOrderList($condition, true, "id desc");
+//
+//        if (I("post.product_id") != -10) {
+//            foreach ($orderList as $key => $value) {
+//                $flag = true;
+//                foreach ($value["detail"] as $k => $v) {
+//                    if ($v["product_id"] == I("post.product_id")) {
+//                        $flag = false;
+//                        break;
+//                    }
+//                }
+//
+//                if ($flag) {
+//                    unset($orderList[$key]);
+//                }
+//            }
+//        }
+//
+//        $productList = D("Product")->getProductList(array(), true);
+//        $this->assign('productList', $productList);// 赋值分页输出
+//
+//        $this->assign("orderPost", I("post."));
+//        $this->assign("orderList", $orderList);
+//
+//        $orderPayTypes = BizConst::getConstArray("ORDER_PAYTYPE_", false);
+//        $this->assign('orderPayTypes', $orderPayTypes);
+//
+//        $orderStatuses = BizConst::getConstArray("ORDER_STATUS_", false);
+//        $this->assign('orderStatuses', $orderStatuses);
+//
+//        $orderPayStatuses = BizConst::getConstArray("ORDER_PAYSTATUS_", false);
+//        $this->assign('orderPayStatuses', $orderPayStatuses);
+//
+//        $this->display("order");
+//    }
 
     public function update()
     {

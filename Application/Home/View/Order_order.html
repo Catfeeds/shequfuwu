@@ -15,29 +15,16 @@
                     <h3 class="box-title">订单搜索</h3>
                 </div>
                 <!-- form start -->
-                <form class="form-horizontal" action="{:U('Home/Order/search')}" method="post">
+                <form class="form-horizontal" action="{:U('')}" method="post">
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="col-sm-1 control-label">商品</label>
-
-                            <div class="col-sm-3">
-                                <select name="product_id" class="form-control">
-                                    <option value="-10">不选择商品</option>
-                                    <volist name="productList" id="list">
-                                        <option value="{$list.id}">{$list.name}</option>
-                                    </volist>
-                                </select>
-                            </div>
-
                             <label class="col-sm-1 control-label">订单编号</label>
-
                             <div class="col-sm-3">
                                 <input class="form-control" name="orderid" placeholder="" value="{$orderPost.orderid}"
                                        type="text">
                             </div>
 
                             <label class="col-sm-1 control-label">用户ID</label>
-
                             <div class="col-sm-3">
                                 <input class="form-control" name="user_id" placeholder="" value="{$orderPost.user_id}"
                                        type="text">
@@ -117,7 +104,6 @@
                 tmp.moveTo(0, 0);
                 tmp.resizeTo(screen.width + 20, screen.height);
                 tmp.focus();
-
                 tmp.print();
             }
         </script>
