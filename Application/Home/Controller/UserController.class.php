@@ -8,7 +8,37 @@ class UserController extends BaseController
 {
     public function user()
     {
-        $condition = array("shopid" => $this->getCurrentShopId());
+        $shopId= $this->getCurrentShopId();
+        $cookiePrefix = "shopbuyer$shopId";
+
+        $condition = array("shopid" => $shopId);
+
+        if (IS_POST) {
+            if (I("post.userID") == "") {
+                cookie("$cookiePrefix-userID", null);
+            } else {
+                cookie("$cookiePrefix-userID", I("userID"));
+            }
+        }
+        $cookieUserID = cookie("$cookiePrefix-userID");
+        if ($cookieUserID) {
+            array_push($condition, array("userid" => $cookieUserID));
+        }
+
+        if (I("post.timeRange")) {
+            $timeRange = I("post.timeRange");
+            if ($timeRange == "") {
+                cookie("$cookiePrefix-timeRange", null);
+            } else {
+                cookie("$cookiePrefix-timeRange", $timeRange);
+            }
+        }
+        $cookieTimeRange = cookie("$cookiePrefix-timeRange");
+        if ($cookieTimeRange) {
+            $timeRange = explode(" --- ", $cookieTimeRange);
+            array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
+        }
+
         $this->itemList("usershopscaned", $condition, 0, 0, "userList", ViewLink::getCommon_User());
     }
 

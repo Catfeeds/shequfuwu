@@ -38,7 +38,7 @@
                                         <i class="fa fa-clock-o"></i>
                                     </div>
                                     <input type="text" class="form-control pull-right" name="timeRange"
-                                           id="reservationtime" value="{$productPost.timeRange}">
+                                           id="reservationtime" value="{$cookieValue}">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                 <!--</th>-->
                                 <th>编号</th>
                                 <th>用户名</th>
-                                <th>openid</th>
+                                <th>地区</th>
                                 <th>头像</th>
                                 <th>关注时间</th>
                                 <!--<th>操作</th>-->
@@ -95,7 +95,7 @@
                                     <!--</td>-->
                                     <td>{$user.user.id}</td>
                                     <td>{$user.user.username}</td>
-                                    <td>{$user.openid}</td>
+                                    <td>{$user.user.province}/{$user.user.city}</td>
                                     <td>
                                         <if condition="$user.user.avater neq ''">
                                             <img src="{$user.user.avater}" style="width: 48px;height: 48px">
