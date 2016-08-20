@@ -6,6 +6,7 @@ use Common\Model\BizHelper;
 use Common\Model\ViewLink;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\ArrayHelper;
+use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
@@ -147,5 +148,10 @@ class BizController
         }
 
         WebHelper::serverReturn($result, '', JSON_UNESCAPED_UNICODE);
+    }
+
+    public function callFuncs($className,$methodName,$construcArgs=null,$methodArgs= null){
+        //CommonLoger::log("callFuncs","sssssssssssssssssss");
+        ReflectionHelper::executeMethod($className,$methodName,$construcArgs,$methodArgs);
     }
 }

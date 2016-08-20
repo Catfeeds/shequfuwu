@@ -60,6 +60,16 @@ class WechatHelper
         return $ticket;
     }
 
+    public static function cleanAccessTokenCache(){
+        //CommonLoger::log("cleanAccessTokenCache","sssssssssssssssssss");
+        $cacheKey= self::getAccessTokenCacheKey();
+        S($cacheKey,null);
+    }
+
+    private static function getAccessTokenCacheKey(){
+        return "weixin_accesstoken_20140225";
+    }
+
     /**
      * 根据微信公众平台应用id和安全信息获取访问令牌
      *
@@ -74,7 +84,7 @@ class WechatHelper
      */
     public static function getAccessToken($appID = '', $appSecret = '', $useCache = true, $cacheSeconds = 3600)
     {
-        $useCache= false;
+         //$useCache= false;
 
         if (empty($appID)) {
             $appID = WechatConfig::APPID;
@@ -85,7 +95,7 @@ class WechatHelper
         }
 
         $result = false;
-        $cachekey = sprintf("apptoken20140225-appid:%s-secret:%s", $appID, $appSecret);
+        $cachekey = self::getAccessTokenCacheKey();
         if ($useCache == true) {
             $result = S($cachekey);
             if ($result != false && $result != "") {

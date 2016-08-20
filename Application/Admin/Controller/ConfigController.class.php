@@ -1,6 +1,8 @@
 <?php
 namespace Admin\Controller;
 
+use Vendor\Hiland\Utils\Web\WebHelper;
+
 class ConfigController extends BaseController
 {
     public function configSet()
@@ -13,6 +15,16 @@ class ConfigController extends BaseController
             $this->assign("config", $config);
             $this->display();
         }
+    }
+
+    /**
+     * 清理系统缓存
+     */
+    public function cacheSet()
+    {
+        $basicConfig['approot']= WebHelper::getWebAppFull();
+        $this->assign("basicConfig",$basicConfig);
+        $this->display();
     }
 
     public function addressSet()
