@@ -119,7 +119,7 @@ class WechatHelper
             }
         }
 
-        //CommonLoger::log("accessToken", $result);
+        CommonLoger::log("accessToken", $result);
         return $result;
     }
 
