@@ -27,7 +27,6 @@
                         <li class="user-header">
                             <img src="__PUBLIC__/Admin/dist/img/logo-simple.png" class="img-circle"
                                  alt="User Image">
-
                             <p>
                                 {$Think.session.homeName}
                                 <small>管理员</small>
@@ -97,7 +96,6 @@
         </div>
     </nav>
 </header>
-
 <section class="content-header" style="margin-left: 10%;margin-top:5px;width:80%;">
     <h1>
         店铺管理
@@ -145,7 +143,7 @@
                                 <th>链接</th>
                                 <th>状态</th>
                                 <th>排序</th>
-                                <th>店铺介绍</th>
+                                <th style="width:150px;">店铺介绍</th>
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -188,7 +186,7 @@
                                         {$shop.rank}
                                     </td>
                                     <td>
-                                        {$shop.remark}
+                                        {$shop.remark|msubstr=0,50}
                                     </td>
                                     <td>
                                         {$shop.time}
