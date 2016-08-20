@@ -7,6 +7,8 @@ class BaseController extends HibaseController
 {
     public function _initialize()
     {
+        parent::_initialize();
+
 //      url中的pjax参数影响数据分页
         if (I("get._pjax")) {
             unset($_GET["_pjax"]);
@@ -21,7 +23,11 @@ class BaseController extends HibaseController
         // ) {
         //     $this->error('请先选择店铺', 'Home/Shop/shop');
         // }
+
+        //$this->assignAppBasic();
     }
+
+
 
     public function is_login()
     {

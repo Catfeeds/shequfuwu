@@ -7,6 +7,7 @@ use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
+use Vendor\Hiland\Utils\Web\WebHelper;
 
 /**
  * Created by PhpStorm.
@@ -17,6 +18,22 @@ use Vendor\Hiland\Utils\Datas\SystemConst;
  */
 class HibaseController extends Controller
 {
+    public function _initialize()
+    {
+        $this->assignBasicConfig();
+    }
+
+    private function assignBasicConfig(){
+        $basicConfig['approot']= WebHelper::getWebAppFull();
+
+        //==以下数据可以根据不同的项目进行调整=======================================
+        $basicConfig['defaultavatar']= WebHelper::getWebRootFull()."/Public/Uploads/defaultavatar.jpg";
+
+
+        //=======================================================================
+
+        $this->assign("basicConfig",$basicConfig);
+    }
     /**
      * 单条信息的添加修改页面对应的action可以调用此方法
      * @param $modle

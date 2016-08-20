@@ -127,7 +127,7 @@
         $(function () {
             $('#reservationtime').daterangepicker({
                 timePicker: true,
-                timePicker12Hour:false,
+                timePicker12Hour: false,
                 timePickerIncrement: 15,
                 format: 'YYYY-MM-DD HH:mm:ss',
                 separator: ' --- ',
@@ -136,6 +136,12 @@
                 $('select[name="recommend"]').val('{$productPost.recommend}');
                 $('select[name="status"]').val('{$productPost.status}');
             }
+
+            $.each($(".table").find("img"), function (i, value) {
+                if ($(value).attr("src") == "") {
+                    $(value).attr("src", "{$basicConfig.defaultavatar}");
+                }
+            });
         });
     </script>
 </section>
