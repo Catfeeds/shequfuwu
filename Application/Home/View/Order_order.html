@@ -16,17 +16,22 @@
                 </div>
                 <!-- form start -->
                 <form class="form-horizontal" action="{:U('')}" method="post">
+                    <?php
+                         $shopId= session('homeShopId');
+                         $cookieQueryValues=cookie('shopQueryValues'.$shopId.'-order');
+                         //dump($cookieQueryValues);
+                    ?>
                     <div class="box-body">
                         <div class="form-group">
                             <label class="col-sm-1 control-label">订单编号</label>
                             <div class="col-sm-3">
-                                <input class="form-control" name="orderid" placeholder="" value="{$orderPost.orderid}"
+                                <input class="form-control" name="orderid" placeholder="" value="{$cookieQueryValues.orderid}"
                                        type="text">
                             </div>
 
                             <label class="col-sm-1 control-label">用户ID</label>
                             <div class="col-sm-3">
-                                <input class="form-control" name="user_id" placeholder="" value="{$orderPost.user_id}"
+                                <input class="form-control" name="user_id" placeholder="" value="{$cookieQueryValues.user_id}"
                                        type="text">
                             </div>
                         </div>
@@ -75,7 +80,7 @@
                                         <i class="fa fa-clock-o"></i>
                                     </div>
                                     <input type="text" class="form-control pull-right" name="timeRange"
-                                           id="reservationtime" value="{$orderPost.timeRange}">
+                                           id="reservationtime" value="{$cookieQueryValues.timeRange}">
                                 </div>
                             </div>
                             <!-- /.input group -->
@@ -152,7 +157,7 @@
                                                       value="{$order.id}"></label>
                                     </td>
                                     <!--<td>-->
-                                        <!--{$order.shop.name}-->
+                                    <!--{$order.shop.name}-->
                                     <!--</td>-->
                                     <td>
                                         {$order.orderid}<br/>
@@ -262,16 +267,16 @@
     $(function () {
         $('#reservationtime').daterangepicker({
             timePicker: true,
-            timePicker12Hour:false,
+            timePicker12Hour: false,
             timePickerIncrement: 15,
             format: 'YYYY-MM-DD HH:mm:ss',
             separator: ' --- ',
         });
-        if ('{$orderPost}') {
-            $('select[name="payment"]').val('{$orderPost.payment}');
-            $('select[name="pay_status"]').val('{$orderPost.pay_status}');
-            $('select[name="status"]').val('{$orderPost.status}');
-            $('select[name="product_id"]').val('{$orderPost.product_id}');
+        if ('{$cookieQueryValues}') {
+            $('select[name="payment"]').val('{$cookieQueryValues.payment}');
+            $('select[name="pay_status"]').val('{$cookieQueryValues.pay_status}');
+            $('select[name="status"]').val('{$cookieQueryValues.status}');
+            $('select[name="product_id"]').val('{$cookieQueryValuest .product_id}');
         }
     });
 </script>

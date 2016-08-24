@@ -15,8 +15,9 @@ class OrderController extends BaseController
         $p = I("get.page") ? I("get.page") : 1;
         cookie("prevUrl", U("Home/Order/order/page/$p"));
 
+        $shopId = $this->getCurrentShopId();
         $condition = array(
-            "shop_id" => session("homeShopId")
+            "shop_id" => $shopId,
         );
 
         /**
@@ -24,39 +25,48 @@ class OrderController extends BaseController
          */
         D("Order")->updateNoticeStatus($condition);
 
-        $queryOrderId = I("post.orderid");
+        $shopQueryValues = array();
+        $lastCookie = cookie("shopQueryValues$shopId-order");
+
+        $queryOrderId = $this->getParamFromPostOrCookie("orderid", $lastCookie);
+        $shopQueryValues["orderid"] = $queryOrderId;
         if ($queryOrderId) {
             array_push($condition, array("orderid" => $queryOrderId));
         }
 
-        $queryUserId = I("post.user_id");
+        $queryUserId = $this->getParamFromPostOrCookie("user_id", $lastCookie);
+        $shopQueryValues["user_id"] = $queryUserId;
         if ($queryUserId) {
             array_push($condition, array("user_id" => $queryUserId));
         }
 
-        $queryPayment = I("post.payment");
+        $queryPayment = $this->getParamFromPostOrCookie("payment", $lastCookie);
+        $shopQueryValues["payment"] = $queryPayment;
         if ($queryPayment && !ObjectHelper::equal($queryPayment, -10)) {
             array_push($condition, array("payment" => $queryPayment));
         }
 
-        $queryPayStatus = I("post.pay_status");
+        $queryPayStatus = $this->getParamFromPostOrCookie("pay_status", $lastCookie);
+        $shopQueryValues["pay_status"] = $queryPayStatus;
         if ($queryPayStatus && !ObjectHelper::equal($queryPayStatus, -10)) {
             array_push($condition, array("pay_status" => $queryPayStatus));
         }
 
-        $queryStatus = I("post.status");
+        $queryStatus = $this->getParamFromPostOrCookie("status", $lastCookie);
+        $shopQueryValues["status"] = $queryStatus;
         if ($queryStatus && !ObjectHelper::equal($queryStatus, -10)) {
             array_push($condition, array("status" => $queryStatus));
         }
 
-        $queryTimeRange= I("post.timeRange");
+        $queryTimeRange = $this->getParamFromPostOrCookie("timeRange", $lastCookie);
+        $shopQueryValues["timeRange"] = $queryTimeRange;
         if ($queryTimeRange) {
             $timeRange = $queryTimeRange;
             $timeRange = explode(" --- ", $timeRange);
             array_push($condition, array("time" => array('between', array($timeRange[0], $timeRange[1]))));
         }
 
-        $this->assign("orderPost", I("post."));
+        cookie("shopQueryValues$shopId-order", $shopQueryValues);
 
         $this->assignListAndPaging("Order", $condition, $p, $num, "orderList", ViewLink::getOrder_OrderContact_OrderDetail_Shop());
 
@@ -128,6 +138,37 @@ class OrderController extends BaseController
         $this->display();
     }
 
+    public function update()
+    {
+        $data = I("get.");
+        $id = $data["id"];
+        unset($data["id"]);
+        D("Order")->updateAllOrder($id, $data);
+
+        //发货通知
+        if (I("get.status") == 1) {
+            $ids = explode(",", I("get.id"));
+
+            $orderModel = D("Order");
+            foreach ($ids as $key => $value) {
+                $order = $orderModel->getOrder(array("id" => $value));
+
+                $getUrl = "http://" . I("server.HTTP_HOST") . U("Admin/Wechat/sendTplMsgDeliver", array("order_id" => $value, "shopId" => $order["shop_id"]));
+                // 先暂时注销
+                // http_get($getUrl);
+            }
+        } elseif (I("get.status") == 2) {
+            $orders = D("Order")->getOrderList(array("id" => array("in", $id)));
+            foreach ($orders as $key => $value) {
+                if ($value["payment"] == 3) {
+                    D("Order")->where(array("id" => $value["id"]))->save(array("pay_status" => 1));
+                }
+            }
+        }
+
+        $this->success("操作成功", cookie("prevUrl"));
+    }
+
 //    public function search()
 //    {
 //        $condition = array(
@@ -195,37 +236,6 @@ class OrderController extends BaseController
 //        $this->display("order");
 //    }
 
-    public function update()
-    {
-        $data = I("get.");
-        $id = $data["id"];
-        unset($data["id"]);
-        D("Order")->updateAllOrder($id, $data);
-
-        //发货通知
-        if (I("get.status") == 1) {
-            $ids = explode(",", I("get.id"));
-
-            $orderModel = D("Order");
-            foreach ($ids as $key => $value) {
-                $order = $orderModel->getOrder(array("id" => $value));
-
-                $getUrl = "http://" . I("server.HTTP_HOST") . U("Admin/Wechat/sendTplMsgDeliver", array("order_id" => $value, "shopId" => $order["shop_id"]));
-                // 先暂时注销
-                // http_get($getUrl);
-            }
-        } elseif (I("get.status") == 2) {
-            $orders = D("Order")->getOrderList(array("id" => array("in", $id)));
-            foreach ($orders as $key => $value) {
-                if ($value["payment"] == 3) {
-                    D("Order")->where(array("id" => $value["id"]))->save(array("pay_status" => 1));
-                }
-            }
-        }
-
-        $this->success("操作成功", cookie("prevUrl"));
-    }
-
     public function export()
     {
         $condition = array(
@@ -277,10 +287,6 @@ class OrderController extends BaseController
         \Excel::export($order, array('订单ID', '店铺ID', '用户ID', '联系人ID', '订单编号', '总价格', '支付方式', '支付状态', '配送时间', '运费', '折扣', '备注', '状态', '是否评论', '时间', '用户', '订单详情', '店铺', '订单人', '联系方式', '省份', '城市', '地域', '详细地址', '邮编'));
     }
 
-    // public function test(){
-    //     wxPrint(134);
-    // }
-
     public function wxPrint()
     {
         $ids = explode(",", I("get.id"));
@@ -290,4 +296,10 @@ class OrderController extends BaseController
 
         $this->success("操作成功", cookie("prevUrl"));
     }
+
+    // public function test(){
+    //     wxPrint(134);
+    // }
+
+
 }

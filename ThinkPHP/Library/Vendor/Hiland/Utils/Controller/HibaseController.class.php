@@ -213,4 +213,14 @@ class HibaseController extends Controller
 
         return $result;
     }
+
+    protected function getParamFromPostOrCookie($paramName, $arrayCookie)
+    {
+        //如果是点击查询按钮
+        if (IS_POST) {
+            return I("post.$paramName");
+        } else { //如果是点击翻页按钮
+            return $arrayCookie["$paramName"];
+        }
+    }
 }
