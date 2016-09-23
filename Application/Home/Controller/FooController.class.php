@@ -399,6 +399,11 @@ class FooController extends Controller
         dump(ImageHelper::getImageOutputFunctionParamCount("jpeg"));
     }
 
+    public function delop(){
+        $condition= array("id"=>2);
+        D("File")->del($condition);
+    }
+
     public function timespanop($span = 1468740651)
     {
         dump(date('Y-m-d H:i:s', $span));

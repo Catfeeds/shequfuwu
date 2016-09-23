@@ -79,10 +79,13 @@ class FileModel extends Model
     //TODO:找到物理文件删除
     public function delImage($condition = array())
     {
-        //1.找到物理文件删除
+        //防止所有的文件都被删除，需要保证$condition不为null
+        if($condition){
+            //1.找到物理文件删除
 
-        //2.删除数据库记录
-        $this->where($condition)->delete();
+            //2.删除数据库记录
+            $this->where($condition)->delete();
+        }
     }
 
     public function uploadImage()
@@ -110,7 +113,7 @@ class FileModel extends Model
     public function upload()
     {
         $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize = 3145728;// 设置附件上传大小
+        $upload->maxSize = 200728;// 设置附件上传大小
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath = './Public/Uploads/'; // 设置附件上传根目录
         $upload->savePath = ''; // 设置附件上传（子）目录
