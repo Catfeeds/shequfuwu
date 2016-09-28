@@ -88,23 +88,23 @@ function imageUploader(obj, more) {
 
                         }
                     },
-                    "删除": {
-                        className: "btn-danger",
-                        callback: function () {
-                            var delUrl = URL + "index.php/Home/File/delImage/id/" + selectedImage.id;
-                            alert(delUrl);
-                            // $.get(delUrl, function (data) {
-                            //     var p = $('#dialog-imageUploader .pagination .current').text();
-                            //     var pagUrl = URL + "index.php/Home/File/imageUploader/p/" + p;
-                            //     $.pjax({
-                            //         url: pagUrl,
-                            //         container: '.bootbox .bootbox-body',
-                            //         push: false,
-                            //     });
-                            // });
-                            return false;
-                        }
-                    }
+                    // "删除": {
+                    //     className: "btn-danger",
+                    //     callback: function () {
+                    //         var delUrl = URL + "index.php/Home/File/delImage/id/" + selectedImage.id;
+                    //         //alert(delUrl);
+                    //         $.get(delUrl, function (data) {
+                    //             var p = $('#dialog-imageUploader .pagination .current').text();
+                    //             var pagUrl = URL + "index.php/Home/File/imageUploader/p/" + p;
+                    //             $.pjax({
+                    //                 url: pagUrl,
+                    //                 container: '.bootbox .bootbox-body',
+                    //                 push: false,
+                    //             });
+                    //         });
+                    //         return false;
+                    //     }
+                    // }
                 }
             });
         },
