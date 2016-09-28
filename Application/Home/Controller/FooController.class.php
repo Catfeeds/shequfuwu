@@ -401,7 +401,7 @@ class FooController extends Controller
 
     public function delop(){
         $condition= array("id"=>2);
-        D("File")->del($condition);
+        //D("File")->del($condition);
     }
 
     public function timespanop($span = 1468740651)

@@ -9,6 +9,8 @@
 namespace Common\Model;
 
 use Think\Model;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Vendor\Hiland\Utils\Data\ArrayHelper;
 
 
 class FileModel extends Model
@@ -79,12 +81,15 @@ class FileModel extends Model
     //TODO:找到物理文件删除
     public function delImage($condition = array())
     {
+        $conditionXML= ArrayHelper::Toxml();
+        CommonLoger::log("delimage",$conditionXML);
+
         //防止所有的文件都被删除，需要保证$condition不为null
         if($condition){
             //1.找到物理文件删除
 
             //2.删除数据库记录
-            $this->where($condition)->delete();
+            //$this->where($condition)->delete();
         }
     }
 
