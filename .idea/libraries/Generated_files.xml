@@ -7,6 +7,7 @@
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/select-shop.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Shop_bindShop.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_excellentshops.min.js" />
+        <item url="file://$PROJECT_DIR$/Public/Home/dist/js/wemall.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/register-container.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/productItems.min.js" />
         <item url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/shopItems.min.js" />
@@ -44,6 +45,7 @@
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/select-shop.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Shop_bindShop.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/Index_excellentshops.min.js" />
+      <root url="file://$PROJECT_DIR$/Public/Home/dist/js/wemall.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/register-container.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/productItems.min.js" />
       <root url="file://$PROJECT_DIR$/Theme/waimai/Public/build/.cache/shopItems.min.js" />
