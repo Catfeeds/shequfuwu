@@ -33,7 +33,8 @@ class FileController extends BaseController
 
     public function delImage()
     {
-        D("File")->delImage(I("get.id"));
+        $condition= array("id"=>I("get.id"));
+        D("File")->delImage($condition);
     }
 
     public function uploadImage()
