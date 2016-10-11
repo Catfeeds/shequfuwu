@@ -128,7 +128,6 @@
 
 
     function checkName(obj) {
-
         if ($('#username').val()) {
             var url = '{:U("Home/Public/checkName")}' + '/username/' + $('#username').val();
             $.get(url, function (data) {
@@ -143,7 +142,6 @@
     }
 
     function checkemail(obj) {
-
         if ($('#email').val()) {
             //向后台发送处理数据
             var url = '{:U("Home/Public/checkemail")}';

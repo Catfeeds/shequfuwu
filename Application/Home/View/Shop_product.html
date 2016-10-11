@@ -153,7 +153,9 @@
                                     <td>{$product.name|msubstr=0,12}</td>
                                     <td>
                                         <if condition="$product.savepath && $product.savename">
-                                            <img style="height: 48px;max-width: 72px"
+                                            <img onclick="prevView(this)"
+                                                 class="mui-media-object mui-pull-left mui-pull-lefts"
+                                                 style="height: 48px;max-width: 72px"
                                                  src="__PUBLIC__/Uploads/{$product.savepath}{$product.savename}">
                                         </if>
                                     </td>
@@ -205,7 +207,8 @@
 
                                         <a href="{:U('Home/Shop/addProduct',array('id'=>encrypt($product['id'])))}">修改</a><a
                                             class="deleteConfirm"
-                                            href="{:U('Home/Shop/delProduct',array('id'=>encrypt($product['id'])))}">删除</a></td>
+                                            href="{:U('Home/Shop/delProduct',array('id'=>encrypt($product['id'])))}">删除</a>
+                                    </td>
                                 </tr>
                             </volist>
                             </tbody>
@@ -271,7 +274,7 @@
     $(function () {
         $('#reservationtime').daterangepicker({
             timePicker: true,
-            timePicker12Hour:false,
+            timePicker12Hour: false,
             timePickerIncrement: 15,
             format: 'YYYY-MM-DD HH:mm:ss',
             separator: ' --- ',
@@ -281,4 +284,13 @@
             $('select[name="status"]').val('{$productPost.status}');
         }
     });
+</script>
+<script src="__PUBLIC__/Admin/layer/layer.js"></script>
+<script type="text/javascript">
+    function prevView(obj) {
+        var src = $(obj).attr('src');
+        layer.open({
+            content: '<img style="width: 330px" src="' + src + '"/>'
+        });
+    }
 </script>
