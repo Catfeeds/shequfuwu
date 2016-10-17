@@ -110,8 +110,9 @@
                 shopId: data.shopId,
             },
             success: function (res) {
+                $('#groupBuys').html(res);
                 if (res) {
-                    $('#groupBuys').html(res);
+                    //$('#groupBuys').html(res);
 //                    var json = eval(res);
 //                    var dataSending = {
 //                        labels: json,

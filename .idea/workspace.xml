@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" afterPath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" afterPath="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/ads-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/ads-container.html" />
     </list>
     <ignored path="src.iws" />
@@ -38,7 +36,7 @@
       <file leaf-file-name="Shop_product.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/Shop_product.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
+            <state relative-caret-position="20">
               <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
               <folding>
                 <marker date="1476317480172" expanded="true" signature="15508:15520" ph="..." />
@@ -67,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ads-container.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
+      <file leaf-file-name="Foo_templateop.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+            <state relative-caret-position="173">
+              <caret line="172" column="54" selection-start-line="172" selection-start-column="54" selection-end-line="172" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -90,8 +88,8 @@
       <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="723" column="44" selection-start-line="723" selection-start-column="44" selection-end-line="723" selection-end-column="44" />
+            <state relative-caret-position="168">
+              <caret line="387" column="30" selection-start-line="387" selection-start-column="20" selection-end-line="387" selection-end-column="30" />
               <folding>
                 <element signature="e#120#146#0#PHP" expanded="true" />
                 <marker date="1476690411789" expanded="true" signature="4979:5018" ph="select * fro... " />
@@ -182,6 +180,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ads-container.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="114" column="22" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -199,7 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Home/View/Index_left.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Trade_trade.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/TradeController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Common/function.php" />
@@ -249,6 +256,7 @@
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
         <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
         <option value="$PROJECT_DIR$/Theme/waimai/ads-container.html" />
       </list>
     </option>
@@ -700,6 +708,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -911,7 +941,7 @@
       <workItem from="1475117587818" duration="2703000" />
       <workItem from="1476155612145" duration="662000" />
       <workItem from="1476165176649" duration="7420000" />
-      <workItem from="1476660134935" duration="6918000" />
+      <workItem from="1476660134935" duration="7521000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -924,10 +954,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="803861000" />
+    <option name="totallyTimeSpent" value="804464000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28625378" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -972,13 +1002,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/UserController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2901">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/User_user.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="800">
@@ -1266,7 +1289,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/Shop_product.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
+        <state relative-caret-position="20">
           <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
           <folding>
             <marker date="1476317480172" expanded="true" signature="15508:15520" ph="..." />
@@ -1329,10 +1352,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="152" column="32" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="723" column="44" selection-start-line="723" selection-start-column="44" selection-end-line="723" selection-end-column="44" />
+        <state relative-caret-position="168">
+          <caret line="387" column="30" selection-start-line="387" selection-start-column="20" selection-end-line="387" selection-end-column="30" />
           <folding>
             <element signature="e#120#146#0#PHP" expanded="true" />
             <marker date="1476690411789" expanded="true" signature="4979:5018" ph="select * fro... " />
@@ -1345,18 +1376,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="152" column="32" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="32" />
+        <state relative-caret-position="173">
+          <caret line="172" column="54" selection-start-line="172" selection-start-column="54" selection-end-line="172" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+        <state relative-caret-position="213">
+          <caret line="114" column="22" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
           <folding />
         </state>
       </provider>

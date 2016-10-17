@@ -8,6 +8,7 @@
 <button type="button" id="btnSearchShop">加载</button>
 <button type="button" id="btnLoadKeyValueArray">加载K/V数组</button>
 <button type="button" id="btnLoadShopLabels">加载店铺标签产品</button>
+<button type="button" id="btnLoadGroupBuys">加载店铺团购活动</button>
 <p class="dataContainer" id="dataContainer">
     显示内容
 </p>
@@ -152,6 +153,34 @@
 
                     var html = template('shopLabels', dataSending);
                     $('#dataContainer').html(html);
+                },
+                error: function () {
+                    $('#dataContainer').html('错误');
+                },
+                beforeSend: function () {
+
+                },
+                complete: function () {
+
+                }
+            });
+        });
+
+
+        $("#btnLoadGroupBuys").on("click", function () {
+            $.ajax({
+                type: "get",
+                url: "__APP__/General/Biz/getGroupBuys",
+                data: {shopId: 144,},
+                success: function (res) {
+                    alert(res);
+//                    json = eval(res);
+//                    var dataSending = {
+//                        labels: json,
+//                    };
+//
+//                    var html = template('shopLabels', dataSending);
+//                    $('#dataContainer').html(html);
                 },
                 error: function () {
                     $('#dataContainer').html('错误');
