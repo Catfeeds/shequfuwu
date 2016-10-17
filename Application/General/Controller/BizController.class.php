@@ -152,12 +152,8 @@ class BizController
 
     public function getGroupBuys(){
         $shopID = I("get.shopId");
-
-        //TODO:
-        $shopMate= new ModelMate("shop");
-        $shopEntity= $shopMate->get($shopID);
-        $message= $shopEntity['name']."拼团活动很快开启！敬请期待。";
-        WebHelper::serverReturn($shopEntity['name'],JSON_UNESCAPED_UNICODE);
+        $result= BizHelper::getGroupBuys($shopID);
+        return WebHelper::serverReturn($result,JSON_UNESCAPED_UNICODE);
     }
 
     public function callFuncs($className,$methodName,$construcArgs=null,$methodArgs= null){

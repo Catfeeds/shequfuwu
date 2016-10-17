@@ -26,9 +26,7 @@ use Vendor\Hiland\Utils\Data\Enum;
 use Vendor\Hiland\Utils\Data\HtmlHelper;
 use Vendor\Hiland\Utils\Data\MathHelper;
 use Vendor\Hiland\Utils\Data\ObjectHelper;
-use Vendor\Hiland\Utils\Data\ObjectTypes;
 use Vendor\Hiland\Utils\Data\RandHelper;
-use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -347,7 +345,7 @@ class FooController extends Controller
 
     public function getFileImageUrlop($fileid = 41)
     {
-        dump(BizHelper::getFileImageUrl($fileid,"",true));
+        dump(BizHelper::getFileImageUrl($fileid, "", true));
     }
 
     public function getorders($userID = 802)
@@ -399,8 +397,9 @@ class FooController extends Controller
         dump(ImageHelper::getImageOutputFunctionParamCount("jpeg"));
     }
 
-    public function delop(){
-        $condition= array("id"=>2);
+    public function delop()
+    {
+        $condition = array("id" => 2);
         //D("File")->del($condition);
     }
 
@@ -564,7 +563,7 @@ class FooController extends Controller
 
     public function userscoreop($userid = 802)
     {
-        BizHelper::updateUserScore($userid, 144, 1,0, '购买商品');
+        BizHelper::updateUserScore($userid, 144, 1, 0, '购买商品');
     }
 
     public function deliverytimeop()
@@ -621,7 +620,7 @@ class FooController extends Controller
             "openid" => $openId,
             "packet_id" => $packetId,
             //"drawtime"=>array("between", DateHelper::format(null, "Y-m-d"), DateHelper::format($nextDay, "Y-m-d")),
-            "drawtime" => array(array('gt',DateHelper::format(null, "Y-m-d")),array('lt',DateHelper::format($nextDay, "Y-m-d")), 'and'),
+            "drawtime" => array(array('gt', DateHelper::format(null, "Y-m-d")), array('lt', DateHelper::format($nextDay, "Y-m-d")), 'and'),
         );
 
         dump($todayUniqeCondition);
@@ -670,7 +669,8 @@ class FooController extends Controller
         }
     }
 
-    public function objectop(){
+    public function objectop()
+    {
         $data = array(
             v1 => 0,
             v2 => "",
@@ -678,23 +678,24 @@ class FooController extends Controller
             v4 => false,
             v5 => true,
             v6 => "hello",
-            v7=> -100,
-            v8=> "-100",
+            v7 => -100,
+            v8 => "-100",
         );
 
         dump("判断数据类型--------------------------------");
         foreach ($data as $k => $v) {
-            $t= ObjectHelper::getType($v);
+            $t = ObjectHelper::getType($v);
             dump("$k 的值为$v,类型为$t");
         }
 
         dump("--非严格比较-------------------------------");
-        dump(ObjectHelper::equal($data['v7'],$data['v8']));
+        dump(ObjectHelper::equal($data['v7'], $data['v8']));
         dump("--**严格比较-------------------------------");
-        dump(ObjectHelper::equal($data['v7'],$data['v8'],true));
+        dump(ObjectHelper::equal($data['v7'], $data['v8'], true));
     }
 
-    public function substringop(){
+    public function substringop()
+    {
         $data = array(
             v1 => "abcdefg",
             v2 => "**严格比较",
@@ -704,7 +705,7 @@ class FooController extends Controller
         );
 
         foreach ($data as $k => $v) {
-            $r= StringHelper::subString($v,0,3);
+            $r = StringHelper::subString($v, 0, 3);
             dump("$k 的值为$v,运算后结果为$r");
         }
     }
@@ -718,7 +719,10 @@ class FooController extends Controller
         dump(new MyEnum("Hi"));
     }
 
-
+    public function getGroupBuysOp($shopId = 144)
+    {
+        dump(BizHelper::getGroupBuys($shopId));
+    }
 }
 
 
