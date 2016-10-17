@@ -26,6 +26,9 @@
     </div>
     <div class="swiper-pagination"></div>
 </div>
+<!--拼团活动-->
+<div id="groupBuys"></div>
+<!--热点商品-->
 <div id="productsOflabels"></div>
 <div class="m-component-promotion" id="list-section">
     <ul class="list-unstyled" id="list-sale">
@@ -66,7 +69,6 @@
 
 <script type="application/javascript">
     $("document").ready(function () {
-
         $.ajax({
             type: "get",
             url: data.baseUrl + "/General/Biz/getProductsOfShopHotLabels",
@@ -91,6 +93,42 @@
                         callback: function (element, op) {
                         }
                     });
+                }
+            },
+            beforeSend: function () {
+                $('#page_tag_load').show();
+            },
+            complete: function () {
+                $('#page_tag_load').hide();
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/General/Biz/getGroupBuys",
+            data: {
+                shopId: data.shopId,
+            },
+            success: function (res) {
+                if (res) {
+
+                    $('#groupBuys').html(res);
+//                    var json = eval(res);
+//                    var dataSending = {
+//                        labels: json,
+//                        uploadsUrl: data.uploadsUrl,
+//                        imageUrl: data.imageUrl
+//                    };
+//                    var html = template('productsOfLabels-container', dataSending);
+//                    $('#productsOflabels').html(html);
+//
+//                    echo.init({
+//                        offset: 100,
+//                        throttle: 250,
+//                        unload: false,
+//                        callback: function (element, op) {
+//                        }
+//                    });
                 }
             },
             beforeSend: function () {

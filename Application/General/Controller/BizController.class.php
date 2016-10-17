@@ -150,6 +150,16 @@ class BizController
         WebHelper::serverReturn($result, '', JSON_UNESCAPED_UNICODE);
     }
 
+    public function getGroupBuys(){
+        $shopID = I("get.shopId");
+
+        //TODO:
+        $shopMate= new ModelMate("shop");
+        $shopEntity= $shopMate->get($shopID);
+        $message= $shopEntity['name']."拼团活动很快开启！敬请期待。";
+        WebHelper::serverReturn($shopEntity['name'],JSON_UNESCAPED_UNICODE);
+    }
+
     public function callFuncs($className,$methodName,$construcArgs=null,$methodArgs= null){
         //CommonLoger::log("callFuncs","sssssssssssssssssss");
         ReflectionHelper::executeMethod($className,$methodName,$construcArgs,$methodArgs);
