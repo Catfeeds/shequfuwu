@@ -136,6 +136,9 @@
 //                    });
                 }
             },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                $('#groupBuys').html(textStatus + errorThrown);
+            },
             beforeSend: function () {
                 $('#page_tag_load').show();
             },
