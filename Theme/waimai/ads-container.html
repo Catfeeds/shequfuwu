@@ -27,7 +27,7 @@
     <div class="swiper-pagination"></div>
 </div>
 <!--拼团活动-->
-<div id="groupBuys">eeeeeeeeeee</div>
+<div id="groupBuys"></div>
 <!--热点商品-->
 <div id="productsOflabels"></div>
 <div class="m-component-promotion" id="list-section">
@@ -114,6 +114,7 @@
                 shopId: data.shopId,
             },
             success: function (res) {
+                alert(res);
                 $('#groupBuys').html(res);
                 if (res) {
                     //$('#groupBuys').html(res);
