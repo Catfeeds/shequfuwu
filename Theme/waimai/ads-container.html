@@ -107,6 +107,7 @@
 
 <script type="application/javascript">
     $("document").ready(function () {
+        $('#groupBuys').html('sssssssssssss');
         $.ajax({
             type: "get",
             url: data.baseUrl + "/General/Biz/getGroupBuys",
@@ -114,7 +115,7 @@
                 shopId: data.shopId,
             },
             success: function (res) {
-                alert(res);
+
                 $('#groupBuys').html(res);
                 if (res) {
                     //$('#groupBuys').html(res);
