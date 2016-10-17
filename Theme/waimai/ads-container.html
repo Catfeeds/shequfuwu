@@ -102,7 +102,11 @@
                 $('#page_tag_load').hide();
             }
         });
+    });
+</script>
 
+<script type="application/javascript">
+    $("document").ready(function () {
         $.ajax({
             type: "get",
             url: data.baseUrl + "/General/Biz/getGroupBuys",
