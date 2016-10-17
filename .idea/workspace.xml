@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="" />
+    <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/ads-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/ads-container.html" />
+    </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -64,8 +68,8 @@
       <file leaf-file-name="ads-container.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="112" column="42" selection-start-line="112" selection-start-column="42" selection-end-line="112" selection-end-column="42" />
+            <state relative-caret-position="173">
+              <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -651,7 +655,7 @@
       <workItem from="1475117587818" duration="2703000" />
       <workItem from="1476155612145" duration="662000" />
       <workItem from="1476165176649" duration="7420000" />
-      <workItem from="1476660134935" duration="3288000" />
+      <workItem from="1476660134935" duration="3746000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -664,7 +668,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="800231000" />
+    <option name="totallyTimeSpent" value="800689000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -676,18 +680,18 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22280967" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5689949" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23323171" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1080,8 +1084,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="112" column="42" selection-start-line="112" selection-start-column="42" selection-end-line="112" selection-end-column="42" />
+        <state relative-caret-position="173">
+          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
           <folding />
         </state>
       </provider>

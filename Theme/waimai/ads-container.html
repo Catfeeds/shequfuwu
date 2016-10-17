@@ -103,42 +103,42 @@
             }
         });
 
-        $.ajax({
-            type: "get",
-            url: data.baseUrl + "/General/Biz/getGroupBuys",
-            data: {
-                shopId: data.shopId,
-            },
-            success: function (res) {
-                $('#groupBuys').html(res);
+        
 
-                if (res) {
-
-                    $('#groupBuys').html(res);
-//                    var json = eval(res);
-//                    var dataSending = {
-//                        labels: json,
-//                        uploadsUrl: data.uploadsUrl,
-//                        imageUrl: data.imageUrl
-//                    };
-//                    var html = template('productsOfLabels-container', dataSending);
-//                    $('#productsOflabels').html(html);
+//        $.ajax({
+//            type: "get",
+//            url: data.baseUrl + "/General/Biz/getGroupBuys",
+//            data: {
+//                shopId: data.shopId,
+//            },
+//            success: function (res) {
+//                if (res) {
 //
-//                    echo.init({
-//                        offset: 100,
-//                        throttle: 250,
-//                        unload: false,
-//                        callback: function (element, op) {
-//                        }
-//                    });
-                }
-            },
-            beforeSend: function () {
-                $('#page_tag_load').show();
-            },
-            complete: function () {
-                $('#page_tag_load').hide();
-            }
-        });
+//                    $('#groupBuys').html(res);
+////                    var json = eval(res);
+////                    var dataSending = {
+////                        labels: json,
+////                        uploadsUrl: data.uploadsUrl,
+////                        imageUrl: data.imageUrl
+////                    };
+////                    var html = template('productsOfLabels-container', dataSending);
+////                    $('#productsOflabels').html(html);
+////
+////                    echo.init({
+////                        offset: 100,
+////                        throttle: 250,
+////                        unload: false,
+////                        callback: function (element, op) {
+////                        }
+////                    });
+//                }
+//            },
+//            beforeSend: function () {
+//                $('#page_tag_load').show();
+//            },
+//            complete: function () {
+//                $('#page_tag_load').hide();
+//            }
+//        });
     });
 </script>
