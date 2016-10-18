@@ -1,16 +1,14 @@
-<div class="m-component-promotion" id="list-section">
-    <ul class="list-unstyled" id="list-sale">
-        {{each dataList as dataItem index}}
-        <li class="item item_third">
-            <a href="{{dataItem.url}}">
-                <img class="lazy" src="{{imageUrl}}/blank.gif"
-                     data-echo="{{uploadsUrl+dataItem.savepath+dataItem.savename}}"
-                     style="display: inline; height: 137px;">
-            </a>
-            <div class="single-item-info">
-                <div class="item-title contentCenter">{{dataItem.name}}</div>
-            </div>
-        </li>
-        {{/each}}
-    </ul>
-</div>
+<ul class="list-unstyled">
+    {{each dataList as dataItem index}}
+    <li class="item item_third">
+        <a href="{{dataItem.url}}">
+            <img class="lazy" src="{{imageUrl}}/blank.gif"
+                 data-echo="{{uploadsUrl+dataItem.savepath+dataItem.savename}}"
+                 style="display: inline; height: 137px;">
+        </a>
+        <div class="single-item-info">
+            <div class="item-title contentCenter">{{dataItem.name}}</div>
+        </div>
+    </li>
+    {{/each}}
+</ul>
