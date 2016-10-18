@@ -1,0 +1,129 @@
+<section class="content-header">
+    <h1>
+        商城管理
+        <small></small>
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">拼团列表</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <div class="mailbox-controls">
+                        <div class="btn-group">
+                            <a href="{:U('Home/GroupBuy/item')}" class="btn btn-danger ">
+                                新增拼团
+                            </a>
+                        </div>
+                        <!-- /.btn-group -->
+                    </div>
+                    <div class="table-responsive" style="overflow-x: visible;">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <th class="hidden-xs">
+                                    <label><input onchange="checkAll()" type="checkbox" value=""></label>
+                                </th>
+                                <th>活动名称</th>
+                                <th>图片</th>
+                                <th>价格与预付</th>
+                                <th>拼团份数</th>
+                                <th>成团状态</th>
+                                <th>操作状态</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                            <volist name="dataList" id="data">
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <label><input name="checkbox" class="check" type="checkbox"
+                                                      value="{$data.id}"></label>
+                                    </td>
+                                    <td>{$data.name}</td>
+                                    <td>
+                                        <if condition="$data.savepath && $data.savename">
+                                            <img onclick="prevView(this)"
+                                                 class="mui-media-object mui-pull-left mui-pull-lefts"
+                                                 style="height: 48px;max-width: 72px"
+                                                 src="__PUBLIC__/Uploads/{$data.savepath}{$data.savename}">
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <span style="background-color: #dd4b39;"
+                                              class="badge">{$data.totalprice}</span>元<br/>
+                                        <span style="background-color: #dd4b39;"
+                                              class="badge">{$data.prepayprice}</span>元
+                                    </td>
+                                    <td>{$data.piececount}</td>
+                                    <td>
+                                        <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_YN_",$data['successfulstatus']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_SS_",$data['operatestatus'],"_S_TEXT"); ?>
+                                    </td>
+                                    <td>{$data.memo}</td>
+                                    <td class="table-action">
+                                        <if condition="$data.operatestatus eq 0">
+                                            <a href="{:U('General/Common/UpdateItem',array('model'=>'groupbuy','id'=>encrypt($data['id']) , 'operatestatus'=>1))}">开启</a>
+                                            <else/>
+                                            <a href="{:U('Home/GroupBuy/itemsMaintenance',array('id'=>encrypt($data['id']) , 'operatestatus'=>0))}">停止</a>
+                                        </if>
+
+                                        <a href="{:U('Home/GroupBuy/item',array('id'=>encrypt($data['id'])))}">修改</a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="box-footer no-padding">
+                            <div class="mailbox-controls">
+                                <div class="btn-group">
+                                    <a href="{:U('Home/GroupBuy/item')}" class="btn btn-danger ">
+                                        新增拼团
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    {$page}
+                                    <!-- /.btn-group -->
+                                </div>
+                            </div>
+                            <!-- /.btn-group -->
+                            <!-- /.pull-right -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.mail-box-messages -->
+            </div>
+        </div>
+        <!-- /. box -->
+    </div>
+    <!-- /.col -->
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.deleteConfirm').on('click', function (event) {
+                if (confirm('您确认要删除选定的信息吗？')) {
+
+                } else {
+                    event.preventDefault();
+                }
+            })
+        });
+    </script>
+</section>
+<script src="__PUBLIC__/Admin/layer/layer.js"></script>
+<script type="text/javascript">
+    function prevView(obj) {
+        var src = $(obj).attr('src');
+        layer.open({
+            content: '<img style="width: 330px" src="' + src + '"/>'
+        });
+    }
+</script>

@@ -50,4 +50,16 @@ class SystemConst extends ConstMate
     const COMMON_STATUS_YN_NO_TEXT = "否";
     const COMMON_STATUS_YN_YES = 1;
     const COMMON_STATUS_YN_YES_TEXT = "是";
+
+    const COMMON_STATUS_EFFECT_NO = 0;
+    const COMMON_STATUS_EFFECT_NO_TEXT = "无效";
+    const COMMON_STATUS_EFFECT_YES = 1;
+    const COMMON_STATUS_EFFECT_YES_TEXT = "有效";
+
+    const COMMON_STATUS_SS_STOP = 0;
+    const COMMON_STATUS_SS_STOP_TEXT = "停止";
+    const COMMON_STATUS_SS_STOP_S_TEXT = "已停止";
+    const COMMON_STATUS_SS_START = 1;
+    const COMMON_STATUS_SS_START_TEXT = "开启";
+    const COMMON_STATUS_SS_START_S_TEXT = "开启中";
 }

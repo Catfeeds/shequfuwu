@@ -311,8 +311,8 @@ class TradeController extends BaseController
 
     public function redPacketUpdate()
     {
-        $modle = 'weixinRedpacket';
-        $this->itemsMaintenance($modle);
+        $model = 'weixinRedpacket';
+        $this->itemsMaintenance($model);
     }
 
     public function scoreList()

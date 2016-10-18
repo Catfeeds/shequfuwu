@@ -76,15 +76,13 @@
                 shopId: data.shopId,
             },
             success: function (res) {
-                $('#groupBuys').html(res);
                 if (res) {
-
+                    $('#groupBuys').html(res);
                 }
             },
             error:function(XMLHttpRequest, textStatus, errorThrown){
                 $('#groupBuys').html(textStatus + errorThrown);
             }
-
         });
         $.ajax({
             type: "get",

@@ -3,6 +3,7 @@ namespace Vendor\Hiland\Utils\Controller;
 
 use Think\Controller;
 use Think\Page;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\CipherHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
@@ -23,33 +24,37 @@ class HibaseController extends Controller
         $this->assignBasicConfig();
     }
 
-    private function assignBasicConfig(){
-        $basicConfig['approot']= WebHelper::getWebAppFull();
+    private function assignBasicConfig()
+    {
+        $basicConfig['approot'] = WebHelper::getWebAppFull();
 
         //==以下数据可以根据不同的项目进行调整=======================================
-        $basicConfig['defaultavatar']= WebHelper::getWebRootFull()."/Public/Uploads/defaultavatar.jpg";
+        $basicConfig['defaultavatar'] = WebHelper::getWebRootFull() . "/Public/Uploads/defaultavatar.jpg";
 
 
         //=======================================================================
 
-        $this->assign("basicConfig",$basicConfig);
+        $this->assign("basicConfig", $basicConfig);
     }
+
     /**
      * 单条信息的添加修改页面对应的action可以调用此方法
-     * @param $modle
+     * @param $model
      * @param int|string $key 主键的值
      * @param string $keyName 主键的名称
      * @param array $savingData 前台提交过来要保存的数据，（默认为null，其会自动从post字节流中获取）
      * @param array $findingCondition 查找要显示在前台的记录信息，所需要使用的过滤条件（如果为null，其会自动根据主键进行组装此条件）
+     * @param null|array $link ViewLink连接
      */
-    protected function item($modle, $key = 0, $keyName = '', $savingData = null, $findingCondition = null)
+    protected function itemInteract($model, $key = 0, $keyName = '', $savingData = null, $findingCondition = null, $link = null)
     {
-        $mate = new ModelMate($modle);
         if (empty($keyName)) {
             $keyName = "id";
         }
 
         if (IS_POST) {
+            $mate = new ModelMate($model);
+
             if (empty($savingData)) {
                 $savingData = I("post.");
             }
@@ -60,11 +65,17 @@ class HibaseController extends Controller
             } else {
                 $this->error("保存失败", cookie("prevUrl"));
             }
-
         } else {
+            if ($link) {
+                $mate = new ViewMate($model, $link);
+            } else {
+                $mate = new ModelMate($model);
+            }
+
             if (empty($findingCondition)) {
                 if (empty($key)) {
-                    $key = I("$keyName");
+                    //$key = I("$keyName");
+                    $key = $this->getDecryptParameter($keyName);
                 }
 
                 $findingCondition = array(
@@ -80,15 +91,39 @@ class HibaseController extends Controller
     }
 
     /**
+     * @param string $paraName
+     * @param string $actionType
+     * @return int|null|string
+     */
+    protected function getDecryptParameter($paraName = "id", $actionType = "get")
+    {
+        $paraValue = I("$actionType.$paraName");
+
+        $result = null;
+        if ($paraValue) {
+            if (is_numeric($paraValue)) {
+                $result = $paraValue;
+            } else {
+                $result = CipherHelper::decrypt($paraValue);
+                if (empty($result)) {
+                    $result = $paraValue;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * 列表页对应的action可以对用此方法
-     * @param $modle
+     * @param $model
      * @param null $condition
      * @param int $pageIndex
      * @param int $countPerPage
      * @param $dataListName string 传递到前端列表数据的名称
      * @param $link array 各表之间的逻辑关联数组
      */
-    protected function itemList($modle, $condition = null, $pageIndex = 0, $countPerPage = 0, $dataListName = "", $link = null)
+    protected function itemList($model, $condition = null, $pageIndex = 0, $countPerPage = 0, $dataListName = "", $link = null)
     {
         if (empty($pageIndex)) {
             $pageIndex = I("get.page") ? I("get.page") : 1;
@@ -102,7 +137,7 @@ class HibaseController extends Controller
             $dataListName = "dataList";
         }
 
-        $this->assignListAndPaging($modle, $condition, $pageIndex, $countPerPage, $dataListName, $link);
+        $this->assignListAndPaging($model, $condition, $pageIndex, $countPerPage, $dataListName, $link);
 
         $this->recordBackingCookie();
 
@@ -111,24 +146,24 @@ class HibaseController extends Controller
 
     /**
      * 设置列表页的列表数据信息和分页信息(在列表页面中调用此代码)
-     * @param $modle
+     * @param $model
      * @param $condition
      * @param $pageIndex
      * @param $countPerPage
      * @param $dataListName string 传递到前端列表数据的名称
      * @param $link array 各表之间的逻辑关联数组
      */
-    protected function assignListAndPaging($modle, $condition, $pageIndex, $countPerPage, $dataListName = "", $link = null)
+    protected function assignListAndPaging($model, $condition, $pageIndex, $countPerPage, $dataListName = "", $link = null)
     {
         if (empty($dataListName)) {
             $dataListName = "dataList";
         }
 
         if (empty($link)) {
-            $mate = new ModelMate($modle);
+            $mate = new ModelMate($model);
             $dataList = $mate->select($condition, "", $pageIndex, $countPerPage);
         } else {
-            $mate = new ViewMate($modle, $link);
+            $mate = new ViewMate($model, $link);
             $dataList = $mate->select($condition, true, "", $pageIndex, $countPerPage);
         }
 
@@ -165,12 +200,12 @@ class HibaseController extends Controller
 
     /**
      * 更新项目记录并跳转到前一个页面
-     * @param $modle
+     * @param $model
      * @param string $keys
      * @param null $data
      * @param string $keyName
      */
-    protected function itemsMaintenance($modle, $keys = "", $data = null, $keyName = 'id')
+    protected function itemsMaintenance($model, $keys = "", $data = null, $keyName = 'id')
     {
         if (empty($data)) {
             $data = I("get.");
@@ -181,37 +216,14 @@ class HibaseController extends Controller
             $keys = self::getDecryptParameter($keyName);
         }
 
-        $mate = new ModelMate($modle);
+        //CommonLoger::log(json_encode($model));
+        $mate = new ModelMate($model);
         $result = $mate->maintenanceData($keys, $data, $keyName);
         if ($result) {
             $this->success("保存成功", cookie("prevUrl"));
         } else {
             $this->error("保存失败", cookie("prevUrl"));
         }
-    }
-
-    /**
-     * @param string $paraName
-     * @param string $actionType
-     * @return int|null|string
-     */
-    protected function getDecryptParameter($paraName = "id", $actionType = "get")
-    {
-        $paraValue = I("$actionType.$paraName");
-
-        $result = null;
-        if ($paraValue) {
-            if (is_numeric($paraValue)) {
-                $result = $paraValue;
-            } else {
-                $result = CipherHelper::decrypt($paraValue);
-                if (empty($result)) {
-                    $result = $paraValue;
-                }
-            }
-        }
-
-        return $result;
     }
 
     protected function getParamFromPostOrCookie($paramName, $arrayCookie)
