@@ -70,7 +70,7 @@
                                     </td>
                                     <td>{$data.memo}</td>
                                     <td class="table-action">
-                                        <if condition="$data.operatestatus eq 0">
+                                        <if condition="$data.managestatus eq 0">
                                             <a href="{:U('General/Common/UpdateItem',array('model'=>'groupbuy','id'=>encrypt($data['id']) , 'managestatus'=>1))}">开启</a>
                                             <else/>
                                             <a href="{:U('General/Common/UpdateItem',array('model'=>'groupbuy','id'=>encrypt($data['id']) , 'managestatus'=>0))}">停止</a>
