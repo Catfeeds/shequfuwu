@@ -66,14 +66,14 @@
                                         <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_YN_",$data['successfulstatus']); ?>
                                     </td>
                                     <td>
-                                        <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_SS_",$data['operatestatus'],"_S_TEXT"); ?>
+                                        <?php echo \Vendor\Hiland\Utils\Datas\SystemConst::getConstText("COMMON_STATUS_SS_",$data['managestatus'],"_S_TEXT"); ?>
                                     </td>
                                     <td>{$data.memo}</td>
                                     <td class="table-action">
                                         <if condition="$data.operatestatus eq 0">
-                                            <a href="{:U('General/Common/UpdateItem',array('model'=>'groupbuy','id'=>encrypt($data['id']) , 'operatestatus'=>1))}">开启</a>
+                                            <a href="{:U('General/Common/UpdateItem',array('model'=>'groupbuy','id'=>encrypt($data['id']) , 'managestatus'=>1))}">开启</a>
                                             <else/>
-                                            <a href="{:U('Home/GroupBuy/itemsMaintenance',array('id'=>encrypt($data['id']) , 'operatestatus'=>0))}">停止</a>
+                                            <a href="{:U('General/Common/UpdateItem',array('model'=>'groupbuy','id'=>encrypt($data['id']) , 'managestatus'=>0))}">停止</a>
                                         </if>
 
                                         <a href="{:U('Home/GroupBuy/item',array('id'=>encrypt($data['id'])))}">修改</a>

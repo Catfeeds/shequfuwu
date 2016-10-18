@@ -34,9 +34,6 @@ class GroupBuyController extends BaseController
             $savingData['shop_id'] = $this->getCurrentShopId();
         }
 
-        CommonLoger::log($savingData['managestatus']);
-
         $this->itemInteract($modle, 0, '', $savingData, null, ViewLink::getCommon_File());
-        //$this->itemInteract($modle);
     }
 }
