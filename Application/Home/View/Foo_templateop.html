@@ -66,7 +66,8 @@
                                                                   class="lazy"
                                                                   style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
                         <div class="select-shadow">
-                            <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span>
+                            <div class="select-inner"><img src="{{imageUrl}}/ico_select.png"
+                                                           alt="selected"><span>已选</span>
                             </div>
                         </div>
                     </div>
@@ -79,6 +80,15 @@
         </ul>
     </div>
     {{/each}}
+</script>
+<script id="groupBuyScript" type="text/html">
+    <ul>
+        {{each dataList as dataItem index}}
+        <li class="item item_third">
+            {{dataItem.name}}
+        </li>
+        {{/each}}
+    </ul>
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -173,14 +183,15 @@
                 url: "__APP__/General/Biz/getGroupBuys",
                 data: {shopId: 144,},
                 success: function (res) {
-                    $('#dataContainer').html(res);
-//                    json = eval(res);
-//                    var dataSending = {
-//                        labels: json,
-//                    };
-//
-//                    var html = template('shopLabels', dataSending);
-//                    $('#dataContainer').html(html);
+                    //$('#dataContainer').html(json_encode(res));
+
+                    json = eval(res);
+                    var dataSending = {
+                        dataList: json,
+                    };
+
+                    var html = template('groupBuyScript', dataSending);
+                    $('#dataContainer').html(html);
                 },
                 error: function () {
                     $('#dataContainer').html('错误');

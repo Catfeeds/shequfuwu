@@ -77,7 +77,22 @@
             },
             success: function (res) {
                 if (res) {
-                    $('#groupBuys').html(res);
+                    var json = eval(res);
+                    var dataSending = {
+                        dataList: json,
+                        uploadsUrl: data.uploadsUrl,
+                        imageUrl: data.imageUrl
+                    };
+                    var html = template('groupBuy-container', dataSending);
+                    $('#groupBuys').html(html);
+
+                    echo.init({
+                        offset: 100,
+                        throttle: 250,
+                        unload: false,
+                        callback: function (element, op) {
+                        }
+                    });
                 }
             },
             error:function(XMLHttpRequest, textStatus, errorThrown){

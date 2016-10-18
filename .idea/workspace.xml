@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" afterPath="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theme/waimai/groupBuy-container.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" afterPath="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" afterPath="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/ads-container.html" afterPath="$PROJECT_DIR$/Theme/waimai/ads-container.html" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,11 +37,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ads-container.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ads-container.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+            <state relative-caret-position="213">
+              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <folding>
+                <marker date="1476776031112" expanded="true" signature="2825:5070" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="groupBuy-container.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/groupBuy-container.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="23" />
+              <folding>
+                <marker date="1476775871925" expanded="true" signature="21:1134" ph="..." />
+                <marker date="1476775871925" expanded="true" signature="30:1127" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product-container.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Theme/waimai/product-container.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -44,14 +75,19 @@
       <file leaf-file-name="Foo_templateop.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="175" column="50" selection-start-line="175" selection-start-column="50" selection-end-line="175" selection-end-column="50" />
-              <folding />
+            <state relative-caret-position="199">
+              <caret line="85" column="35" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="35" />
+              <folding>
+                <marker date="1476775138913" expanded="true" signature="31:7409" ph="..." />
+                <marker date="1476775138913" expanded="true" signature="105:7401" ph="..." />
+                <marker date="1476775138913" expanded="true" signature="3712:3884" ph="..." />
+                <marker date="1476775138913" expanded="true" signature="3916:7393" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-6438">
@@ -72,8 +108,8 @@
       <file leaf-file-name="BizController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="154" column="34" selection-start-line="154" selection-start-column="34" selection-end-line="154" selection-end-column="34" />
+            <state relative-caret-position="273">
+              <caret line="155" column="49" selection-start-line="155" selection-start-column="49" selection-end-line="155" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -86,6 +122,8 @@
               <caret line="685" column="25" selection-start-line="685" selection-start-column="25" selection-end-line="685" selection-end-column="25" />
               <folding>
                 <element signature="e#31#67#0#PHP" expanded="true" />
+                <marker date="1476772384802" expanded="true" signature="562:22470" ph="{...}" />
+                <marker date="1476772384802" expanded="true" signature="22189:22465" ph="..." />
               </folding>
             </state>
           </provider>
@@ -130,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Home/View/Artical_artical.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Trade_redPacketList.html" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/DataModel/ModelMate.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/Shop_menu.html" />
@@ -167,9 +204,6 @@
         <option value="$PROJECT_DIR$/Theme/waimai/Index_index.html" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
-        <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
-        <option value="$PROJECT_DIR$/Theme/waimai/ads-container.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Index_left.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/layout.html" />
         <option value="$PROJECT_DIR$/Application/Home/View/Trade_redPacket.html" />
@@ -181,6 +215,10 @@
         <option value="$PROJECT_DIR$/Application/Home/Controller/GroupBuyController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/GroupBuy_index.html" />
         <option value="$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php" />
+        <option value="$PROJECT_DIR$/Application/General/Controller/BizController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Foo_templateop.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/groupBuy-container.html" />
+        <option value="$PROJECT_DIR$/Theme/waimai/ads-container.html" />
       </list>
     </option>
   </component>
@@ -454,6 +492,38 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Theme" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="waimai" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -701,19 +771,19 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Application\Home\View" />
-      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Public\Uploads" />
-      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Application\Admin\View" />
-      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Theme\waimai" />
-      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Public\Admin\dist\css" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\myworkspace\project-php\SheQuFuWu\src\ThinkPHP\Library\Vendor\Hiland\Utils\DataConstructure" />
       <recent name="E:\myworkspace\project-php\SheQuFuWu\src\ThinkPHP\Library\Vendor\Hiland\Utils\Types" />
       <recent name="E:\myworkspace\project-php\SheQuFuWu\src\ThinkPHP\Library\Vendor\Hiland\Utils\Const" />
       <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Application\Home\View\template" />
       <recent name="E:\myworkspace\project-php\社区服务\src\ThinkPHP\Library\Vendor" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Theme\waimai" />
+      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Application\Home\View" />
+      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Public\Uploads" />
+      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Application\Admin\View" />
+      <recent name="E:\myworkspace\project-php\SheQuFuWu\src\Public\Admin\dist\css" />
     </key>
   </component>
   <component name="RunManager">
@@ -815,7 +885,7 @@
       <workItem from="1476155612145" duration="662000" />
       <workItem from="1476165176649" duration="7420000" />
       <workItem from="1476660134935" duration="25614000" />
-      <workItem from="1476765499464" duration="3691000" />
+      <workItem from="1476765499464" duration="7144000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -828,30 +898,30 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="826248000" />
+    <option name="totallyTimeSpent" value="829701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22960725" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25830814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5689949" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23323171" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3081571" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -876,13 +946,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/FileController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/Public_footer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -967,13 +1030,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/product-container.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/productItems.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -999,13 +1055,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/productsOfLabels-container.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1207,22 +1257,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="154" column="34" selection-start-line="154" selection-start-column="34" selection-end-line="154" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Hiland/Utils/Datas/SystemConst.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1247,15 +1281,9 @@
           <caret line="685" column="25" selection-start-line="685" selection-start-column="25" selection-end-line="685" selection-end-column="25" />
           <folding>
             <element signature="e#31#67#0#PHP" expanded="true" />
+            <marker date="1476772384802" expanded="true" signature="562:22470" ph="{...}" />
+            <marker date="1476772384802" expanded="true" signature="22189:22465" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="175" column="50" selection-start-line="175" selection-start-column="50" selection-end-line="175" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1271,6 +1299,64 @@
             <marker date="1476690411789" expanded="true" signature="6103:6362" ph="INSERT INTO " />
             <marker date="1476690411789" expanded="true" signature="8660:8705" ph="..." />
             <marker date="1476690411789" expanded="true" signature="8668:8696" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="155" column="49" selection-start-line="155" selection-start-column="49" selection-end-line="155" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/product-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/productsOfLabels-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Foo_templateop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="85" column="35" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="35" />
+          <folding>
+            <marker date="1476775138913" expanded="true" signature="31:7409" ph="..." />
+            <marker date="1476775138913" expanded="true" signature="105:7401" ph="..." />
+            <marker date="1476775138913" expanded="true" signature="3712:3884" ph="..." />
+            <marker date="1476775138913" expanded="true" signature="3916:7393" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/groupBuy-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="23" />
+          <folding>
+            <marker date="1476775871925" expanded="true" signature="21:1134" ph="..." />
+            <marker date="1476775871925" expanded="true" signature="30:1127" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <marker date="1476776031112" expanded="true" signature="2825:5070" ph="..." />
           </folding>
         </state>
       </provider>

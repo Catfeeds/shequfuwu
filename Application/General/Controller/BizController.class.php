@@ -153,7 +153,7 @@ class BizController
     public function getGroupBuys(){
         $shopID = I("get.shopId");
         $result= BizHelper::getGroupBuys($shopID);
-        return WebHelper::serverReturn($result,JSON_UNESCAPED_UNICODE);
+        return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
     }
 
     public function callFuncs($className,$methodName,$construcArgs=null,$methodArgs= null){
