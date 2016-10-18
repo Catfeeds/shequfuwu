@@ -677,13 +677,15 @@ class BizHelper
     }
 
     public static function getGroupBuys($shopID){
-        //$shopID = I("get.shopId");
-        //TODO:
-        $shopMate= new ModelMate("shop");
-        $shopEntity= $shopMate->get($shopID);
-        //dump($shopEntity);
-        $message= $shopEntity['name']."拼团活动很快开启！敬请期待。";
-        return $message; //WebHelper::serverReturn($shopEntity['name'],JSON_UNESCAPED_UNICODE);
+        $mate= new ViewMate("groupbuy",ViewLink::getCommon_File());
+        $condition= Array(
+            "shop_id"=> $shopID,
+            "managestatus"=> SystemConst::COMMON_STATUS_SS_START,
+        );
+
+        $list= $mate->select($condition);
+
+        return $list;
     }
 
 
