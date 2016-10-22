@@ -522,11 +522,11 @@ function clickGroupBuyDetail(id) {
                 json.albums = topimage;
             }
 
-            var html = '';
-            $.each(json.albums, function (index, value) {
-                html += '<div class="swiper-slide" style="text-align: -webkit-center;"><img style="height: 200px" src="' + data.uploadsUrl + value.savepath + value.savename + '"></div>';
-            });
-            $('#itemsDetail .swiper-wrapper').html(html);
+            // var html = '';
+            // $.each(json.albums, function (index, value) {
+            //     html += '<div class="swiper-slide" style="text-align: -webkit-center;"><img style="height: 200px" src="' + data.uploadsUrl + value.savepath + value.savename + '"></div>';
+            // });
+            // $('#itemsDetail .swiper-wrapper').html(html);
 
             initCartDate();
             $('#items-total-price').html(totalPrice);
