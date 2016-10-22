@@ -505,34 +505,6 @@ function clickGroupBuyDetail(id) {
 
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
-            if (json.status == 1) {
-                $('#itemsDetail #addCartBtn').show();
-                $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',' + json.sku.length + ')');
-            } else {
-                $('#itemsDetail #soldOut').show();
-            }
-
-            // if (json.sku.length) {
-            //     var html = '';
-            //     $.each(json.sku, function (index, value) {
-            //         html += '<p class="attr-btn" onclick="addAttr(this , ' + json.id + ' ,' + value.id + ' , \'' + value.name + '\', \'' + value.price + '\')">' + value.name + '</p>';
-            //     });
-            //     $('#itemsDetail #detail-attr-btn').html(html);
-            //     $('#product-attr').show();
-            // }
-
-            // if (json.albums == "") {
-            //     var topimage = [];
-            //     topimage.push(JSON.parse('{"savename":"' + json.savename + '","savepath":"' + json.savepath + '"}'));
-            //     json.albums = topimage;
-            // }
-
-            // var html = '';
-            // $.each(json.albums, function (index, value) {
-            //     html += '<div class="swiper-slide" style="text-align: -webkit-center;"><img style="height: 200px" src="' + data.uploadsUrl + value.savepath + value.savename + '"></div>';
-            // });
-            // $('#itemsDetail .swiper-wrapper').html(html);
-
             initCartDate();
             $('#items-total-price').html(totalPrice);
 
@@ -544,19 +516,6 @@ function clickGroupBuyDetail(id) {
         },
         complete: function () {
             $('#page_tag_load').hide();
-
-            var mySwiper = new Swiper('.swiper-container', {
-                direction: 'horizontal',
-                loop: true,
-
-                // 如果需要分页器
-                pagination: '.swiper-pagination',
-
-                // 如果需要滚动条
-                scrollbar: '.swiper-scrollbar'
-            });
-
-            $('.attr-btn').first().click();
         }
     });
 }
