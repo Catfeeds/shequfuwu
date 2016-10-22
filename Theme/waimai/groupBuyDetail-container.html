@@ -11,6 +11,13 @@
         </div>
         <div class="select-area" id="addCartBtn">
             <button class="addItem  btn-shopping" onclick=""><i class="ico ico-shop"></i>参加拼团</button>
+            <div class="message-icon">
+                <input class="numbers-minus" type="button"
+                       onclick="reducehotproductNum(this,'{{value.id}}' , false)" style="display: none;">
+                <input class="numbers" type="text" value="0" style="display: none;">
+                <input class="numbers-add" type="button"
+                       onclick="doCart(this ,'{{value.id}}','{{value.name}}','{{value.price}}','')">
+            </div>
         </div>
     </div>
     <div class="detail-content">
