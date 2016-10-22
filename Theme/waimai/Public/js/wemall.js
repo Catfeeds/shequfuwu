@@ -977,25 +977,18 @@ function reduceGroupBuyNum(obj, id) {
         if (value.id == id) {
             productNum = value.num;
             value.num--;
-            // if (value.num == 0) {
-            //     cartData.splice(index, 1);
-            //     initProduct();
-            //     $('#items-total-price').html(totalPrice);
-            //     $('#product-hot').find('li[label-id="' + value.id + '"]').find('.numbers-minus').hide();
-            //     $('#product-hot').find('li[label-id="' + value.id + '"]').find('.numbers').hide();
-            //     $('#item').find('li[label-id="' + value.id + '"]').find('.numbers-minus').hide();
-            //     $('#item').find('li[label-id="' + value.id + '"]').find('.numbers').hide();
-            //     return;
-            // }
+
             if (productNum == 1) {
-                $(obj).addClass('disabled');
+                $(obj).addClass('disabled').attr("disabled",true);
+            }else{
+                $(obj).removeClass('disabled').attr("disabled",false);
             }
         }
     });
+
     productNum--;
     $(obj).next().val(productNum);
     displayGroupBuyCart();
-    //$('#items-total-price').html(totalPrice);
 }
 
 /*订单可提交标志*/
