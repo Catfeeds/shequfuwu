@@ -493,14 +493,17 @@ function clickGroupBuyDetail(id) {
             $('#itemsDetail .detail-label').children().html(json.label);
             $('#itemsDetail .detail-title').next().html(json.detail);
             $('#itemsDetail .detail-score').children().html(json.score);
-            $('#itemsDetail #sale-unit').html(json.unit);
+
             $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail #productMainImage').val(data.uploadsUrl + json.savepath + json.savename);
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
             var mainImage= "<img src='"+ data.uploadsUrl + json.savepath + json.savename +"'>";
             $(".detail-image-container").html(mainImage);
-            //$('#product-attr').hide();
+
+            //$('#itemsDetail #sale-unit').html(json.unit);
+            var saleinfo= "本次拼团共"+ json.piececount +"份，现已经售出"+ json.soldcount +"份。";
+            $('#itemsDetail #sale-info').html(json.unit);
 
             if (json.status == 1) {
                 $('#itemsDetail #addCartBtn').show();
