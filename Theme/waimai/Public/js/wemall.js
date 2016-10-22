@@ -504,6 +504,10 @@ function clickGroupBuyDetail(id) {
             $('#itemsDetail #sale-info').html(saleinfo);
 
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
+            $('#itemsDetail .numbers-add').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
+            $('#itemsDetail .numbers-minus').attr("onclick",'reducehotproductNum(this ,'+json.id+', false)');
+
+            //
 
             initCartDate();
             $('#items-total-price').html(totalPrice);
