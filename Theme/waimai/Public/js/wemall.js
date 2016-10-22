@@ -490,7 +490,9 @@ function clickGroupBuyDetail(id) {
             var json = eval(res);
             $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .single-name').html(json.name);
-            $('#itemsDetail .new-price').children().html(json.price);
+
+            var price= "单份价格为"+ json.totalprice +"元，在线支付"+ json.prepayprice +"元，剩余费用货到付款。";
+            $('#itemsDetail .new-price').html(price);
             $('#itemsDetail .detail-memo').next().html(json.memo);
 
             var mainImageUrl= data.uploadsUrl + json.savepath + json.savename;
