@@ -930,7 +930,7 @@ function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
 
     $(obj).prev().val(productNum);
     if (productNum >= 1) {
-        $(obj).parent().find(".numbers-minus").removeClass('disabled').attr("disabled",false);
+        $(obj).parent().find(".numbers-minus").removeClass('disabled').attr("disabled",false).attr("style","display:block");
     }
 
     displayGroupBuyCart();
@@ -983,8 +983,6 @@ function reduceGroupBuyNum(obj, id) {
 
             if (productNum == 1) {
                 $(obj).addClass('disabled').attr("disabled",true);
-            }else{
-                $(obj).removeClass('disabled').attr("disabled",false);
             }
         }
     });
