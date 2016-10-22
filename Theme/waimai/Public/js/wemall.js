@@ -972,12 +972,14 @@ function displayGroupBuyCart() {
     $('#shopcart-tip').show();
     $('#shopcart-sure').show();
     $('#shopcart-tip').html(totalNumOfGroupBuy);
-    $('#shopcart-totalPrice').html(totalAllPriceOfgroupBuy);
+    $('#shopcart-totalAllPrice').html(totalAllPriceOfgroupBuy);
+    $('#shopcart-totalPrePrice').html(totalPrePriceOfgroupBuy);
     $('.cart-premium').html('预付');
     if (totalNumOfGroupBuy == 0) {
         $('#shopcart-tip').hide();
         $('#shopcart-sure').hide();
-        $('#shopcart-totalPrice').html(0);
+        $('#shopcart-totalAllPrice').html(0);
+        $('#shopcart-totalPrePrice').html(0);
     }
 
     var cookie = {
