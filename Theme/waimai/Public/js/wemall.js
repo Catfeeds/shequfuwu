@@ -147,7 +147,7 @@ function showShopInfo() {
  * @param pageIndex
  * @param saletype int 销售类型零售还是批发
  */
-function areaShops(saletype, pageIndex,searchShopCategory) {
+function areaShops(saletype, pageIndex, searchShopCategory) {
     var name = $('.pi_input').val();
     var category = searchShopCategory;
 
@@ -365,7 +365,6 @@ function displayOrderResult(id) {
     });
 }
 
-
 function doCart(obj, id, name, price, skuIs) {
     if ($('#itemsDetail').length > 0) {
         if (skuIs == "") {
@@ -491,21 +490,21 @@ function clickGroupBuyDetail(id) {
             $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .single-name').html(json.name);
 
-            var price= "单份价格为"+ json.totalprice +"元，在线支付"+ json.prepayprice +"元，剩余费用货到付款。";
+            var price = "单份价格为" + json.totalprice + "元，在线支付" + json.prepayprice + "元，剩余费用货到付款。";
             $('#itemsDetail .detail-price').html(price);
             $('#itemsDetail .detail-memo').next().html(json.memo);
 
-            var mainImageUrl= data.uploadsUrl + json.savepath + json.savename;
-            var mainImage= "<img src='"+ mainImageUrl +"'>";
+            var mainImageUrl = data.uploadsUrl + json.savepath + json.savename;
+            var mainImage = "<img src='" + mainImageUrl + "'>";
             $('#itemsDetail #productMainImage').val(mainImageUrl);
             $(".detail-image-container").html(mainImage);
 
-            var saleinfo= "本次拼团共"+ json.piececount +"份，现已经售出"+ json.soldcount +"份。";
+            var saleinfo = "本次拼团共" + json.piececount + "份，现已经售出" + json.soldcount + "份。";
             $('#itemsDetail #sale-info').html(saleinfo);
 
-            $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
-            $('#itemsDetail .numbers-add').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
-            $('#itemsDetail .numbers-minus').attr("onclick",'reducehotproductNum(this ,'+json.id+', false)');
+            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
+            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
+            $('#itemsDetail .numbers-minus').attr("onclick", 'reducehotproductNum(this ,' + json.id + ', false)');
 
             //
 
@@ -918,6 +917,77 @@ function cartNext() {
         }
 
     });
+}
+
+
+function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
+    var flag = 0;
+    $.each(cartDataOfgroupBuy, function (index, value) {
+        if (value.id == id) {
+            flag = 1;
+            value.num++;
+            return;
+        }
+    });
+    if (flag == 0) {
+        var current = '{"id":"' + id + '","name":"' + name + '","num":"' + 1 + '","allPrice":"' + allPrice + '","prePrice":"' + prePrice + '"}';
+        cartDataOfgroupBuy.push(JSON.parse(current));
+    }
+    // console.log(cartData);
+    displayGroupBuyCart();
+    return;
+}
+
+
+function displayGroupBuyCart() {
+    // $.each($('#items').children(), function (index, value) {
+    //     $(this).find('.numbers-minus').hide();
+    //     $(this).find('.numbers').hide();
+    //     $(this).find('.numbers').val(0);
+    // });
+
+    $.each(groupBuyCartData, function (index, value) {
+        // $('#groupBuyGrid').find('.numbers-minus').show();
+        // $('#groupBuyGrid').find('.numbers').show();
+        // $('#groupBuyGrid').find('.numbers').val(value.num);
+        //
+        // $('#product-hot').find('li[label-id="' + value.id + '"]').find('.numbers-minus').show();
+        // $('#product-hot').find('li[label-id="' + value.id + '"]').find('.numbers').show();
+        // $('#product-hot').find('li[label-id="' + value.id + '"]').find('.numbers').val(value.num);
+    });
+
+    totalNumOfGroupBuy = 0;
+    totalAllPriceOfgroupBuy = 0;
+    totalPrePriceOfgroupBuy=0;
+
+    $.each(cartDataOfgroupBuy, function (index, value) {
+        totalNumOfGroupBuy += parseInt(value.num);
+        totalAllPriceOfgroupBuy += parseFloat(value.allPrice) * value.num;
+        totalPrePriceOfgroupBuy += parseFloat(value.prePrice) * value.num;
+    });
+
+    totalAllPriceOfgroupBuy = (parseFloat(totalAllPriceOfgroupBuy) + parseFloat(data.config.freight)).toFixed(2);
+
+    if (totalAllPriceOfgroupBuy > parseFloat(data.config.full)) {
+        totalAllPriceOfgroupBuy = (totalAllPriceOfgroupBuy - parseFloat(data.config.discount)).toFixed(2);
+    }
+    $('#shopcart-tip').show();
+    $('#shopcart-sure').show();
+    $('#shopcart-tip').html(totalNumOfGroupBuy);
+    $('#shopcart-totalPrice').html(totalAllPriceOfgroupBuy);
+    if (totalNumOfGroupBuy == 0) {
+        $('#shopcart-tip').hide();
+        $('#shopcart-sure').hide();
+        $('#shopcart-totalPrice').html(0);
+    }
+
+    var cookie = {
+        cartData: cartDataOfgroupBuy,
+        totalAllPrice: totalAllPriceOfgroupBuy,
+        totalPrePrice: totalPrePriceOfgroupBuy,
+        totalNum: totalNumOfGroupBuy,
+    };
+    $.cookie("load4GroupBuy", JSON.stringify(cookie), {path: "/"});
 }
 
 /*订单可提交标志*/
