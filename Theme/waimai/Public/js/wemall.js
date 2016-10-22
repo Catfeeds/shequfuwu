@@ -472,8 +472,7 @@ function initCartDate() {
 }
 
 function clickGroupBuyDetail(id) {
-    alert(11111111);
-    tabTmpl("groupBuy-container");
+    tabTmpl("groupBuyDetail-container");
     //backContainer = "product-container";
     // if (totalNum != 0) {
     //     $('#shopcart-tip').show();
