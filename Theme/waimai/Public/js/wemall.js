@@ -957,6 +957,8 @@ function displayGroupBuyCart() {
     totalAllPriceOfgroupBuy = 0;
     totalPrePriceOfgroupBuy = 0;
 
+    console.log(1111111111);
+    console.log(cartDataOfgroupBuy);
     $.each(cartDataOfgroupBuy, function (index, value) {
         totalNumOfGroupBuy += parseInt(value.num);
         totalAllPriceOfgroupBuy += parseFloat(value.allPrice) * value.num;
