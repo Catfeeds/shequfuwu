@@ -498,7 +498,9 @@ function clickGroupBuyDetail(id) {
             $('#itemsDetail #productMainImage').val(data.uploadsUrl + json.savepath + json.savename);
             $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
-            $('#product-attr').hide();
+            var mainImage= "<img src='"+ data.uploadsUrl + json.savepath + json.savename +"'>";
+            $(".detail-image-container").html(mainImage);
+            //$('#product-attr').hide();
 
             if (json.status == 1) {
                 $('#itemsDetail #addCartBtn').show();
@@ -507,20 +509,20 @@ function clickGroupBuyDetail(id) {
                 $('#itemsDetail #soldOut').show();
             }
 
-            if (json.sku.length) {
-                var html = '';
-                $.each(json.sku, function (index, value) {
-                    html += '<p class="attr-btn" onclick="addAttr(this , ' + json.id + ' ,' + value.id + ' , \'' + value.name + '\', \'' + value.price + '\')">' + value.name + '</p>';
-                });
-                $('#itemsDetail #detail-attr-btn').html(html);
-                $('#product-attr').show();
-            }
+            // if (json.sku.length) {
+            //     var html = '';
+            //     $.each(json.sku, function (index, value) {
+            //         html += '<p class="attr-btn" onclick="addAttr(this , ' + json.id + ' ,' + value.id + ' , \'' + value.name + '\', \'' + value.price + '\')">' + value.name + '</p>';
+            //     });
+            //     $('#itemsDetail #detail-attr-btn').html(html);
+            //     $('#product-attr').show();
+            // }
 
-            if (json.albums == "") {
-                var topimage = [];
-                topimage.push(JSON.parse('{"savename":"' + json.savename + '","savepath":"' + json.savepath + '"}'));
-                json.albums = topimage;
-            }
+            // if (json.albums == "") {
+            //     var topimage = [];
+            //     topimage.push(JSON.parse('{"savename":"' + json.savename + '","savepath":"' + json.savepath + '"}'));
+            //     json.albums = topimage;
+            // }
 
             // var html = '';
             // $.each(json.albums, function (index, value) {
