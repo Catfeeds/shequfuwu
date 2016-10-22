@@ -946,7 +946,7 @@ function displayGroupBuyCart() {
     //     $(this).find('.numbers').val(0);
     // });
 
-    $.each(groupBuyCartData, function (index, value) {
+    $.each(cartDataOfgroupBuy, function (index, value) {
         // $('#groupBuyGrid').find('.numbers-minus').show();
         // $('#groupBuyGrid').find('.numbers').show();
         // $('#groupBuyGrid').find('.numbers').val(value.num);
