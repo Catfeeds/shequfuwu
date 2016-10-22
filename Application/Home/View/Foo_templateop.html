@@ -9,6 +9,8 @@
 <button type="button" id="btnLoadKeyValueArray">加载K/V数组</button>
 <button type="button" id="btnLoadShopLabels">加载店铺标签产品</button>
 <button type="button" id="btnLoadGroupBuys">加载店铺团购活动</button>
+<button type="button" id="btnGetGroupBuy1">获取单个团购活动1</button>
+<button type="button" id="btnGetGroupBuy2">获取单个团购活动2</button>
 <p class="dataContainer" id="dataContainer">
     显示内容
 </p>
@@ -177,14 +179,43 @@
         });
 
 
+        $("#btnGetGroupBuy1").on("click", function () {
+            $.ajax({
+                type: "get",
+                url: "__APP__/General/Biz/getGroupBuy",
+                data: {id: 1},
+                success: function (res) {
+                    //console.log(res);
+                    $('#dataContainer').html(JSON.stringify(res));
+                },
+                error: function () {
+                    $('#dataContainer').html('错误');
+                }
+            });
+        });
+
+        $("#btnGetGroupBuy2").on("click", function () {
+            $.ajax({
+                type: "get",
+                url: "__APP__/General/Biz/callBizHelper",
+                data: {id: 1,methodName:'getGroupBuy',argName:'id'},
+                success: function (res) {
+                    //console.log(res);
+                    $('#dataContainer').html(JSON.stringify(res));
+                },
+                error: function () {
+                    $('#dataContainer').html('错误');
+                }
+            });
+        });
+
+
         $("#btnLoadGroupBuys").on("click", function () {
             $.ajax({
                 type: "get",
                 url: "__APP__/General/Biz/getGroupBuys",
                 data: {shopId: 144,},
                 success: function (res) {
-                    //$('#dataContainer').html(json_encode(res));
-
                     json = eval(res);
                     var dataSending = {
                         dataList: json,

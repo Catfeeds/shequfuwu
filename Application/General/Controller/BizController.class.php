@@ -156,8 +156,30 @@ class BizController
         return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
     }
 
+    public function getGroupBuy(){
+        $groupBuyId= I("get.id");
+        $result=  BizHelper::getGroupBuy($groupBuyId);
+        return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
+    }
+
+    //============================================================================================
+    //TODO 以下方法需要验证
+    public function callBizHelper(){
+        $methodName= I("get.methodName");
+        $argName= I("get.argName");
+        if(empty( $argName)){
+            $argName= "id";
+        }
+        $argValue= I("get.$argName");
+        $args= array("$argName"=>$argValue);
+
+        $className= "Common\\Model\\BizHelper";
+        $result=  ReflectionHelper::executeMethod($className,$methodName,null,$args);
+        return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
+    }
+
     public function callFuncs($className,$methodName,$construcArgs=null,$methodArgs= null){
-        //CommonLoger::log("callFuncs","sssssssssssssssssss");
         ReflectionHelper::executeMethod($className,$methodName,$construcArgs,$methodArgs);
     }
+    //============================================================================================
 }

@@ -1,7 +1,7 @@
 <ul class="list-unstyled">
     {{each dataList as dataItem index}}
     <li>
-        <a href="{{dataItem.url}}">
+        <a href="#/groupbuy/{{dataItem.id}}">
             <img class="lazy" src="{{imageUrl}}/blank.gif"
                  data-echo="{{uploadsUrl+dataItem.savepath+dataItem.savename}}"
                  style="display: inline; height: 137px;">

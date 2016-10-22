@@ -636,6 +636,27 @@ class BizHelper
         return $newsArray;
     }
 
+    public static function getGroupBuys($shopID)
+    {
+        $mate = new ViewMate("groupbuy", ViewLink::getCommon_File());
+        $condition = Array(
+            "shop_id" => $shopID,
+            "managestatus" => SystemConst::COMMON_STATUS_SS_START,
+        );
+
+        $list = $mate->select($condition);
+
+        return $list;
+    }
+
+    public static function getGroupBuy($groupBuyId)
+    {
+        $mate = new ViewMate("groupbuy", ViewLink::getCommon_File());
+        $entity = $mate->get($groupBuyId);
+
+        return $entity;
+    }
+
     public function generateWecomeNewsResponse($shopID = 0)
     {
         $title = '';
@@ -675,19 +696,6 @@ class BizHelper
 
         return $newsArray;
     }
-
-    public static function getGroupBuys($shopID){
-        $mate= new ViewMate("groupbuy",ViewLink::getCommon_File());
-        $condition= Array(
-            "shop_id"=> $shopID,
-            "managestatus"=> SystemConst::COMMON_STATUS_SS_START,
-        );
-
-        $list= $mate->select($condition);
-
-        return $list;
-    }
-
 
 }
 

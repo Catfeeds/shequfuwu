@@ -37,6 +37,10 @@ $(document).ready(function () {
         var id = this.params['id'];
         clickItemDetail(id);
     });
+    Path.map("#/groupbuy/:id").to(function () {
+        var id = this.params['id'];
+        clickGroupBuyDetail(id);
+    });
     Path.map("#/cart").to(function () {
         $('#nav-cart').click();
         var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
@@ -465,6 +469,91 @@ function initCartDate() {
         totalNum: totalNum,
     };
     $.cookie("load", JSON.stringify(cookie), {path: "/"});
+}
+
+function clickGroupBuyDetail(id) {
+    tabTmpl("groupBuy-container");
+    //backContainer = "product-container";
+    // if (totalNum != 0) {
+    //     $('#shopcart-tip').show();
+    //     $('#shopcart-tip').html(totalNum);
+    // }
+
+    //attr = {};
+    $.ajax({
+        type: "get",
+        url: data.baseUrl + "/General/Biz/getGroupBuy",
+        data: {
+            id: id
+        },
+        success: function (res) {
+            var json = eval(res);
+            $('#itemsDetail .single-name').html(json.name);
+            $('#itemsDetail .new-price').children().html(json.price);
+            $('#itemsDetail .detail-label').children().html(json.label);
+            $('#itemsDetail .detail-title').next().html(json.detail);
+            $('#itemsDetail .detail-score').children().html(json.score);
+            $('#itemsDetail #sale-unit').html(json.unit);
+            $('#itemsDetail #detail-id').val(json.id);
+            $('#itemsDetail #productMainImage').val(data.uploadsUrl + json.savepath + json.savename);
+            $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
+
+            $('#product-attr').hide();
+
+            if (json.status == 1) {
+                $('#itemsDetail #addCartBtn').show();
+                $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',' + json.sku.length + ')');
+            } else {
+                $('#itemsDetail #soldOut').show();
+            }
+
+            if (json.sku.length) {
+                var html = '';
+                $.each(json.sku, function (index, value) {
+                    html += '<p class="attr-btn" onclick="addAttr(this , ' + json.id + ' ,' + value.id + ' , \'' + value.name + '\', \'' + value.price + '\')">' + value.name + '</p>';
+                });
+                $('#itemsDetail #detail-attr-btn').html(html);
+                $('#product-attr').show();
+            }
+
+            if (json.albums == "") {
+                var topimage = [];
+                topimage.push(JSON.parse('{"savename":"' + json.savename + '","savepath":"' + json.savepath + '"}'));
+                json.albums = topimage;
+            }
+
+            var html = '';
+            $.each(json.albums, function (index, value) {
+                html += '<div class="swiper-slide" style="text-align: -webkit-center;"><img style="height: 200px" src="' + data.uploadsUrl + value.savepath + value.savename + '"></div>';
+            });
+            $('#itemsDetail .swiper-wrapper').html(html);
+
+            initCartDate();
+            $('#items-total-price').html(totalPrice);
+
+            var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
+            $("#wechatShareJS").html(html);
+        },
+        beforeSend: function () {
+            $('#page_tag_load').show();
+        },
+        complete: function () {
+            $('#page_tag_load').hide();
+
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+
+                // 如果需要分页器
+                pagination: '.swiper-pagination',
+
+                // 如果需要滚动条
+                scrollbar: '.swiper-scrollbar'
+            });
+
+            $('.attr-btn').first().click();
+        }
+    });
 }
 
 function clickItemDetail(id) {
