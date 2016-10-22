@@ -898,17 +898,20 @@ function clickGroupBuyDetail(id) {
 
             $('#items-total-price').html(totalPrice);
 
+
+            var countInGroupBuyCart= 0;
             $.each(cartDataOfgroupBuy, function (index, value) {
                 if (value.id == json.id) {
-                    if (value.num <= 0) {
-                        $('#itemsDetail .numbers-minus').addClass('disabled').attr("disabled", true);
-                    } else {
-                        $('#itemsDetail .numbers-minus').removeClass('disabled').attr("disabled", false);
-                    }
-
+                    countInGroupBuyCart= value.num;
                     return;
                 }
             });
+
+            if (countInGroupBuyCart <= 0) {
+                $('#itemsDetail .numbers-minus').addClass('disabled').attr("disabled", true);
+            } else {
+                $('#itemsDetail .numbers-minus').removeClass('disabled').attr("disabled", false);
+            }
 
             var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
             $("#wechatShareJS").html(html);
