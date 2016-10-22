@@ -892,8 +892,8 @@ function clickGroupBuyDetail(id) {
             var saleinfo = "本次拼团共" + json.piececount + "份，现已经售出" + json.soldcount + "份。";
             $('#itemsDetail #sale-info').html(saleinfo);
 
-            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',\'+json.prepayprice +\')');
-            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',\'+ json.prepayprice +\')');
+            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ','+json.prepayprice +')');
+            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ','+ json.prepayprice +')');
             $('#itemsDetail .numbers-minus').attr("onclick", 'reduceGroupBuyNum(this ,' + json.id + ', false)');
 
             $('#items-total-price').html(totalPrice);
