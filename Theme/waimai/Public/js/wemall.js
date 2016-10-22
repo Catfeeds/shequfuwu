@@ -929,6 +929,9 @@ function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
     }
 
     $(obj).prev().val(productNum);
+    if (productNum >= 1) {
+        $(obj).parent().find(".numbers-minus").removeClass('disabled').attr("disabled",false);
+    }
 
     displayGroupBuyCart();
     return;
