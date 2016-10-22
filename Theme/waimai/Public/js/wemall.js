@@ -472,6 +472,7 @@ function initCartDate() {
 }
 
 function clickGroupBuyDetail(id) {
+    alert(11111111);
     tabTmpl("groupBuy-container");
     //backContainer = "product-container";
     // if (totalNum != 0) {
