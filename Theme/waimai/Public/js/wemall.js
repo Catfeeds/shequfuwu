@@ -932,7 +932,6 @@ function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
     }
 
     $(obj).prev().val(productNum);
-    $(obj).parent().prev().find('.item-amount').html(productNum);
 
     displayGroupBuyCart();
     return;
@@ -976,6 +975,7 @@ function displayGroupBuyCart() {
 
 function reduceGroupBuyNum(obj, id) {
     var productNum = 0;
+    console.log(cartDataOfgroupBuy);
     $.each(cartDataOfgroupBuy, function (index, value) {
         if (value.id == id) {
             productNum = value.num;
