@@ -488,22 +488,20 @@ function clickGroupBuyDetail(id) {
         },
         success: function (res) {
             var json = eval(res);
+            $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .single-name').html(json.name);
             $('#itemsDetail .new-price').children().html(json.price);
-            $('#itemsDetail .detail-label').children().html(json.label);
-            $('#itemsDetail .detail-title').next().html(json.detail);
-            $('#itemsDetail .detail-score').children().html(json.score);
+            $('#itemsDetail .detail-memo').next().html(json.memo);
 
-            $('#itemsDetail #detail-id').val(json.id);
-            $('#itemsDetail #productMainImage').val(data.uploadsUrl + json.savepath + json.savename);
-            $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
-
-            var mainImage= "<img src='"+ data.uploadsUrl + json.savepath + json.savename +"'>";
+            var mainImageUrl= data.uploadsUrl + json.savepath + json.savename;
+            var mainImage= "<img src='"+ mainImageUrl +"'>";
+            $('#itemsDetail #productMainImage').val(mainImageUrl);
             $(".detail-image-container").html(mainImage);
 
-            //$('#itemsDetail #sale-unit').html(json.unit);
             var saleinfo= "本次拼团共"+ json.piececount +"份，现已经售出"+ json.soldcount +"份。";
-            $('#itemsDetail #sale-info').html(json.unit);
+            $('#itemsDetail #sale-info').html(saleinfo);
+
+            $('#itemsDetail .addItem.btn-shopping').attr("onclick", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
 
             if (json.status == 1) {
                 $('#itemsDetail #addCartBtn').show();
