@@ -894,11 +894,8 @@ function clickGroupBuyDetail(id) {
 
             $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
             $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.price + ',\'\')');
-            $('#itemsDetail .numbers-minus').attr("onclick", 'reducehotproductNum(this ,' + json.id + ', false)');
+            $('#itemsDetail .numbers-minus').attr("onclick", 'reduceGroupBuyNum(this ,' + json.id + ', false)');
 
-            //
-
-            initCartDate();
             $('#items-total-price').html(totalPrice);
 
             var html = "<script src= '" + data.jsUrl + "/wechatShare.js' />";
@@ -997,7 +994,6 @@ function reduceGroupBuyNum(obj, id) {
     });
     productNum--;
     $(obj).next().val(productNum);
-    $(obj).parent().prev().find('.item-amount').html(productNum);
     displayGroupBuyCart();
     //$('#items-total-price').html(totalPrice);
 }
