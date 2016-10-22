@@ -952,7 +952,7 @@ function displayGroupBuyCart() {
     $('#shopcart-sure').show();
     $('#shopcart-tip').html(totalNumOfGroupBuy);
     $('#shopcart-totalPrice').html(totalAllPriceOfgroupBuy);
-    $('.cart-premium').html(totalPrePriceOfgroupBuy);
+    $('.cart-premium').html('预付');
     if (totalNumOfGroupBuy == 0) {
         $('#shopcart-tip').hide();
         $('#shopcart-sure').hide();
