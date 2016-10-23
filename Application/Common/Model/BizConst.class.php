@@ -46,10 +46,16 @@ class BizConst extends ConstMate
     //-----------------------------------------------------
     const ORDER_PAYTYPE_LOCAL = 0;
     const ORDER_PAYTYPE_LOCAL_TEXT = "账户支付";
+    const ORDER_PAYTYPE_LOCALPART = -1;
+    const ORDER_PAYTYPE_LOCALPART_TEXT = "账户支付(预付)";
     const ORDER_PAYTYPE_WEIXIN = 1;
     const ORDER_PAYTYPE_WEIXIN_TEXT = "微信支付";
+    const ORDER_PAYTYPE_WEIXINPART = 10;
+    const ORDER_PAYTYPE_WEIXINPART_TEXT = "微信支付(预付)";
     const ORDER_PAYTYPE_ZHIFUBAO = 2;
     const ORDER_PAYTYPE_ZHIFUBAO_TEXT = "支付宝支付";
+    const ORDER_PAYTYPE_ZHIFUBAOPART = 20;
+    const ORDER_PAYTYPE_ZHIFUBAOPART_TEXT = "支付宝支付(预付)";
     const ORDER_PAYTYPE_FACE2FACE = 3;
     const ORDER_PAYTYPE_FACE2FACE_TEXT = "货到付款";
     //------------------------------------------------------

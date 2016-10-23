@@ -2,7 +2,6 @@
  * Created by heqing on 15/1/13.
  */
 $(document).ready(function () {
-
     var cookie = $.cookie("load");
     if (cookie) {
         cookie = JSON.parse(cookie);
@@ -776,26 +775,30 @@ function cartNext(isGroupBuy) {
     $('.header-left').show();
     // pushHistory();
 
-    $('#balance-payment').click(function () {
-        $('.payment-content').find('.radio').removeClass('selected');
-        $(this).find('.radio').addClass('selected');
-        payment = 0;
+    $(".payment-content .line").each(function (index,item) {
+        item.bind("onclick",'sssssssssssssssssssss'+index);
     });
-    $('#wechat-payment').click(function () {
-        $('.payment-content').find('.radio').removeClass('selected');
-        $(this).find('.radio').addClass('selected');
-        payment = 1;
-    });
-    $('#alipay-payment').click(function () {
-        $('.payment-content').find('.radio').removeClass('selected');
-        $(this).find('.radio').addClass('selected');
-        payment = 2;
-    });
-    $('#cool-payment').click(function () {
-        $('.payment-content').find('.radio').removeClass('selected');
-        $(this).find('.radio').addClass('selected');
-        payment = 3;
-    });
+
+    // $('#balance-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 0;
+    // });
+    // $('#wechat-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 1;
+    // });
+    // $('#alipay-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 2;
+    // });
+    // $('#cool-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 3;
+    // });
 
     $.ajax({
         type: "get",
