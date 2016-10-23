@@ -761,10 +761,14 @@ function deleteProduct(obj, id, sku_id) {
     });
 }
 
-function cartNext() {
+function cartNext(isGroupBuy) {
     if (cartData.length == 0) {
         // alert("购物车为空,请先选择商品!");
         return;
+    }
+
+    if(isGroupBuy){
+        alert('isGroupBuy');
     }
 
     tabTmpl("delivery-container");
@@ -892,17 +896,17 @@ function clickGroupBuyDetail(id) {
             var saleinfo = "本次拼团共" + json.piececount + "份，现已经售出" + json.soldcount + "份。";
             $('#itemsDetail #sale-info').html(saleinfo);
 
-            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ','+json.prepayprice +')');
-            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ','+ json.prepayprice +')');
+            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ')');
+            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ')');
             $('#itemsDetail .numbers-minus').attr("onclick", 'reduceGroupBuyNum(this ,' + json.id + ', false)');
 
             $('#items-total-price').html(totalPrice);
 
 
-            var countInGroupBuyCart= 0;
+            var countInGroupBuyCart = 0;
             $.each(cartDataOfgroupBuy, function (index, value) {
                 if (value.id == json.id) {
-                    countInGroupBuyCart= value.num;
+                    countInGroupBuyCart = value.num;
                     return;
                 }
             });
@@ -993,7 +997,7 @@ function displayGroupBuyCart() {
 
 function reduceGroupBuyNum(obj, id) {
     var productNum = 0;
-    console.log(cartDataOfgroupBuy);
+    //console.log(cartDataOfgroupBuy);
     $.each(cartDataOfgroupBuy, function (index, value) {
         if (value.id == id) {
             productNum = value.num;
@@ -1008,6 +1012,18 @@ function reduceGroupBuyNum(obj, id) {
     productNum--;
     $(obj).next().val(productNum);
     displayGroupBuyCart();
+}
+
+function deleteGroupBuyNum(obj, id) {
+    $.each(cartDataOfgroupBuy, function (index, value) {
+        if (value.id == id) {
+            cartDataOfgroupBuy.splice(index, 1);
+            $(obj).parent().parent().parent().remove();
+            displayGroupBuyCart();
+            $('#items-total-price').html(totalPrice);
+            return;
+        }
+    });
 }
 
 /*订单可提交标志*/
@@ -1431,13 +1447,11 @@ function openCartsure() {
     $("#nav-cart").click();
 }
 
-function openCart(o,isGroupBuy) {
-    if(isGroupBuy){
-        alert(1111111111111111);
+function openCart(o, isGroupBuy) {
+    if (o) {
+        navSelect(o);
     }
-    
-    navSelect(o);
-    // console.log(cartData);
+
     tabTmpl("cart-container");
 
     $('#shopcart-tip').show();
@@ -1448,15 +1462,24 @@ function openCart(o,isGroupBuy) {
     // console.log(cartData);
 
     var html = '';
-    $.each(cartData, function (index, value) {
-        var sku = '';
-        var sku_id = 0;
-        if (value.sku_id) {
-            sku = '（' + value.sku_name + '）';
-            sku_id = value.sku_id;
-        }
-        html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + sku + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.price + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceproductNum(this,' + value.id + ',' + sku_id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="addproductNum(this,' + value.id + ',' + sku_id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteProduct(this,' + value.id + ',' + sku_id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
-    });
+    if (isGroupBuy) {
+        $("#btnCartNext").attr("href","javascript:cartNext(true);");
+
+        $.each(cartDataOfgroupBuy, function (index, value) {
+            html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + sku + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.allPrice + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceGroupBuyNum(this,' + value.id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="doCartOfGroupBuy(this,' + value.id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteGroupBuyNum(this,' + value.id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
+        });
+    } else {
+        $.each(cartData, function (index, value) {
+            var sku = '';
+            var sku_id = 0;
+            if (value.sku_id) {
+                sku = '（' + value.sku_name + '）';
+                sku_id = value.sku_id;
+            }
+            html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + sku + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.price + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceproductNum(this,' + value.id + ',' + sku_id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="addproductNum(this,' + value.id + ',' + sku_id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteProduct(this,' + value.id + ',' + sku_id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
+        });
+    }
+
     $('#item-list ul').html(html);
     $('#items-total-price').html(totalPrice);
 }
