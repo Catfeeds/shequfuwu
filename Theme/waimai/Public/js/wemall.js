@@ -926,15 +926,15 @@ function cartNext(isGroupBuy) {
         return;
     }
 
-    if (isGroupBuy) {
-        $(".payment-content .groupBuyPrePay").attr("aaaa","aaaaa");
-        $(".payment-content .groupBuyPrePay").attr("style","display:block;");
-    }
-
     tabTmpl("delivery-container");
     backContainer = "cart-container";
     $('.header-left').show();
     // pushHistory();
+
+    if (isGroupBuy) {
+        //$(".payment-content .groupBuyPrePay").attr("aaaa","aaaaa");
+        $(".payment-content .groupBuyPrePay").attr("style","display:block;");
+    }
 
     $(".payment-content .line").each(
         function (index, item) {
