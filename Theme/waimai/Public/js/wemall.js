@@ -962,7 +962,7 @@ function displayGroupBuyCart() {
     totalAllPriceOfgroupBuy = 0;
     totalPrePriceOfgroupBuy = 0;
 
-    console.log(cartDataOfgroupBuy);
+    //console.log(cartDataOfgroupBuy);
     $.each(cartDataOfgroupBuy, function (index, value) {
         totalNumOfGroupBuy += parseInt(value.num);
         totalAllPriceOfgroupBuy += parseFloat(value.allPrice) * value.num;
@@ -1473,6 +1473,8 @@ function openCart(o, isGroupBuy) {
         });
         $('#items-total-price').html(totalAllPriceOfgroupBuy);
     } else {
+        $("#btnCartNext").attr("onclick","cartNext();");
+
         $.each(cartData, function (index, value) {
             var sku = '';
             var sku_id = 0;
