@@ -978,6 +978,7 @@ function displayGroupBuyCart() {
     $('#shopcart-totalAllPrice').html(totalAllPriceOfgroupBuy);
     $('#shopcart-totalPrePrice').html(totalPrePriceOfgroupBuy);
     $('#items-total-price').html(totalAllPriceOfgroupBuy);
+    $('#items-total-preprice').html(totalPrePriceOfgroupBuy);
     if (totalNumOfGroupBuy == 0) {
         $('#shopcart-tip').hide();
         $('#shopcart-sure').hide();
@@ -1022,6 +1023,7 @@ function deleteGroupBuyNum(obj, id) {
             displayGroupBuyCart();
 
             $('#items-total-price').html(totalAllPriceOfgroupBuy);
+
             return;
         }
     });
