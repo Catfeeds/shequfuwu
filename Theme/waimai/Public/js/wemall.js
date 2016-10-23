@@ -775,10 +775,16 @@ function cartNext(isGroupBuy) {
     $('.header-left').show();
     // pushHistory();
 
-    $(".payment-content .line").each(function (index,item) {
-            $('.payment-content').find('.radio').removeClass('selected');
-            $(this).find('.radio').addClass('selected');
-        $(this).attr("myindex",index);
+    $(".payment-content .line").each(
+
+        function (index,item) {
+            $(this).click(function () {
+                $('.payment-content').find('.radio').removeClass('selected');
+                $(this).find('.radio').addClass('selected');
+                $(this).attr("myindex",index);
+            });
+
+
         //alert(item);
         //$(this).bind("onclick",function () {alert('sssssssssssssssssssss'+index)});
     });
