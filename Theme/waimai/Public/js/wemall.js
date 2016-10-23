@@ -927,6 +927,7 @@ function cartNext(isGroupBuy) {
     }
 
     if (isGroupBuy) {
+        $(".payment-content .groupBuyPrePay").attr("aaaa","aaaaa");
         $(".payment-content .groupBuyPrePay").attr("style","display:block;");
     }
 
