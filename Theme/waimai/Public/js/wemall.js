@@ -927,7 +927,7 @@ function cartNext(isGroupBuy) {
     }
 
     if (isGroupBuy) {
-        //alert('isGroupBuy');
+        $(".payment-content .groupBuyPrePay").attr("style","display:block;");
     }
 
     tabTmpl("delivery-container");

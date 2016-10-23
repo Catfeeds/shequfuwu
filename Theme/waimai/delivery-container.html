@@ -57,13 +57,17 @@
     <div class="container-gird">
         <div class="payment-content">
             {{if config.balance_payment=='1'}}
+            <span class="line groupBuyPrePay" id="balance-paymentpart" paymentValue="5" style="display: none;">
+                    <span class="radio"></span>
+                    <span class="label">账户支付</span>
+                </span>
             <span class="line" id="balance-payment" paymentValue="0">
                     <span class="radio"></span>
                     <span class="label">账户支付</span>
                 </span>
             {{/if}}
             {{if config.wechat_payment=='1'}}
-            <span class="line groupBuyPrePay" id="wechat-paymentpart" paymentValue="15" >
+            <span class="line groupBuyPrePay" id="wechat-paymentpart" paymentValue="15" style="display: none;">
                     <span class="radio"></span>
                     <span class="label">微信支付预付款{{if bizConfig.SYSTEM_PAY_WEIXIN_COMMISSION_VALUE >0}}(另加{{bizConfig.SYSTEM_PAY_WEIXIN_COMMISSION}}手续费){{/if}}</span>
                 </span>
@@ -74,7 +78,7 @@
                 </span>
             {{/if}}
             {{if config.alipay_payment=='1'}}
-            <span class="line groupBuyPrePay" id="alipay-paymentpart" paymentValue="25" >
+            <span class="line groupBuyPrePay" id="alipay-paymentpart" paymentValue="25" style="display: none;">
                     <span class="radio"></span>
                     <span class="label">支付宝支付预付款{{if bizConfig.SYSTEM_PAY_WEIXIN_COMMISSION_VALUE >0}}(另加{{bizConfig.SYSTEM_PAY_WEIXIN_COMMISSION}}手续费){{/if}}</span>
                 </span>
