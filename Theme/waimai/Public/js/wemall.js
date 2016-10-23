@@ -776,8 +776,11 @@ function cartNext(isGroupBuy) {
     // pushHistory();
 
     $(".payment-content .line").each(function (index,item) {
+            $('.payment-content').find('.radio').removeClass('selected');
+            $(this).find('.radio').addClass('selected');
+        $(this).attr("myindex",index);
         //alert(item);
-        $(this).bind("onclick",function () {alert('sssssssssssssssssssss'+index)});
+        //$(this).bind("onclick",function () {alert('sssssssssssssssssssss'+index)});
     });
 
     // $('#balance-payment').click(function () {
