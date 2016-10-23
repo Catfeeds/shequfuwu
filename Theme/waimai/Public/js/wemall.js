@@ -762,12 +762,12 @@ function deleteProduct(obj, id, sku_id) {
 }
 
 function cartNext(isGroupBuy) {
-    if (cartData.length == 0) {
+    if (cartData.length == 0 && cartDataOfgroupBuy.length == 0) {
         // alert("购物车为空,请先选择商品!");
         return;
     }
 
-    if(isGroupBuy){
+    if (isGroupBuy) {
         //alert('isGroupBuy');
     }
 
@@ -844,7 +844,6 @@ function cartNext(isGroupBuy) {
                     $('#username').val(res[0].name);
                     $('#tel').val(res[0].phone);
                     $('#id').val(res[0].id);
-                    $('#hat_city').val(res[0].city);
                     $('#address').val(res[0].address);
 
                     var label = $('#hat_province').find("option:selected").attr("label");
@@ -855,7 +854,6 @@ function cartNext(isGroupBuy) {
                             $('#hat_city').html(html);
                         });
                     }
-
                     $('#hat_city').val(res[0].city);
                 }
             }
@@ -1466,14 +1464,14 @@ function openCart(o, isGroupBuy) {
 
     var html = '';
     if (isGroupBuy) {
-        $("#btnCartNext").attr("onclick","cartNext(true);");
+        $("#btnCartNext").attr("onclick", "cartNext(true);");
 
         $.each(cartDataOfgroupBuy, function (index, value) {
             html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.allPrice + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceGroupBuyNum(this,' + value.id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="doCartOfGroupBuy(this,' + value.id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteGroupBuyNum(this,' + value.id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
         });
         $('#items-total-price').html(totalAllPriceOfgroupBuy);
     } else {
-        $("#btnCartNext").attr("onclick","cartNext(false);");
+        $("#btnCartNext").attr("onclick", "cartNext(false);");
 
         $.each(cartData, function (index, value) {
             var sku = '';
