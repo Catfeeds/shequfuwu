@@ -760,127 +760,6 @@ function deleteProduct(obj, id, sku_id) {
     });
 }
 
-function cartNext(isGroupBuy) {
-    if (cartData.length == 0 && cartDataOfgroupBuy.length == 0) {
-        // alert("购物车为空,请先选择商品!");
-        return;
-    }
-
-    if (isGroupBuy) {
-        //alert('isGroupBuy');
-    }
-
-    tabTmpl("delivery-container");
-    backContainer = "cart-container";
-    $('.header-left').show();
-    // pushHistory();
-
-    $(".payment-content .line").each(
-
-        function (index,item) {
-            $(this).click(function () {
-                $('.payment-content').find('.radio').removeClass('selected');
-                $(this).find('.radio').addClass('selected');
-                $(this).attr("myindex",index);
-            });
-
-
-        //alert(item);
-        //$(this).bind("onclick",function () {alert('sssssssssssssssssssss'+index)});
-    });
-
-    // $('#balance-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 0;
-    // });
-    // $('#wechat-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 1;
-    // });
-    // $('#alipay-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 2;
-    // });
-    // $('#cool-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 3;
-    // });
-
-    $.ajax({
-        type: "get",
-        url: data.baseUrl + "/App/User/getContactList",
-        data: {
-            getProvince: true,
-            shopId: data.shopId,
-        },
-        success: function (res) {
-            // console.log(res);
-            if (res) {
-                if (res.code == 0) {
-                    openLogin();
-                    return;
-                }
-
-                if (res.province != []) {
-                    var html = '';
-                    var province = eval(res.province);
-
-                    if (province != null) {
-                        $.each(province, function (index, value) {
-                            html += '<option value="' + value.name + '" label="' + index + '">' + value.name + '</option>';
-                        });
-                        $('#hat_province').html(html);
-                    }
-
-                    var html = '';
-                    if (province[0]["city"] != null) {
-                        $.each(province[0]["city"], function (index, value) {
-                            html += '<option value="' + value.name + '">' + value.name + '</option>';
-                        });
-                        $('#hat_city').html(html);
-                    }
-                    area = res.province;
-                }
-
-                var html = '';
-                var deliveryTime = eval(data.config.delivery_time);
-                $.each(deliveryTime, function (index, value) {
-                    html += '<option value="' + value + '">' + value + '</option>';
-                });
-                $('#deliveryTime').html(html);
-
-                if (res[0] != null) {
-                    $('#username').val(res[0].name);
-                    $('#tel').val(res[0].phone);
-                    $('#id').val(res[0].id);
-                    $('#address').val(res[0].address);
-
-                    var label = $('#hat_province').find("option:selected").attr("label");
-                    if (label) {
-                        var html = '';
-                        $.each(province[label]['city'], function (index, value) {
-                            html += '<option value="' + value.name + '">' + value.name + '</option>';
-                            $('#hat_city').html(html);
-                        });
-                    }
-                    $('#hat_city').val(res[0].city);
-                }
-            }
-        },
-        beforeSend: function () {
-            //$('#page_tag_load').show();
-        },
-        complete: function () {
-            //$('#page_tag_load').hide();
-        }
-
-    });
-}
-
 function clickGroupBuyDetail(id) {
     tabTmpl("groupBuyDetail-container");
 
@@ -991,7 +870,7 @@ function displayGroupBuyCart() {
     $('#shopcart-totalAllPrice').html(totalAllPriceOfgroupBuy);
     $('#shopcart-totalPrePrice').html(totalPrePriceOfgroupBuy);
     $('#items-total-price').html(totalAllPriceOfgroupBuy);
-    $('#items-total-preprice').html("/预付"+totalPrePriceOfgroupBuy);
+    $('#items-total-preprice').html("/预付" + totalPrePriceOfgroupBuy);
 
     if (totalNumOfGroupBuy == 0) {
         $('#shopcart-tip').hide();
@@ -1037,6 +916,121 @@ function deleteGroupBuyNum(obj, id) {
             displayGroupBuyCart();
 
             return;
+        }
+    });
+}
+
+function cartNext(isGroupBuy) {
+    if (cartData.length == 0 && cartDataOfgroupBuy.length == 0) {
+        // alert("购物车为空,请先选择商品!");
+        return;
+    }
+
+    if (isGroupBuy) {
+        //alert('isGroupBuy');
+    }
+
+    tabTmpl("delivery-container");
+    backContainer = "cart-container";
+    $('.header-left').show();
+    // pushHistory();
+
+    $(".payment-content .line").each(
+        function (index, item) {
+            $(this).click(function () {
+                $('.payment-content').find('.radio').removeClass('selected');
+                $(this).find('.radio').addClass('selected');
+                payment = $(this).attr("paymentValue");
+            });
+        });
+
+    // $('#balance-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 0;
+    // });
+    // $('#wechat-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 1;
+    // });
+    // $('#alipay-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 2;
+    // });
+    // $('#cool-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 3;
+    // });
+
+    $.ajax({
+        type: "get",
+        url: data.baseUrl + "/App/User/getContactList",
+        data: {
+            getProvince: true,
+            shopId: data.shopId,
+        },
+        success: function (res) {
+            // console.log(res);
+            if (res) {
+                if (res.code == 0) {
+                    openLogin();
+                    return;
+                }
+
+                if (res.province != []) {
+                    var html = '';
+                    var province = eval(res.province);
+
+                    if (province != null) {
+                        $.each(province, function (index, value) {
+                            html += '<option value="' + value.name + '" label="' + index + '">' + value.name + '</option>';
+                        });
+                        $('#hat_province').html(html);
+                    }
+
+                    var html = '';
+                    if (province[0]["city"] != null) {
+                        $.each(province[0]["city"], function (index, value) {
+                            html += '<option value="' + value.name + '">' + value.name + '</option>';
+                        });
+                        $('#hat_city').html(html);
+                    }
+                    area = res.province;
+                }
+
+                var html = '';
+                var deliveryTime = eval(data.config.delivery_time);
+                $.each(deliveryTime, function (index, value) {
+                    html += '<option value="' + value + '">' + value + '</option>';
+                });
+                $('#deliveryTime').html(html);
+
+                if (res[0] != null) {
+                    $('#username').val(res[0].name);
+                    $('#tel').val(res[0].phone);
+                    $('#id').val(res[0].id);
+                    $('#address').val(res[0].address);
+
+                    var label = $('#hat_province').find("option:selected").attr("label");
+                    if (label) {
+                        var html = '';
+                        $.each(province[label]['city'], function (index, value) {
+                            html += '<option value="' + value.name + '">' + value.name + '</option>';
+                            $('#hat_city').html(html);
+                        });
+                    }
+                    $('#hat_city').val(res[0].city);
+                }
+            }
+        },
+        beforeSend: function () {
+            //$('#page_tag_load').show();
+        },
+        complete: function () {
+            //$('#page_tag_load').hide();
         }
     });
 }
@@ -1484,7 +1478,7 @@ function openCart(o, isGroupBuy) {
             html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.allPrice + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceGroupBuyNum(this,' + value.id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="doCartOfGroupBuy(this,' + value.id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteGroupBuyNum(this,' + value.id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
         });
         $('#items-total-price').html(totalAllPriceOfgroupBuy);
-        $('#items-total-preprice').html("/预付"+totalPrePriceOfgroupBuy);
+        $('#items-total-preprice').html("/预付" + totalPrePriceOfgroupBuy);
     } else {
         $("#btnCartNext").attr("onclick", "cartNext(false);");
 
