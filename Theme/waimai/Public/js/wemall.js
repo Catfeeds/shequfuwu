@@ -1471,6 +1471,7 @@ function openCart(o, isGroupBuy) {
             html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.allPrice + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceGroupBuyNum(this,' + value.id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="doCartOfGroupBuy(this,' + value.id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteGroupBuyNum(this,' + value.id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
         });
         $('#items-total-price').html(totalAllPriceOfgroupBuy);
+        $('#items-total-preprice').html(totalPrePriceOfgroupBuy);
     } else {
         $("#btnCartNext").attr("onclick", "cartNext(false);");
 
