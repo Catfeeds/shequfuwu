@@ -1473,7 +1473,7 @@ function openCart(o, isGroupBuy) {
         });
         $('#items-total-price').html(totalAllPriceOfgroupBuy);
     } else {
-        $("#btnCartNext").attr("onclick","cartNext();");
+        $("#btnCartNext").attr("onclick","cartNext(false);");
 
         $.each(cartData, function (index, value) {
             var sku = '';
