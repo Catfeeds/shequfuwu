@@ -948,6 +948,7 @@ function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
     }
 
     $(obj).prev().val(productNum);
+    $(".item-amount").html(productNum);
     if (productNum >= 1) {
         $(obj).parent().find(".numbers-minus").removeClass('disabled').attr("disabled", false);
     }
@@ -978,7 +979,7 @@ function displayGroupBuyCart() {
     $('#shopcart-tip').html(totalNumOfGroupBuy);
     $('#shopcart-totalAllPrice').html(totalAllPriceOfgroupBuy);
     $('#shopcart-totalPrePrice').html(totalPrePriceOfgroupBuy);
-    $('.cart-premium').html('预付');
+    $('#items-total-price').html(totalAllPriceOfgroupBuy);
     if (totalNumOfGroupBuy == 0) {
         $('#shopcart-tip').hide();
         $('#shopcart-sure').hide();
@@ -1011,6 +1012,7 @@ function reduceGroupBuyNum(obj, id) {
 
     productNum--;
     $(obj).next().val(productNum);
+    $(".item-amount").html(productNum)
     displayGroupBuyCart();
 }
 
@@ -1020,7 +1022,8 @@ function deleteGroupBuyNum(obj, id) {
             cartDataOfgroupBuy.splice(index, 1);
             $(obj).parent().parent().parent().remove();
             displayGroupBuyCart();
-            $('#items-total-price').html(totalPrice);
+
+            $('#items-total-price').html(totalAllPriceOfgroupBuy);
             return;
         }
     });
@@ -1466,7 +1469,7 @@ function openCart(o, isGroupBuy) {
         $("#btnCartNext").attr("href","javascript:cartNext(true);");
 
         $.each(cartDataOfgroupBuy, function (index, value) {
-            html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + sku + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.allPrice + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceGroupBuyNum(this,' + value.id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="doCartOfGroupBuy(this,' + value.id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteGroupBuyNum(this,' + value.id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
+            html += '<li><div class="confirmation-item"><div class="item-info"><span class="item-name">' + value.name + '<br></span><span class="item-price-info"><span><span class="item-single-price">' + value.allPrice + '</span>×<span class="item-amount">' + value.num + '</span></span></span></div><div class="select-box"><span class="minus disabled" onclick="reduceGroupBuyNum(this,' + value.id + ')">—</span><input class="amount" type="text" name="amount" value="' + value.num + '" autocomplete="off" readonly=""><span class="add" onclick="doCartOfGroupBuy(this,' + value.id + ')">+</span></div><div class="delete"><a class="delete-btn" onclick="deleteGroupBuyNum(this,' + value.id + ')"><i class="ico ico-delete"></i></a></div></div><div class="divider"></div></li>';
         });
     } else {
         $.each(cartData, function (index, value) {
