@@ -768,7 +768,7 @@ function cartNext(isGroupBuy) {
     }
 
     if(isGroupBuy){
-        alert('isGroupBuy');
+        //alert('isGroupBuy');
     }
 
     tabTmpl("delivery-container");
@@ -814,21 +814,21 @@ function cartNext(isGroupBuy) {
 
                 if (res.province != []) {
                     var html = '';
-                    var city = eval(res.province);
+                    var province = eval(res.province);
 
-                    if (city != null) {
-                        $.each(city, function (index, value) {
+                    if (province != null) {
+                        $.each(province, function (index, value) {
                             html += '<option value="' + value.name + '" label="' + index + '">' + value.name + '</option>';
                         });
-                        $('#hat_city').html(html);
+                        $('#hat_province').html(html);
                     }
 
                     var html = '';
-                    if (city[0]["city"] != null) {
-                        $.each(city[0]["city"], function (index, value) {
+                    if (province[0]["city"] != null) {
+                        $.each(province[0]["city"], function (index, value) {
                             html += '<option value="' + value.name + '">' + value.name + '</option>';
                         });
-                        $('#hat_area').html(html);
+                        $('#hat_city').html(html);
                     }
                     area = res.province;
                 }
@@ -847,16 +847,16 @@ function cartNext(isGroupBuy) {
                     $('#hat_city').val(res[0].city);
                     $('#address').val(res[0].address);
 
-                    var label = $('#hat_city').find("option:selected").attr("label");
+                    var label = $('#hat_province').find("option:selected").attr("label");
                     if (label) {
                         var html = '';
-                        $.each(city[label]['city'], function (index, value) {
+                        $.each(province[label]['city'], function (index, value) {
                             html += '<option value="' + value.name + '">' + value.name + '</option>';
-                            $('#hat_area').html(html);
+                            $('#hat_city').html(html);
                         });
                     }
 
-                    $('#hat_area').val(res[0].city);
+                    $('#hat_city').val(res[0].city);
                 }
             }
         },
