@@ -1431,8 +1431,11 @@ function openCartsure() {
     $("#nav-cart").click();
 }
 
-
-function openCart(o) {
+function openCart(o,isGroupBuy) {
+    if(isGroupBuy){
+        alert(1111111111111111);
+    }
+    
     navSelect(o);
     // console.log(cartData);
     tabTmpl("cart-container");
