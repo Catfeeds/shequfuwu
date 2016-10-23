@@ -978,7 +978,8 @@ function displayGroupBuyCart() {
     $('#shopcart-totalAllPrice').html(totalAllPriceOfgroupBuy);
     $('#shopcart-totalPrePrice').html(totalPrePriceOfgroupBuy);
     $('#items-total-price').html(totalAllPriceOfgroupBuy);
-    $('#items-total-preprice').html(totalPrePriceOfgroupBuy);
+    $('#items-total-preprice').html("预付"+totalPrePriceOfgroupBuy);
+
     if (totalNumOfGroupBuy == 0) {
         $('#shopcart-tip').hide();
         $('#shopcart-sure').hide();
@@ -1021,8 +1022,6 @@ function deleteGroupBuyNum(obj, id) {
             cartDataOfgroupBuy.splice(index, 1);
             $(obj).parent().parent().parent().remove();
             displayGroupBuyCart();
-
-            $('#items-total-price').html(totalAllPriceOfgroupBuy);
 
             return;
         }
