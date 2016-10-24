@@ -39,6 +39,8 @@ class OrderController extends BaseController
         $order = I("post.order");
         $orderType = $order["ordertype"]; //0:普通订单；1：团购订单
 
+
+
         if ($order["payment"] == BizConst::ORDER_PAYTYPE_LOCAL) {
             $paySuccessful = $this->updateUserMoney(session("userId"), -$order["totalprice"]);
             if ($paySuccessful) {
@@ -113,7 +115,6 @@ class OrderController extends BaseController
         //$user->where(array("id" => session("userId")))->setInc("score", $scoreInc);
         BizHelper::updateUserScore(session("userId"), $order['shop_id'], $scoreInc, $order_id, "购物积分");
 
-
         //统计
         $newBuyUser = 0;
         $buyUser = $this->get(array("user_id" => session("userId")));
@@ -143,9 +144,9 @@ class OrderController extends BaseController
                 break;
             case BizConst::ORDER_PAYTYPE_WEIXINPART:
                 if ($wxConfig["switch"] == 0) {
-                    $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"],"paytype"=>"prepay"));
+                    $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"], "paytype" => "prepay"));
                 } else {
-                    $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"],"paytype"=>"prepay"));
+                    $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"], "paytype" => "prepay"));
                     $order["qrCodePay"] = 1;
                 }
                 break;
@@ -153,7 +154,7 @@ class OrderController extends BaseController
                 $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
                 break;
             case BizConst::ORDER_PAYTYPE_ZHIFUBAOPART;
-                $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"],"paytype"=>"prepay"));
+                $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"], "paytype" => "prepay"));
                 break;
         }
 
