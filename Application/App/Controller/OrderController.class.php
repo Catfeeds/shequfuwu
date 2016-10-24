@@ -95,7 +95,15 @@ class OrderController extends BaseController
             $detail["sku_id"] = isset($value["sku_id"]) ? $value["sku_id"] : "";
             $detail["sku_name"] = isset($value["sku_name"]) ? $value["sku_name"] : "";
             $detail["num"] = $value["num"];
-            $detail["price"] = $value["price"];
+
+            if(isset($value["price"])){
+                $detail["price"] = $value["price"];
+            }else{
+                $detail["price"] = isset($value["allPrice"]) ? $value["allPrice"] : "";
+            }
+
+            $detail["prePrice"] = isset($value["prePrice"]) ? $value["prePrice"] : "";
+
 
             if ($orderType == 0) {
                 $getProduct = $product->get(array("id" => $value["id"]));
