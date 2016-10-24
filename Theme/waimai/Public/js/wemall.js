@@ -1021,6 +1021,7 @@ function cartNext(isGroupBuy) {
 var submitEnableFlag = true;
 
 function submitOrder(isGroupBuy) {
+    alert(1111111111111);
     if (submitEnableFlag == false) {
         alert("请不要重复操作!");
         return;
