@@ -1085,6 +1085,7 @@ function submitOrder(isGroupBuy) {
         freight: freights,
         payment: payment,
         discount: discount,
+        ordertype: orderType,
     }
 
     submitEnableFlag = false;
