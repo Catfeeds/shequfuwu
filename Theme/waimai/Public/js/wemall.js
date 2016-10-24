@@ -1081,7 +1081,7 @@ function submitOrder(isGroupBuy) {
         shop_id: shopId,
         remark: note,
         delivery_time: deliveryTime,
-        totalprice: totalPrice,
+        totalprice: totalAllPriceLocal,
         freight: freights,
         payment: payment,
         discount: discount,
