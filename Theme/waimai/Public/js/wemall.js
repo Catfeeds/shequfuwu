@@ -1089,7 +1089,7 @@ function submitOrder(isGroupBuy) {
         ordertype: orderType,
     };
 
-    console.log(order);
+    console.log(cartData);
 
     submitEnableFlag = false;
     $.ajax({
@@ -1135,7 +1135,6 @@ function submitOrder(isGroupBuy) {
                     totalAllPriceOfgroupBuy = 0;
                     totalPrePriceOfgroupBuy = 0;
                     payment = -1;
-                    initProduct();
                 } else {
                     cartData = [];
                     totalNum = 0;
