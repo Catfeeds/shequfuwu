@@ -932,7 +932,6 @@ function cartNext(isGroupBuy) {
     // pushHistory();
 
     if (isGroupBuy) {
-        //$(".payment-content .groupBuyPrePay").attr("aaaa","aaaaa");
         $(".payment-content .groupBuyPrePay").attr("style","display:block;");
         $("#btnSubmitOrder").attr("onclick", "submitOrder(true);");
     }else{
@@ -947,27 +946,6 @@ function cartNext(isGroupBuy) {
                 payment = $(this).attr("paymentValue");
             });
         });
-
-    // $('#balance-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 0;
-    // });
-    // $('#wechat-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 1;
-    // });
-    // $('#alipay-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 2;
-    // });
-    // $('#cool-payment').click(function () {
-    //     $('.payment-content').find('.radio').removeClass('selected');
-    //     $(this).find('.radio').addClass('selected');
-    //     payment = 3;
-    // });
 
     $.ajax({
         type: "get",
@@ -1042,7 +1020,7 @@ function cartNext(isGroupBuy) {
 /*订单可提交标志*/
 var submitEnableFlag = true;
 
-function submitOrder() {
+function submitOrder(isGroupBuy) {
     if (submitEnableFlag == false) {
         alert("请不要重复操作!");
         return;
