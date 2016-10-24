@@ -39,7 +39,7 @@ class PayController extends BaseController
      */
     public function wxPay()
     {
-        $order = D("Order")->get(array("id" => I("get.id")));
+        $order = D("Order")->get(array("id" => I("get.id")),true);
 
         Vendor("WxPayPubHelper.WxPayPubHelper");
 
@@ -71,7 +71,7 @@ class PayController extends BaseController
         //spbill_create_ip已填,商户无需重复填写
         //sign已填,商户无需重复填写
         $unifiedOrder->setParameter("openid", "$openid");//商品描述
-        $unifiedOrder->setParameter("body", $order["orderid"]);//商品描述
+        $unifiedOrder->setParameter("body", $order["shop"]["name"]);//商品描述
         //自定义订单号，此处仅作举例
         $unifiedOrder->setParameter("out_trade_no", $order["orderid"]);//商户订单号
 

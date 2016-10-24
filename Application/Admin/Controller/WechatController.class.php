@@ -349,7 +349,16 @@ class WechatController extends Controller
         $template_id = $this->getTplMessageId("OPENTM201785396");
 
         $orderScore = $order['totalscore'];
-        $scoreString = "(积分:$orderScore)";
+        $scoreString = "";
+        if ($orderScore > 0) {
+            $scoreString = "(积分:$orderScore)";
+        }
+
+        $totalpreprice = $order['totalpreprice'];
+        $totalprepriceString = "";
+        if ($totalpreprice > 0) {
+            $totalprepriceString = "(预付款:$totalpreprice)";
+        }
 
         $msg = array();
         $msg["touser"] = $openId;
@@ -370,7 +379,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword3" => array(
-                "value" => $order["totalprice"] . $scoreString,
+                "value" => $order["totalprice"] . $scoreString . $totalprepriceString,
                 "color" => "black"
             ),
             "keyword4" => array(
@@ -412,7 +421,7 @@ class WechatController extends Controller
         return $template_id;
     }
 
-    public function sendTplMsgPay($user_id, $order_id,$paytype='')
+    public function sendTplMsgPay($user_id, $order_id, $paytype = '')
     {
         $this->init();
 
@@ -420,13 +429,13 @@ class WechatController extends Controller
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
-        if($paytype=="prepay"){
+        if ($paytype == "prepay") {
             $customerTitle = "尊敬的客户,您的订单预付款已成功支付。\n";
-        }else{
+        } else {
             $customerTitle = "尊敬的客户,您的订单已成功支付。\n";
         }
 
-        $this->sendTplMsgPayDetail($user['openid'], $order, $customerTitle);
+        $this->sendTplMsgPayDetail($user['openid'], $order, $customerTitle,$paytype);
 
         $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
         $employee = explode(',', $shop["employee"]);
@@ -436,21 +445,21 @@ class WechatController extends Controller
             }
             $admin = D("User")->get(array("id" => $value));
 
-            if($paytype=="prepay"){
+            if ($paytype == "prepay") {
                 $adminTitle = "客户新订单预付款已成功支付。";
-            }else{
+            } else {
                 $adminTitle = "客户新订单已成功支付。";
             }
-            $this->sendTplMsgPayDetail($admin["openid"], $order, $adminTitle);
+            $this->sendTplMsgPayDetail($admin["openid"], $order, $adminTitle,$paytype);
         }
     }
 
-    private function sendTplMsgPayDetail($openId, $order, $title,$paytype='')
+    private function sendTplMsgPayDetail($openId, $order, $title, $paytype = '')
     {
-        if($paytype=="prepay"){
-            $priceLocal= $order["totalprice"];
-        }else{
-            $priceLocal= $order["totalprice"];
+        if ($paytype == "prepay") {
+            $priceLocal = $order["totalpreprice"];
+        } else {
+            $priceLocal = $order["totalprice"];
         }
 
         $template_id = $this->getTplMessageId("OPENTM207791277");

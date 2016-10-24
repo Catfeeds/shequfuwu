@@ -694,6 +694,17 @@ class FooController extends Controller
         dump(ObjectHelper::equal($data['v7'], $data['v8'], true));
     }
 
+    public function orderop($id=132){
+        $order = D("Order")->get(array("id" => $id),true);
+        dump($order["shop"]["name"]);
+        dump($order);
+    }
+
+    public function paytypetextop(){
+        $result= BizHelper::getPayTypeText(15);
+        dump($result);
+    }
+
     public function substringop()
     {
         $data = array(
