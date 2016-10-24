@@ -412,7 +412,7 @@ class WechatController extends Controller
         return $template_id;
     }
 
-    public function sendTplMsgPay($user_id, $order_id)
+    public function sendTplMsgPay($user_id, $order_id,$paytype='')
     {
         $this->init();
 
@@ -420,7 +420,12 @@ class WechatController extends Controller
         $order = D("Order")->get(array("id" => $order_id), true);
         $user = D("User")->get(array("id" => $user_id));
 
-        $customerTitle = "尊敬的客户,您的订单已成功支付。\n";
+        if($paytype=="prepay"){
+            $customerTitle = "尊敬的客户,您的订单预付款已成功支付。\n";
+        }else{
+            $customerTitle = "尊敬的客户,您的订单已成功支付。\n";
+        }
+
         $this->sendTplMsgPayDetail($user['openid'], $order, $customerTitle);
 
         $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
@@ -430,13 +435,24 @@ class WechatController extends Controller
                 continue;
             }
             $admin = D("User")->get(array("id" => $value));
-            $adminTitle = "客户新订单已成功支付。";
+
+            if($paytype=="prepay"){
+                $adminTitle = "客户新订单预付款已成功支付。";
+            }else{
+                $adminTitle = "客户新订单已成功支付。";
+            }
             $this->sendTplMsgPayDetail($admin["openid"], $order, $adminTitle);
         }
     }
 
-    private function sendTplMsgPayDetail($openId, $order, $title)
+    private function sendTplMsgPayDetail($openId, $order, $title,$paytype='')
     {
+        if($paytype=="prepay"){
+            $priceLocal= $order["totalprice"];
+        }else{
+            $priceLocal= $order["totalprice"];
+        }
+
         $template_id = $this->getTplMessageId("OPENTM207791277");
         $msg = array();
         $msg["touser"] = $openId;//$user["openid"];
@@ -453,7 +469,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword2" => array(
-                "value" => $order["totalprice"],
+                "value" => $priceLocal,
                 "color" => "black"
             ),
             "remark" => array(

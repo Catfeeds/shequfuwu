@@ -1,9 +1,12 @@
 <?php
 namespace App\Controller;
 
-use Vendor\Hiland\Biz\Loger\CommonLoger;
+use Common\Model\BizConst;
 use Vendor\Hiland\Utils\Data\MathHelper;
 
+/**
+ * TODO alipay 的预付款功能没有实现
+ */
 
 /**
  * Class PayController
@@ -77,7 +80,17 @@ class PayController extends BaseController
             $payAllPercent += $weixinCommision;
         }
 
-        $totalFee= round($order["totalprice"] * 100 * $payAllPercent);
+        $payType = I("get.paytype");
+        $totalFee = 0;
+
+        if ($payType == "prepay") {
+            $totalFee = round($order["totalpreprice"] * 100 * $payAllPercent);
+            $unifiedOrder->setParameter("attach", "prepay");//附加数据表明付款类型（支付预付款还是全款）
+        } else {
+            $totalFee = round($order["totalprice"] * 100 * $payAllPercent);
+            $unifiedOrder->setParameter("attach", "allpay");//附加数据表明付款类型（支付预付款还是全款）
+        }
+
         //CommonLoger::log('fee',$order["totalprice"]."---$payAllPercent---".$totalFee);
         $unifiedOrder->setParameter("total_fee", $totalFee);//总金额
 
@@ -240,37 +253,53 @@ class PayController extends BaseController
             // 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
             // 如果有做过处理，不执行商户的业务程序
 
-            $this->payTrue($out_trade_no, $total_fee / 100, "微信支付");
+            $paytype= $xml['attach'];
+
+            $this->payTrue($out_trade_no, $total_fee / 100, $paytype);
         }
     }
 
-    public function payTrue($out_trade_no, $total_fee, $payment)
+    public function payTrue($out_trade_no, $total_fee, $paytype)
     {
         $trade = D("Trade")->get(array("tradeid" => $out_trade_no));
         if (!$trade) {
             $order = D("Order")->get(array("orderid" => $out_trade_no));
-            $order["pay_status"] = 1;
-            D("Order")->save($order);
 
-            if ($total_fee == "") {
-                $total_fee = $order["totalprice"];
+            if($paytype=="prepay"){
+                $order["pay_status"] = BizConst::ORDER_PAYSTATUS_PAIDPART;
+                if ($total_fee == "") {
+                    $total_fee = $order["totalpreprice"];
+                }
+            }else{
+                $order["pay_status"] = BizConst::ORDER_PAYSTATUS_PAID;
+                if ($total_fee == "") {
+                    $total_fee = $order["totalprice"];
+                }
             }
 
-            $this->addTrade($order["user_id"], floatval($total_fee), $out_trade_no, $payment);
+            D("Order")->save($order);
+
+            $this->addTrade($order["user_id"], floatval($total_fee), $out_trade_no, $paytype);
         }
     }
 
-    public function addTrade($userId, $money, $tradeid, $payment)
+    public function addTrade($userId, $money, $tradeid, $paytype)
     {
         $order = D("Order")->get(array("orderid" => $tradeid));
-        request_by_fsockopen($this->appUrl . U("Admin/Wechat/sendTplMsgPay"), array("user_id" => $userId, "order_id" => $order["id"]));
+        if($paytype=="prepay"){
+            $paymentText= "微信支付";
+        }else{
+            $paymentText= "微信支付预付款";
+        }
+
+        request_by_fsockopen($this->appUrl . U("Admin/Wechat/sendTplMsgPay"), array("user_id" => $userId, "order_id" => $order["id"],"paytype"=>$paytype));
 
         $data = array(
             "user_id" => $userId,
             "shop_id" => $order["shop_id"],
             "money" => $money,
             "tradeid" => $tradeid,
-            "payment" => $payment
+            "payment" => $paymentText,
         );
         D("Trade")->add($data);
         D("Shop")->where(array("id" => $order["shop_id"]))->setInc("money", $money);

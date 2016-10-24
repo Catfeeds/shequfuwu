@@ -35,10 +35,22 @@ class OrderController extends BaseController
             return false;
         }
 
-        $payFlag = false;
+        $payFlag = BizConst::ORDER_PAYSTATUS_UNPAY;
         $order = I("post.order");
-        if ($order["payment"] == "0") {
-            $payFlag = $this->updateUserMoney(session("userId"), -$order["totalprice"]);
+        $orderType = $order["ordertype"]; //0:普通订单；1：团购订单
+
+        if ($order["payment"] == BizConst::ORDER_PAYTYPE_LOCAL) {
+            $paySuccessful = $this->updateUserMoney(session("userId"), -$order["totalprice"]);
+            if ($paySuccessful) {
+                $payFlag = BizConst::ORDER_PAYSTATUS_PAID;
+            }
+        }
+
+        if ($order["payment"] == BizConst::ORDER_PAYTYPE_LOCALPART) {
+            $paySuccessful = $this->updateUserMoney(session("userId"), -$order["totalpreprice"]);
+            if ($paySuccessful) {
+                $payFlag = BizConst::ORDER_PAYSTATUS_PAIDPART;
+            }
         }
 
         if (I("post.contact_id")) {
@@ -51,12 +63,10 @@ class OrderController extends BaseController
         //add order
         $order ["user_id"] = session("userId");
         $order ["orderid"] = BizHelper::generateOrderNo($order['shop_id']);
-        if ($payFlag) {
-            $order ["pay_status"] = BizConst::ORDER_PAYSTATUS_PAID;
-        } else {
-            $order ["pay_status"] = BizConst::ORDER_PAYSTATUS_UNPAY;
-        }
+
+        $order ["pay_status"] = $payFlag;
         $order ["status"] = BizConst::ORDER_STATUS_ORIGINAL;
+
 
         // $config = D("Config")->get();
         // $order ["freight"] = $config["freight"];
@@ -67,6 +77,7 @@ class OrderController extends BaseController
         $cartdata = I("post.cartData");
         $detailAll = array();
         $product = D("Product");
+        $groupBuyMate = new ModelMate("groupbuy");
         $scoreInc = 0;
         foreach ($cartdata as $key => $value) {
             $detail = array();
@@ -79,13 +90,18 @@ class OrderController extends BaseController
             $detail["num"] = $value["num"];
             $detail["price"] = $value["price"];
 
-            $getProduct = $product->get(array("id" => $value["id"]));
-            $detail["file_id"] = $getProduct["file_id"];
-            //---添加内容---------------------------------------------
-            $detail["product_unit"] = $getProduct["unit"];
-            //-------------------------------------------------------
-            $productScore = $getProduct["score"];
-            $scoreInc += floatval($productScore);
+            if ($orderType == 0) {
+                $getProduct = $product->get(array("id" => $value["id"]));
+                $detail["file_id"] = $getProduct["file_id"];
+                //---添加内容---------------------------------------------
+                $detail["product_unit"] = $getProduct["unit"];
+                //-------------------------------------------------------
+                $productScore = $getProduct["score"];
+                $scoreInc += floatval($productScore);
+            } else {
+                $groupBuyGotten = $groupBuyMate->get($value["id"]);
+                $detail["file_id"] = $groupBuyGotten["file_id"];
+            }
 
             array_push($detailAll, $detail);
         }
@@ -95,7 +111,7 @@ class OrderController extends BaseController
         $user = D("User");
         $user->where(array("id" => session("userId")))->setInc("buy_num");
         //$user->where(array("id" => session("userId")))->setInc("score", $scoreInc);
-        BizHelper::updateUserScore(session("userId"), $order['shop_id'], $scoreInc,$order_id, "购物积分");
+        BizHelper::updateUserScore(session("userId"), $order['shop_id'], $scoreInc, $order_id, "购物积分");
 
 
         //统计
@@ -115,17 +131,43 @@ class OrderController extends BaseController
         $order = D("Order")->get(array("id" => $order_id), true);
         request_by_fsockopen($this->appUrl . U("Admin/Wechat/sendTplMsgOrder"), array("user_id" => session("userId"), "order_id" => $order_id));
 
-        if ($order["payment"] == BizConst::ORDER_PAYTYPE_WEIXIN) {
-            $wxConfig = D("WxConfig")->get();
-            if ($wxConfig["switch"] == 0) {
-                $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
-            } else {
-                $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
-                $order["qrCodePay"] = 1;
-            }
-        } elseif ($order["payment"] == BizConst::ORDER_PAYTYPE_ZHIFUBAO) {
-            $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+        $wxConfig = D("WxConfig")->get();
+        switch ($order["payment"]) {
+            case BizConst::ORDER_PAYTYPE_WEIXIN:
+                if ($wxConfig["switch"] == 0) {
+                    $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+                } else {
+                    $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+                    $order["qrCodePay"] = 1;
+                }
+                break;
+            case BizConst::ORDER_PAYTYPE_WEIXINPART:
+                if ($wxConfig["switch"] == 0) {
+                    $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"],"paytype"=>"prepay"));
+                } else {
+                    $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"],"paytype"=>"prepay"));
+                    $order["qrCodePay"] = 1;
+                }
+                break;
+            case BizConst::ORDER_PAYTYPE_ZHIFUBAO;
+                $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+                break;
+            case BizConst::ORDER_PAYTYPE_ZHIFUBAOPART;
+                $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"],"paytype"=>"prepay"));
+                break;
         }
+
+//        if ($order["payment"] == BizConst::ORDER_PAYTYPE_WEIXIN) {
+//            $wxConfig = D("WxConfig")->get();
+//            if ($wxConfig["switch"] == 0) {
+//                $order["payUrl"] = U("Pay/wxPay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+//            } else {
+//                $order["payUrl"] = U("Pay/wxQrcodePay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+//                $order["qrCodePay"] = 1;
+//            }
+//        } elseif ($order["payment"] == BizConst::ORDER_PAYTYPE_ZHIFUBAO) {
+//            $order["payUrl"] = U("Pay/alipay", array("id" => $order_id, "shop_id" => $order["shop_id"]));
+//        }
 
         $this->ajaxReturn($order);
     }
