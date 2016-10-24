@@ -932,11 +932,8 @@ function cartNext(isGroupBuy) {
     // pushHistory();
 
     if (isGroupBuy) {
-        $(".payment-content .groupBuyPrePay").attr("style", "display:block;");
-
-        $("#btnSubmitOrder").attr("onclick", "submitOrder(true);");
-    }else{
-        $("#btnSubmitOrder").attr("onclick", "submitOrder(false);");
+        //$(".payment-content .groupBuyPrePay").attr("aaaa","aaaaa");
+        $(".payment-content .groupBuyPrePay").attr("style","display:block;");
     }
 
     $(".payment-content .line").each(
@@ -947,6 +944,27 @@ function cartNext(isGroupBuy) {
                 payment = $(this).attr("paymentValue");
             });
         });
+
+    // $('#balance-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 0;
+    // });
+    // $('#wechat-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 1;
+    // });
+    // $('#alipay-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 2;
+    // });
+    // $('#cool-payment').click(function () {
+    //     $('.payment-content').find('.radio').removeClass('selected');
+    //     $(this).find('.radio').addClass('selected');
+    //     payment = 3;
+    // });
 
     $.ajax({
         type: "get",
@@ -962,6 +980,7 @@ function cartNext(isGroupBuy) {
                     openLogin();
                     return;
                 }
+
                 if (res.province != []) {
                     var html = '';
                     var province = eval(res.province);
@@ -1020,7 +1039,7 @@ function cartNext(isGroupBuy) {
 /*订单可提交标志*/
 var submitEnableFlag = true;
 
-function submitOrder(isGroupBuy) {
+function submitOrder() {
     if (submitEnableFlag == false) {
         alert("请不要重复操作!");
         return;
@@ -1054,23 +1073,6 @@ function submitOrder(isGroupBuy) {
         "address": address,
     }
 
-    var orderType = 0;//0:普通订单；1：团购订单
-    var cartDataLocal = [];
-    var totalAllPriceLocal = 0;
-    var totalPrePriceLocal = 0;
-    if (isGroupBuy) {
-        orderType = 1;
-
-        cartDataLocal = cartDataOfgroupBuy;
-        totalAllPriceLocal = totalAllPriceOfgroupBuy;
-        totalPrePriceLocal = totalPrePriceOfgroupBuy;
-    } else {
-        orderType = 0;
-
-        cartDataLocal = cartData;
-        totalAllPriceLocal = totalPrice;
-    }
-
     if (totalPrice >= data.config.full) {
         var discount = data.config.discount;
     } else {
@@ -1081,15 +1083,11 @@ function submitOrder(isGroupBuy) {
         shop_id: shopId,
         remark: note,
         delivery_time: deliveryTime,
-        totalprice: totalAllPriceLocal,
+        totalprice: totalPrice,
         freight: freights,
         payment: payment,
         discount: discount,
-        totalpreprice: totalPrePriceLocal,
-        ordertype: orderType,
-    };
-
-    console.log(cartData);
+    }
 
     submitEnableFlag = false;
     $.ajax({
@@ -1097,7 +1095,7 @@ function submitOrder(isGroupBuy) {
         url: data.baseUrl + "/App/Order/addOrder",
         data: {
             contact: contact,
-            cartData: cartDataLocal,
+            cartData: cartData,
             order: order
         },
         success: function (res) {
@@ -1129,20 +1127,11 @@ function submitOrder(isGroupBuy) {
                 });
                 $('#item-order-list ul').html(html);
 
-                if (isGroupBuy) {
-                    cartDataOfgroupBuy = [];
-                    totalNumOfgroupBuy = 0;
-                    totalAllPriceOfgroupBuy = 0;
-                    totalPrePriceOfgroupBuy = 0;
-                    payment = -1;
-                } else {
-                    cartData = [];
-                    totalNum = 0;
-                    totalPrice = 0;
-                    payment = -1;
-                    initProduct();
-                }
-
+                cartData = [];
+                totalNum = 0;
+                totalPrice = 0;
+                payment = -1;
+                initProduct();
 
                 if (res.payUrl) {
                     if (res.qrCodePay) {
