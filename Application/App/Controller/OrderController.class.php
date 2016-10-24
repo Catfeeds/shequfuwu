@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 
 class OrderController extends BaseController
@@ -31,6 +32,7 @@ class OrderController extends BaseController
 
     public function addOrder()
     {
+        CommonLoger::log("order","111111111111111");
         if (!$this->checkStore(I("post.cartData"))) {
             return false;
         }
@@ -39,7 +41,7 @@ class OrderController extends BaseController
         $order = I("post.order");
         $orderType = $order["ordertype"]; //0:普通订单；1：团购订单
 
-
+        CommonLoger::log("ordercontent",json_encode($order));
 
         if ($order["payment"] == BizConst::ORDER_PAYTYPE_LOCAL) {
             $paySuccessful = $this->updateUserMoney(session("userId"), -$order["totalprice"]);
