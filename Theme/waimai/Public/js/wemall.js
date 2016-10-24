@@ -1081,12 +1081,10 @@ function submitOrder(isGroupBuy) {
         shop_id: shopId,
         remark: note,
         delivery_time: deliveryTime,
-        totalprice: totalAllPriceLocal,
+        totalprice: totalPrice,
         freight: freights,
         payment: payment,
         discount: discount,
-        totalpreprice: totalPrePriceLocal,
-        ordertype: orderType,
     }
 
     submitEnableFlag = false;
