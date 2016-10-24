@@ -86,6 +86,7 @@ class OrderController extends BaseController
         $groupBuyMate = new ModelMate("groupbuy");
         $scoreInc = 0;
         foreach ($cartdata as $key => $value) {
+            CommonLoger::log("cartDataValue",json_encode($value));
             $detail = array();
             $detail["order_id"] = $order_id;
             $detail["product_id"] = $value["id"];
