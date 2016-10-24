@@ -1064,6 +1064,7 @@ function submitOrder(isGroupBuy) {
         cartDataLocal = cartDataOfgroupBuy;
         totalAllPriceLocal = totalAllPriceOfgroupBuy;
         totalPrePriceLocal = totalPrePriceOfgroupBuy;
+        console.log("sssss:"+totalPrePriceLocal);
     } else {
         orderType = 0;
 
