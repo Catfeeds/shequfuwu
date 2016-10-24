@@ -933,6 +933,10 @@ function cartNext(isGroupBuy) {
 
     if (isGroupBuy) {
         $(".payment-content .groupBuyPrePay").attr("style", "display:block;");
+
+        $("#btnSubmitOrder").attr("onclick", "submitOrder(true);");
+    }else{
+        $("#btnSubmitOrder").attr("onclick", "submitOrder(false);");
     }
 
     $(".payment-content .line").each(
@@ -1056,14 +1060,12 @@ function submitOrder(isGroupBuy) {
     var totalPrePriceLocal = 0;
     if (isGroupBuy) {
         orderType = 1;
-        $("#btnSubmitOrder").attr("onclick", "submitOrder(true);");
 
         cartDataLocal = cartDataOfgroupBuy;
         totalAllPriceLocal = totalAllPriceOfgroupBuy;
         totalPrePriceLocal = totalPrePriceOfgroupBuy;
     } else {
         orderType = 0;
-        $("#btnSubmitOrder").attr("onclick", "submitOrder(false);");
 
         cartDataLocal = cartData;
         totalAllPriceLocal = totalPrice;
