@@ -1127,11 +1127,19 @@ function submitOrder(isGroupBuy) {
                 });
                 $('#item-order-list ul').html(html);
 
-                cartData = [];
-                totalNum = 0;
-                totalPrice = 0;
-                payment = -1;
-                initProduct();
+                if (isGroupBuy) {
+                    cartDataOfgroupBuy = [];
+                    totalNumOfgroupBuy = 0;
+                    totalAllPriceOfgroupBuy = 0;
+                    totalPrePriceOfgroupBuy = 0;
+                    payment = -1;
+                } else {
+                    cartData = [];
+                    totalNum = 0;
+                    totalPrice = 0;
+                    payment = -1;
+                    initProduct();
+                }
 
                 if (res.payUrl) {
                     if (res.qrCodePay) {

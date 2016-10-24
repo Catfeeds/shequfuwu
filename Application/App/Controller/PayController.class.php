@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Common\Model\BizConst;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Utils\Data\MathHelper;
 
 /**
@@ -82,6 +83,8 @@ class PayController extends BaseController
 
         $payType = I("get.paytype");
         $totalFee = 0;
+
+        CommonLoger::log("$payType",json_encode($order));
 
         if ($payType == "prepay") {
             $totalFee = round($order["totalpreprice"] * 100 * $payAllPercent);
