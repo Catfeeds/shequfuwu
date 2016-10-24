@@ -1054,6 +1054,23 @@ function submitOrder(isGroupBuy) {
         "address": address,
     }
 
+    var orderType = 0;//0:普通订单；1：团购订单
+    var cartDataLocal = [];
+    var totalAllPriceLocal = 0;
+    var totalPrePriceLocal = 0;
+    if (isGroupBuy) {
+        orderType = 1;
+
+        cartDataLocal = cartDataOfgroupBuy;
+        totalAllPriceLocal = totalAllPriceOfgroupBuy;
+        totalPrePriceLocal = totalPrePriceOfgroupBuy;
+    } else {
+        orderType = 0;
+
+        cartDataLocal = cartData;
+        totalAllPriceLocal = totalPrice;
+    }
+
     if (totalPrice >= data.config.full) {
         var discount = data.config.discount;
     } else {
