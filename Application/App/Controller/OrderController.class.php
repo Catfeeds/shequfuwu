@@ -32,7 +32,6 @@ class OrderController extends BaseController
 
     public function addOrder()
     {
-        CommonLoger::log("order","111111111111111");
         if (!$this->checkStore(I("post.cartData"))) {
             return false;
         }
@@ -50,12 +49,15 @@ class OrderController extends BaseController
             }
         }
 
+        CommonLoger::log("ordercontent",'1111111111111');
+
         if ($order["payment"] == BizConst::ORDER_PAYTYPE_LOCALPART) {
             $paySuccessful = $this->updateUserMoney(session("userId"), -$order["totalpreprice"]);
             if ($paySuccessful) {
                 $payFlag = BizConst::ORDER_PAYSTATUS_PAIDPART;
             }
         }
+        CommonLoger::log("ordercontent",'222222222222');
 
         if (I("post.contact_id")) {
             $contact_id = I("post.contact_id");
@@ -109,7 +111,11 @@ class OrderController extends BaseController
 
             array_push($detailAll, $detail);
         }
+
+        CommonLoger::log("ordercontent",'333333333333');
         M("OrderDetail")->addAll($detailAll);
+
+        CommonLoger::log("ordercontent",'444444444444');
 
         //update user
         $user = D("User");
@@ -134,6 +140,7 @@ class OrderController extends BaseController
         $order = D("Order")->get(array("id" => $order_id), true);
         request_by_fsockopen($this->appUrl . U("Admin/Wechat/sendTplMsgOrder"), array("user_id" => session("userId"), "order_id" => $order_id));
 
+        CommonLoger::log("ordercontent",'555555555555555');
         $wxConfig = D("WxConfig")->get();
         switch ($order["payment"]) {
             case BizConst::ORDER_PAYTYPE_WEIXIN:

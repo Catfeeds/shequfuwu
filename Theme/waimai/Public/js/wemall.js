@@ -1085,8 +1085,9 @@ function submitOrder(isGroupBuy) {
         freight: freights,
         payment: payment,
         discount: discount,
-        ordertype: "orderType",
-    }
+        totalpreprice: totalPrePriceLocal,
+        ordertype: orderType,
+    };
 
     submitEnableFlag = false;
     $.ajax({
@@ -1094,7 +1095,7 @@ function submitOrder(isGroupBuy) {
         url: data.baseUrl + "/App/Order/addOrder",
         data: {
             contact: contact,
-            cartData: cartData,
+            cartData: cartDataLocal,
             order: order
         },
         success: function (res) {
