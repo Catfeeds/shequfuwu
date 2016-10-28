@@ -369,7 +369,7 @@ class WechatController extends Controller
 
         $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", 15);
         CommonLoger::log("paymentNumber",$order["payment"]);
-        CommonLoger::log("paymentText",$paymentText);
+        CommonLoger::log("paymentTextttt",$paymentText);
 
         $msg = array();
         $msg["touser"] = $openId;
