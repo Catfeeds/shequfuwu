@@ -363,6 +363,7 @@ class WechatController extends Controller
         }
 
         $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]);
+        CommonLoger::log("paymentNumber",$order["payment"]);
         CommonLoger::log("paymentText",$paymentText);
 
         $msg = array();
