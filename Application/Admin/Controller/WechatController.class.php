@@ -375,7 +375,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword2" => array(
-                "value" => BizHelper::getPayTypeText($order["payment"]) . "," . BizHelper::getPayStatusText($order["pay_status"]),
+                "value" => BizHelper::getPayTypeText($order["payment"]) .$order["payment"]. "," . BizHelper::getPayStatusText($order["pay_status"]),
                 "color" => "black"
             ),
             "keyword3" => array(
