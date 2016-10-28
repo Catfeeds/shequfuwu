@@ -398,7 +398,7 @@ class WechatController extends Controller
             ),
         );
 
-        CommonLoger::log(json_encode($msg["data"]));
+        CommonLoger::log(json_encode($msg["data"],JSON_UNESCAPED_UNICODE));
 
         self::$weObj->sendTemplateMessage($msg);
     }
