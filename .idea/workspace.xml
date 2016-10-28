@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/FooController.class.php" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,15 +84,15 @@
       <file leaf-file-name="FooController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13380">
-              <caret line="703" column="47" selection-start-line="703" selection-start-column="47" selection-end-line="703" selection-end-column="47" />
+            <state relative-caret-position="180">
+              <caret line="708" column="33" selection-start-line="708" selection-start-column="33" selection-end-line="708" selection-end-column="33" />
               <folding>
-                <marker date="1477298133653" expanded="true" signature="4979:5018" ph="select * fro... " />
-                <marker date="1477298133653" expanded="true" signature="5236:5405" ph="INSERT INTO " />
-                <marker date="1477298133653" expanded="true" signature="5573:5928" ph="INSERT INTO " />
-                <marker date="1477298133653" expanded="true" signature="6103:6362" ph="INSERT INTO " />
-                <marker date="1477298133653" expanded="true" signature="8660:8705" ph="..." />
-                <marker date="1477298133653" expanded="true" signature="8668:8696" ph="{...}" />
+                <marker date="1477634837248" expanded="true" signature="4979:5018" ph="select * fro... " />
+                <marker date="1477634837248" expanded="true" signature="5236:5405" ph="INSERT INTO " />
+                <marker date="1477634837248" expanded="true" signature="5573:5928" ph="INSERT INTO " />
+                <marker date="1477634837248" expanded="true" signature="6103:6362" ph="INSERT INTO " />
+                <marker date="1477634837248" expanded="true" signature="8660:8705" ph="..." />
+                <marker date="1477634837248" expanded="true" signature="8668:8696" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -100,8 +101,8 @@
       <file leaf-file-name="WechatController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="378" column="45" selection-start-line="378" selection-start-column="45" selection-end-line="378" selection-end-column="45" />
+            <state relative-caret-position="380">
+              <caret line="400" column="52" selection-start-line="400" selection-start-column="52" selection-end-line="400" selection-end-column="52" />
               <folding>
                 <element signature="e#35#61#0#PHP" expanded="true" />
               </folding>
@@ -979,7 +980,7 @@
       <workItem from="1476165176649" duration="7420000" />
       <workItem from="1476660134935" duration="25614000" />
       <workItem from="1476765499464" duration="91217000" />
-      <workItem from="1477558728267" duration="2538000" />
+      <workItem from="1477558728267" duration="3602000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -992,7 +993,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="916312000" />
+    <option name="totallyTimeSpent" value="917376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1086,6 +1087,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
           <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1114,6 +1116,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5080">
           <caret line="254" column="20" selection-start-line="254" selection-start-column="20" selection-end-line="254" selection-end-column="20" />
+          <folding>
+            <marker date="1471136015145" expanded="true" signature="4819:4841" ph="SELECT ${$se... ${$tableName}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1362,21 +1367,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13380">
-          <caret line="703" column="47" selection-start-line="703" selection-start-column="47" selection-end-line="703" selection-end-column="47" />
-          <folding>
-            <marker date="1477298133653" expanded="true" signature="4979:5018" ph="select * fro... " />
-            <marker date="1477298133653" expanded="true" signature="5236:5405" ph="INSERT INTO " />
-            <marker date="1477298133653" expanded="true" signature="5573:5928" ph="INSERT INTO " />
-            <marker date="1477298133653" expanded="true" signature="6103:6362" ph="INSERT INTO " />
-            <marker date="1477298133653" expanded="true" signature="8660:8705" ph="..." />
-            <marker date="1477298133653" expanded="true" signature="8668:8696" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Model/BizHelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6140">
@@ -1411,10 +1401,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/FooController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="708" column="33" selection-start-line="708" selection-start-column="33" selection-end-line="708" selection-end-column="33" />
+          <folding>
+            <marker date="1477634837248" expanded="true" signature="4979:5018" ph="select * fro... " />
+            <marker date="1477634837248" expanded="true" signature="5236:5405" ph="INSERT INTO " />
+            <marker date="1477634837248" expanded="true" signature="5573:5928" ph="INSERT INTO " />
+            <marker date="1477634837248" expanded="true" signature="6103:6362" ph="INSERT INTO " />
+            <marker date="1477634837248" expanded="true" signature="8660:8705" ph="..." />
+            <marker date="1477634837248" expanded="true" signature="8668:8696" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/WechatController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="378" column="45" selection-start-line="378" selection-start-column="45" selection-end-line="378" selection-end-column="45" />
+        <state relative-caret-position="380">
+          <caret line="400" column="52" selection-start-line="400" selection-start-column="52" selection-end-line="400" selection-end-column="52" />
           <folding>
             <element signature="e#35#61#0#PHP" expanded="true" />
           </folding>

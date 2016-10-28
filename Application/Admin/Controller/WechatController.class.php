@@ -4,6 +4,7 @@ namespace Admin\Controller;
 use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Think\Controller;
+use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 
@@ -396,6 +397,8 @@ class WechatController extends Controller
                 "color" => "red"
             ),
         );
+
+        CommonLoger::log(json_encode($msg["data"]));
 
         self::$weObj->sendTemplateMessage($msg);
     }

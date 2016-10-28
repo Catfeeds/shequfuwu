@@ -703,6 +703,7 @@ class FooController extends Controller
     public function paytypetextop(){
         $result= BizHelper::getPayTypeText(15);
         dump($result);
+        dump(BizConst::getConstText("ORDER_PAYTYPE_", 15));
     }
 
     public function substringop()
