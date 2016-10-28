@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Controller;
 
+use Common\Model\BizConst;
 use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
@@ -375,7 +376,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword2" => array(
-                "value" => BizHelper::getPayTypeText($order["payment"]) .$order["payment"]. "," . BizHelper::getPayStatusText($order["pay_status"]),
+                "value" => BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]) . "," . BizHelper::getPayStatusText($order["pay_status"]),
                 "color" => "black"
             ),
             "keyword3" => array(
@@ -435,7 +436,7 @@ class WechatController extends Controller
             $customerTitle = "尊敬的客户,您的订单已成功支付。\n";
         }
 
-        $this->sendTplMsgPayDetail($user['openid'], $order, $customerTitle,$paytype);
+        $this->sendTplMsgPayDetail($user['openid'], $order, $customerTitle, $paytype);
 
         $shop = D("Shop")->getShop(array("id" => $order["shop_id"]));
         $employee = explode(',', $shop["employee"]);
@@ -450,7 +451,7 @@ class WechatController extends Controller
             } else {
                 $adminTitle = "客户新订单已成功支付。";
             }
-            $this->sendTplMsgPayDetail($admin["openid"], $order, $adminTitle,$paytype);
+            $this->sendTplMsgPayDetail($admin["openid"], $order, $adminTitle, $paytype);
         }
     }
 
