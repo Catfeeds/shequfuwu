@@ -346,6 +346,11 @@ class WechatController extends Controller
         }
     }
 
+    public function aa(){
+        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", 15);
+        dump($paymentText);
+    }
+
     private function sendTplMessageOrderDetail($openId, $order, $title, $detailUrl = "")
     {
         $template_id = $this->getTplMessageId("OPENTM201785396");
@@ -362,7 +367,7 @@ class WechatController extends Controller
             $totalprepriceString = "(预付款:$totalpreprice)";
         }
 
-        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]);
+        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", 15);
         CommonLoger::log("paymentNumber",$order["payment"]);
         CommonLoger::log("paymentText",$paymentText);
 

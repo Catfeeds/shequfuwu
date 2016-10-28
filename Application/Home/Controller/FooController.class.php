@@ -704,6 +704,10 @@ class FooController extends Controller
         $result= BizHelper::getPayTypeText(15);
         dump($result);
         dump(BizConst::getConstText("ORDER_PAYTYPE_", 15));
+
+        $mate= new ModelMate("order");
+        $order= $mate->get(188);
+        dump(BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]));
     }
 
     public function substringop()
