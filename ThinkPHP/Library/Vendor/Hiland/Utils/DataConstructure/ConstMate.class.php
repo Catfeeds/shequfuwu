@@ -56,6 +56,7 @@ class ConstMate
     public static function getConstText($prefix, $value, $textPostFix = "_TEXT")
     {
         $all = self::getConsts($prefix);
+        dump($all);
         $constKey = self::getConstName($prefix, $value);
         return $all[$constKey . $textPostFix];
     }
