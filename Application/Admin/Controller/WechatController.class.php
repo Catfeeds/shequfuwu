@@ -362,6 +362,9 @@ class WechatController extends Controller
             $totalprepriceString = "(预付款:$totalpreprice)";
         }
 
+        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]);
+        CommonLoger::log("paymentText",$paymentText);
+
         $msg = array();
         $msg["touser"] = $openId;
         $msg["template_id"] = $template_id;
@@ -377,7 +380,7 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword2" => array(
-                "value" => BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]) . "," . BizHelper::getPayStatusText($order["pay_status"]),
+                "value" => $paymentText . "," . BizHelper::getPayStatusText($order["pay_status"]),
                 "color" => "black"
             ),
             "keyword3" => array(
