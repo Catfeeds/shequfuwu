@@ -367,9 +367,9 @@ class WechatController extends Controller
             $totalprepriceString = "(预付款:$totalpreprice)";
         }
 
-        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", 15);
+        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]);
         CommonLoger::log("paymentNumber",$order["payment"]);
-        CommonLoger::log("paymentTextttt",$paymentText);
+        CommonLoger::log("paymentText",$paymentText);
 
         $msg = array();
         $msg["touser"] = $openId;
