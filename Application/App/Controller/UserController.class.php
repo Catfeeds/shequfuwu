@@ -25,13 +25,28 @@ class UserController extends BaseController
     {
         $user = D("User")->get(array("id" => session("userId")), true);
 
-        $scoreMate = new ModelMate("userScore");
+        //---1、积分情况------------------------------------------------------
         $scoreCodition = array(
             "userid" => session("userId"),
             "shop_id" => I("get.shopId"),
         );
+
+        $scoreMate = new ModelMate("userScore");
         $scoreData = $scoreMate->find($scoreCodition);
-        $user['scoreInShop']= $scoreData['scores'];
+        $userScore= $scoreData['scores'];
+
+        $medalS=C("USER_SCORES_MEDALS");
+        $userMedal= "";
+        foreach ($medalS as $k=>$v){
+            if($userScore>= $v['MIN'] && $userScore<$v['MAX']){
+                $userMedal= $v["NAME"];
+                break;
+            }
+        }
+
+        $user['scoreInShop']= $userScore;
+        $user['medalInShop']= $userMedal;
+        //----------------------------------------------------------------------
 
         if (I("get.getOrder")) {
             //"id desc", $p, $num

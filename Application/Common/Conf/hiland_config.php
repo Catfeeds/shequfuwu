@@ -20,6 +20,21 @@ return array(
     'USER_COMEFROM_COMMONWEIXINUSER' => 1,// 微信用户，尚未关注公众号
     'USER_COMEFROM_SUBSCRIBEDWEIXINUSER' => 2,// 微信用户，已经关注公众号
 
-    'SYSTEM_PAY_WEIXIN_COMMISSION'=> "0.6%", //需要客户承担的微信支付手续费
-    'SYSTEM_PAY_ZHIFUBAO_COMMISSION'=> "0.6%",//需要客户承担的支付宝支付手续费
+    'SYSTEM_PAY_WEIXIN_COMMISSION' => "0.6%", //需要客户承担的微信支付手续费
+    'SYSTEM_PAY_ZHIFUBAO_COMMISSION' => "0.6%",//需要客户承担的支付宝支付手续费
+
+    'USER_SCORES_MEDALS' => array(
+        'L1' => array('NAME' => '士兵',
+            'MIN' => 0,
+            'MAX' => 50,
+        ),
+        'L10' => array('NAME' => '排长',
+            'MIN' => 50,
+            'MAX' => 100,
+        ),
+        'L20' => array('NAME' => '连长',
+            'MIN' => 100,
+            'MAX' => 100000000000000,
+        ),
+    ),
 );

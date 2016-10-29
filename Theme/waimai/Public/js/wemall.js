@@ -1555,7 +1555,13 @@ function loadOrder(pageIndex) {
                 if (res.scoreInShop) {
                     scoreInShop = res.scoreInShop;
                 }
-                $('#score').html(scoreInShop + '分');
+
+                scoreInShop+= scoreInShop + '分';
+
+                if (res.medalInShop) {
+                    scoreInShop += "/"+ res.medalInShop;
+                }
+                $('#score').html(scoreInShop);
 
                 if (res.order != undefined) {
                     var json = eval(res.order);
