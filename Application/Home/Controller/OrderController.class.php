@@ -100,7 +100,6 @@ class OrderController extends BaseController
 
         $msg = '';
         $msgtitle = $config['name'] . '欢迎您订购<br/>
-
 订单编号：' . $result["orderid"] . '<br/>
 
 条目        单价（元）      数量<br/>
