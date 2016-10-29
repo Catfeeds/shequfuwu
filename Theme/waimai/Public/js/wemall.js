@@ -1556,7 +1556,7 @@ function loadOrder(pageIndex) {
                     scoreInShop = res.scoreInShop;
                 }
 
-                scoreInShop+= scoreInShop + '分';
+                scoreInShop+= '分';
 
                 if (res.medalInShop) {
                     scoreInShop += "/"+ res.medalInShop;

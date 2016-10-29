@@ -694,20 +694,39 @@ class FooController extends Controller
         dump(ObjectHelper::equal($data['v7'], $data['v8'], true));
     }
 
-    public function orderop($id=132){
-        $order = D("Order")->get(array("id" => $id),true);
+    public function orderop($id = 132)
+    {
+        $order = D("Order")->get(array("id" => $id), true);
         dump($order["shop"]["name"]);
         dump($order);
     }
 
-    public function paytypetextop(){
-        $result= BizHelper::getPayTypeText(15);
+    public function paytypetextop()
+    {
+        $result = BizHelper::getPayTypeText(15);
         dump($result);
         dump(BizConst::getConstText("ORDER_PAYTYPE_", 15));
 
-        $mate= new ModelMate("order");
-        $order= $mate->get(188);
+        $mate = new ModelMate("order");
+        $order = $mate->get(188);
         dump(BizConst::getConstText("ORDER_PAYTYPE_", $order["payment"]));
+    }
+
+    public function usermedalop($userScore = 150)
+    {
+        $medalS = C("USER_SCORES_MEDALS");
+
+        //$medalS= C("SYSTEM_PAY_WEIXIN_COMMISSION");
+        dump($medalS);
+        $userMedal = "";
+        foreach ($medalS as $k => $v) {
+            if ($userScore >= $v['MIN'] && $userScore < $v['MAX']) {
+                $userMedal = $v["NAME"];
+                break;
+            }
+        }
+
+        dump($userMedal);
     }
 
     public function substringop()
