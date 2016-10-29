@@ -33,19 +33,19 @@ class UserController extends BaseController
 
         $scoreMate = new ModelMate("userScore");
         $scoreData = $scoreMate->find($scoreCodition);
-        $userScore= $scoreData['scores'];
+        $userScore = $scoreData['scores'];
 
-        $medalS=C("USER_SCORES_MEDALS");
-        $userMedal= "";
-        foreach ($medalS as $k=>$v){
-            if($userScore>= $v['MIN'] && $userScore<$v['MAX']){
-                $userMedal= $v["NAME"];
+        $medalS = C("USER_SCORES_MEDALS");
+        $userMedal = "";
+        foreach ($medalS as $k => $v) {
+            if ($userScore >= $v['MIN'] && $userScore < $v['MAX']) {
+                $userMedal = $v["NAME"];
                 break;
             }
         }
 
-        $user['scoreInShop']= $userScore;
-        $user['medalInShop']= $userMedal;
+        $user['scoreInShop'] = $userScore;
+        $user['medalInShop'] = $userMedal;
         //----------------------------------------------------------------------
 
         if (I("get.getOrder")) {
