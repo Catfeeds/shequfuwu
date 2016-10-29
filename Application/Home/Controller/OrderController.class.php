@@ -92,11 +92,9 @@ class OrderController extends BaseController
         $mate = new ViewMate("order", ViewLink::getOrder_OrderContact_OrderDetail_Shop()); //D("Order")->getOrder(array("id" => $id), true);
         $result = $mate->get($id);
 
-        if ($result["pay_status"] == 0) {
-            $pay_status = "未付款";
-        } else {
-            $pay_status = "已付款";
-        }
+        $pay_status = BizConst::getConstText("ORDER_PAYSTATUS_", $result["pay_status"]);
+        $pay_Paid = $result["totalpreprice"];
+        $pay_needPay = $result["totalprice"] - $result["totalpreprice"];
 
         $config = D("Shop")->getShop(array("id" => $result["shop_id"]));
 
@@ -123,14 +121,13 @@ class OrderController extends BaseController
 备注：' . $result["remark"] . '<br/>
 ------------------------------<br/>
 合计：' . $result["totalprice"] . '元<br/>
+已付款数：' . $pay_Paid . '<br/>
+未付款数：' . $pay_needPay . '<br/>
 付款状态：' . $pay_status . '<br/>
-
 联系用户：' . $result["contact"]["name"] . '<br/>
 送货地址：' . $result["contact"]["province"] . $result["contact"]["city"] . $result["contact"]["district"] . $result["contact"]["address"] . '<br/>
 联系电话：' . $result["contact"]["phone"] . '<br/>
-订购时间：' . $result["time"] . '<br/>
-
-';//自由输出
+订购时间：' . $result["time"] . '<br/>';//自由输出
 
         $msg .= $msgtitle . $msgcontent . $msgfooter;
 
