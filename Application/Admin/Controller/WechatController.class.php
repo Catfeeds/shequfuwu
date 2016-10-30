@@ -370,40 +370,9 @@ class WechatController extends Controller
         $msg["template_id"] = $template_id;
         $msg["url"] = $detailUrl;
         $msg["topcolor"] = "";
-//        $msg["data"] = array(
-//            "first" => array(
-//                "value" => $title,
-//                "color" => "red"
-//            ),
-//            "keyword1" => array(
-//                "value" => $order["orderid"],
-//                "color" => "black"
-//            ),
-//            "keyword2" => array(
-//                "value" => $paymentText . "," . BizHelper::getPayStatusText($order["pay_status"]),
-//                "color" => "black"
-//            ),
-//            "keyword3" => array(
-//                "value" => $order["totalprice"] . $scoreString . $totalprepriceString,
-//                "color" => "black"
-//            ),
-//            "keyword4" => array(
-//                "value" => $order["time"],
-//                "color" => "black"
-//            ),
-//            "keyword5" => array(
-//                "value" => $order["contact"]["name"] . "," . $order["contact"]["phone"] . "," . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"],
-//                "color" => "black"
-//            ),
-//            "remark" => array(
-//                "value" => $order["remark"],
-//                "color" => "red"
-//            ),
-//        );
-
         $msg["data"] = array(
             "first" => array(
-                "value" => 'sssssssssssssss',
+                "value" => $title,
                 "color" => "red"
             ),
             "keyword1" => array(
@@ -411,35 +380,28 @@ class WechatController extends Controller
                 "color" => "black"
             ),
             "keyword2" => array(
-                "value" => 'ggggggggggggggggg',
+                "value" => $paymentText . "," . BizHelper::getPayStatusText($order["pay_status"]),
                 "color" => "black"
             ),
             "keyword3" => array(
-                "value" => 'nnnnnnnnnnnnnnnnnn',
+                "value" => $order["totalprice"] . $scoreString . $totalprepriceString,
                 "color" => "black"
             ),
             "keyword4" => array(
-                "value" => 'iiiiiiiiiiiiii',
+                "value" => $order["time"],
                 "color" => "black"
             ),
             "keyword5" => array(
-                "value" => 'hhhhhhhhhhhhhhhh',
+                "value" => $order["contact"]["name"] . "," . $order["contact"]["phone"] . "," . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"],
                 "color" => "black"
             ),
             "remark" => array(
-                "value" => 'vvvvvvvvvvvvv',
+                "value" => $order["remark"],
                 "color" => "red"
             ),
         );
 
-        //CommonLoger::log("ssssssssssss",json_encode($msg["data"],JSON_UNESCAPED_UNICODE));
-
         $result= self::$weObj->sendTemplateMessage($msg);
-//        if($result){
-//            CommonLoger::log("weixinNoticeMessageStatus",'true');
-//        }else{
-//            CommonLoger::log("weixinNoticeMessageStatus",'false');
-//        }
     }
 
     /**
