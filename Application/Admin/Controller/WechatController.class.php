@@ -373,7 +373,7 @@ class WechatController extends Controller
         $msg["data"] = array(
             "first" => array(
                 "value" => $title,
-                "color" => "red"
+                "color" => "#ff0000"
             ),
             "keyword1" => array(
                 "value" => $order["orderid"],
@@ -381,23 +381,23 @@ class WechatController extends Controller
             ),
             "keyword2" => array(
                 "value" => $paymentText . "," . BizHelper::getPayStatusText($order["pay_status"]),
-                "color" => "black"
+                "color" => "#173177"
             ),
             "keyword3" => array(
                 "value" => $order["totalprice"] . $scoreString . $totalprepriceString,
-                "color" => "black"
+                "color" => "#173177"
             ),
             "keyword4" => array(
                 "value" => $order["time"],
-                "color" => "black"
+                "color" => "#173177"
             ),
             "keyword5" => array(
                 "value" => $order["contact"]["name"] . "," . $order["contact"]["phone"] . "," . $order["contact"]["province"] . $order["contact"]["city"] . $order["contact"]["address"],
-                "color" => "black"
+                "color" => "#173177"
             ),
             "remark" => array(
                 "value" => $order["remark"],
-                "color" => "red"
+                "color" => "#ff0000"
             ),
         );
 
@@ -476,19 +476,19 @@ class WechatController extends Controller
         $msg["data"] = array(
             "first" => array(
                 "value" => $title,
-                "color" => "red"
+                "color" => "#ff0000"
             ),
             "keyword1" => array(
                 "value" => $order["orderid"],
-                "color" => "black"
+                "color" => "#173177"
             ),
             "keyword2" => array(
                 "value" => $priceLocal,
-                "color" => "black"
+                "color" => "#173177"
             ),
             "remark" => array(
                 "value" => $order["remark"],
-                "color" => "red"
+                "color" => "#ff0000"
             ),
         );
         self::$weObj->sendTemplateMessage($msg);
