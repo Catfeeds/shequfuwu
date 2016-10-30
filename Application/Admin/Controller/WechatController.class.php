@@ -350,6 +350,7 @@ class WechatController extends Controller
     private function sendTplMessageOrderDetail($openId, $order, $title, $detailUrl = "")
     {
         $template_id = $this->getTplMessageId("OPENTM201785396");
+        
 
         $orderScore = $order['totalscore'];
         $scoreString = "";
