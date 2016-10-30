@@ -6,6 +6,7 @@ use Common\Model\BizHelper;
 use Think\Controller;
 use Vendor\Hiland\Biz\Loger\CommonLoger;
 use Vendor\Hiland\Biz\Tencent\WechatHelper;
+use Vendor\Hiland\Utils\Data\BoolHelper;
 use Vendor\Hiland\Utils\Data\StringHelper;
 
 class WechatController extends Controller
@@ -346,11 +347,6 @@ class WechatController extends Controller
         }
     }
 
-    public function aa(){
-        $paymentText= BizConst::getConstText("ORDER_PAYTYPE_", 15);
-        dump($paymentText);
-    }
-
     private function sendTplMessageOrderDetail($openId, $order, $title, $detailUrl = "")
     {
         $template_id = $this->getTplMessageId("OPENTM201785396");
@@ -407,7 +403,12 @@ class WechatController extends Controller
 
         CommonLoger::log("ssssssssssss",json_encode($msg["data"],JSON_UNESCAPED_UNICODE));
 
-        self::$weObj->sendTemplateMessage($msg);
+        $result= self::$weObj->sendTemplateMessage($msg);
+        if($result){
+            CommonLoger::log("weixinNoticeMessageStatus",'true');
+        }else{
+            CommonLoger::log("weixinNoticeMessageStatus",'false');
+        }
     }
 
     /**

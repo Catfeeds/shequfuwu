@@ -187,23 +187,23 @@
                                             已优惠：{$order.discount}元<br/>
                                         </if>
                                         <?php
-    $pay_Paid = 0;
-    switch ($order["pay_status"]){
-            case Common\Model\BizConst::ORDER_PAYSTATUS_PAIDPART:
-                $pay_Paid= $order["totalpreprice"];
-                break;
-            case Common\Model\BizConst::ORDER_PAYSTATUS_PAID:
-                $pay_Paid= $order["totalprice"];
-                break;
-            case Common\Model\BizConst::ORDER_PAYSTATUS_UNPAY:
-                $pay_Paid= 0;
-                break;
-        }
-        $pay_needPay = $order["totalprice"] - $pay_Paid;
-        if($order["discount"]>0){
+                                            $pay_Paid = 0;
+                                            switch ($order["pay_status"]){
+                                                    case Common\Model\BizConst::ORDER_PAYSTATUS_PAIDPART:
+                                                        $pay_Paid= $order["totalpreprice"];
+                                                        break;
+                                                    case Common\Model\BizConst::ORDER_PAYSTATUS_PAID:
+                                                        $pay_Paid= $order["totalprice"];
+                                                        break;
+                                                    case Common\Model\BizConst::ORDER_PAYSTATUS_UNPAY:
+                                                        $pay_Paid= 0;
+                                                        break;
+                                                }
+                                                $pay_needPay = $order["totalprice"] - $pay_Paid;
+                                                if($order["discount"]>0){
                                         $pay_needPay-= $order["discount"];
                                         }
-        echo "代付金额：".$pay_needPay;
+                                        echo "待付金额：".$pay_needPay;
                                         ?>
                                     </td>
                                     <td class="hidden-xs">
