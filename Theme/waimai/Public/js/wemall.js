@@ -1185,6 +1185,7 @@ function changeCity(obj) {
     $.each(area[label]['city'], function (index, value) {
         html += '<option value="' + value.name + '">' + value.name + '</option>';
     });
+    alert(html);
     $('#hat_ctiy').html(html);
 }
 
