@@ -1176,17 +1176,14 @@ function empty(id) {
 
 function changeCity(obj) {
     var label = $(obj).find("option:selected").attr("label");
-    console.log(area);
-    alert($('#hat_ctiy').html());
-
-    $('#hat_ctiy').html("");
+    $('#hat_city').html("");
 
     var html = '';
     $.each(area[label]['city'], function (index, value) {
         html += '<option value="' + value.name + '">' + value.name + '</option>';
     });
-    alert(html);
-    $('#hat_ctiy').html(html);
+
+    $('#hat_city').html(html);
 }
 
 function cancelOrder(id) {
