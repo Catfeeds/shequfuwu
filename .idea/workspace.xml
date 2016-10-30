@@ -35,13 +35,13 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="970" column="30" selection-start-line="970" selection-start-column="30" selection-end-line="970" selection-end-column="30" />
+            <state relative-caret-position="217">
+              <caret line="1180" column="28" selection-start-line="1180" selection-start-column="28" selection-end-line="1180" selection-end-column="28" />
               <folding>
-                <marker date="1477801650697" expanded="true" signature="16408:16435" ph="..." />
-                <marker date="1477801650697" expanded="true" signature="16449:16462" ph="..." />
-                <marker date="1477801650697" expanded="true" signature="18652:18664" ph="..." />
-                <marker date="1477801650697" expanded="true" signature="55141:55153" ph="..." />
+                <marker date="1477801829832" expanded="true" signature="16408:16435" ph="..." />
+                <marker date="1477801829832" expanded="true" signature="16449:16462" ph="..." />
+                <marker date="1477801829832" expanded="true" signature="18652:18664" ph="..." />
+                <marker date="1477801829832" expanded="true" signature="55163:55175" ph="..." />
               </folding>
             </state>
           </provider>
@@ -915,7 +915,7 @@
       <workItem from="1476165176649" duration="7420000" />
       <workItem from="1476660134935" duration="25614000" />
       <workItem from="1476765499464" duration="91217000" />
-      <workItem from="1477558728267" duration="25420000" />
+      <workItem from="1477558728267" duration="25602000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -928,7 +928,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="939194000" />
+    <option name="totallyTimeSpent" value="939376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1378,13 +1378,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="970" column="30" selection-start-line="970" selection-start-column="30" selection-end-line="970" selection-end-column="30" />
+        <state relative-caret-position="217">
+          <caret line="1180" column="28" selection-start-line="1180" selection-start-column="28" selection-end-line="1180" selection-end-column="28" />
           <folding>
-            <marker date="1477801650697" expanded="true" signature="16408:16435" ph="..." />
-            <marker date="1477801650697" expanded="true" signature="16449:16462" ph="..." />
-            <marker date="1477801650697" expanded="true" signature="18652:18664" ph="..." />
-            <marker date="1477801650697" expanded="true" signature="55141:55153" ph="..." />
+            <marker date="1477801829832" expanded="true" signature="16408:16435" ph="..." />
+            <marker date="1477801829832" expanded="true" signature="16449:16462" ph="..." />
+            <marker date="1477801829832" expanded="true" signature="18652:18664" ph="..." />
+            <marker date="1477801829832" expanded="true" signature="55163:55175" ph="..." />
           </folding>
         </state>
       </provider>

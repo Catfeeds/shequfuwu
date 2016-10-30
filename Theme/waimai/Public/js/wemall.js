@@ -969,7 +969,7 @@ function cartNext(isGroupBuy) {
                     if (province != null) {
                         $.each(province, function (index, value) {
                             //html += '<option label="' + index + '" value="' + value.name + '">' + value.name + '</option>';
-                            html += '<option value="' + value.name + '">' + value.name + '</option>';
+                            html += '<option index="' + index + '" value="' + value.name + '">' + value.name + '</option>';
                         });
                         //alert(html);
                         $('#hat_province').html(html);
@@ -1177,11 +1177,11 @@ function empty(id) {
 }
 
 function changeCity(obj) {
-    var label = $(obj).find("option:selected").attr("label");
+    var index = $(obj).find("option:selected").attr("index");
     $('#hat_city').html("");
 
     var html = '';
-    $.each(area[label]['city'], function (index, value) {
+    $.each(area[index]['city'], function (index, value) {
         html += '<option value="' + value.name + '">' + value.name + '</option>';
     });
 
