@@ -93,8 +93,24 @@ class OrderController extends BaseController
         $result = $mate->get($id);
 
         $pay_status = BizConst::getConstText("ORDER_PAYSTATUS_", $result["pay_status"]);
-        $pay_Paid = $result["totalpreprice"];
-        $pay_needPay = $result["totalprice"] - $result["totalpreprice"];
+
+        $pay_Paid = 0;
+        switch ($result["pay_status"]){
+            case BizConst::ORDER_PAYSTATUS_PAIDPART:
+                $pay_Paid= $result["totalpreprice"];
+                break;
+            case BizConst::ORDER_PAYSTATUS_PAID:
+                $pay_Paid= $result["totalprice"];
+                break;
+            case BizConst::ORDER_PAYSTATUS_UNPAY:
+                $pay_Paid= 0;
+                break;
+        }
+
+        $pay_needPay = $result["totalprice"] - $pay_Paid;
+        if($result["discount"]>0){
+            $pay_needPay-= $result["discount"];
+        }
 
         $config = D("Shop")->getShop(array("id" => $result["shop_id"]));
 

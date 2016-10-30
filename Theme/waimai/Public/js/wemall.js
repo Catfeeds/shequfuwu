@@ -973,12 +973,12 @@ function cartNext(isGroupBuy) {
                         $('#hat_province').html(html);
                     }
 
-                    var html = '';
+                    var html4City = '';
                     if (province[0]["city"] != null) {
                         $.each(province[0]["city"], function (index, value) {
-                            html += '<option value="' + value.name + '">' + value.name + '</option>';
+                            html4City += '<option value="' + value.name + '">' + value.name + '</option>';
                         });
-                        $('#hat_city').html(html);
+                        $('#hat_city').html(html4City);
                     }
                     area = res.province;
                 }
@@ -1028,8 +1028,8 @@ function submitOrder(isGroupBuy) {
     var name = $('#username').val();
     var id = $('#id').val();
     var phone = $('#tel').val();
-    var province = $('#hat_city').val();
-    var city = $('#hat_area').val();
+    var province = $('#hat_province').val();
+    var city = $('#hat_city').val();
     var address = $('#address').val();
     var note = $('#note').val();
     var deliveryTime = $('#deliveryTime').val();
@@ -1176,13 +1176,13 @@ function empty(id) {
 
 function changeCity(obj) {
     var label = $(obj).find("option:selected").attr("label");
-    $('#hat_area').html("");
+    $('#hat_ctiy').html("");
 
     var html = '';
     $.each(area[label]['city'], function (index, value) {
         html += '<option value="' + value.name + '">' + value.name + '</option>';
-        $('#hat_area').html(html);
     });
+    $('#hat_ctiy').html(html);
 }
 
 function cancelOrder(id) {
