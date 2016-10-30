@@ -970,6 +970,7 @@ function cartNext(isGroupBuy) {
                         $.each(province, function (index, value) {
                             html += '<option value="' + value.name + '" label="' + index + '">' + value.name + '</option>';
                         });
+                        alert(html);
                         $('#hat_province').html(html);
                     }
 
