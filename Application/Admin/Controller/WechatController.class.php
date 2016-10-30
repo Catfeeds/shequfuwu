@@ -350,7 +350,6 @@ class WechatController extends Controller
     private function sendTplMessageOrderDetail($openId, $order, $title, $detailUrl = "")
     {
         $template_id = $this->getTplMessageId("OPENTM201785396");
-        
 
         $orderScore = $order['totalscore'];
         $scoreString = "";
@@ -377,8 +376,8 @@ class WechatController extends Controller
                 "color" => "red"
             ),
             "keyword1" => array(
-                "data" => $order["orderid"],
-                "color" => "black"
+                "value" => $order["orderid"],
+                "color" => "#173177"
             ),
             "keyword2" => array(
                 "value" => $paymentText . "," . BizHelper::getPayStatusText($order["pay_status"]),
