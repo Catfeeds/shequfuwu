@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a2d870-4522-4c5d-8938-e4825ec68e3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/build/template.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" afterPath="$PROJECT_DIR$/Theme/waimai/Public/js/wemall.min.js" />
     </list>
@@ -37,12 +36,12 @@
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="197">
-              <caret line="1177" column="21" selection-start-line="1177" selection-start-column="21" selection-end-line="1177" selection-end-column="21" />
+              <caret line="1177" column="0" selection-start-line="1177" selection-start-column="0" selection-end-line="1177" selection-end-column="0" />
               <folding>
-                <marker date="1477795863103" expanded="true" signature="16408:16435" ph="..." />
-                <marker date="1477795863103" expanded="true" signature="16449:16462" ph="..." />
-                <marker date="1477795863103" expanded="true" signature="18652:18664" ph="..." />
-                <marker date="1477795863103" expanded="true" signature="55021:55033" ph="..." />
+                <marker date="1477795996254" expanded="true" signature="16408:16435" ph="..." />
+                <marker date="1477795996254" expanded="true" signature="16449:16462" ph="..." />
+                <marker date="1477795996254" expanded="true" signature="18652:18664" ph="..." />
+                <marker date="1477795996254" expanded="true" signature="55015:55027" ph="..." />
               </folding>
             </state>
           </provider>
@@ -916,7 +915,7 @@
       <workItem from="1476165176649" duration="7420000" />
       <workItem from="1476660134935" duration="25614000" />
       <workItem from="1476765499464" duration="91217000" />
-      <workItem from="1477558728267" duration="21823000" />
+      <workItem from="1477558728267" duration="21950000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -929,7 +928,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="935597000" />
+    <option name="totallyTimeSpent" value="935724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1380,12 +1379,12 @@
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="1177" column="21" selection-start-line="1177" selection-start-column="21" selection-end-line="1177" selection-end-column="21" />
+          <caret line="1177" column="0" selection-start-line="1177" selection-start-column="0" selection-end-line="1177" selection-end-column="0" />
           <folding>
-            <marker date="1477795863103" expanded="true" signature="16408:16435" ph="..." />
-            <marker date="1477795863103" expanded="true" signature="16449:16462" ph="..." />
-            <marker date="1477795863103" expanded="true" signature="18652:18664" ph="..." />
-            <marker date="1477795863103" expanded="true" signature="55021:55033" ph="..." />
+            <marker date="1477795996254" expanded="true" signature="16408:16435" ph="..." />
+            <marker date="1477795996254" expanded="true" signature="16449:16462" ph="..." />
+            <marker date="1477795996254" expanded="true" signature="18652:18664" ph="..." />
+            <marker date="1477795996254" expanded="true" signature="55015:55027" ph="..." />
           </folding>
         </state>
       </provider>
