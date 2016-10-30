@@ -1177,7 +1177,7 @@ function empty(id) {
 function changeCity(obj) {
     var label = $(obj).find("option:selected").attr("label");
     console.log(area);
-    alert(area);
+    alert($('#hat_ctiy').html());
 
     $('#hat_ctiy').html("");
 
