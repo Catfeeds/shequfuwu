@@ -376,7 +376,7 @@ class WechatController extends Controller
                 "color" => "red"
             ),
             "keyword1" => array(
-                "value" => $order["orderid"],
+                "data" => $order["orderid"],
                 "color" => "black"
             ),
             "keyword2" => array(
