@@ -726,6 +726,8 @@ class FooController extends Controller
             }
         }
 
+
+
         dump($userMedal);
     }
 
