@@ -771,6 +771,9 @@ function clickGroupBuyDetail(id) {
         },
         success: function (res) {
             var json = eval(res);
+
+            var maxCountCanBuy= json.piececount - json.soldcount;
+
             $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .single-name').html(json.name);
 
@@ -783,11 +786,14 @@ function clickGroupBuyDetail(id) {
             $('#itemsDetail #productMainImage').val(mainImageUrl);
             $(".detail-image-container").html(mainImage);
 
+            if (json.soldcount == null) {
+                json.soldcount = 0;
+            }
             var saleinfo = "本次拼团共" + json.piececount + "份，现已经售出" + json.soldcount + "份。";
             $('#itemsDetail #sale-info').html(saleinfo);
 
-            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ')');
-            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ')');
+            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ',' + maxCountCanBuy +  ')');
+            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice+ ',' + maxCountCanBuy + ')');
             $('#itemsDetail .numbers-minus').attr("onclick", 'reduceGroupBuyNum(this ,' + json.id + ', false)');
 
             $('#items-total-price').html(totalPrice);
@@ -820,7 +826,7 @@ function clickGroupBuyDetail(id) {
 }
 
 
-function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
+function doCartOfGroupBuy(obj, id, name, allPrice, prePrice,maxCountCanBuy) {
     var flag = 0;
     var productNum = 0;
     $.each(cartDataOfgroupBuy, function (index, value) {
@@ -828,6 +834,10 @@ function doCartOfGroupBuy(obj, id, name, allPrice, prePrice) {
             flag = 1;
             value.num++;
             productNum = value.num;
+
+            if(productNum>= maxCountCanBuy){
+                $(obj).addClass('disabled').attr("disabled", true);
+            }
             return;
         }
     });
@@ -899,6 +909,8 @@ function reduceGroupBuyNum(obj, id) {
             if (productNum == 1) {
                 $(obj).addClass('disabled').attr("disabled", true);
             }
+
+            $(obj).parent().find(".numbers-add").removeClass('disabled').attr("disabled", false);
         }
     });
 
@@ -932,9 +944,9 @@ function cartNext(isGroupBuy) {
     // pushHistory();
 
     if (isGroupBuy) {
-        $(".payment-content .groupBuyPrePay").attr("style","display:block;");
+        $(".payment-content .groupBuyPrePay").attr("style", "display:block;");
         $("#btnSubmitOrder").attr("onclick", "submitOrder(true);");
-    }else{
+    } else {
         $("#btnSubmitOrder").attr("onclick", "submitOrder(false);");
     }
 
@@ -1559,10 +1571,10 @@ function loadOrder(pageIndex) {
                     scoreInShop = res.scoreInShop;
                 }
 
-                scoreInShop+= '分';
+                scoreInShop += '分';
 
                 if (res.medalInShop) {
-                    scoreInShop += "/"+ res.medalInShop;
+                    scoreInShop += "/" + res.medalInShop;
                 }
                 $('#score').html(scoreInShop);
 
