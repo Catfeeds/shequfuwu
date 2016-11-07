@@ -772,8 +772,12 @@ function clickGroupBuyDetail(id) {
         success: function (res) {
             var json = eval(res);
 
-            var maxCountCanBuy= json.piececount - json.soldcount;
-            alert(maxCountCanBuy);
+            var maxCountCanBuy = 0;
+            if (json.soldcount >= json.piececount) {
+                maxCountCanBuy = 0;
+            } else {
+                maxCountCanBuy = json.piececount - json.soldcount;
+            }
 
             $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .single-name').html(json.name);
@@ -793,8 +797,8 @@ function clickGroupBuyDetail(id) {
             var saleinfo = "本次拼团共" + json.piececount + "份，现已经售出" + json.soldcount + "份。";
             $('#itemsDetail #sale-info').html(saleinfo);
 
-            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ',' + maxCountCanBuy +  ')');
-            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice+ ',' + maxCountCanBuy + ')');
+            $('#itemsDetail .addItem.btn-shopping').attr("doCartOfGroupBuy", 'doCart(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ',' + maxCountCanBuy + ')');
+            $('#itemsDetail .numbers-add').attr("onclick", 'doCartOfGroupBuy(this ,' + json.id + ',\'' + json.name + '\',' + json.totalprice + ',' + json.prepayprice + ',' + maxCountCanBuy + ')');
             $('#itemsDetail .numbers-minus').attr("onclick", 'reduceGroupBuyNum(this ,' + json.id + ', false)');
 
             $('#items-total-price').html(totalPrice);
@@ -827,7 +831,7 @@ function clickGroupBuyDetail(id) {
 }
 
 
-function doCartOfGroupBuy(obj, id, name, allPrice, prePrice,maxCountCanBuy) {
+function doCartOfGroupBuy(obj, id, name, allPrice, prePrice, maxCountCanBuy) {
     var flag = 0;
     var productNum = 0;
     $.each(cartDataOfgroupBuy, function (index, value) {
@@ -836,7 +840,7 @@ function doCartOfGroupBuy(obj, id, name, allPrice, prePrice,maxCountCanBuy) {
             value.num++;
             productNum = value.num;
 
-            if(productNum>= maxCountCanBuy){
+            if (productNum >= maxCountCanBuy) {
                 $(obj).addClass('disabled').attr("disabled", true);
             }
             return;
