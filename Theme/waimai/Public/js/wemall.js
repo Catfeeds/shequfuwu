@@ -773,6 +773,7 @@ function clickGroupBuyDetail(id) {
             var json = eval(res);
 
             var maxCountCanBuy= json.piececount - json.soldcount;
+            alert(maxCountCanBuy);
 
             $('#itemsDetail #detail-id').val(json.id);
             $('#itemsDetail .single-name').html(json.name);
