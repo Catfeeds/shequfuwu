@@ -951,6 +951,9 @@ function cartNext(isGroupBuy) {
     if (isGroupBuy) {
         $(".payment-content .groupBuyPrePay").attr("style", "display:block;");
         $("#btnSubmitOrder").attr("onclick", "submitOrder(true);");
+
+        //团购订单不可以货到付款
+        $(".payment-content #cool-payment").attr("style", "display:none;");
     } else {
         $("#btnSubmitOrder").attr("onclick", "submitOrder(false);");
     }
