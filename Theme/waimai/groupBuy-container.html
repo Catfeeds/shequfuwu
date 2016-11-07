@@ -7,7 +7,11 @@
                  style="display: inline; height: 137px;">
         </a>
         <div class="single-item-info">
+            {{if value.soldcount}}
             <div class="item-title contentCenter">{{dataItem.name}}&nbsp;已售{{dataItem.soldcount}}份/总{{dataItem.piececount}}份</div>
+            {{else}}
+            <div class="item-title contentCenter">{{dataItem.name}}&nbsp;已售0份/总{{dataItem.piececount}}份</div>
+            {{/if}}
         </div>
     </li>
     {{/each}}
