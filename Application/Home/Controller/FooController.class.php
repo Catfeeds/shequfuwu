@@ -727,7 +727,6 @@ class FooController extends Controller
         }
 
 
-
         dump($userMedal);
     }
 
@@ -746,6 +745,12 @@ class FooController extends Controller
             dump("$k 的值为$v,运算后结果为$r");
         }
     }
+
+    public function groupbuyop($id = 3, $count = 3)
+    {
+        BizHelper::updateGroupBuyCount($id, $count);
+    }
+
 
     public function enumop()
     {

@@ -40,7 +40,7 @@ class OrderController extends BaseController
         $order = I("post.order");
         $orderType = $order["ordertype"]; //0:普通订单；1：团购订单
 
-        CommonLoger::log("ordercontent",json_encode($order));
+        //CommonLoger::log("ordercontent",json_encode($order));
 
         if ($order["payment"] == BizConst::ORDER_PAYTYPE_LOCAL) {
             $paySuccessful = $this->updateUserMoney(session("userId"), -$order["totalprice"]);
@@ -101,7 +101,6 @@ class OrderController extends BaseController
 
             $detail["prePrice"] = isset($value["prePrice"]) ? $value["prePrice"] : "";
 
-
             if ($orderType == 0) {
                 $getProduct = $product->get(array("id" => $value["id"]));
                 $detail["file_id"] = $getProduct["file_id"];
@@ -113,6 +112,9 @@ class OrderController extends BaseController
             } else {
                 $groupBuyGotten = $groupBuyMate->get($value["id"]);
                 $detail["file_id"] = $groupBuyGotten["file_id"];
+
+                //更新团购商品剩余份数和状态
+                BizHelper::updateGroupBuyCount($value["id"],$value["num"]);
             }
 
             array_push($detailAll, $detail);
@@ -143,7 +145,7 @@ class OrderController extends BaseController
         $order = D("Order")->get(array("id" => $order_id), true);
         request_by_fsockopen($this->appUrl . U("Admin/Wechat/sendTplMsgOrder"), array("user_id" => session("userId"), "order_id" => $order_id));
 
-        CommonLoger::log("ordercontent",'555555555555555');
+        //CommonLoger::log("ordercontent",'555555555555555');
         $wxConfig = D("WxConfig")->get();
         switch ($order["payment"]) {
             case BizConst::ORDER_PAYTYPE_WEIXIN:

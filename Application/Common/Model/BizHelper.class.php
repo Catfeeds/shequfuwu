@@ -419,6 +419,30 @@ class BizHelper
         return $detailMate->interact($detailData);
     }
 
+
+    /**
+     * 更新团购商品的售出数量
+     * @param int $groupBuyID 商品id
+     * @param int $saleCount 本次售出数量
+     */
+    public static function updateGroupBuyCount($groupBuyID,$saleCount){
+        $mate= new ModelMate("groupbuy");
+        $entity= $mate->get($groupBuyID);
+
+        if($entity){
+            $originalCount= $entity["soldcount"];
+            $newCount= $originalCount+ $saleCount;
+
+            if($newCount>= $entity["piececount"]){
+                $entity["soldcount"] = $newCount;
+                $entity["successfulstatus"]= SystemConst::COMMON_STATUS_SOF_SUCCESS;
+                $mate->interact($entity);
+            }else{
+                $mate->setValue($groupBuyID,"soldcount",$newCount);
+            }
+        }
+    }
+
     /**
      * 获取某店铺的标签
      * @param int $shopId 店铺id

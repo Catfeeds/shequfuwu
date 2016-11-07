@@ -51,6 +51,18 @@ class SystemConst extends ConstMate
     const COMMON_STATUS_YN_YES = 1;
     const COMMON_STATUS_YN_YES_TEXT = "是";
 
+    const COMMON_STATUS_SF_FAILURE = 0;
+    const COMMON_STATUS_SF_FAILURE_TEXT = "失败";
+    const COMMON_STATUS_SF_SUCCESS = 1;
+    const COMMON_STATUS_SF_SUCCESS_TEXT = "成功";
+
+    const COMMON_STATUS_SOF_FAILURE = -1;
+    const COMMON_STATUS_SOF_FAILURE_TEXT = "失败";
+    const COMMON_STATUS_SOF_ORIGINAL = 0;
+    const COMMON_STATUS_SOF_ORIGINAL_TEXT = "初始";
+    const COMMON_STATUS_SOF_SUCCESS = 1;
+    const COMMON_STATUS_SOF_SUCCESS_TEXT = "成功";
+
     const COMMON_STATUS_EFFECT_NO = 0;
     const COMMON_STATUS_EFFECT_NO_TEXT = "无效";
     const COMMON_STATUS_EFFECT_YES = 1;
