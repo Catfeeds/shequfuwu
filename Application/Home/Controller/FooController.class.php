@@ -751,6 +751,10 @@ class FooController extends Controller
         BizHelper::updateGroupBuyCount($id, $count);
     }
 
+//    public function getthumb(){
+//        BizHelper::
+//    }
+
 
     public function enumop()
     {

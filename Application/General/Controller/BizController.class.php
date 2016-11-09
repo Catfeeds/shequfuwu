@@ -10,6 +10,7 @@ use Vendor\Hiland\Utils\Data\ReflectionHelper;
 use Vendor\Hiland\Utils\DataModel\ModelMate;
 use Vendor\Hiland\Utils\DataModel\ViewMate;
 use Vendor\Hiland\Utils\Datas\SystemConst;
+use Vendor\Hiland\Utils\IO\ImageHelper;
 use Vendor\Hiland\Utils\Web\WebHelper;
 
 /**
@@ -38,7 +39,7 @@ class BizController
         }
 
         $data = "shopName-- $shopName;cityName-- $cityName;shopCategory-- $shopCategory;pageIndex-- $pageIndex;itemCountPerPage-- $itemCountPerPage;saletype-- $saletype";
-        CommonLoger::log('getAreaShops',$data);
+        CommonLoger::log('getAreaShops', $data);
 
         $result = BizHelper::getAreaShops($cityName, $shopName, $shopCategory, $saletype, $pageIndex, $itemCountPerPage);
         WebHelper::serverReturn($result);
@@ -122,6 +123,27 @@ class BizController
         WebHelper::serverReturn($result);
     }
 
+    public function getThumb($savepath = "2016-08-12/", $savename = "57ad114fb1a6d.jpg", $width = 50, $height = 50)
+    {
+        $basePath = "/Public/Uploads/";
+        $baseWebPath = __ROOT__ . $basePath;
+        $basePhyPath = PHYSICAL_ROOT_PATH . $basePath;
+
+        $originalPhyFileName = $basePhyPath . $savepath . $savename;
+        $newPhyFileName = $basePhyPath . $savepath . "$width*$height-__" . $savename;
+        $newWebFileName = $baseWebPath . $savepath . "$width*$height-__" . $savename;
+
+        if (is_file($newPhyFileName) == false) {
+            $sourceImage = ImageHelper::loadImage($originalPhyFileName);
+            dump($sourceImage);
+            $targetImage = ImageHelper::resizeImage($sourceImage, $width, $height);
+            dump($targetImage);
+            ImageHelper::save($targetImage, $newPhyFileName);
+        }
+
+        dump($newPhyFileName);
+    }
+
     /**
      *按照label分组获取店铺可以显示在首页上的产品类别
      */
@@ -150,36 +172,40 @@ class BizController
         WebHelper::serverReturn($result, '', JSON_UNESCAPED_UNICODE);
     }
 
-    public function getGroupBuys(){
+    public function getGroupBuys()
+    {
         $shopID = I("get.shopId");
-        $result= BizHelper::getGroupBuys($shopID);
-        return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
+        $result = BizHelper::getGroupBuys($shopID);
+        return WebHelper::serverReturn($result, '', JSON_UNESCAPED_UNICODE);
     }
 
-    public function getGroupBuy(){
-        $groupBuyId= I("get.id");
-        $result=  BizHelper::getGroupBuy($groupBuyId);
-        return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
+    public function getGroupBuy()
+    {
+        $groupBuyId = I("get.id");
+        $result = BizHelper::getGroupBuy($groupBuyId);
+        return WebHelper::serverReturn($result, '', JSON_UNESCAPED_UNICODE);
     }
 
     //============================================================================================
     //TODO 以下方法需要验证
-    public function callBizHelper(){
-        $methodName= I("get.methodName");
-        $argName= I("get.argName");
-        if(empty( $argName)){
-            $argName= "id";
+    public function callBizHelper()
+    {
+        $methodName = I("get.methodName");
+        $argName = I("get.argName");
+        if (empty($argName)) {
+            $argName = "id";
         }
-        $argValue= I("get.$argName");
-        $args= array("$argName"=>$argValue);
+        $argValue = I("get.$argName");
+        $args = array("$argName" => $argValue);
 
-        $className= "Common\\Model\\BizHelper";
-        $result=  ReflectionHelper::executeMethod($className,$methodName,null,$args);
-        return WebHelper::serverReturn($result,'',JSON_UNESCAPED_UNICODE);
+        $className = "Common\\Model\\BizHelper";
+        $result = ReflectionHelper::executeMethod($className, $methodName, null, $args);
+        return WebHelper::serverReturn($result, '', JSON_UNESCAPED_UNICODE);
     }
 
-    public function callFuncs($className,$methodName,$construcArgs=null,$methodArgs= null){
-        ReflectionHelper::executeMethod($className,$methodName,$construcArgs,$methodArgs);
+    public function callFuncs($className, $methodName, $construcArgs = null, $methodArgs = null)
+    {
+        ReflectionHelper::executeMethod($className, $methodName, $construcArgs, $methodArgs);
     }
     //============================================================================================
 }
