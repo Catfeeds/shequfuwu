@@ -35,13 +35,13 @@
       <file leaf-file-name="wemall.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="1437" column="33" selection-start-line="1437" selection-start-column="33" selection-end-line="1437" selection-end-column="33" />
+            <state relative-caret-position="160">
+              <caret line="1428" column="14" selection-start-line="1428" selection-start-column="14" selection-end-line="1428" selection-end-column="14" />
               <folding>
-                <marker date="1479175413508" expanded="true" signature="16408:16435" ph="..." />
-                <marker date="1479175413508" expanded="true" signature="16449:16462" ph="..." />
-                <marker date="1479175413508" expanded="true" signature="18652:18664" ph="..." />
-                <marker date="1479175413508" expanded="true" signature="56615:56627" ph="..." />
+                <marker date="1479178674284" expanded="true" signature="16408:16435" ph="..." />
+                <marker date="1479178674284" expanded="true" signature="16449:16462" ph="..." />
+                <marker date="1479178674284" expanded="true" signature="18652:18664" ph="..." />
+                <marker date="1479178674284" expanded="true" signature="56663:56675" ph="..." />
               </folding>
             </state>
           </provider>
@@ -88,8 +88,8 @@
       <file leaf-file-name="BizController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="141" column="10" selection-start-line="141" selection-start-column="10" selection-end-line="141" selection-end-column="10" />
+            <state relative-caret-position="-2040">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="19" />
               <folding>
                 <element signature="e#37#63#0#PHP" expanded="true" />
               </folding>
@@ -1185,7 +1185,7 @@
       <workItem from="1477816759208" duration="2141000" />
       <workItem from="1478477265851" duration="17682000" />
       <workItem from="1478591345533" duration="844000" />
-      <workItem from="1478592655231" duration="16649000" />
+      <workItem from="1478592655231" duration="18204000" />
     </task>
     <task id="LOCAL-00001" summary="加入Minify功能">
       <created>1468403563283</created>
@@ -1198,7 +1198,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="981527000" />
+    <option name="totallyTimeSpent" value="983082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1616,16 +1616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="141" column="10" selection-start-line="141" selection-start-column="10" selection-end-line="141" selection-end-column="10" />
-          <folding>
-            <element signature="e#37#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/ads-container.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1634,15 +1624,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Application/General/Controller/BizController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2040">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <element signature="e#37#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Theme/waimai/Public/js/wemall.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="1437" column="33" selection-start-line="1437" selection-start-column="33" selection-end-line="1437" selection-end-column="33" />
+        <state relative-caret-position="160">
+          <caret line="1428" column="14" selection-start-line="1428" selection-start-column="14" selection-end-line="1428" selection-end-column="14" />
           <folding>
-            <marker date="1479175413508" expanded="true" signature="16408:16435" ph="..." />
-            <marker date="1479175413508" expanded="true" signature="16449:16462" ph="..." />
-            <marker date="1479175413508" expanded="true" signature="18652:18664" ph="..." />
-            <marker date="1479175413508" expanded="true" signature="56615:56627" ph="..." />
+            <marker date="1479178674284" expanded="true" signature="16408:16435" ph="..." />
+            <marker date="1479178674284" expanded="true" signature="16449:16462" ph="..." />
+            <marker date="1479178674284" expanded="true" signature="18652:18664" ph="..." />
+            <marker date="1479178674284" expanded="true" signature="56663:56675" ph="..." />
           </folding>
         </state>
       </provider>
