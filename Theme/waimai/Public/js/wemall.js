@@ -1424,6 +1424,8 @@ function openAds(o) {
     $('#shopcart-tip').html(totalNum);
 
     tabTmpl("ads-container", "getThumb", function (filePath, fileName, width, height) {
+        "<?php echo General\Controller\BizController::getThumb(); ?>"
+
         // $.ajax({
         //     type: "get",
         //     url: data.baseUrl + "/General/Biz/getThumb",
