@@ -1435,6 +1435,7 @@ function openAds(o) {
             },
             success: function (res) {
                 if (res) {
+                        alert(res);
                     return res;
                 } else {
                     return "sss";
