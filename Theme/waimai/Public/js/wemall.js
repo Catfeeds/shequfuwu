@@ -1441,6 +1441,8 @@ function openAds(o) {
                 }
             }
         });
+
+        return "ssssssssssssssss";
     });
 
     initProduct();
