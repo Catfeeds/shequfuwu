@@ -18,8 +18,9 @@
         {{each ads as value i}} {{if value.adsname == 1}}
         <div class="swiper-slide">
             <a href="{{value.url}}">
-                <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                <img class="lazy" src="{{imageUrl}}/blank.gif" data-echo="{{uploadsUrl+value.savepath}}360-137-__{{value.savename}}"
                      style="display: inline; width: 100%;">
+                {{value.savepath,value.savename,360,137 | getThumb}}
             </a>
         </div>
         {{/if}} {{/each}}
