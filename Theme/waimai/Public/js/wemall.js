@@ -1424,7 +1424,7 @@ function openAds(o) {
     $('#shopcart-tip').html(totalNum);
 
     tabTmpl("ads-container", "getThumb", function (filePath, fileName) {
-        return "ssssssssssssssssss";
+        return filePath + fileName;
     });
 
     initProduct();
