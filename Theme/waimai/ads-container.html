@@ -36,8 +36,9 @@
         <li>
             <a href="{{value.url}}">
                 <img class="lazy" src="{{imageUrl}}/blank.gif"
-                     data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                     data-echo="{{uploadsUrl+value.savepath}}360-137-__{{value.savename}}"
                      style="display: inline; height: 137px;">
+                {{value.savepath,value.savename,360,137 | getThumb}}
             </a>
         </li>
         {{/if}} {{/each}}
@@ -49,11 +50,11 @@
         <li class="item item_third">
             <a href="{{value.url}}" title="{{value.name}}">
                 <div class="item-image item-image_third">
-                    {{value.savepath,value.savename,120,120 | getThumb}}
                     <img src="{{imageUrl}}/blank.gif"
                                                               data-echo="{{uploadsUrl+value.savepath}}120-120-__{{value.savename}}"
                                                               class="lazy"
                                                               style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
+                    {{value.savepath,value.savename,120,120 | getThumb}}
                 </div>
             </a>
             <div class="single-item-info">

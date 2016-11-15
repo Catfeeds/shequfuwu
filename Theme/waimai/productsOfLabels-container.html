@@ -5,10 +5,12 @@
         {{each labelItem as value i}}
         <li class="item item_third">
             <a href="#/product/{{value.id}}" title="{{value.name}}">
-                <div class="item-image item-image_third"><img src="{{imageUrl}}/blank.gif"
-                                                              data-echo="{{uploadsUrl+value.savepath+value.savename}}"
+                <div class="item-image item-image_third">
+                    <img src="{{imageUrl}}/blank.gif"
+                                                              data-echo="{{uploadsUrl+value.savepath}}120-120-__{{value.savename}}"
                                                               class="lazy"
                                                               style="width: 100%; margin-top: 0px; display: inline;background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 30px;">
+                    {{value.savepath,value.savename,120,120 | getThumb}}
                     <div class="select-shadow">
                         <div class="select-inner"><img src="{{imageUrl}}/ico_select.png" alt="selected"><span>已选</span>
                         </div>

@@ -3,8 +3,9 @@
     <li>
         <a href="#/groupbuy/{{dataItem.id}}">
             <img class="lazy" src="{{imageUrl}}/blank.gif"
-                 data-echo="{{uploadsUrl+dataItem.savepath+dataItem.savename}}"
+                 data-echo="{{uploadsUrl+dataItem.savepath}}120-120-__{{dataItem.savename}}"
                  style="display: inline; height: 137px;">
+            {{value.savepath,value.savename,120,120 | getThumb}}
         </a>
         <div class="single-item-info">
             {{if dataItem.soldcount}}
