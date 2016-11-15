@@ -1423,8 +1423,24 @@ function openAds(o) {
     $('#shopcart-tip').show();
     $('#shopcart-tip').html(totalNum);
 
-    tabTmpl("ads-container", "getThumb", function (filePath, fileName) {
-        return filePath + fileName;
+    tabTmpl("ads-container", "getThumb", function (filePath, fileName, width, height) {
+        $.ajax({
+            type: "get",
+            url: data.baseUrl + "/General/Biz/getThumb",
+            data: {
+                savepath: filePath,
+                savename: fileName,
+                width: width,
+                height: height,
+            },
+            success: function (res) {
+                if (res) {
+                    return res;
+                } else {
+                    return "sss";
+                }
+            }
+        });
     });
 
     initProduct();
