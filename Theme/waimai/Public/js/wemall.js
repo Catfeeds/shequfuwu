@@ -1423,7 +1423,10 @@ function openAds(o) {
     $('#shopcart-tip').show();
     $('#shopcart-tip').html(totalNum);
 
-    tabTmpl("ads-container");
+    tabTmpl("ads-container", "getThumb", function (filePath, fileName) {
+        return "ssssssssssssssssss";
+    });
+
     initProduct();
     // $(".header-title").show();
 
@@ -1435,7 +1438,11 @@ function openAds(o) {
     $(".header-title").html(headerTitle);
 }
 
-function tabTmpl(id) {
+function tabTmpl(id, helperFuncName, helperFunc) {
+    if (helperFuncName && helperFunc) {
+        template.helper(helperFuncName, helperFunc);
+    }
+
     var html = template(id, data);
     $("#main").html(html);
 

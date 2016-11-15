@@ -123,25 +123,23 @@ class BizController
         WebHelper::serverReturn($result);
     }
 
-    public function getThumb($savepath = "2016-08-12/", $savename = "57ad9416eb570.jpg", $width = 50, $height = 50)
+    public function getThumb($savepath = "2016-08-12/", $savename = "57ad9416eb570.jpg", $width = 50, $height = 50, $basePath = "/Public/Uploads/")
     {
-        $basePath = "/Public/Uploads/";
         $baseWebPath = __ROOT__ . $basePath;
         $basePhyPath = PHYSICAL_ROOT_PATH . $basePath;
 
         $originalPhyFileName = $basePhyPath . $savepath . $savename;
-        $newPhyFileName = $basePhyPath . $savepath . "$width*$height-__" . $savename;
-        $newWebFileName = $baseWebPath . $savepath . "$width*$height-__" . $savename;
+
+        $newPhyFileName = $basePhyPath . $savepath . "$width-$height-__" . $savename;
+        $newWebFileName = $baseWebPath . $savepath . "$width-$height-__" . $savename;
 
         if (is_file($newPhyFileName) == false) {
             $sourceImage = ImageHelper::loadImage($originalPhyFileName);
-            dump($sourceImage);
             $targetImage = ImageHelper::resizeImage($sourceImage, $width, $height);
-            dump($targetImage);
             ImageHelper::save($targetImage, $newPhyFileName);
         }
 
-        dump($newPhyFileName);
+        return $newWebFileName;
     }
 
     /**
