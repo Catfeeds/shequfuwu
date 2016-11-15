@@ -139,7 +139,8 @@ class BizController
             ImageHelper::save($targetImage, $newPhyFileName);
         }
 
-        return $newWebFileName;
+        //return $newWebFileName;
+        WebHelper::serverReturn($newWebFileName, '', JSON_UNESCAPED_UNICODE);
     }
 
     /**
