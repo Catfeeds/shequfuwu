@@ -1743,6 +1743,25 @@ function switchMenu(obj, id, isManual) {
                 uploadsUrl: data.uploadsUrl,
                 imageUrl: data.imageUrl
             };
+
+            template.helper("getThumb", function (filePath, fileName, width, height) {
+                $.ajax({
+                    type: "get",
+                    url: data.baseUrl + "/General/Biz/getThumb",
+                    data: {
+                        savepath: filePath,
+                        savename: fileName,
+                        width: width,
+                        height: height,
+                    },
+                    success: function (res) {
+                        if (res) {
+                            //return res;
+                        }
+                    }
+                });
+            });
+            
             var html = template("productItems", dataSending);
             $("#productInfoItems").html(html);
 
@@ -1814,6 +1833,24 @@ function openSearch() {
                         uploadsUrl: data.uploadsUrl,
                         imageUrl: data.imageUrl
                     };
+
+                    template.helper("getThumb", function (filePath, fileName, width, height) {
+                        $.ajax({
+                            type: "get",
+                            url: data.baseUrl + "/General/Biz/getThumb",
+                            data: {
+                                savepath: filePath,
+                                savename: fileName,
+                                width: width,
+                                height: height,
+                            },
+                            success: function (res) {
+                                if (res) {
+                                    //return res;
+                                }
+                            }
+                        });
+                    });
 
                     var html = template("productItems", dataSending);
                     $("#productInfoItems").html(html);
