@@ -3,7 +3,8 @@
     <img onclick="prevView(this)" class="mui-media-object mui-pull-left mui-pull-lefts"
          src="{{imageUrl}}/blank.gif"
          style="background: #FFF url({{imageUrl}}/loading.gif) no-repeat center center;background-size: 20px;"
-         data-echo="{{uploadsUrl+value.savepath}}60-60-__{{value.savename}}">
+         data-echo="{{uploadsUrl+value.savepath}}60-60-__{{value.savename}}"
+         originalsrc="{{uploadsUrl+value.savepath+value.savename}}"    >
     {{value.savepath,value.savename,60,60 | getThumb}}
     <div class="mui-media-body">
         <a href="#/product/{{value.id}}" title="">
