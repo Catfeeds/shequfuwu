@@ -1761,7 +1761,7 @@ function switchMenu(obj, id, isManual) {
                     }
                 });
             });
-            
+
             var html = template("productItems", dataSending);
             $("#productInfoItems").html(html);
 
