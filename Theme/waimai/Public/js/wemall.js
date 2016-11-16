@@ -1783,7 +1783,7 @@ function switchMenu(obj, id, isManual) {
 }
 
 function prevView(obj) {
-    var src = $(obj).attr('originalsrc');
+    var src = $(obj).attr('osrc');
     layer.open({
         content: '<img style="width: 200px" src="' + src + '"/>'
     });
