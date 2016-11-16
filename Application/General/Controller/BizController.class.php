@@ -136,7 +136,7 @@ class BizController
         if (is_file($newPhyFileName) == false) {
             $sourceImage = ImageHelper::loadImage($originalPhyFileName);
             $targetImage = ImageHelper::resizeImage($sourceImage, $width, $height);
-            ImageHelper::save($targetImage, $newPhyFileName);
+            ImageHelper::save($targetImage, $newPhyFileName,95);
         }
 
         //return $newWebFileName;
